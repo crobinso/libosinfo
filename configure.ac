@@ -266,6 +266,7 @@ AC_CONFIG_FILES([
 	data/device/pcisig.com/pci-1af4-1002.d/Makefile
 	data/device/pcisig.com/pci-1af4-1003.d/Makefile
 	data/device/pcisig.com/pci-1af4-1009.d/Makefile
+	data/device/pcisig.com/pci-1af4-1050.d/Makefile
 	data/device/pcisig.com/pci-1b36-0100.d/Makefile
 	data/device/pcisig.com/pci-8086-100e.d/Makefile
 	data/device/pcisig.com/pci-8086-2415.d/Makefile

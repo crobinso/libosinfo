@@ -13,6 +13,7 @@ SUBDIRS = \
 	pci-1af4-1002.d \
 	pci-1af4-1003.d \
 	pci-1af4-1009.d \
+	pci-1af4-1050.d \
 	pci-1b36-0100.d \
 	pci-8086-100e.d \
 	pci-8086-2415.d \
