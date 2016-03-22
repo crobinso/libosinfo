@@ -304,6 +304,7 @@ data/os/suse.com/sled-11.3.xml.in
 data/os/suse.com/sled-11.4.xml.in
 data/os/suse.com/sled-11.xml.in
 data/os/suse.com/sled-12.xml.in
+data/os/suse.com/sled-12.1.xml.in
 data/os/suse.com/sles-9.xml.in
 data/os/suse.com/sles-10.xml.in
 data/os/suse.com/sles-11.1.xml.in
@@ -312,6 +313,7 @@ data/os/suse.com/sles-11.3.xml.in
 data/os/suse.com/sles-11.4.xml.in
 data/os/suse.com/sles-11.xml.in
 data/os/suse.com/sles-12.xml.in
+data/os/suse.com/sles-12.1.xml.in
 data/os/ubuntu.com/ubuntu-4.10.xml.in
 data/os/ubuntu.com/ubuntu-5.04.xml.in
 data/os/ubuntu.com/ubuntu-5.10.xml.in
