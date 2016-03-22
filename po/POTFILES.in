@@ -217,6 +217,8 @@ data/os/opensuse.org/opensuse-12.2.xml.in
 data/os/opensuse.org/opensuse-12.3.xml.in
 data/os/opensuse.org/opensuse-13.1.xml.in
 data/os/opensuse.org/opensuse-13.2.xml.in
+data/os/opensuse.org/opensuse-42.1.xml.in
+data/os/opensuse.org/opensuse-tumbleweed.xml.in
 data/os/opensuse.org/opensuse-factory.xml.in
 data/os/opensuse.org/opensuse-unknown.xml.in
 data/os/oracle.com/solaris-11.xml.in
