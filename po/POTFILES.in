@@ -38,6 +38,7 @@ data/os/debian.org/debian-5.xml.in
 data/os/debian.org/debian-6.xml.in
 data/os/debian.org/debian-7.xml.in
 data/os/debian.org/debian-8.xml.in
+data/os/debian.org/debian-testing.xml.in
 data/os/fedoraproject.org/fedora-1.xml.in
 data/os/fedoraproject.org/fedora-2.xml.in
 data/os/fedoraproject.org/fedora-3.xml.in
