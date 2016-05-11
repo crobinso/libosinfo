@@ -713,7 +713,7 @@ static void on_svd_read(GObject *source,
 
     data->svd.system[MAX_SYSTEM - 1] = 0;
 
-    if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG) != 0)) {
+    if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG)) != 0) {
         g_set_error(&error,
                     OSINFO_MEDIA_ERROR,
                     OSINFO_MEDIA_ERROR_NOT_BOOTABLE,
