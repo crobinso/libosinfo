@@ -97,7 +97,7 @@ case "$host" in
     NO_UNDEFINED_LDFLAGS="-no-undefined"
     ;;
 
-  darwin*)
+  *darwin*)
     NO_UNDEFINED_LDFLAGS="-Wl,-undefined,error"
     ;;
 
