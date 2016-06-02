@@ -344,6 +344,7 @@ data/os/ubuntu.com/ubuntu-14.04.xml.in
 data/os/ubuntu.com/ubuntu-14.10.xml.in
 data/os/ubuntu.com/ubuntu-15.04.xml.in
 data/os/ubuntu.com/ubuntu-15.10.xml.in
+data/os/ubuntu.com/ubuntu-16.04.xml.in
 data/platform/linux-kvm.org/qemu-kvm-1.0.1.xml.in
 data/platform/linux-kvm.org/qemu-kvm-1.0.xml.in
 data/platform/linux-kvm.org/qemu-kvm-1.1.0.xml.in
