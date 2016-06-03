@@ -71,6 +71,7 @@ START_TEST(test_empty_props)
     GList *keys = osinfo_entity_get_param_keys(ent);
     fail_unless(keys != NULL, "Entity param key list was not empty");
     fail_unless(keys->next == NULL, "Entity param key list was not empty");
+    g_list_free(keys);
 
     const gchar *value = osinfo_entity_get_param_value(ent, "wibble");
     fail_unless(value == NULL, "Entity param value was not NULL");
