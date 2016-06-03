@@ -297,7 +297,7 @@ GList *osinfo_entity_get_param_keys(OsinfoEntity *entity)
 {
     g_return_val_if_fail(OSINFO_IS_ENTITY(entity), NULL);
     GList *keys = g_hash_table_get_keys(entity->priv->params);
-    keys = g_list_append(keys, g_strdup("id"));
+    keys = g_list_append(keys, (char *)"id");
 
     return keys;
 }
