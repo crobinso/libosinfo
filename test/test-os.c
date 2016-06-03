@@ -124,6 +124,9 @@ START_TEST(test_loader)
     fail_unless(os != NULL, "could not find OS 'test5'");
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
     fail_unless(g_strcmp0(str, "test5") == 0, "wrong OS short-id");
+    /* 'test5' OS intentionnally contains an invalid release status */
+    g_test_expect_message(NULL, G_LOG_LEVEL_CRITICAL,
+                          "*(osinfo_entity_get_param_value_enum): should not be reached*");
     fail_unless(osinfo_os_get_release_status(os) == OSINFO_RELEASE_STATUS_RELEASED,
                 "OS should be a released one");
 
