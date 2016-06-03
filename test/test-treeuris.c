@@ -125,6 +125,9 @@ int main(void)
     Suite *s = list_suite();
     SRunner *sr = srunner_create(s);
 
+    /* Make sure we catch unexpected g_warning() */
+    g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
+
     if (!g_getenv("LIBOSINFO_NETWORK_TESTS"))
         return 77; /* Skip */
 

@@ -422,6 +422,9 @@ int main(void)
     Suite *s = list_suite();
     SRunner *sr = srunner_create(s);
 
+    /* Make sure we catch unexpected g_warning() */
+    g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
+
     /* Upfront so we don't confuse valgrind */
     osinfo_entity_get_type();
     osinfo_db_get_type();
