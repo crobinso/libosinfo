@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/test2">
+    <short-id>test2</short-id>
+    <release-status>released</release-status>
+  </os>
+</libosinfo>
