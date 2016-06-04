@@ -99,7 +99,7 @@ static OsinfoOs *find_os(OsinfoDb *db,
     os = osinfo_db_get_os(db, idoruri);
 
     if (os)
-        return os;
+        return g_object_ref(os);
 
     oslist = osinfo_db_get_os_list(db);
     filter = osinfo_filter_new();
@@ -110,8 +110,10 @@ static OsinfoOs *find_os(OsinfoDb *db,
     filteredList = OSINFO_OSLIST(osinfo_list_new_filtered(OSINFO_LIST(oslist),
                                                           filter));
 
-    if (osinfo_list_get_length(OSINFO_LIST(filteredList)) > 0)
+    if (osinfo_list_get_length(OSINFO_LIST(filteredList)) > 0) {
         os = OSINFO_OS(osinfo_list_get_nth(OSINFO_LIST(filteredList), 0));
+        g_object_ref(os);
+    }
 
     g_object_unref(oslist);
     g_object_unref(filteredList);
@@ -392,6 +394,7 @@ EXIT:
     if (media != NULL)
         g_object_unref(media);
     g_clear_error(&error);
+    g_clear_object(&os);
     g_clear_object(&loader);
     g_option_context_free(context);
 
