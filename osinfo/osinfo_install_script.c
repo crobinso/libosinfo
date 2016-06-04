@@ -808,6 +808,7 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
                                                GError **error)
 {
     xsltTransformContextPtr ctxt;
+    xmlChar *xsltResult;
     gchar *ret = NULL;
     xmlDocPtr docOut = NULL;
     int len;
@@ -822,10 +823,12 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
         goto cleanup;
     }
 
-    if (xsltSaveResultToString((xmlChar **)&ret, &len, docOut, ss) < 0) {
+    if (xsltSaveResultToString(&xsltResult, &len, docOut, ss) < 0) {
         g_set_error(error, 0, 0, "%s", _("Unable to convert XSL output to string"));
         goto cleanup;
     }
+    ret = g_strdup((gchar *)xsltResult);
+    xmlFree(xsltResult);
 
  cleanup:
     xmlFreeDoc(docOut);
