@@ -1223,6 +1223,8 @@ void osinfo_install_script_generate_for_media_async(OsinfoInstallScript *script,
                                                 cancellable,
                                                 callback,
                                                 user_data);
+
+    g_object_unref(os);
 }
 
 static void osinfo_install_script_generate_for_media_done(GObject *src,
@@ -1644,6 +1646,7 @@ gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript
             g_prefix_error(&error, "%s", _("Failed to apply script template: "));
         }
     }
+    g_object_unref(os);
 
     return output;
 }
