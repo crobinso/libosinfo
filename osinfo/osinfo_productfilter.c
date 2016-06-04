@@ -276,16 +276,26 @@ static gboolean osinfo_productfilter_matches_default(OsinfoFilter *filter, Osinf
 
     if (productfilter->priv->supportDate) {
         GDate *when = productfilter->priv->supportDate;
-        GDate *release = osinfo_product_get_release_date(OSINFO_PRODUCT(entity));
-        GDate *eol = osinfo_product_get_eol_date(OSINFO_PRODUCT(entity));
+        GDate *release;
+        GDate *eol;
 
-        if (release &&
-            (g_date_compare(release, when) > 0))
-            return FALSE;
+        release = osinfo_product_get_release_date(OSINFO_PRODUCT(entity));
+        if (release != NULL) {
+            gboolean newer;
+            newer = (g_date_compare(release, when) > 0);
+            g_date_free(release);
+            if (newer)
+                return FALSE;
+        }
 
-        if (eol &&
-            (g_date_compare(eol, when) < 0))
-            return FALSE;
+        eol = osinfo_product_get_eol_date(OSINFO_PRODUCT(entity));
+        if (eol != NULL) {
+            gboolean older;
+            older = (g_date_compare(eol, when) < 0);
+            g_date_free(eol);
+            if (older)
+                return FALSE;
+        }
     }
 
     return args.matched;
