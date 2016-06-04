@@ -194,6 +194,7 @@ START_TEST(test_script_data)
 
     g_file_load_contents(file, NULL, &data, NULL, NULL, &error);
     fail_unless(error == NULL, error ? error->message : "none");
+    g_object_unref(file);
 
     osinfo_loader_process_path(loader, SRCDIR "/test/dbdata", &error);
     fail_unless(error == NULL, error ? error->message : "none");

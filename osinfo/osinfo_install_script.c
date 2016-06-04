@@ -962,6 +962,7 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
                                    cancellable,
                                    osinfo_install_script_template_loaded,
                                    data);
+        g_object_unref(file);
     }
 }
 
