@@ -170,6 +170,7 @@ START_TEST(test_script_file)
     fail_unless(strcmp(actualData, expectData) == 0, "Actual '%s' match expect '%s'",
                 actualData, expectData);
 
+    g_free(actualData);
     g_object_unref(media);
     g_object_unref(db);
     g_object_unref(config);
@@ -222,10 +223,13 @@ START_TEST(test_script_data)
     unlink(BUILDDIR "/test/install-script-actual.txt");
     fail_unless(error == NULL, error ? error->message : "none");
 
+    g_free(data);
+    g_free(actualData);
     g_object_unref(media);
     g_object_unref(db);
     g_object_unref(config);
     g_object_unref(script);
+    g_main_loop_unref(loop);
 }
 END_TEST
 
@@ -300,9 +304,11 @@ START_TEST(test_script_datamap)
     fail_unless(strcmp(actualData, expectData2) == 0, "Actual '%s' match expect '%s'",
                 actualData, expectData2);
 
+    g_free(actualData);
     g_object_unref(db);
     g_object_unref(os);
     g_object_unref(config);
+    g_main_loop_unref(loop);
 }
 END_TEST
 
