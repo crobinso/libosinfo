@@ -62,6 +62,9 @@ osinfo_productfilter_finalize(GObject *object)
 
     g_hash_table_unref(productfilter->priv->productConstraints);
 
+    if (productfilter->priv->supportDate)
+        g_date_free(productfilter->priv->supportDate);
+
     /* Chain up to the parent class */
     G_OBJECT_CLASS(osinfo_productfilter_parent_class)->finalize(object);
 }
