@@ -97,7 +97,7 @@ START_TEST(test_uris)
         tmp = tmp->next;
     }
 
-    g_list_free(tmp);
+    g_list_free(osel);
     if (oslist)
         g_object_unref(oslist);
 
