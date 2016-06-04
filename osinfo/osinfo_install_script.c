@@ -904,6 +904,7 @@ static void osinfo_install_script_template_loaded(GObject *src,
     g_task_return_pointer(data->res, output, NULL);
 
  cleanup:
+    g_free(input);
     osinfo_install_script_generate_data_free(data);
     g_free(uri);
 }
