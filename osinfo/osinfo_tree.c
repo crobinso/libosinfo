@@ -614,7 +614,7 @@ static void on_location_read(GObject *source,
         goto cleanup;
     }
 
-    g_task_return_pointer(data->res, ret, NULL);
+    g_task_return_pointer(data->res, ret, g_object_unref);
 
  cleanup:
     create_from_location_async_data_free(data);

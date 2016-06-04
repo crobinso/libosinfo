@@ -758,7 +758,7 @@ EXIT:
     if (error != NULL)
         g_task_return_error(data->res, error);
     else
-        g_task_return_pointer(data->res, media, NULL);
+        g_task_return_pointer(data->res, media, g_object_unref);
 
     g_object_unref(stream);
     create_from_location_async_data_free(data);

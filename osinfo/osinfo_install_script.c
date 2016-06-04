@@ -901,7 +901,7 @@ static void osinfo_install_script_template_loaded(GObject *src,
         goto cleanup;
     }
 
-    g_task_return_pointer(data->res, output, NULL);
+    g_task_return_pointer(data->res, output, g_free);
 
  cleanup:
     g_free(input);
@@ -955,7 +955,7 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
             osinfo_install_script_generate_data_free(data);
             return;
         }
-        g_task_return_pointer(data->res, output, NULL);
+        g_task_return_pointer(data->res, output, g_free);
         osinfo_install_script_generate_data_free(data);
     } else {
         GFile *file = g_file_new_for_uri(templateUri);
