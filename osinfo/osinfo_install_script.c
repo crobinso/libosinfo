@@ -662,7 +662,7 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
 {
     xmlNodePtr node = NULL;
     xmlNodePtr data = NULL;
-    GList *keys;
+    GList *keys = NULL;
     GList *tmp1;
 
     if (!(node = xmlNewDocNode(NULL, NULL, (xmlChar*)name, NULL))) {
@@ -725,6 +725,7 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
     return node;
 
  error:
+    g_list_free(keys);
     xmlFreeNode(data);
     xmlFreeNode(node);
     return NULL;
