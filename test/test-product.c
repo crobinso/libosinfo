@@ -182,6 +182,8 @@ START_TEST(test_supportdate)
     g_object_unref(product2);
     g_object_unref(product3);
     g_object_unref(product4);
+    g_object_unref(filter);
+    g_object_unref(products);
 }
 END_TEST
 
