@@ -331,6 +331,10 @@ static gboolean print_results_text(OsinfoList *list,
     }
     g_print("\n");
 
+    /* No match */
+    if (tmp == NULL)
+        goto end;
+
     while (tmp) {
         OsinfoEntity *entity = OSINFO_ENTITY(tmp->data);
 
@@ -338,9 +342,10 @@ static gboolean print_results_text(OsinfoList *list,
         tmp = tmp->next;
     }
 
-
-    g_list_free(entities);
     ret = TRUE;
+
+end:
+    g_list_free(entities);
     // cleanup:
     return ret;
 }
@@ -458,7 +463,13 @@ gint main(gint argc, gchar **argv)
 
     osinfo_list_add_filtered(results, entities, filter);
 
-    print_results_text(results, labels, sortKey);
+    if (!print_results_text(results, labels, sortKey)) {
+        /*
+         * The os wasn't found, no need to print an error,
+         * just be sure to return EXIT_FAILURE.
+         */
+        goto error;
+    }
 
     ret = EXIT_SUCCESS;
 
