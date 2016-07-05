@@ -265,8 +265,18 @@ AC_CONFIG_FILES([
 	data/device/pcisig.com/pci-1af4-1001.d/Makefile
 	data/device/pcisig.com/pci-1af4-1002.d/Makefile
 	data/device/pcisig.com/pci-1af4-1003.d/Makefile
+	data/device/pcisig.com/pci-1af4-1004.d/Makefile
+	data/device/pcisig.com/pci-1af4-1005.d/Makefile
 	data/device/pcisig.com/pci-1af4-1009.d/Makefile
+	data/device/pcisig.com/pci-1af4-1041.d/Makefile
+	data/device/pcisig.com/pci-1af4-1042.d/Makefile
+	data/device/pcisig.com/pci-1af4-1043.d/Makefile
+	data/device/pcisig.com/pci-1af4-1044.d/Makefile
+	data/device/pcisig.com/pci-1af4-1045.d/Makefile
+	data/device/pcisig.com/pci-1af4-1048.d/Makefile
+	data/device/pcisig.com/pci-1af4-1049.d/Makefile
 	data/device/pcisig.com/pci-1af4-1050.d/Makefile
+	data/device/pcisig.com/pci-1af4-1052.d/Makefile
 	data/device/pcisig.com/pci-1b36-0100.d/Makefile
 	data/device/pcisig.com/pci-8086-100e.d/Makefile
 	data/device/pcisig.com/pci-8086-2415.d/Makefile
