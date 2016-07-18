@@ -333,7 +333,7 @@ static void test_one(const gchar *vendor)
     fail_unless(OSINFO_IS_LOADER(loader), "Loader is not a LOADER");
     fail_unless(OSINFO_IS_DB(db), "Db is not a DB");
 
-    osinfo_loader_process_path(loader, BUILDDIR "/data", &error);
+    osinfo_loader_process_default_path(loader, &error);
     fail_unless(error == NULL, error ? error->message : "none");
 
     isos = load_isos(vendor, &error);

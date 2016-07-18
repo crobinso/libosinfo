@@ -107,15 +107,10 @@ test_install_script_LDADD = $(COMMON_LDADD)
 test_install_script_CFLAGS = $(COMMON_CFLAGS)
 test_install_script_SOURCES = test-install-script.c
 
-TEST_SCRIPT_FILES = \
-	test-xml-validate
-
 TESTS = $(check_PROGRAMS) \
-	$(TEST_SCRIPT_FILES)
 	$(NULL)
 
 EXTRA_DIST += \
-	$(TEST_SCRIPT_FILES) \
 	test-lib.sh \
 	install-script.xsl \
 	$(NULL)
