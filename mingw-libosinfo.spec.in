@@ -42,6 +42,7 @@ combination.
 Summary: %{summary}
 
 Requires: pkgconfig
+Requires: mingw32-osinfo-db-tools
 
 %description -n mingw32-libosinfo
 libosinfo is a library that allows virtualization provisioning tools to
@@ -52,6 +53,7 @@ combination.
 Summary: %{summary}
 
 Requires: pkgconfig
+Requires: mingw64-osinfo-db-tools
 
 %description -n mingw64-libosinfo
 libosinfo is a library that allows virtualization provisioning tools to
@@ -91,7 +93,6 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/gtk-doc
 %files -n mingw32-libosinfo
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{mingw32_bindir}/osinfo-detect.exe
-%{mingw32_bindir}/osinfo-db-validate.exe
 %{mingw32_bindir}/osinfo-install-script.exe
 %{mingw32_bindir}/osinfo-query.exe
 %{mingw32_bindir}/libosinfo-1.0-1.dll
@@ -116,7 +117,6 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/gtk-doc
 %files -n mingw64-libosinfo
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{mingw64_bindir}/osinfo-detect.exe
-%{mingw64_bindir}/osinfo-db-validate.exe
 %{mingw64_bindir}/osinfo-install-script.exe
 %{mingw64_bindir}/osinfo-query.exe
 %{mingw64_bindir}/libosinfo-1.0-1.dll

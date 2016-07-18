@@ -21,6 +21,7 @@ BuildRequires: /usr/bin/pod2man
 BuildRequires: hwdata
 BuildRequires: gobject-introspection-devel
 Requires: hwdata
+Requires: osinfo-db-tools
 
 %description
 libosinfo is a library that allows virtualization provisioning tools to
@@ -84,7 +85,6 @@ rm -fr %{buildroot}
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{_bindir}/osinfo-detect
-%{_bindir}/osinfo-db-validate
 %{_bindir}/osinfo-query
 %{_bindir}/osinfo-install-script
 %dir %{_datadir}/libosinfo/
@@ -96,7 +96,6 @@ rm -fr %{buildroot}
 %{_datadir}/libosinfo/db/platform
 %{_datadir}/libosinfo/db/install-script
 %{_datadir}/libosinfo/schemas/libosinfo.rng
-%{_mandir}/man1/osinfo-db-validate.1*
 %{_mandir}/man1/osinfo-detect.1*
 %{_mandir}/man1/osinfo-query.1*
 %{_mandir}/man1/osinfo-install-script.1*

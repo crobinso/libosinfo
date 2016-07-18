@@ -432,7 +432,6 @@ osinfo/osinfo_product.c
 osinfo/osinfo_resources.c
 osinfo/osinfo_tree.c
 osinfo/osinfo_os_variant.c
-tools/osinfo-db-validate.c
 tools/osinfo-detect.c
 tools/osinfo-install-script.c
 tools/osinfo-query.c
