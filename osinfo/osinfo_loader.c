@@ -2280,23 +2280,61 @@ static GFile *osinfo_loader_get_usb_path(void)
 static GFile *osinfo_loader_get_system_path(void)
 {
     GFile *file;
-    gchar *dbdir;
-    const gchar *path = g_getenv("OSINFO_DATA_DIR");
-    if (!path)
-        path = PKG_DATA_DIR;
+    const gchar *path;
 
-    dbdir = g_strdup_printf("%s/db", path);
-    file = g_file_new_for_path(dbdir);
+    path = g_getenv("OSINFO_DATA_DIR");
+    if (path) {
+        char *dbpath;
+        static gboolean warned = FALSE;
+        if (!warned) {
+            g_printerr(_("$OSINFO_DATA_DIR is deprecated, please "
+                         "use $OSINFO_SYSTEM_DIR intead. Support "
+                         "for $OSINFO_DATA_DIR will be removed "
+                         "in a future release\n"));
+            warned = TRUE;
+        }
+
+        dbpath = g_strdup_printf("%s/db", path);
+        file = g_file_new_for_path(path);
+        g_free(dbpath);
+    } else {
+        path = g_getenv("OSINFO_SYSTEM_DIR");
+        if (!path)
+            path = DATA_DIR "/osinfo";
+
+        file = g_file_new_for_path(path);
+    }
     g_object_set_data(G_OBJECT(file), "data-format",
                       GINT_TO_POINTER(OSINFO_DATA_FORMAT_NATIVE));
-    g_free(dbdir);
     return file;
 }
 
 static GFile *osinfo_loader_get_local_path(void)
 {
     GFile *file;
-    file = g_file_new_for_path(SYS_CONF_DIR "/libosinfo/db");
+    const gchar *path = g_getenv("OSINFO_LOCAL_DIR");
+
+    if (!path) {
+        path = SYS_CONF_DIR "/osinfo";
+
+        if (!g_file_test(path, G_FILE_TEST_IS_DIR)) {
+            const gchar *oldpath = SYS_CONF_DIR "/libosinfo/db";
+            if (g_file_test(oldpath, G_FILE_TEST_IS_DIR)) {
+                static gboolean warned = FALSE;
+
+                if (!warned) {
+                    g_printerr(_("%s is deprecated, please use %s instead. "
+                                 "Support for %s will be removed in a future "
+                                 "release\n"),
+                               oldpath, path, oldpath);
+                    warned = TRUE;
+                }
+                path = oldpath;
+            }
+        }
+    }
+
+    file = g_file_new_for_path(path);
     g_object_set_data(G_OBJECT(file), "data-format",
                       GINT_TO_POINTER(OSINFO_DATA_FORMAT_NATIVE));
     return file;
@@ -2305,14 +2343,36 @@ static GFile *osinfo_loader_get_local_path(void)
 static GFile *osinfo_loader_get_user_path(void)
 {
     GFile *file;
-    gchar *dbdir;
+    const gchar *path = g_getenv("OSINFO_USER_DIR");
     const gchar *configdir = g_get_user_config_dir();
 
-    dbdir = g_strdup_printf("%s/libosinfo/db", configdir);
-    file = g_file_new_for_path(dbdir);
+    if (path) {
+        file = g_file_new_for_path(path);
+    } else {
+        gchar *dbdir = g_strdup_printf("%s/osinfo", configdir);
+        if (!g_file_test(dbdir, G_FILE_TEST_IS_DIR)) {
+            static gboolean warned = FALSE;
+            gchar *olddir = g_strdup_printf("%s/libosinfo/db", configdir);
+            if (g_file_test(olddir, G_FILE_TEST_IS_DIR)) {
+                if (!warned) {
+                    g_printerr(_("%s is deprecated, please use %s instead. "
+                                 "Support for %s will be removed in a future "
+                                 "release\n"),
+                               olddir, dbdir, olddir);
+                    warned = TRUE;
+                }
+                g_free(dbdir);
+                dbdir = olddir;
+            } else {
+                g_free(olddir);
+            }
+        }
+        file = g_file_new_for_path(dbdir);
+        g_free(dbdir);
+    }
+
     g_object_set_data(G_OBJECT(file), "data-format",
                       GINT_TO_POINTER(OSINFO_DATA_FORMAT_NATIVE));
-    g_free(dbdir);
     return file;
 }
 

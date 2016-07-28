@@ -36,6 +36,7 @@ libosinfo_1_0_la_CFLAGS = \
 	$(GOBJECT_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
+	-DDATA_DIR='"$(datadir)"' \
 	-DPKG_DATA_DIR='"$(pkgdatadir)"' \
 	-DSYS_CONF_DIR='"$(sysconfdir)"' \
 	-DLOCALEDIR="\"$(datadir)/locale\"" \
