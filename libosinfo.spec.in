@@ -73,7 +73,7 @@ rm -f %{buildroot}%{_libdir}/*.la
 %find_lang %{name}
 
 %check
-make check
+make check || cat test/test-suite.log
 
 %clean
 rm -fr %{buildroot}
