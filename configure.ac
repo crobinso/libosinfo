@@ -73,12 +73,50 @@ LIBOSINFO_MAJOR_VERSION=`echo $VERSION | awk -F. '{print $1}'`
 LIBOSINFO_MINOR_VERSION=`echo $VERSION | awk -F. '{print $2}'`
 LIBOSINFO_MICRO_VERSION=`echo $VERSION | awk -F. '{print $3}'`
 LIBOSINFO_VERSION=$LIBOSINFO_MAJOR_VERSION.$LIBOSINFO_MINOR_VERSION.$LIBOSINFO_MICRO_VERSION$LIBOSINFO_MICRO_VERSION_SUFFIX
-LIBOSINFO_VERSION_INFO=`expr $LIBOSINFO_MAJOR_VERSION + $LIBOSINFO_MINOR_VERSION`:$LIBOSINFO_MICRO_VERSION:$LIBOSINFO_MINOR_VERSION
 LIBOSINFO_VERSION_NUMBER=`expr $LIBOSINFO_MAJOR_VERSION \* 1000000 + $LIBOSINFO_MINOR_VERSION \* 1000 + $LIBOSINFO_MICRO_VERSION`
+
+# In libtool terminology we need to figure out:
+#
+# CURRENT
+#     The most recent interface number that this library implements.
+#
+# REVISION
+#     The implementation number of the CURRENT interface.
+#
+# AGE
+#     The difference between the newest and oldest interfaces that this
+#     library implements.
+#
+# In other words, the library implements all the interface numbers
+# in the range from number `CURRENT - AGE' to `CURRENT'.
+#
+# Libtool assigns the soname version from `CURRENT - AGE', and we
+# don't want that to ever change in libosinfo. ie it must always be
+# zero, to produce libosinfo.so.0.
+#
+# We would, however, like the libosinfo version number reflected
+# in the so version'd symlinks, and this is based on AGE.REVISION
+# eg  libosinfo.so.0.AGE.REVISION
+#
+# Assuming we do ever want to break soname version, this can
+# toggled. But seriously, don't ever touch this.
+LIBOSINFO_SONUM=0
+
+# The following examples show what libtool will do
+#
+# Input: 0.3.0  ->   libosinfo.so.0.3.0
+# Input: 1.0.0  ->   libosinfo.so.0.1000.0
+# Input: 2.5.8  ->   libosinfo.so.0.2005.8
+#
+AGE=`expr $LIBOSINFO_MAJOR_VERSION '*' 1000 + $LIBOSINFO_MINOR_VERSION`
+REVISION=$LIBOSINFO_MICRO_VERSION
+CURRENT=`expr $LIBOSINFO_SONUM + $AGE`
+LIBOSINFO_VERSION_INFO=$CURRENT:$REVISION:$AGE
 
 AC_SUBST([LIBOSINFO_MAJOR_VERSION])
 AC_SUBST([LIBOSINFO_MINOR_VERSION])
 AC_SUBST([LIBOSINFO_MICRO_VERSION])
+AC_SUBST([LIBOSINFO_SONUM])
 AC_SUBST([LIBOSINFO_VERSION])
 AC_SUBST([LIBOSINFO_VERSION_INFO])
 AC_SUBST([LIBOSINFO_VERSION_NUMBER])
