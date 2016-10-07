@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/gtk-doc
 %{mingw32_bindir}/osinfo-detect.exe
 %{mingw32_bindir}/osinfo-install-script.exe
 %{mingw32_bindir}/osinfo-query.exe
-%{mingw32_bindir}/libosinfo-1.0-1.dll
+%{mingw32_bindir}/libosinfo-1.0-0.dll
 %{mingw32_libdir}/libosinfo-1.0.dll.a
 %{mingw32_libdir}/pkgconfig/libosinfo-1.0.pc
 %dir %{mingw32_includedir}/libosinfo-1.0/
@@ -113,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT%{mingw64_datadir}/gtk-doc
 %{mingw64_bindir}/osinfo-detect.exe
 %{mingw64_bindir}/osinfo-install-script.exe
 %{mingw64_bindir}/osinfo-query.exe
-%{mingw64_bindir}/libosinfo-1.0-1.dll
+%{mingw64_bindir}/libosinfo-1.0-0.dll
 %{mingw64_libdir}/libosinfo-1.0.dll.a
 %{mingw64_libdir}/pkgconfig/libosinfo-1.0.pc
 %dir %{mingw64_includedir}/libosinfo-1.0/
