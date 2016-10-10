@@ -20,6 +20,7 @@ BuildRequires: libsoup-devel
 BuildRequires: /usr/bin/pod2man
 BuildRequires: hwdata
 BuildRequires: gobject-introspection-devel
+BuildRequires: osinfo-db
 Requires: hwdata
 Requires: osinfo-db
 Requires: osinfo-db-tools
