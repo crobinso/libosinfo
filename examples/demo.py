@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import gi
+gi.require_version('Libosinfo', '1.0')
 from gi.repository import Libosinfo as osinfo;
 
 loader = osinfo.Loader()
