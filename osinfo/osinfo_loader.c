@@ -2288,7 +2288,7 @@ static GFile *osinfo_loader_get_system_path(void)
         static gboolean warned = FALSE;
         if (!warned) {
             g_printerr(_("$OSINFO_DATA_DIR is deprecated, please "
-                         "use $OSINFO_SYSTEM_DIR intead. Support "
+                         "use $OSINFO_SYSTEM_DIR instead. Support "
                          "for $OSINFO_DATA_DIR will be removed "
                          "in a future release\n"));
             warned = TRUE;
