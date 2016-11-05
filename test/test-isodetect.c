@@ -111,6 +111,7 @@ static struct ISOInfo *load_iso(GFile *file, const gchar *shortid, const gchar *
              strstr(name, "64-bit"))
         arch = "x86_64";
     else if (strstr(name, "i386") ||
+             strstr(name, "i586") ||
              strstr(name, "i686") ||
              strstr(name, "x86") ||
              strstr(name, "32bit") ||
@@ -125,6 +126,10 @@ static struct ISOInfo *load_iso(GFile *file, const gchar *shortid, const gchar *
         arch = "sparc";
     else if (strstr(name, "ia64"))
         arch = "ia64";
+    else if (strstr(name, "s390x"))
+        arch = "s390x";
+    else if (strstr(name, "aarch64"))
+        arch = "aarch64";
     else {
         g_debug("Unknown arch in %s", name);
         arch = "i386";
