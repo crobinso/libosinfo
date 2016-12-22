@@ -712,6 +712,7 @@ static void on_svd_read(GObject *source,
 
 
     data->svd.system[MAX_SYSTEM - 1] = 0;
+    g_strchomp(data->svd.system);
 
     if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG)) != 0) {
         g_set_error(&error,
@@ -803,9 +804,16 @@ static void on_pvd_read(GObject *source,
     }
 
     data->pvd.volume[MAX_VOLUME - 1] = 0;
+    g_strchomp(data->pvd.volume);
+
     data->pvd.system[MAX_SYSTEM - 1] = 0;
+    g_strchomp(data->pvd.system);
+
     data->pvd.publisher[MAX_PUBLISHER - 1] = 0;
+    g_strchomp(data->pvd.publisher);
+
     data->pvd.application[MAX_APPLICATION - 1] = 0;
+    g_strchomp(data->pvd.application);
 
     if (is_str_empty(data->pvd.volume)) {
         g_set_error(&error,
