@@ -283,6 +283,7 @@ gboolean osinfo_install_script_has_config_param_name(const OsinfoInstallScript *
 
 /**
  * osinfo_install_script_get_config_param_list:
+ * @script: the install script
  *
  * Get the list of valid config parameters for @script.
  *
@@ -297,6 +298,7 @@ GList *osinfo_install_script_get_config_param_list(const OsinfoInstallScript *sc
 
 /**
  * osinfo_install_script_get_config_params:
+ * @script: the install script
  *
  * Get the list of valid config parameters for @script.
  *

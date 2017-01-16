@@ -93,17 +93,14 @@ typedef enum {
 
 /**
  * OsinfoDeviceDriverSigningReq:
- *
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_NONE: Script do not require device drivers
  * to be signed.
- *
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT: Script must only be given signed
  * device drivers. Some scripts will allow overriding this requirement through
  * #osinfo_install_config_set_driver_signing function. You can query if a
  * script supports this by checking if
  * #OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING configuration parameter is used
  * by the script in question (or other scripts in the same profile).
- *
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_WARN: A warning will be issued by OS
  * installer if device drivers are not signed and most probably require user
  * input (and thus breaking unattended installation). See
@@ -118,7 +115,6 @@ typedef enum {
 
 /**
  * OsinfoInstallScriptInjectionMethod:
- *
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM: Support injection of the
  * installation script trough a CD-ROM.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK: Support injection of the

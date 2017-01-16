@@ -29,7 +29,7 @@
 
 typedef void (*OsinfoProductForeach)(OsinfoProduct *product, gpointer user_data);
 
-typedef enum { /*< skip >*/
+typedef enum { /*< private >*/
     OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM = 1 << 0,
     OSINFO_PRODUCT_FOREACH_FLAG_UPGRADES = 1 << 1,
     OSINFO_PRODUCT_FOREACH_FLAG_CLONES = 1 << 2,
