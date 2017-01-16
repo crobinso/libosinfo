@@ -32,6 +32,7 @@ intltool-update.in
 libtool
 m4
 stamp-h1
+tags
 test/test-skeleton
 test/test-skeleton.sh
 osinfo/libosinfo.pc
