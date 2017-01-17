@@ -662,7 +662,7 @@ OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
 
     data = g_slice_new0(CreateFromLocationData);
     data->main_loop = g_main_loop_new(g_main_context_get_thread_default(),
-                                       TRUE);
+                                      FALSE);
 
     osinfo_media_create_from_location_async(location,
                                             G_PRIORITY_DEFAULT,
@@ -671,8 +671,7 @@ OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
                                             data);
 
     /* Loop till we get a reply (or time out) */
-    if (g_main_loop_is_running(data->main_loop))
-        g_main_loop_run(data->main_loop);
+    g_main_loop_run(data->main_loop);
 
     ret = osinfo_media_create_from_location_finish(data->res, error);
     create_from_location_data_free(data);

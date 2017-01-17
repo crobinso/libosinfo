@@ -1171,7 +1171,7 @@ gchar *osinfo_install_script_generate(OsinfoInstallScript *script,
                                       GError **error)
 {
     GMainLoop *loop = g_main_loop_new(g_main_context_get_thread_default(),
-                                      TRUE);
+                                      FALSE);
     OsinfoInstallScriptGenerateSyncData data = {
         loop, NULL, NULL, NULL
     };
@@ -1183,8 +1183,7 @@ gchar *osinfo_install_script_generate(OsinfoInstallScript *script,
                                          osinfo_install_script_generate_done,
                                          &data);
 
-    if (g_main_loop_is_running(loop))
-        g_main_loop_run(loop);
+    g_main_loop_run(loop);
 
     if (data.error)
         g_propagate_error(error, data.error);
@@ -1267,7 +1266,7 @@ gchar *osinfo_install_script_generate_for_media(OsinfoInstallScript *script,
                                                 GError **error)
 {
     GMainLoop *loop = g_main_loop_new(g_main_context_get_thread_default(),
-                                      TRUE);
+                                      FALSE);
     OsinfoInstallScriptGenerateSyncData data = {
         loop, NULL, NULL, NULL
     };
@@ -1279,8 +1278,7 @@ gchar *osinfo_install_script_generate_for_media(OsinfoInstallScript *script,
                                                    osinfo_install_script_generate_for_media_done,
                                                    &data);
 
-    if (g_main_loop_is_running(loop))
-        g_main_loop_run(loop);
+    g_main_loop_run(loop);
 
     if (data.error)
         g_propagate_error(error, data.error);
@@ -1427,7 +1425,7 @@ static GFile *osinfo_install_script_generate_output_common(OsinfoInstallScript *
                                                            GError **error)
 {
     GMainLoop *loop = g_main_loop_new(g_main_context_get_thread_default(),
-                                      TRUE);
+                                      FALSE);
     OsinfoInstallScriptGenerateSyncData data = {
         loop, NULL, NULL, NULL
     };
@@ -1452,8 +1450,7 @@ static GFile *osinfo_install_script_generate_output_common(OsinfoInstallScript *
              &data);
     }
 
-    if (g_main_loop_is_running(loop))
-        g_main_loop_run(loop);
+    g_main_loop_run(loop);
 
     if (data.error)
         g_propagate_error(error, data.error);

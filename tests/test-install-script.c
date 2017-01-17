@@ -147,7 +147,7 @@ test_script_file(void)
     g_object_unref(loader);
 
     loop = g_main_loop_new(g_main_context_get_thread_default(),
-                           TRUE);
+                           FALSE);
 
     media = create_media();
     g_assert_true(osinfo_db_identify_media(db, media));
@@ -159,8 +159,7 @@ test_script_file(void)
                                                    test_generate_for_media_finish,
                                                    loop);
 
-    if (g_main_loop_is_running(loop))
-        g_main_loop_run(loop);
+    g_main_loop_run(loop);
 
     unlink(BUILDDIR "/tests/install-script-actual.txt");
     g_assert_no_error(error);
@@ -206,7 +205,7 @@ test_script_data(void)
                                             data);
 
     loop = g_main_loop_new(g_main_context_get_thread_default(),
-                           TRUE);
+                           FALSE);
 
     osinfo_install_script_generate_for_media_async(script,
                                                    media,
@@ -215,8 +214,7 @@ test_script_data(void)
                                                    test_generate_for_media_finish,
                                                    loop);
 
-    if (g_main_loop_is_running(loop))
-        g_main_loop_run(loop);
+    g_main_loop_run(loop);
 
     unlink(BUILDDIR "/tests/install-script-actual.txt");
     g_assert_no_error(error);
@@ -278,7 +276,7 @@ test_script_datamap(void)
                             "fedora16");
 
     loop = g_main_loop_new(g_main_context_get_thread_default(),
-                           TRUE);
+                           FALSE);
 
     osinfo_install_script_generate_async(script,
                                          os,
@@ -287,8 +285,7 @@ test_script_datamap(void)
                                          test_generate_finish,
                                          loop);
 
-    if (g_main_loop_is_running(loop))
-        g_main_loop_run(loop);
+    g_main_loop_run(loop);
 
     unlink(BUILDDIR "/tests/install-script-actual.txt");
     g_assert_no_error(error);
