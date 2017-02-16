@@ -160,6 +160,10 @@ case $host in
 esac
 AM_CONDITIONAL([WITH_LINUX], [test "$with_linux" = "yes"])
 
+AC_PATH_PROG([PERL], [perl])
+if test -z "$PERL"; then
+  AC_MSG_ERROR([Failed to find perl.])
+fi
 
 GOBJECT_INTROSPECTION_CHECK([0.9.7])
 
