@@ -41,6 +41,10 @@ AC_DEFUN([LIBOSINFO_COMPILE_WARNINGS],[
     dontwarn="$dontwarn -Wlong-long"
     # Unused macros are ok
     dontwarn="$dontwarn -Wunused-macros"
+    # This isn't warning about code bugs, it is telling
+    # you about loops which the compiler can't optimize
+    # due to unpredictable boundary conditions
+    dontwarn="$dontwarn -Wunsafe-loop-optimizations"
 
 
     # g_clear_object & G_ATOMIC_OP_USE_GCC_BUILTINS causes
