@@ -6,9 +6,9 @@ Version: @VERSION@
 Release: 1%{?dist}%{?extra_release}
 License: LGPLv2+
 Group: Development/Libraries
-Source: https://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
+Source: https://releases.pagure.io/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-URL: http://libosinfo.org/
+URL: https://libosinfo.org/
 BuildRequires: intltool
 BuildRequires: glib2-devel
 BuildRequires: check-devel
