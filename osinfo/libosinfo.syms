@@ -520,6 +520,11 @@ LIBOSINFO_0.2.12 {
 	osinfo_media_get_volume_size;
 } LIBOSINFO_0.2.11;
 
+LIBOSINFO_0.2.13 {
+    global:
+    osinfo_media_get_eject_after_install;
+} LIBOSINFO_0.2.12;
+
 /* Symbols in next release...
 
   LIBOSINFO_0.0.2 {

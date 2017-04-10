@@ -628,6 +628,7 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
 {
     gboolean is_installer;
     gboolean is_live;
+    gboolean eject_after_install;
     gint reboots;
     const gchar *id;
     const gchar *kernel_path;
@@ -669,7 +670,13 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
                  NULL);
     if (is_installer) {
         reboots = osinfo_media_get_installer_reboots(matched_media);
-        g_object_set(G_OBJECT(media), "installer-reboots", reboots, NULL);
+        eject_after_install =
+            osinfo_media_get_eject_after_install(matched_media);
+
+        g_object_set(G_OBJECT(media),
+                     "installer-reboots", reboots,
+                     "eject-after-install", eject_after_install,
+                     NULL);
     }
     if (os != NULL)
         osinfo_media_set_os(media, os);
