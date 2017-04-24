@@ -1320,5 +1320,3 @@ gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media)
  *  c-basic-offset: 4
  * End:
  */
-
-
