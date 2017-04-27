@@ -2127,9 +2127,6 @@ static void osinfo_loader_process_list(OsinfoLoader *loader,
         tmp++;
     }
 
-    if (lerr)
-        goto cleanup;
-
     /* Phase 2: load data from non-native locations, filtering based
      * on overrides from native locations */
     tmp = dirs;
@@ -2151,14 +2148,12 @@ static void osinfo_loader_process_list(OsinfoLoader *loader,
         }
 
         if (lerr) {
-            break;
+            g_propagate_error(err, lerr);
+            goto cleanup;
         }
 
         tmp++;
     }
-
-    if (lerr)
-        goto cleanup;
 
     /* Phase 3: load combined set of files from native locations */
     g_hash_table_iter_init(&iter, allentries);
