@@ -202,7 +202,8 @@ AC_SUBST(COVERAGE_CFLAGS)
 AC_SUBST(COVERAGE_LDFLAGS)
 
 
-USB_ID_FILES="/usr/share/usb.ids /usr/share/misc/usb.ids /usr/share/hwdata/usb.ids"
+USB_ID_FILES="/usr/share/usb.ids /usr/share/misc/usb.ids \
+              /usr/share/hwdata/usb.ids /usr/local/share/usbids/usb.ids"
 
 AC_ARG_WITH(usb-ids-path,
               [AC_HELP_STRING([--with-usb-ids-path],
@@ -239,7 +240,8 @@ else
 fi
 
 
-PCI_ID_FILES="/usr/share/pci.ids /usr/share/misc/pci.ids /usr/share/hwdata/pci.ids"
+PCI_ID_FILES="/usr/share/pci.ids /usr/share/misc/pci.ids \
+              /usr/share/hwdata/pci.ids /usr/local/share/pciids/pci.ids"
 
 AC_ARG_WITH(pci-ids-path,
               [AC_HELP_STRING([--with-pci-ids-path],
