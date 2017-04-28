@@ -76,7 +76,7 @@ rm -f %{buildroot}%{_libdir}/*.la
 %check
 if ! make check
 then
-  cat test/test-suite.log || true
+  cat tests/test-suite.log || true
   exit 1
 fi
 

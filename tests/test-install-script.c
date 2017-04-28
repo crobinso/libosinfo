@@ -141,9 +141,9 @@ START_TEST(test_script_file)
 
     script = osinfo_install_script_new_uri("http://example.com",
                                            "jeos",
-                                           "file://" SRCDIR "/test/install-script.xsl");
+                                           "file://" SRCDIR "/tests/install-script.xsl");
 
-    osinfo_loader_process_path(loader, SRCDIR "/test/dbdata", &error);
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
     fail_unless(error == NULL, error ? error->message : "none");
     db = g_object_ref(osinfo_loader_get_db(loader));
     g_object_unref(loader);
@@ -164,7 +164,7 @@ START_TEST(test_script_file)
     if (g_main_loop_is_running(loop))
         g_main_loop_run(loop);
 
-    unlink(BUILDDIR "/test/install-script-actual.txt");
+    unlink(BUILDDIR "/tests/install-script-actual.txt");
     fail_unless(error == NULL, error ? error->message : "none");
 
     fail_unless(strcmp(actualData, expectData) == 0, "Actual '%s' match expect '%s'",
@@ -189,14 +189,14 @@ START_TEST(test_script_data)
     OsinfoDb *db;
     OsinfoMedia *media;
     GMainLoop *loop;
-    GFile *file = g_file_new_for_uri("file://" SRCDIR "/test/install-script.xsl");
+    GFile *file = g_file_new_for_uri("file://" SRCDIR "/tests/install-script.xsl");
     gchar *data;
 
     g_file_load_contents(file, NULL, &data, NULL, NULL, &error);
     fail_unless(error == NULL, error ? error->message : "none");
     g_object_unref(file);
 
-    osinfo_loader_process_path(loader, SRCDIR "/test/dbdata", &error);
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
     fail_unless(error == NULL, error ? error->message : "none");
     db = g_object_ref(osinfo_loader_get_db(loader));
     g_object_unref(loader);
@@ -221,7 +221,7 @@ START_TEST(test_script_data)
     if (g_main_loop_is_running(loop))
         g_main_loop_run(loop);
 
-    unlink(BUILDDIR "/test/install-script-actual.txt");
+    unlink(BUILDDIR "/tests/install-script-actual.txt");
     fail_unless(error == NULL, error ? error->message : "none");
 
     g_free(data);
@@ -243,7 +243,7 @@ START_TEST(test_script_datamap)
     OsinfoInstallConfig *config;
     GMainLoop *loop;
 
-    osinfo_loader_process_path(loader, SRCDIR "/test/dbdata", &error);
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
     fail_unless(error == NULL, error ? error->message : "none");
     db = g_object_ref(osinfo_loader_get_db(loader));
     g_object_unref(loader);
@@ -299,7 +299,7 @@ START_TEST(test_script_datamap)
     if (g_main_loop_is_running(loop))
         g_main_loop_run(loop);
 
-    unlink(BUILDDIR "/test/install-script-actual.txt");
+    unlink(BUILDDIR "/tests/install-script-actual.txt");
     fail_unless(error == NULL, error ? error->message : "none");
 
     fail_unless(strcmp(actualData, expectData2) == 0, "Actual '%s' match expect '%s'",

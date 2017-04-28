@@ -1,5 +1,5 @@
 
-SUBDIRS = osinfo test tools docs po examples
+SUBDIRS = osinfo tests tools docs po examples
 
 INTLTOOL_FILES = \
 	intltool-extract.in \

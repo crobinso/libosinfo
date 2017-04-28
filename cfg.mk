@@ -111,10 +111,10 @@ exclude_file_name_regexp--sc_prohibit_strcmp = ^*/*.[ch]
 exclude_file_name_regexp--sc_require_config_h = python/libvirt-glib.c
 exclude_file_name_regexp--sc_require_config_h_first = python/libvirt-glib.c
 
-exclude_file_name_regexp--sc_trailing_blank = ^test/isodata/.*|docs/object-model.fig
+exclude_file_name_regexp--sc_trailing_blank = ^tests/isodata/.*|docs/object-model.fig
 
-exclude_file_name_regexp--sc_bindtextdomain = ^tools/.*.c|test/.*.c
+exclude_file_name_regexp--sc_bindtextdomain = ^tools/.*.c|tests/.*.c
 
-exclude_file_name_regexp--sc_space_tab = ^test/isodata/.*
+exclude_file_name_regexp--sc_space_tab = ^tests/isodata/.*
 
-exclude_file_name_regexp--sc_prohibit_atoi_atof = ^test/.*\.c
+exclude_file_name_regexp--sc_prohibit_atoi_atof = ^tests/.*\.c

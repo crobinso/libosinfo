@@ -288,7 +288,7 @@ AC_CONFIG_FILES([
 	osinfo/libosinfo-1.0.pc
 	osinfo/osinfo_version.h
 	tools/Makefile
-	test/Makefile
+	tests/Makefile
 	docs/Makefile
 	docs/reference/Makefile
 	examples/Makefile
