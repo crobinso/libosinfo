@@ -1,13 +1,13 @@
 CD-ROM is in ISO 9660 format
 System id: FreeBSD
 Volume id: 11_0_RELEASE_P1_I386_DVD
-Volume set id: 
+Volume set id:
 Publisher id: THE FREEBSD PROJECT.  HTTP://WWW.FREEBSD.ORG/
-Data preparer id: 
-Application id: 
-Copyright File id: 
-Abstract File id: 
-Bibliographic File id: 
+Data preparer id:
+Application id:
+Copyright File id:
+Abstract File id:
+Bibliographic File id:
 Volume set size is: 1
 Volume set sequence number is: 1
 Logical block size is: 2048
