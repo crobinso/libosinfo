@@ -105,7 +105,7 @@ nodist_libosinfo_1_0_include_HEADERS =	\
   osinfo_enum_types.h			\
   $(NULL)
 
-libosinfo_1_0_la_SOURCES =		\
+libosinfo_c_files =		\
   osinfo_avatar_format.c		\
   osinfo_datamap.c			\
   osinfo_datamaplist.c			\
@@ -118,16 +118,13 @@ libosinfo_1_0_la_SOURCES =		\
   osinfo_devicelinklist.c		\
   osinfo_devicelinkfilter.c		\
   osinfo_device_driver.c		\
-  osinfo_device_driver_private.h	\
   osinfo_device_driverlist.c		\
   osinfo_install_config.c		\
   osinfo_install_config_param.c		\
   osinfo_install_config_paramlist.c	\
   osinfo_install_script.c		\
-  osinfo_install_script_private.h	\
   osinfo_install_scriptlist.c		\
   osinfo_product.c			\
-  osinfo_product_private.h		\
   osinfo_productfilter.c		\
   osinfo_productlist.c			\
   osinfo_platform.c			\
@@ -139,7 +136,6 @@ libosinfo_1_0_la_SOURCES =		\
   osinfo_deployment.c			\
   osinfo_deploymentlist.c		\
   osinfo_media.c			\
-  osinfo_media_private.h		\
   osinfo_medialist.c			\
   osinfo_resources.c			\
   osinfo_resourceslist.c		\
@@ -147,7 +143,19 @@ libosinfo_1_0_la_SOURCES =		\
   osinfo_treelist.c			\
   osinfo_db.c				\
   osinfo_loader.c			\
+  $(NULL)
+
+libosinfo_private_header_files =	\
+  osinfo_device_driver_private.h	\
+  osinfo_install_script_private.h	\
+  osinfo_product_private.h		\
+  osinfo_media_private.h		\
   ignore-value.h			\
+  $(NULL)
+
+libosinfo_1_0_la_SOURCES =		\
+  $(libosinfo_c_files)			\
+  $(libosinfo_private_header_files)	\
   $(NULL)
 
 nodist_libosinfo_1_0_la_SOURCES =	\
@@ -187,12 +195,13 @@ INTROSPECTION_GIRS =
 CLEANFILES =
 
 if HAVE_INTROSPECTION
+
 Libosinfo-1.0.gir: libosinfo-1.0.la
 Libosinfo_1_0_gir_INCLUDES = GObject-2.0 Gio-2.0 libxml2-2.0
 Libosinfo_1_0_gir_PACKAGES = gobject-2.0 gio-2.0 libxml-2.0 libxslt
 Libosinfo_1_0_gir_EXPORT_PACKAGES = libosinfo-1.0
 Libosinfo_1_0_gir_LIBS = libosinfo-1.0.la
-Libosinfo_1_0_gir_FILES = $(libosinfo_1_0_include_HEADERS) $(nodist_libosinfo_1_0_include_HEADERS) $(libosinfo_1_0_la_SOURCES) $(nodist_libosinfo_1_0_la_SOURCES)
+Libosinfo_1_0_gir_FILES = $(libosinfo_1_0_include_HEADERS) $(nodist_libosinfo_1_0_include_HEADERS) $(libosinfo_c_files) $(nodist_libosinfo_1_0_la_SOURCES)
 Libosinfo_1_0_gir_CFLAGS = $(libosinfo_1_0_la_CFLAGS)
 Libosinfo_1_0_gir_SCANNERFLAGS = --identifier-prefix=Osinfo --symbol-prefix=osinfo --c-include="osinfo/osinfo.h"
 INTROSPECTION_GIRS += Libosinfo-1.0.gir
