@@ -128,8 +128,13 @@ static struct ISOInfo *load_iso(GFile *file, const gchar *shortid, const gchar *
         arch = "ia64";
     else if (strstr(name, "s390x"))
         arch = "s390x";
-    else if (strstr(name, "aarch64"))
+    else if (strstr(name, "aarch64") ||
+             strstr(name, "arm64"))
         arch = "aarch64";
+    else if (strstr(name, "armv7l") ||
+             strstr(name, "armv7hl") ||
+             strstr(name, "armhf"))
+        arch = "armv7l";
     else {
         g_debug("Unknown arch in %s", name);
         arch = "i386";
