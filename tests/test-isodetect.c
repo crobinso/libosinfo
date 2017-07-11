@@ -146,13 +146,13 @@ static struct ISOInfo *load_iso(GFile *file, const gchar *shortid, const gchar *
             value = line + strlen("Volume id: ");
         } else if (g_str_has_prefix(line, "Publisher id: ")) {
             key = OSINFO_MEDIA_PROP_PUBLISHER_ID;
-            value = line + strlen("Volume id: ");
+            value = line + strlen("Publisher id: ");
         } else if (g_str_has_prefix(line, "System id: ")) {
             key = OSINFO_MEDIA_PROP_SYSTEM_ID;
-            value = line + strlen("Volume id: ");
+            value = line + strlen("System id: ");
         } else if (g_str_has_prefix(line, "Application id: ")) {
             key = OSINFO_MEDIA_PROP_APPLICATION_ID;
-            value = line + strlen("Volume id: ");
+            value = line + strlen("Application id: ");
         } else if (g_str_has_prefix(line, "Logical block size is: ")) {
             blk_size = (gint64) atoll(line + strlen("Logical block size is: "));
         } else if (g_str_has_prefix(line, "Volume size is: ")) {
