@@ -48,7 +48,7 @@ static void test_media(OsinfoMediaList *medialist, GError **error, SoupSession *
         msg = soup_message_new("HEAD", url);
         status = soup_session_send_message(session, msg);
 
-        fail_unless(SOUP_STATUS_IS_SUCCESSFUL(status), "Failed HEAD on %s", url);
+        fail_unless(SOUP_STATUS_IS_SUCCESSFUL(status), "Failed HEAD (code=%u) on %s", status, url);
 
         g_object_unref(msg);
         tmp = tmp->next;
