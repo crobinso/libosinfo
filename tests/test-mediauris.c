@@ -38,7 +38,8 @@ static void test_media(OsinfoMediaList *medialist, GError **error, SoupSession *
         SoupMessage *msg;
         guint status;
 
-        if (url == NULL || g_str_equal(url, "")) {
+        if (url == NULL || g_str_equal(url, "") ||
+            (!g_str_has_prefix(url, "http://") && !g_str_has_prefix(url, "https://"))) {
             tmp = tmp->next;
             continue;
         }
