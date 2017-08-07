@@ -118,7 +118,7 @@ list_suite(void)
 {
     Suite *s = suite_create("List");
     TCase *tc = tcase_create("Core");
-    tcase_set_timeout(tc, 120);
+    tcase_set_timeout(tc, 300);
 
     tcase_add_test(tc, test_uris);
     suite_add_tcase(s, tc);
