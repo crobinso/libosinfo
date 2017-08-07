@@ -25,9 +25,9 @@
 #include <stdlib.h>
 #include <osinfo/osinfo.h>
 #include <check.h>
-#include <libsoup/soup.h>
+#include <curl/curl.h>
 
-static void test_media(OsinfoMediaList *medialist, GError **error, SoupSession *session)
+static void test_media(OsinfoMediaList *medialist, GError **error, CURL *curl)
 {
     GList *mediael = NULL, *tmp;
 
@@ -35,8 +35,8 @@ static void test_media(OsinfoMediaList *medialist, GError **error, SoupSession *
     while (tmp) {
         OsinfoMedia *media = tmp->data;
         const gchar *url = osinfo_media_get_url(media);
-        SoupMessage *msg;
-        guint status;
+        CURLcode res;
+        long response_code;
 
         if (url == NULL || g_str_equal(url, "") ||
             (!g_str_has_prefix(url, "http://") && !g_str_has_prefix(url, "https://"))) {
@@ -45,12 +45,14 @@ static void test_media(OsinfoMediaList *medialist, GError **error, SoupSession *
         }
 
         g_print("%s\n", url);
-        msg = soup_message_new("HEAD", url);
-        status = soup_session_send_message(session, msg);
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+        }
 
-        fail_unless(SOUP_STATUS_IS_SUCCESSFUL(status), "Failed HEAD (code=%u) on %s", status, url);
+        fail_unless(res == CURLE_OK, "Failed HEAD (res=%d, %s; code=%ld) on %s", res, curl_easy_strerror(res), response_code, url);
 
-        g_object_unref(msg);
         tmp = tmp->next;
     }
 
@@ -59,7 +61,7 @@ static void test_media(OsinfoMediaList *medialist, GError **error, SoupSession *
 
 START_TEST(test_uris)
 {
-    SoupSession *session;
+    CURL *curl;
     OsinfoLoader *loader = osinfo_loader_new();
     OsinfoDb *db = osinfo_loader_get_db(loader);
     GError *error = NULL;
@@ -67,15 +69,17 @@ START_TEST(test_uris)
     GList *osel = NULL, *tmp;
     const gchar *debugstr;
 
-    session = soup_session_new();
+    curl = curl_easy_init();
+    curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
+    curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
 
     if ((debugstr = g_getenv("LIBOSINFO_TEST_DEBUG"))) {
-        SoupLogger *logger;
         int debug_level = atoi(debugstr);
 
-        logger = soup_logger_new(debug_level, -1);
-        soup_session_add_feature(session, SOUP_SESSION_FEATURE(logger));
-        g_object_unref(logger);
+        curl_easy_setopt(curl, CURLOPT_VERBOSE, debug_level > 0 ? 1L : 0L);
     }
 
     fail_unless(OSINFO_IS_LOADER(loader), "Loader is not a LOADER");
@@ -90,13 +94,15 @@ START_TEST(test_uris)
         OsinfoOs *os = tmp->data;
         OsinfoMediaList *medialist = osinfo_os_get_media_list(os);
 
-        test_media(medialist, &error, session);
+        test_media(medialist, &error, curl);
 
         fail_unless(error == NULL, error ? error->message : "none");
 
         g_object_unref(medialist);
         tmp = tmp->next;
     }
+
+    curl_easy_cleanup(curl);
 
     g_list_free(osel);
     if (oslist)
@@ -133,6 +139,7 @@ int main(void)
         return 77; /* Skip */
 
     /* Upfront so we don't confuse valgrind */
+    curl_global_init(CURL_GLOBAL_ALL);
     osinfo_entity_get_type();
     osinfo_db_get_type();
     osinfo_device_get_type();
@@ -147,6 +154,8 @@ int main(void)
     srunner_run_all(sr, CK_ENV);
     number_failed = srunner_ntests_failed(sr);
     srunner_free(sr);
+
+    curl_global_cleanup();
 
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
