@@ -38,8 +38,7 @@ static void test_media(OsinfoMediaList *medialist, GError **error, CURL *curl)
         CURLcode res;
         long response_code;
 
-        if (url == NULL || g_str_equal(url, "") ||
-            (!g_str_has_prefix(url, "http://") && !g_str_has_prefix(url, "https://"))) {
+        if (url == NULL || g_str_equal(url, "")) {
             tmp = tmp->next;
             continue;
         }
