@@ -1,6 +1,23 @@
                libosinfo News
 	       ==============
 
+1.1.0 - Aug 15, 2017
+====================
+
+- Force UTF-8 locale for new glib-mkenums
+- Avoid python warnings in example program
+- Misc test suite updates
+- Fix typo in error messages
+- Remove ISO header string padding
+- Disable bogus gcc warning about unsafe loop optimizations
+- Remove reference to fedorahosted.org
+- Don't hardcode /usr/bin/perl, use /usr/bin/env
+- Support eject-after-install parameter in OsinfoMedia
+- Fix misc warnings in docs
+- Fix error propagation when loading DB
+- Add usb.ids / pci.ids locations for FreeBSD
+- Don't include private headers in gir/vapi generation
+
 1.0.0 - Oct  7, 2016
 ====================
 
