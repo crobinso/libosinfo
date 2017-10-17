@@ -63,6 +63,8 @@ if test "x$enable_tests" != "xno" ; then
   PKG_CHECK_MODULES([CHECK], [check])
 fi
 
+AM_CONDITIONAL([ENABLE_TESTS],[test "x$enable_tests" = "xyes"])
+
 LIBOSINFO_MAJOR_VERSION=`echo $VERSION | awk -F. '{print $1}'`
 LIBOSINFO_MINOR_VERSION=`echo $VERSION | awk -F. '{print $2}'`
 LIBOSINFO_MICRO_VERSION=`echo $VERSION | awk -F. '{print $3}'`
