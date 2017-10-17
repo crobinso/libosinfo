@@ -26,8 +26,6 @@ BuildRequires: mingw32-libxml2
 BuildRequires: mingw64-libxml2
 BuildRequires: mingw32-libxslt
 BuildRequires: mingw64-libxslt
-BuildRequires: mingw32-libcurl
-BuildRequires: mingw64-libcurl
 
 BuildRequires: pkgconfig
 

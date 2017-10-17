@@ -49,10 +49,6 @@ GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MAX_ALLOWED=$GLIB_ENCODED_VERSION"
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
-PKG_CHECK_MODULES([CURL], [libcurl])
-AC_SUBST(CURL_CFLAGS)
-AC_SUBST(CURL_LIBS)
-
 GTK_DOC_CHECK([1.10],[--flavour no-tmpl])
 
 AC_ARG_ENABLE([tests],
@@ -60,7 +56,12 @@ AC_ARG_ENABLE([tests],
         [], [enable_tests=yes])
 
 if test "x$enable_tests" != "xno" ; then
+  have_curl=no
   PKG_CHECK_MODULES([CHECK], [check])
+  PKG_CHECK_MODULES([CURL], [libcurl], [have_curl=yes], [:])
+  AC_SUBST(CURL_CFLAGS)
+  AC_SUBST(CURL_LIBS)
+  AM_CONDITIONAL([HAVE_CURL],[test "x$have_curl" = "xyes"])
 fi
 
 AM_CONDITIONAL([ENABLE_TESTS],[test "x$enable_tests" = "xyes"])
