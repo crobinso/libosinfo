@@ -21,12 +21,11 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 
-START_TEST(test_union)
+static void
+test_union(void)
 {
     OsinfoPlatformList *list1 = osinfo_platformlist_new();
     OsinfoPlatformList *list2 = osinfo_platformlist_new();
@@ -45,7 +44,7 @@ START_TEST(test_union)
 
     list3 = OSINFO_PLATFORMLIST(osinfo_list_new_union(OSINFO_LIST(list1), OSINFO_LIST(list2)));
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(list3)) == 4, "List did not have 4 elements");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(list3)), ==, 4);
 
     gboolean has1 = FALSE;
     gboolean has2 = FALSE;
@@ -66,11 +65,11 @@ START_TEST(test_union)
         else
             hasBad = TRUE;
     }
-    fail_unless(has1, "List was missing entity 1");
-    fail_unless(has2, "List was missing entity 2");
-    fail_unless(has3, "List was missing entity 3");
-    fail_unless(has4, "List was missing entity 4");
-    fail_unless(!hasBad, "List had unexpected entity");
+    g_assert_true(has1);
+    g_assert_true(has2);
+    g_assert_true(has3);
+    g_assert_true(has4);
+    g_assert_false(hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent2);
@@ -80,10 +79,10 @@ START_TEST(test_union)
     g_object_unref(list2);
     g_object_unref(list3);
 }
-END_TEST
 
 
-START_TEST(test_intersect)
+static void
+test_intersect(void)
 {
     OsinfoPlatformList *list1 = osinfo_platformlist_new();
     OsinfoPlatformList *list2 = osinfo_platformlist_new();
@@ -104,7 +103,7 @@ START_TEST(test_intersect)
 
     list3 = OSINFO_PLATFORMLIST(osinfo_list_new_intersection(OSINFO_LIST(list1), OSINFO_LIST(list2)));
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(list3)) == 2, "List did not have 2 elements");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(list3)), ==, 2);
 
     gboolean has1 = FALSE;
     gboolean has2 = FALSE;
@@ -125,11 +124,11 @@ START_TEST(test_intersect)
         else
             hasBad = TRUE;
     }
-    fail_unless(has1, "List was missing entity 1");
-    fail_unless(!has2, "List had unexpected entity 2");
-    fail_unless(has3, "List was missing entity 3");
-    fail_unless(!has4, "List had unexpected entity 4");
-    fail_unless(!hasBad, "List had unexpected entity");
+    g_assert_true(has1);
+    g_assert_false(has2);
+    g_assert_true(has3);
+    g_assert_false(has4);
+    g_assert_false(hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent2);
@@ -139,10 +138,10 @@ START_TEST(test_intersect)
     g_object_unref(list2);
     g_object_unref(list3);
 }
-END_TEST
 
 
-START_TEST(test_filter)
+static void
+test_filter(void)
 {
     OsinfoPlatformList *list1 = osinfo_platformlist_new();
     OsinfoPlatformList *list2;
@@ -168,7 +167,7 @@ START_TEST(test_filter)
 
     list2 = OSINFO_PLATFORMLIST(osinfo_list_new_filtered(OSINFO_LIST(list1), filter));
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(list2)) == 3, "List did not have 3 elements");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(list2)), ==, 3);
 
     gboolean has1 = FALSE;
     gboolean has2 = FALSE;
@@ -189,11 +188,11 @@ START_TEST(test_filter)
         else
             hasBad = TRUE;
     }
-    fail_unless(has1, "List was missing entity 1");
-    fail_unless(has2, "List was missing entity 2");
-    fail_unless(has3, "List was missing entity 3");
-    fail_unless(!has4, "List had unexpected entity 4");
-    fail_unless(!hasBad, "List had unexpected entity");
+    g_assert_true(has1);
+    g_assert_true(has2);
+    g_assert_true(has3);
+    g_assert_false(has4);
+    g_assert_false(hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent2);
@@ -203,26 +202,16 @@ START_TEST(test_filter)
     g_object_unref(list1);
     g_object_unref(list2);
 }
-END_TEST
 
 
-static Suite *
-list_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("List");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_union);
-    tcase_add_test(tc, test_intersect);
-    tcase_add_test(tc, test_filter);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = list_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/platformlist/union", test_union);
+    g_test_add_func("/platformlist/intersect", test_intersect);
+    g_test_add_func("/platformlist/filter", test_filter);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -232,11 +221,7 @@ int main(void)
     osinfo_platformlist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

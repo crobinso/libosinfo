@@ -21,22 +21,21 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoDb *db = osinfo_db_new();
 
-    fail_unless(OSINFO_IS_DB(db), "Db is not a DB");
+    g_assert_true(OSINFO_IS_DB(db));
 
     g_object_unref(db);
 }
-END_TEST
 
 
-START_TEST(test_device)
+static void
+test_device(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoDevice *dev1 = osinfo_device_new("dev1");
@@ -48,24 +47,24 @@ START_TEST(test_device)
     osinfo_db_add_device(db, dev3);
 
     OsinfoDeviceList *list = osinfo_db_get_device_list(db);
-    fail_unless(OSINFO_ENTITY(dev1) == osinfo_list_get_nth(OSINFO_LIST(list), 0), "Dev 1 is missing");
-    fail_unless(OSINFO_ENTITY(dev2) == osinfo_list_get_nth(OSINFO_LIST(list), 1), "Dev 2 is missing");
-    fail_unless(OSINFO_ENTITY(dev3) == osinfo_list_get_nth(OSINFO_LIST(list), 2), "Dev 3 is missing");
+    g_assert_true(OSINFO_ENTITY(dev1) == osinfo_list_get_nth(OSINFO_LIST(list), 0));
+    g_assert_true(OSINFO_ENTITY(dev2) == osinfo_list_get_nth(OSINFO_LIST(list), 1));
+    g_assert_true(OSINFO_ENTITY(dev3) == osinfo_list_get_nth(OSINFO_LIST(list), 2));
     g_object_unref(list);
 
     OsinfoDevice *dev = osinfo_db_get_device(db, "dev2");
-    fail_unless(dev != NULL, "Device is NULL");
-    fail_unless(dev == dev2, "Device was not dev2");
+    g_assert_nonnull(dev);
+    g_assert_true(dev == dev2);
 
     g_object_unref(dev1);
     g_object_unref(dev2);
     g_object_unref(dev3);
     g_object_unref(db);
 }
-END_TEST
 
 
-START_TEST(test_platform)
+static void
+test_platform(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoPlatform *hv1 = osinfo_platform_new("hv1");
@@ -77,24 +76,24 @@ START_TEST(test_platform)
     osinfo_db_add_platform(db, hv3);
 
     OsinfoPlatformList *list = osinfo_db_get_platform_list(db);
-    fail_unless(OSINFO_ENTITY(hv1) == osinfo_list_get_nth(OSINFO_LIST(list), 0), "Hv 1 is missing");
-    fail_unless(OSINFO_ENTITY(hv2) == osinfo_list_get_nth(OSINFO_LIST(list), 1), "Hv 2 is missing");
-    fail_unless(OSINFO_ENTITY(hv3) == osinfo_list_get_nth(OSINFO_LIST(list), 2), "Hv 3 is missing");
+    g_assert_true(OSINFO_ENTITY(hv1) == osinfo_list_get_nth(OSINFO_LIST(list), 0));
+    g_assert_true(OSINFO_ENTITY(hv2) == osinfo_list_get_nth(OSINFO_LIST(list), 1));
+    g_assert_true(OSINFO_ENTITY(hv3) == osinfo_list_get_nth(OSINFO_LIST(list), 2));
     g_object_unref(list);
 
     OsinfoPlatform *hv = osinfo_db_get_platform(db, "hv2");
-    fail_unless(hv != NULL, "Platform is NULL");
-    fail_unless(hv == hv2, "Platform was not hv2");
+    g_assert_nonnull(hv);
+    g_assert_true(hv == hv2);
 
     g_object_unref(hv1);
     g_object_unref(hv2);
     g_object_unref(hv3);
     g_object_unref(db);
 }
-END_TEST
 
 
-START_TEST(test_os)
+static void
+test_os(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoOs *os1 = osinfo_os_new("os1");
@@ -106,25 +105,25 @@ START_TEST(test_os)
     osinfo_db_add_os(db, os3);
 
     OsinfoOsList *list = osinfo_db_get_os_list(db);
-    fail_unless(OSINFO_ENTITY(os1) == osinfo_list_get_nth(OSINFO_LIST(list), 0), "Os 1 is missing");
-    fail_unless(OSINFO_ENTITY(os2) == osinfo_list_get_nth(OSINFO_LIST(list), 1), "Os 2 is missing");
-    fail_unless(OSINFO_ENTITY(os3) == osinfo_list_get_nth(OSINFO_LIST(list), 2), "Os 3 is missing");
+    g_assert_true(OSINFO_ENTITY(os1) == osinfo_list_get_nth(OSINFO_LIST(list), 0));
+    g_assert_true(OSINFO_ENTITY(os2) == osinfo_list_get_nth(OSINFO_LIST(list), 1));
+    g_assert_true(OSINFO_ENTITY(os3) == osinfo_list_get_nth(OSINFO_LIST(list), 2));
     g_object_unref(list);
 
     OsinfoOs *os = osinfo_db_get_os(db, "os2");
-    fail_unless(os != NULL, "Os is NULL");
-    fail_unless(os == os2, "Os was not os2");
+    g_assert_nonnull(os);
+    g_assert_true(os == os2);
 
     g_object_unref(os1);
     g_object_unref(os2);
     g_object_unref(os3);
     g_object_unref(db);
 }
-END_TEST
 
 
 
-START_TEST(test_prop_device)
+static void
+test_prop_device(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoDevice *dev1 = osinfo_device_new("dev1");
@@ -161,11 +160,11 @@ START_TEST(test_prop_device)
             hasBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(hasNetwork, "Missing network");
-    fail_unless(hasAudio, "Missing audio");
-    fail_unless(hasInput, "Missing input");
-    fail_unless(hasDisplay, "Missing display");
-    fail_unless(!hasBad, "Unexpected property");
+    g_assert_true(hasNetwork);
+    g_assert_true(hasAudio);
+    g_assert_true(hasInput);
+    g_assert_true(hasDisplay);
+    g_assert_false(hasBad);
 
     g_list_free(uniq);
 
@@ -174,10 +173,10 @@ START_TEST(test_prop_device)
     g_object_unref(dev3);
     g_object_unref(db);
 }
-END_TEST
 
 
-START_TEST(test_prop_platform)
+static void
+test_prop_platform(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoPlatform *hv1 = osinfo_platform_new("hv1");
@@ -211,10 +210,10 @@ START_TEST(test_prop_platform)
             hasBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(hasAcme, "Missing acme");
-    fail_unless(hasFrog, "Missing frog");
-    fail_unless(hasDog, "Missing dog");
-    fail_unless(!hasBad, "Unexpected property");
+    g_assert_true(hasAcme);
+    g_assert_true(hasFrog);
+    g_assert_true(hasDog);
+    g_assert_false(hasBad);
 
     g_list_free(uniq);
 
@@ -223,10 +222,10 @@ START_TEST(test_prop_platform)
     g_object_unref(hv3);
     g_object_unref(db);
 }
-END_TEST
 
 
-START_TEST(test_prop_os)
+static void
+test_prop_os(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoOs *os1 = osinfo_os_new("os1");
@@ -260,10 +259,10 @@ START_TEST(test_prop_os)
             hasBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(hasAcme, "Missing acme");
-    fail_unless(hasFrog, "Missing frog");
-    fail_unless(hasDog, "Missing dog");
-    fail_unless(!hasBad, "Unexpected property");
+    g_assert_true(hasAcme);
+    g_assert_true(hasFrog);
+    g_assert_true(hasDog);
+    g_assert_false(hasBad);
 
     g_list_free(uniq);
 
@@ -272,11 +271,11 @@ START_TEST(test_prop_os)
     g_object_unref(os3);
     g_object_unref(db);
 }
-END_TEST
 
 
 
-START_TEST(test_rel_os)
+static void
+test_rel_os(void)
 {
     OsinfoDb *db = osinfo_db_new();
     OsinfoOs *os1 = osinfo_os_new("os1");
@@ -321,12 +320,12 @@ START_TEST(test_rel_os)
             hasBad = TRUE;
 
     }
-    fail_unless(!hasOs1, "Unexpected OS 1");
-    fail_unless(hasOs2, "Missing OS 2");
-    fail_unless(hasOs3, "Missing OS 3");
-    fail_unless(!hasOs4, "Unexpected OS 4");
-    fail_unless(!hasOs5, "Unexpected OS 5");
-    fail_unless(!hasBad, "Unexpected property");
+    g_assert_false(hasOs1);
+    g_assert_true(hasOs2);
+    g_assert_true(hasOs3);
+    g_assert_false(hasOs4);
+    g_assert_false(hasOs5);
+    g_assert_false(hasBad);
 
     g_object_unref(sublist);
 
@@ -349,12 +348,12 @@ START_TEST(test_rel_os)
             hasBad = TRUE;
 
     }
-    fail_unless(!hasOs1, "Unexpected OS 1");
-    fail_unless(!hasOs2, "Unexpected OS 2");
-    fail_unless(!hasOs3, "Unexpected OS 3");
-    fail_unless(!hasOs4, "Unexpected OS 4");
-    fail_unless(hasOs5, "Missing OS 5");
-    fail_unless(!hasBad, "Unexpected property");
+    g_assert_false(hasOs1);
+    g_assert_false(hasOs2);
+    g_assert_false(hasOs3);
+    g_assert_false(hasOs4);
+    g_assert_true(hasOs5);
+    g_assert_false(hasBad);
 
     g_object_unref(sublist);
 
@@ -377,12 +376,12 @@ START_TEST(test_rel_os)
             hasBad = TRUE;
 
     }
-    fail_unless(!hasOs1, "Unexpected OS 1");
-    fail_unless(!hasOs2, "Unexpected OS 2");
-    fail_unless(!hasOs3, "Unexpected OS 3");
-    fail_unless(hasOs4, "Missing OS 4");
-    fail_unless(!hasOs5, "Unexpected OS 5");
-    fail_unless(!hasBad, "Unexpected property");
+    g_assert_false(hasOs1);
+    g_assert_false(hasOs2);
+    g_assert_false(hasOs3);
+    g_assert_true(hasOs4);
+    g_assert_false(hasOs5);
+    g_assert_false(hasBad);
 
     g_object_unref(sublist);
 
@@ -394,33 +393,23 @@ START_TEST(test_rel_os)
     g_object_unref(os5);
     g_object_unref(db);
 }
-END_TEST
 
 
 
 
-static Suite *
-list_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("List");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_device);
-    tcase_add_test(tc, test_platform);
-    tcase_add_test(tc, test_os);
-    tcase_add_test(tc, test_prop_device);
-    tcase_add_test(tc, test_prop_platform);
-    tcase_add_test(tc, test_prop_os);
-    tcase_add_test(tc, test_rel_os);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = list_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/db/basic", test_basic);
+    g_test_add_func("/db/device", test_device);
+    g_test_add_func("/db/platform", test_platform);
+    g_test_add_func("/db/os", test_os);
+    g_test_add_func("/db/prop_device", test_prop_device);
+    g_test_add_func("/db/prop_platform", test_prop_platform);
+    g_test_add_func("/db/prop_os", test_prop_os);
+    g_test_add_func("/db/rel_os", test_rel_os);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -437,11 +426,7 @@ int main(void)
     osinfo_oslist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

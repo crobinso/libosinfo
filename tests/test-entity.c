@@ -21,9 +21,7 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 /* OsinfoEntity is abstract, so we need to trivially subclass it to test it */
 typedef struct _OsinfoDummy        OsinfoDummy;
@@ -47,70 +45,69 @@ static void osinfo_dummy_class_init(OsinfoDummyClass *klass G_GNUC_UNUSED){}
 static void osinfo_dummy_init(OsinfoDummy *self G_GNUC_UNUSED) {}
 
 
-START_TEST(test_id)
+static void
+test_id(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
     gchar *id;
 
-    fail_unless(g_strcmp0(osinfo_entity_get_id(ent), "myentity") == 0,
-                "Entity id was not 'myentity'");
+    g_assert_cmpstr(osinfo_entity_get_id(ent), ==, "myentity");
 
     g_object_get(ent, "id", &id, NULL);
-    fail_unless(g_strcmp0(id, "myentity") == 0,
-                "Entity id was not 'myentity'");
+    g_assert_cmpstr(id, ==, "myentity");
     g_free(id);
 
     g_object_unref(ent);
 }
-END_TEST
 
-START_TEST(test_empty_props)
+static void
+test_empty_props(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
 
     GList *keys = osinfo_entity_get_param_keys(ent);
-    fail_unless(keys != NULL, "Entity param key list was not empty");
-    fail_unless(keys->next == NULL, "Entity param key list was not empty");
+    g_assert_nonnull(keys);
+    g_assert_null(keys->next);
     g_list_free(keys);
 
     const gchar *value = osinfo_entity_get_param_value(ent, "wibble");
-    fail_unless(value == NULL, "Entity param value was not NULL");
+    g_assert_null(value);
 
     GList *values = osinfo_entity_get_param_value_list(ent, "wibble");
-    fail_unless(values == NULL, "Entity param value list was not NULL");
+    g_assert_null(values);
 
     g_object_unref(ent);
 }
-END_TEST
 
-START_TEST(test_single_prop_value)
+static void
+test_single_prop_value(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
 
     osinfo_entity_add_param(ent, "hello", "world");
 
     GList *keys = osinfo_entity_get_param_keys(ent);
-    fail_unless(keys != NULL, "Entity param key list was empty");
-    fail_unless(keys->next->next == NULL, "Entity param key list has too many values");
-    fail_unless(g_strcmp0(keys->data, "hello") == 0, "Entity param key was not 'hello'");
+    g_assert_nonnull(keys);
+    g_assert_null(keys->next->next);
+    g_assert_cmpstr(keys->data, ==, "hello");
     g_list_free(keys);
 
     const gchar *value = osinfo_entity_get_param_value(ent, "hello");
-    fail_unless(g_strcmp0(value, "world") == 0, "Entity param value was not 'world'");
+    g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "world");
-    fail_unless(value == NULL, "Entity param bogus value was not NULL");
+    g_assert_null(value);
 
     GList *values = osinfo_entity_get_param_value_list(ent, "hello");
-    fail_unless(values != NULL, "Entity param value list was empty");
-    fail_unless(values->next == NULL, "Entity param value list has too many values");
-    fail_unless(g_strcmp0(values->data, "world") == 0, "Entity param list value was not 'world'");
+    g_assert_nonnull(values);
+    g_assert_null(values->next);
+    g_assert_cmpstr(values->data, ==, "world");
     g_list_free(values);
 
     g_object_unref(ent);
 }
-END_TEST
 
-START_TEST(test_multi_prop_value)
+static void
+test_multi_prop_value(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
 
@@ -119,31 +116,31 @@ START_TEST(test_multi_prop_value)
     osinfo_entity_add_param(ent, "hello", "elephant");
 
     GList *keys = osinfo_entity_get_param_keys(ent);
-    fail_unless(keys != NULL, "Entity param key list was empty");
-    fail_unless(keys->next->next == NULL, "Entity param key list has too many values");
-    fail_unless(g_strcmp0(keys->data, "hello") == 0, "Entity param key was not 'hello'");
+    g_assert_nonnull(keys);
+    g_assert_null(keys->next->next);
+    g_assert_cmpstr(keys->data, ==, "hello");
     g_list_free(keys);
 
     const gchar *value = osinfo_entity_get_param_value(ent, "hello");
-    fail_unless(g_strcmp0(value, "world") == 0, "Entity param value was not 'world'");
+    g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "world");
-    fail_unless(value == NULL, "Entity param bogus value was not NULL");
+    g_assert_null(value);
 
     GList *values = osinfo_entity_get_param_value_list(ent, "hello");
-    fail_unless(values != NULL, "Entity param value list was empty");
-    fail_unless(values->next != NULL, "Entity param value list doesn't have enough values");
-    fail_unless(values->next->next != NULL, "Entity param value list doesn't have enough values");
-    fail_unless(values->next->next->next == NULL, "Entity param value list has too many values");
-    fail_unless(g_strcmp0(values->data, "world") == 0, "Entity param list first value was not 'world'");
-    fail_unless(g_strcmp0(values->next->data, "fred") == 0, "Entity param list second value was not 'fred'");
-    fail_unless(g_strcmp0(values->next->next->data, "elephant") == 0, "Entity param list third was not 'elephant'");
+    g_assert_nonnull(values);
+    g_assert_nonnull(values->next);
+    g_assert_nonnull(values->next->next);
+    g_assert_null(values->next->next->next);
+    g_assert_cmpstr(values->data, ==, "world");
+    g_assert_cmpstr(values->next->data, ==, "fred");
+    g_assert_cmpstr(values->next->next->data, ==, "elephant");
     g_list_free(values);
 
     g_object_unref(ent);
 }
-END_TEST
 
-START_TEST(test_multi_props)
+static void
+test_multi_props(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
 
@@ -168,43 +165,43 @@ START_TEST(test_multi_props)
             foundBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(foundHello, "Entity param key list was missing 'hello'");
-    fail_unless(foundFish, "Entity param key list was missing 'fish'");
-    fail_unless(foundKevin, "Entity param key list was missing 'kevin'");
-    fail_unless(!foundBad, "Entity param key list has unexpected key");
+    g_assert_true(foundHello);
+    g_assert_true(foundFish);
+    g_assert_true(foundKevin);
+    g_assert_false(foundBad);
     g_list_free(keys);
 
     const gchar *value = osinfo_entity_get_param_value(ent, "hello");
-    fail_unless(g_strcmp0(value, "world") == 0, "Entity param value was not 'world'");
+    g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "fish");
-    fail_unless(g_strcmp0(value, "food") == 0, "Entity param value was not 'food'");
+    g_assert_cmpstr(value, ==, "food");
     value = osinfo_entity_get_param_value(ent, "kevin");
-    fail_unless(g_strcmp0(value, "bacon") == 0, "Entity param value was not 'bacon'");
+    g_assert_cmpstr(value, ==, "bacon");
 
     GList *values = osinfo_entity_get_param_value_list(ent, "hello");
-    fail_unless(values != NULL, "Entity param value list was empty");
-    fail_unless(values->next == NULL, "Entity param value list has too many values");
-    fail_unless(g_strcmp0(values->data, "world") == 0, "Entity param list value was not 'world'");
+    g_assert_nonnull(values);
+    g_assert_null(values->next);
+    g_assert_cmpstr(values->data, ==, "world");
     g_list_free(values);
 
     values = osinfo_entity_get_param_value_list(ent, "fish");
-    fail_unless(values != NULL, "Entity param value list was empty");
-    fail_unless(values->next == NULL, "Entity param value list has too many values");
-    fail_unless(g_strcmp0(values->data, "food") == 0, "Entity param list value was not 'food'");
+    g_assert_nonnull(values);
+    g_assert_null(values->next);
+    g_assert_cmpstr(values->data, ==, "food");
     g_list_free(values);
 
     values = osinfo_entity_get_param_value_list(ent, "kevin");
-    fail_unless(values != NULL, "Entity param value list was empty");
-    fail_unless(values->next == NULL, "Entity param value list has too many values");
-    fail_unless(g_strcmp0(values->data, "bacon") == 0, "Entity param list value was not 'bacon'");
+    g_assert_nonnull(values);
+    g_assert_null(values->next);
+    g_assert_cmpstr(values->data, ==, "bacon");
     g_list_free(values);
 
     g_object_unref(ent);
 }
-END_TEST
 
 
-START_TEST(test_multi_props_clear)
+static void
+test_multi_props_clear(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
 
@@ -225,15 +222,15 @@ START_TEST(test_multi_props_clear)
             foundBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(foundHello, "Entity param key list was missing 'hello'");
-    fail_unless(foundFish, "Entity param key list was missing 'fish'");
-    fail_unless(!foundBad, "Entity param key list has unexpected key");
+    g_assert_true(foundHello);
+    g_assert_true(foundFish);
+    g_assert_false(foundBad);
     g_list_free(keys);
 
     const gchar *value = osinfo_entity_get_param_value(ent, "hello");
-    fail_unless(g_strcmp0(value, "world") == 0, "Entity param value was not 'world'");
+    g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "fish");
-    fail_unless(g_strcmp0(value, "food") == 0, "Entity param value was not 'food'");
+    g_assert_cmpstr(value, ==, "food");
 
     osinfo_entity_clear_param(ent, "hello");
 
@@ -251,15 +248,15 @@ START_TEST(test_multi_props_clear)
             foundBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(!foundHello, "Entity param key list has unexpected 'hello'");
-    fail_unless(foundFish, "Entity param key list was missing 'fish'");
-    fail_unless(!foundBad, "Entity param key list has unexpected key");
+    g_assert_false(foundHello);
+    g_assert_true(foundFish);
+    g_assert_false(foundBad);
     g_list_free(keys);
 
     value = osinfo_entity_get_param_value(ent, "hello");
-    fail_unless(g_strcmp0(value, NULL) == 0, "Entity param value was not removed");
+    g_assert_null(value);
     value = osinfo_entity_get_param_value(ent, "fish");
-    fail_unless(g_strcmp0(value, "food") == 0, "Entity param value was not 'food'");
+    g_assert_cmpstr(value, ==, "food");
 
     osinfo_entity_add_param(ent, "hello", "world");
     osinfo_entity_clear_param(ent, "fish");
@@ -278,63 +275,53 @@ START_TEST(test_multi_props_clear)
             foundBad = TRUE;
         tmp = tmp->next;
     }
-    fail_unless(foundHello, "Entity param key list has unexpected 'hello'");
-    fail_unless(!foundFish, "Entity param key list was missing 'fish'");
-    fail_unless(!foundBad, "Entity param key list has unexpected key");
+    g_assert_true(foundHello);
+    g_assert_false(foundFish);
+    g_assert_false(foundBad);
     g_list_free(keys);
 
     value = osinfo_entity_get_param_value(ent, "hello");
-    fail_unless(g_strcmp0(value, "world") == 0, "Entity param value was not readded");
+    g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "fish");
-    fail_unless(g_strcmp0(value, NULL) == 0, "Entity param value was not removed");
+    g_assert_null(value);
 
     g_object_unref(ent);
 }
-END_TEST
 
 
-START_TEST(test_int64_props)
+static void
+test_int64_props(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
 
     osinfo_entity_set_param_int64(ent, "my_int", 10);
-    fail_unless(osinfo_entity_get_param_value_int64(ent, "my_int") == 10);
+    g_assert_true(osinfo_entity_get_param_value_int64(ent, "my_int") == 10);
     osinfo_entity_set_param_int64(ent, "my_neg_int", -20);
-    fail_unless(osinfo_entity_get_param_value_int64(ent, "my_neg_int") == -20);
+    g_assert_true(osinfo_entity_get_param_value_int64(ent, "my_neg_int") == -20);
     osinfo_entity_set_param_int64(ent, "my_str", 30);
-    fail_unless(osinfo_entity_get_param_value_int64(ent, "my_str") == 30);
+    g_assert_true(osinfo_entity_get_param_value_int64(ent, "my_str") == 30);
     osinfo_entity_set_param_int64(ent, "my_neg_str", -40);
-    fail_unless(osinfo_entity_get_param_value_int64(ent, "my_neg_str") == -40);
-    fail_unless(osinfo_entity_get_param_value_int64_with_default(ent, "my_neg_str", 1234) == -40);
+    g_assert_true(osinfo_entity_get_param_value_int64(ent, "my_neg_str") == -40);
+    g_assert_true(osinfo_entity_get_param_value_int64_with_default(ent, "my_neg_str", 1234) == -40);
 
-    fail_unless(osinfo_entity_get_param_value_int64(ent, "missing") == -1);
-    fail_unless(osinfo_entity_get_param_value_int64_with_default(ent, "missing", 1234) == 1234);
+    g_assert_true(osinfo_entity_get_param_value_int64(ent, "missing") == -1);
+    g_assert_true(osinfo_entity_get_param_value_int64_with_default(ent, "missing", 1234) == 1234);
 
     g_object_unref(ent);
 }
-END_TEST
 
-static Suite *
-entity_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("Entity");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_id);
-    tcase_add_test(tc, test_empty_props);
-    tcase_add_test(tc, test_single_prop_value);
-    tcase_add_test(tc, test_multi_prop_value);
-    tcase_add_test(tc, test_multi_props);
-    tcase_add_test(tc, test_multi_props_clear);
-    tcase_add_test(tc, test_int64_props);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = entity_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/entity/id", test_id);
+    g_test_add_func("/entity/empty_props", test_empty_props);
+    g_test_add_func("/entity/single_prop_value", test_single_prop_value);
+    g_test_add_func("/entity/multi_prop_value", test_multi_prop_value);
+    g_test_add_func("/entity/multi_props", test_multi_props);
+    g_test_add_func("/entity/multi_props_clear", test_multi_props_clear);
+    g_test_add_func("/entity/int64_props", test_int64_props);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -342,11 +329,7 @@ int main(void)
     /* Upfront so we don't confuse valgrind */
     osinfo_dummy_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

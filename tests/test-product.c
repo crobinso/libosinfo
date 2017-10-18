@@ -21,9 +21,7 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 /* OsinfoProduct is abstract, so we need to trivially subclass it to test it */
 typedef struct _OsinfoDummy        OsinfoDummy;
@@ -51,19 +49,20 @@ static OsinfoProduct *osinfo_dummy_new(const gchar *id) {
 }
 
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoProduct *product = osinfo_dummy_new("pony");
 
-    fail_unless(OSINFO_IS_PRODUCT(product), "Product is a product object");
-    fail_unless(g_strcmp0(osinfo_entity_get_id(OSINFO_ENTITY(product)), "pony") == 0, "Product ID was pony");
+    g_assert_true(OSINFO_IS_PRODUCT(product));
+    g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(product)), ==, "pony");
 
     g_object_unref(product);
 }
-END_TEST
 
 
-START_TEST(test_relproduct)
+static void
+test_relproduct(void)
 {
     OsinfoProduct *product1 = osinfo_dummy_new("pony");
     OsinfoProduct *product2 = osinfo_dummy_new("donkey");
@@ -78,27 +77,26 @@ START_TEST(test_relproduct)
     osinfo_product_add_related(product1, OSINFO_PRODUCT_RELATIONSHIP_CLONES, product5);
 
     OsinfoProductList *product1rel = osinfo_product_get_related(product1, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(product1rel)) == 1, "Product has 1 derived product");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product2), "derived product is product2");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(product1rel)), ==, 1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product2));
     g_object_unref(product1rel);
 
     product1rel = osinfo_product_get_related(product1, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES);
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(product1rel)) == 2, "Product has 2 upgraded product");
-    fail_unless((osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product3) ||
-                 osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product4)) &&
-                (osinfo_list_get_nth(OSINFO_LIST(product1rel), 1) == OSINFO_ENTITY(product3) ||
-                 osinfo_list_get_nth(OSINFO_LIST(product1rel), 1) == OSINFO_ENTITY(product4)),
-                "upgraded productes are product3 + product4");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(product1rel)), ==, 2);
+    g_assert_true((osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product3) ||
+                   osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product4)) &&
+                  (osinfo_list_get_nth(OSINFO_LIST(product1rel), 1) == OSINFO_ENTITY(product3) ||
+                   osinfo_list_get_nth(OSINFO_LIST(product1rel), 1) == OSINFO_ENTITY(product4)));
     g_object_unref(product1rel);
 
     product1rel = osinfo_product_get_related(product3, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES);
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(product1rel)) == 1, "Product has 1 upgraded product");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product4), "upgraded product is product4");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(product1rel)), ==, 1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product4));
     g_object_unref(product1rel);
 
     product1rel = osinfo_product_get_related(product1, OSINFO_PRODUCT_RELATIONSHIP_CLONES);
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(product1rel)) == 1, "Product has 1 upgraded product");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product5), "cloned product is product5");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(product1rel)), ==, 1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product5));
     g_object_unref(product1rel);
 
     g_object_unref(product1);
@@ -107,11 +105,11 @@ START_TEST(test_relproduct)
     g_object_unref(product4);
     g_object_unref(product5);
 }
-END_TEST
 
 
 
-START_TEST(test_supportdate)
+static void
+test_supportdate(void)
 {
     OsinfoProductList *products = osinfo_productlist_new();
     OsinfoProduct *product1 = osinfo_dummy_new("pony");
@@ -138,9 +136,9 @@ START_TEST(test_supportdate)
     date = g_date_new_dmy(31, 12, 1999);
     osinfo_productfilter_add_support_date_constraint(filter, date);
     tmp = OSINFO_PRODUCTLIST(osinfo_list_new_filtered(OSINFO_LIST(products), OSINFO_FILTER(filter)));
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(tmp)) == 2, "2 products");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1, "Got product 1");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product3, "Got product 3");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(tmp)), ==, 2);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product3);
     g_object_unref(tmp);
     g_date_free(date);
 
@@ -148,10 +146,10 @@ START_TEST(test_supportdate)
     date = g_date_new_dmy(01, 01, 2000);
     osinfo_productfilter_add_support_date_constraint(filter, date);
     tmp = OSINFO_PRODUCTLIST(osinfo_list_new_filtered(OSINFO_LIST(products), OSINFO_FILTER(filter)));
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(tmp)) == 3, "3 products");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1, "Got product 1");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product2, "Got product 2");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 2) == (OsinfoEntity*)product3, "Got product 3");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(tmp)), ==, 3);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product2);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 2) == (OsinfoEntity*)product3);
     g_object_unref(tmp);
     g_date_free(date);
 
@@ -159,10 +157,10 @@ START_TEST(test_supportdate)
     date = g_date_new_dmy(01, 01, 2010);
     osinfo_productfilter_add_support_date_constraint(filter, date);
     tmp = OSINFO_PRODUCTLIST(osinfo_list_new_filtered(OSINFO_LIST(products), OSINFO_FILTER(filter)));
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(tmp)) == 3, "3 products");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1, "Got product 1");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product2, "Got product 2");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 2) == (OsinfoEntity*)product3, "Got product 3");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(tmp)), ==, 3);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product2);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 2) == (OsinfoEntity*)product3);
     g_object_unref(tmp);
     g_date_free(date);
 
@@ -170,11 +168,11 @@ START_TEST(test_supportdate)
     date = g_date_new_dmy(01, 05, 2005);
     osinfo_productfilter_add_support_date_constraint(filter, date);
     tmp = OSINFO_PRODUCTLIST(osinfo_list_new_filtered(OSINFO_LIST(products), OSINFO_FILTER(filter)));
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(tmp)) == 4, "4 products");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1, "Got product 1");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product2, "Got product 2");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 2) == (OsinfoEntity*)product3, "Got product 3");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(tmp), 3) == (OsinfoEntity*)product4, "Got product 4");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(tmp)), ==, 4);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 0) == (OsinfoEntity*)product1);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 1) == (OsinfoEntity*)product2);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 2) == (OsinfoEntity*)product3);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(tmp), 3) == (OsinfoEntity*)product4);
     g_object_unref(tmp);
     g_date_free(date);
 
@@ -185,27 +183,17 @@ START_TEST(test_supportdate)
     g_object_unref(filter);
     g_object_unref(products);
 }
-END_TEST
 
 
 
-static Suite *
-product_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("Product");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_relproduct);
-    tcase_add_test(tc, test_supportdate);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = product_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/product/basic", test_basic);
+    g_test_add_func("/product/relproduct", test_relproduct);
+    g_test_add_func("/product/supportdate", test_supportdate);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -218,11 +206,7 @@ int main(void)
     osinfo_devicelist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

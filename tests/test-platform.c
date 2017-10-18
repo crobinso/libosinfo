@@ -21,24 +21,23 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoPlatform *platform = osinfo_platform_new("awesome");
 
-    fail_unless(OSINFO_IS_PLATFORM(platform), "Platform is a platform object");
-    fail_unless(g_strcmp0(osinfo_entity_get_id(OSINFO_ENTITY(platform)), "awesome") == 0, "Platform ID was awesome");
+    g_assert_true(OSINFO_IS_PLATFORM(platform));
+    g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(platform)), ==, "awesome");
 
     g_object_unref(platform);
 }
-END_TEST
 
-START_TEST(test_devices)
+static void
+test_devices(void)
 {
     OsinfoPlatform *hv = osinfo_platform_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
@@ -51,7 +50,7 @@ START_TEST(test_devices)
 
     OsinfoDeviceList *devices = osinfo_platform_get_devices(hv, NULL);
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(devices)) == 2, "Platform has two devices");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 2);
 
     gboolean hasDev1 = FALSE;
     gboolean hasDev2 = FALSE;
@@ -59,7 +58,7 @@ START_TEST(test_devices)
     int i;
     for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(devices)); i++) {
         OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(devices), i);
-        fail_unless(OSINFO_IS_DEVICE(ent), "entity is a device");
+        g_assert_true(OSINFO_IS_DEVICE(ent));
         if (OSINFO_DEVICE(ent) == dev1)
             hasDev1 = TRUE;
         else if (OSINFO_DEVICE(ent) == dev2)
@@ -67,19 +66,19 @@ START_TEST(test_devices)
         else
             hasBad = TRUE;
     }
-    fail_unless(hasDev1, "Device 1 is missing");
-    fail_unless(hasDev2, "Device 2 is missing");
-    fail_unless(!hasBad, "Device was not expected");
+    g_assert_true(hasDev1);
+    g_assert_true(hasDev2);
+    g_assert_false(hasBad);
 
     g_object_unref(devices);
     g_object_unref(dev1);
     g_object_unref(dev2);
     g_object_unref(hv);
 }
-END_TEST
 
 
-START_TEST(test_devices_filter)
+static void
+test_devices_filter(void)
 {
     OsinfoPlatform *hv = osinfo_platform_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
@@ -98,10 +97,10 @@ START_TEST(test_devices_filter)
 
     OsinfoDeviceList *devices = osinfo_platform_get_devices(hv, filter);
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(devices)) == 1, "Platform has one devices");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 1);
     OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(devices), 0);
-    fail_unless(OSINFO_IS_DEVICE(ent), "entity is a device");
-    fail_unless(OSINFO_DEVICE(ent) == dev1, "device is e1000");
+    g_assert_true(OSINFO_IS_DEVICE(ent));
+    g_assert_true(OSINFO_DEVICE(ent) == dev1);
 
     g_object_unref(devices);
     g_object_unref(filter);
@@ -109,27 +108,17 @@ START_TEST(test_devices_filter)
     g_object_unref(dev2);
     g_object_unref(hv);
 }
-END_TEST
 
 
 
-static Suite *
-platform_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("Platform");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_devices);
-    tcase_add_test(tc, test_devices_filter);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = platform_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/platform/basic", test_basic);
+    g_test_add_func("/platform/devices", test_devices);
+    g_test_add_func("/platform/devices_filter", test_devices_filter);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -140,11 +129,7 @@ int main(void)
     osinfo_devicelist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

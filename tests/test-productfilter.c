@@ -21,9 +21,7 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 /* OsinfoProduct is abstract, so we need to trivially subclass it to test it */
 typedef struct _OsinfoDummy        OsinfoDummy;
@@ -51,62 +49,63 @@ static OsinfoProduct *osinfo_dummy_new(const gchar *id) {
 }
 
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoProductFilter *productfilter = osinfo_productfilter_new();
     OsinfoProduct *product1 = osinfo_dummy_new("pretty");
     OsinfoProduct *product2 = osinfo_dummy_new("ugly");
 
-    fail_unless(OSINFO_IS_PRODUCTFILTER(productfilter), "ProductFilter is a productfilter object");
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "ProductFilter matches PRODUCT");
+    g_assert_true(OSINFO_IS_PRODUCTFILTER(productfilter));
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product1);
     GList *tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
                                                                OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
-    fail_unless(tmp != NULL, "Unexpected missing PRODUCT");
-    fail_unless(tmp->data == product1, "Derived PRODUCT is PRODUCT 1");
-    fail_unless(tmp->next == NULL, "Too many derived PRODUCT");
+    g_assert_nonnull(tmp);
+    g_assert_true(tmp->data == product1);
+    g_assert_null(tmp->next);
     g_list_free(tmp);
 
     tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
                                                    OSINFO_PRODUCT_RELATIONSHIP_CLONES);
-    fail_unless(tmp == NULL, "Unexpected cloned PRODUCT");
+    g_assert_null(tmp);
 
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product2);
     tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
                                                    OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
-    fail_unless(tmp != NULL, "Unexpected missing PRODUCT");
-    fail_unless(tmp->data == product2, "Derived PRODUCT is PRODUCT 1");
-    fail_unless(tmp->next != NULL, "Not enough derived PRODUCT");
-    fail_unless(tmp->next->data == product1, "Derived PRODUCT is PRODUCT 1");
-    fail_unless(tmp->next->next == NULL, "Too many derived PRODUCT");
+    g_assert_nonnull(tmp);
+    g_assert_true(tmp->data == product2);
+    g_assert_nonnull(tmp->next);
+    g_assert_true(tmp->next->data == product1);
+    g_assert_null(tmp->next->next);
     g_list_free(tmp);
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES, product1);
     tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
                                                    OSINFO_PRODUCT_RELATIONSHIP_UPGRADES);
-    fail_unless(tmp != NULL, "Unexpected missing PRODUCT");
-    fail_unless(tmp->data == product1, "Derived PRODUCT is PRODUCT 1");
-    fail_unless(tmp->next == NULL, "Too many derived PRODUCT");
+    g_assert_nonnull(tmp);
+    g_assert_true(tmp->data == product1);
+    g_assert_null(tmp->next);
     g_list_free(tmp);
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_CLONES, product1);
     tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
                                                    OSINFO_PRODUCT_RELATIONSHIP_CLONES);
-    fail_unless(tmp != NULL, "Unexpected missing PRODUCT");
-    fail_unless(tmp->data == product1, "Derived PRODUCT is PRODUCT 1");
-    fail_unless(tmp->next == NULL, "Too many derived PRODUCT");
+    g_assert_nonnull(tmp);
+    g_assert_true(tmp->data == product1);
+    g_assert_null(tmp->next);
     g_list_free(tmp);
 
     g_object_unref(product2);
     g_object_unref(product1);
     g_object_unref(productfilter);
 }
-END_TEST
 
 
-START_TEST(test_productfilter_single)
+static void
+test_productfilter_single(void)
 {
     OsinfoProductFilter *productfilter = osinfo_productfilter_new();
     OsinfoProduct *product1 = osinfo_dummy_new("hot");
@@ -119,10 +118,10 @@ START_TEST(test_productfilter_single)
     osinfo_product_add_related(product3, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product4);
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product2);
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter matches PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter does not match PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
 
     g_object_unref(product1);
     g_object_unref(product2);
@@ -130,10 +129,10 @@ START_TEST(test_productfilter_single)
     g_object_unref(product4);
     g_object_unref(productfilter);
 }
-END_TEST
 
 
-START_TEST(test_productfilter_multi)
+static void
+test_productfilter_multi(void)
 {
     OsinfoProductFilter *productfilter = osinfo_productfilter_new();
     OsinfoProduct *product1 = osinfo_dummy_new("hot");
@@ -150,28 +149,28 @@ START_TEST(test_productfilter_multi)
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product2);
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_CLONES, product5);
 
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter matches PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter does not match PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product5)), "Filter does not match PRODUCT 5");
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product5)));
 
     osinfo_productfilter_clear_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_CLONES);
 
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter matches PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter matches PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product5)), "Filter does not match PRODUCT 5");
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product5)));
 
     osinfo_productfilter_clear_product_constraints(productfilter);
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES, product5);
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter does not match PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter does not match PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product5)), "Filter does not match PRODUCT 5");
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product5)));
 
     g_object_unref(product1);
     g_object_unref(product2);
@@ -180,10 +179,10 @@ START_TEST(test_productfilter_multi)
     g_object_unref(product5);
     g_object_unref(productfilter);
 }
-END_TEST
 
 
-START_TEST(test_productfilter_combine)
+static void
+test_productfilter_combine(void)
 {
     OsinfoProductFilter *productfilter = osinfo_productfilter_new();
     OsinfoProduct *product1 = osinfo_dummy_new("hot");
@@ -198,22 +197,22 @@ START_TEST(test_productfilter_combine)
     osinfo_entity_add_param(OSINFO_ENTITY(product3), "vendor", "acme");
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product2);
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter matches PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter does not match PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
 
     osinfo_filter_add_constraint(OSINFO_FILTER(productfilter), "vendor", "acme");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter does not match PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter does not match PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
 
     osinfo_productfilter_clear_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)), "Filter does not match PRODUCT 1");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)), "Filter does not match PRODUCT 2");
-    fail_unless(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)), "Filter matches PRODUCT 3");
-    fail_unless(!osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)), "Filter does not match PRODUCT 4");
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product2)));
+    g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product3)));
+    g_assert_false(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product4)));
 
     g_object_unref(product1);
     g_object_unref(product2);
@@ -221,27 +220,17 @@ START_TEST(test_productfilter_combine)
     g_object_unref(product4);
     g_object_unref(productfilter);
 }
-END_TEST
 
 
-static Suite *
-productfilter_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("ProductFilter");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_productfilter_single);
-    tcase_add_test(tc, test_productfilter_multi);
-    tcase_add_test(tc, test_productfilter_combine);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = productfilter_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/productfilter/basic", test_basic);
+    g_test_add_func("/productfilter/productfilter_single", test_productfilter_single);
+    g_test_add_func("/productfilter/productfilter_multi", test_productfilter_multi);
+    g_test_add_func("/productfilter/productfilter_combine", test_productfilter_combine);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -254,11 +243,7 @@ int main(void)
     osinfo_productfilter_get_type();
     osinfo_product_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

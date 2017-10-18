@@ -21,24 +21,23 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoOs *os = osinfo_os_new("pony");
 
-    fail_unless(OSINFO_IS_OS(os), "Os is a os object");
-    fail_unless(g_strcmp0(osinfo_entity_get_id(OSINFO_ENTITY(os)), "pony") == 0, "Os ID was pony");
+    g_assert_true(OSINFO_IS_OS(os));
+    g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "pony");
 
     g_object_unref(os);
 }
-END_TEST
 
-START_TEST(test_devices)
+static void
+test_devices(void)
 {
     OsinfoOs *os = osinfo_os_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
@@ -51,19 +50,19 @@ START_TEST(test_devices)
 
     OsinfoDeviceList *devices = osinfo_os_get_devices(os, NULL);
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(devices)) == 2, "Os has two devices");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(devices), 0) == OSINFO_ENTITY(dev1), "Got device 1");
-    fail_unless(osinfo_list_get_nth(OSINFO_LIST(devices), 1) == OSINFO_ENTITY(dev2), "Got device 2");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 2);
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(devices), 0) == OSINFO_ENTITY(dev1));
+    g_assert_true(osinfo_list_get_nth(OSINFO_LIST(devices), 1) == OSINFO_ENTITY(dev2));
 
     g_object_unref(devices);
     g_object_unref(dev1);
     g_object_unref(dev2);
     g_object_unref(os);
 }
-END_TEST
 
 
-START_TEST(test_loader)
+static void
+test_loader(void)
 {
     OsinfoLoader *loader;
     OsinfoDb *db;
@@ -73,69 +72,64 @@ START_TEST(test_loader)
 
     loader = osinfo_loader_new();
     osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
-    fail_unless(error == NULL, error ? error->message:"none");
+    g_assert_no_error(error);
     db = osinfo_loader_get_db(loader);
 
     os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/test1");
-    fail_unless(os != NULL, "could not find OS 'test1'");
+    g_assert_nonnull(os);
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "test1") == 0, "wrong OS short-id");
+    g_assert_cmpstr(str, ==, "test1");
     str = osinfo_product_get_name(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "Test 1") == 0, "wrong OS name");
+    g_assert_cmpstr(str, ==, "Test 1");
     str = osinfo_product_get_version(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "unknown") == 0, "wrong OS version");
+    g_assert_cmpstr(str, ==, "unknown");
     str = osinfo_product_get_vendor(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "libosinfo.org") == 0, "wrong OS vendor");
+    g_assert_cmpstr(str, ==, "libosinfo.org");
     str = osinfo_os_get_family(os);
-    fail_unless(g_strcmp0(str, "test") == 0, "wrong OS family");
-    fail_unless(osinfo_os_get_release_status(os) == OSINFO_RELEASE_STATUS_PRERELEASE,
-                "OS should be a pre-release");
+    g_assert_cmpstr(str, ==, "test");
+    g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_PRERELEASE);
 
     os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/test2");
-    fail_unless(os != NULL, "could not find OS 'test2'");
+    g_assert_nonnull(os);
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "test2") == 0, "wrong OS short-id");
+    g_assert_cmpstr(str, ==, "test2");
     str = osinfo_product_get_name(OSINFO_PRODUCT(os));
-    fail_unless(str == NULL, "wrong OS name");
+    g_assert_null(str);
     str = osinfo_product_get_version(OSINFO_PRODUCT(os));
-    fail_unless(str == NULL, "wrong OS version");
+    g_assert_null(str);
     str = osinfo_product_get_vendor(OSINFO_PRODUCT(os));
-    fail_unless(str == NULL, "wrong OS vendor");
+    g_assert_null(str);
     str = osinfo_os_get_family(os);
-    fail_unless(str == NULL, "wrong OS family");
-    fail_unless(osinfo_os_get_release_status(os) == OSINFO_RELEASE_STATUS_RELEASED,
-                "OS should be a released one");
+    g_assert_null(str);
+    g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_RELEASED);
 
     os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/test3");
-    fail_unless(os != NULL, "could not find OS 'test3'");
+    g_assert_nonnull(os);
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "test3") == 0, "wrong OS short-id");
-    fail_unless(osinfo_os_get_release_status(os) == OSINFO_RELEASE_STATUS_RELEASED,
-                "OS should be a released one");
+    g_assert_cmpstr(str, ==, "test3");
+    g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_RELEASED);
 
     os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/test4");
-    fail_unless(os != NULL, "could not find OS 'test4'");
+    g_assert_nonnull(os);
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "test4") == 0, "wrong OS short-id");
-    fail_unless(osinfo_os_get_release_status(os) == OSINFO_RELEASE_STATUS_SNAPSHOT,
-                "OS should be a snapshot");
+    g_assert_cmpstr(str, ==, "test4");
+    g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_SNAPSHOT);
 
     os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/test5");
-    fail_unless(os != NULL, "could not find OS 'test5'");
+    g_assert_nonnull(os);
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-    fail_unless(g_strcmp0(str, "test5") == 0, "wrong OS short-id");
+    g_assert_cmpstr(str, ==, "test5");
     /* 'test5' OS intentionnally contains an invalid release status */
     g_test_expect_message(NULL, G_LOG_LEVEL_CRITICAL,
                           "*(osinfo_entity_get_param_value_enum): should not be reached*");
-    fail_unless(osinfo_os_get_release_status(os) == OSINFO_RELEASE_STATUS_RELEASED,
-                "OS should be a released one");
+    g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_RELEASED);
 
     g_object_unref(loader);
 }
-END_TEST
 
 
-START_TEST(test_devices_filter)
+static void
+test_devices_filter(void)
 {
     OsinfoOs *os = osinfo_os_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
@@ -154,10 +148,10 @@ START_TEST(test_devices_filter)
 
     OsinfoDeviceList *devices = osinfo_os_get_devices(os, filter);
 
-    fail_unless(osinfo_list_get_length(OSINFO_LIST(devices)) == 1, "Os has one devices");
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 1);
     OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(devices), 0);
-    fail_unless(OSINFO_IS_DEVICE(ent), "entity is a device");
-    fail_unless(OSINFO_DEVICE(ent) == dev1, "device is e1000");
+    g_assert_true(OSINFO_IS_DEVICE(ent));
+    g_assert_true(OSINFO_DEVICE(ent) == dev1);
 
     g_object_unref(devices);
     g_object_unref(filter);
@@ -165,10 +159,10 @@ START_TEST(test_devices_filter)
     g_object_unref(dev2);
     g_object_unref(os);
 }
-END_TEST
 
 
-START_TEST(test_device_driver)
+static void
+test_device_driver(void)
 {
     OsinfoOs *os = osinfo_os_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
@@ -193,28 +187,18 @@ START_TEST(test_device_driver)
     g_object_unref(dev2);
     g_object_unref(os);
 }
-END_TEST
 
 
-static Suite *
-os_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("Os");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_loader);
-    tcase_add_test(tc, test_devices);
-    tcase_add_test(tc, test_devices_filter);
-    tcase_add_test(tc, test_device_driver);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = os_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/os/basic", test_basic);
+    g_test_add_func("/os/loader", test_loader);
+    g_test_add_func("/os/devices", test_devices);
+    g_test_add_func("/os/devices_filter", test_devices_filter);
+    g_test_add_func("/os/device_driver", test_device_driver);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -227,11 +211,7 @@ int main(void)
     osinfo_devicelist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

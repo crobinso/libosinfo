@@ -21,9 +21,7 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 /* OsinfoEntity is abstract, so we need to trivially subclass it to test it */
 typedef struct _OsinfoDummy        OsinfoDummy;
@@ -69,46 +67,47 @@ static void osinfo_dummy_list_init(OsinfoDummyList *self G_GNUC_UNUSED) {}
 
 
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoList *list = g_object_new(osinfo_dummy_list_get_type(), NULL);
 
-    fail_unless(osinfo_list_get_length(list) == 0, "List was not empty");
-    fail_unless(osinfo_list_find_by_id(list, "wibble") == NULL, "List was not empty");
+    g_assert_cmpint(osinfo_list_get_length(list), ==, 0);
+    g_assert_null(osinfo_list_find_by_id(list, "wibble"));
 
     GType type;
     g_object_get(list, "element-type", &type, NULL);
-    fail_unless(type == OSINFO_TYPE_ENTITY, "Type is not entity");
+    g_assert_cmpint(type, ==, OSINFO_TYPE_ENTITY);
 
     type = osinfo_list_get_element_type(list);
-    fail_unless(type == OSINFO_TYPE_ENTITY, "Type is not entity");
+    g_assert_cmpint(type, ==, OSINFO_TYPE_ENTITY);
 
     g_object_unref(list);
 }
-END_TEST
 
 
 
-START_TEST(test_lookup)
+static void
+test_lookup(void)
 {
     OsinfoList *list = g_object_new(osinfo_dummy_list_get_type(), NULL);
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "wibble", NULL);
 
     osinfo_list_add(list, ent);
 
-    fail_unless(osinfo_list_get_length(list) == 1, "List does not contain a single element");
-    fail_unless(osinfo_list_get_nth(list, 0) == ent, "Lookup wrong element");
-    fail_unless(osinfo_list_find_by_id(list, "wibble") != NULL, "Could not find element");
-    fail_unless(osinfo_list_find_by_id(list, "fish") == NULL, "Found wrong element");
+    g_assert_cmpint(osinfo_list_get_length(list), ==, 1);
+    g_assert_true(osinfo_list_get_nth(list, 0) == ent);
+    g_assert_nonnull(osinfo_list_find_by_id(list, "wibble"));
+    g_assert_null(osinfo_list_find_by_id(list, "fish"));
 
     g_object_unref(ent);
     g_object_unref(list);
 }
-END_TEST
 
 
 
-START_TEST(test_duplicate)
+static void
+test_duplicate(void)
 {
     OsinfoList *list = g_object_new(osinfo_dummy_list_get_type(), NULL);
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "wibble", NULL);
@@ -117,20 +116,20 @@ START_TEST(test_duplicate)
     osinfo_list_add(list, ent);
     osinfo_list_add(list, ent_dup);
 
-    fail_unless(osinfo_list_get_length(list) == 1, "List does not contain a single element");
-    fail_unless(osinfo_list_get_nth(list, 0) == ent_dup, "Lookup wrong element");
-    fail_unless(osinfo_list_find_by_id(list, "wibble") != NULL, "Could not find element");
-    fail_unless(osinfo_list_find_by_id(list, "fish") == NULL, "Found wrong element");
+    g_assert_cmpint(osinfo_list_get_length(list), ==, 1);
+    g_assert_true(osinfo_list_get_nth(list, 0) == ent_dup);
+    g_assert_nonnull(osinfo_list_find_by_id(list, "wibble"));
+    g_assert_null(osinfo_list_find_by_id(list, "fish"));
 
     g_object_unref(ent);
     g_object_unref(ent_dup);
     g_object_unref(list);
 }
-END_TEST
 
 
 
-START_TEST(test_union)
+static void
+test_union(void)
 {
     OsinfoList *list1 = g_object_new(osinfo_dummy_list_get_type(), NULL);
     OsinfoList *list2 = g_object_new(osinfo_dummy_list_get_type(), NULL);
@@ -151,7 +150,7 @@ START_TEST(test_union)
 
     osinfo_list_add_union(list3, list1, list2);
 
-    fail_unless(osinfo_list_get_length(list3) == 4, "List did not have 4 elements");
+    g_assert_cmpint(osinfo_list_get_length(list3), ==, 4);
 
     gboolean has1 = FALSE;
     gboolean has2 = FALSE;
@@ -172,11 +171,11 @@ START_TEST(test_union)
         else
             hasBad = TRUE;
     }
-    fail_unless(has1, "List was missing entity 1");
-    fail_unless(has2, "List was missing entity 2");
-    fail_unless(has3, "List was missing entity 3");
-    fail_unless(has4, "List was missing entity 4");
-    fail_unless(!hasBad, "List had unexpected entity");
+    g_assert_true(has1);
+    g_assert_true(has2);
+    g_assert_true(has3);
+    g_assert_true(has4);
+    g_assert_false(hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent1_dup);
@@ -187,10 +186,10 @@ START_TEST(test_union)
     g_object_unref(list2);
     g_object_unref(list3);
 }
-END_TEST
 
 
-START_TEST(test_intersect)
+static void
+test_intersect(void)
 {
     OsinfoList *list1 = g_object_new(osinfo_dummy_list_get_type(), NULL);
     OsinfoList *list2 = g_object_new(osinfo_dummy_list_get_type(), NULL);
@@ -212,7 +211,7 @@ START_TEST(test_intersect)
 
     osinfo_list_add_intersection(list3, list1, list2);
 
-    fail_unless(osinfo_list_get_length(list3) == 2, "List did not have 2 elements");
+    g_assert_cmpint(osinfo_list_get_length(list3), ==, 2);
 
     gboolean has1 = FALSE;
     gboolean has2 = FALSE;
@@ -233,11 +232,11 @@ START_TEST(test_intersect)
         else
             hasBad = TRUE;
     }
-    fail_unless(has1, "List was missing entity 1");
-    fail_unless(!has2, "List had unexpected entity 2");
-    fail_unless(has3, "List was missing entity 3");
-    fail_unless(!has4, "List had unexpected entity 4");
-    fail_unless(!hasBad, "List had unexpected entity");
+    g_assert_true(has1);
+    g_assert_false(has2);
+    g_assert_true(has3);
+    g_assert_false(has4);
+    g_assert_false(hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent1_dup);
@@ -248,10 +247,10 @@ START_TEST(test_intersect)
     g_object_unref(list2);
     g_object_unref(list3);
 }
-END_TEST
 
 
-START_TEST(test_filter)
+static void
+test_filter(void)
 {
     OsinfoList *list1 = g_object_new(osinfo_dummy_list_get_type(), NULL);
     OsinfoList *list2 = g_object_new(osinfo_dummy_list_get_type(), NULL);
@@ -277,7 +276,7 @@ START_TEST(test_filter)
 
     osinfo_list_add_filtered(list2, list1, filter);
 
-    fail_unless(osinfo_list_get_length(list2) == 3, "List did not have 3 elements");
+    g_assert_cmpint(osinfo_list_get_length(list2), ==, 3);
 
     gboolean has1 = FALSE;
     gboolean has2 = FALSE;
@@ -298,11 +297,11 @@ START_TEST(test_filter)
         else
             hasBad = TRUE;
     }
-    fail_unless(has1, "List was missing entity 1");
-    fail_unless(has2, "List was missing entity 2");
-    fail_unless(has3, "List was missing entity 3");
-    fail_unless(!has4, "List had unexpected entity 4");
-    fail_unless(!hasBad, "List had unexpected entity");
+    g_assert_true(has1);
+    g_assert_true(has2);
+    g_assert_true(has3);
+    g_assert_false(has4);
+    g_assert_false(hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent2);
@@ -312,7 +311,6 @@ START_TEST(test_filter)
     g_object_unref(list1);
     g_object_unref(list2);
 }
-END_TEST
 
 struct iterateData {
     OsinfoEntity *ent1;
@@ -343,7 +341,8 @@ static void iterator(gpointer data, gpointer opaque)
         idata->hasBad = TRUE;
 }
 
-START_TEST(test_iterate)
+static void
+test_iterate(void)
 {
     OsinfoList *list1 = g_object_new(osinfo_dummy_list_get_type(), NULL);
     OsinfoList *list2 = g_object_new(osinfo_dummy_list_get_type(), NULL);
@@ -366,22 +365,22 @@ START_TEST(test_iterate)
     GList *elements = osinfo_list_get_elements(list1);
     g_list_foreach(elements, iterator, &data);
     g_list_free(elements);
-    fail_unless(data.has1, "List was missing entity 1");
-    fail_unless(data.has2, "List was missing entity 2");
-    fail_unless(data.has3, "List was missing entity 3");
-    fail_unless(!data.has4, "List has unexpected entity 4");
-    fail_unless(!data.hasBad, "List had unexpected entity");
+    g_assert_true(data.has1);
+    g_assert_true(data.has2);
+    g_assert_true(data.has3);
+    g_assert_false(data.has4);
+    g_assert_false(data.hasBad);
 
     data.has1 = data.has2 = data.has3 = data.has4 = data.hasBad = FALSE;
 
     elements = osinfo_list_get_elements(list2);
     g_list_foreach(elements, iterator, &data);
     g_list_free(elements);
-    fail_unless(data.has1, "List was missing entity 1");
-    fail_unless(!data.has2, "List has unexpected entity 2");
-    fail_unless(!data.has3, "List has unexpected entity 3");
-    fail_unless(data.has4, "List was missing entity 4");
-    fail_unless(!data.hasBad, "List had unexpected entity");
+    g_assert_true(data.has1);
+    g_assert_false(data.has2);
+    g_assert_false(data.has3);
+    g_assert_true(data.has4);
+    g_assert_false(data.hasBad);
 
     g_object_unref(ent1);
     g_object_unref(ent2);
@@ -390,29 +389,19 @@ START_TEST(test_iterate)
     g_object_unref(list1);
     g_object_unref(list2);
 }
-END_TEST
 
-static Suite *
-list_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("List");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_lookup);
-    tcase_add_test(tc, test_duplicate);
-    tcase_add_test(tc, test_union);
-    tcase_add_test(tc, test_intersect);
-    tcase_add_test(tc, test_filter);
-    tcase_add_test(tc, test_iterate);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = list_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/list/basic", test_basic);
+    g_test_add_func("/list/lookup", test_lookup);
+    g_test_add_func("/list/duplicate", test_duplicate);
+    g_test_add_func("/list/union", test_union);
+    g_test_add_func("/list/intersect", test_intersect);
+    g_test_add_func("/list/filter", test_filter);
+    g_test_add_func("/list/iterate", test_iterate);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -422,11 +411,7 @@ int main(void)
     osinfo_dummy_list_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

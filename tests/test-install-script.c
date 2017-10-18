@@ -21,10 +21,7 @@
 
 #include <config.h>
 
-#include <config.h>
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 static GError *error = NULL;
 static gchar *actualData = NULL;
@@ -130,7 +127,8 @@ static OsinfoMedia *create_media(void)
     return media;
 }
 
-START_TEST(test_script_file)
+static void
+test_script_file(void)
 {
     OsinfoInstallScript *script;
     OsinfoInstallConfig *config = test_get_config();
@@ -144,7 +142,7 @@ START_TEST(test_script_file)
                                            "file://" SRCDIR "/tests/install-script.xsl");
 
     osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
     db = g_object_ref(osinfo_loader_get_db(loader));
     g_object_unref(loader);
 
@@ -152,7 +150,7 @@ START_TEST(test_script_file)
                            TRUE);
 
     media = create_media();
-    fail_unless(osinfo_db_identify_media(db, media), "Failed to identify media");
+    g_assert_true(osinfo_db_identify_media(db, media));
 
     osinfo_install_script_generate_for_media_async(script,
                                                    media,
@@ -165,10 +163,9 @@ START_TEST(test_script_file)
         g_main_loop_run(loop);
 
     unlink(BUILDDIR "/tests/install-script-actual.txt");
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
 
-    fail_unless(strcmp(actualData, expectData) == 0, "Actual '%s' match expect '%s'",
-                actualData, expectData);
+    g_assert_cmpstr(actualData, ==, expectData);
 
     g_free(actualData);
     g_object_unref(media);
@@ -177,11 +174,11 @@ START_TEST(test_script_file)
     g_object_unref(script);
     g_main_loop_unref(loop);
 }
-END_TEST
 
 
 
-START_TEST(test_script_data)
+static void
+test_script_data(void)
 {
     OsinfoInstallScript *script;
     OsinfoInstallConfig *config = test_get_config();
@@ -193,16 +190,16 @@ START_TEST(test_script_data)
     gchar *data;
 
     g_file_load_contents(file, NULL, &data, NULL, NULL, &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
     g_object_unref(file);
 
     osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
     db = g_object_ref(osinfo_loader_get_db(loader));
     g_object_unref(loader);
 
     media = create_media();
-    fail_unless(osinfo_db_identify_media(db, media), "Failed to identify media");
+    g_assert_true(osinfo_db_identify_media(db, media));
 
     script = osinfo_install_script_new_data("http://example.com",
                                             "jeos",
@@ -222,7 +219,7 @@ START_TEST(test_script_data)
         g_main_loop_run(loop);
 
     unlink(BUILDDIR "/tests/install-script-actual.txt");
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
 
     g_free(data);
     g_free(actualData);
@@ -232,9 +229,9 @@ START_TEST(test_script_data)
     g_object_unref(script);
     g_main_loop_unref(loop);
 }
-END_TEST
 
-START_TEST(test_script_datamap)
+static void
+test_script_datamap(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
     OsinfoDb *db;
@@ -244,40 +241,34 @@ START_TEST(test_script_datamap)
     GMainLoop *loop;
 
     osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
     db = g_object_ref(osinfo_loader_get_db(loader));
     g_object_unref(loader);
 
-    fail_unless(osinfo_db_get_datamap(db, "http://example.com/libosinfo/test-datamap") != NULL, "Could not find OsinfoDatamap 'test-datamap'");
-    fail_unless(osinfo_db_get_datamap(db, "http://example.com/libosinfo/test-datamap2") != NULL, "Could not find OsinfoDatamap 'test-datamap2'");
+    g_assert_nonnull(osinfo_db_get_datamap(db, "http://example.com/libosinfo/test-datamap"));
+    g_assert_nonnull(osinfo_db_get_datamap(db, "http://example.com/libosinfo/test-datamap2"));
     script = osinfo_db_get_install_script(db, "http://example.com/libosinfo/test-install-script");
-    fail_unless(script != NULL, "Could not find OsinfoInstallScript 'test-install-script'");
+    g_assert_nonnull(script);
 
     config = osinfo_install_config_new("http://example.com");
 
     osinfo_install_config_set_l10n_keyboard(config, "unknown");
-    fail_unless(g_strcmp0(osinfo_install_config_get_l10n_keyboard(config), "unknown") == 0,
-                "Got %s instead of 'unknown'", osinfo_install_config_get_l10n_keyboard(config));
+    g_assert_cmpstr(osinfo_install_config_get_l10n_keyboard(config), ==, "unknown");
 
     osinfo_install_config_set_l10n_keyboard(config, "val1");
-    fail_unless(g_strcmp0(osinfo_install_config_get_l10n_keyboard(config), "val1") == 0,
-                "Got %s instead of 'val1'", osinfo_install_config_get_l10n_keyboard(config));
+    g_assert_cmpstr(osinfo_install_config_get_l10n_keyboard(config), ==, "val1");
 
     osinfo_install_config_set_l10n_keyboard(config, "val2");
-    fail_unless(g_strcmp0(osinfo_install_config_get_l10n_keyboard(config), "val2") == 0,
-                "Got %s instead of 'val2'", osinfo_install_config_get_l10n_keyboard(config));
+    g_assert_cmpstr(osinfo_install_config_get_l10n_keyboard(config), ==, "val2");
 
     osinfo_install_config_set_l10n_keyboard(config, "val3");
-    fail_unless(g_strcmp0(osinfo_install_config_get_l10n_keyboard(config), "val3") == 0,
-                "Got %s instead of 'val3'", osinfo_install_config_get_l10n_keyboard(config));
+    g_assert_cmpstr(osinfo_install_config_get_l10n_keyboard(config), ==, "val3");
 
     osinfo_install_config_set_l10n_keyboard(config, "VAL1");
-    fail_unless(g_strcmp0(osinfo_install_config_get_l10n_keyboard(config), "VAL1") == 0,
-                "Got %s instead of 'VAL1", osinfo_install_config_get_l10n_keyboard(config));
+    g_assert_cmpstr(osinfo_install_config_get_l10n_keyboard(config), ==, "VAL1");
 
     osinfo_install_config_set_l10n_language(config, "en_EN");
-    fail_unless(g_strcmp0(osinfo_install_config_get_l10n_language(config), "en_EN") == 0,
-                "Got %s instead of 'en_EN'", osinfo_install_config_get_l10n_language(config));
+    g_assert_cmpstr(osinfo_install_config_get_l10n_language(config), ==, "en_EN");
     osinfo_install_config_set_l10n_language(config, "fr_FR");
     osinfo_install_config_set_l10n_timezone(config, "Europe/Paris");
 
@@ -300,10 +291,9 @@ START_TEST(test_script_datamap)
         g_main_loop_run(loop);
 
     unlink(BUILDDIR "/tests/install-script-actual.txt");
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
 
-    fail_unless(strcmp(actualData, expectData2) == 0, "Actual '%s' match expect '%s'",
-                actualData, expectData2);
+    g_assert_cmpstr(actualData, ==, expectData2);
 
     g_free(actualData);
     g_object_unref(db);
@@ -311,28 +301,16 @@ START_TEST(test_script_datamap)
     g_object_unref(config);
     g_main_loop_unref(loop);
 }
-END_TEST
 
 
-static Suite *
-list_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("List");
-    TCase *tc = tcase_create("Core");
-    tcase_set_timeout(tc, 120);
+    g_test_init(&argc, &argv, NULL);
 
-    tcase_add_test(tc, test_script_file);
-    tcase_add_test(tc, test_script_data);
-    tcase_add_test(tc, test_script_datamap);
-    suite_add_tcase(s, tc);
-    return s;
-}
-
-int main(void)
-{
-    int number_failed;
-    Suite *s = list_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/install-script/script_file", test_script_file);
+    g_test_add_func("/install-script/script_data", test_script_data);
+    g_test_add_func("/install-script/script_datamap", test_script_datamap);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -349,11 +327,7 @@ int main(void)
     osinfo_oslist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

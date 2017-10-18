@@ -57,7 +57,6 @@ AC_ARG_ENABLE([tests],
 
 if test "x$enable_tests" != "xno" ; then
   have_curl=no
-  PKG_CHECK_MODULES([CHECK], [check])
   PKG_CHECK_MODULES([CURL], [libcurl], [have_curl=yes], [:])
   AC_SUBST(CURL_CFLAGS)
   AC_SUBST(CURL_LIBS)

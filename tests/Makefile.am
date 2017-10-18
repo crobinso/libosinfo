@@ -30,7 +30,6 @@ COMMON_LDADD = \
 	$(COVERAGE_LDFLAGS) \
 	$(GLIB_LIBS) \
 	$(GOBJECT_LIBS) \
-	$(CHECK_LIBS) \
 	../osinfo/libosinfo-1.0.la
 COMMON_CFLAGS = \
 	$(WARN_CFLAGS) \
@@ -40,7 +39,7 @@ COMMON_CFLAGS = \
 	-I$(top_srcdir) \
 	-DSRCDIR="\"$(abs_top_srcdir)\"" \
 	-DBUILDDIR="\"$(abs_top_builddir)\"" \
-	$(CHECK_CFLAGS)
+	$(NULL)
 
 test_entity_LDADD = $(COMMON_LDADD)
 test_entity_CFLAGS = $(COMMON_CFLAGS)

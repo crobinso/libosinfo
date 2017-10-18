@@ -21,10 +21,8 @@
 
 #include <config.h>
 
-#include <config.h>
 #include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 #include <curl/curl.h>
 
 static void test_media(OsinfoMediaList *medialist, GError **error, CURL *curl)
@@ -43,14 +41,15 @@ static void test_media(OsinfoMediaList *medialist, GError **error, CURL *curl)
             continue;
         }
 
-        g_print("%s\n", url);
+        g_test_message("%s", url);
         curl_easy_setopt(curl, CURLOPT_URL, url);
         res = curl_easy_perform(curl);
         if (res != CURLE_OK) {
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
         }
 
-        fail_unless(res == CURLE_OK, "Failed HEAD (res=%d, %s; code=%ld) on %s", res, curl_easy_strerror(res), response_code, url);
+        g_test_message("res=%d, %s; code=%ld", res, curl_easy_strerror(res), response_code);
+        g_assert_cmpint(res, ==, CURLE_OK);
 
         tmp = tmp->next;
     }
@@ -58,7 +57,8 @@ static void test_media(OsinfoMediaList *medialist, GError **error, CURL *curl)
     g_list_free(mediael);
 }
 
-START_TEST(test_uris)
+static void
+test_uris(void)
 {
     CURL *curl;
     OsinfoLoader *loader = osinfo_loader_new();
@@ -81,11 +81,11 @@ START_TEST(test_uris)
         curl_easy_setopt(curl, CURLOPT_VERBOSE, debug_level > 0 ? 1L : 0L);
     }
 
-    fail_unless(OSINFO_IS_LOADER(loader), "Loader is not a LOADER");
-    fail_unless(OSINFO_IS_DB(db), "Db is not a DB");
+    g_assert_true(OSINFO_IS_LOADER(loader));
+    g_assert_true(OSINFO_IS_DB(db));
 
     osinfo_loader_process_default_path(loader, &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
 
     oslist = osinfo_db_get_os_list(db);
     tmp = osel = osinfo_list_get_elements(OSINFO_LIST(oslist));
@@ -95,7 +95,7 @@ START_TEST(test_uris)
 
         test_media(medialist, &error, curl);
 
-        fail_unless(error == NULL, error ? error->message : "none");
+        g_assert_no_error(error);
 
         g_object_unref(medialist);
         tmp = tmp->next;
@@ -109,27 +109,17 @@ START_TEST(test_uris)
 
     g_object_unref(loader);
 }
-END_TEST
 
 
 
-static Suite *
-list_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("List");
-    TCase *tc = tcase_create("Core");
-    tcase_set_timeout(tc, 300);
+    int ret;
 
-    tcase_add_test(tc, test_uris);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = list_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/mediauris/uris", test_uris);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -150,13 +140,11 @@ int main(void)
     osinfo_oslist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
+    ret = g_test_run();
 
     curl_global_cleanup();
 
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return ret;
 }
 /*
  * Local variables:

@@ -22,8 +22,8 @@
 #include <config.h>
 
 #include <stdlib.h>
+#include <string.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 struct ISOInfo {
     gchar *shortid;
@@ -321,15 +321,13 @@ static void test_langs(struct ISOInfo *info)
     langs = osinfo_media_get_languages(info->media);
 
     for (it = langs; it != NULL; it = it->next) {
-        fail_unless(g_hash_table_contains(info->langs, it->data),
-                    "%s not a known language for ISO %s",
-                    it->data, info->filename);
+        g_test_message("checking ISO %s, language %s",
+                       info->filename, (const char *)it->data);
+        g_assert_true(g_hash_table_contains(info->langs, it->data));
         g_hash_table_remove(info->langs, it->data);
     }
     g_list_free(langs);
-    fail_unless(g_hash_table_size(info->langs) == 0,
-                "some languages were not identified on ISO %s",
-                info->filename);
+    g_assert_cmpint(g_hash_table_size(info->langs), ==, 0);
 }
 
 static void test_one(const gchar *vendor)
@@ -340,15 +338,15 @@ static void test_one(const gchar *vendor)
     GList *tmp;
     GError *error = NULL;
 
-    fail_unless(OSINFO_IS_LOADER(loader), "Loader is not a LOADER");
-    fail_unless(OSINFO_IS_DB(db), "Db is not a DB");
+    g_assert_true(OSINFO_IS_LOADER(loader));
+    g_assert_true(OSINFO_IS_DB(db));
 
     osinfo_loader_process_default_path(loader, &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
 
     isos = load_isos(vendor, &error);
 
-    fail_unless(isos != NULL, "ISOs must not be NULL");
+    g_assert_nonnull(isos);
 
     tmp = isos;
     while (tmp) {
@@ -356,14 +354,13 @@ static void test_one(const gchar *vendor)
         gboolean matched = osinfo_db_identify_media(db, info->media);
         OsinfoOs *os;
 
-        fail_unless(matched, "ISO %s was not matched by OS %s",
-                    info->filename, info->shortid);
+        g_test_message("checking OS %s for ISO %s",
+                       info->shortid, info->filename);
+        g_assert_true(matched);
 
         g_object_get(info->media, "os", &os, NULL);
         const gchar *shortid = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-        fail_unless(g_str_equal(shortid, info->shortid),
-                    "ISO %s matched OS %s instead of expected %s",
-                    info->filename, shortid, info->shortid);
+        g_assert_cmpstr(shortid, ==, info->shortid);
         g_object_unref(G_OBJECT(os));
         test_langs(info);
 
@@ -376,120 +373,109 @@ static void test_one(const gchar *vendor)
     g_object_unref(loader);
 }
 
-START_TEST(test_fedora)
+static void
+test_fedora(void)
 {
     test_one("fedora");
 }
-END_TEST
 
-START_TEST(test_rhel)
+static void
+test_rhel(void)
 {
     test_one("rhel");
 }
-END_TEST
 
-START_TEST(test_ubuntu)
+static void
+test_ubuntu(void)
 {
     test_one("ubuntu");
 }
-END_TEST
 
-START_TEST(test_debian)
+static void
+test_debian(void)
 {
     test_one("debian");
 }
-END_TEST
 
-START_TEST(test_windows)
+static void
+test_windows(void)
 {
     test_one("windows");
 }
-END_TEST
 
-START_TEST(test_freebsd)
+static void
+test_freebsd(void)
 {
     test_one("freebsd");
 }
-END_TEST
 
-START_TEST(test_openbsd)
+static void
+test_openbsd(void)
 {
     test_one("openbsd");
 }
-END_TEST
 
-START_TEST(test_opensuse)
+static void
+test_opensuse(void)
 {
     test_one("opensuse");
 }
-END_TEST
 
-START_TEST(test_centos)
+static void
+test_centos(void)
 {
     test_one("centos");
 }
-END_TEST
 
-START_TEST(test_gnome)
+static void
+test_gnome(void)
 {
     test_one("gnome");
 }
-END_TEST
 
-START_TEST(test_altlinux)
+static void
+test_altlinux(void)
 {
     test_one("altlinux");
 }
-END_TEST
 
-START_TEST(test_mageia)
+static void
+test_mageia(void)
 {
     test_one("mageia");
 }
-END_TEST
 
-START_TEST(test_sles)
+static void
+test_sles(void)
 {
     test_one("sles");
 }
-END_TEST
 
-START_TEST(test_sled)
+static void
+test_sled(void)
 {
     test_one("sled");
 }
-END_TEST
 
-static Suite *
-list_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("List");
-    TCase *tc = tcase_create("Core");
-    tcase_set_timeout(tc, 20);
+    g_test_init(&argc, &argv, NULL);
 
-    tcase_add_test(tc, test_fedora);
-    tcase_add_test(tc, test_rhel);
-    tcase_add_test(tc, test_ubuntu);
-    tcase_add_test(tc, test_debian);
-    tcase_add_test(tc, test_windows);
-    tcase_add_test(tc, test_freebsd);
-    tcase_add_test(tc, test_openbsd);
-    tcase_add_test(tc, test_opensuse);
-    tcase_add_test(tc, test_centos);
-    tcase_add_test(tc, test_gnome);
-    tcase_add_test(tc, test_altlinux);
-    tcase_add_test(tc, test_mageia);
-    tcase_add_test(tc, test_sles);
-    tcase_add_test(tc, test_sled);
-    suite_add_tcase(s, tc);
-    return s;
-}
-
-int main(void)
-{
-    int number_failed;
-    Suite *s = list_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/isodetect/fedora", test_fedora);
+    g_test_add_func("/isodetect/rhel", test_rhel);
+    g_test_add_func("/isodetect/ubuntu", test_ubuntu);
+    g_test_add_func("/isodetect/debian", test_debian);
+    g_test_add_func("/isodetect/windows", test_windows);
+    g_test_add_func("/isodetect/freebsd", test_freebsd);
+    g_test_add_func("/isodetect/openbsd", test_openbsd);
+    g_test_add_func("/isodetect/opensuse", test_opensuse);
+    g_test_add_func("/isodetect/centos", test_centos);
+    g_test_add_func("/isodetect/gnome", test_gnome);
+    g_test_add_func("/isodetect/altlinux", test_altlinux);
+    g_test_add_func("/isodetect/mageia", test_mageia);
+    g_test_add_func("/isodetect/sles", test_sles);
+    g_test_add_func("/isodetect/sled", test_sled);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -506,11 +492,7 @@ int main(void)
     osinfo_oslist_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

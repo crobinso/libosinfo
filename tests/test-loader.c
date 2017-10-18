@@ -21,39 +21,28 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
 
-    fail_unless(OSINFO_IS_LOADER(loader), "Loader is not a LOADER");
+    g_assert_true(OSINFO_IS_LOADER(loader));
 
     GError *error = NULL;
     osinfo_loader_process_default_path(loader, &error);
-    fail_unless(error == NULL, error ? error->message : "none");
+    g_assert_no_error(error);
 
     g_object_unref(loader);
 }
-END_TEST
 
-static Suite *
-loader_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("Loader");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = loader_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/loader/basic", test_basic);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -71,11 +60,7 @@ int main(void)
     osinfo_filter_get_type();
     osinfo_loader_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:

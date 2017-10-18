@@ -21,63 +21,62 @@
 
 #include <config.h>
 
-#include <stdlib.h>
 #include <osinfo/osinfo.h>
-#include <check.h>
 
 
 
-START_TEST(test_basic)
+static void
+test_basic(void)
 {
     OsinfoFilter *filter = osinfo_filter_new();
     OsinfoDevice *dev = osinfo_device_new("e1000");
 
-    fail_unless(OSINFO_IS_FILTER(filter), "Filter is a filter object");
-    fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter matches device");
+    g_assert_true(OSINFO_IS_FILTER(filter));
+    g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     osinfo_filter_add_constraint(filter, "class", "network");
     GList *keys = osinfo_filter_get_constraint_keys(filter);
-    fail_unless(keys != NULL, "missing key");
-    fail_unless(g_strcmp0(keys->data, "class") == 0, "missing key");
-    fail_unless(keys->next == NULL, "too many keys");
+    g_assert_nonnull(keys);
+    g_assert_cmpstr(keys->data, ==, "class");
+    g_assert_null(keys->next);
     g_list_free(keys);
 
     osinfo_filter_add_constraint(filter, "class", "audio");
     keys = osinfo_filter_get_constraint_keys(filter);
-    fail_unless(keys != NULL, "missing key");
-    fail_unless(g_strcmp0(keys->data, "class") == 0, "missing key");
-    fail_unless(keys->next == NULL, "too many keys");
+    g_assert_nonnull(keys);
+    g_assert_cmpstr(keys->data, ==, "class");
+    g_assert_null(keys->next);
     g_list_free(keys);
 
     osinfo_filter_add_constraint(filter, "bus", "pci");
     keys = osinfo_filter_get_constraint_keys(filter);
-    fail_unless(keys != NULL, "missing key");
-    fail_unless(keys->next != NULL, "not enough keys");
-    fail_unless(g_strcmp0(keys->data, "bus") == 0, "missing bus key");
-    fail_unless(g_strcmp0(keys->next->data, "class") == 0, "missing class key");
-    fail_unless(keys->next->next == NULL, "too many keys");
+    g_assert_nonnull(keys);
+    g_assert_nonnull(keys->next);
+    g_assert_cmpstr(keys->data, ==, "bus");
+    g_assert_cmpstr(keys->next->data, ==, "class");
+    g_assert_null(keys->next->next);
     g_list_free(keys);
 
     GList *values = osinfo_filter_get_constraint_values(filter, "bus");
-    fail_unless(values != NULL, "missing value");
-    fail_unless(g_strcmp0(values->data, "pci") == 0, "missing value");
-    fail_unless(values->next == NULL, "too many keys");
+    g_assert_nonnull(values);
+    g_assert_cmpstr(values->data, ==, "pci");
+    g_assert_null(values->next);
     g_list_free(values);
 
     values = osinfo_filter_get_constraint_values(filter, "class");
-    fail_unless(values != NULL, "missing value");
-    fail_unless(values->next != NULL, "not enough values");
-    fail_unless(g_strcmp0(values->data, "audio") == 0, "missing value");
-    fail_unless(g_strcmp0(values->next->data, "network") == 0, "missing value");
-    fail_unless(values->next->next == NULL, "too many values");
+    g_assert_nonnull(values);
+    g_assert_nonnull(values->next);
+    g_assert_cmpstr(values->data, ==, "audio");
+    g_assert_cmpstr(values->next->data, ==, "network");
+    g_assert_null(values->next->next);
     g_list_free(values);
 
     g_object_unref(dev);
     g_object_unref(filter);
 }
-END_TEST
 
-START_TEST(test_filter_single)
+static void
+test_filter_single(void)
 {
     OsinfoFilter *filter = osinfo_filter_new();
     OsinfoDevice *dev = osinfo_device_new("e1000");
@@ -85,21 +84,21 @@ START_TEST(test_filter_single)
     osinfo_entity_add_param(OSINFO_ENTITY(dev), "bus", "pci");
 
     osinfo_filter_add_constraint(filter, "class", "network");
-    fail_unless(!osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter does not match device");
+    g_assert_false(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     osinfo_entity_add_param(OSINFO_ENTITY(dev), "class", "network");
-    fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter matches device");
+    g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     osinfo_filter_clear_constraint(filter, "class");
     osinfo_filter_add_constraint(filter, "class", "audio");
-    fail_unless(!osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter does not match device");
+    g_assert_false(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     g_object_unref(dev);
     g_object_unref(filter);
 }
-END_TEST
 
-START_TEST(test_filter_multi)
+static void
+test_filter_multi(void)
 {
     OsinfoFilter *filter = osinfo_filter_new();
     OsinfoDevice *dev = osinfo_device_new("e1000");
@@ -107,26 +106,26 @@ START_TEST(test_filter_multi)
     osinfo_entity_add_param(OSINFO_ENTITY(dev), "bus", "pci");
 
     osinfo_filter_add_constraint(filter, "bus", "isa");
-    fail_unless(!osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter does not match device");
+    g_assert_false(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     osinfo_filter_add_constraint(filter, "bus", "pci");
     /* XXX is this right ?  Multiple values for a filter constraint
      * is treated as requiring all constraint values to match, not
      * required any to match */
-    //fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter matches device");
-    fail_unless(!osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter does not match device");
+    //g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
+    g_assert_false(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     osinfo_filter_clear_constraints(filter);
     osinfo_filter_add_constraint(filter, "bus", "pci");
-    fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)), "Filter matches device");
+    g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     g_object_unref(dev);
     g_object_unref(filter);
 }
-END_TEST
 
 
-START_TEST(test_filter_combine)
+static void
+test_filter_combine(void)
 {
     OsinfoFilter *filter = osinfo_filter_new();
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
@@ -139,38 +138,28 @@ START_TEST(test_filter_combine)
     osinfo_entity_add_param(OSINFO_ENTITY(dev2), "class", "network");
 
     osinfo_filter_add_constraint(filter, "class", "network");
-    fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev1)), "Filter does not match device");
-    fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev2)), "Filter does not match device");
+    g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev1)));
+    g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev2)));
 
     osinfo_filter_add_constraint(filter, "bus", "isa");
-    fail_unless(!osinfo_filter_matches(filter, OSINFO_ENTITY(dev1)), "Filter match device");
-    fail_unless(osinfo_filter_matches(filter, OSINFO_ENTITY(dev2)), "Filter does not match device");
+    g_assert_false(osinfo_filter_matches(filter, OSINFO_ENTITY(dev1)));
+    g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev2)));
 
     g_object_unref(dev1);
     g_object_unref(dev2);
     g_object_unref(filter);
 }
-END_TEST
 
 
-static Suite *
-filter_suite(void)
+int
+main(int argc, char *argv[])
 {
-    Suite *s = suite_create("Filter");
-    TCase *tc = tcase_create("Core");
-    tcase_add_test(tc, test_basic);
-    tcase_add_test(tc, test_filter_single);
-    tcase_add_test(tc, test_filter_multi);
-    tcase_add_test(tc, test_filter_combine);
-    suite_add_tcase(s, tc);
-    return s;
-}
+    g_test_init(&argc, &argv, NULL);
 
-int main(void)
-{
-    int number_failed;
-    Suite *s = filter_suite();
-    SRunner *sr = srunner_create(s);
+    g_test_add_func("/filter/basic", test_basic);
+    g_test_add_func("/filter/filter_single", test_filter_single);
+    g_test_add_func("/filter/filter_multi", test_filter_multi);
+    g_test_add_func("/filter/filter_combine", test_filter_combine);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
@@ -179,11 +168,7 @@ int main(void)
     osinfo_device_get_type();
     osinfo_filter_get_type();
 
-    srunner_run_all(sr, CK_ENV);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+    return g_test_run();
 }
 /*
  * Local variables:
