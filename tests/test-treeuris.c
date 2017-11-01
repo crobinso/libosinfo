@@ -44,9 +44,7 @@ static void test_tree(OsinfoTreeList *treelist, GError **error, CURL *curl)
         g_test_message("%s", url);
         curl_easy_setopt(curl, CURLOPT_URL, url);
         res = curl_easy_perform(curl);
-        if (res != CURLE_OK) {
-            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-        }
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
 
         g_test_message("res=%d, %s; code=%ld", res, curl_easy_strerror(res), response_code);
         g_assert_cmpint(res, ==, CURLE_OK);
