@@ -81,16 +81,16 @@ GType osinfo_install_config_param_get_type(void);
 
 OsinfoInstallConfigParam *osinfo_install_config_param_new(const gchar *name);
 
-const gchar *osinfo_install_config_param_get_name(const OsinfoInstallConfigParam *config_param);
+const gchar *osinfo_install_config_param_get_name(OsinfoInstallConfigParam *config_param);
 
-OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(const OsinfoInstallConfigParam *config_param);
+OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(OsinfoInstallConfigParam *config_param);
 
-gboolean osinfo_install_config_param_is_required(const OsinfoInstallConfigParam *config_param);
+gboolean osinfo_install_config_param_is_required(OsinfoInstallConfigParam *config_param);
 
-gboolean osinfo_install_config_param_is_optional(const OsinfoInstallConfigParam *config_param);
+gboolean osinfo_install_config_param_is_optional(OsinfoInstallConfigParam *config_param);
 
 void osinfo_install_config_param_set_value_map(OsinfoInstallConfigParam *config_param, OsinfoDatamap *datamap);
-OsinfoDatamap *osinfo_install_config_param_get_value_map(const OsinfoInstallConfigParam *config_param);
+OsinfoDatamap *osinfo_install_config_param_get_value_map(OsinfoInstallConfigParam *config_param);
 
 
 #endif /* __OSINFO_INSTALL_CONFIG_PARAM_H__ */

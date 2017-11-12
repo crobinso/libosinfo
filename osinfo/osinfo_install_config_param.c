@@ -221,7 +221,7 @@ OsinfoInstallConfigParam *osinfo_install_config_param_new(const gchar *name)
  *
  * Returns: (transfer none): the name of the configuration parameter
  */
-const gchar *osinfo_install_config_param_get_name(const OsinfoInstallConfigParam *config_param)
+const gchar *osinfo_install_config_param_get_name(OsinfoInstallConfigParam *config_param)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config_param),
                                          OSINFO_INSTALL_CONFIG_PARAM_PROP_NAME);
@@ -233,7 +233,7 @@ const gchar *osinfo_install_config_param_get_name(const OsinfoInstallConfigParam
  *
  * Returns: (transfer none): the policy of the configuration parameter
  */
-OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(const OsinfoInstallConfigParam *config_param)
+OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(OsinfoInstallConfigParam *config_param)
 {
     return osinfo_entity_get_param_value_enum(OSINFO_ENTITY(config_param),
                                               OSINFO_INSTALL_CONFIG_PARAM_PROP_POLICY,
@@ -248,7 +248,7 @@ OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(const Osin
  * Returns: (transfer none): TRUE if the config_param is required.
  *                           FALSE otherwise.
  */
-gboolean osinfo_install_config_param_is_required(const OsinfoInstallConfigParam *config_param)
+gboolean osinfo_install_config_param_is_required(OsinfoInstallConfigParam *config_param)
 {
     return (osinfo_install_config_param_get_policy(config_param) ==
             OSINFO_INSTALL_CONFIG_PARAM_POLICY_REQUIRED);
@@ -261,13 +261,13 @@ gboolean osinfo_install_config_param_is_required(const OsinfoInstallConfigParam 
  * Returns: (transfer none): TRUE if the config_param is optional.
  *                           FALSE otherwise.
  */
-gboolean osinfo_install_config_param_is_optional(const OsinfoInstallConfigParam *config_param)
+gboolean osinfo_install_config_param_is_optional(OsinfoInstallConfigParam *config_param)
 {
     return (osinfo_install_config_param_get_policy(config_param) ==
             OSINFO_INSTALL_CONFIG_PARAM_POLICY_OPTIONAL);
 }
 
-OsinfoDatamap *osinfo_install_config_param_get_value_map(const OsinfoInstallConfigParam *config_param)
+OsinfoDatamap *osinfo_install_config_param_get_value_map(OsinfoInstallConfigParam *config_param)
 {
     return config_param->priv->value_map;
 }

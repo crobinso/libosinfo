@@ -266,7 +266,7 @@ void osinfo_install_script_add_config_param(OsinfoInstallScript *script, OsinfoI
                     OSINFO_ENTITY(param));
 }
 
-gboolean osinfo_install_script_has_config_param(const OsinfoInstallScript *script, const OsinfoInstallConfigParam *config_param)
+gboolean osinfo_install_script_has_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *config_param)
 {
     /* NB: this code assumes that the 'id' and 'name' entity properties
      * are the same
@@ -275,7 +275,7 @@ gboolean osinfo_install_script_has_config_param(const OsinfoInstallScript *scrip
     return osinfo_install_script_has_config_param_name(script, name);
 }
 
-gboolean osinfo_install_script_has_config_param_name(const OsinfoInstallScript *script, const gchar *name)
+gboolean osinfo_install_script_has_config_param_name(OsinfoInstallScript *script, const gchar *name)
 {
     OsinfoList *l = OSINFO_LIST(script->priv->config_params);
     return (osinfo_list_find_by_id(l, name) != NULL);
@@ -291,7 +291,7 @@ gboolean osinfo_install_script_has_config_param_name(const OsinfoInstallScript *
  * list of valid #OsinfoInstallConfigParam parameters. Free with
  * g_list_free() when done. The elements are owned by libosinfo.
  */
-GList *osinfo_install_script_get_config_param_list(const OsinfoInstallScript *script)
+GList *osinfo_install_script_get_config_param_list(OsinfoInstallScript *script)
 {
     return osinfo_list_get_elements(OSINFO_LIST(script->priv->config_params));
 }
@@ -305,7 +305,7 @@ GList *osinfo_install_script_get_config_param_list(const OsinfoInstallScript *sc
  * Returns: (transfer none): the list of valid #OsinfoInstallConfigParam
  * parameters.
  */
-OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(const OsinfoInstallScript *script)
+OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(OsinfoInstallScript *script)
 {
     return script->priv->config_params;
 }
@@ -321,7 +321,7 @@ OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(const Osin
  *                           NULL otherwise.
  */
 OsinfoInstallConfigParam *
-osinfo_install_script_get_config_param(const OsinfoInstallScript *script,
+osinfo_install_script_get_config_param(OsinfoInstallScript *script,
                                        const gchar *name)
 {
     /* NB: this code assumes that the 'id' and 'name' entity properties

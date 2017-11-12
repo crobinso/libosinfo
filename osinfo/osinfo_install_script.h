@@ -235,14 +235,14 @@ gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript
                                                              OsinfoMedia *media,
                                                              OsinfoInstallConfig *config);
 
-gboolean osinfo_install_script_has_config_param(const OsinfoInstallScript *script, const OsinfoInstallConfigParam *config_param);
+gboolean osinfo_install_script_has_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *config_param);
 
-gboolean osinfo_install_script_has_config_param_name(const OsinfoInstallScript *script, const gchar *name);
+gboolean osinfo_install_script_has_config_param_name(OsinfoInstallScript *script, const gchar *name);
 
-OsinfoInstallConfigParam *osinfo_install_script_get_config_param(const OsinfoInstallScript *script, const gchar *name);
+OsinfoInstallConfigParam *osinfo_install_script_get_config_param(OsinfoInstallScript *script, const gchar *name);
 
-GList *osinfo_install_script_get_config_param_list(const OsinfoInstallScript *script);
-OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(const OsinfoInstallScript *script);
+GList *osinfo_install_script_get_config_param_list(OsinfoInstallScript *script);
+OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(OsinfoInstallScript *script);
 OsinfoPathFormat osinfo_install_script_get_path_format(OsinfoInstallScript *script);
 
 gboolean osinfo_install_script_get_can_pre_install_drivers(OsinfoInstallScript *script);
