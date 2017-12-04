@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-07 12:50+0100\n"
+"POT-Creation-Date: 2017-12-04 16:42+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Gujarati\n"
@@ -90,68 +90,68 @@ msgstr ""
 msgid "Expected avatar format"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:583
+#: ../osinfo/osinfo_install_script.c:585
 msgid "Unable to create XML parser context"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:591
+#: ../osinfo/osinfo_install_script.c:593
 msgid "Unable to read XSL template"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:597
+#: ../osinfo/osinfo_install_script.c:599
 msgid "Unable to parse XSL template"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:670 ../osinfo/osinfo_install_script.c:706
+#: ../osinfo/osinfo_install_script.c:672 ../osinfo/osinfo_install_script.c:708
 #, c-format
 msgid "Unable to create XML node '%s': '%s'"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:678
+#: ../osinfo/osinfo_install_script.c:680
 #, c-format
 msgid "Unable to create XML node 'id': '%s'"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:684 ../osinfo/osinfo_install_script.c:712
+#: ../osinfo/osinfo_install_script.c:686 ../osinfo/osinfo_install_script.c:714
 #, c-format
 msgid "Unable to add XML child '%s'"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:759 ../osinfo/osinfo_install_script.c:770
-#: ../osinfo/osinfo_install_script.c:794
+#: ../osinfo/osinfo_install_script.c:761 ../osinfo/osinfo_install_script.c:772
+#: ../osinfo/osinfo_install_script.c:796
 #, c-format
 msgid "Unable to set XML root '%s'"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:782
+#: ../osinfo/osinfo_install_script.c:784
 #, c-format
 msgid "Unable to set 'media' node: '%s'"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:817
+#: ../osinfo/osinfo_install_script.c:819
 msgid "Unable to create XSL transform context"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:822
+#: ../osinfo/osinfo_install_script.c:824
 msgid "Unable to apply XSL transform context"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:827
+#: ../osinfo/osinfo_install_script.c:829
 msgid "Unable to convert XSL output to string"
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:887
+#: ../osinfo/osinfo_install_script.c:889
 #, c-format
 msgid "Failed to load script template %s: "
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:902
+#: ../osinfo/osinfo_install_script.c:904
 #, c-format
 msgid "Failed to apply script template %s: "
 msgstr ""
 
-#: ../osinfo/osinfo_install_script.c:956 ../osinfo/osinfo_install_script.c:1601
-#: ../osinfo/osinfo_install_script.c:1649
+#: ../osinfo/osinfo_install_script.c:958 ../osinfo/osinfo_install_script.c:1600
+#: ../osinfo/osinfo_install_script.c:1648
 msgid "Failed to apply script template: "
 msgstr ""
 
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Missing deployment platform id property"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:825 ../osinfo/osinfo_loader.c:1402
+#: ../osinfo/osinfo_loader.c:825 ../osinfo/osinfo_loader.c:1411
 msgid "Missing os id property"
 msgstr ""
 
@@ -204,132 +204,136 @@ msgstr ""
 msgid "Missing install script id property"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:1517
+#: ../osinfo/osinfo_loader.c:1526
 msgid "Missing OS install script property"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:1581
+#: ../osinfo/osinfo_loader.c:1590
 msgid "Incorrect root element"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:1648
+#: ../osinfo/osinfo_loader.c:1657
 msgid "Unable to construct parser context"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:1670
+#: ../osinfo/osinfo_loader.c:1679
 msgid "Missing root XML element"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:2290
+#: ../osinfo/osinfo_loader.c:2294
 #, c-format
 msgid ""
-"$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR intead. "
+"$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:2326 ../osinfo/osinfo_loader.c:2358
+#: ../osinfo/osinfo_loader.c:2330 ../osinfo/osinfo_loader.c:2362
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:379 ../osinfo/osinfo_resources.c:170
+#: ../osinfo/osinfo_media.c:391 ../osinfo/osinfo_resources.c:170
 #: ../osinfo/osinfo_tree.c:273
 msgid "CPU Architecture"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:392
+#: ../osinfo/osinfo_media.c:404
 msgid "The URL to this media"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:405 ../osinfo/osinfo_tree.c:299
+#: ../osinfo/osinfo_media.c:417 ../osinfo/osinfo_tree.c:299
 msgid "The expected ISO9660 volume ID"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:418 ../osinfo/osinfo_tree.c:312
+#: ../osinfo/osinfo_media.c:430 ../osinfo/osinfo_tree.c:312
 msgid "The expected ISO9660 publisher ID"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:431 ../osinfo/osinfo_tree.c:325
+#: ../osinfo/osinfo_media.c:443 ../osinfo/osinfo_tree.c:325
 msgid "The expected ISO9660 application ID"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:444 ../osinfo/osinfo_tree.c:338
+#: ../osinfo/osinfo_media.c:456 ../osinfo/osinfo_tree.c:338
 msgid "The expected ISO9660 system ID"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:457 ../osinfo/osinfo_tree.c:351
+#: ../osinfo/osinfo_media.c:469 ../osinfo/osinfo_tree.c:351
 msgid "The path to the kernel image"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:470
+#: ../osinfo/osinfo_media.c:482
 msgid "The path to the initrd image"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:483
+#: ../osinfo/osinfo_media.c:495
 msgid "Media provides an installer"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:496
+#: ../osinfo/osinfo_media.c:508
 msgid "Media can boot directly w/o installation"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:518
+#: ../osinfo/osinfo_media.c:530
 msgid "Number of installer reboots"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:536
+#: ../osinfo/osinfo_media.c:548
 msgid "Information about the operating system on this media"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:558
+#: ../osinfo/osinfo_media.c:570
 msgid "Supported languages"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:570
+#: ../osinfo/osinfo_media.c:582
 msgid "Expected ISO9660 volume size, in bytes"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:690
+#: ../osinfo/osinfo_media.c:602
+msgid "Whether the media should be ejected after the installtion process"
+msgstr ""
+
+#: ../osinfo/osinfo_media.c:719
 msgid "Failed to read supplementary volume descriptor: "
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:697
+#: ../osinfo/osinfo_media.c:726
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:720
+#: ../osinfo/osinfo_media.c:750
 #, c-format
 msgid "Install media is not bootable"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:782
+#: ../osinfo/osinfo_media.c:812
 msgid "Failed to read primary volume descriptor: "
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:789
+#: ../osinfo/osinfo_media.c:819
 #, c-format
 msgid "Primary volume descriptor was truncated"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:814
+#: ../osinfo/osinfo_media.c:851
 #, c-format
 msgid "Insufficient metadata on installation media"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:848
+#: ../osinfo/osinfo_media.c:885
 #, c-format
 msgid "Failed to skip %d bytes"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:853
+#: ../osinfo/osinfo_media.c:890
 #, c-format
 msgid "No volume descriptors"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:884
+#: ../osinfo/osinfo_media.c:921
 msgid "Failed to open file"
 msgstr ""
 
@@ -397,11 +401,11 @@ msgstr ""
 msgid "The path to the bootable ISO image"
 msgstr ""
 
-#: ../osinfo/osinfo_tree.c:602
+#: ../osinfo/osinfo_tree.c:601
 msgid "Failed to load .treeinfo file: "
 msgstr ""
 
-#: ../osinfo/osinfo_tree.c:612
+#: ../osinfo/osinfo_tree.c:611
 msgid "Failed to process keyinfo file: "
 msgstr ""
 
