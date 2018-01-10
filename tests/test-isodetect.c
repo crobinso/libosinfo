@@ -356,7 +356,10 @@ static void test_one(const gchar *vendor)
 
         g_test_message("checking OS %s for ISO %s",
                        info->shortid, info->filename);
-        g_assert_true(matched);
+        if (!matched) {
+            g_error("ISO %s was not matched by OS %s",
+                    info->filename, info->shortid);
+        }
 
         g_object_get(info->media, "os", &os, NULL);
         const gchar *shortid = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
