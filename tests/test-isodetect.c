@@ -308,6 +308,46 @@ static GList *load_isos(const gchar *vendor, GError **error)
     return ret;
 }
 
+static GList *load_vendors(GError **error)
+{
+    GFile *dir = g_file_new_for_path(SRCDIR "/tests/isodata");
+    GFileEnumerator *children = g_file_enumerate_children(dir,
+                                                          "standard::*",
+                                                          G_FILE_QUERY_INFO_NONE,
+                                                          NULL,
+                                                          error);
+    GFileInfo *childinfo;
+    GList *ret = NULL;
+
+    if (!children)
+        return NULL;
+
+    while ((childinfo = g_file_enumerator_next_file(children, NULL, error)) != NULL) {
+        if (g_file_info_get_file_type(childinfo) != G_FILE_TYPE_DIRECTORY) {
+            g_object_unref(childinfo);
+            continue;
+        }
+
+        ret = g_list_prepend(ret, g_strdup(g_file_info_get_name(childinfo)));
+
+        g_object_unref(childinfo);
+    }
+
+    if (error && *error)
+        goto error;
+
+ cleanup:
+    g_object_unref(children);
+    g_object_unref(dir);
+
+    return ret;
+
+ error:
+    g_list_free_full(ret, g_free);
+    ret = NULL;
+    goto cleanup;
+}
+
 
 static void test_langs(struct ISOInfo *info)
 {
@@ -376,123 +416,23 @@ static void test_one(const gchar *vendor)
     g_object_unref(loader);
 }
 
-static void
-test_fedora(void)
-{
-    test_one("fedora");
-}
-
-static void
-test_rhel(void)
-{
-    test_one("rhel");
-}
-
-static void
-test_ubuntu(void)
-{
-    test_one("ubuntu");
-}
-
-static void
-test_debian(void)
-{
-    test_one("debian");
-}
-
-static void
-test_windows(void)
-{
-    test_one("windows");
-}
-
-static void
-test_freebsd(void)
-{
-    test_one("freebsd");
-}
-
-static void
-test_openbsd(void)
-{
-    test_one("openbsd");
-}
-
-static void
-test_opensuse(void)
-{
-    test_one("opensuse");
-}
-
-static void
-test_centos(void)
-{
-    test_one("centos");
-}
-
-static void
-test_gnome(void)
-{
-    test_one("gnome");
-}
-
-static void
-test_altlinux(void)
-{
-    test_one("altlinux");
-}
-
-static void
-test_mageia(void)
-{
-    test_one("mageia");
-}
-
-static void
-test_sles(void)
-{
-    test_one("sles");
-}
-
-static void
-test_sled(void)
-{
-    test_one("sled");
-}
-
-static void
-test_freedos(void)
-{
-    test_one("freedos");
-}
-
-static void
-test_netbsd(void)
-{
-    test_one("netbsd");
-}
-
 int
 main(int argc, char *argv[])
 {
     g_test_init(&argc, &argv, NULL);
 
-    g_test_add_func("/isodetect/fedora", test_fedora);
-    g_test_add_func("/isodetect/rhel", test_rhel);
-    g_test_add_func("/isodetect/ubuntu", test_ubuntu);
-    g_test_add_func("/isodetect/debian", test_debian);
-    g_test_add_func("/isodetect/windows", test_windows);
-    g_test_add_func("/isodetect/freebsd", test_freebsd);
-    g_test_add_func("/isodetect/openbsd", test_openbsd);
-    g_test_add_func("/isodetect/opensuse", test_opensuse);
-    g_test_add_func("/isodetect/centos", test_centos);
-    g_test_add_func("/isodetect/gnome", test_gnome);
-    g_test_add_func("/isodetect/altlinux", test_altlinux);
-    g_test_add_func("/isodetect/mageia", test_mageia);
-    g_test_add_func("/isodetect/sles", test_sles);
-    g_test_add_func("/isodetect/sled", test_sled);
-    g_test_add_func("/isodetect/freedos", test_freedos);
-    g_test_add_func("/isodetect/netbsd", test_netbsd);
+    GList *vendors = load_vendors(NULL);
+    GList *it;
+    for (it = vendors; it != NULL; it = it->next) {
+        char *vendor = (char *)it->data;
+        char *test_path = g_strdup_printf("/isodetect/%s", vendor);
+
+        g_test_add_data_func_full(test_path, vendor, (GTestDataFunc)test_one, g_free);
+
+        g_free(test_path);
+
+    }
+    g_list_free(vendors);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
