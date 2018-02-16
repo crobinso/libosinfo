@@ -466,6 +466,12 @@ test_freedos(void)
     test_one("freedos");
 }
 
+static void
+test_netbsd(void)
+{
+    test_one("netbsd");
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -486,6 +492,7 @@ main(int argc, char *argv[])
     g_test_add_func("/isodetect/sles", test_sles);
     g_test_add_func("/isodetect/sled", test_sled);
     g_test_add_func("/isodetect/freedos", test_freedos);
+    g_test_add_func("/isodetect/netbsd", test_netbsd);
 
     /* Make sure we catch unexpected g_warning() */
     g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
