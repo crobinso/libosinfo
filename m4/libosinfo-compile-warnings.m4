@@ -62,6 +62,9 @@ AC_DEFUN([LIBOSINFO_COMPILE_WARNINGS],[
     # Remove the ones we don't want, blacklisted earlier
     gl_MANYWARN_COMPLEMENT([wantwarn], [$maybewarn], [$dontwarn])
 
+    # We do "bad" function casts due to G_DEFINE_TYPE and more
+    wantwarn="$wantwarn -Wno-cast-function-type"
+
     # Check for $CC support of each warning
     for w in $wantwarn; do
       gl_WARN_ADD([$w])
