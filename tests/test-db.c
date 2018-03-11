@@ -411,9 +411,6 @@ main(int argc, char *argv[])
     g_test_add_func("/db/prop_os", test_prop_os);
     g_test_add_func("/db/rel_os", test_rel_os);
 
-    /* Make sure we catch unexpected g_warning() */
-    g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
-
     /* Upfront so we don't confuse valgrind */
     osinfo_entity_get_type();
     osinfo_db_get_type();

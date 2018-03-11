@@ -403,9 +403,6 @@ main(int argc, char *argv[])
     g_test_add_func("/list/filter", test_filter);
     g_test_add_func("/list/iterate", test_iterate);
 
-    /* Make sure we catch unexpected g_warning() */
-    g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
-
     /* Upfront so we don't confuse valgrind */
     osinfo_dummy_get_type();
     osinfo_dummy_list_get_type();

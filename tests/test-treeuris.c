@@ -119,9 +119,6 @@ main(int argc, char *argv[])
 
     g_test_add_func("/treeuris/uris", test_uris);
 
-    /* Make sure we catch unexpected g_warning() */
-    g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
-
     if (!g_getenv("LIBOSINFO_NETWORK_TESTS"))
         return 77; /* Skip */
 
