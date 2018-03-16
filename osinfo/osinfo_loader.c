@@ -1975,6 +1975,15 @@ static void osinfo_loader_entity_files_add_path(GHashTable *entries,
     g_free(basepath);
 }
 
+static gint osinfo_sort_files(gconstpointer a, gconstpointer b)
+{
+    GFileInfo *ai = (GFileInfo *)a;
+    GFileInfo *bi = (GFileInfo *)b;
+    const gchar *an = g_file_info_get_name(ai);
+    const gchar *bn = g_file_info_get_name(bi);
+
+    return strcmp(an, bn);
+}
 
 static void osinfo_loader_find_files(OsinfoLoader *loader,
                                      GFile *base,
@@ -2007,6 +2016,7 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
         osinfo_loader_entity_files_add_path(entries, NULL, file);
     } else if (type == G_FILE_TYPE_DIRECTORY) {
         GFileEnumerator *ents;
+        GList *children = NULL, *tmp;
         ents = g_file_enumerate_children(file,
                                          "standard::*",
                                          G_FILE_QUERY_INFO_NONE,
@@ -2022,6 +2032,13 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
         }
 
         while ((info = g_file_enumerator_next_file(ents, NULL, err)) != NULL) {
+            children = g_list_append(children, info);
+        }
+
+        children = g_list_sort(children, osinfo_sort_files);
+        tmp = children;
+        while (tmp) {
+            info = tmp->data;
             const gchar *name = g_file_info_get_name(info);
             GFile *ent = g_file_get_child(file, name);
             type = g_file_info_get_attribute_uint32(info,
@@ -2039,8 +2056,11 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
                 g_propagate_error(err, error);
                 break;
             }
+
+            tmp = tmp->next;
         }
         g_object_unref(ents);
+        g_list_free(tmp);
     } else {
         OSINFO_ERROR(&error, "Unexpected file type");
         g_propagate_error(err, error);
