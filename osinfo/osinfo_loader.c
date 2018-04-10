@@ -2060,7 +2060,7 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
             tmp = tmp->next;
         }
         g_object_unref(ents);
-        g_list_free(tmp);
+        g_list_free(children);
     } else {
         OSINFO_ERROR(&error, "Unexpected file type");
         g_propagate_error(err, error);
