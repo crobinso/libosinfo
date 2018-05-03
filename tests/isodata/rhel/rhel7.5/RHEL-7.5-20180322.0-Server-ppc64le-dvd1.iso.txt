@@ -14,4 +14,3 @@ Logical block size is: 2048
 Volume size is: 1694649
 Joliet with UCS level 3 found
 Rock Ridge signatures version 1 found
-
