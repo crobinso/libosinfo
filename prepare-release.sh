@@ -4,7 +4,7 @@ set -e
 set -v
 
 test -n "$1" && RESULTS=$1 || RESULTS=results.log
-: ${AUTOBUILD_INSTALL_ROOT=$HOME/builder}
+INSTALL_ROOT=$HOME/builder
 
 # Make things clean.
 test -f Makefile && make -k distclean || :
@@ -13,7 +13,7 @@ rm -rf build
 mkdir build
 cd build
 
-../autogen.sh --prefix=$AUTOBUILD_INSTALL_ROOT \
+../autogen.sh --prefix=$INSTALL_ROOT \
     --enable-werror --enable-gtk-doc
 
 # If the MAKEFLAGS envvar does not yet include a -j option,
@@ -43,12 +43,8 @@ test "$st" = 0
 rm -f *.tar.gz
 make dist
 
-if [ -n "$AUTOBUILD_COUNTER" ]; then
-  EXTRA_RELEASE=".auto$AUTOBUILD_COUNTER"
-else
-  NOW=`date +"%s"`
-  EXTRA_RELEASE=".$USER$NOW"
-fi
+NOW=`date +"%s"`
+EXTRA_RELEASE=".$USER$NOW"
 
 if [ -f /usr/bin/rpmbuild ]; then
   rpmbuild --nodeps \
@@ -61,12 +57,12 @@ fi
 if test -x /usr/bin/i686-w64-mingw32-gcc ; then
   make distclean
 
-  PKG_CONFIG_PATH="$AUTOBUILD_INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig" \
+  PKG_CONFIG_PATH="$INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw/lib/pkgconfig" \
   CC="i686-w64-mingw32-gcc" \
   ../configure \
     --build=$(uname -m)-pc-linux \
     --host=i686-w64-mingw32 \
-    --prefix="$AUTOBUILD_INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
+    --prefix="$INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
     --enable-werror \
     --enable-introspection=no \
     --enable-tests=no
@@ -80,12 +76,12 @@ fi
 if test -x /usr/bin/x86_64-w64-mingw32-gcc ; then
   make distclean
 
-  PKG_CONFIG_PATH="$AUTOBUILD_INSTALL_ROOT/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig" \
+  PKG_CONFIG_PATH="$INSTALL_ROOT/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig" \
   CC="x86_64-w64-mingw32-gcc" \
   ../configure \
     --build=$(uname -m)-pc-linux \
     --host=x86_64-w64-mingw32 \
-    --prefix="$AUTOBUILD_INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
+    --prefix="$INSTALL_ROOT/i686-w64-mingw32/sys-root/mingw" \
     --enable-werror \
     --enable-introspection=no \
     --enable-tests=no
