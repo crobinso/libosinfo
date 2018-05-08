@@ -60,8 +60,8 @@ if test "x$enable_tests" != "xno" ; then
   PKG_CHECK_MODULES([CURL], [libcurl], [have_curl=yes], [:])
   AC_SUBST(CURL_CFLAGS)
   AC_SUBST(CURL_LIBS)
-  AM_CONDITIONAL([HAVE_CURL],[test "x$have_curl" = "xyes"])
 fi
+AM_CONDITIONAL([HAVE_CURL],[test "x$have_curl" = "xyes"])
 
 AM_CONDITIONAL([ENABLE_TESTS],[test "x$enable_tests" = "xyes"])
 
