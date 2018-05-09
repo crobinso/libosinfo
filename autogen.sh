@@ -20,4 +20,4 @@ which gnome-autogen.sh || {
 # exists at all times :-(
 touch ChangeLog AUTHORS
 
-ACLOCAL_FLAGS="$ACLOCAL_FLAGS" . gnome-autogen.sh --enable-gtk-doc "$@"
+ACLOCAL_FLAGS="$ACLOCAL_FLAGS" . gnome-autogen.sh "$@"
