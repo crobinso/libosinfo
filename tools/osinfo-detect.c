@@ -101,7 +101,7 @@ static GOptionEntry entries[] =
       G_OPTION_ARG_CALLBACK, parse_type_str,
       N_("URL type. Default: media"),
       N_("media|tree.") },
-    { NULL }
+    { 0 }
 };
 
 static void print_bootable(gboolean bootable)

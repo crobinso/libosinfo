@@ -84,7 +84,7 @@ static GOptionEntry entries[] =
       (void*)&list_inj_method, N_("List supported injection methods"), NULL },
     { "quiet", 'q', 0, G_OPTION_ARG_NONE, (void*)&quiet,
       N_("Do not display output filenames"), NULL },
-    { NULL }
+    { 0 }
 };
 
 
