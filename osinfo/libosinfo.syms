@@ -522,7 +522,7 @@ LIBOSINFO_0.2.12 {
 
 LIBOSINFO_0.2.13 {
     global:
-    osinfo_media_get_eject_after_install;
+	osinfo_media_get_eject_after_install;
 } LIBOSINFO_0.2.12;
 
 /* Symbols in next release...
