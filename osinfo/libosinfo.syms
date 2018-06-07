@@ -448,12 +448,14 @@ LIBOSINFO_0.2.6 {
 } LIBOSINFO_0.2.3;
 
 LIBOSINFO_0.2.7 {
+    global:
 	osinfo_install_script_generate_command_line;
 
 	osinfo_platform_get_all_devices;
 } LIBOSINFO_0.2.6;
 
 LIBOSINFO_0.2.8 {
+    global:
 	osinfo_avatar_format_new;
 
 	osinfo_install_config_get_hardware_arch;
@@ -479,6 +481,7 @@ LIBOSINFO_0.2.8 {
 } LIBOSINFO_0.2.7;
 
 LIBOSINFO_0.2.9 {
+    global:
 	osinfo_media_get_os_variants;
 
 	osinfo_os_add_variant;
@@ -496,6 +499,7 @@ LIBOSINFO_0.2.9 {
 } LIBOSINFO_0.2.8;
 
 LIBOSINFO_0.2.10 {
+    global:
 	osinfo_install_script_get_injection_methods;
 	osinfo_install_script_injection_method_get_type;
 } LIBOSINFO_0.2.9;
