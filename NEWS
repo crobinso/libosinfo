@@ -1,6 +1,23 @@
                libosinfo News
 	       ==============
 
+1.2.0 - Jun 20, 2018
+====================
+
+- Test suite requires osinfo-db >= 20180612
+- Replace use of libsoup with libcurl in test suite
+- Replace use of check library with GLib tester in test suite
+- Increase timeout for media URIs test
+- Drop const parameter annotations which break Rust generator
+- Improve error message with ISO test fails
+- Turn off -Wfunction-cast-type warning from gcc 8
+- Remove calls to g_log_set_always_fatal in tests
+- Load database files in alphabetical order for predictable sorting
+- Fix leak of list when loading files
+- Fix build of tools with clang 6
+- Add missing "global" annotation on some symbol versions
+
+
 1.1.0 - Aug 15, 2017
 ====================
 
