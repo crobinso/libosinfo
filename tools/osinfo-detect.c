@@ -54,9 +54,9 @@ static gboolean parse_format_str(const gchar *option_name,
                                  gpointer data,
                                  GError **error)
 {
-    if (strcmp(value, FORMAT_STR_ENV) == 0)
+    if (g_str_equal(value, FORMAT_STR_ENV))
         format = OUTPUT_FORMAT_ENV;
-    else if (strcmp(value, FORMAT_STR_PLAIN) == 0)
+    else if (g_str_equal(value, FORMAT_STR_PLAIN))
         format = OUTPUT_FORMAT_PLAIN;
     else {
         g_set_error(error,
@@ -75,9 +75,9 @@ static gboolean parse_type_str(const gchar *option_name,
                                gpointer data,
                                GError **error)
 {
-    if (strcmp(value, TYPE_STR_MEDIA) == 0)
+    if (g_str_equal(value, TYPE_STR_MEDIA))
         type = URL_TYPE_MEDIA;
-    else if (strcmp(value, TYPE_STR_TREE) == 0)
+    else if (g_str_equal(value, TYPE_STR_TREE))
         type = URL_TYPE_TREE;
     else {
         g_set_error(error,
