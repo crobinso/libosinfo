@@ -1115,22 +1115,22 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         if (!nodes[i]->children ||
             nodes[i]->children->type != XML_TEXT_NODE ||
-            (strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_MEDIA_PROP_VOLUME_ID) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_MEDIA_PROP_SYSTEM_ID) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_MEDIA_PROP_PUBLISHER_ID) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_MEDIA_PROP_APPLICATION_ID) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_MEDIA_PROP_LANG) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_MEDIA_PROP_VOLUME_SIZE) != 0))
+            (!g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_MEDIA_PROP_VOLUME_ID) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_MEDIA_PROP_SYSTEM_ID) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_MEDIA_PROP_PUBLISHER_ID) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_MEDIA_PROP_APPLICATION_ID) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_MEDIA_PROP_LANG) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_MEDIA_PROP_VOLUME_SIZE)))
             continue;
 
-        if (strcmp((const gchar *)nodes[i]->name,
-                   OSINFO_MEDIA_PROP_LANG) == 0) {
+        if (g_str_equal((const gchar *)nodes[i]->name,
+                        OSINFO_MEDIA_PROP_LANG)) {
             gchar *regex = (gchar *)xmlGetProp(nodes[i], BAD_CAST "regex");
             if (g_strcmp0(regex, "true") == 0) {
                 gchar *datamap;
@@ -1195,23 +1195,23 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
             nodes[i]->children->type != XML_TEXT_NODE)
             continue;
 
-        if (strcmp((const gchar *)nodes[i]->name,
-                   OSINFO_TREE_PROP_TREEINFO_FAMILY + sizeof("treeinfo-")) == 0)
+        if (g_str_equal((const gchar *)nodes[i]->name,
+                        OSINFO_TREE_PROP_TREEINFO_FAMILY + sizeof("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_FAMILY,
                                     (const gchar *)nodes[i]->children->content);
-        else if (strcmp((const gchar *)nodes[i]->name,
-                        OSINFO_TREE_PROP_TREEINFO_VARIANT + sizeof("treeinfo-")) == 0)
+        else if (g_str_equal((const gchar *)nodes[i]->name,
+                             OSINFO_TREE_PROP_TREEINFO_VARIANT + sizeof("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_VARIANT,
                                     (const gchar *)nodes[i]->children->content);
-        else if (strcmp((const gchar *)nodes[i]->name,
-                        OSINFO_TREE_PROP_TREEINFO_VERSION + sizeof("treeinfo-")) == 0)
+        else if (g_str_equal((const gchar *)nodes[i]->name,
+                             OSINFO_TREE_PROP_TREEINFO_VERSION + sizeof("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_VERSION,
                                     (const gchar *)nodes[i]->children->content);
-        else if (strcmp((const gchar *)nodes[i]->name,
-                        OSINFO_TREE_PROP_TREEINFO_ARCH + sizeof("treeinfo-")) == 0)
+        else if (g_str_equal((const gchar *)nodes[i]->name,
+                             OSINFO_TREE_PROP_TREEINFO_ARCH + sizeof("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_ARCH,
                                     (const gchar *)nodes[i]->children->content);
@@ -1264,14 +1264,14 @@ static OsinfoResources *osinfo_loader_resources(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         if (!nodes[i]->children ||
             nodes[i]->children->type != XML_TEXT_NODE ||
-            (strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_RESOURCES_PROP_CPU) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_RESOURCES_PROP_N_CPUS) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_RESOURCES_PROP_RAM) != 0 &&
-             strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_RESOURCES_PROP_STORAGE) != 0))
+            (!g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_RESOURCES_PROP_CPU) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_RESOURCES_PROP_N_CPUS) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_RESOURCES_PROP_RAM) &&
+             !g_str_equal((const gchar *)nodes[i]->name,
+                          OSINFO_RESOURCES_PROP_STORAGE)))
             continue;
 
         osinfo_entity_set_param(OSINFO_ENTITY(resources),
@@ -1367,13 +1367,13 @@ static OsinfoDeviceDriver *osinfo_loader_driver(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         if (nodes[i]->children &&
             nodes[i]->children->type == XML_TEXT_NODE &&
-            (strcmp((const gchar *)nodes[i]->name,
-                    OSINFO_DEVICE_DRIVER_PROP_FILE) == 0)) {
+            (g_str_equal((const gchar *)nodes[i]->name,
+                         OSINFO_DEVICE_DRIVER_PROP_FILE))) {
             osinfo_entity_add_param(OSINFO_ENTITY(driver),
                                     (const gchar *)nodes[i]->name,
                                     (const gchar *)nodes[i]->children->content);
-        } else if (strcmp((const gchar *)nodes[i]->name,
-                          OSINFO_DEVICE_DRIVER_PROP_DEVICE) == 0) {
+        } else if (g_str_equal((const gchar *)nodes[i]->name,
+                               OSINFO_DEVICE_DRIVER_PROP_DEVICE)) {
             xmlChar *device_id = xmlGetProp(nodes[i], BAD_CAST "id");
             OsinfoDevice *device = osinfo_loader_get_device(loader,
                                                             (gchar *)device_id);
