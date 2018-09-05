@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 16:42+0000\n"
+"POT-Creation-Date: 2018-09-05 10:01+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Serbian (LATIN)\n"
@@ -221,14 +221,14 @@ msgstr ""
 msgid "Missing root XML element"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:2294
+#: ../osinfo/osinfo_loader.c:2314
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:2330 ../osinfo/osinfo_loader.c:2362
+#: ../osinfo/osinfo_loader.c:2350 ../osinfo/osinfo_loader.c:2382
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "

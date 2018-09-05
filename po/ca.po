@@ -1,11 +1,13 @@
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2015. #zanata
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016. #zanata
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017. #zanata
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 16:42+0000\n"
-"PO-Revision-Date: 2016-10-28 02:01-0400\n"
+"POT-Creation-Date: 2018-09-05 10:01+0100\n"
+"PO-Revision-Date: 2018-02-23 04:05+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
@@ -13,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.6.2\n"
 
 #: ../osinfo/osinfo_avatar_format.c:109
 msgid "The allowed mime-types for the avatar"
@@ -217,14 +219,16 @@ msgstr "No es pot construir el context de l'analitzador sintàctic"
 msgid "Missing root XML element"
 msgstr "Falta l'element XML root"
 
-#: ../osinfo/osinfo_loader.c:2294
+#: ../osinfo/osinfo_loader.c:2314
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR està en desús, utilitzeu $OSINFO_SYSTEM_DIR en lloc seu. La "
+"compatibilitat per a $OSINFO_DATA_DIR serà eliminada en un futur llançament\n"
 
-#: ../osinfo/osinfo_loader.c:2330 ../osinfo/osinfo_loader.c:2362
+#: ../osinfo/osinfo_loader.c:2350 ../osinfo/osinfo_loader.c:2382
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -260,7 +264,7 @@ msgstr "L'identificador ISO9660 esperat del sistema"
 
 #: ../osinfo/osinfo_media.c:469 ../osinfo/osinfo_tree.c:351
 msgid "The path to the kernel image"
-msgstr "El camí a la imatge del nucli del sistema operatiu"
+msgstr "El camí a la imatge del kernel"
 
 #: ../osinfo/osinfo_media.c:482
 msgid "The path to the initrd image"
@@ -292,7 +296,7 @@ msgstr "S'esperava la mida del volum ISO9660, en bytes"
 
 #: ../osinfo/osinfo_media.c:602
 msgid "Whether the media should be ejected after the installtion process"
-msgstr ""
+msgstr "Si els mitjans s'han d'expulsar després del procés d'instal·lació"
 
 #: ../osinfo/osinfo_media.c:719
 msgid "Failed to read supplementary volume descriptor: "

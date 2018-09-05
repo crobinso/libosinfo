@@ -1,10 +1,11 @@
 # Zdenek <chmelarz@gmail.com>, 2017. #zanata
+# Zdenek <chmelarz@gmail.com>, 2018. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 16:42+0000\n"
-"PO-Revision-Date: 2017-09-11 08:30-0400\n"
+"POT-Creation-Date: 2018-09-05 10:01+0100\n"
+"PO-Revision-Date: 2018-02-27 03:07+0000\n"
 "Last-Translator: Zdenek <chmelarz@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
@@ -12,23 +13,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.6.2\n"
 
 #: ../osinfo/osinfo_avatar_format.c:109
 msgid "The allowed mime-types for the avatar"
-msgstr ""
+msgstr "Povolené mime typy pro avatara"
 
 #: ../osinfo/osinfo_avatar_format.c:123
 msgid "The required width (in pixels) of the avatar"
-msgstr ""
+msgstr "Požadovaná šířka avatara (v pixelech)"
 
 #: ../osinfo/osinfo_avatar_format.c:140
 msgid "The required height (in pixels) of the avatar."
-msgstr ""
+msgstr "Požadovaná výška avatara (v pixelech)"
 
 #: ../osinfo/osinfo_avatar_format.c:157
 msgid "Whether alpha channel is supported in the avatar."
-msgstr ""
+msgstr "Ať už je v avataru podporován alfa kanál."
 
 # auto translated by TM merge from project: FreeIPA, version: master-backup-
 # before-build-refactoring, DocId: install/po/ipa
@@ -38,310 +39,314 @@ msgstr "Operační systém"
 
 #: ../osinfo/osinfo_deployment.c:169
 msgid "Virtualization platform"
-msgstr ""
+msgstr "Virtualizační platforma"
 
 #: ../osinfo/osinfo_devicelink.c:129
 msgid "Target device"
-msgstr ""
+msgstr "Cílové zařízení"
 
 #: ../osinfo/osinfo_devicelinkfilter.c:134
 msgid "Device link target filter"
-msgstr ""
+msgstr "Cílový filtr propojení zařízení"
 
 #: ../osinfo/osinfo_entity.c:136
 msgid "Unique identifier"
-msgstr ""
+msgstr "Jedinečný identifikátor"
 
 #: ../osinfo/osinfo_install_config_param.c:152
 msgid "Parameter name"
-msgstr ""
+msgstr "Název parametru"
 
 #: ../osinfo/osinfo_install_config_param.c:168
 msgid "Parameter policy"
-msgstr ""
+msgstr "Politika parametru"
 
 #: ../osinfo/osinfo_install_config_param.c:184
 msgid "Parameter Value Mapping"
-msgstr ""
+msgstr "Mapování hodnot parametru"
 
 #: ../osinfo/osinfo_install_script.c:192
 msgid "URI for install script template"
-msgstr ""
+msgstr "URI pro šablonu instalačního skriptu"
 
 #: ../osinfo/osinfo_install_script.c:204
 msgid "Data for install script template"
-msgstr ""
+msgstr "Data pro šablonu instalačního skriptu"
 
 #: ../osinfo/osinfo_install_script.c:216
 msgid "Install script profile name"
-msgstr ""
+msgstr "Název profilu instalačního skriptu"
 
 #: ../osinfo/osinfo_install_script.c:228
 msgid "Product key format mask"
-msgstr ""
+msgstr "Maska formátu klíče produktu"
 
 #: ../osinfo/osinfo_install_script.c:238
 msgid "Expected path format"
-msgstr ""
+msgstr "Očekávaný formát cesty"
 
 #: ../osinfo/osinfo_install_script.c:249
 msgid "Expected avatar format"
-msgstr ""
+msgstr "Očekávaný formát avatara"
 
 #: ../osinfo/osinfo_install_script.c:585
 msgid "Unable to create XML parser context"
-msgstr ""
+msgstr "Nelze vytvořit kontext analyzátoru XML"
 
 #: ../osinfo/osinfo_install_script.c:593
 msgid "Unable to read XSL template"
-msgstr ""
+msgstr "Nelze přečíst šablonu XSL"
 
 #: ../osinfo/osinfo_install_script.c:599
 msgid "Unable to parse XSL template"
-msgstr ""
+msgstr "Nelze analyzovat šablonu XSL"
 
 #: ../osinfo/osinfo_install_script.c:672 ../osinfo/osinfo_install_script.c:708
 #, c-format
 msgid "Unable to create XML node '%s': '%s'"
-msgstr ""
+msgstr "Nelze vytvořit uzel XML '%s': '%s'"
 
 #: ../osinfo/osinfo_install_script.c:680
 #, c-format
 msgid "Unable to create XML node 'id': '%s'"
-msgstr ""
+msgstr "Nelze vytvořit uzel XML 'id': '%s'"
 
 #: ../osinfo/osinfo_install_script.c:686 ../osinfo/osinfo_install_script.c:714
 #, c-format
 msgid "Unable to add XML child '%s'"
-msgstr ""
+msgstr "Nelze přidat podřízený XML '%s'"
 
 #: ../osinfo/osinfo_install_script.c:761 ../osinfo/osinfo_install_script.c:772
 #: ../osinfo/osinfo_install_script.c:796
 #, c-format
 msgid "Unable to set XML root '%s'"
-msgstr ""
+msgstr "Nelze nastavit kořen XML '%s'"
 
 #: ../osinfo/osinfo_install_script.c:784
 #, c-format
 msgid "Unable to set 'media' node: '%s'"
-msgstr ""
+msgstr "Nelze nastavit uzel \"media\": '%s'"
 
 #: ../osinfo/osinfo_install_script.c:819
 msgid "Unable to create XSL transform context"
-msgstr ""
+msgstr "Nelze vytvořit kontext transformace XSL"
 
 #: ../osinfo/osinfo_install_script.c:824
 msgid "Unable to apply XSL transform context"
-msgstr ""
+msgstr "Nelze použít kontext transformace XSL"
 
 #: ../osinfo/osinfo_install_script.c:829
 msgid "Unable to convert XSL output to string"
-msgstr ""
+msgstr "Nelze převést výstup XSL na řetězec"
 
 #: ../osinfo/osinfo_install_script.c:889
 #, c-format
 msgid "Failed to load script template %s: "
-msgstr ""
+msgstr "Nelze načíst šablonu skriptu %s: "
 
 #: ../osinfo/osinfo_install_script.c:904
 #, c-format
 msgid "Failed to apply script template %s: "
-msgstr ""
+msgstr "Nelze použít šablonu skriptu %s: "
 
 #: ../osinfo/osinfo_install_script.c:958 ../osinfo/osinfo_install_script.c:1600
 #: ../osinfo/osinfo_install_script.c:1648
 msgid "Failed to apply script template: "
-msgstr ""
+msgstr "Nelze použít šablonu skriptu: "
 
 #: ../osinfo/osinfo_list.c:132
 msgid "List element type"
-msgstr ""
+msgstr "Typ prvku seznamu"
 
 #: ../osinfo/osinfo_loader.c:195
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
-msgstr ""
+msgstr "Očekává se, že v XPath dotazu %s bude nodeset"
 
 #: ../osinfo/osinfo_loader.c:275 ../osinfo/osinfo_loader.c:420
 msgid "Expected a text node attribute value"
-msgstr ""
+msgstr "Očekává se hodnota atributu textového uzlu"
 
 #: ../osinfo/osinfo_loader.c:574
 msgid "Missing device id property"
-msgstr ""
+msgstr "Chybí vlastnost ID zařízení"
 
 #: ../osinfo/osinfo_loader.c:609
 msgid "Missing device link id property"
-msgstr ""
+msgstr "Chybí vlastnost ID odkazu zařízení"
 
 #: ../osinfo/osinfo_loader.c:659
 msgid "Missing product upgrades id property"
-msgstr ""
+msgstr "Chybí vlastnost ID upgradu produktu"
 
 #: ../osinfo/osinfo_loader.c:732
 msgid "Missing platform id property"
-msgstr ""
+msgstr "Chybí vlastnost ID platformy"
 
 #: ../osinfo/osinfo_loader.c:766
 msgid "Missing deployment id property"
-msgstr ""
+msgstr "Chybí vlastnost ID nasazení"
 
 #: ../osinfo/osinfo_loader.c:776
 msgid "Missing deployment os id property"
-msgstr ""
+msgstr "Chybí vlastnost ID OS nasazení"
 
 #: ../osinfo/osinfo_loader.c:786
 msgid "Missing deployment platform id property"
-msgstr ""
+msgstr "Chybí vlastnost ID platformy nasazení"
 
 #: ../osinfo/osinfo_loader.c:825 ../osinfo/osinfo_loader.c:1411
 msgid "Missing os id property"
-msgstr ""
+msgstr "Chybí vlastnost ID OS"
 
 #: ../osinfo/osinfo_loader.c:949
 msgid "Missing install script id property"
-msgstr ""
+msgstr "Chybí vlastnost ID skriptu pro instalaci"
 
 #: ../osinfo/osinfo_loader.c:1526
 msgid "Missing OS install script property"
-msgstr ""
+msgstr "Chybí vlastnost ID skriptu pro instalaci"
 
 #: ../osinfo/osinfo_loader.c:1590
 msgid "Incorrect root element"
-msgstr ""
+msgstr "Nesprávný kořenový prvek"
 
 #: ../osinfo/osinfo_loader.c:1657
 msgid "Unable to construct parser context"
-msgstr ""
+msgstr "Nelze vytvořit kontext analyzátoru"
 
 #: ../osinfo/osinfo_loader.c:1679
 msgid "Missing root XML element"
-msgstr ""
+msgstr "Chybí kořenový element XML"
 
-#: ../osinfo/osinfo_loader.c:2294
+#: ../osinfo/osinfo_loader.c:2314
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR je zastaralý, použijte místo toho $OSINFO_SYSTEM_DIR. "
+"Podpora pro $OSINFO_DATA_DIR bude v budoucím vydání odebrána\n"
 
-#: ../osinfo/osinfo_loader.c:2330 ../osinfo/osinfo_loader.c:2362
+#: ../osinfo/osinfo_loader.c:2350 ../osinfo/osinfo_loader.c:2382
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
+"%s je zastaralý, použijte místo toho %s. Podpora pro %s bude v budoucím "
+"vydání odebrána\n"
 
 #: ../osinfo/osinfo_media.c:391 ../osinfo/osinfo_resources.c:170
 #: ../osinfo/osinfo_tree.c:273
 msgid "CPU Architecture"
-msgstr ""
+msgstr "Architektura CPU"
 
 #: ../osinfo/osinfo_media.c:404
 msgid "The URL to this media"
-msgstr ""
+msgstr "Adresa URL na toto médium"
 
 #: ../osinfo/osinfo_media.c:417 ../osinfo/osinfo_tree.c:299
 msgid "The expected ISO9660 volume ID"
-msgstr ""
+msgstr "Očekávané ID svazku ISO9660"
 
 #: ../osinfo/osinfo_media.c:430 ../osinfo/osinfo_tree.c:312
 msgid "The expected ISO9660 publisher ID"
-msgstr ""
+msgstr "Očekávané ID vydavatele ISO9660"
 
 #: ../osinfo/osinfo_media.c:443 ../osinfo/osinfo_tree.c:325
 msgid "The expected ISO9660 application ID"
-msgstr ""
+msgstr "Očekávané ID aplikace ISO9660"
 
 #: ../osinfo/osinfo_media.c:456 ../osinfo/osinfo_tree.c:338
 msgid "The expected ISO9660 system ID"
-msgstr ""
+msgstr "Očekávané ID systému ISO9660"
 
 #: ../osinfo/osinfo_media.c:469 ../osinfo/osinfo_tree.c:351
 msgid "The path to the kernel image"
-msgstr ""
+msgstr "Cesta k obrazu jádra"
 
 #: ../osinfo/osinfo_media.c:482
 msgid "The path to the initrd image"
-msgstr ""
+msgstr "Cesta k obrazu initrd"
 
 #: ../osinfo/osinfo_media.c:495
 msgid "Media provides an installer"
-msgstr ""
+msgstr "Médium poskytující instalátor"
 
 #: ../osinfo/osinfo_media.c:508
 msgid "Media can boot directly w/o installation"
-msgstr ""
+msgstr "Média mohou být zaváděna přímo bez instalace"
 
 #: ../osinfo/osinfo_media.c:530
 msgid "Number of installer reboots"
-msgstr ""
+msgstr "Počet restartů instalátoru"
 
 #: ../osinfo/osinfo_media.c:548
 msgid "Information about the operating system on this media"
-msgstr ""
+msgstr "Informace o operačním systému na tomto médiu"
 
 #: ../osinfo/osinfo_media.c:570
 msgid "Supported languages"
-msgstr ""
+msgstr "Podporované jazyky"
 
 #: ../osinfo/osinfo_media.c:582
 msgid "Expected ISO9660 volume size, in bytes"
-msgstr ""
+msgstr "Očekávaná velikost svazku ISO9660 v bajtech"
 
 #: ../osinfo/osinfo_media.c:602
 msgid "Whether the media should be ejected after the installtion process"
-msgstr ""
+msgstr "Zda by média měla být po instalaci vysunuta"
 
 #: ../osinfo/osinfo_media.c:719
 msgid "Failed to read supplementary volume descriptor: "
-msgstr ""
+msgstr "Nepodařilo se přečíst doplňkový deskriptor oddílu:"
 
 #: ../osinfo/osinfo_media.c:726
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
-msgstr ""
+msgstr "Doplňkový deskriptor oddílu byl zkrácen"
 
 #: ../osinfo/osinfo_media.c:750
 #, c-format
 msgid "Install media is not bootable"
-msgstr ""
+msgstr "Instalační médium nelze zavést"
 
 #: ../osinfo/osinfo_media.c:812
 msgid "Failed to read primary volume descriptor: "
-msgstr ""
+msgstr "Nelze přečíst deskriptor primárního oddílu:"
 
 #: ../osinfo/osinfo_media.c:819
 #, c-format
 msgid "Primary volume descriptor was truncated"
-msgstr ""
+msgstr "Primární deskriptor oddílu byl zkrácen"
 
 #: ../osinfo/osinfo_media.c:851
 #, c-format
 msgid "Insufficient metadata on installation media"
-msgstr ""
+msgstr "Nedostatečná metadata na instalačních médiích"
 
 #: ../osinfo/osinfo_media.c:885
 #, c-format
 msgid "Failed to skip %d bytes"
-msgstr ""
+msgstr "Nepodařilo se přeskočit %d bajtů"
 
 #: ../osinfo/osinfo_media.c:890
 #, c-format
 msgid "No volume descriptors"
-msgstr ""
+msgstr "Žádné deskriptory oddílu"
 
 #: ../osinfo/osinfo_media.c:921
 msgid "Failed to open file"
-msgstr ""
+msgstr "Otevření souboru se nezdařilo"
 
 #: ../osinfo/osinfo_os.c:151
 msgid "Generic Family"
-msgstr ""
+msgstr "Obecná rodina"
 
 #: ../osinfo/osinfo_os.c:167
 msgid "Generic Distro"
-msgstr ""
+msgstr "Obecná distribuce"
 
 # auto translated by TM merge from project: imsettings, version: master,
 # DocId: imsettings
@@ -353,7 +358,7 @@ msgstr "Název"
 #: ../osinfo/osinfo_product.c:182 ../tools/osinfo-query.c:57
 #: ../tools/osinfo-query.c:81
 msgid "Short ID"
-msgstr ""
+msgstr "Krátké ID"
 
 # auto translated by TM merge from project: FreeIPA, version: ipa-4-5, DocId:
 # po/ipa
@@ -371,106 +376,107 @@ msgstr "Verze"
 
 #: ../osinfo/osinfo_product.c:221
 msgid "Codename"
-msgstr ""
+msgstr "Kódové jméno"
 
 #: ../osinfo/osinfo_product.c:234
 msgid "URI of the logo"
-msgstr ""
+msgstr "URI loga"
 
 #: ../osinfo/osinfo_resources.c:186
 msgid "CPU frequency in hertz (Hz)"
-msgstr ""
+msgstr "Frekvence procesoru v hertzech (Hz)"
 
 #: ../osinfo/osinfo_resources.c:203
 msgid "Number of CPUs"
-msgstr ""
+msgstr "Počet CPU"
 
 #: ../osinfo/osinfo_resources.c:220
 msgid "Amount of Random Access Memory (RAM) in bytes"
-msgstr ""
+msgstr "Množství paměti s náhodným přístupem (RAM) v bajtech"
 
 #: ../osinfo/osinfo_resources.c:237
 msgid "Amount of storage space in bytes"
-msgstr ""
+msgstr "Velikost úložného prostoru v bajtech"
 
 #: ../osinfo/osinfo_tree.c:286
 msgid "The URL to this tree"
-msgstr ""
+msgstr "URL adresa tohoto stromu"
 
 #: ../osinfo/osinfo_tree.c:364
 msgid "The path to the inirtd image"
-msgstr ""
+msgstr "Cesta k obrazu initrd"
 
 #: ../osinfo/osinfo_tree.c:377
 msgid "The path to the bootable ISO image"
-msgstr ""
+msgstr "Cesta k zavádějícímu ISO obrazu"
 
 #: ../osinfo/osinfo_tree.c:601
 msgid "Failed to load .treeinfo file: "
-msgstr ""
+msgstr "Nepodařilo se načíst soubor .treeinfo:"
 
 #: ../osinfo/osinfo_tree.c:611
 msgid "Failed to process keyinfo file: "
-msgstr ""
+msgstr "Nepodařilo se zpracovat soubor keyinfo:"
 
 #: ../osinfo/osinfo_os_variant.c:115
 msgid "The name to this variant"
-msgstr ""
+msgstr "Název této varianty"
 
 #: ../tools/osinfo-detect.c:65 ../tools/osinfo-detect.c:86
 #, c-format
 msgid "Invalid value '%s'"
-msgstr ""
+msgstr "Neplatná hodnota '%s'"
 
 #: ../tools/osinfo-detect.c:98
 msgid "Output format. Default: plain"
-msgstr ""
+msgstr "Výstupní formát. Výchozí: prostý"
 
 #: ../tools/osinfo-detect.c:99
 msgid "plain|env."
-msgstr ""
+msgstr "prostý|env."
 
 #: ../tools/osinfo-detect.c:102
 msgid "URL type. Default: media"
-msgstr ""
+msgstr "Typ adresy URL. Výchozí: médium"
 
 #: ../tools/osinfo-detect.c:103
 msgid "media|tree."
-msgstr ""
+msgstr "médium|strom."
 
 #: ../tools/osinfo-detect.c:113
 #, c-format
 msgid "Media is bootable.\n"
-msgstr ""
+msgstr "Médium lze zavést.\n"
 
 #: ../tools/osinfo-detect.c:118
 #, c-format
 msgid "Media is not bootable.\n"
-msgstr ""
+msgstr "Médium nelze zavést.\n"
 
 #: ../tools/osinfo-detect.c:155
 #, c-format
 msgid "Media is an installer for OS '%s'\n"
-msgstr ""
+msgstr "Médium je instalátor pro operační systém '%s'\n"
 
 #: ../tools/osinfo-detect.c:157
 #, c-format
 msgid "Media is live media for OS '%s'\n"
-msgstr ""
+msgstr "Médium je živé médium pro operační systém '%s'\n"
 
 #: ../tools/osinfo-detect.c:162
 #, c-format
 msgid "Available OS variants on media:\n"
-msgstr ""
+msgstr "Dostupné verze OS na médii:\n"
 
 #: ../tools/osinfo-detect.c:207
 #, c-format
 msgid "Tree is an installer for OS '%s'\n"
-msgstr ""
+msgstr "Strom je instalátor pro operační systém '%s'\n"
 
 #: ../tools/osinfo-detect.c:224
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
+"- Zjistit, zda je médium zaveditelné, příslušný operační systém a distribuci."
 
 # auto translated by TM merge from project: osinfo-db-tools, version: master,
 # DocId: osinfo-db-tools
@@ -483,97 +489,99 @@ msgstr "Chyba při parsování voleb příkazové řádky: %s\n"
 #: ../tools/osinfo-query.c:431
 #, c-format
 msgid "Error loading OS data: %s\n"
-msgstr ""
+msgstr "Při načítání dat operačního systému došlo k chybě: %s\n"
 
 #: ../tools/osinfo-detect.c:262
 #, c-format
 msgid "Error parsing media: %s\n"
-msgstr ""
+msgstr "Chyba při analýze média: %s\n"
 
 #: ../tools/osinfo-detect.c:280
 #, c-format
 msgid "Error parsing installer tree: %s\n"
-msgstr ""
+msgstr "Chyba při analýze stromu instalátoru: %s\n"
 
 #: ../tools/osinfo-install-script.c:53
 #, c-format
 msgid "Expected configuration key=value"
-msgstr ""
+msgstr "Očekáván konfigurační klíč=hodnota"
 
 #: ../tools/osinfo-install-script.c:71
 msgid "Install script profile"
-msgstr ""
+msgstr "Nainstalovat profil skriptu"
 
 #: ../tools/osinfo-install-script.c:73
 msgid "Install script output directory"
-msgstr ""
+msgstr "Nainstalovat adresář výstupního skriptu"
 
 #: ../tools/osinfo-install-script.c:75
 msgid "The output filename prefix"
-msgstr ""
+msgstr "Předpona výstupního názvu souboru"
 
 #: ../tools/osinfo-install-script.c:78
 msgid "Set configuration parameter"
-msgstr ""
+msgstr "Nastavit konfigurační parametr"
 
 #: ../tools/osinfo-install-script.c:80
 msgid "List configuration parameters"
-msgstr ""
+msgstr "Seznam parametrů konfigurace"
 
 #: ../tools/osinfo-install-script.c:82
 msgid "List install script profiles"
-msgstr ""
+msgstr "Vypsat profily instalační skriptů"
 
 #: ../tools/osinfo-install-script.c:84
 msgid "List supported injection methods"
-msgstr ""
+msgstr "Seznam podporovaných metod injekce"
 
 #: ../tools/osinfo-install-script.c:86
 msgid "Do not display output filenames"
-msgstr ""
+msgstr "Nezobrazovat výstupní názvy souborů"
 
 #: ../tools/osinfo-install-script.c:143
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr ""
+msgstr "Žádný instalační skript pro profil '%s' a operační systém '%s'"
 
 #: ../tools/osinfo-install-script.c:159
 msgid "required"
-msgstr ""
+msgstr "vyžadovaný"
 
 #: ../tools/osinfo-install-script.c:159
 msgid "optional"
-msgstr ""
+msgstr "volitelný"
 
 #: ../tools/osinfo-install-script.c:245
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr ""
+msgstr "Žádný instalační skript pro profil '%s' a operační systém '%s'\n"
 
 #: ../tools/osinfo-install-script.c:274
 #, c-format
 msgid "Unable to generate install script: %s\n"
-msgstr ""
+msgstr "Nelze generovat instalační skript: %s\n"
 
 #: ../tools/osinfo-install-script.c:311
 msgid "- Generate an OS install script"
-msgstr ""
+msgstr "- Generujte skript instalace OS"
 
 #: ../tools/osinfo-install-script.c:314
 #, c-format
 msgid "Error while parsing options: %s\n"
-msgstr ""
+msgstr "Chyba při analýze možností: %s\n"
 
 #: ../tools/osinfo-install-script.c:332
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
+"Lze požadovat pouze jeden z parametrů --list-profile, --list-config a --list-"
+"injection-methods"
 
 #: ../tools/osinfo-install-script.c:361
 #, c-format
 msgid "Error finding OS: %s\n"
-msgstr ""
+msgstr "Chyba při hledání operačního systému: %s\n"
 
 # auto translated by TM merge from project: firewalld, version: master, DocId:
 # po/firewalld
@@ -583,19 +591,19 @@ msgstr "Rodina"
 
 #: ../tools/osinfo-query.c:65
 msgid "Distro"
-msgstr ""
+msgstr "Distribuce"
 
 #: ../tools/osinfo-query.c:69 ../tools/osinfo-query.c:89
 msgid "Release date"
-msgstr ""
+msgstr "Datum vydání"
 
 #: ../tools/osinfo-query.c:71 ../tools/osinfo-query.c:91
 msgid "End of life"
-msgstr ""
+msgstr "Konec podpory"
 
 #: ../tools/osinfo-query.c:73 ../tools/osinfo-query.c:93
 msgid "Code name"
-msgstr ""
+msgstr "Kódové jméno"
 
 # auto translated by TM merge from project: im-chooser , version: master,
 # DocId: im-chooser
@@ -606,15 +614,15 @@ msgstr "ID"
 
 #: ../tools/osinfo-query.c:103
 msgid "Vendor ID"
-msgstr ""
+msgstr "ID výrobce"
 
 #: ../tools/osinfo-query.c:105
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #: ../tools/osinfo-query.c:107
 msgid "Product ID"
-msgstr ""
+msgstr "ID produktu"
 
 # auto translated by TM merge from project: FreeIPA, version: ipa-4-5, DocId:
 # po/ipa
@@ -622,47 +630,49 @@ msgstr ""
 msgid "Class"
 msgstr "Třída"
 
+# auto translated by TM merge from project: Cockpit, version: master, DocId:
+# cockpit
 #: ../tools/osinfo-query.c:113
 msgid "Bus"
-msgstr ""
+msgstr "Bus"
 
 #: ../tools/osinfo-query.c:153 ../tools/osinfo-query.c:191
 #, c-format
 msgid "Unknown property name %s"
-msgstr ""
+msgstr "Neznámý název vlastnosti %s"
 
 #: ../tools/osinfo-query.c:177
 msgid "Syntax error in condition, expecting KEY=VALUE"
-msgstr ""
+msgstr "Chyba syntaxe v podmínce, očekává se KLÍČ=HODNOTA"
 
 #: ../tools/osinfo-query.c:403
 msgid "Sort column"
-msgstr ""
+msgstr "Uspořádat sloupec"
 
 #: ../tools/osinfo-query.c:405
 msgid "Display fields"
-msgstr ""
+msgstr "Zobrazit pole"
 
 #: ../tools/osinfo-query.c:410
 msgid "- Query the OS info database"
-msgstr ""
+msgstr "- Dotázat se na databázi informací o operačním systému"
 
 #: ../tools/osinfo-query.c:422
 #, c-format
 msgid "Missing data type parameter\n"
-msgstr ""
+msgstr "Chybí parametr typu data\n"
 
 #: ../tools/osinfo-query.c:450
 #, c-format
 msgid "Unknown type '%s' requested\n"
-msgstr ""
+msgstr "Požadován neznámý typ '%s'\n"
 
 #: ../tools/osinfo-query.c:455
 #, c-format
 msgid "Unable to construct filter: %s\n"
-msgstr ""
+msgstr "Nepodařilo se vytvořit filtr: %s\n"
 
 #: ../tools/osinfo-query.c:460
 #, c-format
 msgid "Unable to set field visibility: %s\n"
-msgstr ""
+msgstr "Nelze nastavit viditelnost pole: %s\n"

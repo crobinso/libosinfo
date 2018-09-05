@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 16:42+0000\n"
-"PO-Revision-Date: 2015-02-20 07:44-0500\n"
+"POT-Creation-Date: 2018-09-05 10:01+0100\n"
+"PO-Revision-Date: 2015-02-20 07:44+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/libosinfo/"
 "language/ja/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.6.2\n"
 
 #: ../osinfo/osinfo_avatar_format.c:109
 msgid "The allowed mime-types for the avatar"
@@ -222,14 +222,14 @@ msgstr "パーサーのコンテキストを構築できません"
 msgid "Missing root XML element"
 msgstr "ルート XML 要素がありません"
 
-#: ../osinfo/osinfo_loader.c:2294
+#: ../osinfo/osinfo_loader.c:2314
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
 
-#: ../osinfo/osinfo_loader.c:2330 ../osinfo/osinfo_loader.c:2362
+#: ../osinfo/osinfo_loader.c:2350 ../osinfo/osinfo_loader.c:2382
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "

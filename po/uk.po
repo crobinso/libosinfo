@@ -6,12 +6,13 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2012.
 # Yuri Chornoivan <yurchor@ukr.net>, 2015. #zanata
 # Yuri Chornoivan <yurchor@ukr.net>, 2016. #zanata
+# Yuri Chornoivan <yurchor@ukr.net>, 2017. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 16:42+0000\n"
-"PO-Revision-Date: 2016-10-08 03:58-0400\n"
+"POT-Creation-Date: 2018-09-05 10:01+0100\n"
+"PO-Revision-Date: 2017-12-06 12:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/libosinfo/"
 "language/uk/)\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.6.2\n"
 
 #: ../osinfo/osinfo_avatar_format.c:109
 msgid "The allowed mime-types for the avatar"
@@ -225,14 +226,17 @@ msgstr "Не вдалося побудувати контекст обробки
 msgid "Missing root XML element"
 msgstr "Не вистачає кореневого елемента XML"
 
-#: ../osinfo/osinfo_loader.c:2294
+#: ../osinfo/osinfo_loader.c:2314
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR вважається застарілим, будь ласка, використовуйте замість "
+"нього $OSINFO_SYSTEM_DIR. Підтримку $OSINFO_DATA_DIR буде вилучено у "
+"наступному випуску\n"
 
-#: ../osinfo/osinfo_loader.c:2330 ../osinfo/osinfo_loader.c:2362
+#: ../osinfo/osinfo_loader.c:2350 ../osinfo/osinfo_loader.c:2382
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -301,6 +305,7 @@ msgstr "Розмір тому мало бути вказано у форматі
 #: ../osinfo/osinfo_media.c:602
 msgid "Whether the media should be ejected after the installtion process"
 msgstr ""
+"Визначає, чи слід виштовхувати носій з даними після виконання встановлення"
 
 #: ../osinfo/osinfo_media.c:719
 msgid "Failed to read supplementary volume descriptor: "
