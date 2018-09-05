@@ -59,6 +59,7 @@ tests/test-install-script
 tests/test-loader
 tests/test-productfilter
 tests/test-oslist
+tests/test-os-resources
 tests/test-product
 tests/test-platform
 tests/test-platformlist
