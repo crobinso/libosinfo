@@ -106,6 +106,7 @@ static struct ISOInfo *load_iso(GFile *file, const gchar *shortid, const gchar *
     info->langs = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
     if (strstr(name, "amd64") ||
              strstr(name, "x64") ||
+             strstr(name, "X64") ||
              strstr(name, "x86_64") ||
              strstr(name, "64bit") ||
              strstr(name, "64-bit"))
@@ -114,6 +115,7 @@ static struct ISOInfo *load_iso(GFile *file, const gchar *shortid, const gchar *
              strstr(name, "i586") ||
              strstr(name, "i686") ||
              strstr(name, "x86") ||
+             strstr(name, "X86") ||
              strstr(name, "32bit") ||
              strstr(name, "32-bit"))
         arch = "i386";
