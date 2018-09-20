@@ -144,7 +144,7 @@ OsinfoLoader *osinfo_loader_new(void)
     return g_object_new(OSINFO_TYPE_LOADER, NULL);
 }
 
-#define OSINFO_ERROR(err, msg)                                          \
+#define OSINFO_LOADER_SET_ERROR(err, msg)                               \
     g_set_error_literal((err), g_quark_from_static_string("libosinfo"), 0, (msg));
 
 static gboolean error_is_set(GError **error)
@@ -272,7 +272,7 @@ osinfo_loader_boolean(const char *xpath,
             break;
         }
         if (node->children->type != XML_TEXT_NODE) {
-            OSINFO_ERROR(err, _("Expected a text node attribute value"));
+            OSINFO_LOADER_SET_ERROR(err, _("Expected a text node attribute value"));
             goto cleanup;
         }
 
@@ -417,7 +417,7 @@ static void osinfo_loader_entity(OsinfoLoader *loader,
 
         if (!param->children ||
             param->children->type != XML_TEXT_NODE) {
-            OSINFO_ERROR(err, _("Expected a text node attribute value"));
+            OSINFO_LOADER_SET_ERROR(err, _("Expected a text node attribute value"));
             goto cleanup;
         }
 
@@ -571,7 +571,7 @@ static void osinfo_loader_device(OsinfoLoader *loader,
         { NULL, G_TYPE_INVALID }
     };
     if (!id) {
-        OSINFO_ERROR(err, _("Missing device id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing device id property"));
         return;
     }
     if (!osinfo_loader_check_id(relpath, "device", id)) {
@@ -606,7 +606,7 @@ static void osinfo_loader_device_link(OsinfoLoader *loader,
         };
         gchar *id = (gchar *)xmlGetProp(related[i], BAD_CAST "id");
         if (!id) {
-            OSINFO_ERROR(err, _("Missing device link id property"));
+            OSINFO_LOADER_SET_ERROR(err, _("Missing device link id property"));
             goto cleanup;
         }
         OsinfoDevice *dev = osinfo_loader_get_device(loader, id);
@@ -656,7 +656,7 @@ static void osinfo_loader_product_relshp(OsinfoLoader *loader,
 
         gchar *id = (gchar *) xmlGetProp(it, BAD_CAST "id");
         if (!id) {
-            OSINFO_ERROR(err, _("Missing product upgrades id property"));
+            OSINFO_LOADER_SET_ERROR(err, _("Missing product upgrades id property"));
             goto cleanup;
         }
         OsinfoProduct *relproduct;
@@ -729,7 +729,7 @@ static void osinfo_loader_platform(OsinfoLoader *loader,
 {
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
     if (!id) {
-        OSINFO_ERROR(err, _("Missing platform id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing platform id property"));
         return;
     }
     if (!osinfo_loader_check_id(relpath, "platform", id)) {
@@ -763,7 +763,7 @@ static void osinfo_loader_deployment(OsinfoLoader *loader,
 {
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
     if (!id) {
-        OSINFO_ERROR(err, _("Missing deployment id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing deployment id property"));
         return;
     }
     if (!osinfo_loader_check_id(relpath, "deployment", id)) {
@@ -773,7 +773,7 @@ static void osinfo_loader_deployment(OsinfoLoader *loader,
 
     gchar *osid = osinfo_loader_string("string(./os/@id)", loader, ctxt, err);
     if (!osid && 0) {
-        OSINFO_ERROR(err, _("Missing deployment os id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing deployment os id property"));
         xmlFree(id);
         return;
     }
@@ -783,7 +783,7 @@ static void osinfo_loader_deployment(OsinfoLoader *loader,
     gchar *platformid = osinfo_loader_string("string(./platform/@id)", loader,
                                              ctxt, err);
     if (!platformid) {
-        OSINFO_ERROR(err, _("Missing deployment platform id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing deployment platform id property"));
         xmlFree(id);
         return;
     }
@@ -822,7 +822,7 @@ static void osinfo_loader_datamap(OsinfoLoader *loader,
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
 
     if (!id) {
-        OSINFO_ERROR(err, _("Missing os id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing os id property"));
         return;
     }
     if (!osinfo_loader_check_id(relpath, "datamap", id)) {
@@ -946,7 +946,7 @@ static void osinfo_loader_install_script(OsinfoLoader *loader,
     GFlagsClass *flags_class;
 
     if (!id) {
-        OSINFO_ERROR(err, _("Missing install script id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing install script id property"));
         return;
     }
 
@@ -1408,7 +1408,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     };
 
     if (!id) {
-        OSINFO_ERROR(err, _("Missing os id property"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing os id property"));
         return;
     }
     if (!osinfo_loader_check_id(relpath, "os", id)) {
@@ -1523,7 +1523,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         gchar *scriptid = (gchar *)xmlGetProp(nodes[i], BAD_CAST "id");
         if (!scriptid) {
-            OSINFO_ERROR(err, _("Missing OS install script property"));
+            OSINFO_LOADER_SET_ERROR(err, _("Missing OS install script property"));
             goto cleanup;
         }
         OsinfoInstallScript *script;
@@ -1587,7 +1587,7 @@ static void osinfo_loader_root(OsinfoLoader *loader,
     xmlNodePtr it;
 
     if (!xmlStrEqual(root->name, BAD_CAST "libosinfo")) {
-        OSINFO_ERROR(err, _("Incorrect root element"));
+        OSINFO_LOADER_SET_ERROR(err, _("Incorrect root element"));
         return;
     }
 
@@ -1634,7 +1634,7 @@ catchXMLError(void *ctx, const char *msg ATTRIBUTE_UNUSED, ...)
             gchar *xmlmsg = g_strdup_printf("at line %d: %s",
                                             ctxt->lastError.line,
                                             ctxt->lastError.message);
-            OSINFO_ERROR(ctxt->_private, xmlmsg);
+            OSINFO_LOADER_SET_ERROR(ctxt->_private, xmlmsg);
             g_free(xmlmsg);
         }
     }
@@ -1654,7 +1654,7 @@ static void osinfo_loader_process_xml(OsinfoLoader *loader,
     /* Set up a parser context so we can catch the details of XML errors. */
     pctxt = xmlNewParserCtxt();
     if (!pctxt || !pctxt->sax) {
-        OSINFO_ERROR(err, _("Unable to construct parser context"));
+        OSINFO_LOADER_SET_ERROR(err, _("Unable to construct parser context"));
         goto cleanup;
     }
 
@@ -1676,7 +1676,7 @@ static void osinfo_loader_process_xml(OsinfoLoader *loader,
     root = xmlDocGetRootElement(xml);
 
     if (!root) {
-        OSINFO_ERROR(err, _("Missing root XML element"));
+        OSINFO_LOADER_SET_ERROR(err, _("Missing root XML element"));
         goto cleanup;
     }
 
@@ -2062,7 +2062,7 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
         g_object_unref(ents);
         g_list_free(children);
     } else {
-        OSINFO_ERROR(&error, "Unexpected file type");
+        OSINFO_LOADER_SET_ERROR(&error, "Unexpected file type");
         g_propagate_error(err, error);
     }
 }
