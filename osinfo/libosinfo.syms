@@ -529,6 +529,11 @@ LIBOSINFO_0.2.13 {
 	osinfo_media_get_eject_after_install;
 } LIBOSINFO_0.2.12;
 
+LIBOSINFO_1.3.0 {
+    global:
+	osinfo_error_quark;
+} LIBOSINFO_0.2.13;
+
 /* Symbols in next release...
 
   LIBOSINFO_0.0.2 {

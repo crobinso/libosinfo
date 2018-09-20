@@ -66,6 +66,14 @@ struct _OsinfoLoaderClass
 
 GType osinfo_loader_get_type(void);
 
+/**
+ * OSINFO_ERROR:
+ *
+ * Error domain for generic libosinfo errors
+ */
+#define OSINFO_ERROR osinfo_error_quark()
+GQuark osinfo_error_quark(void);
+
 OsinfoLoader *osinfo_loader_new(void);
 
 OsinfoDb *osinfo_loader_get_db(OsinfoLoader *loader);

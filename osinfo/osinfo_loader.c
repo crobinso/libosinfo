@@ -144,8 +144,26 @@ OsinfoLoader *osinfo_loader_new(void)
     return g_object_new(OSINFO_TYPE_LOADER, NULL);
 }
 
-#define OSINFO_LOADER_SET_ERROR(err, msg)                               \
-    g_set_error_literal((err), g_quark_from_static_string("libosinfo"), 0, (msg));
+/**
+ * osinfo_error_quark:
+ *
+ * Gets a #GQuark representing the string "libosinfo"
+ *
+ * Returns: the #GQuark representing the string.
+ **/
+GQuark
+osinfo_error_quark(void)
+{
+    static GQuark quark = 0;
+
+    if (!quark)
+        quark = g_quark_from_static_string("libosinfo");
+
+    return quark;
+}
+
+#define OSINFO_LOADER_SET_ERROR(err, msg)                                        \
+    g_set_error_literal((err), OSINFO_ERROR, 0, (msg));
 
 static gboolean error_is_set(GError **error)
 {
@@ -191,7 +209,7 @@ osinfo_loader_nodeset(const char *xpath,
     if (obj == NULL)
         return 0;
     if (obj->type != XPATH_NODESET) {
-        g_set_error(err, g_quark_from_static_string("libosinfo"), 0,
+        g_set_error(err, OSINFO_ERROR, 0,
                     _("Expected a nodeset in XPath query %s"), xpath);
         xmlXPathFreeObject(obj);
         return -1;
