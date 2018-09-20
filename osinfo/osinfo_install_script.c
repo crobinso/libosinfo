@@ -581,22 +581,22 @@ static xsltStylesheetPtr osinfo_install_script_load_template(const gchar *uri,
     /* Set up a parser context so we can catch the details of XML errors. */
     pctxt = xmlNewParserCtxt();
     if (!pctxt || !pctxt->sax) {
-        g_set_error(error, OSINFO_ERROR, 0, "%s",
-                    _("Unable to create XML parser context"));
+        g_set_error_literal(error, OSINFO_ERROR, 0,
+                            _("Unable to create XML parser context"));
         goto cleanup;
     }
 
     if (!(doc = xmlCtxtReadDoc(pctxt, BAD_CAST template, uri, NULL,
                                XML_PARSE_NOENT | XML_PARSE_NONET |
                                XML_PARSE_NOWARNING))) {
-        g_set_error(error, OSINFO_ERROR, 0, "%s",
-                    _("Unable to read XSL template"));
+        g_set_error_literal(error, OSINFO_ERROR, 0,
+                            _("Unable to read XSL template"));
         goto cleanup;
     }
 
     if (!(xslt = xsltParseStylesheetDoc(doc))) {
-        g_set_error(error, OSINFO_ERROR, 0, "%s",
-                    _("Unable to parse XSL template"));
+        g_set_error_literal(error, OSINFO_ERROR, 0,
+                            _("Unable to parse XSL template"));
         goto cleanup;
     }
 
@@ -823,17 +823,17 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
     int len;
 
     if (!(ctxt = xsltNewTransformContext(ss, doc))) {
-        g_set_error(error, OSINFO_ERROR, 0, "%s", _("Unable to create XSL transform context"));
+        g_set_error_literal(error, OSINFO_ERROR, 0, _("Unable to create XSL transform context"));
         goto cleanup;
     }
 
     if (!(docOut = xsltApplyStylesheetUser(ss, doc, NULL, NULL, NULL, ctxt))) {
-        g_set_error(error, OSINFO_ERROR, 0, "%s", _("Unable to apply XSL transform context"));
+        g_set_error_literal(error, OSINFO_ERROR, 0, _("Unable to apply XSL transform context"));
         goto cleanup;
     }
 
     if (xsltSaveResultToString(&xsltResult, &len, docOut, ss) < 0) {
-        g_set_error(error, OSINFO_ERROR, 0, "%s", _("Unable to convert XSL output to string"));
+        g_set_error_literal(error, OSINFO_ERROR, 0, _("Unable to convert XSL output to string"));
         goto cleanup;
     }
     ret = g_strdup((gchar *)xsltResult);
