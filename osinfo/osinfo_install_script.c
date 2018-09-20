@@ -656,6 +656,25 @@ osinfo_install_script_get_param_value_list(OsinfoInstallScript *script,
     return values;
 }
 
+static void propagate_libxml_error(GError **error, const char *format, ...) G_GNUC_PRINTF(2, 3);
+
+static void propagate_libxml_error(GError **error, const char *format, ...)
+{
+    xmlErrorPtr err = xmlGetLastError();
+    char *prefix;
+    va_list ap;
+
+    va_start(ap, format);
+    prefix = g_strdup_vprintf(format, ap);
+    va_end(ap);
+
+    if (err == NULL) {
+        g_set_error_literal(error, OSINFO_ERROR, 0, prefix);
+    } else {
+        g_set_error(error, OSINFO_ERROR, 0, "%s: %s", prefix, err->message);
+    }
+    g_free(prefix);
+}
 
 static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript *script,
                                                             OsinfoEntity *entity,
@@ -668,26 +687,17 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
     GList *tmp1;
 
     if (!(node = xmlNewDocNode(NULL, NULL, (xmlChar*)name, NULL))) {
-        xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, OSINFO_ERROR, 0,
-                    _("Unable to create XML node '%s': '%s'"),
-                    name, err ? err->message : "");
+        propagate_libxml_error(error, _("Unable to create XML node '%s'"), name);
         goto error;
     }
 
     if (!(data = xmlNewDocRawNode(NULL, NULL, (const xmlChar*)"id",
                                   (const xmlChar*)osinfo_entity_get_id(entity)))) {
-        xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, OSINFO_ERROR, 0,
-                    _("Unable to create XML node 'id': '%s'"),
-                    err ? err->message : "");
+        propagate_libxml_error(error, _("Unable to create XML node 'id'"));
         goto error;
     }
     if (!(xmlAddChild(node, data))) {
-        xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, OSINFO_ERROR, 0,
-                    _("Unable to add XML child '%s'"),
-                    err ? err->message : "");
+        propagate_libxml_error(error, _("Unable to add XML child"));
         goto error;
     }
     data = NULL;
@@ -708,17 +718,12 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
         while (tmp2) {
             if (!(data = xmlNewDocRawNode(NULL, NULL, (const xmlChar*)tmp1->data,
                                           (const xmlChar*)tmp2->data))) {
-                xmlErrorPtr err = xmlGetLastError();
-                g_set_error(error, OSINFO_ERROR, 0,
-                            _("Unable to create XML node '%s': '%s'"),
-                            (const gchar *)tmp1->data, err ? err->message : "");
+                propagate_libxml_error(error, _("Unable to create XML node '%s'"),
+                                       (const gchar *)tmp1->data);
                 goto error;
             }
             if (!(xmlAddChild(node, data))) {
-                xmlErrorPtr err = xmlGetLastError();
-                g_set_error(error, OSINFO_ERROR, 0,
-                            _("Unable to add XML child '%s'"),
-                            err ? err->message : "");
+                propagate_libxml_error(error, _("Unable to add XML child"));
                 goto error;
             }
             data = NULL;
@@ -764,8 +769,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
                                                            error)))
         goto error;
     if (!(xmlAddChild(root, node))) {
-        xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, OSINFO_ERROR, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
+        propagate_libxml_error(error, _("Unable to set XML root"));
         goto error;
     }
 
@@ -775,8 +779,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
                                                            error)))
         goto error;
     if (!(xmlAddChild(root, node))) {
-        xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, OSINFO_ERROR, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
+        propagate_libxml_error(error, _("Unable to set XML root"));
         goto error;
     }
 
@@ -787,8 +790,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
                                                                error)))
             goto error;
         if (!(xmlAddChild(root, node))) {
-            xmlErrorPtr err = xmlGetLastError();
-            g_set_error(error, OSINFO_ERROR, 0, _("Unable to set 'media' node: '%s'"), err ? err->message : "");
+            propagate_libxml_error(error, _("Unable to set 'media' node"));
             goto error;
         }
     }
@@ -799,8 +801,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
                                                            error)))
         goto error;
     if (!(xmlAddChild(root, node))) {
-        xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, OSINFO_ERROR, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
+        propagate_libxml_error(error, _("Unable to set XML root"));
         goto error;
     }
 
