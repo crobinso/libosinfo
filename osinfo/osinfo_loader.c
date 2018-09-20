@@ -313,14 +313,12 @@ osinfo_loader_doc(const char *xpath,
 
     if (!(buf = xmlBufferCreate())) {
         xmlXPathFreeObject(obj);
-        g_set_error(err, 0, 0, "%s",
-                    "Cannot allocate buffer");
+        OSINFO_LOADER_SET_ERROR(err, "Cannot allocate buffer");
         return NULL;
     }
     if (xmlNodeDump(buf, NULL, obj->nodesetval->nodeTab[0], 0, 1) < 0) {
         xmlXPathFreeObject(obj);
-        g_set_error(err, 0, 0, "%s",
-                    "Cannot format stylesheet");
+        OSINFO_LOADER_SET_ERROR(err, "Cannot format stylesheet");
     }
     ret = g_strdup((char *)buf->content);
 
