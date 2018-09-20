@@ -49,7 +49,7 @@ static gboolean handle_config(const gchar *option_name G_GNUC_UNUSED,
     gsize len;
 
     if (!(val = strchr(value, '='))) {
-        g_set_error(error, 0, 0,
+        g_set_error(error, OSINFO_ERROR, 0,
                     _("Expected configuration key=value"));
         return FALSE;
     }

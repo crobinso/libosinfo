@@ -581,7 +581,7 @@ static xsltStylesheetPtr osinfo_install_script_load_template(const gchar *uri,
     /* Set up a parser context so we can catch the details of XML errors. */
     pctxt = xmlNewParserCtxt();
     if (!pctxt || !pctxt->sax) {
-        g_set_error(error, 0, 0, "%s",
+        g_set_error(error, OSINFO_ERROR, 0, "%s",
                     _("Unable to create XML parser context"));
         goto cleanup;
     }
@@ -589,13 +589,13 @@ static xsltStylesheetPtr osinfo_install_script_load_template(const gchar *uri,
     if (!(doc = xmlCtxtReadDoc(pctxt, BAD_CAST template, uri, NULL,
                                XML_PARSE_NOENT | XML_PARSE_NONET |
                                XML_PARSE_NOWARNING))) {
-        g_set_error(error, 0, 0, "%s",
+        g_set_error(error, OSINFO_ERROR, 0, "%s",
                     _("Unable to read XSL template"));
         goto cleanup;
     }
 
     if (!(xslt = xsltParseStylesheetDoc(doc))) {
-        g_set_error(error, 0, 0, "%s",
+        g_set_error(error, OSINFO_ERROR, 0, "%s",
                     _("Unable to parse XSL template"));
         goto cleanup;
     }
@@ -669,7 +669,8 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
 
     if (!(node = xmlNewDocNode(NULL, NULL, (xmlChar*)name, NULL))) {
         xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, 0, 0, _("Unable to create XML node '%s': '%s'"),
+        g_set_error(error, OSINFO_ERROR, 0,
+                    _("Unable to create XML node '%s': '%s'"),
                     name, err ? err->message : "");
         goto error;
     }
@@ -677,13 +678,16 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
     if (!(data = xmlNewDocRawNode(NULL, NULL, (const xmlChar*)"id",
                                   (const xmlChar*)osinfo_entity_get_id(entity)))) {
         xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, 0, 0, _("Unable to create XML node 'id': '%s'"),
+        g_set_error(error, OSINFO_ERROR, 0,
+                    _("Unable to create XML node 'id': '%s'"),
                     err ? err->message : "");
         goto error;
     }
     if (!(xmlAddChild(node, data))) {
         xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, 0, 0, _("Unable to add XML child '%s'"), err ? err->message : "");
+        g_set_error(error, OSINFO_ERROR, 0,
+                    _("Unable to add XML child '%s'"),
+                    err ? err->message : "");
         goto error;
     }
     data = NULL;
@@ -705,13 +709,16 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
             if (!(data = xmlNewDocRawNode(NULL, NULL, (const xmlChar*)tmp1->data,
                                           (const xmlChar*)tmp2->data))) {
                 xmlErrorPtr err = xmlGetLastError();
-                g_set_error(error, 0, 0, _("Unable to create XML node '%s': '%s'"),
+                g_set_error(error, OSINFO_ERROR, 0,
+                            _("Unable to create XML node '%s': '%s'"),
                             (const gchar *)tmp1->data, err ? err->message : "");
                 goto error;
             }
             if (!(xmlAddChild(node, data))) {
                 xmlErrorPtr err = xmlGetLastError();
-                g_set_error(error, 0, 0, _("Unable to add XML child '%s'"), err ? err->message : "");
+                g_set_error(error, OSINFO_ERROR, 0,
+                            _("Unable to add XML child '%s'"),
+                            err ? err->message : "");
                 goto error;
             }
             data = NULL;
@@ -758,7 +765,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
         goto error;
     if (!(xmlAddChild(root, node))) {
         xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, 0, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
+        g_set_error(error, OSINFO_ERROR, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
         goto error;
     }
 
@@ -769,7 +776,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
         goto error;
     if (!(xmlAddChild(root, node))) {
         xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, 0, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
+        g_set_error(error, OSINFO_ERROR, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
         goto error;
     }
 
@@ -781,7 +788,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
             goto error;
         if (!(xmlAddChild(root, node))) {
             xmlErrorPtr err = xmlGetLastError();
-            g_set_error(error, 0, 0, _("Unable to set 'media' node: '%s'"), err ? err->message : "");
+            g_set_error(error, OSINFO_ERROR, 0, _("Unable to set 'media' node: '%s'"), err ? err->message : "");
             goto error;
         }
     }
@@ -793,7 +800,7 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
         goto error;
     if (!(xmlAddChild(root, node))) {
         xmlErrorPtr err = xmlGetLastError();
-        g_set_error(error, 0, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
+        g_set_error(error, OSINFO_ERROR, 0, _("Unable to set XML root '%s'"), err ? err->message : "");
         goto error;
     }
 
@@ -816,17 +823,17 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
     int len;
 
     if (!(ctxt = xsltNewTransformContext(ss, doc))) {
-        g_set_error(error, 0, 0, "%s", _("Unable to create XSL transform context"));
+        g_set_error(error, OSINFO_ERROR, 0, "%s", _("Unable to create XSL transform context"));
         goto cleanup;
     }
 
     if (!(docOut = xsltApplyStylesheetUser(ss, doc, NULL, NULL, NULL, ctxt))) {
-        g_set_error(error, 0, 0, "%s", _("Unable to apply XSL transform context"));
+        g_set_error(error, OSINFO_ERROR, 0, "%s", _("Unable to apply XSL transform context"));
         goto cleanup;
     }
 
     if (xsltSaveResultToString(&xsltResult, &len, docOut, ss) < 0) {
-        g_set_error(error, 0, 0, "%s", _("Unable to convert XSL output to string"));
+        g_set_error(error, OSINFO_ERROR, 0, "%s", _("Unable to convert XSL output to string"));
         goto cleanup;
     }
     ret = g_strdup((gchar *)xsltResult);

@@ -149,7 +149,7 @@ static gboolean toggle_fields(struct OsinfoLabel *labels,
             }
         }
         if (!found) {
-            g_set_error(error, 0, 0,
+            g_set_error(error, OSINFO_ERROR, 0,
                         _("Unknown property name %s"), fields[i]);
             goto cleanup;
         }
@@ -174,7 +174,7 @@ static gboolean build_filter(struct OsinfoLabel *labels,
     for (i = 0; i < argc; i++) {
         const gchar *tmp = strchr(argv[i], '=');
         if (!tmp) {
-            g_set_error(error, 0, 0, "%s", _("Syntax error in condition, expecting KEY=VALUE"));
+            g_set_error(error, OSINFO_ERROR, 0, "%s", _("Syntax error in condition, expecting KEY=VALUE"));
             goto cleanup;
         }
         gchar *key = g_strndup(argv[i], tmp-argv[i]);
@@ -187,7 +187,7 @@ static gboolean build_filter(struct OsinfoLabel *labels,
         }
 
         if (!found) {
-            g_set_error(error, 0, 0,
+            g_set_error(error, OSINFO_ERROR, 0,
                         _("Unknown property name %s"), key);
             goto cleanup;
         }
