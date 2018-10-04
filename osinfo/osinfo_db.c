@@ -37,7 +37,7 @@ G_DEFINE_TYPE(OsinfoDb, osinfo_db, G_TYPE_OBJECT);
 #define match_regex(pattern, str)                                       \
     (((pattern) == NULL) ||                                             \
      (((str) != NULL) &&                                                \
-      g_regex_match_simple((pattern), (str), 0, G_REGEX_MATCH_ANCHORED)))
+      g_regex_match_simple((pattern), (str), 0, 0)))
 
 static gchar *get_raw_lang(const char *volume_id, const gchar *regex_str)
 {
