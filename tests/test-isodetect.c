@@ -397,8 +397,10 @@ static void test_one(const gchar *vendor)
         g_test_message("checking OS %s for ISO %s",
                        info->shortid, info->filename);
         if (!matched) {
-            g_error("ISO %s was not matched by OS %s",
-                    info->filename, info->shortid);
+            g_printerr("ISO %s was not matched by OS %s\n/isodetect/%s: ",
+                       info->filename, info->shortid, vendor);
+            g_test_fail();
+            continue;
         }
 
         g_object_get(info->media, "os", &os, NULL);
@@ -418,6 +420,7 @@ int
 main(int argc, char *argv[])
 {
     g_test_init(&argc, &argv, NULL);
+    g_test_set_nonfatal_assertions();
 
     GList *vendors = load_vendors(NULL);
     GList *it;
