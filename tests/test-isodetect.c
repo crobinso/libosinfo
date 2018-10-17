@@ -389,8 +389,7 @@ static void test_one(const gchar *vendor)
 
     g_assert_nonnull(isos);
 
-    tmp = isos;
-    while (tmp) {
+    for (tmp = isos; tmp; tmp = tmp->next) {
         struct ISOInfo *info  = tmp->data;
         gboolean matched = osinfo_db_identify_media(db, info->media);
         OsinfoOs *os;
@@ -407,8 +406,6 @@ static void test_one(const gchar *vendor)
         g_assert_cmpstr(shortid, ==, info->shortid);
         g_object_unref(G_OBJECT(os));
         test_langs(info);
-
-        tmp = tmp->next;
     }
 
     g_list_foreach(isos, (GFunc)free_iso, NULL);
