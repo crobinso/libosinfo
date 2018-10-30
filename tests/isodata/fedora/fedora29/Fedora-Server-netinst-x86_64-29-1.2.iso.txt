@@ -11,7 +11,7 @@ Bibliographic File id:
 Volume set size is: 1
 Volume set sequence number is: 1
 Logical block size is: 2048
-Volume size is: 303858
+Volume size is: 303352
 El Torito VD version 1 found, boot catalog is in sector 44
 Joliet with UCS level 3 found
 Rock Ridge signatures version 1 found
@@ -26,4 +26,4 @@ Eltorito validation header:
         Load segment 0
         Sys type 0
         Nsect 4
-        Bootoff 48EC4 298692
+        Bootoff 48CC6 298182
