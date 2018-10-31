@@ -539,6 +539,9 @@ LIBOSINFO_1.3.0 {
 	osinfo_image_get_url;
 	osinfo_image_new;
 
+	osinfo_imagelist_get_type;
+	osinfo_imagelist_new;
+
 	osinfo_os_add_maximum_resources;
 	osinfo_os_get_all_device_links;
 	osinfo_os_get_maximum_resources;

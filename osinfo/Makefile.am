@@ -105,6 +105,7 @@ libosinfo_impl_include_HEADERS =		\
   osinfo_tree.h				\
   osinfo_treelist.h			\
   osinfo_image.h			\
+  osinfo_imagelist.h		\
   $(NULL)
 
 nodist_libosinfo_impl_include_HEADERS =	\
@@ -149,6 +150,7 @@ libosinfo_c_files =		\
   osinfo_tree.c				\
   osinfo_treelist.c			\
   osinfo_image.c			\
+  osinfo_imagelist.c		\
   osinfo_db.c				\
   osinfo_loader.c			\
   $(NULL)

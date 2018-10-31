@@ -66,6 +66,7 @@
 #include <osinfo/osinfo_os_variant.h>
 #include <osinfo/osinfo_os_variantlist.h>
 #include <osinfo/osinfo_image.h>
+#include <osinfo/osinfo_imagelist.h>
 #include <osinfo/osinfo_version.h>
 
 #endif
