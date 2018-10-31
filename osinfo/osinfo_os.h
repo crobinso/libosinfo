@@ -34,6 +34,8 @@
 #include <osinfo/osinfo_tree.h>
 #include <osinfo/osinfo_resources.h>
 #include <osinfo/osinfo_resourceslist.h>
+#include <osinfo/osinfo_image.h>
+#include <osinfo/osinfo_imagelist.h>
 
 #ifndef __OSINFO_OS_H__
 #define __OSINFO_OS_H__
@@ -117,6 +119,8 @@ OsinfoMediaList *osinfo_os_get_media_list(OsinfoOs *os);
 void osinfo_os_add_media(OsinfoOs *os, OsinfoMedia *media);
 OsinfoTreeList *osinfo_os_get_tree_list(OsinfoOs *os);
 void osinfo_os_add_tree(OsinfoOs *os, OsinfoTree *tree);
+OsinfoImageList *osinfo_os_get_image_list(OsinfoOs *os);
+void osinfo_os_add_image(OsinfoOs *os, OsinfoImage *image);
 OsinfoOsVariantList *osinfo_os_get_variant_list(OsinfoOs *os);
 void osinfo_os_add_variant(OsinfoOs *os, OsinfoOsVariant *variant);
 OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os);

@@ -54,6 +54,7 @@ struct _OsinfoOsPrivate
 
     OsinfoMediaList *medias;
     OsinfoTreeList *trees;
+    OsinfoImageList *images;
     OsinfoOsVariantList *variants;
     OsinfoResourcesList *minimum;
     OsinfoResourcesList *recommended;
@@ -119,6 +120,7 @@ osinfo_os_finalize(GObject *object)
     g_list_free(os->priv->deviceLinks);
     g_object_unref(os->priv->medias);
     g_object_unref(os->priv->trees);
+    g_object_unref(os->priv->images);
     g_object_unref(os->priv->variants);
     g_object_unref(os->priv->minimum);
     g_object_unref(os->priv->recommended);
@@ -185,6 +187,7 @@ osinfo_os_init(OsinfoOs *os)
     os->priv->deviceLinks = NULL;
     os->priv->medias = osinfo_medialist_new();
     os->priv->trees = osinfo_treelist_new();
+    os->priv->images = osinfo_imagelist_new();
     os->priv->variants = osinfo_os_variantlist_new();
     os->priv->minimum = osinfo_resourceslist_new();
     os->priv->recommended = osinfo_resourceslist_new();
@@ -674,6 +677,40 @@ void osinfo_os_add_tree(OsinfoOs *os, OsinfoTree *tree)
     g_return_if_fail(OSINFO_IS_TREE(tree));
 
     osinfo_list_add(OSINFO_LIST(os->priv->trees), OSINFO_ENTITY(tree));
+}
+
+/**
+ * osinfo_os_get_image_list:
+ * @os: an operating system
+ *
+ * Get all installed images associated with operating system @os.
+ *
+ * Returns: (transfer full): A list of images
+ */
+OsinfoImageList *osinfo_os_get_image_list(OsinfoOs *os)
+{
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    OsinfoImageList *newList = osinfo_imagelist_new();
+
+    osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->images));
+
+    return newList;
+}
+
+/**
+ * osinfo_os_add_image:
+ * @os: an operating system
+ * @image: (transfer none): the image to add
+ *
+ * Adds an installed image @image to operating system @os.
+ */
+void osinfo_os_add_image(OsinfoOs *os, OsinfoImage *image)
+{
+    g_return_if_fail(OSINFO_IS_OS(os));
+    g_return_if_fail(OSINFO_IS_IMAGE(image));
+
+    osinfo_list_add(OSINFO_LIST(os->priv->images), OSINFO_ENTITY(image));
 }
 
 /**
