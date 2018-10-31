@@ -1248,6 +1248,30 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
     return tree;
 }
 
+static OsinfoImage *osinfo_loader_image(OsinfoLoader *loader,
+                                        xmlXPathContextPtr ctxt,
+                                        xmlNodePtr root,
+                                        const gchar *id,
+                                        GError **err)
+{
+    const OsinfoEntityKey keys[] = {
+        { OSINFO_IMAGE_PROP_URL, G_TYPE_STRING },
+        { NULL, G_TYPE_INVALID }
+    };
+
+    gchar *arch = (gchar *)xmlGetProp(root,
+                                      BAD_CAST OSINFO_IMAGE_PROP_ARCHITECTURE);
+    gchar *format = (gchar *)xmlGetProp(root,
+                                        BAD_CAST OSINFO_IMAGE_PROP_FORMAT);
+    OsinfoImage *image = osinfo_image_new(id, arch, format);
+    xmlFree(arch);
+    xmlFree(format);
+
+    osinfo_loader_entity(loader, OSINFO_ENTITY(image), keys, ctxt, root, err);
+
+    return image;
+}
+
 static OsinfoOsVariant *osinfo_loader_os_variant(OsinfoLoader *loader,
                                                  xmlXPathContextPtr ctxt,
                                                  xmlNodePtr root,
@@ -1506,6 +1530,26 @@ static void osinfo_loader_os(OsinfoLoader *loader,
 
         osinfo_os_add_tree(os, tree);
         g_object_unref(G_OBJECT(tree));
+    }
+
+    g_free(nodes);
+
+    nnodes = osinfo_loader_nodeset("./image", loader, ctxt, &nodes, err);
+    if (error_is_set(err))
+        goto cleanup;
+
+    for (i = 0; i < nnodes; i++) {
+        xmlNodePtr saved = ctxt->node;
+        ctxt->node = nodes[i];
+        gchar *image_id = g_strdup_printf("%s:%u", id, i);
+        OsinfoImage *image = osinfo_loader_image(loader, ctxt, nodes[i], image_id, err);
+        g_free(image_id);
+        ctxt->node = saved;
+        if (error_is_set(err))
+            goto cleanup;
+
+        osinfo_os_add_image(os, image);
+        g_object_unref(G_OBJECT(image));
     }
 
     g_free(nodes);
