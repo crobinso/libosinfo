@@ -69,6 +69,7 @@ tests/test-platformlist
 tests/test-isodetect
 tests/test-mediauris
 tests/test-treeuris
+tests/test-imageuris
 tests/*.log
 tests/*.trs
 build/

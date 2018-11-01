@@ -26,6 +26,7 @@ if HAVE_CURL
 check_PROGRAMS += \
 	test-mediauris \
 	test-treeuris \
+	test-imageuris \
 	$(NULL)
 endif
 
@@ -112,6 +113,10 @@ test_mediauris_SOURCES = test-mediauris.c
 test_treeuris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
 test_treeuris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
 test_treeuris_SOURCES = test-treeuris.c
+
+test_imageuris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
+test_imageuris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
+test_imageuris_SOURCES = test-imageuris.c
 endif
 
 test_install_script_LDADD = $(COMMON_LDADD)
