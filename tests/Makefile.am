@@ -19,6 +19,7 @@ check_PROGRAMS = \
 	test-isodetect \
 	test-install-script \
 	test-image \
+	test-imagelist \
         $(NULL)
 
 if HAVE_CURL
@@ -120,6 +121,10 @@ test_install_script_SOURCES = test-install-script.c
 test_image_LDADD = $(COMMON_LDADD)
 test_image_CFLAGS = $(COMMON_CFLAGS)
 test_image_SOURCES = test-image.c
+
+test_imagelist_LDADD = $(COMMON_LDADD)
+test_imagelist_CFLAGS = $(COMMON_CFLAGS)
+test_imagelist_SOURCES = test-imagelist.c
 
 TESTS = $(check_PROGRAMS) \
 	$(NULL)
