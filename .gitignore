@@ -57,6 +57,7 @@ tests/test-devicelinklist
 tests/test-filter
 tests/test-hypervisorlist
 tests/test-install-script
+tests/test-image
 tests/test-loader
 tests/test-productfilter
 tests/test-oslist
