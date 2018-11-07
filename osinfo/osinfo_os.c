@@ -611,16 +611,20 @@ OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *pr
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     GList *scripts = osinfo_list_get_elements(OSINFO_LIST(os));
     GList *tmp = scripts;
+    OsinfoInstallScript *script = NULL;
 
     while (tmp) {
-        OsinfoInstallScript *script = tmp->data;
+        script = tmp->data;
         if (g_str_equal(profile, osinfo_install_script_get_profile(script)))
-            return script;
+            break;
 
         tmp = tmp->next;
+        script = NULL;
     }
 
-    return NULL;
+    g_list_free(scripts);
+
+    return script;
 }
 
 
