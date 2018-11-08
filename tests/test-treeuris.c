@@ -115,6 +115,7 @@ main(int argc, char *argv[])
     int ret;
 
     g_test_init(&argc, &argv, NULL);
+    g_test_set_nonfatal_assertions();
 
     g_test_add_func("/treeuris/uris", test_uris);
 
