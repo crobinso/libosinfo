@@ -388,8 +388,9 @@ static void get_all_device_links_cb(OsinfoProduct *product, gpointer user_data)
     g_return_if_fail(OSINFO_IS_OS(product));
 
     foreach_data = (struct GetAllDeviceLinksData *)user_data;
-    device_links = osinfo_os_get_device_links(OSINFO_OS(product),
-                                              foreach_data->filter);
+    device_links = osinfo_os_get_device_links_internal(OSINFO_OS(product),
+                                                       foreach_data->filter,
+                                                       TRUE);
     tmp_list = osinfo_list_new_union(OSINFO_LIST(foreach_data->device_links),
                                      OSINFO_LIST(device_links));
     g_object_unref(foreach_data->device_links);
