@@ -207,6 +207,21 @@ OsinfoOs *osinfo_os_new(const gchar *id)
 }
 
 
+static gboolean
+add_entity_to_list_check(OsinfoEntity *ent1, /* OsinfoDeviceLink */
+                         OsinfoEntity *ent2, /* OsinfoDevice or OsinfoDevice Link */
+                         OsinfoFilter *filter,
+                         gboolean include_removed)
+{
+    gboolean ret = FALSE;
+
+    if (filter == NULL || osinfo_filter_matches(filter, ent2))
+        ret = TRUE;
+
+    return ret;
+}
+
+
 static OsinfoDeviceList *
 osinfo_os_get_devices_internal(OsinfoOs *os,
                                OsinfoFilter *filter,
@@ -223,7 +238,11 @@ osinfo_os_get_devices_internal(OsinfoOs *os,
     while (tmp) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(tmp->data);
         OsinfoDevice *dev = osinfo_devicelink_get_target(devlink);
-        if (!filter || osinfo_filter_matches(filter, OSINFO_ENTITY(dev)))
+
+        if (add_entity_to_list_check(OSINFO_ENTITY(devlink),
+                                     OSINFO_ENTITY(dev),
+                                     filter,
+                                     include_removed))
             osinfo_list_add(OSINFO_LIST(newList), OSINFO_ENTITY(dev));
 
         tmp = tmp->next;
@@ -348,7 +367,10 @@ osinfo_os_get_device_links_internal(OsinfoOs *os,
     while (tmp) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(tmp->data);
 
-        if (!filter || osinfo_filter_matches(filter, OSINFO_ENTITY(devlink)))
+        if (add_entity_to_list_check(OSINFO_ENTITY(devlink),
+                                     OSINFO_ENTITY(devlink),
+                                     filter,
+                                     include_removed))
             osinfo_list_add(OSINFO_LIST(newList), OSINFO_ENTITY(devlink));
 
         tmp = tmp->next;
