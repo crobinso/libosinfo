@@ -207,16 +207,10 @@ OsinfoOs *osinfo_os_new(const gchar *id)
 }
 
 
-/**
- * osinfo_os_get_devices:
- * @os: an operating system
- * @filter: (allow-none)(transfer none): an optional device property filter
- *
- * Get all devices matching a given filter
- *
- * Returns: (transfer full): A list of devices
- */
-OsinfoDeviceList *osinfo_os_get_devices(OsinfoOs *os, OsinfoFilter *filter)
+static OsinfoDeviceList *
+osinfo_os_get_devices_internal(OsinfoOs *os,
+                               OsinfoFilter *filter,
+                               gboolean include_removed)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
@@ -236,6 +230,21 @@ OsinfoDeviceList *osinfo_os_get_devices(OsinfoOs *os, OsinfoFilter *filter)
     }
 
     return newList;
+}
+
+
+/**
+ * osinfo_os_get_devices:
+ * @os: an operating system
+ * @filter: (allow-none)(transfer none): an optional device property filter
+ *
+ * Get all devices matching a given filter
+ *
+ * Returns: (transfer full): A list of devices
+ */
+OsinfoDeviceList *osinfo_os_get_devices(OsinfoOs *os, OsinfoFilter *filter)
+{
+    return osinfo_os_get_devices_internal(os, filter, FALSE);
 }
 
 struct GetAllDevicesData {
