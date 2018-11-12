@@ -53,6 +53,7 @@ tests/test-hypervisor
 tests/test-list
 tests/test-db
 tests/test-devicelist
+tests/test-devicelinklist
 tests/test-filter
 tests/test-hypervisorlist
 tests/test-install-script

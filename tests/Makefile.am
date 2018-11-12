@@ -6,6 +6,7 @@ check_PROGRAMS = \
 	test-device \
 	test-list \
 	test-devicelist \
+	test-devicelinklist \
 	test-filter \
 	test-product \
 	test-os \
@@ -76,6 +77,10 @@ test_list_SOURCES = test-list.c
 test_devicelist_LDADD = $(COMMON_LDADD)
 test_devicelist_CFLAGS = $(COMMON_CFLAGS)
 test_devicelist_SOURCES = test-devicelist.c
+
+test_devicelinklist_LDADD = $(COMMON_LDADD)
+test_devicelinklist_CFLAGS = $(COMMON_CFLAGS)
+test_devicelinklist_SOURCES = test-devicelinklist.c
 
 test_platformlist_LDADD = $(COMMON_LDADD)
 test_platformlist_CFLAGS = $(COMMON_CFLAGS)
