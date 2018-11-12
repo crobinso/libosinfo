@@ -214,9 +214,18 @@ add_entity_to_list_check(OsinfoEntity *ent1, /* OsinfoDeviceLink */
                          gboolean include_removed)
 {
     gboolean ret = FALSE;
+    gboolean removed = FALSE;
 
     if (filter == NULL || osinfo_filter_matches(filter, ent2))
         ret = TRUE;
+
+    if (osinfo_entity_get_param_value_boolean_with_default(ent1,
+                                                           OSINFO_DEVICELINK_PROP_REMOVED,
+                                                           FALSE))
+        removed = TRUE;
+
+    if (ret && removed && !include_removed)
+        ret = FALSE;
 
     return ret;
 }
@@ -290,6 +299,12 @@ static void get_all_devices_cb(OsinfoProduct *product, gpointer user_data)
 }
 
 
+static OsinfoDeviceLinkList *
+osinfo_os_get_all_device_links_internal(OsinfoOs *os,
+                                        OsinfoFilter *filter,
+                                        gboolean include_removed);
+
+
 /**
  * osinfo_os_get_all_devices:
  * @os: an operating system
@@ -307,6 +322,13 @@ OsinfoDeviceList *osinfo_os_get_all_devices(OsinfoOs *os, OsinfoFilter *filter)
         .filter = filter,
         .devices = osinfo_devicelist_new()
     };
+    OsinfoDeviceLinkList *devlinks;
+    OsinfoDeviceLinkList *removed_devlinks;
+    OsinfoDeviceList *removed_devs;
+    OsinfoDeviceList *new_list;
+    OsinfoFilter *removed_filter;
+    GList *list, *removed_list;
+    GList *it;
 
     osinfo_product_foreach_related(OSINFO_PRODUCT(os),
                                    OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
@@ -314,7 +336,39 @@ OsinfoDeviceList *osinfo_os_get_all_devices(OsinfoOs *os, OsinfoFilter *filter)
                                    get_all_devices_cb,
                                    &foreach_data);
 
-    return foreach_data.devices;
+    devlinks = osinfo_os_get_all_device_links_internal(os, filter, TRUE);
+
+    removed_filter = osinfo_filter_new();
+    osinfo_filter_add_constraint(removed_filter,
+                                 OSINFO_DEVICELINK_PROP_REMOVED,
+                                 "true");
+
+    removed_devlinks = OSINFO_DEVICELINKLIST
+        (osinfo_list_new_filtered(OSINFO_LIST(devlinks), removed_filter));
+
+    removed_devs = osinfo_devicelinklist_get_devices(removed_devlinks, NULL);
+
+    list = osinfo_list_get_elements(OSINFO_LIST(foreach_data.devices));
+    removed_list = osinfo_list_get_elements(OSINFO_LIST(removed_devs));
+
+    new_list = osinfo_devicelist_new();
+    for (it = list; it != NULL; it = it->next) {
+        OsinfoDevice *dev = OSINFO_DEVICE(it->data);
+        if (g_list_find(removed_list, dev))
+            continue;
+
+        osinfo_list_add(OSINFO_LIST(new_list), OSINFO_ENTITY(dev));
+    }
+
+    g_list_free(list);
+    g_list_free(removed_list);
+    g_object_unref(devlinks);
+    g_object_unref(removed_devlinks);
+    g_object_unref(removed_devs);
+    g_object_unref(removed_filter);
+    g_object_unref(foreach_data.devices);
+
+    return new_list;
 }
 
 /**
@@ -429,6 +483,8 @@ osinfo_os_get_all_device_links_internal(OsinfoOs *os,
         .filter = filter,
         .device_links = osinfo_devicelinklist_new()
     };
+    OsinfoDeviceLinkList *devlinks;
+    GList *list, *it;
 
     osinfo_product_foreach_related(OSINFO_PRODUCT(os),
                                    OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
@@ -436,7 +492,27 @@ osinfo_os_get_all_device_links_internal(OsinfoOs *os,
                                    get_all_device_links_cb,
                                    &foreach_data);
 
-    return foreach_data.device_links;
+    if (include_removed)
+        return foreach_data.device_links;
+
+    devlinks = osinfo_devicelinklist_new();
+
+    list = osinfo_list_get_elements(OSINFO_LIST(foreach_data.device_links));
+    for (it = list; it != NULL; it = it->next) {
+        OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(it->data);
+
+        if (osinfo_entity_get_param_value_boolean_with_default(OSINFO_ENTITY(devlink),
+                                                               OSINFO_DEVICELINK_PROP_REMOVED,
+                                                               FALSE))
+            continue;
+
+        osinfo_list_add(OSINFO_LIST(devlinks), OSINFO_ENTITY(devlink));
+    }
+
+    g_object_unref(foreach_data.device_links);
+    g_list_free(list);
+
+    return devlinks;
 }
 
 /**
