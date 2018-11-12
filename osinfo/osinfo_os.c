@@ -260,8 +260,9 @@ static void get_all_devices_cb(OsinfoProduct *product, gpointer user_data)
 
     g_return_if_fail(OSINFO_IS_OS(product));
 
-    devices = osinfo_os_get_devices(OSINFO_OS(product),
-                                    foreach_data->filter);
+    devices = osinfo_os_get_devices_internal(OSINFO_OS(product),
+                                             foreach_data->filter,
+                                             TRUE);
     tmp_list = osinfo_list_new_union(OSINFO_LIST(foreach_data->devices),
                                      OSINFO_LIST(devices));
     g_object_unref(foreach_data->devices);
