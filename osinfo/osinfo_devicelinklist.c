@@ -180,8 +180,10 @@ OsinfoDeviceList *osinfo_devicelinklist_get_devices(OsinfoDeviceLinkList *list,
     int i;
     for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(list)); i++) {
         OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(list), i);
-        if (!filter || osinfo_filter_matches(filter, ent))
-            osinfo_list_add(OSINFO_LIST(newList), ent);
+        if (!filter || osinfo_filter_matches(filter, ent)) {
+            OsinfoDevice *dev = osinfo_devicelink_get_target(OSINFO_DEVICELINK(ent));
+            osinfo_list_add(OSINFO_LIST(newList), OSINFO_ENTITY(dev));
+        }
     }
     return newList;
 }
