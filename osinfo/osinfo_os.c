@@ -330,17 +330,11 @@ OsinfoDeviceList *osinfo_os_get_devices_by_property(OsinfoOs *os,
     return devices;
 }
 
-/**
- * osinfo_os_get_device_links:
- * @os: an operating system
- * @filter: (allow-none)(transfer none): an optional device property filter
- *
- * Get all devices matching a given filter. The filter
- * matches against the links, not the devices.
- *
- * Returns: (transfer full): A list of device links
- */
-OsinfoDeviceLinkList *osinfo_os_get_device_links(OsinfoOs *os, OsinfoFilter *filter)
+
+static OsinfoDeviceLinkList *
+osinfo_os_get_device_links_internal(OsinfoOs *os,
+                                    OsinfoFilter *filter,
+                                    gboolean include_removed)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
@@ -360,6 +354,22 @@ OsinfoDeviceLinkList *osinfo_os_get_device_links(OsinfoOs *os, OsinfoFilter *fil
     }
 
     return newList;
+}
+
+
+/**
+ * osinfo_os_get_device_links:
+ * @os: an operating system
+ * @filter: (allow-none)(transfer none): an optional device property filter
+ *
+ * Get all devices matching a given filter. The filter
+ * matches against the links, not the devices.
+ *
+ * Returns: (transfer full): A list of device links
+ */
+OsinfoDeviceLinkList *osinfo_os_get_device_links(OsinfoOs *os, OsinfoFilter *filter)
+{
+    return osinfo_os_get_device_links_internal(os, filter, FALSE);
 }
 
 
