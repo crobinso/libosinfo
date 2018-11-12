@@ -45,6 +45,7 @@ typedef struct _OsinfoDeviceLinkClass   OsinfoDeviceLinkClass;
 typedef struct _OsinfoDeviceLinkPrivate OsinfoDeviceLinkPrivate;
 
 #define OSINFO_DEVICELINK_PROP_DRIVER   "driver"
+#define OSINFO_DEVICELINK_PROP_REMOVED  "removed"
 
 /* object */
 struct _OsinfoDeviceLink
