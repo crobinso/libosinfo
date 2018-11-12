@@ -396,18 +396,10 @@ static void get_all_device_links_cb(OsinfoProduct *product, gpointer user_data)
     foreach_data->device_links = OSINFO_DEVICELINKLIST(tmp_list);
 }
 
-/**
- * osinfo_os_get_all_device_links:
- * @os: an operating system
- * @filter: (allow-none)(transfer none): an optional device property filter
- *
- * Get all devicelinks matching a given filter but unlike
- * osinfo_os_get_device_links this function also retrieves devices from all
- * derived and cloned operating systems.
- *
- * Returns: (transfer full): A list of OsinfoDeviceLink
- */
-OsinfoDeviceLinkList *osinfo_os_get_all_device_links(OsinfoOs *os, OsinfoFilter *filter)
+static OsinfoDeviceLinkList *
+osinfo_os_get_all_device_links_internal(OsinfoOs *os,
+                                        OsinfoFilter *filter,
+                                        gboolean include_removed)
 {
     struct GetAllDeviceLinksData foreach_data = {
         .filter = filter,
@@ -421,6 +413,22 @@ OsinfoDeviceLinkList *osinfo_os_get_all_device_links(OsinfoOs *os, OsinfoFilter 
                                    &foreach_data);
 
     return foreach_data.device_links;
+}
+
+/**
+ * osinfo_os_get_all_device_links:
+ * @os: an operating system
+ * @filter: (allow-none)(transfer none): an optional device property filter
+ *
+ * Get all devicelinks matching a given filter but unlike
+ * osinfo_os_get_device_links this function also retrieves devices from all
+ * derived and cloned operating systems.
+ *
+ * Returns: (transfer full): A list of OsinfoDeviceLink
+ */
+OsinfoDeviceLinkList *osinfo_os_get_all_device_links(OsinfoOs *os, OsinfoFilter *filter)
+{
+    return osinfo_os_get_all_device_links_internal(os, filter, FALSE);
 }
 
 /**
