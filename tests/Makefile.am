@@ -17,7 +17,6 @@ check_PROGRAMS = \
 	test-loader \
 	test-isodetect \
 	test-install-script \
-	test-os-resources \
         $(NULL)
 
 if HAVE_CURL
@@ -111,10 +110,6 @@ endif
 test_install_script_LDADD = $(COMMON_LDADD)
 test_install_script_CFLAGS = $(COMMON_CFLAGS)
 test_install_script_SOURCES = test-install-script.c
-
-test_os_resources_LDADD = $(COMMON_LDADD)
-test_os_resources_CFLAGS = $(COMMON_CFLAGS)
-test_os_resources_SOURCES = test-os-resources.c
 
 TESTS = $(check_PROGRAMS) \
 	$(NULL)
