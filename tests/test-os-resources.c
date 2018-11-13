@@ -91,7 +91,7 @@ test_minimum_recommended_resources(void)
     oses = osinfo_list_get_elements(OSINFO_LIST(oslist));
 
     for (oses_it = oses; oses_it != NULL; oses_it = oses_it->next) {
-        OsinfoOs *os = oses->data;
+        OsinfoOs *os = oses_it->data;
         OsinfoResourcesList *minimum_list, *recommended_list;
         GList *minimum_resources, *recommended_resources;
         GList *resources_it;
