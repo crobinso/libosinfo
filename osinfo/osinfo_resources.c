@@ -30,6 +30,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
+#include "osinfo_resources_private.h"
 
 G_DEFINE_TYPE(OsinfoResources, osinfo_resources, OSINFO_TYPE_ENTITY);
 
@@ -59,7 +60,7 @@ enum {
 
 struct _OsinfoResourcesPrivate
 {
-    gboolean unused;
+    gboolean inherit;
 };
 
 static void
@@ -341,6 +342,20 @@ gint64 osinfo_resources_get_storage(OsinfoResources *resources)
 }
 
 /**
+ * osinfo_resources_get_inherit
+ * @resources: an #OsinfoResources instance
+ *
+ * Returns whether its values are inherited
+ *
+ * Mind that this method is *private*!
+ */
+gboolean osinfo_resources_get_inherit(OsinfoResources *resources)
+{
+    g_return_val_if_fail(OSINFO_IS_RESOURCES(resources), FALSE);
+    return resources->priv->inherit;
+}
+
+/**
  * osinfo_resources_set_n_cpus:
  * @resources: an #OsinfoResources instance
  * @n_cpus: the number of CPUs
@@ -394,6 +409,22 @@ void osinfo_resources_set_storage(OsinfoResources *resources, gint64 storage)
     osinfo_entity_set_param_int64(OSINFO_ENTITY(resources),
                                   OSINFO_RESOURCES_PROP_STORAGE,
                                   storage);
+}
+
+/**
+ * osinfo_resources_set_inherit
+ * @resources: an #OsinfoResources instance
+ * @inherit: whether its values are inherited
+ *
+ * Sets whether the resources values are inherited
+ *
+ * Mind that this method is *private*!
+ */
+void osinfo_resources_set_inherit(OsinfoResources *resources, gboolean inherit)
+{
+    g_return_if_fail(OSINFO_IS_RESOURCES(resources));
+
+    resources->priv->inherit = inherit;
 }
 
 /*
