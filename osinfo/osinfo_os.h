@@ -120,8 +120,10 @@ OsinfoOsVariantList *osinfo_os_get_variant_list(OsinfoOs *os);
 void osinfo_os_add_variant(OsinfoOs *os, OsinfoOsVariant *variant);
 OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os);
 OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os);
+OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os);
 void osinfo_os_add_minimum_resources(OsinfoOs *os, OsinfoResources *resources);
 void osinfo_os_add_recommended_resources(OsinfoOs *os, OsinfoResources *resources);
+void osinfo_os_add_maximum_resources(OsinfoOs *os, OsinfoResources *resources);
 
 OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *profile);
 OsinfoInstallScriptList *osinfo_os_get_install_script_list(OsinfoOs *os);

@@ -55,6 +55,7 @@ struct _OsinfoOsPrivate
     OsinfoOsVariantList *variants;
     OsinfoResourcesList *minimum;
     OsinfoResourcesList *recommended;
+    OsinfoResourcesList *maximum;
 
     OsinfoInstallScriptList *scripts;
 
@@ -119,6 +120,7 @@ osinfo_os_finalize(GObject *object)
     g_object_unref(os->priv->variants);
     g_object_unref(os->priv->minimum);
     g_object_unref(os->priv->recommended);
+    g_object_unref(os->priv->maximum);
 
     g_object_unref(os->priv->scripts);
 
@@ -184,6 +186,7 @@ osinfo_os_init(OsinfoOs *os)
     os->priv->variants = osinfo_os_variantlist_new();
     os->priv->minimum = osinfo_resourceslist_new();
     os->priv->recommended = osinfo_resourceslist_new();
+    os->priv->maximum = osinfo_resourceslist_new();
     os->priv->scripts = osinfo_install_scriptlist_new();
     os->priv->device_drivers = osinfo_device_driverlist_new();
 }
@@ -568,6 +571,26 @@ OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
 }
 
 /**
+ * osinfo_os_get_maximum_resources:
+ * @os: an operating system
+ *
+ * Get the list of maximum resources for the operating system @os.
+ *
+ * Returns: (transfer full): A list of resources
+ */
+OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
+{
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+
+    osinfo_list_add_all(OSINFO_LIST(newList),
+                        OSINFO_LIST(os->priv->maximum));
+
+    return newList;
+}
+
+/**
  * osinfo_os_add_minimum_resources:
  * @os: an operating system
  * @resources: (transfer none): the resources to add
@@ -596,6 +619,23 @@ void osinfo_os_add_recommended_resources(OsinfoOs *os,
     g_return_if_fail(OSINFO_IS_RESOURCES(resources));
 
     osinfo_list_add(OSINFO_LIST(os->priv->recommended),
+                    OSINFO_ENTITY(resources));
+}
+
+/**
+ * osinfo_os_add_maximum_resources:
+ * @os: an operating system
+ * @resources: (transfer none): the resources to add
+ *
+ * Adds @resources to list of maximum resources of operating system @os.
+ */
+void osinfo_os_add_maximum_resources(OsinfoOs *os,
+                                     OsinfoResources *resources)
+{
+    g_return_if_fail(OSINFO_IS_OS(os));
+    g_return_if_fail(OSINFO_IS_RESOURCES(resources));
+
+    osinfo_list_add(OSINFO_LIST(os->priv->maximum),
                     OSINFO_ENTITY(resources));
 }
 
