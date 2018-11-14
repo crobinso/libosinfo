@@ -28,6 +28,7 @@
 #include "osinfo_media_private.h"
 #include "osinfo/osinfo_product_private.h"
 #include "osinfo/osinfo_os_private.h"
+#include "osinfo/osinfo_resources_private.h"
 #include <glib/gi18n-lib.h>
 
 G_DEFINE_TYPE(OsinfoOs, osinfo_os, OSINFO_TYPE_PRODUCT);
@@ -731,6 +732,104 @@ osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
     return newList;
 }
 
+struct GetAllResourcesData {
+    OsinfoOs *os;
+    OsinfoResourcesList *resourceslist;
+    OsinfoResourcesList *(*get_resourceslist)(OsinfoOs *);
+};
+
+static void get_all_resources_cb(OsinfoProduct *product, gpointer user_data)
+{
+    OsinfoResourcesList *resourceslist;
+    struct GetAllResourcesData *foreach_data = (struct GetAllResourcesData *)user_data;
+    gint original_resourceslist_len;
+    gint resourceslist_len;
+
+    g_return_if_fail(OSINFO_IS_OS(product));
+
+    if (OSINFO_OS(product) == foreach_data->os)
+        return;
+
+    original_resourceslist_len = osinfo_list_get_length(OSINFO_LIST(foreach_data->resourceslist));
+
+    resourceslist = foreach_data->get_resourceslist(OSINFO_OS(product));
+    resourceslist_len = osinfo_list_get_length(OSINFO_LIST(resourceslist));
+
+    for (int i = 0; i < original_resourceslist_len; i++) {
+        OsinfoResources *original_resources;
+        const gchar *original_arch;
+        gint original_n_cpus;
+        gint64 original_cpu;
+        gint64 original_ram;
+        gint64 original_storage;
+
+        original_resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(foreach_data->resourceslist), i));
+
+        if (!osinfo_resources_get_inherit(original_resources))
+            continue;
+
+        original_arch = osinfo_resources_get_architecture(original_resources);
+        original_n_cpus = osinfo_resources_get_n_cpus(original_resources);
+        original_cpu = osinfo_resources_get_cpu(original_resources);
+        original_ram = osinfo_resources_get_ram(original_resources);
+        original_storage = osinfo_resources_get_storage(original_resources);
+
+        for (int j = 0; j < resourceslist_len; j++) {
+            OsinfoResources *resources;
+            const gchar *arch;
+            gint n_cpus;
+            gint64 cpu;
+            gint64 ram;
+            gint64 storage;
+
+            resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(resourceslist), j));
+            arch = osinfo_resources_get_architecture(resources);
+            n_cpus = osinfo_resources_get_n_cpus(resources);
+            cpu = osinfo_resources_get_cpu(resources);
+            ram = osinfo_resources_get_ram(resources);
+            storage = osinfo_resources_get_storage(resources);
+
+            if (!g_str_equal(original_arch, arch))
+                continue;
+
+            if (original_n_cpus == -1)
+                osinfo_resources_set_n_cpus(original_resources, n_cpus);
+
+            if (original_cpu == -1)
+                osinfo_resources_set_cpu(original_resources, cpu);
+
+            if (original_ram == -1)
+                osinfo_resources_set_ram(original_resources, ram);
+
+            if (original_storage == -1)
+                osinfo_resources_set_storage(original_resources, storage);
+        }
+    }
+
+    g_object_unref(resourceslist);
+}
+
+
+static OsinfoResourcesList *
+osinfo_os_get_resources_internal(OsinfoOs *os,
+                                 OsinfoResourcesList *(*get_resourceslist)(OsinfoOs *))
+{
+    struct GetAllResourcesData foreach_data = {
+        .os = os,
+        .resourceslist = get_resourceslist(os),
+        .get_resourceslist = get_resourceslist
+    };
+
+    osinfo_product_foreach_related(OSINFO_PRODUCT(os),
+                                   OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
+                                   OSINFO_PRODUCT_FOREACH_FLAG_CLONES,
+                                   get_all_resources_cb,
+                                   &foreach_data);
+
+    return foreach_data.resourceslist;
+}
+
+
 /**
  * osinfo_os_get_minimum_resources:
  * @os: an operating system
@@ -741,7 +840,8 @@ osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
  */
 OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
 {
-    return osinfo_os_get_minimum_resources_without_inheritance(os);
+    return osinfo_os_get_resources_internal
+            (os, osinfo_os_get_minimum_resources_without_inheritance);
 }
 
 /**
@@ -797,7 +897,9 @@ OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
  */
 OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
 {
-    return osinfo_os_get_recommended_resources_without_inheritance(os);
+    return osinfo_os_get_resources_internal
+            (os, osinfo_os_get_recommended_resources_without_inheritance);
+
 }
 
 /**
