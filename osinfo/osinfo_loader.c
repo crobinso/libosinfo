@@ -38,6 +38,7 @@
 #include "ignore-value.h"
 #include "osinfo_install_script_private.h"
 #include "osinfo_device_driver_private.h"
+#include "osinfo_resources_private.h"
 
 #ifndef USB_IDS
 #define USB_IDS PKG_DATA_DIR "/usb.ids"
@@ -1278,13 +1279,17 @@ static OsinfoResources *osinfo_loader_resources(OsinfoLoader *loader,
     guint i;
 
     gchar *arch = (gchar *)xmlGetProp(root, BAD_CAST "arch");
+    gchar *inherit_str = (gchar *)xmlGetProp(root, BAD_CAST "inherit");
     gchar *node_path = g_strjoin("/", ".", name, "*", NULL);
     gint nnodes = osinfo_loader_nodeset(node_path, loader, ctxt, &nodes, err);
+    gboolean inherit = inherit_str != NULL && g_str_equal(inherit_str, "true");
     g_free(node_path);
-    if (error_is_set(err) || nnodes < 1)
+    g_free(inherit_str);
+    if (error_is_set(err) || (!inherit && nnodes < 1))
         goto EXIT;
 
     resources = osinfo_resources_new(id, arch);
+    osinfo_resources_set_inherit(resources, inherit);
 
     for (i = 0; i < nnodes; i++) {
         if (!nodes[i]->children ||
