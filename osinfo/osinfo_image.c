@@ -56,6 +56,7 @@ enum {
     PROP_ARCHITECTURE,
     PROP_FORMAT,
     PROP_URL,
+    PROP_CLOUD_INIT,
 };
 
 static void
@@ -77,6 +78,10 @@ osinfo_image_get_property(GObject *object,
 
     case PROP_URL:
         g_value_set_string(value, osinfo_image_get_url(image));
+        break;
+
+    case PROP_CLOUD_INIT:
+        g_value_set_boolean(value, osinfo_image_get_cloud_init(image));
         break;
 
     default:
@@ -111,6 +116,12 @@ osinfo_image_set_property(GObject      *object,
         osinfo_entity_set_param(OSINFO_ENTITY(image),
                                 OSINFO_IMAGE_PROP_URL,
                                 g_value_get_string(value));
+        break;
+
+    case PROP_CLOUD_INIT:
+        osinfo_entity_set_param_boolean(OSINFO_ENTITY(image),
+                                        OSINFO_IMAGE_PROP_CLOUD_INIT,
+                                        g_value_get_boolean(value));
         break;
 
     default:
@@ -240,6 +251,21 @@ const gchar *osinfo_image_get_url(OsinfoImage *image)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(image),
                                          OSINFO_IMAGE_PROP_URL);
+}
+
+/**
+ * osinfo_image_get_cloud_init:
+ * @image: an #OsinfoImage instance
+ *
+ * Whether @image supports cloud init customizations
+ *
+ * Returns: #TRUE if @image supports cloud init customizations, #FALSE
+ * otherwise.
+ */
+gboolean osinfo_image_get_cloud_init(OsinfoImage *image)
+{
+    return osinfo_entity_get_param_value_boolean_with_default
+            (OSINFO_ENTITY(image), OSINFO_IMAGE_PROP_CLOUD_INIT, FALSE);
 }
 
 /*

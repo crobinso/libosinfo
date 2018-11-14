@@ -534,6 +534,7 @@ LIBOSINFO_1.3.0 {
 	osinfo_error_quark;
 
 	osinfo_image_get_architecture;
+	osinfo_image_get_cloud_init;
 	osinfo_image_get_format;
 	osinfo_image_get_type;
 	osinfo_image_get_url;

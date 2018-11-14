@@ -1263,11 +1263,20 @@ static OsinfoImage *osinfo_loader_image(OsinfoLoader *loader,
                                       BAD_CAST OSINFO_IMAGE_PROP_ARCHITECTURE);
     gchar *format = (gchar *)xmlGetProp(root,
                                         BAD_CAST OSINFO_IMAGE_PROP_FORMAT);
+    gchar *cloud_init = (gchar *)xmlGetProp(root,
+                                            BAD_CAST OSINFO_IMAGE_PROP_CLOUD_INIT);
     OsinfoImage *image = osinfo_image_new(id, arch, format);
     xmlFree(arch);
     xmlFree(format);
 
     osinfo_loader_entity(loader, OSINFO_ENTITY(image), keys, ctxt, root, err);
+    if (cloud_init) {
+        osinfo_entity_set_param(OSINFO_ENTITY(image),
+                                OSINFO_IMAGE_PROP_CLOUD_INIT,
+                                (gchar *)cloud_init);
+
+        xmlFree(cloud_init);
+    }
 
     return image;
 }

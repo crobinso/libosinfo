@@ -41,6 +41,12 @@ test_basic(void)
     g_assert_cmpstr(osinfo_image_get_format(image), ==, FORMAT);
     g_assert_cmpstr(osinfo_image_get_url(image), ==, URL);
 
+    g_assert_false(osinfo_image_get_cloud_init(image));
+    osinfo_entity_set_param_boolean(OSINFO_ENTITY(image),
+                                    OSINFO_IMAGE_PROP_CLOUD_INIT,
+                                    TRUE);
+    g_assert_true(osinfo_image_get_cloud_init(image));
+
     g_object_unref(image);
 }
 
