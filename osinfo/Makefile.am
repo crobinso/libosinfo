@@ -151,6 +151,7 @@ libosinfo_private_header_files =	\
   osinfo_product_private.h		\
   osinfo_media_private.h		\
   osinfo_resources_private.h		\
+  osinfo_os_private.h			\
   ignore-value.h			\
   $(NULL)
 

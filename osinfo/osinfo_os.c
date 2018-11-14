@@ -27,6 +27,7 @@
 #include <osinfo/osinfo.h>
 #include "osinfo_media_private.h"
 #include "osinfo/osinfo_product_private.h"
+#include "osinfo/osinfo_os_private.h"
 #include <glib/gi18n-lib.h>
 
 G_DEFINE_TYPE(OsinfoOs, osinfo_os, OSINFO_TYPE_PRODUCT);
@@ -709,14 +710,17 @@ void osinfo_os_add_variant(OsinfoOs *os, OsinfoOsVariant *variant)
 }
 
 /**
- * osinfo_os_get_minimum_resources:
+ * osinfo_os_get_minimum_resources_without_inheritance:
  * @os: an operating system
  *
  * Get the list of minimum required resources for the operating system @os.
  *
+ * Mind that this method is *private*!
+ *
  * Returns: (transfer full): A list of resources
  */
-OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
+OsinfoResourcesList *
+osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
@@ -728,14 +732,30 @@ OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
 }
 
 /**
- * osinfo_os_get_recommended_resources:
+ * osinfo_os_get_minimum_resources:
+ * @os: an operating system
+ *
+ * Get the list of minimum required resources for the operating system @os.
+ *
+ * Returns: (transfer full): A list of resources
+ */
+OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
+{
+    return osinfo_os_get_minimum_resources_without_inheritance(os);
+}
+
+/**
+ * osinfo_os_get_recommended_resources_without_inheritance:
  * @os: an operating system
  *
  * Get the list of recommended resources for the operating system @os.
  *
+ * Mind that this methos is *private!
+ *
  * Returns: (transfer full): A list of resources
  */
-OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
+OsinfoResourcesList *
+osinfo_os_get_recommended_resources_without_inheritance(OsinfoOs *os)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
@@ -765,6 +785,19 @@ OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
                         OSINFO_LIST(os->priv->maximum));
 
     return newList;
+}
+
+/**
+ * osinfo_os_get_recommended_resources:
+ * @os: an operating system
+ *
+ * Get the list of recommended resources for the operating system @os.
+ *
+ * Returns: (transfer full): A list of resources
+ */
+OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
+{
+    return osinfo_os_get_recommended_resources_without_inheritance(os);
 }
 
 /**
