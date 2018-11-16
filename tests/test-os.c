@@ -279,7 +279,7 @@ compare_resources(OsinfoOs *os,
 
 
 static void
-test_resources_minimum_recommended(void)
+test_resources_minimum_recommended_maximum(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
     OsinfoDb *db = osinfo_loader_get_db(loader);
@@ -299,10 +299,11 @@ test_resources_minimum_recommended(void)
 
     for (oses_it = oses; oses_it != NULL; oses_it = oses_it->next) {
         OsinfoOs *os = oses_it->data;
-        OsinfoResourcesList *minimum_list, *recommended_list;
+        OsinfoResourcesList *minimum_list, *recommended_list, *maximum_list;
 
         minimum_list = osinfo_os_get_minimum_resources(os);
         recommended_list = osinfo_os_get_recommended_resources(os);
+        maximum_list = osinfo_os_get_recommended_resources(os);
 
         if (osinfo_list_get_length(OSINFO_LIST(minimum_list)) > 0 &&
             osinfo_list_get_length(OSINFO_LIST(recommended_list)) > 0)
@@ -310,8 +311,21 @@ test_resources_minimum_recommended(void)
                               OSINFO_LIST(minimum_list),
                               OSINFO_LIST(recommended_list));
 
+        if (osinfo_list_get_length(OSINFO_LIST(minimum_list)) > 0 &&
+            osinfo_list_get_length(OSINFO_LIST(maximum_list)) > 0)
+            compare_resources(os,
+                              OSINFO_LIST(minimum_list),
+                              OSINFO_LIST(maximum_list));
+
+        if (osinfo_list_get_length(OSINFO_LIST(recommended_list)) > 0 &&
+            osinfo_list_get_length(OSINFO_LIST(maximum_list)) > 0)
+            compare_resources(os,
+                              OSINFO_LIST(recommended_list),
+                              OSINFO_LIST(maximum_list));
+
         g_object_unref(minimum_list);
         g_object_unref(recommended_list);
+        g_object_unref(maximum_list);
     }
 
     g_object_unref(oslist);
@@ -331,7 +345,8 @@ main(int argc, char *argv[])
     g_test_add_func("/os/devices", test_devices);
     g_test_add_func("/os/devices_filter", test_devices_filter);
     g_test_add_func("/os/device_driver", test_device_driver);
-    g_test_add_func("/os/resources/minimum_recommended", test_resources_minimum_recommended);
+    g_test_add_func("/os/resources/minimum_recommended_maximum",
+                    test_resources_minimum_recommended_maximum);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();
