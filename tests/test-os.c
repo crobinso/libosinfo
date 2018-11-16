@@ -188,52 +188,95 @@ test_device_driver(void)
 }
 
 
-static void test_n_cpus(OsinfoResources *minimum, OsinfoResources *recommended)
+static void test_n_cpus(OsinfoResources *resources1, OsinfoResources *resources2)
 {
-    gint minimum_cpus, recommended_cpus;
+    gint resources1_cpus, resources2_cpus;
 
-    minimum_cpus = osinfo_resources_get_n_cpus(minimum);
-    recommended_cpus = osinfo_resources_get_n_cpus(recommended);
+    resources1_cpus = osinfo_resources_get_n_cpus(resources1);
+    resources2_cpus = osinfo_resources_get_n_cpus(resources2);
 
-    if (recommended_cpus >= 0 && minimum_cpus >= 0)
-        g_assert_true(recommended_cpus >= minimum_cpus);
+    if (resources2_cpus >= 0 && resources1_cpus >= 0)
+        g_assert_true(resources2_cpus >= resources1_cpus);
 }
 
 
-static void test_cpu(OsinfoResources *minimum, OsinfoResources *recommended)
+static void test_cpu(OsinfoResources *resources1, OsinfoResources *resources2)
 {
-    gint64 minimum_cpu, recommended_cpu;
+    gint64 resources1_cpu, resources2_cpu;
 
-    minimum_cpu = osinfo_resources_get_cpu(minimum);
-    recommended_cpu = osinfo_resources_get_cpu(recommended);
+    resources1_cpu = osinfo_resources_get_cpu(resources1);
+    resources2_cpu = osinfo_resources_get_cpu(resources2);
 
-    if (recommended_cpu >= 0 && minimum_cpu >= 0)
-        g_assert_true(recommended_cpu >= minimum_cpu);
+    if (resources2_cpu >= 0 && resources1_cpu >= 0)
+        g_assert_true(resources2_cpu >= resources1_cpu);
 }
 
 
-static void test_ram(OsinfoResources *minimum, OsinfoResources *recommended)
+static void test_ram(OsinfoResources *resources1, OsinfoResources *resources2)
 {
-    gint64 minimum_ram, recommended_ram;
+    gint64 resources1_ram, resources2_ram;
 
-    minimum_ram = osinfo_resources_get_ram(minimum);
-    recommended_ram = osinfo_resources_get_ram(recommended);
+    resources1_ram = osinfo_resources_get_ram(resources1);
+    resources2_ram = osinfo_resources_get_ram(resources2);
 
-    if (recommended_ram >= 0 && minimum_ram >= 0)
-        g_assert_true(recommended_ram >= minimum_ram);
+    if (resources2_ram >= 0 && resources1_ram >= 0)
+        g_assert_true(resources2_ram >= resources1_ram);
 }
 
 
-static void test_storage(OsinfoResources *minimum, OsinfoResources *recommended)
+static void test_storage(OsinfoResources *resources1, OsinfoResources *resources2)
 {
-    gint64 minimum_storage, recommended_storage;
+    gint64 resources1_storage, resources2_storage;
 
-    minimum_storage = osinfo_resources_get_storage(minimum);
-    recommended_storage = osinfo_resources_get_storage(recommended);
+    resources1_storage = osinfo_resources_get_storage(resources1);
+    resources2_storage = osinfo_resources_get_storage(resources2);
 
-    if (recommended_storage >= 0 && minimum_storage >= 0)
-        g_assert_true(recommended_storage >= minimum_storage);
+    if (resources2_storage >= 0 && resources1_storage >= 0)
+        g_assert_true(resources2_storage >= resources1_storage);
 }
+
+
+static void
+compare_resources(OsinfoOs *os,
+                  OsinfoList *resourceslist1,
+                  OsinfoList *resourceslist2)
+{
+    GList *list1, *list2;
+
+    list1 = osinfo_list_get_elements(resourceslist1);
+    list2 = osinfo_list_get_elements(resourceslist2);
+
+    if (list1 == NULL || list2 == NULL)
+        return;
+
+    for (GList *it1 = list1; it1 != NULL; it1 = it1->next) {
+        OsinfoResources *resources1 = it1->data;
+        const gchar *arch1;
+
+        arch1 = osinfo_resources_get_architecture(resources1);
+
+        for (GList *it2 = list2; it2 != NULL; it2 = it2->next) {
+            OsinfoResources *resources2 = it2->data;
+            const gchar *arch2 = osinfo_resources_get_architecture(resources2);
+
+             if (g_str_equal(arch1, arch2)) {
+                const gchar *name;
+
+                name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+
+                g_test_message("checking %s (architecture: %s)",
+                               name, arch1);
+
+                test_n_cpus(resources1, resources2);
+                test_cpu(resources1, resources2);
+                test_ram(resources1, resources2);
+                test_storage(resources1, resources2);
+                break;
+            }
+        }
+    }
+}
+
 
 static void
 test_resources_minimum_recommended(void)
@@ -257,51 +300,16 @@ test_resources_minimum_recommended(void)
     for (oses_it = oses; oses_it != NULL; oses_it = oses_it->next) {
         OsinfoOs *os = oses_it->data;
         OsinfoResourcesList *minimum_list, *recommended_list;
-        GList *minimum_resources, *recommended_resources;
-        GList *resources_it;
-        const gchar *minimum_arch, *recommended_arch;
 
         minimum_list = osinfo_os_get_minimum_resources(os);
-        minimum_resources = osinfo_list_get_elements(OSINFO_LIST(minimum_list));
-
         recommended_list = osinfo_os_get_recommended_resources(os);
-        recommended_resources = osinfo_list_get_elements(OSINFO_LIST(recommended_list));
 
-        /* That's fine as not all OSes have those fields filled */
-        if (minimum_resources == NULL || recommended_resources == NULL)
-            goto next;
+        if (osinfo_list_get_length(OSINFO_LIST(minimum_list)) > 0 &&
+            osinfo_list_get_length(OSINFO_LIST(recommended_list)) > 0)
+            compare_resources(os,
+                              OSINFO_LIST(minimum_list),
+                              OSINFO_LIST(recommended_list));
 
-        for (resources_it = minimum_resources; resources_it != NULL; resources_it = resources_it->next) {
-            OsinfoResources *minimum = resources_it->data;
-            GList *tmp = recommended_resources;
-
-            minimum_arch = osinfo_resources_get_architecture(minimum);
-
-            for (; tmp != NULL; tmp = tmp->next) {
-                OsinfoResources *recommended = tmp->data;
-
-                recommended_arch = osinfo_resources_get_architecture(recommended);
-
-                 if (g_str_equal(minimum_arch, recommended_arch)) {
-                    const gchar *name;
-
-                    name = osinfo_product_get_name(OSINFO_PRODUCT(os));
-
-                    g_test_message("checking %s (architecture: %s)",
-                                   name, minimum_arch);
-
-                    test_n_cpus(minimum, recommended);
-                    test_cpu(minimum, recommended);
-                    test_ram(minimum, recommended);
-                    test_storage(minimum, recommended);
-                    break;
-                }
-            }
-        }
-
- next:
-        g_list_free(minimum_resources);
-        g_list_free(recommended_resources);
         g_object_unref(minimum_list);
         g_object_unref(recommended_list);
     }
