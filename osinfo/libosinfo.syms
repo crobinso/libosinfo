@@ -534,6 +534,7 @@ LIBOSINFO_1.3.0 {
 	osinfo_error_quark;
 
 	osinfo_os_add_maximum_resources;
+	osinfo_os_get_all_device_links;
 	osinfo_os_get_maximum_resources;
 } LIBOSINFO_0.2.13;
 

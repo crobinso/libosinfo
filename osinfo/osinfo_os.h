@@ -107,6 +107,7 @@ OsinfoDeviceList *osinfo_os_get_devices_by_property(OsinfoOs *os,
                                                     const char *value,
                                                     gboolean inherited);
 OsinfoDeviceLinkList *osinfo_os_get_device_links(OsinfoOs *os, OsinfoFilter *filter);
+OsinfoDeviceLinkList *osinfo_os_get_all_device_links(OsinfoOs *os, OsinfoFilter *filter);
 
 OsinfoDeviceLink *osinfo_os_add_device(OsinfoOs *os, OsinfoDevice *dev);
 const gchar *osinfo_os_get_family(OsinfoOs *os);
