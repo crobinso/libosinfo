@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <device id="http://libosinfo.org/test/device/one">
+    <name>test-device-one</name>
+    <class>chipset</class>
+  </device>
+</libosinfo>

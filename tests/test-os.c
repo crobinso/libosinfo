@@ -552,6 +552,62 @@ static void test_devices_duplication(void)
 }
 
 
+static void
+devices_inheritance_basic_check(OsinfoDb *db,
+                                const gchar *os_id)
+{
+    OsinfoOs *os;
+    OsinfoDeviceList *dev_list;
+    OsinfoDevice *dev;
+
+    g_debug("Testing \"%s\"", os_id);
+
+    os = osinfo_db_get_os(db, os_id);
+    g_assert(OSINFO_IS_OS(os));
+
+    dev_list = osinfo_os_get_all_devices(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(dev_list)), ==, 1);
+
+    dev = OSINFO_DEVICE(osinfo_list_get_nth(OSINFO_LIST(dev_list), 0));
+    g_assert(OSINFO_IS_DEVICE(dev));
+
+    g_object_unref(dev_list);
+}
+
+
+static void
+test_devices_inheritance_basic(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = g_object_ref(osinfo_loader_get_db(loader));
+    g_object_unref(loader);
+
+    /*
+     * "http://libosinfo.org/test/os/devices/basic/1 has one device set
+     */
+    devices_inheritance_basic_check(db, "http://libosinfo.org/test/os/devices/basic/1");
+
+    /*
+     * http://libosinfo.org/test/os/devices/basic/2 derives-from
+     * http://libosinfo.org/test/os/devices/basic/1
+     */
+    devices_inheritance_basic_check(db, "http://libosinfo.org/test/os/devices/basic/2");
+
+    /*
+     * http://libosinfo.org/test/os/devices/basic/2-clone clones
+     * http://libosinfo.org/test/os/devices/basic/2
+     */
+    devices_inheritance_basic_check(db, "http://libosinfo.org/test/os/devices/basic/2-clone");
+
+    g_object_unref(db);
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -564,6 +620,8 @@ main(int argc, char *argv[])
     g_test_add_func("/os/devices_filter", test_devices_filter);
     g_test_add_func("/os/device_driver", test_device_driver);
     g_test_add_func("/os/devices/duplication", test_devices_duplication);
+    g_test_add_func("/os/devices/inheritance/basic",
+                    test_devices_inheritance_basic);
     g_test_add_func("/os/resources/minimum_recommended_maximum",
                     test_resources_minimum_recommended_maximum);
     g_test_add_func("/os/resources/uniqueness", test_resources_uniqueness);
