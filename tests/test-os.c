@@ -608,6 +608,115 @@ test_devices_inheritance_basic(void)
 }
 
 
+static void
+devices_inheritance_removal_check_devs(OsinfoDb *db,
+                                       const gchar *os_id,
+                                       gint all_devs_list_len,
+                                       gint dev_list_len,
+                                       gint all_devlinks_list_len,
+                                       gint devlink_list_len)
+{
+    OsinfoOs *os;
+    OsinfoDeviceLinkList *devlink_list, *all_devlinks_list;
+    OsinfoDeviceList *dev_list, *all_devs_list;
+
+    g_debug("Testing \"%s\"", os_id);
+
+    os = osinfo_db_get_os(db, os_id);
+    g_assert(OSINFO_IS_OS(os));
+
+    all_devs_list = osinfo_os_get_all_devices(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(all_devs_list)), ==, all_devs_list_len);
+    g_object_unref(all_devs_list);
+
+    dev_list = osinfo_os_get_devices(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(dev_list)), ==, dev_list_len);
+    g_object_unref(dev_list);
+
+    all_devlinks_list = osinfo_os_get_all_device_links(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(all_devlinks_list)), ==, all_devlinks_list_len);
+    g_object_unref(all_devlinks_list);
+
+    devlink_list = osinfo_os_get_device_links(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devlink_list)), ==, devlink_list_len);
+    g_object_unref(devlink_list);
+}
+
+
+static void
+test_devices_inheritance_removal(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = g_object_ref(osinfo_loader_get_db(loader));
+    g_object_unref(loader);
+
+    /*
+     * "http://libosinfo.org/test/os/devices/basic/1 has one device set
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/basic/1",
+                                           1, 1, 1, 1);
+
+    /*
+     * http://libosinfo.org/test/os/devices/removed/1 derives-from
+     * http://libosinfo.org/test/os/devices/basic/1 ...
+     * And the device is marked as removed
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/removed/1",
+                                           0, 0, 0, 0);
+
+    /*
+     * http://libosinfo.org/test/os/devices/removed/2 derives-from
+     * http://libosinfo.org/test/os/devices/removed/1
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/removed/2",
+                                           0, 0, 0, 0);
+
+    /*
+     * http://libosinfo.org/test/os/devices/removed/2-clone clones
+     * http://libosinfo.org/test/os/devices/removed/2
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/removed/2-clone",
+                                           0, 0, 0, 0);
+
+    /*
+     * http://libosinfo.org/test/os/devices/removed/3 derives-from
+     * http://libosinfo.org/test/os/devices/removed/2
+     * And the device is not marked as removed anymore
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/removed/3",
+                                           1, 1, 1, 1);
+
+    /*
+     * http://libosinfo.org/test/os/devices/removed/4 derives-from
+     * http://libosinfo.org/test/os/devices/removed/3
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/removed/4",
+                                           1, 0, 1, 0);
+
+
+    /*
+     * http://libosinfo.org/test/os/devices/removed/4-clone clones
+     * http://libosinfo.org/test/os/devices/removed/4
+     */
+    devices_inheritance_removal_check_devs(db,
+                                           "http://libosinfo.org/test/os/devices/removed/4-clone",
+                                           1, 0, 1, 0);
+
+    g_object_unref(db);
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -622,6 +731,8 @@ main(int argc, char *argv[])
     g_test_add_func("/os/devices/duplication", test_devices_duplication);
     g_test_add_func("/os/devices/inheritance/basic",
                     test_devices_inheritance_basic);
+    g_test_add_func("/os/devices/inheritance/removal",
+                    test_devices_inheritance_removal);
     g_test_add_func("/os/resources/minimum_recommended_maximum",
                     test_resources_minimum_recommended_maximum);
     g_test_add_func("/os/resources/uniqueness", test_resources_uniqueness);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/devices/removed/4-clone">
+    <short-id>devices-removed-4-clone</short-id>
+    <name>Devices Removed 4 Clone</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <clones id="http://libosinfo.org/test/os/devices/removed/4"/>
+  </os>
+</libosinfo>

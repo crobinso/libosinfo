@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/devices/removed/3">
+    <short-id>devices-removed-3</short-id>
+    <name>Devices Removed 3</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/devices/removed/2"/>
+
+    <devices>
+      <device id="http://libosinfo.org/test/device/one"/>
+    </devices>
+  </os>
+</libosinfo>
