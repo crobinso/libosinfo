@@ -271,7 +271,6 @@ test_get_devices(void)
     g_assert_true(has1);
     g_assert_true(has2);
     g_assert_true(has3);
-    g_assert_true(has3);
     g_assert_true(has4);
     g_assert_false(hasBad);
 
