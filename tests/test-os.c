@@ -242,6 +242,7 @@ compare_resources(OsinfoOs *os,
                   OsinfoList *resourceslist2)
 {
     GList *list1, *list2;
+    GList *it1, *it2;
 
     list1 = osinfo_list_get_elements(resourceslist1);
     list2 = osinfo_list_get_elements(resourceslist2);
@@ -249,13 +250,13 @@ compare_resources(OsinfoOs *os,
     if (list1 == NULL || list2 == NULL)
         return;
 
-    for (GList *it1 = list1; it1 != NULL; it1 = it1->next) {
+    for (it1 = list1; it1 != NULL; it1 = it1->next) {
         OsinfoResources *resources1 = it1->data;
         const gchar *arch1;
 
         arch1 = osinfo_resources_get_architecture(resources1);
 
-        for (GList *it2 = list2; it2 != NULL; it2 = it2->next) {
+        for (it2 = list2; it2 != NULL; it2 = it2->next) {
             OsinfoResources *resources2 = it2->data;
             const gchar *arch2 = osinfo_resources_get_architecture(resources2);
 
