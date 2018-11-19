@@ -46,11 +46,16 @@ static void test_media(OsinfoMediaList *medialist, GError **error, CURL *curl)
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
 
         g_test_message("res=%d, %s; code=%ld", res, curl_easy_strerror(res), response_code);
-        if (res != CURLE_OK) {
-            g_printerr("Failed URI %s res=%d (%s) code=%ld\n",
-                       url, res, curl_easy_strerror(res), response_code);
+
+        if (res == CURLE_OPERATION_TIMEDOUT) {
+            g_printerr("Ignoring network timeout failure for %s\n", url);
+        } else {
+            if (res != CURLE_OK) {
+                g_printerr("Failed URI %s res=%d (%s) code=%ld\n",
+                           url, res, curl_easy_strerror(res), response_code);
+            }
+            g_assert_cmpint(res, ==, CURLE_OK);
         }
-        g_assert_cmpint(res, ==, CURLE_OK);
 
         tmp = tmp->next;
     }
