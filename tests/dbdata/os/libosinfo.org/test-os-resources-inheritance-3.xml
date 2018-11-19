@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/resources/inheritance/3">
+    <short-id>resourcesinheritance3</short-id>
+    <name>Resources Inheritance 3</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/resources/inheritance/2"/>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>3</n-cpus>
+        <ram>3</ram>
+      </minimum>
+      <recommended>
+        <n-cpus>6</n-cpus>
+        <ram>6</ram>
+      </recommended>
+    </resources>
+  </os>
+</libosinfo>

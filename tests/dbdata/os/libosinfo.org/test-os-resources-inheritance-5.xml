@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/resources/inheritance/5">
+    <short-id>resourcesinheritance5</short-id>
+    <name>Resources Inheritance 5</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/resources/inheritance/4"/>
+
+    <resources arch="all" inherit="true"/>
+  </os>
+</libosinfo>

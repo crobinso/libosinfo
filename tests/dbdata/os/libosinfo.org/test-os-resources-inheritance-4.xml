@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/resources/inheritance/4">
+    <short-id>resourcesinheritance4</short-id>
+    <name>Resources Inheritance 4</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/resources/inheritance/3"/>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>3</cpu>
+        <storage>3</storage>
+      </minimum>
+      <recommended>
+        <cpu>6</cpu>
+        <storage>6</storage>
+      </recommended>
+    </resources>
+  </os>
+</libosinfo>

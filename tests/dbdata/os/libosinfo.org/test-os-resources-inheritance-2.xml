@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/resources/inheritance/2">
+    <short-id>resourcesinheritance2</short-id>
+    <name>Resources Inheritance 2</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/resources/inheritance/1"/>
+
+    <resources arch="all" inherit="true"/>
+  </os>
+</libosinfo>
