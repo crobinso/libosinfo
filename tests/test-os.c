@@ -336,10 +336,81 @@ test_resources_minimum_recommended_maximum(void)
 }
 
 
+static void
+test_uniqueness(OsinfoOs *os,
+                OsinfoResourcesList *(*get_resources)(OsinfoOs *))
+{
+    OsinfoResourcesList *resourceslist;
+    GList *arches = NULL;
+    GList *list, *it;
+
+    resourceslist = get_resources(os);
+    list = osinfo_list_get_elements(OSINFO_LIST(resourceslist));
+
+    for (it = list; it != NULL; it = it->next) {
+        OsinfoResources *resources = it->data;
+        const gchar *arch = osinfo_resources_get_architecture(resources);
+
+        if (g_list_find_custom(arches, arch, (GCompareFunc) g_strcmp0) == NULL) {
+            arches = g_list_prepend(arches, (gchar *)arch);
+            continue;
+        }
+
+        g_test_message("\"%s\" has more than one resources entry for architecture \"%s\"",
+                       osinfo_product_get_short_id(OSINFO_PRODUCT(os)),
+                       arch);
+        g_test_fail();
+    }
+
+    g_list_free(arches);
+    g_list_free(list);
+    g_object_unref(resourceslist);
+}
+
+
+static void
+test_resources_uniqueness(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db = osinfo_loader_get_db(loader);
+    OsinfoOsList *oslist;
+    GList *oses;
+    GList *oses_it;
+    GError *error = NULL;
+
+    g_assert_true(OSINFO_IS_LOADER(loader));
+    g_assert_true(OSINFO_IS_DB(db));
+
+    osinfo_loader_process_default_path(loader, &error);
+    g_assert_no_error(error);
+
+    oslist = osinfo_db_get_os_list(db);
+    oses = osinfo_list_get_elements(OSINFO_LIST(oslist));
+
+    for (oses_it = oses; oses_it != NULL; oses_it = oses_it->next) {
+        OsinfoOs *os = oses_it->data;
+
+        g_test_message("Testing minimum resources uniqueness for \"%s\"",
+                       osinfo_product_get_short_id(OSINFO_PRODUCT(os)));
+        test_uniqueness(os, osinfo_os_get_minimum_resources);
+
+        g_test_message("Testing recommended resources uniqueness for \"%s\"",
+                       osinfo_product_get_short_id(OSINFO_PRODUCT(os)));
+        test_uniqueness(os, osinfo_os_get_recommended_resources);
+    }
+
+    g_object_unref(oslist);
+    g_list_free(oses);
+
+    g_object_unref(loader);
+}
+
+
 int
 main(int argc, char *argv[])
 {
     g_test_init(&argc, &argv, NULL);
+    g_test_set_nonfatal_assertions();
 
     g_test_add_func("/os/basic", test_basic);
     g_test_add_func("/os/loader", test_loader);
@@ -348,6 +419,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/device_driver", test_device_driver);
     g_test_add_func("/os/resources/minimum_recommended_maximum",
                     test_resources_minimum_recommended_maximum);
+    g_test_add_func("/os/resources/uniqueness", test_resources_uniqueness);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();
