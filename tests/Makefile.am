@@ -59,7 +59,7 @@ test_product_SOURCES = test-product.c
 
 test_os_LDADD = $(COMMON_LDADD)
 test_os_CFLAGS = $(COMMON_CFLAGS)
-test_os_SOURCES = test-os.c
+test_os_SOURCES = test-os.c ../osinfo/osinfo_product.c
 
 test_productfilter_LDADD = $(COMMON_LDADD)
 test_productfilter_CFLAGS = $(COMMON_CFLAGS)
