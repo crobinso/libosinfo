@@ -744,6 +744,7 @@ static void get_all_resources_cb(OsinfoProduct *product, gpointer user_data)
     struct GetAllResourcesData *foreach_data = (struct GetAllResourcesData *)user_data;
     gint original_resourceslist_len;
     gint resourceslist_len;
+    gint i;
 
     g_return_if_fail(OSINFO_IS_OS(product));
 
@@ -755,13 +756,14 @@ static void get_all_resources_cb(OsinfoProduct *product, gpointer user_data)
     resourceslist = foreach_data->get_resourceslist(OSINFO_OS(product));
     resourceslist_len = osinfo_list_get_length(OSINFO_LIST(resourceslist));
 
-    for (int i = 0; i < original_resourceslist_len; i++) {
+    for (i = 0; i < original_resourceslist_len; i++) {
         OsinfoResources *original_resources;
         const gchar *original_arch;
         gint original_n_cpus;
         gint64 original_cpu;
         gint64 original_ram;
         gint64 original_storage;
+        gint j;
 
         original_resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(foreach_data->resourceslist), i));
 
@@ -774,7 +776,7 @@ static void get_all_resources_cb(OsinfoProduct *product, gpointer user_data)
         original_ram = osinfo_resources_get_ram(original_resources);
         original_storage = osinfo_resources_get_storage(original_resources);
 
-        for (int j = 0; j < resourceslist_len; j++) {
+        for (j = 0; j < resourceslist_len; j++) {
             OsinfoResources *resources;
             const gchar *arch;
             gint n_cpus;
