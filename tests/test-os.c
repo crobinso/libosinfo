@@ -717,6 +717,167 @@ test_devices_inheritance_removal(void)
 }
 
 
+static void
+check_resources(OsinfoDb *db,
+                const gchar *os_id,
+                OsinfoResourcesList *(*get_resourceslist)(OsinfoOs *),
+                gint list_len,
+                gint expected_n_cpus,
+                gint64 expected_cpu,
+                gint64 expected_ram,
+                gint64 expected_storage)
+{
+    OsinfoOs *os;
+    OsinfoResourcesList *resourceslist;
+    OsinfoResources *resources;
+
+    g_test_message("Testing \"%s\"", os_id);
+
+    os = osinfo_db_get_os(db, os_id);
+    g_assert_true(OSINFO_IS_OS(os));
+
+    resourceslist = get_resourceslist(os);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(resourceslist)), ==, list_len);
+
+    resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(resourceslist), 0));
+    g_assert_true(OSINFO_IS_RESOURCES(resources));
+
+    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, expected_n_cpus);
+    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, expected_cpu);
+    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, expected_ram);
+    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, expected_storage);
+
+    g_object_unref(resourceslist);
+}
+
+
+static void
+test_resources_inheritance(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = g_object_ref(osinfo_loader_get_db(loader));
+    g_object_unref(loader);
+
+    /**
+     * os1:
+     * - minimum
+     *   - n_cpus: 1
+     *   - cpu: 1
+     *   - ram: 1
+     *   - storage: 1
+     * - recommended:
+     *   - n_cpus: 2
+     *   - cpu: 2
+     *   - ram: 2
+     *   - storage: 2
+     */
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/1",
+                    osinfo_os_get_minimum_resources,
+                    1, 1, 1, 1, 1);
+
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/1",
+                    osinfo_os_get_recommended_resources,
+                    1, 2, 2, 2, 2);
+
+    /**
+     * os2 (derives-from os1):
+     * - inherit: true
+     *
+     * - minimum
+     *   - n_cpus: 1
+     *   - cpu: 1
+     *   - ram: 1
+     *   - storage: 1
+     * - recommended:
+     *   - n_cpus: 2
+     *   - cpu: 2
+     *   - ram: 2
+     *   - storage: 2
+     */
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/2",
+                    osinfo_os_get_minimum_resources,
+                    1, 1, 1, 1, 1);
+
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/2",
+                    osinfo_os_get_recommended_resources,
+                    1, 2, 2, 2, 2);
+
+    /**
+     * os3 (derives-from os2):
+     * - minimum
+     *   - n_cpus: 3
+     *   - ram: 3
+     * - recommended:
+     *   - n_cpus: 6
+     *   - ram: 6
+     */
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/3",
+                    osinfo_os_get_minimum_resources,
+                    1, 3, -1, 3, -1);
+
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/3",
+                    osinfo_os_get_recommended_resources,
+                    1, 6, -1, 6, -1);
+
+    /**
+     * os4 (derives-from os3):
+     * - minimum
+     *   - cpu: 3
+     *   - storage: 3
+     * - recommended:
+     *   - cpus: 6
+     *   - storage: 6
+     */
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/4",
+                    osinfo_os_get_minimum_resources,
+                    1, -1, 3, -1, 3);
+
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/4",
+                    osinfo_os_get_recommended_resources,
+                    1, -1, 6, -1, 6);
+
+    /**
+     * os5 (derives-from os4):
+     * - inherit: true
+     *
+     * - minimum
+     *   - n_cpus: 3
+     *   - cpu: 3
+     *   - ram: 3
+     *   - storage: 3
+     * - recommended:
+     *   - n_cpus: 6
+     *   - cpus: 6
+     *   - ram: 6
+     *   - storage: 6
+     */
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/5",
+                    osinfo_os_get_minimum_resources,
+                    1, 3, 3, 3, 3);
+
+    check_resources(db,
+                    "http://libosinfo.org/test/os/resources/inheritance/5",
+                    osinfo_os_get_recommended_resources,
+                    1, 6, 6, 6, 6);
+
+    g_object_unref(db);
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -736,6 +897,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/resources/minimum_recommended_maximum",
                     test_resources_minimum_recommended_maximum);
     g_test_add_func("/os/resources/uniqueness", test_resources_uniqueness);
+    g_test_add_func("/os/resources/inheritance", test_resources_inheritance);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();
