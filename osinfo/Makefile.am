@@ -26,7 +26,21 @@ pkgconfig_DATA = libosinfo-1.0.pc
 
 lib_LTLIBRARIES = libosinfo-1.0.la
 
-libosinfo_1_0_la_CFLAGS = \
+libosinfo_1_0_la_SOURCES =
+
+libosinfo_1_0_la_LIBADD = libosinfo-impl.la
+
+libosinfo_1_0_la_LDFLAGS = \
+	$(COVERAGE_LDFLAGS) \
+	$(VERSION_SCRIPT_FLAGS)$(LIBOSINFO_VERSION_FILE) \
+        -version-info $(LIBOSINFO_VERSION_INFO) \
+	$(NO_UNDEFINED_FLAGS)
+
+libosinfo_1_0_la_DEPENDENCIES = libosinfo.syms libosinfo-impl.la
+
+noinst_LTLIBRARIES = libosinfo-impl.la
+
+libosinfo_impl_la_CFLAGS = \
 	$(WARN_CFLAGS) \
 	$(COVERAGE_CFLAGS) \
 	-I$(top_srcdir) \
@@ -42,24 +56,16 @@ libosinfo_1_0_la_CFLAGS = \
 	-DLOCALEDIR="\"$(datadir)/locale\"" \
 	$(NULL)
 
-libosinfo_1_0_la_LIBADD = \
+libosinfo_impl_la_LIBADD = \
 	$(LIBXML_LIBS) \
 	$(LIBXSLT_LIBS) \
 	$(GOBJECT_LIBS) \
 	$(GLIB_LIBS) \
 	$(GIO_LIBS)
 
-libosinfo_1_0_la_LDFLAGS = \
-	$(COVERAGE_LDFLAGS) \
-	$(VERSION_SCRIPT_FLAGS)$(LIBOSINFO_VERSION_FILE) \
-        -version-info $(LIBOSINFO_VERSION_INFO) \
-	$(NO_UNDEFINED_FLAGS)
+libosinfo_impl_includedir = $(includedir)/libosinfo-1.0/osinfo
 
-libosinfo_1_0_la_DEPENDENCIES = libosinfo.syms
-
-libosinfo_1_0_includedir = $(includedir)/libosinfo-1.0/osinfo
-
-libosinfo_1_0_include_HEADERS =		\
+libosinfo_impl_include_HEADERS =		\
   osinfo.h				\
   osinfo_avatar_format.h		\
   osinfo_db.h				\
@@ -100,7 +106,7 @@ libosinfo_1_0_include_HEADERS =		\
   osinfo_treelist.h			\
   $(NULL)
 
-nodist_libosinfo_1_0_include_HEADERS =	\
+nodist_libosinfo_impl_include_HEADERS =	\
   osinfo_version.h			\
   osinfo_enum_types.h			\
   $(NULL)
@@ -155,21 +161,20 @@ libosinfo_private_header_files =	\
   ignore-value.h			\
   $(NULL)
 
-libosinfo_1_0_la_SOURCES =		\
+libosinfo_impl_la_SOURCES =		\
   $(libosinfo_c_files)			\
   $(libosinfo_private_header_files)	\
   $(NULL)
 
-nodist_libosinfo_1_0_la_SOURCES =	\
+nodist_libosinfo_impl_la_SOURCES =	\
   osinfo_enum_types.c			\
   $(NULL)
 
-
-osinfo_enum_types.h: $(libosinfo_1_0_include_HEADERS) osinfo_enum_types.h.template
-	$(AM_V_GEN) ( LC_ALL= LANG=C LC_CTYPE=en_US.UTF-8 $(GLIB_MKENUMS) --template $(srcdir)/osinfo_enum_types.h.template $(libosinfo_1_0_include_HEADERS:%=$(srcdir)/%) ) > $@
+osinfo_enum_types.h: $(libosinfo_impl_include_HEADERS) osinfo_enum_types.h.template
+	$(AM_V_GEN) ( LC_ALL= LANG=C LC_CTYPE=en_US.UTF-8 $(GLIB_MKENUMS) --template $(srcdir)/osinfo_enum_types.h.template $(libosinfo_impl_include_HEADERS:%=$(srcdir)/%) ) > $@
 
 osinfo_enum_types.c: $(OSINFO_HEADER_FILES) osinfo_enum_types.c.template osinfo_enum_types.h
-	$(AM_V_GEN) ( LC_ALL= LANG=C LC_CTYPE=en_US.UTF-8 $(GLIB_MKENUMS) --template $(srcdir)/osinfo_enum_types.c.template $(libosinfo_1_0_include_HEADERS:%=$(srcdir)/%) ) > $@
+	$(AM_V_GEN) ( LC_ALL= LANG=C LC_CTYPE=en_US.UTF-8 $(GLIB_MKENUMS) --template $(srcdir)/osinfo_enum_types.c.template $(libosinfo_impl_include_HEADERS:%=$(srcdir)/%) ) > $@
 
 DISTCLEANFILES +=				\
 	osinfo_enum_types.c			\
@@ -203,8 +208,8 @@ Libosinfo_1_0_gir_INCLUDES = GObject-2.0 Gio-2.0 libxml2-2.0
 Libosinfo_1_0_gir_PACKAGES = gobject-2.0 gio-2.0 libxml-2.0 libxslt
 Libosinfo_1_0_gir_EXPORT_PACKAGES = libosinfo-1.0
 Libosinfo_1_0_gir_LIBS = libosinfo-1.0.la
-Libosinfo_1_0_gir_FILES = $(libosinfo_1_0_include_HEADERS) $(nodist_libosinfo_1_0_include_HEADERS) $(libosinfo_c_files) $(nodist_libosinfo_1_0_la_SOURCES)
-Libosinfo_1_0_gir_CFLAGS = $(libosinfo_1_0_la_CFLAGS)
+Libosinfo_1_0_gir_FILES = $(libosinfo_impl_include_HEADERS) $(nodist_libosinfo_impl_include_HEADERS) $(libosinfo_c_files) $(nodist_libosinfo_impl_la_SOURCES)
+Libosinfo_1_0_gir_CFLAGS = $(libosinfo_impl_la_CFLAGS)
 Libosinfo_1_0_gir_SCANNERFLAGS = --identifier-prefix=Osinfo --symbol-prefix=osinfo --c-include="osinfo/osinfo.h"
 INTROSPECTION_GIRS += Libosinfo-1.0.gir
 
