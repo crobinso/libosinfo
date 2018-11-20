@@ -638,13 +638,13 @@ static void osinfo_loader_device_link(OsinfoLoader *loader,
             devlink = osinfo_deployment_add_device(OSINFO_DEPLOYMENT(entity), dev);
         }
 
-        gchar *removed = (gchar *)xmlGetProp(related[i],
-                                             BAD_CAST OSINFO_DEVICELINK_PROP_REMOVED);
-        if (removed != NULL) {
+        gchar *supported = (gchar *)xmlGetProp(related[i],
+                                               BAD_CAST OSINFO_DEVICELINK_PROP_SUPPORTED);
+        if (supported != NULL) {
             osinfo_entity_set_param_boolean(OSINFO_ENTITY(devlink),
-                                            OSINFO_DEVICELINK_PROP_REMOVED,
-                                            g_str_equal(removed, "true") ? TRUE : FALSE);
-            xmlFree(removed);
+                                            OSINFO_DEVICELINK_PROP_SUPPORTED,
+                                            g_str_equal(supported, "false") ? FALSE : TRUE);
+            xmlFree(supported);
         }
 
         xmlNodePtr saved = ctxt->node;

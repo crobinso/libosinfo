@@ -213,20 +213,20 @@ static gboolean
 add_entity_to_list_check(OsinfoEntity *ent1, /* OsinfoDeviceLink */
                          OsinfoEntity *ent2, /* OsinfoDevice or OsinfoDevice Link */
                          OsinfoFilter *filter,
-                         gboolean include_removed)
+                         gboolean include_unsupported)
 {
     gboolean ret = FALSE;
-    gboolean removed = FALSE;
+    gboolean unsupported = FALSE;
 
     if (filter == NULL || osinfo_filter_matches(filter, ent2))
         ret = TRUE;
 
-    if (osinfo_entity_get_param_value_boolean_with_default(ent1,
-                                                           OSINFO_DEVICELINK_PROP_REMOVED,
-                                                           FALSE))
-        removed = TRUE;
+    if (!osinfo_entity_get_param_value_boolean_with_default(ent1,
+                                                            OSINFO_DEVICELINK_PROP_SUPPORTED,
+                                                            TRUE))
+        unsupported = TRUE;
 
-    if (ret && removed && !include_removed)
+    if (ret && unsupported && !include_unsupported)
         ret = FALSE;
 
     return ret;
@@ -236,7 +236,7 @@ add_entity_to_list_check(OsinfoEntity *ent1, /* OsinfoDeviceLink */
 static OsinfoDeviceList *
 osinfo_os_get_devices_internal(OsinfoOs *os,
                                OsinfoFilter *filter,
-                               gboolean include_removed)
+                               gboolean include_unsupported)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
@@ -253,7 +253,7 @@ osinfo_os_get_devices_internal(OsinfoOs *os,
         if (add_entity_to_list_check(OSINFO_ENTITY(devlink),
                                      OSINFO_ENTITY(dev),
                                      filter,
-                                     include_removed))
+                                     include_unsupported))
             osinfo_list_add(OSINFO_LIST(newList), OSINFO_ENTITY(dev));
 
         tmp = tmp->next;
@@ -304,7 +304,7 @@ static void get_all_devices_cb(OsinfoProduct *product, gpointer user_data)
 static OsinfoDeviceLinkList *
 osinfo_os_get_all_device_links_internal(OsinfoOs *os,
                                         OsinfoFilter *filter,
-                                        gboolean include_removed);
+                                        gboolean include_unsupported);
 
 
 /**
@@ -325,11 +325,11 @@ OsinfoDeviceList *osinfo_os_get_all_devices(OsinfoOs *os, OsinfoFilter *filter)
         .devices = osinfo_devicelist_new()
     };
     OsinfoDeviceLinkList *devlinks;
-    OsinfoDeviceLinkList *removed_devlinks;
-    OsinfoDeviceList *removed_devs;
+    OsinfoDeviceLinkList *unsupported_devlinks;
+    OsinfoDeviceList *unsupported_devs;
     OsinfoDeviceList *new_list;
-    OsinfoFilter *removed_filter;
-    GList *list, *removed_list;
+    OsinfoFilter *unsupported_filter;
+    GList *list, *unsupported_list;
     GList *it;
 
     osinfo_product_foreach_related(OSINFO_PRODUCT(os),
@@ -340,34 +340,34 @@ OsinfoDeviceList *osinfo_os_get_all_devices(OsinfoOs *os, OsinfoFilter *filter)
 
     devlinks = osinfo_os_get_all_device_links_internal(os, filter, TRUE);
 
-    removed_filter = osinfo_filter_new();
-    osinfo_filter_add_constraint(removed_filter,
-                                 OSINFO_DEVICELINK_PROP_REMOVED,
-                                 "true");
+    unsupported_filter = osinfo_filter_new();
+    osinfo_filter_add_constraint(unsupported_filter,
+                                 OSINFO_DEVICELINK_PROP_SUPPORTED,
+                                 "false");
 
-    removed_devlinks = OSINFO_DEVICELINKLIST
-        (osinfo_list_new_filtered(OSINFO_LIST(devlinks), removed_filter));
+    unsupported_devlinks = OSINFO_DEVICELINKLIST
+        (osinfo_list_new_filtered(OSINFO_LIST(devlinks), unsupported_filter));
 
-    removed_devs = osinfo_devicelinklist_get_devices(removed_devlinks, NULL);
+    unsupported_devs = osinfo_devicelinklist_get_devices(unsupported_devlinks, NULL);
 
     list = osinfo_list_get_elements(OSINFO_LIST(foreach_data.devices));
-    removed_list = osinfo_list_get_elements(OSINFO_LIST(removed_devs));
+    unsupported_list = osinfo_list_get_elements(OSINFO_LIST(unsupported_devs));
 
     new_list = osinfo_devicelist_new();
     for (it = list; it != NULL; it = it->next) {
         OsinfoDevice *dev = OSINFO_DEVICE(it->data);
-        if (g_list_find(removed_list, dev))
+        if (g_list_find(unsupported_list, dev))
             continue;
 
         osinfo_list_add(OSINFO_LIST(new_list), OSINFO_ENTITY(dev));
     }
 
     g_list_free(list);
-    g_list_free(removed_list);
+    g_list_free(unsupported_list);
     g_object_unref(devlinks);
-    g_object_unref(removed_devlinks);
-    g_object_unref(removed_devs);
-    g_object_unref(removed_filter);
+    g_object_unref(unsupported_devlinks);
+    g_object_unref(unsupported_devs);
+    g_object_unref(unsupported_filter);
     g_object_unref(foreach_data.devices);
 
     return new_list;
@@ -410,7 +410,7 @@ OsinfoDeviceList *osinfo_os_get_devices_by_property(OsinfoOs *os,
 static OsinfoDeviceLinkList *
 osinfo_os_get_device_links_internal(OsinfoOs *os,
                                     OsinfoFilter *filter,
-                                    gboolean include_removed)
+                                    gboolean include_unsupported)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
@@ -426,7 +426,7 @@ osinfo_os_get_device_links_internal(OsinfoOs *os,
         if (add_entity_to_list_check(OSINFO_ENTITY(devlink),
                                      OSINFO_ENTITY(devlink),
                                      filter,
-                                     include_removed))
+                                     include_unsupported))
             osinfo_list_add(OSINFO_LIST(newList), OSINFO_ENTITY(devlink));
 
         tmp = tmp->next;
@@ -479,7 +479,7 @@ static void get_all_device_links_cb(OsinfoProduct *product, gpointer user_data)
 static OsinfoDeviceLinkList *
 osinfo_os_get_all_device_links_internal(OsinfoOs *os,
                                         OsinfoFilter *filter,
-                                        gboolean include_removed)
+                                        gboolean include_unsupported)
 {
     struct GetAllDeviceLinksData foreach_data = {
         .filter = filter,
@@ -494,7 +494,7 @@ osinfo_os_get_all_device_links_internal(OsinfoOs *os,
                                    get_all_device_links_cb,
                                    &foreach_data);
 
-    if (include_removed)
+    if (include_unsupported)
         return foreach_data.device_links;
 
     devlinks = osinfo_devicelinklist_new();
@@ -503,9 +503,9 @@ osinfo_os_get_all_device_links_internal(OsinfoOs *os,
     for (it = list; it != NULL; it = it->next) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(it->data);
 
-        if (osinfo_entity_get_param_value_boolean_with_default(OSINFO_ENTITY(devlink),
-                                                               OSINFO_DEVICELINK_PROP_REMOVED,
-                                                               FALSE))
+        if (!osinfo_entity_get_param_value_boolean_with_default(OSINFO_ENTITY(devlink),
+                                                                OSINFO_DEVICELINK_PROP_SUPPORTED,
+                                                                TRUE))
             continue;
 
         osinfo_list_add(OSINFO_LIST(devlinks), OSINFO_ENTITY(devlink));

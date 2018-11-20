@@ -8,7 +8,7 @@
     <derives-from id="http://libosinfo.org/test/os/devices/basic/1"/>
 
     <devices>
-      <device id="http://libosinfo.org/test/device/one" removed="true"/>
+      <device id="http://libosinfo.org/test/device/one" supported="false"/>
     </devices>
   </os>
 </libosinfo>
