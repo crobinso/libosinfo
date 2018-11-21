@@ -36,7 +36,7 @@ libosinfo_1_0_la_LDFLAGS = \
         -version-info $(LIBOSINFO_VERSION_INFO) \
 	$(NO_UNDEFINED_FLAGS)
 
-libosinfo_1_0_la_DEPENDENCIES = libosinfo.syms libosinfo-impl.la
+EXTRA_libosinfo_1_0_la_DEPENDENCIES = libosinfo.syms
 
 noinst_LTLIBRARIES = libosinfo-impl.la
 
