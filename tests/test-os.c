@@ -878,6 +878,30 @@ test_resources_inheritance(void)
 }
 
 
+static void
+test_find_install_script(void)
+{
+    OsinfoOs *os;
+    OsinfoInstallScript *in, *out;
+
+    os = osinfo_os_new("awesome");
+    in = osinfo_install_script_new_data("script", "jeos", "foo");
+    osinfo_os_add_install_script(os, in);
+
+    out = osinfo_os_find_install_script(os, "default");
+    g_assert_null(out);
+
+    out = osinfo_os_find_install_script(os, OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP);
+    g_assert_null(out);
+
+    out = osinfo_os_find_install_script(os, OSINFO_INSTALL_SCRIPT_PROFILE_JEOS);
+    g_assert_nonnull(out);
+
+    g_object_unref(in);
+    g_object_unref(os);
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -898,6 +922,7 @@ main(int argc, char *argv[])
                     test_resources_minimum_recommended_maximum);
     g_test_add_func("/os/resources/uniqueness", test_resources_uniqueness);
     g_test_add_func("/os/resources/inheritance", test_resources_inheritance);
+    g_test_add_func("/os/find_install_script", test_find_install_script);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();
@@ -908,6 +933,7 @@ main(int argc, char *argv[])
     osinfo_filter_get_type();
     osinfo_resources_get_type();
     osinfo_resourceslist_get_type();
+    osinfo_install_script_get_type();
 
     return g_test_run();
 }
