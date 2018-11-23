@@ -60,6 +60,7 @@ tests/test-install-script
 tests/test-image
 tests/test-imagelist
 tests/test-loader
+tests/test-media
 tests/test-productfilter
 tests/test-oslist
 tests/test-os-resources
