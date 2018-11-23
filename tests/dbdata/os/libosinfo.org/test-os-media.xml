@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/media">
+    <short-id>media</short-id>
+    <name>Media</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <media arch="x86_64" live="true" installer-reboots="3" eject-after-install="false" installer-script="false"/>
+    <media arch="x86"/>
+
+    <installer>
+      <script id="http://example.com/libosinfo/test-install-script"/>
+    </installer>
+  </os>
+</libosinfo>
