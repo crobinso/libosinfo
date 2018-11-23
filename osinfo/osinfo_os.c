@@ -1000,7 +1000,7 @@ void osinfo_os_add_maximum_resources(OsinfoOs *os,
 OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *profile)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
-    GList *scripts = osinfo_list_get_elements(OSINFO_LIST(os));
+    GList *scripts = osinfo_list_get_elements(OSINFO_LIST(os->priv->scripts));
     GList *tmp = scripts;
     OsinfoInstallScript *script = NULL;
 
