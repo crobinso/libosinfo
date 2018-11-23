@@ -1078,6 +1078,8 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
             xmlGetProp(root, BAD_CAST OSINFO_MEDIA_PROP_INSTALLER_REBOOTS);
     xmlChar *eject_after_install =
             xmlGetProp(root, BAD_CAST OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL);
+    xmlChar *installer_script =
+            xmlGetProp(root, BAD_CAST OSINFO_MEDIA_PROP_INSTALLER_SCRIPT);
     const OsinfoEntityKey keys[] = {
         { OSINFO_MEDIA_PROP_URL, G_TYPE_STRING },
         { OSINFO_MEDIA_PROP_KERNEL, G_TYPE_STRING },
@@ -1115,6 +1117,13 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
                                 OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL,
                                 (gchar *)eject_after_install);
         xmlFree(eject_after_install);
+    }
+
+    if (installer_script) {
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_INSTALLER_SCRIPT,
+                                (gchar *)installer_script);
+        xmlFree(installer_script);
     }
 
     gint nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
