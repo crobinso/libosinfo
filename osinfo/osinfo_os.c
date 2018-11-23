@@ -993,16 +993,22 @@ void osinfo_os_add_maximum_resources(OsinfoOs *os,
 /**
  * osinfo_os_find_install_script:
  * @os:      an operating system
- * @profile: the install script profile
+ * @profile: the install script profile that must be either
+ * OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP or OSINFO_INSTALL_SCRIPT_PROFILE_JEOS
  *
  * Returns: (transfer full): A new #OsinfoInstallScript for the @os @profile
  */
 OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *profile)
 {
-    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
-    GList *scripts = osinfo_list_get_elements(OSINFO_LIST(os->priv->scripts));
-    GList *tmp = scripts;
+    GList *scripts;
+    GList *tmp;
     OsinfoInstallScript *script = NULL;
+
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+    g_return_val_if_fail(profile != NULL, NULL);
+
+    scripts = osinfo_list_get_elements(OSINFO_LIST(os->priv->scripts));
+    tmp = scripts;
 
     while (tmp) {
         script = tmp->data;
