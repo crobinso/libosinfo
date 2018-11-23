@@ -157,7 +157,8 @@ enum {
     PROP_OS,
     PROP_LANGUAGES,
     PROP_VOLUME_SIZE,
-    PROP_EJECT_AFTER_INSTALL
+    PROP_EJECT_AFTER_INSTALL,
+    PROP_INSTALLER_SCRIPT
 };
 
 static void
@@ -240,6 +241,11 @@ osinfo_media_get_property(GObject    *object,
     case PROP_EJECT_AFTER_INSTALL:
         g_value_set_boolean(value,
                             osinfo_media_get_eject_after_install(media));
+        break;
+
+    case PROP_INSTALLER_SCRIPT:
+        g_value_set_boolean(value,
+                            osinfo_media_supports_installer_script(media));
         break;
 
     default:
@@ -342,8 +348,14 @@ osinfo_media_set_property(GObject      *object,
         osinfo_entity_set_param_boolean(OSINFO_ENTITY(media),
                                         OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL,
                                         g_value_get_boolean(value));
-
         break;
+
+    case PROP_INSTALLER_SCRIPT:
+        osinfo_entity_set_param_boolean(OSINFO_ENTITY(media),
+                                        OSINFO_MEDIA_PROP_INSTALLER_SCRIPT,
+                                        g_value_get_boolean(value));
+        break;
+
     default:
         /* We don't have any other property... */
         G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
@@ -604,6 +616,22 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
                                  G_PARAM_READWRITE |
                                  G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_EJECT_AFTER_INSTALL, pspec);
+
+    /**
+     * OsinfoMedia:installer-script:
+     *
+     * Whether the media supports installation via an install-script.
+     *
+     * Some distros provide a few different medias and not all the medias support
+     * installation via an install script.
+     */
+    pspec = g_param_spec_boolean("installer-script",
+                                 "InstallerScript",
+                                 _("Whether the media should be used for an installation using install scripts"),
+                                 TRUE /* default value */,
+                                 G_PARAM_READWRITE |
+                                 G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_INSTALLER_SCRIPT, pspec);
 }
 
 static void
@@ -1310,6 +1338,41 @@ gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media)
 {
     return osinfo_entity_get_param_value_boolean_with_default
         (OSINFO_ENTITY(media), OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL, TRUE);
+}
+
+/**
+ * osinfo_media_supports_installer_script:
+ * @media: an #OsinfoMedia instance
+ *
+ * Whether @media supports installation using install scripts.
+ *
+ * Returns: #TRUE if install-scripts are supported by the media,
+ * #FALSE otherwise
+ */
+gboolean osinfo_media_supports_installer_script(OsinfoMedia *media)
+{
+    OsinfoOs *os;
+    OsinfoInstallScriptList *list;
+    gboolean ret;
+
+    g_return_val_if_fail(OSINFO_IS_MEDIA(media), FALSE);
+
+    os = osinfo_media_get_os(media);
+    list = osinfo_os_get_install_script_list(os);
+
+    if (osinfo_list_get_length(OSINFO_LIST(list)) == 0) {
+        ret = FALSE;
+        goto cleanup;
+    }
+
+    ret = osinfo_entity_get_param_value_boolean_with_default
+            (OSINFO_ENTITY(media), OSINFO_MEDIA_PROP_INSTALLER_SCRIPT, TRUE);
+
+ cleanup:
+    g_object_unref(list);
+    g_object_unref(os);
+
+    return ret;
 }
 
 /*
