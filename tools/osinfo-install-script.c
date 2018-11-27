@@ -30,6 +30,7 @@
 static const gchar *profile = "jeos";
 static const gchar *output_dir;
 static const gchar *prefix;
+static const gchar *source = "media";
 
 static gboolean list_config = FALSE;
 static gboolean list_profile = FALSE;
@@ -72,6 +73,8 @@ static GOptionEntry entries[] =
       N_("Install script output directory"), NULL, },
     { "prefix", 'P', 0, G_OPTION_ARG_STRING, (void*)&prefix,
       N_("The output filename prefix"), NULL, },
+    { "installation-source", 's', 0, G_OPTION_ARG_STRING, (void*)&source,
+      N_("The installation source to be used with the script"), NULL, },
     { "config", 'c', 0, G_OPTION_ARG_CALLBACK,
       handle_config,
       N_("Set configuration parameter"), "key=value" },
@@ -250,6 +253,13 @@ static gboolean generate_script(OsinfoOs *os, OsinfoMedia *media)
 
     for (tmp = l; tmp != NULL; tmp = tmp->next) {
         OsinfoInstallScript *script = tmp->data;
+        OsinfoInstallScriptInstallationSource installation_source;
+
+        installation_source = g_str_equal(source, "network") ?
+                OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK :
+                OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA;
+        osinfo_install_script_set_installation_source(script,
+                                                      installation_source);
 
         if (prefix)
             osinfo_install_script_set_output_prefix(script, prefix);
@@ -428,6 +438,11 @@ By default a script will be generated for a C<JEOS> style install.
 
 Choose the installation script profile. Defaults to C<jeos>, but
 can also be C<desktop>, or a site specific profile name
+
+=item B<--installation-source=NAME>
+
+Set the installation source to be used with the installation
+script. Defaults to C<media>, but can also be C<network>.
 
 =item B<--config=key=value>
 
