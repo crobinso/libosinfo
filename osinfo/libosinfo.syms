@@ -543,7 +543,10 @@ LIBOSINFO_1.3.0 {
 	osinfo_imagelist_get_type;
 	osinfo_imagelist_new;
 
+	osinfo_install_script_get_installation_source;
 	osinfo_install_script_get_preferred_injection_method;
+	osinfo_install_script_installation_source_get_type;
+	osinfo_install_script_set_installation_source;
 	osinfo_install_script_set_preferred_injection_method;
 
 	osinfo_media_supports_installer_script;

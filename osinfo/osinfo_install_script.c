@@ -64,7 +64,8 @@ enum {
     PROP_PRODUCT_KEY_FORMAT,
     PROP_PATH_FORMAT,
     PROP_AVATAR_FORMAT,
-    PROP_PREFERRED_INJECTION_METHOD
+    PROP_PREFERRED_INJECTION_METHOD,
+    PROP_INSTALLATION_SOURCE
 };
 
 typedef struct _OsinfoInstallScriptGenerateData OsinfoInstallScriptGenerateData;
@@ -109,6 +110,11 @@ osinfo_install_script_set_property(GObject    *object,
     case PROP_PREFERRED_INJECTION_METHOD:
         osinfo_install_script_set_preferred_injection_method(script,
                                                              g_value_get_flags(value));
+        break;
+
+    case PROP_INSTALLATION_SOURCE:
+        osinfo_install_script_set_installation_source(script,
+                                                      g_value_get_enum(value));
         break;
 
     default:
@@ -160,6 +166,11 @@ osinfo_install_script_get_property(GObject    *object,
     case PROP_PREFERRED_INJECTION_METHOD:
         g_value_set_flags(value,
                           osinfo_install_script_get_preferred_injection_method(script));
+        break;
+
+    case PROP_INSTALLATION_SOURCE:
+        g_value_set_enum(value,
+                         osinfo_install_script_get_installation_source(script));
         break;
 
     default:
@@ -275,6 +286,17 @@ osinfo_install_script_class_init(OsinfoInstallScriptClass *klass)
                                G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass,
                                     PROP_PREFERRED_INJECTION_METHOD,
+                                    pspec);
+
+    pspec = g_param_spec_enum("installation-source",
+                              "Installation Source",
+                              _("The installation source to be used"),
+                              OSINFO_TYPE_INSTALL_SCRIPT_INSTALLATION_SOURCE,
+                              OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
+                              G_PARAM_READABLE |
+                              G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass,
+                                    PROP_INSTALLATION_SOURCE,
                                     pspec);
 
     g_type_class_add_private(klass, sizeof(OsinfoInstallScriptPrivate));
@@ -1853,6 +1875,40 @@ osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script
     g_type_class_unref(flags_class);
 
     return value->value;
+}
+
+/**
+ * osinfo_install_script_set_installation_source:
+ * @script: the install script
+ * @source: one of the installation sources:
+ * OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
+ * OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK
+ *
+ * Set the installation source to be used with the @script.
+ */
+void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
+                                                   OsinfoInstallScriptInstallationSource source)
+{
+    osinfo_entity_set_param_enum(OSINFO_ENTITY(script),
+            OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE,
+            source,
+            OSINFO_TYPE_INSTALL_SCRIPT_INSTALLATION_SOURCE);
+}
+
+/**
+ * osinfo_install_script_get_installation_source:
+ * @script: the install script
+ *
+ * Returns: the installation source to be used with the script. If none is set, it defaults to
+ * OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA.
+ */
+OsinfoInstallScriptInstallationSource
+osinfo_install_script_get_installation_source(OsinfoInstallScript *script)
+{
+    return osinfo_entity_get_param_value_enum(OSINFO_ENTITY(script),
+            OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE,
+            OSINFO_TYPE_INSTALL_SCRIPT_INSTALLATION_SOURCE,
+            OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA);
 }
 
 /*

@@ -61,6 +61,7 @@ typedef struct _OsinfoInstallScriptPrivate OsinfoInstallScriptPrivate;
 #define OSINFO_INSTALL_SCRIPT_PROP_POST_INSTALL_DRIVERS_SIGNING_REQ "post-install-drivers-signing-req"
 #define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
 #define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
+#define OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE "installation-source"
 
 /* object */
 struct _OsinfoInstallScript
@@ -134,6 +135,11 @@ typedef enum {
     OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD = 1 << 3,
     OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB    = 1 << 4,
 } OsinfoInstallScriptInjectionMethod;
+
+typedef enum {
+    OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
+    OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK
+} OsinfoInstallScriptInstallationSource;
 
 GType osinfo_install_script_get_type(void);
 
@@ -259,6 +265,11 @@ gboolean osinfo_install_script_get_needs_internet(OsinfoInstallScript *script);
 void osinfo_install_script_set_preferred_injection_method(OsinfoInstallScript *script,
                                                           OsinfoInstallScriptInjectionMethod method);
 OsinfoInstallScriptInjectionMethod osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script);
+
+void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
+                                                   OsinfoInstallScriptInstallationSource installer);
+OsinfoInstallScriptInstallationSource osinfo_install_script_get_installation_source(OsinfoInstallScript *script);
+
 #endif /* __OSINFO_INSTALL_SCRIPT_H__ */
 /*
  * Local variables:
