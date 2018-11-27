@@ -64,6 +64,7 @@ enum {
     PROP_PRODUCT_KEY_FORMAT,
     PROP_PATH_FORMAT,
     PROP_AVATAR_FORMAT,
+    PROP_PREFERRED_INJECTION_METHOD
 };
 
 typedef struct _OsinfoInstallScriptGenerateData OsinfoInstallScriptGenerateData;
@@ -103,6 +104,11 @@ osinfo_install_script_set_property(GObject    *object,
             osinfo_entity_set_param(OSINFO_ENTITY(script),
                                     OSINFO_INSTALL_SCRIPT_PROP_PROFILE,
                                     data);
+        break;
+
+    case PROP_PREFERRED_INJECTION_METHOD:
+        osinfo_install_script_set_preferred_injection_method(script,
+                                                             g_value_get_flags(value));
         break;
 
     default:
@@ -149,6 +155,11 @@ osinfo_install_script_get_property(GObject    *object,
     case PROP_AVATAR_FORMAT:
         g_value_set_object(value,
                            osinfo_install_script_get_avatar_format(script));
+        break;
+
+    case PROP_PREFERRED_INJECTION_METHOD:
+        g_value_set_flags(value,
+                          osinfo_install_script_get_preferred_injection_method(script));
         break;
 
     default:
@@ -252,6 +263,18 @@ osinfo_install_script_class_init(OsinfoInstallScriptClass *klass)
                                 G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass,
                                     PROP_AVATAR_FORMAT,
+                                    pspec);
+
+    pspec = g_param_spec_flags("preferred-injection-method",
+                               "Preferred Injection Method",
+                               _("The preferred injection method"),
+                               OSINFO_TYPE_INSTALL_SCRIPT_INJECTION_METHOD,
+                               OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK, /* default value */
+                               G_PARAM_READABLE |
+                               G_PARAM_WRITABLE |
+                               G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass,
+                                    PROP_PREFERRED_INJECTION_METHOD,
                                     pspec);
 
     g_type_class_add_private(klass, sizeof(OsinfoInstallScriptPrivate));
@@ -1765,6 +1788,72 @@ gboolean osinfo_install_script_get_needs_internet(OsinfoInstallScript *script)
          FALSE);
 }
 
+/**
+ * osinfo_install_script_set_preferred_injection_method:
+ * @script: the install script
+ * @method: one of the injection methods:
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM,
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK,
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_FLOPPY,
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD,
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB
+ *
+ * Set the preferred injection method to be used with the @script
+ */
+void osinfo_install_script_set_preferred_injection_method(OsinfoInstallScript *script,
+                                                          OsinfoInstallScriptInjectionMethod method)
+{
+    GFlagsClass *flags_class;
+    guint i;
+
+    flags_class = g_type_class_ref(OSINFO_TYPE_INSTALL_SCRIPT_INJECTION_METHOD);
+    for (i = 0; i < flags_class->n_values; i++) {
+        if ((flags_class->values[i].value & method) != 0) {
+            osinfo_entity_set_param(OSINFO_ENTITY(script),
+                                    OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD,
+                                    flags_class->values[i].value_nick);
+            break;
+        }
+    }
+    g_type_class_unref(flags_class);
+}
+
+/**
+ * osinfo_install_script_get_preferred_injection_method:
+ * @script: the install script
+ *
+ * Returns: the preferred injection method for the script. If none is set and
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK is supported,
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK is returned, otherwise
+ * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD is returned.
+ */
+OsinfoInstallScriptInjectionMethod
+osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script)
+{
+    GFlagsClass *flags_class;
+    GFlagsValue *value;
+    const gchar *nick;
+    guint supported_methods;
+
+    nick = osinfo_entity_get_param_value(OSINFO_ENTITY(script),
+            OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD);
+
+    if (nick == NULL) {
+        supported_methods = osinfo_install_script_get_injection_methods(script);
+        if ((supported_methods & OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK) != 0)
+            return OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK;
+        else if ((supported_methods & OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD) != 0)
+            return OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD;
+        else
+            return OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK;
+    }
+
+    flags_class = g_type_class_ref(OSINFO_TYPE_INSTALL_SCRIPT_INJECTION_METHOD);
+    value = g_flags_get_value_by_nick(flags_class, nick);
+    g_type_class_unref(flags_class);
+
+    return value->value;
+}
 
 /*
  * Local variables:

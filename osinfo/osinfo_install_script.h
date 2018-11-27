@@ -60,6 +60,7 @@ typedef struct _OsinfoInstallScriptPrivate OsinfoInstallScriptPrivate;
 #define OSINFO_INSTALL_SCRIPT_PROP_PRE_INSTALL_DRIVERS_SIGNING_REQ "pre-install-drivers-signing-req"
 #define OSINFO_INSTALL_SCRIPT_PROP_POST_INSTALL_DRIVERS_SIGNING_REQ "post-install-drivers-signing-req"
 #define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
+#define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
 
 /* object */
 struct _OsinfoInstallScript
@@ -255,6 +256,9 @@ unsigned int osinfo_install_script_get_injection_methods(OsinfoInstallScript *sc
 
 gboolean osinfo_install_script_get_needs_internet(OsinfoInstallScript *script);
 
+void osinfo_install_script_set_preferred_injection_method(OsinfoInstallScript *script,
+                                                          OsinfoInstallScriptInjectionMethod method);
+OsinfoInstallScriptInjectionMethod osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script);
 #endif /* __OSINFO_INSTALL_SCRIPT_H__ */
 /*
  * Local variables:
