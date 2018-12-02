@@ -67,6 +67,8 @@ test_loader(void)
     OsinfoLoader *loader;
     OsinfoDb *db;
     OsinfoOs *os;
+    OsinfoTreeList *treelist;
+    OsinfoTree *tree;
     GError *error = NULL;
     const char *str;
 
@@ -123,6 +125,20 @@ test_loader(void)
     g_test_expect_message(NULL, G_LOG_LEVEL_CRITICAL,
                           "*(osinfo_entity_get_param_value_enum): should not be reached*");
     g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_RELEASED);
+
+    os = osinfo_db_get_os(db, "http://fedoraproject.org/fedora/16");
+    g_assert_nonnull(os);
+    str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
+    g_assert_cmpstr(str, ==, "fedora16");
+    treelist = osinfo_os_get_tree_list(os);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 1);
+    tree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), 0));
+    str = osinfo_tree_get_treeinfo_family(tree);
+    g_assert_cmpstr(str, ==, "Fedora");
+    str = osinfo_tree_get_treeinfo_version(tree);
+    g_assert_cmpstr(str, ==, "16");
+    str = osinfo_tree_get_treeinfo_arch(tree);
+    g_assert_cmpstr(str, ==, "i386");
 
     g_object_unref(loader);
 }
@@ -934,6 +950,8 @@ main(int argc, char *argv[])
     osinfo_resources_get_type();
     osinfo_resourceslist_get_type();
     osinfo_install_script_get_type();
+    osinfo_tree_get_type();
+    osinfo_treelist_get_type();
 
     return g_test_run();
 }
