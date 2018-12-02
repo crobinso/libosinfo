@@ -758,10 +758,18 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
 
         for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
             OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
-            const gchar *os_family = osinfo_tree_get_treeinfo_family(os_tree);
-            const gchar *os_variant = osinfo_tree_get_treeinfo_variant(os_tree);
-            const gchar *os_version = osinfo_tree_get_treeinfo_version(os_tree);
-            const gchar *os_arch = osinfo_tree_get_treeinfo_arch(os_tree);
+            const gchar *os_family;
+            const gchar *os_variant;
+            const gchar *os_version;
+            const gchar *os_arch;
+
+            if (!osinfo_tree_has_treeinfo(os_tree))
+                continue;
+
+            os_family = osinfo_tree_get_treeinfo_family(os_tree);
+            os_variant = osinfo_tree_get_treeinfo_variant(os_tree);
+            os_version = osinfo_tree_get_treeinfo_version(os_tree);
+            os_arch = osinfo_tree_get_treeinfo_arch(os_tree);
 
             if (match_regex(os_family, tree_family) &&
                 match_regex(os_variant, tree_variant) &&
