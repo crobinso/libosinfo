@@ -1222,22 +1222,22 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
             continue;
 
         if (g_str_equal((const gchar *)nodes[i]->name,
-                        OSINFO_TREE_PROP_TREEINFO_FAMILY + sizeof("treeinfo-")))
+                        OSINFO_TREE_PROP_TREEINFO_FAMILY + strlen("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_FAMILY,
                                     (const gchar *)nodes[i]->children->content);
         else if (g_str_equal((const gchar *)nodes[i]->name,
-                             OSINFO_TREE_PROP_TREEINFO_VARIANT + sizeof("treeinfo-")))
+                             OSINFO_TREE_PROP_TREEINFO_VARIANT + strlen("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_VARIANT,
                                     (const gchar *)nodes[i]->children->content);
         else if (g_str_equal((const gchar *)nodes[i]->name,
-                             OSINFO_TREE_PROP_TREEINFO_VERSION + sizeof("treeinfo-")))
+                             OSINFO_TREE_PROP_TREEINFO_VERSION + strlen("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_VERSION,
                                     (const gchar *)nodes[i]->children->content);
         else if (g_str_equal((const gchar *)nodes[i]->name,
-                             OSINFO_TREE_PROP_TREEINFO_ARCH + sizeof("treeinfo-")))
+                             OSINFO_TREE_PROP_TREEINFO_ARCH + strlen("treeinfo-")))
             osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                     OSINFO_TREE_PROP_TREEINFO_ARCH,
                                     (const gchar *)nodes[i]->children->content);
