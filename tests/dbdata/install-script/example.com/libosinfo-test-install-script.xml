@@ -8,6 +8,11 @@
       <param name="l10n-language" policy="optional" value-map="http://example.com/libosinfo/test-datamap2"/>
       <param name="l10n-timezone" policy="optional"/>
     </config>
+    <injection-method>cdrom</injection-method>
+    <injection-method>disk</injection-method>
+    <injection-method>floppy</injection-method>
+    <injection-method>initrd</injection-method>
+
     <template>
       <xsl:stylesheet
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
