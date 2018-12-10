@@ -996,7 +996,7 @@ void osinfo_os_add_maximum_resources(OsinfoOs *os,
  * @profile: the install script profile that must be either
  * OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP or OSINFO_INSTALL_SCRIPT_PROFILE_JEOS
  *
- * Returns: (transfer full): A new #OsinfoInstallScript for the @os @profile
+ * Returns: (transfer none): A new #OsinfoInstallScript for the @os @profile
  */
 OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *profile)
 {
