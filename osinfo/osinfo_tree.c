@@ -526,21 +526,25 @@ static OsinfoTree *load_keyinfo(const gchar *location,
     if (!(family = g_key_file_get_string(file, "general", "family", error))) {
         if (!is_unknown_group_or_key_error(*error))
             goto cleanup;
+        g_clear_error(error);
     }
 
     if (!(variant = g_key_file_get_string(file, "general", "variant", error))) {
         if (!is_unknown_group_or_key_error(*error))
             goto cleanup;
+        g_clear_error(error);
     }
 
     if (!(version = g_key_file_get_string(file, "general", "version", error))) {
         if (!is_unknown_group_or_key_error(*error))
             goto cleanup;
+        g_clear_error(error);
     }
 
     if (!(arch = g_key_file_get_string(file, "general", "arch", error))) {
         if (!is_unknown_group_or_key_error(*error))
             goto cleanup;
+        g_clear_error(error);
     }
 
 
@@ -550,16 +554,19 @@ static OsinfoTree *load_keyinfo(const gchar *location,
         if (!(kernel = g_key_file_get_string(file, group, "kernel", error))) {
             if (!is_unknown_group_or_key_error(*error))
                 goto cleanup;
+            g_clear_error(error);
         }
 
         if (!(initrd = g_key_file_get_string(file, group, "initrd", error))) {
             if (!is_unknown_group_or_key_error(*error))
                 goto cleanup;
+            g_clear_error(error);
         }
 
         if (!(bootiso = g_key_file_get_string(file, group, "boot.iso", error))) {
             if (!is_unknown_group_or_key_error(*error))
                 goto cleanup;
+            g_clear_error(error);
         }
     }
 
