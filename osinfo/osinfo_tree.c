@@ -110,6 +110,7 @@ enum {
     PROP_KERNEL_PATH,
     PROP_INITRD_PATH,
     PROP_BOOT_ISO_PATH,
+    PROP_HAS_TREEINFO,
 };
 
 static void
@@ -164,6 +165,11 @@ osinfo_tree_get_property(GObject *object,
     case PROP_BOOT_ISO_PATH:
         g_value_set_string(value,
                            osinfo_tree_get_boot_iso_path(tree));
+        break;
+
+    case PROP_HAS_TREEINFO:
+        g_value_set_boolean(value,
+                            osinfo_tree_has_treeinfo(tree));
         break;
 
     default:
@@ -235,6 +241,12 @@ osinfo_tree_set_property(GObject      *object,
         osinfo_entity_set_param(OSINFO_ENTITY(tree),
                                 OSINFO_TREE_PROP_BOOT_ISO,
                                 g_value_get_string(value));
+        break;
+
+    case PROP_HAS_TREEINFO:
+        osinfo_entity_set_param_boolean(OSINFO_ENTITY(tree),
+                                        OSINFO_TREE_PROP_HAS_TREEINFO,
+                                        g_value_get_boolean(value));
         break;
 
     default:
@@ -380,6 +392,18 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
                                 G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_BOOT_ISO_PATH, pspec);
 
+    /**
+     * OsinfoTree:has-treeinfo
+     *
+     * Whether the tree has treeinfo or not
+     */
+    pspec = g_param_spec_boolean("has-treeinfo",
+                                 "HasTreeinfo",
+                                 _("Whether the tree has treeinfo"),
+                                 TRUE /* default value */,
+                                 G_PARAM_READWRITE |
+                                 G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_HAS_TREEINFO, pspec);
 }
 
 static void
@@ -832,6 +856,20 @@ const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(tree),
                                          OSINFO_TREE_PROP_INITRD);
+}
+
+/**
+ * osinfo_tree_has_treeinfo:
+ * @tree: and #OsinfoTree instance
+ *
+ * Return whether a tree has treeinfo or not.
+ *
+ * Returns: TRUE if the tree has treeinfo. FALSE otherwise.
+ */
+gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree)
+{
+    return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(tree),
+                                                 OSINFO_TREE_PROP_HAS_TREEINFO);
 }
 
 /*

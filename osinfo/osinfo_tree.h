@@ -61,6 +61,8 @@ typedef struct _OsinfoTreePrivate OsinfoTreePrivate;
 #define OSINFO_TREE_PROP_BOOT_ISO         "boot-iso"
 #define OSINFO_TREE_PROP_KERNEL           "kernel"
 #define OSINFO_TREE_PROP_INITRD           "initrd"
+#define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
+
 
 /* object */
 struct _OsinfoTree
@@ -98,6 +100,7 @@ OsinfoTree *osinfo_tree_create_from_location_finish(GAsyncResult *res,
 
 const gchar *osinfo_tree_get_architecture(OsinfoTree *tree);
 const gchar *osinfo_tree_get_url(OsinfoTree *tree);
+gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree);
 const gchar *osinfo_tree_get_treeinfo_family(OsinfoTree *tree);
 const gchar *osinfo_tree_get_treeinfo_variant(OsinfoTree *tree);
 const gchar *osinfo_tree_get_treeinfo_version(OsinfoTree *tree);

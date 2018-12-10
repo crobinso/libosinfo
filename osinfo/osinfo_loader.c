@@ -1216,6 +1216,10 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
         return NULL;
     }
 
+    osinfo_entity_set_param_boolean(OSINFO_ENTITY(tree),
+                                    OSINFO_TREE_PROP_HAS_TREEINFO,
+                                    nnodes == 0 ? FALSE : TRUE);
+
     for (i = 0; i < nnodes; i++) {
         if (!nodes[i]->children ||
             nodes[i]->children->type != XML_TEXT_NODE)
