@@ -495,6 +495,13 @@ static gboolean is_str_empty(const gchar *str) {
     return ret;
 }
 
+static gboolean is_unknown_group_or_key_error(const GError *error)
+{
+    return (g_error_matches(error, G_KEY_FILE_ERROR,
+                            G_KEY_FILE_ERROR_KEY_NOT_FOUND) ||
+            g_error_matches(error, G_KEY_FILE_ERROR,
+                            G_KEY_FILE_ERROR_GROUP_NOT_FOUND));
+}
 
 static OsinfoTree *load_keyinfo(const gchar *location,
                                 const gchar *content,
@@ -516,44 +523,44 @@ static OsinfoTree *load_keyinfo(const gchar *location,
                                    G_KEY_FILE_NONE, error))
         goto cleanup;
 
-    if (!(family = g_key_file_get_string(file, "general", "family", error)) &&
-        (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-         (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-        goto cleanup;
+    if (!(family = g_key_file_get_string(file, "general", "family", error))) {
+        if (!is_unknown_group_or_key_error(*error))
+            goto cleanup;
+    }
 
-    if (!(variant = g_key_file_get_string(file, "general", "variant", error)) &&
-        (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-         (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-        goto cleanup;
+    if (!(variant = g_key_file_get_string(file, "general", "variant", error))) {
+        if (!is_unknown_group_or_key_error(*error))
+            goto cleanup;
+    }
 
-    if (!(version = g_key_file_get_string(file, "general", "version", error)) &&
-        (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-         (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-        goto cleanup;
+    if (!(version = g_key_file_get_string(file, "general", "version", error))) {
+        if (!is_unknown_group_or_key_error(*error))
+            goto cleanup;
+    }
 
-    if (!(arch = g_key_file_get_string(file, "general", "arch", error)) &&
-        (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-         (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-        goto cleanup;
+    if (!(arch = g_key_file_get_string(file, "general", "arch", error))) {
+        if (!is_unknown_group_or_key_error(*error))
+            goto cleanup;
+    }
 
 
     if (arch) {
         group = g_strdup_printf("images-%s", arch);
 
-        if (!(kernel = g_key_file_get_string(file, group, "kernel", error)) &&
-            (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-             (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-            goto cleanup;
+        if (!(kernel = g_key_file_get_string(file, group, "kernel", error))) {
+            if (!is_unknown_group_or_key_error(*error))
+                goto cleanup;
+        }
 
-        if (!(initrd = g_key_file_get_string(file, group, "initrd", error)) &&
-            (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-             (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-            goto cleanup;
+        if (!(initrd = g_key_file_get_string(file, group, "initrd", error))) {
+            if (!is_unknown_group_or_key_error(*error))
+                goto cleanup;
+        }
 
-        if (!(bootiso = g_key_file_get_string(file, group, "boot.iso", error)) &&
-            (*error && (*error)->code != G_KEY_FILE_ERROR_KEY_NOT_FOUND &&
-             (*error)->code != G_KEY_FILE_ERROR_GROUP_NOT_FOUND))
-            goto cleanup;
+        if (!(bootiso = g_key_file_get_string(file, group, "boot.iso", error))) {
+            if (!is_unknown_group_or_key_error(*error))
+                goto cleanup;
+        }
     }
 
     tree = osinfo_tree_new(location, arch ? arch : "i386");
