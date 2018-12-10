@@ -70,6 +70,8 @@ test_loader(void)
     OsinfoTreeList *treelist;
     OsinfoTree *tree;
     GError *error = NULL;
+    gsize i = 0;
+    gint treelist_len;
     const char *str;
 
     loader = osinfo_loader_new();
@@ -131,14 +133,25 @@ test_loader(void)
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
     g_assert_cmpstr(str, ==, "fedora16");
     treelist = osinfo_os_get_tree_list(os);
-    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 1);
-    tree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), 0));
-    str = osinfo_tree_get_treeinfo_family(tree);
-    g_assert_cmpstr(str, ==, "Fedora");
-    str = osinfo_tree_get_treeinfo_version(tree);
-    g_assert_cmpstr(str, ==, "16");
-    str = osinfo_tree_get_treeinfo_arch(tree);
-    g_assert_cmpstr(str, ==, "i386");
+    treelist_len = osinfo_list_get_length(OSINFO_LIST(treelist));
+    g_assert_cmpint(treelist_len, ==, 2);
+
+    for (i = 0; i < treelist_len; i++) {
+        tree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), i));
+
+        str = osinfo_tree_get_architecture(tree);
+        if (g_str_equal(str, "i686")) {
+            g_assert_true(osinfo_tree_has_treeinfo(tree));
+            str = osinfo_tree_get_treeinfo_family(tree);
+            g_assert_cmpstr(str, ==, "Fedora");
+            str = osinfo_tree_get_treeinfo_version(tree);
+            g_assert_cmpstr(str, ==, "16");
+            str = osinfo_tree_get_treeinfo_arch(tree);
+            g_assert_cmpstr(str, ==, "i386");
+        } else {
+            g_assert_false(osinfo_tree_has_treeinfo(tree));
+        }
+    }
 
     g_object_unref(loader);
 }
