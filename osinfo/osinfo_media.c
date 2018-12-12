@@ -39,6 +39,34 @@
 
 #define PVD_OFFSET 0x00008000
 #define BOOTABLE_TAG "EL TORITO SPECIFICATION"
+#define PPC_BOOTINFO "/ppc/bootinfo.txt"
+
+enum {
+    DIRECTORY_RECORD_FLAG_EXISTENCE       = 1 << 0,
+    DIRECTORY_RECORD_FLAG_DIRECTORY       = 1 << 1,
+    DIRECTORY_RECORD_FLAG_ASSOCIATED_FILE = 1 << 2,
+    DIRECTORY_RECORD_FLAG_RECORD          = 1 << 3,
+    DIRECTORY_RECORD_FLAG_PROTECTION      = 1 << 4,
+    DIRECTORY_RECORD_FLAG_RESERVED5       = 1 << 5,
+    DIRECTORY_RECORD_FLAG_RESERVED6       = 1 << 6,
+    DIRECTORY_RECORD_FLAG_MULTIEXTENT     = 1 << 7
+};
+
+typedef struct _DirectoryRecord DirectoryRecord;
+
+struct __attribute__((packed)) _DirectoryRecord {
+    guint8 length;
+    guint8 ignored;
+    guint32 extent_location[2];
+    guint32 extent_size[2];
+    guint8 ignored2[7];
+    guint8 flags;
+    guint8 ignored3[6];
+    guint8 filename_length;
+    gchar filename[1];
+};
+
+G_STATIC_ASSERT(sizeof(struct _DirectoryRecord) == 34);
 
 typedef struct _PrimaryVolumeDescriptor PrimaryVolumeDescriptor;
 
@@ -50,11 +78,13 @@ struct _PrimaryVolumeDescriptor {
     guint32 volume_space_size[2];
     guint8 ignored3[40];
     guint16 logical_blk_size[2];
-    guint8 ignored4[186];
+    guint8 ignored4[24];
+    guint8 root_directory_entry[33];
+    guint8 ignored5[129];
     gchar  publisher[MAX_PUBLISHER]; /* Publisher ID */
-    guint8 ignored5[128];
+    guint8 ignored6[128];
     gchar  application[MAX_APPLICATION]; /* Application ID */
-    guint8 ignored6[1346];
+    guint8 ignored7[1346];
 };
 
 /* the PrimaryVolumeDescriptor struct must exactly 2048 bytes long
@@ -69,6 +99,32 @@ struct _SupplementaryVolumeDescriptor {
     guint8 ignored[7];
     gchar  system[MAX_SYSTEM]; /* System ID */
 };
+
+typedef struct _SearchPPCBootinfoAsyncData SearchPPCBootinfoAsyncData;
+struct _SearchPPCBootinfoAsyncData {
+    GTask *res;
+
+    PrimaryVolumeDescriptor *pvd;
+    guint8 *extent;
+
+    gchar **filepath;
+    gsize filepath_index;
+    gsize filepath_index_max;
+
+    gsize offset;
+    gsize length;
+};
+
+static void search_ppc_bootinfo_async_data_free(SearchPPCBootinfoAsyncData *data)
+{
+    g_object_unref(data->res);
+
+    g_strfreev(data->filepath);
+    g_free(data->extent);
+
+    g_slice_free(SearchPPCBootinfoAsyncData, data);
+
+}
 
 typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
@@ -774,6 +830,216 @@ create_from_location_async_data(CreateFromLocationAsyncData *data)
     return media;
 }
 
+static gboolean check_directory_record_entry_flags(guint8 flags,
+                                                   gboolean is_dir)
+{
+    if (is_dir)
+        return (flags & DIRECTORY_RECORD_FLAG_DIRECTORY) != 0;
+
+    return (flags & DIRECTORY_RECORD_FLAG_DIRECTORY) == 0;
+}
+
+static void on_directory_record_extent_read(GObject *source,
+                                            GAsyncResult *res,
+                                            gpointer user_data)
+{
+    GInputStream *stream = G_INPUT_STREAM(source);
+    SearchPPCBootinfoAsyncData *data;
+    DirectoryRecord *dr;
+    gsize offset;
+    gssize ret;
+    gboolean is_dir;
+    guint8 index = (G_BYTE_ORDER == G_LITTLE_ENDIAN) ? 0 : 1;
+    GError *error = NULL;
+
+    data = (SearchPPCBootinfoAsyncData *)user_data;
+
+    ret = g_input_stream_read_finish(stream, res, &error);
+    if (ret < 0) {
+        g_prefix_error(&error,
+                       _("Failed to read \"%s\" directory record extent: "),
+                       data->filepath[data->filepath_index]);
+        goto cleanup;
+    }
+
+    if (ret == 0) {
+        g_set_error(&error,
+                    OSINFO_MEDIA_ERROR,
+                    OSINFO_MEDIA_ERROR_NO_DIRECTORY_RECORD_EXTENT,
+                    _("No \"%s\" directory record extent"),
+                    data->filepath[data->filepath_index]);
+        goto cleanup;
+    }
+
+    data->offset += ret;
+    if (data->offset < data->length) {
+        g_input_stream_read_async(stream,
+                                  ((gchar *)data->extent + data->offset),
+                                  data->length - data->offset,
+                                  g_task_get_priority(data->res),
+                                  g_task_get_cancellable(data->res),
+                                  on_directory_record_extent_read,
+                                  data);
+        return;
+    }
+
+
+    is_dir = data->filepath_index < data->filepath_index_max - 1;
+    offset = 0;
+
+    do {
+        gboolean check;
+
+        dr = (DirectoryRecord *)&data->extent[offset];
+        if (dr->length == 0) {
+            offset++;
+            continue;
+        }
+
+        check = check_directory_record_entry_flags(dr->flags, is_dir);
+        if (check &&
+            strncmp(data->filepath[data->filepath_index], dr->filename, strlen(data->filepath[data->filepath_index])) == 0) {
+            data->filepath_index++;
+            break;
+        }
+
+        offset += dr->length;
+    } while (offset < data->length);
+
+    if (offset >= data->length) {
+        set_non_bootable_media_error(&error);
+        goto cleanup;
+    }
+
+    /* It just means that we walked through all the filepath entries and we
+     * found the file we're looking for! Just return TRUE! */
+    if (data->filepath_index == data->filepath_index_max)
+        goto cleanup;
+
+    if (!g_seekable_seek(G_SEEKABLE(stream),
+                         dr->extent_location[index]  * data->pvd->logical_blk_size[index],
+                         G_SEEK_SET,
+                         g_task_get_cancellable(data->res),
+                         &error))
+        goto cleanup;
+
+    data->offset = 0;
+    data->length = dr->extent_size[index];
+
+    g_free(data->extent);
+    data->extent = g_malloc0(data->length);
+    g_input_stream_read_async(stream,
+                              data->extent,
+                              data->length,
+                              g_task_get_priority(data->res),
+                              g_task_get_cancellable(data->res),
+                              on_directory_record_extent_read,
+                              data);
+    return;
+
+ cleanup:
+    if (error != NULL)
+        g_task_return_error(data->res, error);
+    else
+        g_task_return_boolean(data->res, TRUE);
+
+    search_ppc_bootinfo_async_data_free(data);
+}
+
+static void search_ppc_bootinfo_async(GInputStream *stream,
+                                      PrimaryVolumeDescriptor *pvd,
+                                      gint priority,
+                                      GCancellable *cancellable,
+                                      GAsyncReadyCallback callback,
+                                      gpointer user_data)
+{
+    SearchPPCBootinfoAsyncData *data;
+    DirectoryRecord *root_directory_entry = NULL;
+    GError *error = NULL;
+    guint8 index = (G_BYTE_ORDER == G_LITTLE_ENDIAN) ? 0 : 1;
+
+    g_return_if_fail(G_IS_INPUT_STREAM(stream));
+    g_return_if_fail(pvd != NULL);
+
+    data = g_slice_new0(SearchPPCBootinfoAsyncData);
+    data->pvd = pvd;
+    data->res = g_task_new(NULL,
+                           cancellable,
+                           callback,
+                           user_data);
+    g_task_set_priority(data->res, priority);
+
+    root_directory_entry = (DirectoryRecord *)&data->pvd->root_directory_entry;
+
+    if (!g_seekable_seek(G_SEEKABLE(stream),
+                         root_directory_entry->extent_location[index] * data->pvd->logical_blk_size[index],
+                         G_SEEK_SET,
+                         g_task_get_cancellable(data->res),
+                         &error))
+        goto cleanup;
+
+    data->offset = 0;
+    data->length = root_directory_entry->extent_size[index];
+    data->extent = g_malloc0(root_directory_entry->extent_size[index]);
+
+    data->filepath = g_strsplit(PPC_BOOTINFO, "/", -1);
+    /* As the path starts with "/", we can just ignore the first element of the
+     * split entry. */
+    data->filepath_index = 1;
+    data->filepath_index_max = g_strv_length(data->filepath);
+
+    g_input_stream_read_async(stream,
+                              data->extent,
+                              data->length,
+                              g_task_get_priority(data->res),
+                              g_task_get_cancellable(data->res),
+                              on_directory_record_extent_read,
+                              data);
+    return;
+
+ cleanup:
+    g_task_return_error(data->res, error);
+    search_ppc_bootinfo_async_data_free(data);
+}
+
+static gboolean search_ppc_bootinfo_finish(GAsyncResult *res,
+                                           GError **error)
+{
+    GTask *task = G_TASK(res);
+
+    g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
+
+    return g_task_propagate_boolean(task, error);
+}
+
+static void search_ppc_bootinfo_callback(GObject *source,
+                                         GAsyncResult *res,
+                                         gpointer user_data)
+{
+    OsinfoMedia *media = NULL;
+    GInputStream *stream = G_INPUT_STREAM(source);
+    GError *error = NULL;
+    CreateFromLocationAsyncData *data;
+    gboolean ret;
+
+    data = (CreateFromLocationAsyncData *)user_data;
+
+    ret = search_ppc_bootinfo_finish(res, &error);
+    if (!ret)
+        goto cleanup;
+
+    media = create_from_location_async_data(data);
+
+ cleanup:
+    if (error != NULL)
+        g_task_return_error(data->res, error);
+    else
+        g_task_return_pointer(data->res, media, g_object_unref);
+
+    g_object_unref(stream);
+    create_from_location_async_data_free(data);
+}
+
 static void on_svd_read(GObject *source,
                          GAsyncResult *res,
                          gpointer user_data)
@@ -819,9 +1085,22 @@ static void on_svd_read(GObject *source,
     g_strchomp(data->svd.system);
 
     if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG)) != 0) {
-        set_non_bootable_media_error(&error);
-
-        goto cleanup;
+        /*
+         * In case we reached this point, there are basically 2 alternatives:
+         * - the media is a PPC media and we should check for the existence of
+         *   "/ppc/bootinfo.txt" file
+         * - the media is not bootable.
+         *
+         * Let's check for the existence of the "/ppc/bootinfo.txt" file and,
+         * only after that, return whether the media is bootable or not.
+         */
+        search_ppc_bootinfo_async(stream,
+                                  &data->pvd,
+                                  g_task_get_priority(data->res),
+                                  g_task_get_cancellable(data->res),
+                                  search_ppc_bootinfo_callback,
+                                  data);
+        return;
     }
 
     media = create_from_location_async_data(data);
