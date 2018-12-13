@@ -894,6 +894,7 @@ static void on_pvd_read(GObject *source,
     return;
 
 ON_ERROR:
+    g_object_unref(stream);
     g_task_return_error(data->res, error);
     create_from_location_async_data_free(data);
 }
@@ -916,6 +917,7 @@ static void on_location_skipped(GObject *source,
                         OSINFO_MEDIA_ERROR,
                         OSINFO_MEDIA_ERROR_NO_DESCRIPTORS,
                         _("No volume descriptors"));
+        g_object_unref(stream);
         g_task_return_error(data->res, error);
         create_from_location_async_data_free(data);
 
@@ -947,6 +949,7 @@ static void on_location_read(GObject *source,
     stream = g_file_read_finish(G_FILE(source), res, &error);
     if (error != NULL) {
         g_prefix_error(&error, _("Failed to open file"));
+        g_object_unref(stream);
         g_task_return_error(data->res, error);
         create_from_location_async_data_free(data);
 
