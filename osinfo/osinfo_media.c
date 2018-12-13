@@ -723,18 +723,58 @@ static gboolean is_str_empty(const gchar *str) {
     return ret;
 }
 
+static OsinfoMedia *
+create_from_location_async_data(CreateFromLocationAsyncData *data)
+{
+    OsinfoMedia *media;
+    gchar *uri;
+    guint64 vol_size;
+    guint8 index;
+
+    uri = g_file_get_uri(data->file);
+    media = g_object_new(OSINFO_TYPE_MEDIA,
+                         "id", uri,
+                         NULL);
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_URL,
+                            uri);
+    g_free(uri);
+    if (!is_str_empty(data->pvd.volume))
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_VOLUME_ID,
+                                data->pvd.volume);
+    if (!is_str_empty(data->pvd.system))
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_SYSTEM_ID,
+                                data->pvd.system);
+    if (!is_str_empty(data->pvd.publisher))
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_PUBLISHER_ID,
+                                data->pvd.publisher);
+    if (!is_str_empty(data->pvd.application))
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_APPLICATION_ID,
+                                data->pvd.application);
+
+    index = (G_BYTE_ORDER == G_LITTLE_ENDIAN) ? 0 : 1;
+    vol_size = ((gint64) data->pvd.volume_space_size[index]) *
+               data->pvd.logical_blk_size[index];
+    osinfo_entity_set_param_int64(OSINFO_ENTITY(media),
+                                  OSINFO_MEDIA_PROP_VOLUME_SIZE,
+                                  vol_size);
+
+    return media;
+}
+
 static void on_svd_read(GObject *source,
                          GAsyncResult *res,
                          gpointer user_data)
 {
     OsinfoMedia *media = NULL;
     GInputStream *stream = G_INPUT_STREAM(source);
-    gchar *uri;
     GError *error = NULL;
     CreateFromLocationAsyncData *data;
     gssize ret;
-    guint8 index;
-    gint64 vol_size;
 
     data = (CreateFromLocationAsyncData *)user_data;
 
@@ -779,37 +819,7 @@ static void on_svd_read(GObject *source,
         goto cleanup;
     }
 
-    uri = g_file_get_uri(data->file);
-    media = g_object_new(OSINFO_TYPE_MEDIA,
-                         "id", uri,
-                         NULL);
-    osinfo_entity_set_param(OSINFO_ENTITY(media),
-                            OSINFO_MEDIA_PROP_URL,
-                            uri);
-    g_free(uri);
-    if (!is_str_empty(data->pvd.volume))
-        osinfo_entity_set_param(OSINFO_ENTITY(media),
-                                OSINFO_MEDIA_PROP_VOLUME_ID,
-                                data->pvd.volume);
-    if (!is_str_empty(data->pvd.system))
-        osinfo_entity_set_param(OSINFO_ENTITY(media),
-                                OSINFO_MEDIA_PROP_SYSTEM_ID,
-                                data->pvd.system);
-    if (!is_str_empty(data->pvd.publisher))
-        osinfo_entity_set_param(OSINFO_ENTITY(media),
-                                OSINFO_MEDIA_PROP_PUBLISHER_ID,
-                                data->pvd.publisher);
-    if (!is_str_empty(data->pvd.application))
-        osinfo_entity_set_param(OSINFO_ENTITY(media),
-                                OSINFO_MEDIA_PROP_APPLICATION_ID,
-                                data->pvd.application);
-
-    index = (G_BYTE_ORDER == G_LITTLE_ENDIAN) ? 0 : 1;
-    vol_size = ((gint64) data->pvd.volume_space_size[index]) *
-               data->pvd.logical_blk_size[index];
-    osinfo_entity_set_param_int64(OSINFO_ENTITY(media),
-                                  OSINFO_MEDIA_PROP_VOLUME_SIZE,
-                                  vol_size);
+    media = create_from_location_async_data(data);
 
  cleanup:
     if (error != NULL)
