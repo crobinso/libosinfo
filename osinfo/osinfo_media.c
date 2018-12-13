@@ -723,6 +723,14 @@ static gboolean is_str_empty(const gchar *str) {
     return ret;
 }
 
+static void set_non_bootable_media_error(GError **error)
+{
+    g_set_error(error,
+                OSINFO_MEDIA_ERROR,
+                OSINFO_MEDIA_ERROR_NOT_BOOTABLE,
+                _("Install media is not bootable"));
+}
+
 static OsinfoMedia *
 create_from_location_async_data(CreateFromLocationAsyncData *data)
 {
@@ -811,10 +819,7 @@ static void on_svd_read(GObject *source,
     g_strchomp(data->svd.system);
 
     if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG)) != 0) {
-        g_set_error(&error,
-                    OSINFO_MEDIA_ERROR,
-                    OSINFO_MEDIA_ERROR_NOT_BOOTABLE,
-                    _("Install media is not bootable"));
+        set_non_bootable_media_error(&error);
 
         goto cleanup;
     }
