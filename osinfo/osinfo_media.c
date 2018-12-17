@@ -59,10 +59,9 @@ struct _PrimaryVolumeDescriptor {
 
 /* the PrimaryVolumeDescriptor struct must exactly 2048 bytes long
  * since we expect the supplementary volume descriptor to be right
- * after it. The magic declaration below ensures we get a compilatin
- * error if its size is not correct
+ * after it.
  */
-char dummy[sizeof(struct _PrimaryVolumeDescriptor) == 2048 ? 1 : -1];
+G_STATIC_ASSERT(sizeof(struct _PrimaryVolumeDescriptor) == 2048);
 
 typedef struct _SupplementaryVolumeDescriptor SupplementaryVolumeDescriptor;
 
