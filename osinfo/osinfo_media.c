@@ -745,14 +745,14 @@ static void on_svd_read(GObject *source,
     if (ret < 0) {
         g_prefix_error(&error,
                        _("Failed to read supplementary volume descriptor: "));
-        goto EXIT;
+        goto cleanup;
     }
     if (ret == 0) {
         g_set_error(&error,
                     OSINFO_MEDIA_ERROR,
                     OSINFO_MEDIA_ERROR_NO_SVD,
                     _("Supplementary volume descriptor was truncated"));
-        goto EXIT;
+        goto cleanup;
     }
 
     data->offset += ret;
@@ -777,7 +777,7 @@ static void on_svd_read(GObject *source,
                     OSINFO_MEDIA_ERROR_NOT_BOOTABLE,
                     _("Install media is not bootable"));
 
-        goto EXIT;
+        goto cleanup;
     }
 
     uri = g_file_get_uri(data->file);
@@ -812,7 +812,7 @@ static void on_svd_read(GObject *source,
                                   OSINFO_MEDIA_PROP_VOLUME_SIZE,
                                   vol_size);
 
-EXIT:
+ cleanup:
     if (error != NULL)
         g_task_return_error(data->res, error);
     else
@@ -838,14 +838,14 @@ static void on_pvd_read(GObject *source,
                                      &error);
     if (ret < 0) {
         g_prefix_error(&error, _("Failed to read primary volume descriptor: "));
-        goto ON_ERROR;
+        goto error;
     }
     if (ret == 0) {
         g_set_error(&error,
                     OSINFO_MEDIA_ERROR,
                     OSINFO_MEDIA_ERROR_NO_PVD,
                     _("Primary volume descriptor was truncated"));
-        goto ON_ERROR;
+        goto error;
     }
 
     data->offset += ret;
@@ -878,7 +878,7 @@ static void on_pvd_read(GObject *source,
                     OSINFO_MEDIA_ERROR_INSUFFICIENT_METADATA,
                     _("Insufficient metadata on installation media"));
 
-        goto ON_ERROR;
+        goto error;
     }
 
     data->offset = 0;
@@ -893,7 +893,7 @@ static void on_pvd_read(GObject *source,
                               data);
     return;
 
-ON_ERROR:
+ error:
     g_object_unref(stream);
     g_task_return_error(data->res, error);
     create_from_location_async_data_free(data);
