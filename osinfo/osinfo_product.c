@@ -82,7 +82,7 @@ enum {
     PROP_LOGO,
 };
 
-static void osinfo_product_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
+static void osinfo_product_link_free(gpointer data)
 {
     struct _OsinfoProductProductLink *prodlink = data;
     g_object_unref(prodlink->otherProduct);
@@ -95,8 +95,7 @@ osinfo_product_finalize(GObject *object)
 {
     OsinfoProduct *product = OSINFO_PRODUCT(object);
 
-    g_list_foreach(product->priv->productLinks, osinfo_product_link_free, NULL);
-    g_list_free(product->priv->productLinks);
+    g_list_free_full(product->priv->productLinks, osinfo_product_link_free);
 
     /* Chain up to the parent class */
     G_OBJECT_CLASS(osinfo_product_parent_class)->finalize(object);

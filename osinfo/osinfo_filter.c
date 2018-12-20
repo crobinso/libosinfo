@@ -89,16 +89,9 @@ OsinfoFilter *osinfo_filter_new(void)
 
 
 static void
-osinfo_filter_prop_constraint_free(gpointer value, gpointer opaque G_GNUC_UNUSED)
-{
-    g_free(value);
-}
-
-static void
 osinfo_filter_prop_constraints_free(gpointer props)
 {
-    g_list_foreach(props, osinfo_filter_prop_constraint_free, NULL);
-    g_list_free(props);
+    g_list_free_full(props, g_free);
 }
 
 

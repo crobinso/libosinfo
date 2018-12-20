@@ -146,15 +146,10 @@ osinfo_entity_class_init(OsinfoEntityClass *klass)
     g_type_class_add_private(klass, sizeof(OsinfoEntityPrivate));
 }
 
-static void osinfo_entity_param_value_free(gpointer value, gpointer opaque G_GNUC_UNUSED)
-{
-    g_free(value);
-}
 
 static void osinfo_entity_param_values_free(gpointer values)
 {
-    g_list_foreach(values, osinfo_entity_param_value_free, NULL);
-    g_list_free(values);
+    g_list_free_full(values, g_free);
 }
 
 

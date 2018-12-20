@@ -52,18 +52,12 @@ struct _OsinfoPlatformDeviceLink {
     gchar *driver;
 };
 
-static void osinfo_device_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
-{
-    g_object_unref(OSINFO_DEVICELINK(data));
-}
-
 static void
 osinfo_platform_finalize(GObject *object)
 {
     OsinfoPlatform *platform = OSINFO_PLATFORM(object);
 
-    g_list_foreach(platform->priv->deviceLinks, osinfo_device_link_free, NULL);
-    g_list_free(platform->priv->deviceLinks);
+    g_list_free_full(platform->priv->deviceLinks, g_object_unref);
 
     /* Chain up to the parent class */
     G_OBJECT_CLASS(osinfo_platform_parent_class)->finalize(object);

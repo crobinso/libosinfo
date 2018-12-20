@@ -2002,8 +2002,7 @@ static void osinfo_loader_entity_files_free(OsinfoLoaderEntityFiles *files)
 {
     if (!files)
         return;
-    g_list_foreach(files->extensions, (GFunc)g_object_unref, NULL);
-    g_list_free(files->extensions);
+    g_list_free_full(files->extensions, g_object_unref);
     if (files->master)
         g_object_unref(files->master);
     g_free(files);

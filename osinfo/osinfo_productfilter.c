@@ -98,16 +98,9 @@ OsinfoProductFilter *osinfo_productfilter_new(void)
 
 
 static void
-osinfo_productfilter_product_constraint_free(gpointer value, gpointer opaque G_GNUC_UNUSED)
-{
-    g_object_unref(value);
-}
-
-static void
 osinfo_productfilter_product_constraints_free(gpointer relshps)
 {
-    g_list_foreach(relshps, osinfo_productfilter_product_constraint_free, NULL);
-    g_list_free(relshps);
+    g_list_free_full(relshps, g_object_unref);
 }
 
 static void

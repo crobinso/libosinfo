@@ -79,11 +79,6 @@ enum {
 
 static void osinfo_os_finalize(GObject *object);
 
-static void osinfo_device_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
-{
-    g_object_unref(OSINFO_DEVICELINK(data));
-}
-
 static void
 osinfo_os_get_property(GObject    *object,
                         guint       property_id,
@@ -116,8 +111,7 @@ osinfo_os_finalize(GObject *object)
 {
     OsinfoOs *os = OSINFO_OS(object);
 
-    g_list_foreach(os->priv->deviceLinks, osinfo_device_link_free, NULL);
-    g_list_free(os->priv->deviceLinks);
+    g_list_free_full(os->priv->deviceLinks, g_object_unref);
     g_object_unref(os->priv->medias);
     g_object_unref(os->priv->trees);
     g_object_unref(os->priv->images);

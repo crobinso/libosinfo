@@ -114,18 +114,12 @@ osinfo_deployment_get_property(GObject *object,
 
 
 
-static void osinfo_device_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
-{
-    g_object_unref(OSINFO_DEVICELINK(data));
-}
-
 static void
 osinfo_deployment_finalize(GObject *object)
 {
     OsinfoDeployment *deployment = OSINFO_DEPLOYMENT(object);
 
-    g_list_foreach(deployment->priv->deviceLinks, osinfo_device_link_free, NULL);
-    g_list_free(deployment->priv->deviceLinks);
+    g_list_free_full(deployment->priv->deviceLinks, g_object_unref);
 
     g_object_unref(deployment->priv->os);
     g_object_unref(deployment->priv->platform);

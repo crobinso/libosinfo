@@ -45,6 +45,14 @@ static void free_iso(struct ISOInfo *info)
     g_free(info);
 }
 
+/* void* wrapper for free_iso, so it can be used where a void* parameter
+ * is required (e.g. g_list_free_full), with no need for casts.
+ */
+static void free_iso_void(void *info)
+{
+    free_iso((struct ISOInfo *)info);
+}
+
 static gboolean load_langs(GFile *file, struct ISOInfo *info, GError **error)
 {
     char *path;
@@ -243,8 +251,7 @@ static GList *load_distro(GFile *dir, const gchar *shortid, GError **error) {
     return ret;
 
  error:
-    g_list_foreach(ret, (GFunc)free_iso, NULL);
-    g_list_free(ret);
+    g_list_free_full(ret, free_iso_void);
     ret = NULL;
     goto cleanup;
 }
@@ -289,8 +296,7 @@ static GList *load_distros(GFile *dir, GError **error)
     return ret;
 
  error:
-    g_list_foreach(ret, (GFunc)free_iso, NULL);
-    g_list_free(ret);
+    g_list_free_full(ret, free_iso_void);
     ret = NULL;
     goto cleanup;
 }
@@ -410,8 +416,7 @@ static void test_one(const gchar *vendor)
         test_langs(info);
     }
 
-    g_list_foreach(isos, (GFunc)free_iso, NULL);
-    g_list_free(isos);
+    g_list_free_full(isos, free_iso_void);
 
     g_object_unref(loader);
 }
