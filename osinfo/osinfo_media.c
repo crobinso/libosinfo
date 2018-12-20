@@ -963,7 +963,7 @@ static void search_ppc_bootinfo_async(GInputStream *stream,
 
     data = g_slice_new0(SearchPPCBootinfoAsyncData);
     data->pvd = pvd;
-    data->res = g_task_new(NULL,
+    data->res = g_task_new(stream,
                            cancellable,
                            callback,
                            user_data);
