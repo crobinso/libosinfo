@@ -523,6 +523,7 @@ static gboolean osinfo_loader_check_id(const gchar *relpath,
     gchar *reldir;
     gboolean extension;
     gsize i;
+    gboolean ret = FALSE;
 
     if (!relpath)
         return TRUE;
@@ -555,17 +556,15 @@ static gboolean osinfo_loader_check_id(const gchar *relpath,
     if (!g_str_equal(extension ? reldir : relpath, name)) {
         g_warning("Entity %s should be in file %s not %s",
                   id, name, extension ? reldir : relpath);
-        g_free(reldir);
-        g_free(name);
-        return TRUE; /* In future switch to FALSE to refuse
-                      * to load non-compliant named files.
-                      * Need a period of grace for backcompat
-                      * first though... Switch ETA Jan 2017
-                      */
+        goto cleanup;
     }
+
+    ret = TRUE;
+
+ cleanup:
     g_free(reldir);
     g_free(name);
-    return TRUE;
+    return ret;
 }
 
 
