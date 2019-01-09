@@ -554,7 +554,7 @@ static gboolean osinfo_loader_check_id(const gchar *relpath,
     g_free(suffix);
 
     if (!g_str_equal(extension ? reldir : relpath, name)) {
-        g_warning("Entity %s should be in file %s not %s",
+        g_warning("Entity %s must be in file %s not %s",
                   id, name, extension ? reldir : relpath);
         goto cleanup;
     }
