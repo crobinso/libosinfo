@@ -874,7 +874,7 @@ const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree)
 
 /**
  * osinfo_tree_has_treeinfo:
- * @tree: and #OsinfoTree instance
+ * @tree: an #OsinfoTree instance
  *
  * Return whether a tree has treeinfo or not.
  *
