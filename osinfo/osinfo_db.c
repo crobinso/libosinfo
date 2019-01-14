@@ -577,6 +577,13 @@ osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
             const gchar *os_application = osinfo_media_get_application_id(os_media);
             gint64 os_vol_size = osinfo_media_get_volume_size(os_media);
 
+            if (os_volume == NULL &&
+                os_system == NULL &&
+                os_publisher == NULL &&
+                os_application == NULL &&
+                os_vol_size <= 0)
+                continue;
+
             if (os_vol_size <= 0)
                 os_vol_size = media_vol_size;
 
