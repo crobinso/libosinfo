@@ -741,28 +741,6 @@ void osinfo_os_add_variant(OsinfoOs *os, OsinfoOsVariant *variant)
     osinfo_list_add(OSINFO_LIST(os->priv->variants), OSINFO_ENTITY(variant));
 }
 
-/**
- * osinfo_os_get_minimum_resources_without_inheritance:
- * @os: an operating system
- *
- * Get the list of minimum required resources for the operating system @os.
- *
- * Mind that this method is *private*!
- *
- * Returns: (transfer full): A list of resources
- */
-OsinfoResourcesList *
-osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
-{
-    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
-
-    OsinfoResourcesList *newList = osinfo_resourceslist_new();
-
-    osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->minimum));
-
-    return newList;
-}
-
 struct GetAllResourcesData {
     OsinfoOs *os;
     OsinfoResourcesList *resourceslist;
@@ -862,6 +840,27 @@ osinfo_os_get_resources_internal(OsinfoOs *os,
     return foreach_data.resourceslist;
 }
 
+/**
+ * osinfo_os_get_minimum_resources_without_inheritance:
+ * @os: an operating system
+ *
+ * Get the list of minimum required resources for the operating system @os.
+ *
+ * Mind that this method is *private*!
+ *
+ * Returns: (transfer full): A list of resources
+ */
+OsinfoResourcesList *
+osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
+{
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+
+    osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->minimum));
+
+    return newList;
+}
 
 /**
  * osinfo_os_get_minimum_resources:
@@ -875,6 +874,26 @@ OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
 {
     return osinfo_os_get_resources_internal
             (os, osinfo_os_get_minimum_resources_without_inheritance);
+}
+
+/**
+ * osinfo_os_get_maximum_resources:
+ * @os: an operating system
+ *
+ * Get the list of maximum resources for the operating system @os.
+ *
+ * Returns: (transfer full): A list of resources
+ */
+OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
+{
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+
+    osinfo_list_add_all(OSINFO_LIST(newList),
+                        OSINFO_LIST(os->priv->maximum));
+
+    return newList;
 }
 
 /**
@@ -896,26 +915,6 @@ osinfo_os_get_recommended_resources_without_inheritance(OsinfoOs *os)
 
     osinfo_list_add_all(OSINFO_LIST(newList),
                         OSINFO_LIST(os->priv->recommended));
-
-    return newList;
-}
-
-/**
- * osinfo_os_get_maximum_resources:
- * @os: an operating system
- *
- * Get the list of maximum resources for the operating system @os.
- *
- * Returns: (transfer full): A list of resources
- */
-OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
-{
-    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
-
-    OsinfoResourcesList *newList = osinfo_resourceslist_new();
-
-    osinfo_list_add_all(OSINFO_LIST(newList),
-                        OSINFO_LIST(os->priv->maximum));
 
     return newList;
 }
