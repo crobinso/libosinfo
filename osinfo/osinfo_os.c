@@ -883,7 +883,7 @@ OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
  *
  * Get the list of recommended resources for the operating system @os.
  *
- * Mind that this methos is *private!
+ * Mind that this method is *private*!
  *
  * Returns: (transfer full): A list of resources
  */
