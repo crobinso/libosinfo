@@ -932,7 +932,6 @@ OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
 {
     return osinfo_os_get_resources_internal
             (os, osinfo_os_get_recommended_resources_without_inheritance);
-
 }
 
 /**
