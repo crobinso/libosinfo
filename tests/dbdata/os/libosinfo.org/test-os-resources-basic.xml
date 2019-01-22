@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/resources/basic">
+    <short-id>resourcesbasic</short-id>
+    <name>Resources Basic</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <cpu>1</cpu>
+        <ram>1</ram>
+        <storage>1</storage>
+      </minimum>
+      <recommended>
+        <n-cpus>2</n-cpus>
+        <cpu>2</cpu>
+        <ram>2</ram>
+        <storage>2</storage>
+      </recommended>
+      <maximum>
+        <n-cpus>3</n-cpus>
+        <cpu>3</cpu>
+        <ram>3</ram>
+        <storage>3</storage>
+      </maximum>
+      <network-install>
+        <n-cpus>4</n-cpus>
+        <cpu>4</cpu>
+        <ram>4</ram>
+        <storage>4</storage>
+      </network-install>
+    </resources>
+
+  </os>
+</libosinfo>
