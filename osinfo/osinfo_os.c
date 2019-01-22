@@ -27,7 +27,6 @@
 #include <osinfo/osinfo.h>
 #include "osinfo_media_private.h"
 #include "osinfo/osinfo_product_private.h"
-#include "osinfo/osinfo_os_private.h"
 #include "osinfo/osinfo_resources_private.h"
 #include <glib/gi18n-lib.h>
 
@@ -853,7 +852,7 @@ osinfo_os_get_resources_internal(OsinfoOs *os,
  *
  * Returns: (transfer full): A list of resources
  */
-OsinfoResourcesList *
+static OsinfoResourcesList *
 osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
@@ -889,7 +888,7 @@ OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
  *
  * Returns: (transfer full): A list of resources
  */
-OsinfoResourcesList *
+static OsinfoResourcesList *
 osinfo_os_get_maximum_resources_without_inheritance(OsinfoOs *os)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
@@ -926,7 +925,7 @@ OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
  *
  * Returns: (transfer full): A list of resources
  */
-OsinfoResourcesList *
+static OsinfoResourcesList *
 osinfo_os_get_recommended_resources_without_inheritance(OsinfoOs *os)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
@@ -964,7 +963,7 @@ OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
  *
  * Returns: (transfer full): A list of resources
  */
-OsinfoResourcesList *
+static OsinfoResourcesList *
 osinfo_os_get_network_install_resources_without_inheritance(OsinfoOs *os)
 {
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
