@@ -1393,6 +1393,14 @@ static void osinfo_loader_resources_list(OsinfoLoader *loader,
     if (resources != NULL)
         osinfo_os_add_maximum_resources(os, resources);
 
+    g_clear_object(&resources);
+    resources = osinfo_loader_resources(loader, ctxt, root, id, "network-install", err);
+    if (error_is_set(err))
+        goto EXIT;
+
+    if (resources != NULL)
+        osinfo_os_add_network_install_resources(os, resources);
+
 EXIT:
     g_clear_object(&resources);
 }
