@@ -1391,7 +1391,7 @@ static void osinfo_loader_resources_list(OsinfoLoader *loader,
         goto EXIT;
 
     if (resources != NULL)
-        osinfo_os_add_recommended_resources(os, resources);
+        osinfo_os_add_maximum_resources(os, resources);
 
 EXIT:
     g_clear_object(&resources);
