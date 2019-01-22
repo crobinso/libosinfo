@@ -26,6 +26,7 @@
 #ifndef __OSINFO_OS_PRIVATE_H__
 #define __OSINFO_OS_PRIVATE_H__
 
+OsinfoResourcesList *osinfo_os_get_network_install_resources_without_inheritance(OsinfoOs *os);
 OsinfoResourcesList *osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os);
 OsinfoResourcesList *osinfo_os_get_recommended_resources_without_inheritance(OsinfoOs *os);
 OsinfoResourcesList *osinfo_os_get_maximum_resources_without_inheritance(OsinfoOs *os);

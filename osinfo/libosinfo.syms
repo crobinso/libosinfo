@@ -553,9 +553,11 @@ LIBOSINFO_1.3.0 {
 
 	osinfo_os_add_image;
 	osinfo_os_add_maximum_resources;
+	osinfo_os_add_network_install_resources;
 	osinfo_os_get_all_device_links;
 	osinfo_os_get_image_list;
 	osinfo_os_get_maximum_resources;
+	osinfo_os_get_network_install_resources;
 
 	osinfo_tree_has_treeinfo;
 } LIBOSINFO_0.2.13;
