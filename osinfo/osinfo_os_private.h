@@ -28,6 +28,7 @@
 
 OsinfoResourcesList *osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os);
 OsinfoResourcesList *osinfo_os_get_recommended_resources_without_inheritance(OsinfoOs *os);
+OsinfoResourcesList *osinfo_os_get_maximum_resources_without_inheritance(OsinfoOs *os);
 
 #endif /* __OSINFO_OS_PRIVATE_H__ */
 /*
