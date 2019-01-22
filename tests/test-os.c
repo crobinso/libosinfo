@@ -334,7 +334,7 @@ test_resources_minimum_recommended_maximum(void)
 
         minimum_list = osinfo_os_get_minimum_resources(os);
         recommended_list = osinfo_os_get_recommended_resources(os);
-        maximum_list = osinfo_os_get_recommended_resources(os);
+        maximum_list = osinfo_os_get_maximum_resources(os);
 
         if (osinfo_list_get_length(OSINFO_LIST(minimum_list)) > 0 &&
             osinfo_list_get_length(OSINFO_LIST(recommended_list)) > 0)
