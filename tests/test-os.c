@@ -236,34 +236,34 @@ static void test_resources_basic(void)
 
     resources_list = osinfo_os_get_minimum_resources(os);
     resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(resources_list), 0));
-    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 1);    
-    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 1);    
-    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 1);    
-    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 1);    
+    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 1);
+    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 1);
+    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 1);
+    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 1);
 
     g_clear_object(&resources_list);
     resources_list = osinfo_os_get_recommended_resources(os);
     resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(resources_list), 0));
-    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 2);    
-    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 2);    
-    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 2);    
-    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 2);    
+    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 2);
+    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 2);
+    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 2);
+    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 2);
 
     g_clear_object(&resources_list);
     resources_list = osinfo_os_get_maximum_resources(os);
     resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(resources_list), 0));
-    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 3);    
-    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 3);    
-    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 3);    
-    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 3);    
+    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 3);
+    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 3);
+    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 3);
+    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 3);
 
     g_clear_object(&resources_list);
     resources_list = osinfo_os_get_network_install_resources(os);
     resources = OSINFO_RESOURCES(osinfo_list_get_nth(OSINFO_LIST(resources_list), 0));
-    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 4);    
-    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 4);    
-    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 4);    
-    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 4);    
+    g_assert_cmpint(osinfo_resources_get_n_cpus(resources), ==, 4);
+    g_assert_cmpint(osinfo_resources_get_cpu(resources), ==, 4);
+    g_assert_cmpint(osinfo_resources_get_ram(resources), ==, 4);
+    g_assert_cmpint(osinfo_resources_get_storage(resources), ==, 4);
 
     g_object_unref(resources_list);
     g_object_unref(db);
