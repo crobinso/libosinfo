@@ -1,6 +1,33 @@
                libosinfo News
 	       ==============
 
+1.3.0 - Jan 30, 2019
+====================
+
+- Add isodata test files for many more distros
+- Refreshed translations from Zanata
+- Refuse to load data files which do not follow the
+  documented directory layout and file naming conventions
+  introduced in version 0.3.0
+- Avoid warnings when setting GError objects with new glib
+- Remove outdated FSF address from source file headers
+- Make several test suites collect & report all errors
+  before exiting with failure for easy diagnosis
+- Avoid misc memory leaks
+- Add support for reporting maximum resource settings
+- Add support for reporting network installer resource settings
+- Fix data returned for osinfo_devicelinklist_get_devices
+- Support removal of devices during inheritance processing
+- Support inheritance of resources settings
+- Add OsinfoImage class & related APIs for reporting
+  pre-installed disk images
+- Add API to determine if treeinfo metadata is provided
+- Add API to determine if media supports installer scripts
+- Add API to determine preferred install script injection
+  methods
+- Add support for detecting if PPC ISO images are bootable
+
+
 1.2.0 - Jun 20, 2018
 ====================
 
