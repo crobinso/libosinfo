@@ -24,7 +24,7 @@
 #include <osinfo/osinfo.h>
 #include <curl/curl.h>
 
-static void test_tree(OsinfoTreeList *treelist, GError **error, CURL *curl)
+static void test_tree(OsinfoTreeList *treelist, GError **error)
 {
     GList *treeel = NULL, *tmp;
 
@@ -32,12 +32,27 @@ static void test_tree(OsinfoTreeList *treelist, GError **error, CURL *curl)
     while (tmp) {
         OsinfoTree *tree = tmp->data;
         const gchar *url = osinfo_tree_get_url(tree);
+        const gchar *debugstr;
+        CURL *curl;
         CURLcode res;
         long response_code;
 
         if (url == NULL || g_str_equal(url, "")) {
             tmp = tmp->next;
             continue;
+        }
+
+        curl = curl_easy_init();
+        curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
+        curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
+
+        if ((debugstr = g_getenv("LIBOSINFO_TEST_DEBUG"))) {
+            int debug_level = atoi(debugstr);
+
+            curl_easy_setopt(curl, CURLOPT_VERBOSE, debug_level > 0 ? 1L : 0L);
         }
 
         g_test_message("%s", url);
@@ -58,6 +73,7 @@ static void test_tree(OsinfoTreeList *treelist, GError **error, CURL *curl)
         }
 
         tmp = tmp->next;
+        curl_easy_cleanup(curl);
     }
 
     g_list_free(treeel);
@@ -67,32 +83,14 @@ static void
 test_uris(gconstpointer data)
 {
     OsinfoOs *os = OSINFO_OS(data);
-    CURL *curl;
     GError *error = NULL;
-    const gchar *debugstr;
-
-    curl = curl_easy_init();
-    curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
-    curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-    curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
-
-    if ((debugstr = g_getenv("LIBOSINFO_TEST_DEBUG"))) {
-        int debug_level = atoi(debugstr);
-
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, debug_level > 0 ? 1L : 0L);
-    }
-
     OsinfoTreeList *treelist = osinfo_os_get_tree_list(os);
 
-    test_tree(treelist, &error, curl);
+    test_tree(treelist, &error);
 
     g_assert_no_error(error);
 
     g_object_unref(treelist);
-
-    curl_easy_cleanup(curl);
 }
 
 
