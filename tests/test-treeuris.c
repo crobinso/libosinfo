@@ -24,6 +24,14 @@
 #include <osinfo/osinfo.h>
 #include <curl/curl.h>
 
+static size_t write_callback(char *ptr,
+                             size_t size,
+                             size_t nmemb,
+                             void *userdata)
+{
+    abort();
+}
+
 static void test_tree(OsinfoTreeList *treelist, GError **error)
 {
     GList *treeel = NULL, *tmp;
@@ -48,6 +56,7 @@ static void test_tree(OsinfoTreeList *treelist, GError **error)
         curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
         curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
         if ((debugstr = g_getenv("LIBOSINFO_TEST_DEBUG"))) {
             int debug_level = atoi(debugstr);
