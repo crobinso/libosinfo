@@ -64,14 +64,11 @@ static void test_image(OsinfoImageList *imagelist, GError **error, CURL *curl)
 }
 
 static void
-test_uris(void)
+test_uris(gconstpointer data)
 {
+    OsinfoOs *os = OSINFO_OS(data);
     CURL *curl;
-    OsinfoLoader *loader = osinfo_loader_new();
-    OsinfoDb *db = osinfo_loader_get_db(loader);
     GError *error = NULL;
-    OsinfoOsList *oslist = NULL;
-    GList *osel = NULL, *tmp;
     const gchar *debugstr;
 
     curl = curl_easy_init();
@@ -87,33 +84,15 @@ test_uris(void)
         curl_easy_setopt(curl, CURLOPT_VERBOSE, debug_level > 0 ? 1L : 0L);
     }
 
-    g_assert_true(OSINFO_IS_LOADER(loader));
-    g_assert_true(OSINFO_IS_DB(db));
+    OsinfoImageList *imagelist = osinfo_os_get_image_list(os);
 
-    osinfo_loader_process_default_path(loader, &error);
+    test_image(imagelist, &error, curl);
+
     g_assert_no_error(error);
 
-    oslist = osinfo_db_get_os_list(db);
-    tmp = osel = osinfo_list_get_elements(OSINFO_LIST(oslist));
-    while (tmp) {
-        OsinfoOs *os = tmp->data;
-        OsinfoImageList *imagelist = osinfo_os_get_image_list(os);
-
-        test_image(imagelist, &error, curl);
-
-        g_assert_no_error(error);
-
-        g_object_unref(imagelist);
-        tmp = tmp->next;
-    }
+    g_object_unref(imagelist);
 
     curl_easy_cleanup(curl);
-
-    g_list_free(osel);
-    if (oslist)
-        g_object_unref(oslist);
-
-    g_object_unref(loader);
 }
 
 
@@ -122,11 +101,14 @@ int
 main(int argc, char *argv[])
 {
     int ret;
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db = osinfo_loader_get_db(loader);
+    OsinfoOsList *oslist = NULL;
+    GList *osel = NULL, *tmp;
+    GError *error = NULL;
 
     g_test_init(&argc, &argv, NULL);
     g_test_set_nonfatal_assertions();
-
-    g_test_add_func("/imageuris/uris", test_uris);
 
     if (!g_getenv("LIBOSINFO_NETWORK_TESTS"))
         return 77; /* Skip */
@@ -139,7 +121,29 @@ main(int argc, char *argv[])
     osinfo_oslist_get_type();
     osinfo_filter_get_type();
 
+    osinfo_loader_process_default_path(loader, &error);
+    g_assert_no_error(error);
+
+    oslist = osinfo_db_get_os_list(db);
+    tmp = osel = osinfo_list_get_elements(OSINFO_LIST(oslist));
+    while (tmp) {
+        OsinfoOs *os = tmp->data;
+        gchar *name = g_strdup_printf("/imageuris/uris/%s",
+                                      osinfo_product_get_short_id(OSINFO_PRODUCT(os)));
+
+        g_test_add_data_func(name, os, test_uris);
+        g_free(name);
+
+        tmp = tmp->next;
+    }
+
     ret = g_test_run();
+
+    g_list_free(osel);
+    if (oslist)
+        g_object_unref(oslist);
+
+    g_object_unref(loader);
 
     curl_global_cleanup();
 
