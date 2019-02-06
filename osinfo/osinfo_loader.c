@@ -1192,6 +1192,32 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
 
     g_free(nodes);
 
+    nnodes = osinfo_loader_nodeset("./installer/script", loader, ctxt, &nodes,
+                                   err);
+    if (error_is_set(err)) {
+        g_object_unref(media);
+        return NULL;
+    }
+
+    for (i = 0; i < nnodes; i++) {
+        OsinfoInstallScript *script;
+        gchar *scriptid;
+
+        scriptid = (gchar *)xmlGetProp(nodes[i], BAD_CAST "id");
+        if (scriptid == NULL) {
+            OSINFO_LOADER_SET_ERROR(err, _("Missing Media install script property"));
+            g_object_unref(media);
+            return NULL;
+        }
+
+        script = osinfo_loader_get_install_script(loader, scriptid);
+        xmlFree(scriptid);
+
+        osinfo_media_add_install_script(media, script);
+    }
+
+    g_free(nodes);
+
     return media;
 }
 

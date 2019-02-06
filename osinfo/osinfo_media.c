@@ -193,6 +193,7 @@ G_DEFINE_TYPE(OsinfoMedia, osinfo_media, OSINFO_TYPE_ENTITY);
 struct _OsinfoMediaPrivate
 {
     GWeakRef os;
+    OsinfoInstallScriptList *scripts;
 };
 
 enum {
@@ -421,6 +422,10 @@ osinfo_media_set_property(GObject      *object,
 static void
 osinfo_media_finalize(GObject *object)
 {
+    OsinfoMedia *media = OSINFO_MEDIA(object);
+
+    g_object_unref(media->priv->scripts);
+
     /* Chain up to the parent class */
     G_OBJECT_CLASS(osinfo_media_parent_class)->finalize(object);
 }
@@ -694,6 +699,7 @@ osinfo_media_init(OsinfoMedia *media)
 {
     media->priv = OSINFO_MEDIA_GET_PRIVATE(media);
     g_weak_ref_init(&media->priv->os, NULL);
+    media->priv->scripts = osinfo_install_scriptlist_new();
 }
 
 OsinfoMedia *osinfo_media_new(const gchar *id,
@@ -1668,6 +1674,36 @@ gboolean osinfo_media_supports_installer_script(OsinfoMedia *media)
     g_object_unref(os);
 
     return ret;
+}
+
+/**
+ * osinfo_media_add_install_script:
+ * @media: an #OsinfoMedia instance
+ * @script: an #OsinfoInstallScript instance
+ *
+ * Adds an @script to the specified @media
+ */
+void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *script)
+{
+    g_return_if_fail(OSINFO_IS_MEDIA(media));
+
+    osinfo_list_add(OSINFO_LIST(media->priv->scripts), OSINFO_ENTITY(script));
+}
+
+/**
+ * osinfo_media_get_install_script_list:
+ * @media: an #OsinfoMedia instance
+ *
+ * Returns: (transfer full): a list of the install scripts for the specified media
+ */
+OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media)
+{
+    OsinfoList *new_list;
+
+    g_return_val_if_fail(OSINFO_IS_MEDIA(media), NULL);
+    new_list = osinfo_list_new_copy(OSINFO_LIST(media->priv->scripts));
+
+    return OSINFO_INSTALL_SCRIPTLIST(new_list);
 }
 
 /*

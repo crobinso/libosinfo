@@ -562,6 +562,11 @@ LIBOSINFO_1.3.0 {
 	osinfo_tree_has_treeinfo;
 } LIBOSINFO_0.2.13;
 
+LIBOSINFO_1.4.0 {
+	osinfo_media_add_install_script;
+	osinfo_media_get_install_script_list;
+} LIBOSINFO_1.3.0;
+
 /* Symbols in next release...
 
   LIBOSINFO_0.0.2 {
