@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/media-installer-script">
+    <short-id>media-no-installer</short-id>
+    <name>Media no installer</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <media arch="x86_64">
+      <installer>
+        <script id="http://example.com/libosinfo/test-install-script"/>
+      </installer>
+    </media>
+  </os>
+</libosinfo>

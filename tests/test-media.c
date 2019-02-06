@@ -110,6 +110,37 @@ test_loaded_no_installer(void)
     g_object_unref(loader);
 }
 
+static void
+test_loaded_installer_script(void)
+{
+
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    OsinfoMedia *media;
+    OsinfoMediaList *list;
+    OsinfoInstallScriptList *scripts;
+    gint list_len;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/media-installer-script");
+
+    list = osinfo_os_get_media_list(os);
+    list_len = osinfo_list_get_length(OSINFO_LIST(list));
+    g_assert_cmpint(list_len, ==, 1);
+
+    media = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(list), 0));
+    scripts = osinfo_media_get_install_script_list(media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(scripts)), ==, 1);
+
+    g_object_unref(scripts);
+    g_object_unref(list);
+    g_object_unref(loader);
+}
 
 int
 main(int argc, char *argv[])
@@ -119,6 +150,7 @@ main(int argc, char *argv[])
     g_test_add_func("/media/basic", test_basic);
     g_test_add_func("/media/loaded/attributes", test_loaded_attributes);
     g_test_add_func("/media/loaded/no-installer", test_loaded_no_installer);
+    g_test_add_func("/media/loaded/installer-script", test_loaded_installer_script);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_media_get_type();
