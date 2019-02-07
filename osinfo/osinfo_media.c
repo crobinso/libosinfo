@@ -1661,7 +1661,8 @@ gboolean osinfo_media_supports_installer_script(OsinfoMedia *media)
     os = osinfo_media_get_os(media);
     list = osinfo_os_get_install_script_list(os);
 
-    if (osinfo_list_get_length(OSINFO_LIST(list)) == 0) {
+    if (osinfo_list_get_length(OSINFO_LIST(list)) == 0 &&
+        osinfo_list_get_length(OSINFO_LIST(media->priv->scripts)) == 0) {
         ret = FALSE;
         goto cleanup;
     }

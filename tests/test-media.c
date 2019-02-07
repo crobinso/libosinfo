@@ -134,6 +134,8 @@ test_loaded_installer_script(void)
     g_assert_cmpint(list_len, ==, 1);
 
     media = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(list), 0));
+    g_assert_true(osinfo_media_supports_installer_script(media));
+
     scripts = osinfo_media_get_install_script_list(media);
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(scripts)), ==, 1);
 
