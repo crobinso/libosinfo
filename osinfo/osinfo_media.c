@@ -137,6 +137,11 @@ struct _CreateFromLocationAsyncData {
 
     gsize offset;
     gsize length;
+
+    gchar *volume;
+    gchar *system;
+    gchar *application;
+    gchar *publisher;
 };
 
 static void create_from_location_async_data_free
@@ -144,6 +149,10 @@ static void create_from_location_async_data_free
 {
    g_object_unref(data->file);
    g_object_unref(data->res);
+   g_free(data->volume);
+   g_free(data->system);
+   g_free(data->application);
+   g_free(data->publisher);
 
    g_slice_free(CreateFromLocationAsyncData, data);
 }
@@ -809,18 +818,18 @@ create_from_location_async_data(CreateFromLocationAsyncData *data)
                             OSINFO_MEDIA_PROP_URL,
                             uri);
     g_free(uri);
-    if (!is_str_empty(data->pvd.volume))
+    if (!is_str_empty(data->volume))
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_VOLUME_ID,
-                                data->pvd.volume);
-    if (!is_str_empty(data->pvd.system))
+                                data->volume);
+    if (!is_str_empty(data->system))
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_SYSTEM_ID,
-                                data->pvd.system);
-    if (!is_str_empty(data->pvd.publisher))
+                                data->system);
+    if (!is_str_empty(data->publisher))
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_PUBLISHER_ID,
-                                data->pvd.publisher);
+                                data->publisher);
     if (!is_str_empty(data->pvd.application))
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_APPLICATION_ID,
@@ -1159,19 +1168,19 @@ static void on_pvd_read(GObject *source,
         return;
     }
 
-    data->pvd.volume[MAX_VOLUME - 1] = 0;
-    g_strchomp(data->pvd.volume);
+    data->volume = g_strndup(data->pvd.volume, MAX_VOLUME);
+    g_strchomp(data->volume);
 
-    data->pvd.system[MAX_SYSTEM - 1] = 0;
-    g_strchomp(data->pvd.system);
+    data->system = g_strndup(data->pvd.system, MAX_SYSTEM);
+    g_strchomp(data->system);
 
-    data->pvd.publisher[MAX_PUBLISHER - 1] = 0;
-    g_strchomp(data->pvd.publisher);
+    data->publisher = g_strndup(data->pvd.publisher, MAX_PUBLISHER);
+    g_strchomp(data->publisher);
 
-    data->pvd.application[MAX_APPLICATION - 1] = 0;
-    g_strchomp(data->pvd.application);
+    data->application = g_strndup(data->pvd.application, MAX_APPLICATION);
+    g_strchomp(data->application);
 
-    if (is_str_empty(data->pvd.volume)) {
+    if (is_str_empty(data->volume)) {
         g_set_error(&error,
                     OSINFO_MEDIA_ERROR,
                     OSINFO_MEDIA_ERROR_INSUFFICIENT_METADATA,
