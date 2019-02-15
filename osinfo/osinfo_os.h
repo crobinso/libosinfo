@@ -91,11 +91,14 @@ struct _OsinfoOsClass
  * development snapshots of GNOME and nightly build ISOs of Fedora etc.
  * @OSINFO_RELEASE_STATUS_PRERELEASE: A pre-release. For example, alpha and
  * beta pre-releases of Fedora etc.
+ * @OSINFO_RELEASE_STATUS_ROLLING: A rolling version of an OS and thus with no
+ * actual releases. For example, Gentoo, Arch Linux, etc.
  */
 typedef enum {
     OSINFO_RELEASE_STATUS_RELEASED,
     OSINFO_RELEASE_STATUS_SNAPSHOT,
-    OSINFO_RELEASE_STATUS_PRERELEASE
+    OSINFO_RELEASE_STATUS_PRERELEASE,
+    OSINFO_RELEASE_STATUS_ROLLING
 } OsinfoReleaseStatus;
 
 GType osinfo_os_get_type(void);
