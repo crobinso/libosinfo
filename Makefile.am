@@ -5,19 +5,6 @@ if ENABLE_TESTS
 SUBDIRS += tests
 endif
 
-INTLTOOL_FILES = \
-	intltool-extract.in \
-	intltool-merge.in \
-	intltool-update.in \
-	$(NULL)
-
-DISTCLEANFILES =				\
-	intltool-extract			\
-	intltool-merge				\
-	intltool-update				\
-	po/.intltool-merge-cache		\
-	$(NULL)
-
 EXTRA_DIST = \
   COPYING.LIB \
   libosinfo.spec \
@@ -28,7 +15,6 @@ EXTRA_DIST = \
   GNUmakefile \
   maint.mk \
   AUTHORS.in \
-  $(INTLTOOL_FILES) \
   $(NULL)
 
 MAINTAINERCLEANFILES =				\
