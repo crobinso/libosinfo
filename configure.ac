@@ -11,7 +11,6 @@ AC_PROG_LN_S
 LT_INIT([shared disable-static win32-dll])
 
 LIBOSINFO_COMPILE_WARNINGS
-GNOME_MAINTAINER_MODE_DEFINES
 AM_MAINTAINER_MODE([enable])
 
 # i18 support
