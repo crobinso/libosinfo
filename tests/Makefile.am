@@ -113,15 +113,15 @@ test_isodetect_SOURCES = test-isodetect.c
 if HAVE_CURL
 test_mediauris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
 test_mediauris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
-test_mediauris_SOURCES = test-mediauris.c test-uris-common.c
+test_mediauris_SOURCES = test-mediauris.c test-uris-common.c test-uris-common.h
 
 test_treeuris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
 test_treeuris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
-test_treeuris_SOURCES = test-treeuris.c test-uris-common.c
+test_treeuris_SOURCES = test-treeuris.c test-uris-common.c test-uris-common.h
 
 test_imageuris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
 test_imageuris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
-test_imageuris_SOURCES = test-imageuris.c test-uris-common.c
+test_imageuris_SOURCES = test-imageuris.c test-uris-common.c test-uris-common.h
 endif
 
 test_install_script_LDADD = $(COMMON_LDADD)
