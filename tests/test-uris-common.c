@@ -107,4 +107,3 @@ void test_uris(OsinfoOsList *oslist, const gchar *prefix, TestURLFunc test_func)
 
     g_list_free(osel);
 }
-
