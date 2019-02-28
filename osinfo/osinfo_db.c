@@ -642,6 +642,9 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
     const gchar *initrd_path;
     const gchar *arch;
     const gchar *url;
+    gint i;
+    gboolean installer_script;
+    OsinfoInstallScriptList *install_script_list;
     GList *variants, *node;
 
     set_languages_for_media(db, media, matched_media);
@@ -685,6 +688,23 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
                      "eject-after-install", eject_after_install,
                      NULL);
     }
+    installer_script = osinfo_entity_get_param_value_boolean_with_default(OSINFO_ENTITY(matched_media),
+                                                                          OSINFO_MEDIA_PROP_INSTALLER_SCRIPT,
+                                                                          TRUE);
+    g_object_set(G_OBJECT(media),
+                 "installer-script", installer_script,
+                 NULL);
+    install_script_list = osinfo_media_get_install_script_list(matched_media);
+    if (install_script_list != NULL &&
+        osinfo_list_get_length(OSINFO_LIST(install_script_list)) > 0) {
+        for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(install_script_list)); i++) {
+            OsinfoInstallScript *script;
+
+            script = OSINFO_INSTALL_SCRIPT(osinfo_list_get_nth(OSINFO_LIST(install_script_list), i));
+            osinfo_media_add_install_script(media, script);
+        }
+    }
+
     if (os != NULL)
         osinfo_media_set_os(media, os);
 }
