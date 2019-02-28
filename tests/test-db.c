@@ -395,6 +395,61 @@ test_rel_os(void)
 
 
 
+static void
+test_identify_media(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoMedia *media;
+    OsinfoInstallScriptList *scripts;
+    OsinfoOs *os;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    media = osinfo_media_new("foo", "ppc64le");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "DB Media");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+
+    g_assert_true(osinfo_db_identify_media(db, media));
+    g_assert_cmpstr(osinfo_media_get_architecture(media), ==, "ppc64le");
+    g_assert_true(osinfo_media_get_live(media));
+    g_assert_true(osinfo_media_get_installer(media));
+    g_assert_false(osinfo_media_supports_installer_script(media));
+    g_assert_cmpint(osinfo_media_get_installer_reboots(media), ==, 6);
+    g_assert_false(osinfo_media_get_eject_after_install(media));
+    g_assert_cmpstr(osinfo_media_get_kernel_path(media), ==, "isolinux/vmlinuz");
+    g_assert_cmpstr(osinfo_media_get_initrd_path(media), ==, "isolinux/initrd.img");
+    scripts = osinfo_media_get_install_script_list(media);
+    g_assert_nonnull(scripts);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(scripts)), ==, 1);
+    os = osinfo_media_get_os(media);
+    g_assert_nonnull(os);
+    g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "http://libosinfo.org/test/db/media");
+    g_object_unref(scripts);
+    g_object_unref(media);
+
+    media = osinfo_media_new("foo", "ppc64le");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "Media DB");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+
+    g_assert_false(osinfo_db_identify_media(db, media));
+    g_object_unref(media);
+
+    g_object_unref(loader);
+}
+
+
 
 int
 main(int argc, char *argv[])
@@ -409,6 +464,7 @@ main(int argc, char *argv[])
     g_test_add_func("/db/prop_platform", test_prop_platform);
     g_test_add_func("/db/prop_os", test_prop_os);
     g_test_add_func("/db/rel_os", test_rel_os);
+    g_test_add_func("/db/identify_media", test_identify_media);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_entity_get_type();
@@ -421,6 +477,9 @@ main(int argc, char *argv[])
     osinfo_platformlist_get_type();
     osinfo_oslist_get_type();
     osinfo_filter_get_type();
+    osinfo_loader_get_type();
+    osinfo_install_script_get_type();
+    osinfo_install_scriptlist_get_type();
 
     return g_test_run();
 }

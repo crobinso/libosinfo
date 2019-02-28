@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/db/media">
+    <short-id>db-media</short-id>
+    <name>DB Media</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <variant id="foo">
+      <name>DB Media Foo</name>
+    </variant>
+
+    <media arch="ppc64le" live="true" installer="true" installer-script="false" installer-reboots="6" eject-after-install="false">
+      <variant id="foo"/>
+      <url>http://libosinfo.org/db/media.iso</url>
+      <iso>
+        <volume-id>DB Media</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+      <installer>
+        <script id="http://example.com/libosinfo/test-install-script"/>
+      </installer>
+    </media>
+
+    <installer>
+      <script id="http://example.com/libosinfo/test-install-script"/>
+    </installer>
+  </os>
+</libosinfo>
