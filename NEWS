@@ -1,6 +1,24 @@
                libosinfo News
 	       ==============
 
+1.4.0 - Mar 01, 2019
+====================
+
+- Add isodata test files for more distros
+- Refreshed translations from Zanata
+- Drop reprecated gnome-common and intltool
+- Fix test cases checking for medias, trees and images URIs due to
+  libcurl issues when reusing the curl handler
+- Fix media identification when its identifiers have the maximum
+  allowed size
+- Fix filling up the media properties when identifying it
+- Improvements in the tests in order to reduce code duplication
+- Add one test case per OS for medias, trees and images URIs tests
+- Add OSINFO_RELEASE_STATUS_ROLLING release status
+- Add API to add an installer script to a media
+- Add API to get all the installer scripts from a media
+
+
 1.3.0 - Jan 30, 2019
 ====================
 
