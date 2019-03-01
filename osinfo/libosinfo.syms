@@ -563,6 +563,7 @@ LIBOSINFO_1.3.0 {
 } LIBOSINFO_0.2.13;
 
 LIBOSINFO_1.4.0 {
+    global:
 	osinfo_media_add_install_script;
 	osinfo_media_get_install_script_list;
 } LIBOSINFO_1.3.0;
