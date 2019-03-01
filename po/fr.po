@@ -8,10 +8,10 @@
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-30 17:47+0000\n"
-"PO-Revision-Date: 2019-01-21 08:13+0000\n"
+"Project-Id-Version: libosinfo 1.4.0\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/libosinfo/issues\n"
+"POT-Creation-Date: 2019-03-01 16:05+0100\n"
+"PO-Revision-Date: 2019-02-27 09:45+0000\n"
 "Last-Translator: Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/libosinfo/"
 "language/fr/)\n"
@@ -22,228 +22,230 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Zanata 4.6.2\n"
 
-#: ../osinfo/osinfo_avatar_format.c:109
+#: osinfo/osinfo_avatar_format.c:109
 msgid "The allowed mime-types for the avatar"
 msgstr "Types mimes valides pour l’avatar"
 
-#: ../osinfo/osinfo_avatar_format.c:123
+#: osinfo/osinfo_avatar_format.c:123
 msgid "The required width (in pixels) of the avatar"
 msgstr "Largeur demandée (en pixels) pour l’avatar"
 
-#: ../osinfo/osinfo_avatar_format.c:140
+#: osinfo/osinfo_avatar_format.c:140
 msgid "The required height (in pixels) of the avatar."
 msgstr "Hauteur demandée (en pixels) pour l’avatar"
 
-#: ../osinfo/osinfo_avatar_format.c:157
+#: osinfo/osinfo_avatar_format.c:157
 msgid "Whether alpha channel is supported in the avatar."
 msgstr "Indique si l’avatar supporte un canal alpha"
 
-#: ../osinfo/osinfo_deployment.c:148
+#: osinfo/osinfo_deployment.c:148
 msgid "Operating system"
 msgstr "Système d’exploitation"
 
-#: ../osinfo/osinfo_deployment.c:163
+#: osinfo/osinfo_deployment.c:163
 msgid "Virtualization platform"
 msgstr "Plate-forme de virtualisation"
 
-#: ../osinfo/osinfo_devicelink.c:129
+#: osinfo/osinfo_devicelink.c:129
 msgid "Target device"
 msgstr "Périphérique cible"
 
-#: ../osinfo/osinfo_devicelinkfilter.c:134
+#: osinfo/osinfo_devicelinkfilter.c:134
 msgid "Device link target filter"
 msgstr "Filtre de cible de lien de périphérique"
 
-#: ../osinfo/osinfo_entity.c:136
+#: osinfo/osinfo_entity.c:136
 msgid "Unique identifier"
 msgstr "Identifiant unique"
 
-#: ../osinfo/osinfo_image.c:160 ../osinfo/osinfo_media.c:458
-#: ../osinfo/osinfo_resources.c:171 ../osinfo/osinfo_tree.c:285
+#: osinfo/osinfo_image.c:160 osinfo/osinfo_media.c:472
+#: osinfo/osinfo_resources.c:171 osinfo/osinfo_tree.c:285
 msgid "CPU Architecture"
 msgstr "Architecture CPU"
 
-#: ../osinfo/osinfo_image.c:173
+#: osinfo/osinfo_image.c:173
 msgid "The image format"
-msgstr ""
+msgstr "Le format d’image"
 
-#: ../osinfo/osinfo_image.c:186
+#: osinfo/osinfo_image.c:186
 msgid "The URL to this image"
-msgstr ""
+msgstr "L’URL de cette image"
 
-#: ../osinfo/osinfo_install_config_param.c:152
+#: osinfo/osinfo_install_config_param.c:152
 msgid "Parameter name"
 msgstr "Nom du paramètre"
 
-#: ../osinfo/osinfo_install_config_param.c:168
+#: osinfo/osinfo_install_config_param.c:168
 msgid "Parameter policy"
 msgstr "Politique de paramètre"
 
-#: ../osinfo/osinfo_install_config_param.c:184
+#: osinfo/osinfo_install_config_param.c:184
 msgid "Parameter Value Mapping"
 msgstr "Association Paramètre/Valeur"
 
-#: ../osinfo/osinfo_install_script.c:214
+#: osinfo/osinfo_install_script.c:214
 msgid "URI for install script template"
 msgstr "URI du modèle de script d’installation"
 
-#: ../osinfo/osinfo_install_script.c:226
+#: osinfo/osinfo_install_script.c:226
 msgid "Data for install script template"
 msgstr "Données pour le modèle de script d’installation"
 
-#: ../osinfo/osinfo_install_script.c:238
+#: osinfo/osinfo_install_script.c:238
 msgid "Install script profile name"
 msgstr "Nom de profil de script d’installation"
 
-#: ../osinfo/osinfo_install_script.c:250
+#: osinfo/osinfo_install_script.c:250
 msgid "Product key format mask"
 msgstr "Masque de format de clé produit"
 
-#: ../osinfo/osinfo_install_script.c:260
+#: osinfo/osinfo_install_script.c:260
 msgid "Expected path format"
 msgstr "Format attendu pour le chemin"
 
-#: ../osinfo/osinfo_install_script.c:271
+#: osinfo/osinfo_install_script.c:271
 msgid "Expected avatar format"
 msgstr "Format attendu pour l’avatar"
 
-#: ../osinfo/osinfo_install_script.c:281
+#: osinfo/osinfo_install_script.c:281
 msgid "The preferred injection method"
-msgstr ""
+msgstr "La méthode d'injection préférée"
 
-#: ../osinfo/osinfo_install_script.c:293
+#: osinfo/osinfo_install_script.c:293
 msgid "The installation source to be used"
-msgstr ""
+msgstr "La source d'installation à utiliser"
 
-#: ../osinfo/osinfo_install_script.c:630
+#: osinfo/osinfo_install_script.c:630
 msgid "Unable to create XML parser context"
 msgstr "Impossible de créer le contexte pour l’analyseur XML"
 
-#: ../osinfo/osinfo_install_script.c:638
+#: osinfo/osinfo_install_script.c:638
 msgid "Unable to read XSL template"
 msgstr "Impossible de lire le modèle XSL"
 
-#: ../osinfo/osinfo_install_script.c:644
+#: osinfo/osinfo_install_script.c:644
 msgid "Unable to parse XSL template"
 msgstr "Impossible d’analyser le modèle XSL"
 
-#: ../osinfo/osinfo_install_script.c:735 ../osinfo/osinfo_install_script.c:766
+#: osinfo/osinfo_install_script.c:735 osinfo/osinfo_install_script.c:766
 #, c-format
 msgid "Unable to create XML node '%s'"
-msgstr ""
+msgstr "Impossible de créer le nœud XML « %s »"
 
-#: ../osinfo/osinfo_install_script.c:741
+#: osinfo/osinfo_install_script.c:741
 msgid "Unable to create XML node 'id'"
-msgstr ""
+msgstr "Impossible de créer le nœud XML « id »"
 
-#: ../osinfo/osinfo_install_script.c:745 ../osinfo/osinfo_install_script.c:771
+#: osinfo/osinfo_install_script.c:745 osinfo/osinfo_install_script.c:771
 msgid "Unable to add XML child"
-msgstr ""
+msgstr "Impossible d’ajouter l’enfant XML"
 
-#: ../osinfo/osinfo_install_script.c:817 ../osinfo/osinfo_install_script.c:827
-#: ../osinfo/osinfo_install_script.c:849
+#: osinfo/osinfo_install_script.c:817 osinfo/osinfo_install_script.c:827
+#: osinfo/osinfo_install_script.c:849
 msgid "Unable to set XML root"
-msgstr ""
+msgstr "Impossible de définir la racine XML"
 
-#: ../osinfo/osinfo_install_script.c:838
+#: osinfo/osinfo_install_script.c:838
 msgid "Unable to set 'media' node"
-msgstr ""
+msgstr "Impossible de positionner le nœud « media »"
 
-#: ../osinfo/osinfo_install_script.c:872
+#: osinfo/osinfo_install_script.c:872
 msgid "Unable to create XSL transform context"
 msgstr "Impossible de créer le contexte de transformation XSL"
 
-#: ../osinfo/osinfo_install_script.c:877
+#: osinfo/osinfo_install_script.c:877
 msgid "Unable to apply XSL transform context"
 msgstr "Impossible d’appliquer le contexte de transformation XSL"
 
-#: ../osinfo/osinfo_install_script.c:882
+#: osinfo/osinfo_install_script.c:882
 msgid "Unable to convert XSL output to string"
 msgstr "Impossible de convertir la sortie XSL en chaîne"
 
-#: ../osinfo/osinfo_install_script.c:942
+#: osinfo/osinfo_install_script.c:942
 #, c-format
 msgid "Failed to load script template %s: "
 msgstr "Échec du chargement du modèle de script %s : "
 
-#: ../osinfo/osinfo_install_script.c:957
+#: osinfo/osinfo_install_script.c:957
 #, c-format
 msgid "Failed to apply script template %s: "
 msgstr "Échec de l’application du modèle de script %s : "
 
-#: ../osinfo/osinfo_install_script.c:1011
-#: ../osinfo/osinfo_install_script.c:1653
-#: ../osinfo/osinfo_install_script.c:1701
+#: osinfo/osinfo_install_script.c:1011 osinfo/osinfo_install_script.c:1653
+#: osinfo/osinfo_install_script.c:1701
 msgid "Failed to apply script template: "
 msgstr "Échec de l’application du modèle de script :"
 
-#: ../osinfo/osinfo_list.c:132
+#: osinfo/osinfo_list.c:132
 msgid "List element type"
 msgstr "Lister les types d’éléments"
 
-#: ../osinfo/osinfo_loader.c:214
+#: osinfo/osinfo_loader.c:214
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
 msgstr "Ensemble de nœuds (nodeset) attendu dans la requête XPath %s"
 
-#: ../osinfo/osinfo_loader.c:294 ../osinfo/osinfo_loader.c:437
+#: osinfo/osinfo_loader.c:294 osinfo/osinfo_loader.c:437
 msgid "Expected a text node attribute value"
 msgstr "Valeur d’attribut de nœud texte attendu"
 
-#: ../osinfo/osinfo_loader.c:590
+#: osinfo/osinfo_loader.c:590
 msgid "Missing device id property"
 msgstr "Propriété identifiant de périphérique manquante"
 
-#: ../osinfo/osinfo_loader.c:625
+#: osinfo/osinfo_loader.c:625
 msgid "Missing device link id property"
 msgstr "Propriété identifiant de lien de périphérique manquante"
 
-#: ../osinfo/osinfo_loader.c:684
+#: osinfo/osinfo_loader.c:684
 msgid "Missing product upgrades id property"
 msgstr "Propriété identifiant de mise à jour de produits manquante"
 
-#: ../osinfo/osinfo_loader.c:757
+#: osinfo/osinfo_loader.c:757
 msgid "Missing platform id property"
 msgstr "Propriété identifiant de plate-forme manquante"
 
-#: ../osinfo/osinfo_loader.c:791
+#: osinfo/osinfo_loader.c:791
 msgid "Missing deployment id property"
 msgstr "Propriété identifiant de déploiement manquante"
 
-#: ../osinfo/osinfo_loader.c:801
+#: osinfo/osinfo_loader.c:801
 msgid "Missing deployment os id property"
 msgstr "Propriété identifiant d’OS de déploiement manquante"
 
-#: ../osinfo/osinfo_loader.c:811
+#: osinfo/osinfo_loader.c:811
 msgid "Missing deployment platform id property"
 msgstr "Propriété identifiant de plate-forme de déploiement manquante"
 
-#: ../osinfo/osinfo_loader.c:850 ../osinfo/osinfo_loader.c:1502
+#: osinfo/osinfo_loader.c:850 osinfo/osinfo_loader.c:1528
 msgid "Missing os id property"
 msgstr "Propriété identifiant d’OS manquante"
 
-#: ../osinfo/osinfo_loader.c:974
+#: osinfo/osinfo_loader.c:974
 msgid "Missing install script id property"
 msgstr "Propriété identifiant de script d’installation manquante"
 
-#: ../osinfo/osinfo_loader.c:1637
+#: osinfo/osinfo_loader.c:1208
+msgid "Missing Media install script property"
+msgstr ""
+
+#: osinfo/osinfo_loader.c:1663
 msgid "Missing OS install script property"
 msgstr "Propriété script d’installation d’OS manquante"
 
-#: ../osinfo/osinfo_loader.c:1701
+#: osinfo/osinfo_loader.c:1727
 msgid "Incorrect root element"
 msgstr "Élément racine incorrect"
 
-#: ../osinfo/osinfo_loader.c:1768
+#: osinfo/osinfo_loader.c:1794
 msgid "Unable to construct parser context"
 msgstr "Impossible de créer le contexte pour l’analyseur"
 
-#: ../osinfo/osinfo_loader.c:1790
+#: osinfo/osinfo_loader.c:1816
 msgid "Missing root XML element"
 msgstr "Élément racine XML manquant"
 
-#: ../osinfo/osinfo_loader.c:2424
-#, c-format
+#: osinfo/osinfo_loader.c:2450
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
@@ -252,7 +254,7 @@ msgstr ""
 "place. La prise en charge pour $OSINFO_DATA_DIR sera retirée dans une "
 "version future\n"
 
-#: ../osinfo/osinfo_loader.c:2460 ../osinfo/osinfo_loader.c:2492
+#: osinfo/osinfo_loader.c:2486 osinfo/osinfo_loader.c:2518
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -261,356 +263,347 @@ msgstr ""
 "%s est déprécié, veuillez utiliser %s à la place. La prise en charge pour %s "
 "sera retirée dans une version future\n"
 
-#: ../osinfo/osinfo_media.c:471
+#: osinfo/osinfo_media.c:485
 msgid "The URL to this media"
 msgstr "URL vers ce média"
 
-#: ../osinfo/osinfo_media.c:484 ../osinfo/osinfo_tree.c:311
+#: osinfo/osinfo_media.c:498 osinfo/osinfo_tree.c:311
 msgid "The expected ISO9660 volume ID"
 msgstr "L’ID de volume ISO9660 attendu"
 
-#: ../osinfo/osinfo_media.c:497 ../osinfo/osinfo_tree.c:324
+#: osinfo/osinfo_media.c:511 osinfo/osinfo_tree.c:324
 msgid "The expected ISO9660 publisher ID"
 msgstr "L’ID d’éditeur ISO9660 attendu"
 
-#: ../osinfo/osinfo_media.c:510 ../osinfo/osinfo_tree.c:337
+#: osinfo/osinfo_media.c:524 osinfo/osinfo_tree.c:337
 msgid "The expected ISO9660 application ID"
 msgstr "L’ID d’application ISO9660 attendu"
 
-#: ../osinfo/osinfo_media.c:523 ../osinfo/osinfo_tree.c:350
+#: osinfo/osinfo_media.c:537 osinfo/osinfo_tree.c:350
 msgid "The expected ISO9660 system ID"
 msgstr "L’ID système ISO9660 attendu"
 
-#: ../osinfo/osinfo_media.c:536 ../osinfo/osinfo_tree.c:363
+#: osinfo/osinfo_media.c:550 osinfo/osinfo_tree.c:363
 msgid "The path to the kernel image"
 msgstr "Le chemin vers l’image noyau"
 
-#: ../osinfo/osinfo_media.c:549
+#: osinfo/osinfo_media.c:563
 msgid "The path to the initrd image"
 msgstr "Chemin vers l’image initrd"
 
-#: ../osinfo/osinfo_media.c:562
+#: osinfo/osinfo_media.c:576
 msgid "Media provides an installer"
 msgstr "Le média contient un programme d’installation"
 
-#: ../osinfo/osinfo_media.c:575
+#: osinfo/osinfo_media.c:589
 msgid "Media can boot directly w/o installation"
 msgstr "Le média peut démarrer directement sans installation"
 
-#: ../osinfo/osinfo_media.c:597
+#: osinfo/osinfo_media.c:611
 msgid "Number of installer reboots"
 msgstr "Nombre de redémarrages du programme d’installation"
 
-#: ../osinfo/osinfo_media.c:615
+#: osinfo/osinfo_media.c:629
 msgid "Information about the operating system on this media"
 msgstr "Informations au sujet du système d’exploitation sur ce média"
 
-#: ../osinfo/osinfo_media.c:637
+#: osinfo/osinfo_media.c:651
 msgid "Supported languages"
 msgstr "Langages gérés"
 
-#: ../osinfo/osinfo_media.c:649
+#: osinfo/osinfo_media.c:663
 msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Taille du volume ISO9660 attendue, en octets"
 
-#: ../osinfo/osinfo_media.c:669
+#: osinfo/osinfo_media.c:683
 msgid "Whether the media should be ejected after the installtion process"
 msgstr ""
 "Indique si le média doit être éjecté après les processus d’installation"
 
-#: ../osinfo/osinfo_media.c:685
+#: osinfo/osinfo_media.c:699
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
+"Indique si le média soit être utilisé pour une installation en utilisant les "
+"scripts d'installation"
 
-#: ../osinfo/osinfo_media.c:787
-#, c-format
+#: osinfo/osinfo_media.c:802
 msgid "Install media is not bootable"
 msgstr "Le média d’installation n’est pas amorçable"
 
-#: ../osinfo/osinfo_media.c:860
+#: osinfo/osinfo_media.c:875
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:869
+#: osinfo/osinfo_media.c:884
 #, c-format
 msgid "No \"%s\" directory record extent"
 msgstr ""
 
-#: ../osinfo/osinfo_media.c:1060
+#: osinfo/osinfo_media.c:1075
 msgid "Failed to read supplementary volume descriptor: "
 msgstr "Impossible de lire le descripteur de volume additionnel :"
 
-#: ../osinfo/osinfo_media.c:1067
-#, c-format
+#: osinfo/osinfo_media.c:1082
 msgid "Supplementary volume descriptor was truncated"
 msgstr "Le descripteur de volume additionnel a été tronqué"
 
-#: ../osinfo/osinfo_media.c:1133
+#: osinfo/osinfo_media.c:1148
 msgid "Failed to read primary volume descriptor: "
 msgstr "Impossible de lire le descripteur de volume principal :"
 
-#: ../osinfo/osinfo_media.c:1140
-#, c-format
+#: osinfo/osinfo_media.c:1155
 msgid "Primary volume descriptor was truncated"
 msgstr "Le descripteur de volume principal a été tronqué"
 
-#: ../osinfo/osinfo_media.c:1172
-#, c-format
+#: osinfo/osinfo_media.c:1187
 msgid "Insufficient metadata on installation media"
 msgstr "Métadonnées insuffisantes sur le média d’installation"
 
-#: ../osinfo/osinfo_media.c:1207
+#: osinfo/osinfo_media.c:1222
 #, c-format
 msgid "Failed to skip %d bytes"
 msgstr "Impossible de passer %d octets"
 
-#: ../osinfo/osinfo_media.c:1212
-#, c-format
+#: osinfo/osinfo_media.c:1227
 msgid "No volume descriptors"
 msgstr "Aucun descripteur de volume"
 
-#: ../osinfo/osinfo_media.c:1244
+#: osinfo/osinfo_media.c:1259
 msgid "Failed to open file"
 msgstr "Impossible d’ouvrir le fichier"
 
-#: ../osinfo/osinfo_os.c:152
+#: osinfo/osinfo_os.c:152
 msgid "Generic Family"
 msgstr "Famille générique"
 
-#: ../osinfo/osinfo_os.c:168
+#: osinfo/osinfo_os.c:168
 msgid "Generic Distro"
 msgstr "Distribution générique"
 
-#: ../osinfo/osinfo_product.c:168 ../tools/osinfo-query.c:58
-#: ../tools/osinfo-query.c:82 ../tools/osinfo-query.c:108
+#: osinfo/osinfo_product.c:168 tools/osinfo-query.c:58 tools/osinfo-query.c:82
+#: tools/osinfo-query.c:108
 msgid "Name"
 msgstr "Nom"
 
-#: ../osinfo/osinfo_product.c:181 ../tools/osinfo-query.c:56
-#: ../tools/osinfo-query.c:80
+#: osinfo/osinfo_product.c:181 tools/osinfo-query.c:56 tools/osinfo-query.c:80
 msgid "Short ID"
 msgstr "ID court"
 
-#: ../osinfo/osinfo_product.c:194 ../tools/osinfo-query.c:66
-#: ../tools/osinfo-query.c:86 ../tools/osinfo-query.c:100
+#: osinfo/osinfo_product.c:194 tools/osinfo-query.c:66 tools/osinfo-query.c:86
+#: tools/osinfo-query.c:100
 msgid "Vendor"
 msgstr "Fournisseur"
 
-#: ../osinfo/osinfo_product.c:207 ../tools/osinfo-query.c:60
-#: ../tools/osinfo-query.c:84
+#: osinfo/osinfo_product.c:207 tools/osinfo-query.c:60 tools/osinfo-query.c:84
 msgid "Version"
 msgstr "Version"
 
-#: ../osinfo/osinfo_product.c:220
+#: osinfo/osinfo_product.c:220
 msgid "Codename"
 msgstr "Nom de code"
 
-#: ../osinfo/osinfo_product.c:233
+#: osinfo/osinfo_product.c:233
 msgid "URI of the logo"
 msgstr "URI du logo"
 
-#: ../osinfo/osinfo_resources.c:187
+#: osinfo/osinfo_resources.c:187
 msgid "CPU frequency in hertz (Hz)"
 msgstr "Fréquence de la CPU (Hz)"
 
-#: ../osinfo/osinfo_resources.c:204
+#: osinfo/osinfo_resources.c:204
 msgid "Number of CPUs"
 msgstr "Nombre de CPU"
 
-#: ../osinfo/osinfo_resources.c:221
+#: osinfo/osinfo_resources.c:221
 msgid "Amount of Random Access Memory (RAM) in bytes"
 msgstr "Quantité de mémoire vive (RAM) en octets"
 
-#: ../osinfo/osinfo_resources.c:238
+#: osinfo/osinfo_resources.c:238
 msgid "Amount of storage space in bytes"
 msgstr "Quantité de stockage en octets"
 
-#: ../osinfo/osinfo_tree.c:298
+#: osinfo/osinfo_tree.c:298
 msgid "The URL to this tree"
 msgstr "URL pointant vers cet arbre"
 
-#: ../osinfo/osinfo_tree.c:376
+#: osinfo/osinfo_tree.c:376
 msgid "The path to the inirtd image"
 msgstr "Le chemin vers l’image initrd"
 
-#: ../osinfo/osinfo_tree.c:389
+#: osinfo/osinfo_tree.c:389
 msgid "The path to the bootable ISO image"
 msgstr "Le chemin vers l’image ISO amorçable"
 
-#: ../osinfo/osinfo_tree.c:402
+#: osinfo/osinfo_tree.c:402
 msgid "Whether the tree has treeinfo"
-msgstr ""
+msgstr "Si l'arbre possède treeinfo"
 
-#: ../osinfo/osinfo_tree.c:639
+#: osinfo/osinfo_tree.c:639
 msgid "Failed to load .treeinfo file: "
 msgstr "Impossible de charger le fichier .treeinfo : "
 
-#: ../osinfo/osinfo_tree.c:649
+#: osinfo/osinfo_tree.c:649
 msgid "Failed to process keyinfo file: "
 msgstr "Impossible de traiter le fichier keyinfo : "
 
-#: ../osinfo/osinfo_os_variant.c:115
+#: osinfo/osinfo_os_variant.c:115
 msgid "The name to this variant"
 msgstr "Nom de cette variante"
 
-#: ../tools/osinfo-detect.c:64 ../tools/osinfo-detect.c:85
+#: tools/osinfo-detect.c:64 tools/osinfo-detect.c:85
 #, c-format
 msgid "Invalid value '%s'"
 msgstr "Valeur invalide « %s »"
 
-#: ../tools/osinfo-detect.c:97
+#: tools/osinfo-detect.c:97
 msgid "Output format. Default: plain"
 msgstr "Format de sortie. Par défaut : plain"
 
-#: ../tools/osinfo-detect.c:98
+#: tools/osinfo-detect.c:98
 msgid "plain|env."
 msgstr "plain|env."
 
-#: ../tools/osinfo-detect.c:101
+#: tools/osinfo-detect.c:101
 msgid "URL type. Default: media"
 msgstr "Type d’URL. Par défaut : média"
 
-#: ../tools/osinfo-detect.c:102
+#: tools/osinfo-detect.c:102
 msgid "media|tree."
 msgstr "media|tree."
 
-#: ../tools/osinfo-detect.c:112
-#, c-format
+#: tools/osinfo-detect.c:112
 msgid "Media is bootable.\n"
 msgstr "Le média est amorçable.\n"
 
-#: ../tools/osinfo-detect.c:117
-#, c-format
+#: tools/osinfo-detect.c:117
 msgid "Media is not bootable.\n"
 msgstr "Le média n’est pas amorçable.\n"
 
-#: ../tools/osinfo-detect.c:154
+#: tools/osinfo-detect.c:154
 #, c-format
 msgid "Media is an installer for OS '%s'\n"
 msgstr "Le média est un média d’installation pour « %s »\n"
 
-#: ../tools/osinfo-detect.c:156
+#: tools/osinfo-detect.c:156
 #, c-format
 msgid "Media is live media for OS '%s'\n"
 msgstr "Le média est un média live pour « %s »\n"
 
-#: ../tools/osinfo-detect.c:161
-#, c-format
+#: tools/osinfo-detect.c:161
 msgid "Available OS variants on media:\n"
 msgstr "Variantes de système d’exploitation disponibles sur ce média :\n"
 
-#: ../tools/osinfo-detect.c:206
+#: tools/osinfo-detect.c:206
 #, c-format
 msgid "Tree is an installer for OS '%s'\n"
 msgstr "L’arbre est un arbre d’installation pour « %s »\n"
 
-#: ../tools/osinfo-detect.c:223
+#: tools/osinfo-detect.c:223
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
 "- Détecter si le média est amorçable ainsi que le système d’exploitation et "
 "la distribution."
 
-#: ../tools/osinfo-detect.c:227 ../tools/osinfo-query.c:414
+#: tools/osinfo-detect.c:227 tools/osinfo-query.c:414
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "Erreur lors de l’analyse des options de ligne de commande : %s\n"
 
-#: ../tools/osinfo-detect.c:245 ../tools/osinfo-install-script.c:351
-#: ../tools/osinfo-query.c:430
+#: tools/osinfo-detect.c:245 tools/osinfo-install-script.c:351
+#: tools/osinfo-query.c:430
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "Erreur lors du chargement des données du système d’exploitation : %s\n"
 
-#: ../tools/osinfo-detect.c:261
+#: tools/osinfo-detect.c:261
 #, c-format
 msgid "Error parsing media: %s\n"
 msgstr "Erreur lors de l’analyse du média : %s\n"
 
-#: ../tools/osinfo-detect.c:279
+#: tools/osinfo-detect.c:279
 #, c-format
 msgid "Error parsing installer tree: %s\n"
 msgstr "Erreur lors de l’analyse de l’arbre : %s\n"
 
-#: ../tools/osinfo-install-script.c:53
-#, c-format
+#: tools/osinfo-install-script.c:53
 msgid "Expected configuration key=value"
 msgstr "Configuration attendue du type clé=valeur"
 
-#: ../tools/osinfo-install-script.c:71
+#: tools/osinfo-install-script.c:71
 msgid "Install script profile"
 msgstr "Profil de script d’installation"
 
-#: ../tools/osinfo-install-script.c:73
+#: tools/osinfo-install-script.c:73
 msgid "Install script output directory"
 msgstr "Répertoire de sortie du script d’installation"
 
-#: ../tools/osinfo-install-script.c:75
+#: tools/osinfo-install-script.c:75
 msgid "The output filename prefix"
 msgstr "Le préfixe des fichiers de sortie"
 
-#: ../tools/osinfo-install-script.c:77
+#: tools/osinfo-install-script.c:77
 msgid "The installation source to be used with the script"
-msgstr ""
+msgstr "La source d'installation à utiliser avec le script"
 
-#: ../tools/osinfo-install-script.c:80
+#: tools/osinfo-install-script.c:80
 msgid "Set configuration parameter"
 msgstr "Définir les paramètres de configuration"
 
-#: ../tools/osinfo-install-script.c:82
+#: tools/osinfo-install-script.c:82
 msgid "List configuration parameters"
 msgstr "Lister les paramètres de configuration"
 
-#: ../tools/osinfo-install-script.c:84
+#: tools/osinfo-install-script.c:84
 msgid "List install script profiles"
 msgstr "Lister les profils de scripts d’installation"
 
-#: ../tools/osinfo-install-script.c:86
+#: tools/osinfo-install-script.c:86
 msgid "List supported injection methods"
 msgstr "Lister les méthodes d’injection disponibles"
 
-#: ../tools/osinfo-install-script.c:88
+#: tools/osinfo-install-script.c:88
 msgid "Do not display output filenames"
 msgstr "Ne pas afficher les noms des fichiers de sortie"
 
-#: ../tools/osinfo-install-script.c:145
+#: tools/osinfo-install-script.c:145
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
 msgstr ""
 "Pas de script d’installation pour le profil « %s » et le système "
 "d’exploitation « %s »"
 
-#: ../tools/osinfo-install-script.c:161
+#: tools/osinfo-install-script.c:161
 msgid "required"
 msgstr "requis"
 
-#: ../tools/osinfo-install-script.c:161
+#: tools/osinfo-install-script.c:161
 msgid "optional"
 msgstr "optionnel"
 
-#: ../tools/osinfo-install-script.c:247
+#: tools/osinfo-install-script.c:247
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
 msgstr ""
 "Pas de script d’installation pour le profil « %s » et le système "
 "d’exploitation « %s »\n"
 
-#: ../tools/osinfo-install-script.c:283
+#: tools/osinfo-install-script.c:283
 #, c-format
 msgid "Unable to generate install script: %s\n"
 msgstr "Impossible de créer le script d’installation : %s\n"
 
-#: ../tools/osinfo-install-script.c:320
+#: tools/osinfo-install-script.c:320
 msgid "- Generate an OS install script"
 msgstr "- Créer un script d’installation du système d’exploitation"
 
-#: ../tools/osinfo-install-script.c:323
+#: tools/osinfo-install-script.c:323
 #, c-format
 msgid "Error while parsing options: %s\n"
 msgstr "Erreur lors de l’analyse des options : %s\n"
 
-#: ../tools/osinfo-install-script.c:341
+#: tools/osinfo-install-script.c:341
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
@@ -618,93 +611,92 @@ msgstr ""
 "--list-profile, --list-config et --list-injection-methods ne peuvent pas "
 "être utilisés simultanément"
 
-#: ../tools/osinfo-install-script.c:370
+#: tools/osinfo-install-script.c:370
 #, c-format
 msgid "Error finding OS: %s\n"
 msgstr "Erreur lors de la recherche du système d’exploitation : %s\n"
 
-#: ../tools/osinfo-query.c:62
+#: tools/osinfo-query.c:62
 msgid "Family"
 msgstr "Famille"
 
-#: ../tools/osinfo-query.c:64
+#: tools/osinfo-query.c:64
 msgid "Distro"
 msgstr "Distribution"
 
-#: ../tools/osinfo-query.c:68 ../tools/osinfo-query.c:88
+#: tools/osinfo-query.c:68 tools/osinfo-query.c:88
 msgid "Release date"
 msgstr "Date de publication"
 
-#: ../tools/osinfo-query.c:70 ../tools/osinfo-query.c:90
+#: tools/osinfo-query.c:70 tools/osinfo-query.c:90
 msgid "End of life"
 msgstr "Fin de vie"
 
-#: ../tools/osinfo-query.c:72 ../tools/osinfo-query.c:92
+#: tools/osinfo-query.c:72 tools/osinfo-query.c:92
 msgid "Code name"
 msgstr "Nom de code"
 
-#: ../tools/osinfo-query.c:74 ../tools/osinfo-query.c:94
-#: ../tools/osinfo-query.c:114 ../tools/osinfo-query.c:120
+#: tools/osinfo-query.c:74 tools/osinfo-query.c:94 tools/osinfo-query.c:114
+#: tools/osinfo-query.c:120
 msgid "ID"
 msgstr "ID"
 
-#: ../tools/osinfo-query.c:102
+#: tools/osinfo-query.c:102
 msgid "Vendor ID"
 msgstr "ID de fournisseur"
 
-#: ../tools/osinfo-query.c:104
+#: tools/osinfo-query.c:104
 msgid "Product"
 msgstr "Produit"
 
-#: ../tools/osinfo-query.c:106
+#: tools/osinfo-query.c:106
 msgid "Product ID"
 msgstr "ID Produit"
 
-#: ../tools/osinfo-query.c:110
+#: tools/osinfo-query.c:110
 msgid "Class"
 msgstr "Classe"
 
-#: ../tools/osinfo-query.c:112
+#: tools/osinfo-query.c:112
 msgid "Bus"
 msgstr "Bus"
 
-#: ../tools/osinfo-query.c:152 ../tools/osinfo-query.c:190
+#: tools/osinfo-query.c:152 tools/osinfo-query.c:190
 #, c-format
 msgid "Unknown property name %s"
 msgstr "Nom de propriété inconnu %s"
 
-#: ../tools/osinfo-query.c:176
+#: tools/osinfo-query.c:176
 msgid "Syntax error in condition, expecting KEY=VALUE"
 msgstr "Erreur de syntaxe dans la condition, CLÉ=VALEUR est attendu"
 
-#: ../tools/osinfo-query.c:402
+#: tools/osinfo-query.c:402
 msgid "Sort column"
 msgstr "Colonne de tri"
 
-#: ../tools/osinfo-query.c:404
+#: tools/osinfo-query.c:404
 msgid "Display fields"
 msgstr "Afficher les champs"
 
-#: ../tools/osinfo-query.c:409
+#: tools/osinfo-query.c:409
 msgid "- Query the OS info database"
 msgstr "- Interroger la base de données des systèmes d’exploitation"
 
-#: ../tools/osinfo-query.c:421
-#, c-format
+#: tools/osinfo-query.c:421
 msgid "Missing data type parameter\n"
 msgstr "Paramètre type de données manquant\n"
 
-#: ../tools/osinfo-query.c:449
+#: tools/osinfo-query.c:449
 #, c-format
 msgid "Unknown type '%s' requested\n"
 msgstr "Type demandé « %s » inconnu\n"
 
-#: ../tools/osinfo-query.c:454
+#: tools/osinfo-query.c:454
 #, c-format
 msgid "Unable to construct filter: %s\n"
 msgstr "Impossible de construire le filtre : %s\n"
 
-#: ../tools/osinfo-query.c:459
+#: tools/osinfo-query.c:459
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "Impossible de définir la visiblité du champ :%s\n"
