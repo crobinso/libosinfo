@@ -82,10 +82,3 @@ OsinfoDeviceLinkList *osinfo_deployment_get_device_links(OsinfoDeployment *deplo
 OsinfoDeviceLink *osinfo_deployment_add_device(OsinfoDeployment *deployment, OsinfoDevice *dev);
 
 #endif /* __OSINFO_DEPLOYMENT_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

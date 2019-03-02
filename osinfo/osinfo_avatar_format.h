@@ -87,10 +87,3 @@ gint osinfo_avatar_format_get_height(OsinfoAvatarFormat *avatar);
 gboolean osinfo_avatar_format_get_alpha(OsinfoAvatarFormat *avatar);
 
 #endif /* __OSINFO_AVATAR_FORMAT_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -78,10 +78,3 @@ G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_union(OsinfoInstallScriptList *sourceOne, OsinfoInstallScriptList *sourceTwo);
 
 #endif /* __OSINFO_INSTALL_SCRIPTLIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

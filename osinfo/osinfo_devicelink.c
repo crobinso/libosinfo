@@ -181,11 +181,3 @@ const gchar *osinfo_devicelink_get_driver(OsinfoDeviceLink *devlink)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(devlink), OSINFO_DEVICELINK_PROP_DRIVER);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

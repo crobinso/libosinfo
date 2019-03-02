@@ -1140,11 +1140,3 @@ void osinfo_os_add_device_driver(OsinfoOs *os, OsinfoDeviceDriver *driver)
     osinfo_list_add(OSINFO_LIST(os->priv->device_drivers),
                     OSINFO_ENTITY(driver));
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

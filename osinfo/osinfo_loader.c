@@ -2599,11 +2599,3 @@ void osinfo_loader_process_user_path(OsinfoLoader *loader, GError **err)
     osinfo_loader_process_list(loader, dirs, TRUE, err);
     g_object_unref(dirs[0]);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

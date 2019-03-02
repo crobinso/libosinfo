@@ -69,10 +69,3 @@ GType osinfo_datamaplist_get_type(void);
 OsinfoDatamapList *osinfo_datamaplist_new(void);
 
 #endif /* __OSINFO_DATAMAPLIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

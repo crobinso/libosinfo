@@ -231,10 +231,3 @@ OsinfoDeviceLink *osinfo_platform_add_device(OsinfoPlatform *platform, OsinfoDev
 
     return devlink;
 }
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

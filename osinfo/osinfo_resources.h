@@ -99,10 +99,3 @@ void osinfo_resources_set_ram(OsinfoResources *resources, gint64 ram);
 void osinfo_resources_set_storage(OsinfoResources *resources, gint64 storage);
 
 #endif /* __OSINFO_RESOURCES_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

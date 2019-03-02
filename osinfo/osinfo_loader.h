@@ -87,10 +87,3 @@ void osinfo_loader_process_user_path(OsinfoLoader *loader, GError **err);
 
 
 #endif /* __OSINFO_LOADER_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -77,10 +77,3 @@ OsinfoDeviceLinkList *osinfo_platform_get_device_links(OsinfoPlatform *platform,
 OsinfoDeviceLink *osinfo_platform_add_device(OsinfoPlatform *platform, OsinfoDevice *dev);
 
 #endif /* __OSINFO_PLATFORM_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

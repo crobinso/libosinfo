@@ -437,11 +437,3 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
     }
     g_object_unref(related_list);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

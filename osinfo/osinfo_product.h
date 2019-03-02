@@ -100,10 +100,3 @@ const gchar *osinfo_product_get_logo(OsinfoProduct *prod);
 
 
 #endif /* __OSINFO_PRODUCT_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -33,10 +33,3 @@ void osinfo_install_script_set_avatar_format(OsinfoInstallScript *script,
                                              OsinfoAvatarFormat *avatar);
 
 #endif /* __OSINFO_INSTALL_SCRIPT_PRIVATE_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

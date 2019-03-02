@@ -82,11 +82,3 @@ OsinfoInstallConfigParamList *osinfo_install_config_paramlist_new(void)
                         "element-type", OSINFO_TYPE_INSTALL_CONFIG_PARAM,
                         NULL);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -77,10 +77,3 @@ const gchar *osinfo_image_get_url(OsinfoImage *image);
 gboolean osinfo_image_get_cloud_init(OsinfoImage *image);
 
 #endif /* __OSINFO_IMAGE_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -31,11 +31,3 @@ void osinfo_device_driver_add_device(OsinfoDeviceDriver *driver,
                                      OsinfoDevice *device);
 
 #endif /* __OSINFO_DEVICE_DRIVER_PRIVATE_H__ */
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

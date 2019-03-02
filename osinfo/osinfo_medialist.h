@@ -78,10 +78,3 @@ G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoMediaList *osinfo_medialist_new_union(OsinfoMediaList *sourceOne, OsinfoMediaList *sourceTwo);
 
 #endif /* __OSINFO_MEDIALIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

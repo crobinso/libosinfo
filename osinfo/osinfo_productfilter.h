@@ -74,10 +74,3 @@ GList *osinfo_productfilter_get_product_constraint_values(OsinfoProductFilter *p
 void osinfo_productfilter_add_support_date_constraint(OsinfoProductFilter *productfilter, GDate *when);
 
 #endif /* __OSINFO_PRODUCTFILTER_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

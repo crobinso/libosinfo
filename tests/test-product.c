@@ -204,10 +204,3 @@ main(int argc, char *argv[])
 
     return g_test_run();
 }
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

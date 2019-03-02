@@ -149,10 +149,3 @@ void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *in
 OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media);
 
 #endif /* __OSINFO_MEDIA_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -30,10 +30,3 @@ void osinfo_media_set_languages(OsinfoMedia *media, GList *languages);
 void osinfo_media_set_os(OsinfoMedia *media, OsinfoOs *os);
 
 #endif /* __OSINFO_MEDIA_PRIVATE_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -87,10 +87,3 @@ OsinfoDeviceList *osinfo_device_driver_get_devices(OsinfoDeviceDriver *driver);
 gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver);
 
 #endif /* __OSINFO_DEVICE_DRIVER_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

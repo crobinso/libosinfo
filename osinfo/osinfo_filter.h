@@ -86,10 +86,3 @@ gboolean osinfo_filter_matches(OsinfoFilter *filter,
                                OsinfoEntity *entity);
 
 #endif /* __OSINFO_FILTER_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

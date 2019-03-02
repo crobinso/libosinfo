@@ -76,10 +76,3 @@ OsinfoDevice *osinfo_devicelink_get_target(OsinfoDeviceLink *link);
 const gchar *osinfo_devicelink_get_driver(OsinfoDeviceLink *link);
 
 #endif /* __OSINFO_DEVICELINK_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

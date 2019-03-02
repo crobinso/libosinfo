@@ -426,11 +426,3 @@ void osinfo_resources_set_inherit(OsinfoResources *resources, gboolean inherit)
 
     resources->priv->inherit = inherit;
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

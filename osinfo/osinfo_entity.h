@@ -92,10 +92,3 @@ void osinfo_entity_add_param(OsinfoEntity *entity, const gchar *key, const gchar
 void osinfo_entity_clear_param(OsinfoEntity *entity, const gchar *key);
 
 #endif /* __OSINFO_ENTITY_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

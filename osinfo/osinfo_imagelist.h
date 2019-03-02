@@ -68,10 +68,3 @@ GType osinfo_imagelist_get_type(void);
 OsinfoImageList *osinfo_imagelist_new(void);
 
 #endif /* __OSINFO_IMAGELIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

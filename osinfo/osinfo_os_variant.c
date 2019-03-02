@@ -149,10 +149,3 @@ const gchar *osinfo_os_variant_get_name(OsinfoOsVariant *variant)
     return osinfo_entity_get_param_value(OSINFO_ENTITY(variant),
                                          OSINFO_OS_VARIANT_PROP_NAME);
 }
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

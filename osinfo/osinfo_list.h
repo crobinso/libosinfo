@@ -84,10 +84,3 @@ OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne, OsinfoList *sour
 OsinfoList *osinfo_list_new_union(OsinfoList *sourceOne, OsinfoList *sourceTwo);
 
 #endif /* __OSINFO_LIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

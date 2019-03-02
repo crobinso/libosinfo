@@ -94,10 +94,3 @@ OsinfoDatamap *osinfo_install_config_param_get_value_map(OsinfoInstallConfigPara
 
 
 #endif /* __OSINFO_INSTALL_CONFIG_PARAM_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

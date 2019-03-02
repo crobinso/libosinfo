@@ -280,10 +280,3 @@ gboolean osinfo_filter_matches(OsinfoFilter *filter, OsinfoEntity *entity)
 
     return OSINFO_FILTER_GET_CLASS(filter)->matches(filter, entity);
 }
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

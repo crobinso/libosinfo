@@ -112,10 +112,3 @@ const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree);
 /* XXX Xen kernel/initrd paths ? */
 
 #endif /* __OSINFO_TREE_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -82,11 +82,3 @@ OsinfoDeviceDriverList *osinfo_device_driverlist_new(void)
                         "element-type", OSINFO_TYPE_DEVICE_DRIVER,
                         NULL);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

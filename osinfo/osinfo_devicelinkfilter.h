@@ -68,10 +68,3 @@ OsinfoDeviceLinkFilter *osinfo_devicelinkfilter_new(OsinfoFilter *filter);
 OsinfoFilter *osinfo_devicelinkfilter_get_target_filter(OsinfoDeviceLinkFilter *filter);
 
 #endif /* __OSINFO_DEVICELINKFILTER_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

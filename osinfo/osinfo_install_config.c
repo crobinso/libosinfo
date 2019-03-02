@@ -715,11 +715,3 @@ const gchar *osinfo_install_config_get_installation_url(OsinfoInstallConfig *con
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
                                          OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

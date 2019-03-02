@@ -267,11 +267,3 @@ gboolean osinfo_image_get_cloud_init(OsinfoImage *image)
     return osinfo_entity_get_param_value_boolean_with_default
             (OSINFO_ENTITY(image), OSINFO_IMAGE_PROP_CLOUD_INIT, FALSE);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -885,11 +885,3 @@ gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree)
     return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(tree),
                                                  OSINFO_TREE_PROP_HAS_TREEINFO);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

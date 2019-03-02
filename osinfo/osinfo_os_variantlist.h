@@ -67,10 +67,3 @@ GType osinfo_os_variantlist_get_type(void);
 OsinfoOsVariantList *osinfo_os_variantlist_new(void);
 
 #endif /* __OSINFO_OS_VARIANTLIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

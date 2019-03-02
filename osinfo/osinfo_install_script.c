@@ -1910,11 +1910,3 @@ osinfo_install_script_get_installation_source(OsinfoInstallScript *script)
             OSINFO_TYPE_INSTALL_SCRIPT_INSTALLATION_SOURCE,
             OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

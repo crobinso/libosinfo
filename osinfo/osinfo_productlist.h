@@ -78,10 +78,3 @@ G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoProductList *osinfo_productlist_new_union(OsinfoProductList *sourceOne, OsinfoProductList *sourceTwo);
 
 #endif /* __OSINFO_PRODUCTLIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

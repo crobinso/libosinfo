@@ -30,11 +30,3 @@ void osinfo_resources_set_inherit(OsinfoResources *resources, gboolean inherit);
 gboolean osinfo_resources_get_inherit(OsinfoResources *resources);
 
 #endif /* __OSINFO_RESOURCES_PRIVATE_H__ */
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

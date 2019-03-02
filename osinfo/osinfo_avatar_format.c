@@ -233,11 +233,3 @@ osinfo_avatar_format_get_alpha(OsinfoAvatarFormat *avatar)
     return osinfo_entity_get_param_value_boolean_with_default
                 (OSINFO_ENTITY(avatar), OSINFO_AVATAR_FORMAT_PROP_ALPHA, TRUE);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

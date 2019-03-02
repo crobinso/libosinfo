@@ -1715,11 +1715,3 @@ OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media
 
     return OSINFO_INSTALL_SCRIPTLIST(new_list);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

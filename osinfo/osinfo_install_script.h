@@ -271,10 +271,3 @@ void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
 OsinfoInstallScriptInstallationSource osinfo_install_script_get_installation_source(OsinfoInstallScript *script);
 
 #endif /* __OSINFO_INSTALL_SCRIPT_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

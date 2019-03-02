@@ -41,11 +41,3 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
                                     gpointer user_data);
 
 #endif /* __OSINFO_PRODUCT_PRIVATE_H__ */
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

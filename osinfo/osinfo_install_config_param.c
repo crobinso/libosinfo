@@ -290,11 +290,3 @@ void osinfo_install_config_param_set_value_map(OsinfoInstallConfigParam *config_
         g_object_unref(G_OBJECT(config_param->priv->value_map));
     config_param->priv->value_map = g_object_ref(datamap);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

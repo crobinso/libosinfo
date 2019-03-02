@@ -185,11 +185,3 @@ gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver)
                 (OSINFO_ENTITY(driver),
                  OSINFO_DEVICE_DRIVER_PROP_SIGNED);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

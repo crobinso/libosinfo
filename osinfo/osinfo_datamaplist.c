@@ -80,11 +80,3 @@ OsinfoDatamapList *osinfo_datamaplist_new(void)
                         "element-type", OSINFO_TYPE_DATAMAP,
                         NULL);
 }
-
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

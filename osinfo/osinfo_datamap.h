@@ -75,10 +75,3 @@ const gchar *osinfo_datamap_reverse_lookup(OsinfoDatamap *map,
                                            const gchar *outval);
 
 #endif /* __OSINFO_DATAMAP_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

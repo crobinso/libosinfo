@@ -78,10 +78,3 @@ G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoTreeList *osinfo_treelist_new_union(OsinfoTreeList *sourceOne, OsinfoTreeList *sourceTwo);
 
 #endif /* __OSINFO_TREELIST_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

@@ -206,10 +206,3 @@ void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
 const gchar *osinfo_install_config_get_installation_url(OsinfoInstallConfig *config);
 
 #endif /* __OSINFO_INSTALL_CONFIG_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */

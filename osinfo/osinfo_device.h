@@ -89,10 +89,3 @@ const gchar *osinfo_device_get_name(OsinfoDevice *dev);
 const gchar *osinfo_device_get_subsystem(OsinfoDevice *dev);
 
 #endif /* __OSINFO_DEVICE_H__ */
-/*
- * Local variables:
- *  indent-tabs-mode: nil
- *  c-indent-level: 4
- *  c-basic-offset: 4
- * End:
- */
