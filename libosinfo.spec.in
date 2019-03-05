@@ -8,6 +8,7 @@ License: LGPLv2+
 Source: https://releases.pagure.io/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: https://libosinfo.org/
+BuildRequires: gcc
 BuildRequires: gettext-devel
 BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
