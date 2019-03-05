@@ -87,7 +87,6 @@ rm -fr %{buildroot}
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
-%defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{_bindir}/osinfo-detect
 %{_bindir}/osinfo-query
@@ -99,7 +98,6 @@ rm -fr %{buildroot}
 %{_libdir}/girepository-1.0/Libosinfo-1.0.typelib
 
 %files devel
-%defattr(-, root, root)
 %doc examples/demo.js
 %doc examples/demo.py
 %{_libdir}/%{name}-1.0.so
@@ -111,7 +109,6 @@ rm -fr %{buildroot}
 %{_datadir}/gtk-doc/html/Libosinfo
 
 %files vala
-%defattr(-, root, root)
 %{_datadir}/vala/vapi/libosinfo-1.0.vapi
 
 %changelog
