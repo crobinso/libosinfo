@@ -5,7 +5,6 @@ Name: libosinfo
 Version: @VERSION@
 Release: 1%{?dist}
 License: LGPLv2+
-Group: Development/Libraries
 Source: https://releases.pagure.io/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: https://libosinfo.org/
@@ -31,7 +30,6 @@ combination.
 
 %package devel
 Summary: Libraries, includes, etc. to compile with the libosinfo library
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
 Requires: glib2-devel
@@ -45,7 +43,6 @@ Libraries, includes, etc. to compile with the libosinfo library
 
 %package vala
 Summary: Vala bindings
-Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description vala
