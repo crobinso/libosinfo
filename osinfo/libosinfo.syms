@@ -568,6 +568,12 @@ LIBOSINFO_1.4.0 {
 	osinfo_media_get_install_script_list;
 } LIBOSINFO_1.3.0;
 
+LIBOSINFO_1.5.0 {
+    global:
+	osinfo_install_config_get_installation_url;
+	osinfo_install_config_set_installation_url;
+} LIBOSINFO_1.4.0;
+
 /* Symbols in next release...
 
   LIBOSINFO_0.0.2 {

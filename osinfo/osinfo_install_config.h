@@ -69,6 +69,8 @@
 
 #define OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING "driver-signing"
 
+#define OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL "installation-url"
+
 typedef struct _OsinfoInstallConfig        OsinfoInstallConfig;
 typedef struct _OsinfoInstallConfigClass   OsinfoInstallConfigClass;
 typedef struct _OsinfoInstallConfigPrivate OsinfoInstallConfigPrivate;
@@ -198,6 +200,10 @@ const gchar *osinfo_install_config_get_post_install_drivers_location(OsinfoInsta
 void osinfo_install_config_set_driver_signing(OsinfoInstallConfig *config,
                                               gboolean signing);
 gboolean osinfo_install_config_get_driver_signing(OsinfoInstallConfig *config);
+
+void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
+                                                const gchar *url);
+const gchar *osinfo_install_config_get_installation_url(OsinfoInstallConfig *config);
 
 #endif /* __OSINFO_INSTALL_CONFIG_H__ */
 /*

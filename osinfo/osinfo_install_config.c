@@ -688,6 +688,34 @@ gboolean osinfo_install_config_get_driver_signing(OsinfoInstallConfig *config)
              TRUE);
 }
 
+/**
+ * osinfo_install_config_set_installation_url:
+ * @config: the install config
+ * @url: the URL used to perform the installation
+ *
+ * When performing a tree based installation the script will need the installation
+ * URL to be set, whenever the installation is performed from a non canonical place.
+ */
+void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
+                                                const gchar *url)
+{
+    osinfo_entity_set_param(OSINFO_ENTITY(config),
+                            OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL,
+                            url);
+}
+
+/**
+ * osinfo_install_config_get_installation_url:
+ * @config
+ *
+ * Returns the URL the script will use to perform the installation.
+ */
+const gchar *osinfo_install_config_get_installation_url(OsinfoInstallConfig *config)
+{
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
+                                         OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL);
+}
+
 /*
  * Local variables:
  *  indent-tabs-mode: nil
