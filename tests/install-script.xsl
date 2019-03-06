@@ -20,6 +20,7 @@ skipx
 network --device eth0 --bootproto dhcp
 rootpw <xsl:value-of select="config/admin-password"/>
 timezone --utc <xsl:value-of select="config/l10n-timezone"/>
+url <xsl:value-of select="config/installation-url"/>
 bootloader --location=mbr
 zerombr
 

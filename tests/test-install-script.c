@@ -37,6 +37,7 @@ static const gchar *expectData =                                        \
     "network --device eth0 --bootproto dhcp\n"                          \
     "rootpw 123456\n"                                                   \
     "timezone --utc Europe/London\n"                                    \
+    "url http://foo.bar\n"                                              \
     "bootloader --location=mbr\n"                                       \
     "zerombr\n"                                                         \
     "\n"                                                                \
@@ -106,6 +107,8 @@ static OsinfoInstallConfig *test_get_config(void)
     osinfo_install_config_set_user_realname(config, "Fred Blogs");
     osinfo_install_config_set_user_autologin(config, TRUE);
     osinfo_install_config_set_user_administrator(config, TRUE);
+
+    osinfo_install_config_set_installation_url(config, "http://foo.bar");
 
     return config;
 }
