@@ -1,5 +1,5 @@
 
-EXTRA_DIST = isodata dbdata
+EXTRA_DIST = dbdata
 
 check_PROGRAMS = \
 	test-entity \
@@ -17,7 +17,6 @@ check_PROGRAMS = \
 	test-platformlist \
 	test-db \
 	test-loader \
-	test-isodetect \
 	test-install-script \
 	test-image \
 	test-imagelist \
@@ -97,10 +96,6 @@ test_db_SOURCES = test-db.c
 test_loader_LDADD = $(COMMON_LDADD)
 test_loader_CFLAGS = $(COMMON_CFLAGS)
 test_loader_SOURCES = test-loader.c
-
-test_isodetect_LDADD = $(COMMON_LDADD)
-test_isodetect_CFLAGS = $(COMMON_CFLAGS)
-test_isodetect_SOURCES = test-isodetect.c
 
 test_install_script_LDADD = $(COMMON_LDADD)
 test_install_script_CFLAGS = $(COMMON_CFLAGS)
