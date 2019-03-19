@@ -55,14 +55,6 @@ AC_ARG_ENABLE([tests],
         AS_HELP_STRING([--enable-tests], [enable test suite]),
         [], [enable_tests=yes])
 
-if test "x$enable_tests" != "xno" ; then
-  have_curl=no
-  PKG_CHECK_MODULES([CURL], [libcurl], [have_curl=yes], [:])
-  AC_SUBST(CURL_CFLAGS)
-  AC_SUBST(CURL_LIBS)
-fi
-AM_CONDITIONAL([HAVE_CURL],[test "x$have_curl" = "xyes"])
-
 AM_CONDITIONAL([ENABLE_TESTS],[test "x$enable_tests" = "xyes"])
 
 LIBOSINFO_MAJOR_VERSION=`echo $VERSION | awk -F. '{print $1}'`

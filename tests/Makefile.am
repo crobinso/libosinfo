@@ -23,14 +23,6 @@ check_PROGRAMS = \
 	test-imagelist \
         $(NULL)
 
-if HAVE_CURL
-check_PROGRAMS += \
-	test-mediauris \
-	test-treeuris \
-	test-imageuris \
-	$(NULL)
-endif
-
 COMMON_LDADD = \
 	$(COVERAGE_LDFLAGS) \
 	$(GLIB_LIBS) \
@@ -78,8 +70,8 @@ test_list_LDADD = $(COMMON_LDADD)
 test_list_CFLAGS = $(COMMON_CFLAGS)
 test_list_SOURCES = test-list.c
 
-test_media_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
-test_media_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
+test_media_LDADD = $(COMMON_LDADD)
+test_media_CFLAGS = $(COMMON_CFLAGS)
 test_media_SOURCES = test-media.c
 
 test_devicelist_LDADD = $(COMMON_LDADD)
@@ -109,20 +101,6 @@ test_loader_SOURCES = test-loader.c
 test_isodetect_LDADD = $(COMMON_LDADD)
 test_isodetect_CFLAGS = $(COMMON_CFLAGS)
 test_isodetect_SOURCES = test-isodetect.c
-
-if HAVE_CURL
-test_mediauris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
-test_mediauris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
-test_mediauris_SOURCES = test-mediauris.c test-uris-common.c test-uris-common.h
-
-test_treeuris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
-test_treeuris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
-test_treeuris_SOURCES = test-treeuris.c test-uris-common.c test-uris-common.h
-
-test_imageuris_LDADD = $(COMMON_LDADD) $(CURL_LIBS)
-test_imageuris_CFLAGS = $(COMMON_CFLAGS) $(CURL_CFLAGS)
-test_imageuris_SOURCES = test-imageuris.c test-uris-common.c test-uris-common.h
-endif
 
 test_install_script_LDADD = $(COMMON_LDADD)
 test_install_script_CFLAGS = $(COMMON_CFLAGS)
