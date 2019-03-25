@@ -673,6 +673,7 @@ void osinfo_os_add_tree(OsinfoOs *os, OsinfoTree *tree)
     g_return_if_fail(OSINFO_IS_TREE(tree));
 
     osinfo_list_add(OSINFO_LIST(os->priv->trees), OSINFO_ENTITY(tree));
+    osinfo_tree_set_os(tree, os);
 }
 
 /**

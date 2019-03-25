@@ -62,6 +62,7 @@ typedef struct _OsinfoTreePrivate OsinfoTreePrivate;
 #define OSINFO_TREE_PROP_KERNEL           "kernel"
 #define OSINFO_TREE_PROP_INITRD           "initrd"
 #define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
+#define OSINFO_TREE_PROP_VARIANT          "variant"
 
 
 /* object */
@@ -109,6 +110,9 @@ const gchar *osinfo_tree_get_treeinfo_arch(OsinfoTree *tree);
 const gchar *osinfo_tree_get_boot_iso_path(OsinfoTree *tree);
 const gchar *osinfo_tree_get_kernel_path(OsinfoTree *tree);
 const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree);
+OsinfoOs *osinfo_tree_get_os(OsinfoTree *tree);
+void osinfo_tree_set_os(OsinfoTree *tree, OsinfoOs *os);
+OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree);
 /* XXX Xen kernel/initrd paths ? */
 
 #endif /* __OSINFO_TREE_H__ */

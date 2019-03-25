@@ -1242,9 +1242,24 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
     OsinfoTree *tree = osinfo_tree_new(id, arch);
     xmlFree(arch);
 
+    gint nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
+    if (error_is_set(err)) {
+        g_object_unref(tree);
+        return NULL;
+    }
+
+    for (i = 0; i < nnodes; i++) {
+        gchar *variant_id = (gchar *)xmlGetProp(nodes[i], BAD_CAST "id");
+        osinfo_entity_add_param(OSINFO_ENTITY(tree),
+                                OSINFO_TREE_PROP_VARIANT,
+                                variant_id);
+        xmlFree(variant_id);
+    }
+    g_free(nodes);
+
     osinfo_loader_entity(loader, OSINFO_ENTITY(tree), keys, ctxt, root, err);
 
-    gint nnodes = osinfo_loader_nodeset("./treeinfo/*", loader, ctxt, &nodes, err);
+    nnodes = osinfo_loader_nodeset("./treeinfo/*", loader, ctxt, &nodes, err);
     if (error_is_set(err)) {
         g_object_unref(G_OBJECT(tree));
         return NULL;

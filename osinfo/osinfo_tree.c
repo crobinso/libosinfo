@@ -96,7 +96,7 @@ G_DEFINE_TYPE(OsinfoTree, osinfo_tree, OSINFO_TYPE_ENTITY);
 
 struct _OsinfoTreePrivate
 {
-    gboolean unused;
+    GWeakRef os;
 };
 
 enum {
@@ -264,6 +264,15 @@ osinfo_tree_finalize(GObject *object)
     G_OBJECT_CLASS(osinfo_tree_parent_class)->finalize(object);
 }
 
+static void osinfo_tree_dispose(GObject *obj)
+{
+    OsinfoTree *tree = OSINFO_TREE(obj);
+
+    g_weak_ref_clear(&tree->priv->os);
+
+    G_OBJECT_CLASS(osinfo_tree_parent_class)->dispose(obj);
+}
+
 /* Init functions */
 static void
 osinfo_tree_class_init(OsinfoTreeClass *klass)
@@ -271,6 +280,7 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
     GParamSpec *pspec;
 
+    g_klass->dispose = osinfo_tree_dispose;
     g_klass->finalize = osinfo_tree_finalize;
     g_klass->get_property = osinfo_tree_get_property;
     g_klass->set_property = osinfo_tree_set_property;
@@ -411,6 +421,8 @@ static void
 osinfo_tree_init(OsinfoTree *tree)
 {
     tree->priv = OSINFO_TREE_GET_PRIVATE(tree);
+
+    g_weak_ref_init(&tree->priv->os, NULL);
 }
 
 OsinfoTree *osinfo_tree_new(const gchar *id,
@@ -917,4 +929,73 @@ gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree)
 {
     return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(tree),
                                                  OSINFO_TREE_PROP_HAS_TREEINFO);
+}
+
+/**
+ * osinfo_tree_get_os:
+ * @tree: an #OsinfoTree instance
+ *
+ * Returns: (transfer full): the operating system, or NULL
+ */
+OsinfoOs *osinfo_tree_get_os(OsinfoTree *tree)
+{
+    g_return_val_if_fail(OSINFO_IS_TREE(tree), NULL);
+
+    return g_weak_ref_get(&tree->priv->os);
+}
+
+
+/**
+ * osinfo_tree_set_os
+ * @tree: an #OsinfoTree instance
+ * @os: an #OsinfoOs instance
+ *
+ * Sets the #OsinfoOs associated to the #OsinfoTree instance.
+ */
+void osinfo_tree_set_os(OsinfoTree *tree, OsinfoOs *os)
+{
+    g_return_if_fail(OSINFO_IS_TREE(tree));
+
+    g_object_ref(os);
+    g_weak_ref_set(&tree->priv->os, os);
+    g_object_unref(os);
+}
+
+/**
+ * osinfo_tree_get_os_variants:
+ * @tree: an #OsinfoTree instance
+ *
+ * Gets the variants of the associated operating system.
+ *
+ * Returns: (transfer full): the operating system variant, or NULL
+ */
+OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree)
+{
+    OsinfoOs *os;
+    OsinfoOsVariantList *os_variants;
+    OsinfoOsVariantList *tree_variants;
+    GList *ids, *node;
+    OsinfoFilter *filter;
+
+    g_return_val_if_fail(OSINFO_IS_TREE(tree), NULL);
+    os = osinfo_tree_get_os(tree);
+    os_variants = osinfo_os_get_variant_list(os);
+    g_object_unref(os);
+
+    ids = osinfo_entity_get_param_value_list(OSINFO_ENTITY(tree),
+                                             OSINFO_TREE_PROP_VARIANT);
+    filter = osinfo_filter_new();
+    tree_variants = osinfo_os_variantlist_new();
+    for (node = ids; node != NULL; node = node->next) {
+        osinfo_filter_clear_constraints(filter);
+        osinfo_filter_add_constraint(filter,
+                                     OSINFO_ENTITY_PROP_ID,
+                                     (const char *) node->data);
+        osinfo_list_add_filtered(OSINFO_LIST(tree_variants),
+                                 OSINFO_LIST(os_variants),
+                                 filter);
+    }
+    g_object_unref(os_variants);
+
+    return tree_variants;
 }

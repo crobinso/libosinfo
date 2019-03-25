@@ -572,6 +572,10 @@ LIBOSINFO_1.5.0 {
     global:
 	osinfo_install_config_get_installation_url;
 	osinfo_install_config_set_installation_url;
+
+	osinfo_tree_get_os;
+	osinfo_tree_get_os_variants;
+	osinfo_tree_set_os;
 } LIBOSINFO_1.4.0;
 
 /* Symbols in next release...
