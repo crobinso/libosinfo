@@ -35,6 +35,7 @@ typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
     GFile *file;
     gchar *location;
+    gchar *treeinfo;
 
     GTask *res;
 
@@ -617,6 +618,11 @@ static OsinfoTree *load_keyinfo(const gchar *location,
     return tree;
 }
 
+static void
+osinfo_tree_create_from_location_async_helper(const gchar *url,
+                                              const gchar *treeinfo,
+                                              GCancellable *cancellable,
+                                              CreateFromLocationAsyncData *data);
 
 static void on_location_read(GObject *source,
                              GAsyncResult *res,
@@ -636,7 +642,17 @@ static void on_location_read(GObject *source,
                                      &length,
                                      NULL,
                                      &error)) {
-        g_prefix_error(&error, _("Failed to load .treeinfo file: "));
+        /* It means no ".treeinfo" file has been found. Try again, this time
+         * looking for a "treeinfo" file. */
+        if (g_str_equal(data->treeinfo, ".treeinfo")) {
+            osinfo_tree_create_from_location_async_helper(data->location,
+                                                          "treeinfo",
+                                                          g_task_get_cancellable(data->res),
+                                                          data);
+            return;
+        }
+
+        g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo file: "));
         g_task_return_error(data->res, error);
         create_from_location_async_data_free(data);
         return;
@@ -658,6 +674,35 @@ static void on_location_read(GObject *source,
     g_free(content);
 }
 
+static void
+osinfo_tree_create_from_location_async_helper(const gchar *url,
+                                              const gchar *treeinfo,
+                                              GCancellable *cancellable,
+                                              CreateFromLocationAsyncData *data)
+{
+    gchar *location;
+
+    g_return_if_fail(url != NULL);
+    g_return_if_fail(treeinfo != NULL);
+
+    location = g_strdup_printf("%s/%s", url, treeinfo);
+
+    g_clear_object(&data->file);
+    data->file = g_file_new_for_uri(location);
+
+    g_free(data->location);
+    data->location = g_strdup(url);
+
+    g_free(data->treeinfo);
+    data->treeinfo = g_strdup(treeinfo);
+
+    g_file_load_contents_async(data->file,
+                               cancellable,
+                               on_location_read,
+                               data);
+    g_free(location);
+}
+
 /**
  * osinfo_tree_create_from_location_async:
  * @location: the location of an installation tree
@@ -675,11 +720,6 @@ void osinfo_tree_create_from_location_async(const gchar *location,
                                             gpointer user_data)
 {
     CreateFromLocationAsyncData *data;
-    gchar *treeinfo;
-
-    g_return_if_fail(location != NULL);
-
-    treeinfo = g_strdup_printf("%s/.treeinfo", location);
 
     data = g_slice_new0(CreateFromLocationAsyncData);
     data->res = g_task_new(NULL,
@@ -688,17 +728,10 @@ void osinfo_tree_create_from_location_async(const gchar *location,
                            user_data);
     g_task_set_priority(data->res, priority);
 
-    data->file = g_file_new_for_uri(treeinfo);
-    data->location = g_strdup(location);
-
-    /* XXX priority ? */
-    /* XXX probe other things besides just tree info */
-    g_file_load_contents_async(data->file,
-                               cancellable,
-                               on_location_read,
-                               data);
-
-    g_free(treeinfo);
+    osinfo_tree_create_from_location_async_helper(location,
+                                                  ".treeinfo",
+                                                  cancellable,
+                                                  data);
 }
 
 
