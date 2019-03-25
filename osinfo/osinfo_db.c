@@ -761,18 +761,18 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
     OsinfoOs *ret = NULL;
     GList *oss = NULL;
     GList *os_iter;
-    const gchar *tree_family;
-    const gchar *tree_variant;
-    const gchar *tree_version;
-    const gchar *tree_arch;
+    const gchar *treeinfo_family;
+    const gchar *treeinfo_variant;
+    const gchar *treeinfo_version;
+    const gchar *treeinfo_arch;
 
     g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
     g_return_val_if_fail(tree != NULL, NULL);
 
-    tree_family = osinfo_tree_get_treeinfo_family(tree);
-    tree_variant = osinfo_tree_get_treeinfo_variant(tree);
-    tree_version = osinfo_tree_get_treeinfo_version(tree);
-    tree_arch = osinfo_tree_get_treeinfo_arch(tree);
+    treeinfo_family = osinfo_tree_get_treeinfo_family(tree);
+    treeinfo_variant = osinfo_tree_get_treeinfo_variant(tree);
+    treeinfo_version = osinfo_tree_get_treeinfo_version(tree);
+    treeinfo_arch = osinfo_tree_get_treeinfo_arch(tree);
 
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
     for (os_iter = oss; os_iter; os_iter = os_iter->next) {
@@ -798,10 +798,10 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
             os_version = osinfo_tree_get_treeinfo_version(os_tree);
             os_arch = osinfo_tree_get_treeinfo_arch(os_tree);
 
-            if (match_regex(os_family, tree_family) &&
-                match_regex(os_variant, tree_variant) &&
-                match_regex(os_version, tree_version) &&
-                match_regex(os_arch, tree_arch)) {
+            if (match_regex(os_family, treeinfo_family) &&
+                match_regex(os_variant, treeinfo_variant) &&
+                match_regex(os_version, treeinfo_version) &&
+                match_regex(os_arch, treeinfo_arch)) {
                 ret = os;
                 if (matched_tree != NULL)
                     *matched_tree = os_tree;
