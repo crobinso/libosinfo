@@ -20,6 +20,7 @@ check_PROGRAMS = \
 	test-install-script \
 	test-image \
 	test-imagelist \
+	test-tree \
         $(NULL)
 
 COMMON_LDADD = \
@@ -108,6 +109,10 @@ test_image_SOURCES = test-image.c
 test_imagelist_LDADD = $(COMMON_LDADD)
 test_imagelist_CFLAGS = $(COMMON_CFLAGS)
 test_imagelist_SOURCES = test-imagelist.c
+
+test_tree_LDADD = $(COMMON_LDADD)
+test_tree_CFLAGS = $(COMMON_CFLAGS)
+test_tree_SOURCES = test-tree.c
 
 TESTS = $(check_PROGRAMS) \
 	$(NULL)

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/tree">
+    <short-id>tree</short-id>
+    <name>Tree</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <variant id="foo">
+      <name>Tree Foo</name>
+    </variant>
+    <variant id="bar">
+      <name>Tree Bar</name>
+    </variant>
+
+    <tree arch="ppc64le">
+      <variant id="bar"/>
+      <url>http://libosinfo.org/tree/</url>
+      <treeinfo>
+        <family>Tree</family>
+        <version>unknown</version>
+        <arch>ppc64le</arch>
+      </treeinfo>
+    </tree>
+
+  </os>
+</libosinfo>

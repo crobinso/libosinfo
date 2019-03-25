@@ -68,6 +68,7 @@ tests/test-isodetect
 tests/test-mediauris
 tests/test-treeuris
 tests/test-imageuris
+tests/test-tree
 tests/*.log
 tests/*.trs
 build/
