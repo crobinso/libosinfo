@@ -742,6 +742,73 @@ gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
     return TRUE;
 }
 
+static gboolean compare_tree(OsinfoTree *tree,
+                             GList *oss,
+                             OsinfoOs **ret_os,
+                             OsinfoTree **matched,
+                             GList **fallback_oss)
+{
+    GList *os_iter;
+    const gchar *treeinfo_family;
+    const gchar *treeinfo_variant;
+    const gchar *treeinfo_version;
+    const gchar *treeinfo_arch;
+
+    treeinfo_family = osinfo_tree_get_treeinfo_family(tree);
+    treeinfo_variant = osinfo_tree_get_treeinfo_variant(tree);
+    treeinfo_version = osinfo_tree_get_treeinfo_version(tree);
+    treeinfo_arch = osinfo_tree_get_treeinfo_arch(tree);
+
+    for (os_iter = oss; os_iter; os_iter = os_iter->next) {
+        OsinfoOs *os = OSINFO_OS(os_iter->data);
+        OsinfoTreeList *tree_list = osinfo_os_get_tree_list(os);
+        GList *trees = osinfo_list_get_elements(OSINFO_LIST(tree_list));
+        GList *tree_iter;
+
+        for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
+            OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
+            const gchar *os_tree_arch = NULL;
+            const gchar *os_treeinfo_family;
+            const gchar *os_treeinfo_variant;
+            const gchar *os_treeinfo_version;
+            const gchar *os_treeinfo_arch;
+
+            if (!osinfo_tree_has_treeinfo(os_tree))
+                continue;
+
+            os_tree_arch = osinfo_tree_get_architecture(os_tree);
+            if (fallback_oss != NULL) {
+                if (g_str_equal(os_tree_arch, "all")) {
+                    *fallback_oss = g_list_prepend(*fallback_oss, os);
+                    continue;
+                }
+            }
+
+            os_treeinfo_family = osinfo_tree_get_treeinfo_family(os_tree);
+            os_treeinfo_variant = osinfo_tree_get_treeinfo_variant(os_tree);
+            os_treeinfo_version = osinfo_tree_get_treeinfo_version(os_tree);
+            os_treeinfo_arch = osinfo_tree_get_treeinfo_arch(os_tree);
+
+            if (match_regex(os_treeinfo_family, treeinfo_family) &&
+                match_regex(os_treeinfo_variant, treeinfo_variant) &&
+                match_regex(os_treeinfo_version, treeinfo_version) &&
+                match_regex(os_treeinfo_arch, treeinfo_arch)) {
+                *ret_os = os;
+                if (matched != NULL)
+                    *matched = os_tree;
+                break;
+            }
+        }
+
+        g_list_free(trees);
+        g_object_unref(tree_list);
+
+        if (*ret_os != NULL)
+            return TRUE;
+    }
+
+    return FALSE;
+}
 
 /**
  * osinfo_db_guess_os_from_tree:
@@ -760,63 +827,20 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
 {
     OsinfoOs *ret = NULL;
     GList *oss = NULL;
-    GList *os_iter;
-    const gchar *treeinfo_family;
-    const gchar *treeinfo_variant;
-    const gchar *treeinfo_version;
-    const gchar *treeinfo_arch;
+    GList *fallback_oss = NULL;
 
     g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
     g_return_val_if_fail(tree != NULL, NULL);
 
-    treeinfo_family = osinfo_tree_get_treeinfo_family(tree);
-    treeinfo_variant = osinfo_tree_get_treeinfo_variant(tree);
-    treeinfo_version = osinfo_tree_get_treeinfo_version(tree);
-    treeinfo_arch = osinfo_tree_get_treeinfo_arch(tree);
-
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    for (os_iter = oss; os_iter; os_iter = os_iter->next) {
-        OsinfoOs *os = OSINFO_OS(os_iter->data);
-        OsinfoTreeList *tree_list = osinfo_os_get_tree_list(os);
-        GList *trees = osinfo_list_get_elements(OSINFO_LIST(tree_list));
-        GList *tree_iter;
+    if (compare_tree(tree, oss, &ret, matched_tree, &fallback_oss))
+        goto end;
 
-        //trees = g_list_sort(trees, tree_family_compare);
+    compare_tree(tree, fallback_oss, &ret, matched_tree, NULL);
 
-        for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
-            OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
-            const gchar *os_treeinfo_family;
-            const gchar *os_treeinfo_variant;
-            const gchar *os_treeinfo_version;
-            const gchar *os_treeinfo_arch;
-
-            if (!osinfo_tree_has_treeinfo(os_tree))
-                continue;
-
-            os_treeinfo_family = osinfo_tree_get_treeinfo_family(os_tree);
-            os_treeinfo_variant = osinfo_tree_get_treeinfo_variant(os_tree);
-            os_treeinfo_version = osinfo_tree_get_treeinfo_version(os_tree);
-            os_treeinfo_arch = osinfo_tree_get_treeinfo_arch(os_tree);
-
-            if (match_regex(os_treeinfo_family, treeinfo_family) &&
-                match_regex(os_treeinfo_variant, treeinfo_variant) &&
-                match_regex(os_treeinfo_version, treeinfo_version) &&
-                match_regex(os_treeinfo_arch, treeinfo_arch)) {
-                ret = os;
-                if (matched_tree != NULL)
-                    *matched_tree = os_tree;
-                break;
-            }
-        }
-
-        g_list_free(trees);
-        g_object_unref(tree_list);
-
-        if (ret)
-            break;
-    }
-
+ end:
     g_list_free(oss);
+    g_list_free(fallback_oss);
 
     return ret;
 }
