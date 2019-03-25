@@ -785,23 +785,23 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
 
         for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
             OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
-            const gchar *os_family;
-            const gchar *os_variant;
-            const gchar *os_version;
-            const gchar *os_arch;
+            const gchar *os_treeinfo_family;
+            const gchar *os_treeinfo_variant;
+            const gchar *os_treeinfo_version;
+            const gchar *os_treeinfo_arch;
 
             if (!osinfo_tree_has_treeinfo(os_tree))
                 continue;
 
-            os_family = osinfo_tree_get_treeinfo_family(os_tree);
-            os_variant = osinfo_tree_get_treeinfo_variant(os_tree);
-            os_version = osinfo_tree_get_treeinfo_version(os_tree);
-            os_arch = osinfo_tree_get_treeinfo_arch(os_tree);
+            os_treeinfo_family = osinfo_tree_get_treeinfo_family(os_tree);
+            os_treeinfo_variant = osinfo_tree_get_treeinfo_variant(os_tree);
+            os_treeinfo_version = osinfo_tree_get_treeinfo_version(os_tree);
+            os_treeinfo_arch = osinfo_tree_get_treeinfo_arch(os_tree);
 
-            if (match_regex(os_family, treeinfo_family) &&
-                match_regex(os_variant, treeinfo_variant) &&
-                match_regex(os_version, treeinfo_version) &&
-                match_regex(os_arch, treeinfo_arch)) {
+            if (match_regex(os_treeinfo_family, treeinfo_family) &&
+                match_regex(os_treeinfo_variant, treeinfo_variant) &&
+                match_regex(os_treeinfo_version, treeinfo_version) &&
+                match_regex(os_treeinfo_arch, treeinfo_arch)) {
                 ret = os;
                 if (matched_tree != NULL)
                     *matched_tree = os_tree;
