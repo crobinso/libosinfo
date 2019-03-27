@@ -446,6 +446,27 @@ test_identify_media(void)
     g_assert_false(osinfo_db_identify_media(db, media));
     g_object_unref(media);
 
+    /* Matching against an "all" architecture */
+    media = osinfo_media_new("foo", "x86_64");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "bootimg");
+    g_assert_true(osinfo_db_identify_media(db, media));
+    g_assert_cmpstr(osinfo_media_get_architecture(media), ==, "all");
+    g_object_unref(media);
+
+    /* Matching against a known architecture, which has to have precendence */
+    media = osinfo_media_new("foo", "i686");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "bootimg");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+    g_assert_true(osinfo_db_identify_media(db, media));
+    g_assert_cmpstr(osinfo_media_get_architecture(media), ==, "i686");
+    g_object_unref(media);
+
     g_object_unref(loader);
 }
 
@@ -538,6 +559,7 @@ main(int argc, char *argv[])
     osinfo_install_script_get_type();
     osinfo_install_scriptlist_get_type();
     osinfo_tree_get_type();
+    osinfo_media_get_type();
 
     return g_test_run();
 }

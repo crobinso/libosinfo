@@ -25,6 +25,19 @@
       </installer>
     </media>
 
+    <media arch="i686">
+      <iso>
+        <volume-id>bootimg</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+    </media>
+
+    <media arch="all">
+      <iso>
+        <volume-id>bootimg</volume-id>
+      </iso>
+    </media>
+
     <installer>
       <script id="http://example.com/libosinfo/test-install-script"/>
     </installer>
