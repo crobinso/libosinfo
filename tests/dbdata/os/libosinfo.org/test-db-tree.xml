@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/db/tree">
+    <short-id>db-tree</short-id>
+    <name>DB Tree</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <tree arch="all">
+      <treeinfo>
+        <family>Tree</family>
+        <version>unknown</version>
+      </treeinfo>
+    </tree>
+
+    <tree arch="i686">
+      <treeinfo>
+        <family>Tree</family>
+        <version>unknown</version>
+        <arch>i686</arch>
+      </treeinfo>
+    </tree>
+
+  </os>
+</libosinfo>
