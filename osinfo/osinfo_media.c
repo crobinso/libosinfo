@@ -830,10 +830,10 @@ create_from_location_async_data(CreateFromLocationAsyncData *data)
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_PUBLISHER_ID,
                                 data->publisher);
-    if (!is_str_empty(data->pvd.application))
+    if (!is_str_empty(data->application))
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_APPLICATION_ID,
-                                data->pvd.application);
+                                data->application);
 
     index = (G_BYTE_ORDER == G_LITTLE_ENDIAN) ? 0 : 1;
     vol_size = ((gint64) data->pvd.volume_space_size[index]) *
