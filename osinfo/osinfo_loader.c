@@ -1312,8 +1312,7 @@ static OsinfoImage *osinfo_loader_image(OsinfoLoader *loader,
         { NULL, G_TYPE_INVALID }
     };
 
-    gchar *arch = (gchar *)xmlGetProp(root,
-                                      BAD_CAST OSINFO_IMAGE_PROP_ARCHITECTURE);
+    gchar *arch = (gchar *)xmlGetProp(root, BAD_CAST "arch");
     gchar *format = (gchar *)xmlGetProp(root,
                                         BAD_CAST OSINFO_IMAGE_PROP_FORMAT);
     gchar *cloud_init = (gchar *)xmlGetProp(root,
