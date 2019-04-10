@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/db/image">
+    <short-id>db-image</short-id>
+    <name>DB Image</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <image arch="x86_64" format="qcow2" cloud-init="true">
+      <url>http://libosinfo.org/db/image.qcow2</url>
+    </image>
+
+    <image arch="i686" format="vmdk">
+      <url>http://libosinfo.org/db/image.vmdk</url>
+    </image>
+  </os>
+</libosinfo>
