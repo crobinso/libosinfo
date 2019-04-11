@@ -47,6 +47,7 @@ typedef struct _OsinfoImagePrivate OsinfoImagePrivate;
 #define OSINFO_IMAGE_PROP_FORMAT            "format"
 #define OSINFO_IMAGE_PROP_URL               "url"
 #define OSINFO_IMAGE_PROP_CLOUD_INIT        "cloud-init"
+#define OSINFO_IMAGE_PROP_VARIANT           "variant"
 
 /* object */
 struct _OsinfoImage
@@ -75,5 +76,8 @@ const gchar *osinfo_image_get_architecture(OsinfoImage *image);
 const gchar *osinfo_image_get_format(OsinfoImage *image);
 const gchar *osinfo_image_get_url(OsinfoImage *image);
 gboolean osinfo_image_get_cloud_init(OsinfoImage *image);
+OsinfoOs *osinfo_image_get_os(OsinfoImage *image);
+void osinfo_image_set_os(OsinfoImage *image, OsinfoOs *os);
+OsinfoOsVariantList *osinfo_image_get_os_variants(OsinfoImage *image);
 
 #endif /* __OSINFO_IMAGE_H__ */

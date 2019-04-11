@@ -47,7 +47,7 @@ G_DEFINE_TYPE(OsinfoImage, osinfo_image, OSINFO_TYPE_ENTITY);
 
 struct _OsinfoImagePrivate
 {
-    gboolean unused;
+    GWeakRef os;
 };
 
 enum {
@@ -131,6 +131,15 @@ osinfo_image_set_property(GObject      *object,
     }
 }
 
+static void osinfo_image_dispose(GObject *obj)
+{
+    OsinfoImage *image = OSINFO_IMAGE(obj);
+
+    g_weak_ref_clear(&image->priv->os);
+
+    G_OBJECT_CLASS(osinfo_image_parent_class)->dispose(obj);
+}
+
 static void
 osinfo_image_finalize(GObject *object)
 {
@@ -145,6 +154,7 @@ osinfo_image_class_init(OsinfoImageClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
     GParamSpec *pspec;
 
+    g_klass->dispose = osinfo_image_dispose;
     g_klass->finalize = osinfo_image_finalize;
     g_klass->get_property = osinfo_image_get_property;
     g_klass->set_property = osinfo_image_set_property;
@@ -194,6 +204,8 @@ static void
 osinfo_image_init(OsinfoImage *image)
 {
     image->priv = OSINFO_IMAGE_GET_PRIVATE(image);
+
+    g_weak_ref_init(&image->priv->os, NULL);
 }
 
 OsinfoImage *osinfo_image_new(const gchar *id,
@@ -266,4 +278,72 @@ gboolean osinfo_image_get_cloud_init(OsinfoImage *image)
 {
     return osinfo_entity_get_param_value_boolean_with_default
             (OSINFO_ENTITY(image), OSINFO_IMAGE_PROP_CLOUD_INIT, FALSE);
+}
+
+/**
+ * osinfo_image_get_os:
+ * @image: an #OsinfoImage instance
+ *
+ * Returns: (transfer full): the operating system, or NULL
+ */
+OsinfoOs *osinfo_image_get_os(OsinfoImage *image)
+{
+    g_return_val_if_fail(OSINFO_IS_IMAGE(image), NULL);
+
+    return g_weak_ref_get(&image->priv->os);
+}
+
+/**
+ * osinfo_image_set_os
+ * @image: an #OsinfoImage instance
+ * @os: an #OsinfoOs instance
+ *
+ * Sets the #OsinfoOs associated to the #OsinfoImage instance.
+ */
+void osinfo_image_set_os(OsinfoImage *image, OsinfoOs *os)
+{
+    g_return_if_fail(OSINFO_IS_IMAGE(image));
+
+    g_object_ref(os);
+    g_weak_ref_set(&image->priv->os, os);
+    g_object_unref(os);
+}
+
+/**
+ * osinfo_image_get_os_variants:
+ * @image: an #OsinfoImage instance
+ *
+ * Gets the varriants of the associated operating system
+ *
+ * Returns: (transfer full): the operating system variants, or NULL
+ */
+OsinfoOsVariantList *osinfo_image_get_os_variants(OsinfoImage *image)
+{
+    OsinfoOs *os;
+    OsinfoOsVariantList *os_variants;
+    OsinfoOsVariantList *image_variants;
+    GList *ids, *node;
+    OsinfoFilter *filter;
+
+    g_return_val_if_fail(OSINFO_IS_IMAGE(image), NULL);
+    os = osinfo_image_get_os(image);
+    os_variants = osinfo_os_get_variant_list(os);
+    g_object_unref(os);
+
+    ids = osinfo_entity_get_param_value_list(OSINFO_ENTITY(image),
+                                             OSINFO_IMAGE_PROP_VARIANT);
+    filter = osinfo_filter_new();
+    image_variants = osinfo_os_variantlist_new();
+    for (node = ids; node != NULL; node = node->next) {
+        osinfo_filter_clear_constraints(filter);
+        osinfo_filter_add_constraint(filter,
+                                     OSINFO_ENTITY_PROP_ID,
+                                     (const char *) node->data);
+        osinfo_list_add_filtered(OSINFO_LIST(image_variants),
+                                 OSINFO_LIST(os_variants),
+                                 filter);
+    }
+    g_object_unref(os_variants);
+
+    return image_variants;
 }

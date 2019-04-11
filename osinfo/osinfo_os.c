@@ -708,6 +708,7 @@ void osinfo_os_add_image(OsinfoOs *os, OsinfoImage *image)
     g_return_if_fail(OSINFO_IS_IMAGE(image));
 
     osinfo_list_add(OSINFO_LIST(os->priv->images), OSINFO_ENTITY(image));
+    osinfo_image_set_os(image, os);
 }
 
 /**

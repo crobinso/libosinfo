@@ -1311,7 +1311,9 @@ static OsinfoImage *osinfo_loader_image(OsinfoLoader *loader,
         { OSINFO_IMAGE_PROP_URL, G_TYPE_STRING },
         { NULL, G_TYPE_INVALID }
     };
-
+    xmlNodePtr *nodes = NULL;
+    gint nnodes;
+    guint i;
     gchar *arch = (gchar *)xmlGetProp(root, BAD_CAST "arch");
     gchar *format = (gchar *)xmlGetProp(root,
                                         BAD_CAST OSINFO_IMAGE_PROP_FORMAT);
@@ -1320,6 +1322,21 @@ static OsinfoImage *osinfo_loader_image(OsinfoLoader *loader,
     OsinfoImage *image = osinfo_image_new(id, arch, format);
     xmlFree(arch);
     xmlFree(format);
+
+    nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
+    if (error_is_set(err)) {
+        g_object_unref(image);
+        return NULL;
+    }
+
+    for (i = 0; i < nnodes; i++) {
+        gchar *variant_id = (gchar *)xmlGetProp(nodes[i], BAD_CAST "id");
+        osinfo_entity_add_param(OSINFO_ENTITY(image),
+                                OSINFO_IMAGE_PROP_VARIANT,
+                                variant_id);
+        xmlFree(variant_id);
+    }
+    g_free(nodes);
 
     osinfo_loader_entity(loader, OSINFO_ENTITY(image), keys, ctxt, root, err);
     if (cloud_init) {
