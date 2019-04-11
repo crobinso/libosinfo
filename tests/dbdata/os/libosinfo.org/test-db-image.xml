@@ -7,11 +7,20 @@
     <vendor>libosinfo.org</vendor>
     <family>test</family>
 
+    <variant id="foo">
+      <name>Image Foo</name>
+    </variant>
+    <variant id="bar">
+      <name>Image Bar</name>
+    </variant>
+
     <image arch="x86_64" format="qcow2" cloud-init="true">
+      <variant id="foo"/>
       <url>http://libosinfo.org/db/image.qcow2</url>
     </image>
 
     <image arch="i686" format="vmdk">
+      <variant id="bar"/>
       <url>http://libosinfo.org/db/image.vmdk</url>
     </image>
   </os>
