@@ -829,8 +829,10 @@ static gboolean compare_tree(OsinfoTree *tree,
         g_list_free(trees);
         g_object_unref(tree_list);
 
-        if (*ret_os != NULL)
+        if (*ret_os != NULL) {
+            osinfo_tree_set_os(*matched, *ret_os);
             return TRUE;
+        }
     }
 
     return FALSE;
