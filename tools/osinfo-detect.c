@@ -120,10 +120,15 @@ static void print_bootable(gboolean bootable)
 static void print_media(OsinfoMedia *media)
 {
     OsinfoOs *os;
+    OsinfoOsVariantList *variants;
+    gsize num_variants;
 
     g_object_get(G_OBJECT(media), "os", &os, NULL);
     if (os == NULL)
         return;
+
+    variants = osinfo_media_get_os_variants(media);
+    num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
 
     if (format == OUTPUT_FORMAT_ENV) {
         const gchar *id = osinfo_entity_get_id(OSINFO_ENTITY(os));
@@ -134,13 +139,22 @@ static void print_media(OsinfoMedia *media)
             g_print("OSINFO_LIVE=%s\n", id);
         g_print("OSINFO_MEDIA=%s\n",
                 osinfo_entity_get_id(OSINFO_ENTITY(media)));
-    } else {
-        OsinfoOsVariantList *variants;
-        const gchar *name;
-        guint num_variants;
+        if (num_variants > 0) {
+            gsize i;
 
-        variants = osinfo_media_get_os_variants(media);
-        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+            g_print("OSINFO_MEDIA_VARIANTS=");
+            for (i = 0; i < num_variants; i++) {
+                OsinfoEntity *variant;
+
+                variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
+                g_print("%s", osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant)));
+                g_print("%s", i < num_variants - 1 ? ", " : "\n");
+            }
+        }
+
+    } else {
+        const gchar *name;
+
         if (num_variants == 1) {
             OsinfoEntity *variant;
 
@@ -156,7 +170,7 @@ static void print_media(OsinfoMedia *media)
             g_print(_("Media is live media for OS '%s'\n"), name);
 
         if (num_variants > 1) {
-            guint i;
+            gsize i;
 
             g_print(_("Available OS variants on media:\n"));
             for (i = 0; i < num_variants; i++) {
@@ -175,10 +189,17 @@ static void print_media(OsinfoMedia *media)
 
 static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tree)
 {
+    OsinfoOsVariantList *variants;
+    gsize num_variants;
+
     if (os == NULL)
         return;
 
+    variants = osinfo_tree_get_os_variants(matched_tree);
+    num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+
     if (format == OUTPUT_FORMAT_ENV) {
+        gsize i;
         const gchar *id = osinfo_entity_get_id(OSINFO_ENTITY(os));
         const gchar *kernel = osinfo_tree_get_kernel_path(tree);
         const gchar *initrd = osinfo_tree_get_initrd_path(tree);
@@ -200,13 +221,19 @@ static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tr
             g_print("OSINFO_TREE_INITRD=%s\n", initrd);
         if (bootiso)
             g_print("OSINFO_TREE_BOOT_ISO=%s\n", bootiso);
-    } else {
-        OsinfoOsVariantList *variants;
-        const gchar *name;
-        guint num_variants;
+        if (num_variants > 0) {
+            g_print("OSINFO_TREE_VARIANTS=");
+            for (i = 0; i < num_variants; i++) {
+                OsinfoEntity *variant;
 
-        variants = osinfo_tree_get_os_variants(matched_tree);
-        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+                variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
+                g_print("%s", osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant)));
+                g_print("%s", i < num_variants - 1 ? ", " : "\n");
+            }
+        }
+    } else {
+        const gchar *name;
+
         if (num_variants == 1) {
             OsinfoEntity *variant;
 
@@ -219,7 +246,7 @@ static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tr
         g_print(_("Tree is an installer for OS '%s'\n"), name);
 
         if (num_variants > 1) {
-            guint i;
+            gsize i;
 
             g_print(_("Available OS variants on tree:\n"));
             for (i = 0; i < num_variants; i++) {
