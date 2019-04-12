@@ -1555,7 +1555,11 @@ OsinfoOsVariantList *osinfo_media_get_os_variants(OsinfoMedia *media)
     OsinfoFilter *filter;
 
     g_return_val_if_fail(OSINFO_IS_MEDIA(media), NULL);
+
     os = g_weak_ref_get(&media->priv->os);
+    if (os == NULL)
+        return NULL;
+
     os_variants = osinfo_os_get_variant_list(os);
     g_object_unref(os);
 

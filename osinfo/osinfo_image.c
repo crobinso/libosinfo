@@ -326,7 +326,11 @@ OsinfoOsVariantList *osinfo_image_get_os_variants(OsinfoImage *image)
     OsinfoFilter *filter;
 
     g_return_val_if_fail(OSINFO_IS_IMAGE(image), NULL);
+
     os = osinfo_image_get_os(image);
+    if (os == NULL)
+        return NULL;
+
     os_variants = osinfo_os_get_variant_list(os);
     g_object_unref(os);
 

@@ -978,7 +978,11 @@ OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree)
     OsinfoFilter *filter;
 
     g_return_val_if_fail(OSINFO_IS_TREE(tree), NULL);
+
     os = osinfo_tree_get_os(tree);
+    if (os == NULL)
+        return NULL;
+
     os_variants = osinfo_os_get_variant_list(os);
     g_object_unref(os);
 
