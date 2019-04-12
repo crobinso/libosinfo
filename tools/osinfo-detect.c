@@ -201,9 +201,37 @@ static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tr
         if (bootiso)
             g_print("OSINFO_TREE_BOOT_ISO=%s\n", bootiso);
     } else {
-        const gchar *name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+        OsinfoOsVariantList *variants;
+        const gchar *name;
+        guint num_variants;
+
+        variants = osinfo_tree_get_os_variants(matched_tree);
+        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+        if (num_variants == 1) {
+            OsinfoEntity *variant;
+
+            variant = osinfo_list_get_nth(OSINFO_LIST(variants), 0);
+            name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
+        } else {
+            name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+        }
 
         g_print(_("Tree is an installer for OS '%s'\n"), name);
+
+        if (num_variants > 1) {
+            guint i;
+
+            g_print(_("Available OS variants on tree:\n"));
+            for (i = 0; i < num_variants; i++) {
+                OsinfoEntity *variant;
+
+                variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
+                name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
+                g_print("%s\n", name);
+            }
+        }
+
+        g_clear_object(&variants);
     }
 }
 
