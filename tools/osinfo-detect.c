@@ -98,7 +98,7 @@ static GOptionEntry entries[] =
       N_("plain|env.") },
     { "type", 't', 0,
       G_OPTION_ARG_CALLBACK, parse_type_str,
-      N_("URL type. Default: media"),
+      N_("The type to be used. Default: media"),
       N_("media|tree.") },
     { 0 }
 };
