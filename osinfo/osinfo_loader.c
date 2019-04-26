@@ -709,16 +709,27 @@ static void osinfo_loader_product(OsinfoLoader *loader,
         { OSINFO_PRODUCT_PROP_VENDOR, G_TYPE_STRING },
         { OSINFO_PRODUCT_PROP_VERSION, G_TYPE_STRING },
         { OSINFO_PRODUCT_PROP_LOGO, G_TYPE_STRING },
-        { OSINFO_PRODUCT_PROP_SHORT_ID, G_TYPE_STRING },
         { OSINFO_PRODUCT_PROP_RELEASE_DATE, G_TYPE_STRING },
         { OSINFO_PRODUCT_PROP_EOL_DATE, G_TYPE_STRING },
         { OSINFO_PRODUCT_PROP_CODENAME, G_TYPE_STRING },
         { NULL, G_TYPE_INVALID }
     };
+    xmlNodePtr *nodes = NULL;
+    gsize nnodes, i;
 
     osinfo_loader_entity(loader, OSINFO_ENTITY(product), keys, ctxt, root, err);
     if (error_is_set(err))
         return;
+
+    nnodes = osinfo_loader_nodeset("./short-id", loader, ctxt, &nodes, err);
+    if (error_is_set(err))
+        return;
+
+    for (i = 0; i < nnodes; i++)
+        osinfo_entity_add_param(OSINFO_ENTITY(product),
+                                OSINFO_PRODUCT_PROP_SHORT_ID,
+                                (const gchar *)nodes[i]->children->content);
+    g_free(nodes);
 
     osinfo_loader_product_relshp(loader, product,
                                  OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM,
