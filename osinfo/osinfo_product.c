@@ -437,3 +437,17 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
     }
     g_object_unref(related_list);
 }
+
+/**
+ * osinfo_product_get_short_id_list:
+ * @prod: an #OsinfoProduct
+ *
+ * Retrieve all the short-ids associated with the product.
+ *
+ * Returns: (transfer container) (element-type utf8): the list of short-ids.
+ */
+GList *osinfo_product_get_short_id_list(OsinfoProduct *prod)
+{
+    return osinfo_entity_get_param_value_list(OSINFO_ENTITY(prod),
+                                              OSINFO_PRODUCT_PROP_SHORT_ID);
+}

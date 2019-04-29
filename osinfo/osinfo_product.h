@@ -98,5 +98,6 @@ GDate *osinfo_product_get_release_date(OsinfoProduct *prod);
 GDate *osinfo_product_get_eol_date(OsinfoProduct *prod);
 const gchar *osinfo_product_get_logo(OsinfoProduct *prod);
 
+GList *osinfo_product_get_short_id_list(OsinfoProduct *prod);
 
 #endif /* __OSINFO_PRODUCT_H__ */

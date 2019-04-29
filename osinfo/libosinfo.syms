@@ -577,6 +577,8 @@ LIBOSINFO_1.5.0 {
 	osinfo_install_config_get_installation_url;
 	osinfo_install_config_set_installation_url;
 
+	osinfo_product_get_short_id_list;
+
 	osinfo_tree_get_os;
 	osinfo_tree_get_os_variants;
 	osinfo_tree_set_os;
