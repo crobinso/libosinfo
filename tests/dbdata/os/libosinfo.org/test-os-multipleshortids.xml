@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/multipleshortids">
+    <short-id>shortid0</short-id>
+    <short-id>shortid1</short-id>
+    <short-id>shortid2</short-id>
+    <name>Multiple Short Ids</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <release-status>prerelease</release-status>
+  </os>
+</libosinfo>

@@ -619,6 +619,37 @@ test_find_install_script(void)
     g_object_unref(os);
 }
 
+static void
+test_multiple_short_ids(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    GList *shortid_list, *l;
+    GError *error = NULL;
+    const gchar *shortid;
+    const gchar *expected_short_id_list[] = {"shortid0", "shortid1", "shortid2"};
+    gsize i;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = g_object_ref(osinfo_loader_get_db(loader));
+    g_object_unref(loader);
+
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/multipleshortids");
+    g_assert(OSINFO_IS_OS(os));
+
+    shortid = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
+    g_assert_cmpstr(shortid, ==, expected_short_id_list[0]);
+
+    shortid_list = osinfo_product_get_short_id_list(OSINFO_PRODUCT(os));
+    for (l = shortid_list, i = 0; l != NULL; l = l->next, i++) {
+        g_assert_cmpstr(l->data, ==, expected_short_id_list[i]);
+    }
+    g_list_free(shortid_list);
+
+    g_object_unref(db);
+}
 
 int
 main(int argc, char *argv[])
@@ -638,6 +669,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/resources/basic", test_resources_basic);
     g_test_add_func("/os/resources/inheritance", test_resources_inheritance);
     g_test_add_func("/os/find_install_script", test_find_install_script);
+    g_test_add_func("/os/mulitple_short_ids", test_multiple_short_ids);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();
