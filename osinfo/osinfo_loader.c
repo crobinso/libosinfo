@@ -1314,6 +1314,33 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
     return tree;
 }
 
+static OsinfoFirmware *osinfo_loader_firmware(OsinfoLoader *loader,
+                                              xmlXPathContextPtr ctxt,
+                                              xmlNodePtr root,
+                                              const gchar *id,
+                                              GError **err)
+{
+    gchar *arch = (gchar *)xmlGetProp(root, BAD_CAST "arch");
+    gchar *type = (gchar *)xmlGetProp(root, BAD_CAST "type");
+    gchar *supported = (gchar *)xmlGetProp(root, BAD_CAST "supported");
+    gboolean is_supported = TRUE;
+
+    OsinfoFirmware *firmware = osinfo_firmware_new(id, arch, type);
+    xmlFree(arch);
+    xmlFree(type);
+
+    if (supported != NULL) {
+        is_supported = g_str_equal(supported, "true");
+        xmlFree(supported);
+    }
+
+    osinfo_entity_set_param_boolean(OSINFO_ENTITY(firmware),
+                                    OSINFO_FIRMWARE_PROP_SUPPORTED,
+                                    is_supported);
+
+    return firmware;
+}
+
 static OsinfoImage *osinfo_loader_image(OsinfoLoader *loader,
                                         xmlXPathContextPtr ctxt,
                                         xmlNodePtr root,
@@ -1593,6 +1620,24 @@ static void osinfo_loader_os(OsinfoLoader *loader,
                               "./devices/device", ctxt, root, err);
     if (error_is_set(err))
         goto cleanup;
+
+    nnodes = osinfo_loader_nodeset("./firmware", loader, ctxt, &nodes, err);
+    if (error_is_set(err))
+        goto cleanup;
+
+    for (i = 0; i < nnodes; i++) {
+        xmlNodePtr saved = ctxt->node;
+        ctxt->node = nodes[i];
+        gchar *firmware_id = g_strdup_printf("%s:%u", id, i);
+        OsinfoFirmware *firmware = osinfo_loader_firmware(loader, ctxt, nodes[i], firmware_id, err);
+        g_free(firmware_id);
+        ctxt->node = saved;
+        if (error_is_set(err))
+            goto cleanup;
+
+        osinfo_os_add_firmware(os, firmware);
+        g_object_unref(firmware);
+    }
 
     nnodes = osinfo_loader_nodeset("./media", loader, ctxt, &nodes, err);
     if (error_is_set(err))
