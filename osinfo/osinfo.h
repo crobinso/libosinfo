@@ -41,6 +41,7 @@
 #include <osinfo/osinfo_devicelinklist.h>
 #include <osinfo/osinfo_devicelinkfilter.h>
 #include <osinfo/osinfo_firmware.h>
+#include <osinfo/osinfo_firmwarelist.h>
 #include <osinfo/osinfo_install_config.h>
 #include <osinfo/osinfo_install_config_param.h>
 #include <osinfo/osinfo_install_config_paramlist.h>

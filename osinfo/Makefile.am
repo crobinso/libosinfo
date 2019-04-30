@@ -85,6 +85,7 @@ libosinfo_impl_include_HEADERS =		\
   osinfo_entity.h			\
   osinfo_filter.h			\
   osinfo_firmware.h			\
+  osinfo_firmwarelist.h			\
   osinfo_install_config.h		\
   osinfo_install_config_param.h		\
   osinfo_install_config_paramlist.h	\
@@ -124,6 +125,7 @@ libosinfo_c_files =		\
   osinfo_entity.c			\
   osinfo_filter.c			\
   osinfo_firmware.c			\
+  osinfo_firmwarelist.c			\
   osinfo_list.c				\
   osinfo_device.c			\
   osinfo_devicelink.c			\
