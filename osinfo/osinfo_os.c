@@ -51,6 +51,7 @@ struct _OsinfoOsPrivate
     // Value: List of device_link structs
     GList *deviceLinks;
 
+    OsinfoFirmwareList *firmwares;
     OsinfoMediaList *medias;
     OsinfoTreeList *trees;
     OsinfoImageList *images;
@@ -118,6 +119,7 @@ osinfo_os_finalize(GObject *object)
     OsinfoOs *os = OSINFO_OS(object);
 
     g_list_free_full(os->priv->deviceLinks, g_object_unref);
+    g_object_unref(os->priv->firmwares);
     g_object_unref(os->priv->medias);
     g_object_unref(os->priv->trees);
     g_object_unref(os->priv->images);
@@ -202,6 +204,7 @@ osinfo_os_init(OsinfoOs *os)
     os->priv = OSINFO_OS_GET_PRIVATE(os);
 
     os->priv->deviceLinks = NULL;
+    os->priv->firmwares = osinfo_firmwarelist_new();
     os->priv->medias = osinfo_medialist_new();
     os->priv->trees = osinfo_treelist_new();
     os->priv->images = osinfo_imagelist_new();
@@ -1249,6 +1252,7 @@ const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os)
     };
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
+
     osinfo_product_foreach_related(OSINFO_PRODUCT(os),
                                    OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
                                    OSINFO_PRODUCT_FOREACH_FLAG_CLONES,
@@ -1256,4 +1260,163 @@ const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os)
                                    &foreach_data);
 
     return foreach_data.kernel_url_arg;
+}
+
+struct GetAllFirmwaresData {
+    OsinfoFilter *filter;
+    OsinfoFilter *unsupported_filter;
+    OsinfoFirmwareList *firmwares;
+    OsinfoFirmwareList *unsupported_firmwares;
+};
+
+static OsinfoList *
+get_all_unsupported_firmwares(OsinfoList *firmwares,
+                              OsinfoFilter *unsupported_filter,
+                              OsinfoList *unsupported_firmwares)
+{
+    OsinfoList *list;
+    OsinfoList *union_list;
+
+    list = osinfo_list_new_filtered(firmwares, unsupported_filter);
+    union_list = osinfo_list_new_union(list, unsupported_firmwares);
+    g_object_unref(list);
+
+    return union_list;
+}
+
+static void
+filter_out_firmwares(OsinfoList *firmwares,
+                     OsinfoFilter *filter,
+                     OsinfoList *unsupported_firmwares,
+                     OsinfoList *out)
+{
+    gsize len, i;
+    gsize unsupported_len, j;
+
+    len = osinfo_list_get_length(firmwares);
+    unsupported_len = osinfo_list_get_length(unsupported_firmwares);
+    for (i = 0; i < len; i++) {
+        OsinfoFirmware *firmware;
+        const gchar *arch;
+        const gchar *type;
+        gboolean requested_by_caller;
+        gboolean supported;
+
+        firmware = OSINFO_FIRMWARE(osinfo_list_get_nth(firmwares, i));
+        arch = osinfo_firmware_get_architecture(firmware);
+        type = osinfo_firmware_get_firmware_type(firmware);
+        requested_by_caller = TRUE;
+        supported = TRUE;
+
+        /*
+         * In case there's no filter, the firmware can be considered as
+         * requested_by_caller.
+         *
+         * In case there's a filter, let's ensure the firmware matches the
+         * filter before adding it to the final firmwares' list.
+         */
+        if (filter != NULL &&
+            !osinfo_filter_matches(filter, OSINFO_ENTITY(firmware)))
+            requested_by_caller = FALSE;
+
+        /*
+         * In case the firmware is valid to be added, let's ensure the firmware
+         * is supported by the OS.
+         */
+        if (requested_by_caller) {
+            for (j = 0; j < unsupported_len; j++) {
+                OsinfoFirmware *unsupported;
+                const gchar *unsupported_arch;
+                const gchar *unsupported_type;
+
+                unsupported = OSINFO_FIRMWARE(
+                        osinfo_list_get_nth(unsupported_firmwares, j));
+                unsupported_arch = osinfo_firmware_get_architecture(unsupported);
+                unsupported_type = osinfo_firmware_get_firmware_type(unsupported);
+
+
+                if (g_str_equal(arch, unsupported_arch) &&
+                    g_str_equal(type, unsupported_type)) {
+                    supported = FALSE;
+                    break;
+                }
+            }
+        }
+
+        /*
+         * Only add the firmware to the final list of firmwares in case it is
+         * requested by the caller and supported
+         */
+        if (requested_by_caller &&
+            supported)
+            osinfo_list_add(out, OSINFO_ENTITY(firmware));
+    }
+}
+
+static void get_all_firmwares_cb(OsinfoProduct *product, gpointer user_data)
+{
+    OsinfoFirmwareList *unsupported_firmwares;
+    OsinfoOs *os = OSINFO_OS(product);
+    struct GetAllFirmwaresData *foreach_data = user_data;
+
+    g_return_if_fail(OSINFO_IS_OS(os));
+
+    unsupported_firmwares = OSINFO_FIRMWARELIST(
+            get_all_unsupported_firmwares(OSINFO_LIST(os->priv->firmwares),
+                                          foreach_data->unsupported_filter,
+                                          OSINFO_LIST(foreach_data->unsupported_firmwares)));
+
+    filter_out_firmwares(OSINFO_LIST(os->priv->firmwares),
+                         foreach_data->filter,
+                         OSINFO_LIST(unsupported_firmwares),
+                         OSINFO_LIST(foreach_data->firmwares));
+
+    g_object_unref(foreach_data->unsupported_firmwares);
+    foreach_data->unsupported_firmwares = unsupported_firmwares;
+}
+
+/**
+ * osinfo_os_get_firmware_list:
+ * @os: an operating system
+ * @filter: (allow-none)(transfer none): an optional firmware property filter
+ *
+ * Get all firmwares matching a given filter
+ *
+ * Returns: (transfer full): A list of firmwares
+ */
+OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filter)
+{
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+    g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
+
+    struct GetAllFirmwaresData foreach_data = {
+        .filter = filter,
+        .unsupported_filter = NULL,
+        .firmwares = osinfo_firmwarelist_new(),
+        .unsupported_firmwares = osinfo_firmwarelist_new()
+    };
+
+    foreach_data.unsupported_filter = osinfo_filter_new();
+    osinfo_filter_add_constraint(foreach_data.unsupported_filter,
+                                 OSINFO_FIRMWARE_PROP_SUPPORTED,
+                                 "false");
+
+    osinfo_product_foreach_related(OSINFO_PRODUCT(os),
+                                   OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
+                                   OSINFO_PRODUCT_FOREACH_FLAG_CLONES,
+                                   get_all_firmwares_cb,
+                                   &foreach_data);
+
+    g_object_unref(foreach_data.unsupported_filter);
+    g_object_unref(foreach_data.unsupported_firmwares);
+
+    return foreach_data.firmwares;
+}
+
+void osinfo_os_add_firmware(OsinfoOs *os, OsinfoFirmware *firmware)
+{
+    g_return_if_fail(OSINFO_IS_OS(os));
+    g_return_if_fail(OSINFO_IS_FIRMWARE(firmware));
+
+    osinfo_list_add(OSINFO_LIST(os->priv->firmwares), OSINFO_ENTITY(firmware));
 }

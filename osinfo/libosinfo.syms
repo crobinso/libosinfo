@@ -618,6 +618,9 @@ LIBOSINFO_1.7.0 {
 	osinfo_firmwarelist_get_type;
 	osinfo_firmwarelist_new;
 
+	osinfo_os_add_firmware;
+	osinfo_os_get_firmware_list;
+
 	osinfo_tree_create_from_treeinfo;
 } LIBOSINFO_1.6.0;
 
