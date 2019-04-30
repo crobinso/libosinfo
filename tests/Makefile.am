@@ -8,6 +8,7 @@ check_PROGRAMS = \
 	test-devicelist \
 	test-devicelinklist \
 	test-filter \
+	test-firmware \
 	test-media \
 	test-product \
 	test-os \
@@ -49,6 +50,10 @@ test_device_SOURCES = test-device.c
 test_filter_LDADD = $(COMMON_LDADD)
 test_filter_CFLAGS = $(COMMON_CFLAGS)
 test_filter_SOURCES = test-filter.c
+
+test_firmware_LDADD = $(COMMON_LDADD)
+test_firmware_CFLAGS = $(COMMON_CFLAGS)
+test_firmware_SOURCES = test-firmware.c
 
 test_product_LDADD = $(COMMON_LDADD)
 test_product_CFLAGS = $(COMMON_CFLAGS)

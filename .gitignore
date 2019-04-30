@@ -47,6 +47,7 @@ tests/test-db
 tests/test-devicelist
 tests/test-devicelinklist
 tests/test-filter
+tests/test-firmware
 tests/test-install-script
 tests/test-image
 tests/test-imagelist
