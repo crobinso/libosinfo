@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/db/firmware">
+    <short-id>db-firmware</short-id>
+    <name>DB Firmware</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <firmware arch="x86_64" type="efi"/>
+    <firmware arch="x86_64" type="bios"/>
+
+    <firmware arch="i686" type="efi" supported="false"/>
+    <firmware arch="i686" type="bios"/>
+  </os>
+</libosinfo>

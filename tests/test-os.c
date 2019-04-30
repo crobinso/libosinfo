@@ -686,6 +686,123 @@ test_kernel_url_arg(void)
     g_object_unref(loader);
 }
 
+
+static void
+check_firmwares(OsinfoDb *db,
+                const gchar *os_id,
+                gint list_len)
+{
+    OsinfoOs *os;
+    OsinfoFirmwareList *firmwarelist;
+
+    g_test_message("Testing \"%s\"", os_id);
+
+    os = osinfo_db_get_os(db, os_id);
+    g_assert_true(OSINFO_IS_OS(os));
+
+    firmwarelist = osinfo_os_get_firmware_list(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(firmwarelist)), ==, list_len);
+
+    g_object_unref(firmwarelist);
+}
+
+static void
+test_firmwares_inheritance(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = g_object_ref(osinfo_loader_get_db(loader));
+    g_object_unref(loader);
+
+    /**
+     * os1:
+     * - firmwares:
+     *   - explicitly added
+     *     - x86_64 | bios
+     *     - x86_64 | efi
+     *   - explicitly removed
+     *   - expected:
+     *     - x86_64 | bios
+     *     - x86_64 | efi
+
+     */
+    check_firmwares(db,
+                    "http://libosinfo.org/test/os/firmwares/inheritance/1",
+                    2);
+
+    /**
+     * os2 (derives-from os1):
+     * - firmwares
+     *   - explicitly added
+     *   - explicitly removed
+     *   - expected:
+     *     - x86_64 | bios
+     *     - x86_64 | efi
+     */
+    check_firmwares(db,
+                    "http://libosinfo.org/test/os/firmwares/inheritance/2",
+                    2);
+
+    /**
+     * os3 (derives-from os2):
+     * - firmwares
+     *   - explicitly added
+     *   - explicitly removed
+     *     - x86_64 | bios
+     *   - expected:
+     *     - x86_64 | efi
+
+     */
+    check_firmwares(db,
+                    "http://libosinfo.org/test/os/firmwares/inheritance/3",
+                    1);
+
+    /**
+     * os4 (derives-from os3):
+     * - firmwares
+     *   - explicitly added
+     *   - explicitly removed
+     *   - expected:
+     *     - x86_64 | efi
+     */
+    check_firmwares(db,
+                    "http://libosinfo.org/test/os/firmwares/inheritance/4",
+                    1);
+
+    /**
+     * os5 (derives-from os4):
+     * - firmwares
+     *   - explicitly added
+     *     - x86_64 | bios
+     *   - explicitly removed
+     *   - expected:
+     *     - x86_64 | bios
+     *     - x86_64 | efi
+     */
+    check_firmwares(db,
+                    "http://libosinfo.org/test/os/firmwares/inheritance/5",
+                    2);
+
+    /**
+     * os6 (derives-from os5):
+     * - firmwares
+     *   - explicitly added
+     *   - explicitly removed
+     *   - expected:
+     *     - x86_64 | bios
+     *     - x86_64 | efi
+     */
+    check_firmwares(db,
+                    "http://libosinfo.org/test/os/firmwares/inheritance/6",
+                    2);
+
+    g_object_unref(db);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -706,6 +823,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/find_install_script", test_find_install_script);
     g_test_add_func("/os/mulitple_short_ids", test_multiple_short_ids);
     g_test_add_func("/os/kernel_url_arg", test_kernel_url_arg);
+    g_test_add_func("/os/firmwares/inheritance", test_firmwares_inheritance);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();

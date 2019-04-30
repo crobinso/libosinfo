@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/firmwares/inheritance/6">
+    <short-id>firmwaresinheritance6</short-id>
+    <name>Firmwares Inheritance 6</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/firmwares/inheritance/5"/>
+  </os>
+</libosinfo>

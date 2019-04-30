@@ -34,15 +34,55 @@ test_basic(void)
     g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, TYPE);
 }
 
+static void
+test_loaded(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    OsinfoFilter *filter;
+    OsinfoFirmwareList *list;
+    gint list_len;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/db/firmware");
+
+    list = osinfo_os_get_firmware_list(os, NULL);
+    list_len = osinfo_list_get_length(OSINFO_LIST(list));
+    g_assert_cmpint(list_len, ==, 3);
+    g_object_unref(list);
+
+    filter = osinfo_filter_new();
+    osinfo_filter_add_constraint(filter,
+                                 OSINFO_FIRMWARE_PROP_ARCHITECTURE, "i686");
+    list = osinfo_os_get_firmware_list(os, filter);
+    list_len = osinfo_list_get_length(OSINFO_LIST(list));
+    g_assert_cmpint(list_len, ==, 1);
+    g_object_unref(list);
+
+    g_object_unref(loader);
+}
+
 int
 main(int argc, char *argv[])
 {
     g_test_init(&argc, &argv, NULL);
 
     g_test_add_func("/firmware/basic", test_basic);
+    g_test_add_func("/firmware/loaded/basic", test_loaded);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_firmware_get_type();
+    osinfo_firmwarelist_get_type();
+    osinfo_db_get_type();
+    osinfo_filter_get_type();
+    osinfo_list_get_type();
+    osinfo_loader_get_type();
+    osinfo_os_get_type();
 
     return g_test_run();
 }

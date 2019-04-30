@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/firmwares/inheritance/5">
+    <short-id>firmwaresinheritance5</short-id>
+    <name>Firmwares Inheritance 5</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <derives-from id="http://libosinfo.org/test/os/firmwares/inheritance/4"/>
+
+    <firmware arch="x86_64" type="bios"/>
+  </os>
+</libosinfo>
