@@ -75,6 +75,7 @@ enum {
 
     PROP_FAMILY,
     PROP_DISTRO,
+    PROP_KERNEL_URL_ARGUMENT,
 };
 
 static void osinfo_os_finalize(GObject *object);
@@ -98,6 +99,11 @@ osinfo_os_get_property(GObject    *object,
             g_value_set_string(value,
                                 osinfo_entity_get_param_value(entity,
                                                                "distro"));
+            break;
+        case PROP_KERNEL_URL_ARGUMENT:
+            g_value_set_string(value,
+                               osinfo_entity_get_param_value(entity,
+                                                             OSINFO_OS_PROP_KERNEL_URL_ARGUMENT));
             break;
         default:
             /* We don't have any other property... */
@@ -171,6 +177,22 @@ osinfo_os_class_init(OsinfoOsClass *klass)
                                 G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass,
                                     PROP_DISTRO,
+                                    pspec);
+
+    /**
+     * OsinfoOs:kernel-url-argument:
+     *
+     * The argument to be passed to kernel command line when performing a
+     * tree based installation of this OS.
+     */
+    pspec = g_param_spec_string("kernel-url-argument",
+                                "KernelURLArgument",
+                                _("Kernel URL Argument"),
+                                NULL /* default value */,
+                                G_PARAM_READABLE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass,
+                                    PROP_KERNEL_URL_ARGUMENT,
                                     pspec);
 }
 
@@ -1141,4 +1163,49 @@ void osinfo_os_add_device_driver(OsinfoOs *os, OsinfoDeviceDriver *driver)
 
     osinfo_list_add(OSINFO_LIST(os->priv->device_drivers),
                     OSINFO_ENTITY(driver));
+}
+
+struct GetKernelURLArgumentData {
+    const gchar *kernel_url_arg;
+};
+
+static void get_kernel_url_argument_cb(OsinfoProduct *product, gpointer user_data)
+{
+    OsinfoOs *os = OSINFO_OS(product);
+    struct GetKernelURLArgumentData *foreach_data = user_data;
+
+    g_return_if_fail(OSINFO_IS_OS(os));
+
+    if (foreach_data->kernel_url_arg != NULL)
+        return;
+
+    foreach_data->kernel_url_arg =
+            osinfo_entity_get_param_value(OSINFO_ENTITY(os),
+                                          OSINFO_OS_PROP_KERNEL_URL_ARGUMENT);
+}
+
+/**
+ * osinfo_os_get_kernel_url_argument:
+ * @os: an operating system
+ *
+ * Gets the argument expected to be passed to the kernel command line when
+ * performing a tree based installation.
+ *
+ * Returns: (transfer none): the kernel url argument, if present. Otherwise,
+ * NULL.
+ */
+const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os)
+{
+    struct GetKernelURLArgumentData foreach_data = {
+        .kernel_url_arg = NULL
+    };
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    osinfo_product_foreach_related(OSINFO_PRODUCT(os),
+                                   OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
+                                   OSINFO_PRODUCT_FOREACH_FLAG_CLONES,
+                                   get_kernel_url_argument_cb,
+                                   &foreach_data);
+
+    return foreach_data.kernel_url_arg;
 }

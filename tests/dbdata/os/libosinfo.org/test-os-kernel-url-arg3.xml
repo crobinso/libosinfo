@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/kernel-url-arg3">
+    <short-id>kernel-url-arg3</short-id>
+    <name>Kernel URL Arg 3</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <release-status>prerelease</release-status>
+    <derives-from id="http://libosinfo.org/test/os/kernel-url-arg2"/>
+
+    <kernel-url-argument>new.install</kernel-url-argument>
+  </os>
+</libosinfo>

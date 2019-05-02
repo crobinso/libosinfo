@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/kernel-url-arg1">
+    <short-id>kernel-url-arg1</short-id>
+    <name>Kernel URL Arg 1</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <release-status>prerelease</release-status>
+
+    <kernel-url-argument>install</kernel-url-argument>
+  </os>
+</libosinfo>

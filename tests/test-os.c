@@ -651,6 +651,41 @@ test_multiple_short_ids(void)
     g_object_unref(db);
 }
 
+static void
+test_kernel_url_arg(void)
+{
+    OsinfoLoader *loader;
+    OsinfoDb *db;
+    OsinfoOs *os;
+    GError *error = NULL;
+    const char *str;
+
+    loader = osinfo_loader_new();
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    g_debug("Testing http://libosinfo.org/test/os/kernel-url-arg1\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/kernel-url-arg1");
+    g_assert_nonnull(os);
+    str = osinfo_os_get_kernel_url_argument(os);
+    g_assert_cmpstr(str, ==, "install");
+
+    g_debug("Testing http://libosinfo.org/test/os/kernel-url-arg2\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/kernel-url-arg2");
+    g_assert_nonnull(os);
+    str = osinfo_os_get_kernel_url_argument(os);
+    g_assert_cmpstr(str, ==, "install");
+
+    g_debug("Testing http://libosinfo.org/test/os/kernel-url-arg3\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/kernel-url-arg3");
+    g_assert_nonnull(os);
+    str = osinfo_os_get_kernel_url_argument(os);
+    g_assert_cmpstr(str, ==, "new.install");
+
+    g_object_unref(loader);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -670,6 +705,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/resources/inheritance", test_resources_inheritance);
     g_test_add_func("/os/find_install_script", test_find_install_script);
     g_test_add_func("/os/mulitple_short_ids", test_multiple_short_ids);
+    g_test_add_func("/os/kernel_url_arg", test_kernel_url_arg);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();

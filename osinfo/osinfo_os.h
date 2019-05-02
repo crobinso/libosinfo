@@ -62,6 +62,7 @@ typedef struct _OsinfoOsPrivate OsinfoOsPrivate;
 #define OSINFO_OS_PROP_FAMILY                 "family"
 #define OSINFO_OS_PROP_DISTRO                 "distro"
 #define OSINFO_OS_PROP_RELEASE_STATUS         "release-status"
+#define OSINFO_OS_PROP_KERNEL_URL_ARGUMENT    "kernel-url-argument"
 
 /* object */
 struct _OsinfoOs
@@ -141,5 +142,7 @@ void osinfo_os_add_install_script(OsinfoOs *os, OsinfoInstallScript *script);
 
 OsinfoDeviceDriverList *osinfo_os_get_device_drivers(OsinfoOs *os);
 void osinfo_os_add_device_driver(OsinfoOs *os, OsinfoDeviceDriver *driver);
+
+const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os);
 
 #endif /* __OSINFO_OS_H__ */

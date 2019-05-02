@@ -584,6 +584,11 @@ LIBOSINFO_1.5.0 {
 	osinfo_tree_set_os;
 } LIBOSINFO_1.4.0;
 
+LIBOSINFO_1.6.0 {
+    global:
+	osinfo_os_get_kernel_url_argument;
+} LIBOSINFO_1.5.0;
+
 /* Symbols in next release...
 
   LIBOSINFO_0.0.2 {
