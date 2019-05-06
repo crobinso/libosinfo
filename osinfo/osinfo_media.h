@@ -147,7 +147,7 @@ gint osinfo_media_get_installer_reboots(OsinfoMedia *media);
 gint64 osinfo_media_get_volume_size(OsinfoMedia *media);
 gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media);
 gboolean osinfo_media_supports_installer_script(OsinfoMedia *media);
-void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *install_script);
+void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *script);
 OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media);
 
 #endif /* __OSINFO_MEDIA_H__ */
