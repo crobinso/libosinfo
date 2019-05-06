@@ -43,6 +43,8 @@ osinfo_media_error_quark (void) G_GNUC_CONST;
  * @OSINFO_MEDIA_ERROR_NOT_BOOTABLE: Install media not bootable.
  * @OSINFO_MEDIA_ERROR_NO_PVD: No Primary volume descriptor.
  * @OSINFO_MEDIA_ERROR_NO_SVD: No supplementary volume descriptor.
+ * @OSINFO_MEDIA_ERROR_NO_DIRECTORY_RECORD_EXTENT: No directory record extent
+ * found.
  *
  * #GError codes used for errors in the #OSINFO_MEDIA_ERROR domain, during
  * reading of data from install media location.
