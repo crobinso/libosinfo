@@ -274,7 +274,7 @@ void osinfo_install_script_set_preferred_injection_method(OsinfoInstallScript *s
 OsinfoInstallScriptInjectionMethod osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script);
 
 void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
-                                                   OsinfoInstallScriptInstallationSource installer);
+                                                   OsinfoInstallScriptInstallationSource source);
 OsinfoInstallScriptInstallationSource osinfo_install_script_get_installation_source(OsinfoInstallScript *script);
 
 #endif /* __OSINFO_INSTALL_SCRIPT_H__ */
