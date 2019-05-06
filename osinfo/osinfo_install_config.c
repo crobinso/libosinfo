@@ -706,7 +706,7 @@ void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
 
 /**
  * osinfo_install_config_get_installation_url:
- * @config
+ * @config: the install config
  *
  * Returns the URL the script will use to perform the installation.
  */
