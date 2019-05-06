@@ -136,6 +136,13 @@ typedef enum {
     OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB    = 1 << 4,
 } OsinfoInstallScriptInjectionMethod;
 
+/**
+ * OsinfoInstallScriptInstallationSource:
+ * @OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA: A media will be used as
+ * the installation source.
+ * @OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK: A network method will
+ * be used as installation source.
+ */
 typedef enum {
     OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
     OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK
