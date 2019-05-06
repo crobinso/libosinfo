@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/libosinfo/issues\n"
-"POT-Creation-Date: 2019-03-01 16:05+0100\n"
+"POT-Creation-Date: 2019-05-06 09:36+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Cornish (Unified Orthography)\n"
@@ -55,16 +55,16 @@ msgstr ""
 msgid "Unique identifier"
 msgstr ""
 
-#: osinfo/osinfo_image.c:160 osinfo/osinfo_media.c:472
-#: osinfo/osinfo_resources.c:171 osinfo/osinfo_tree.c:285
+#: osinfo/osinfo_image.c:170 osinfo/osinfo_media.c:472
+#: osinfo/osinfo_resources.c:171 osinfo/osinfo_tree.c:296
 msgid "CPU Architecture"
 msgstr ""
 
-#: osinfo/osinfo_image.c:173
+#: osinfo/osinfo_image.c:183
 msgid "The image format"
 msgstr ""
 
-#: osinfo/osinfo_image.c:186
+#: osinfo/osinfo_image.c:196
 msgid "The URL to this image"
 msgstr ""
 
@@ -198,57 +198,57 @@ msgstr ""
 msgid "Missing product upgrades id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:757
+#: osinfo/osinfo_loader.c:768
 msgid "Missing platform id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:791
+#: osinfo/osinfo_loader.c:802
 msgid "Missing deployment id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:801
+#: osinfo/osinfo_loader.c:812
 msgid "Missing deployment os id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:811
+#: osinfo/osinfo_loader.c:822
 msgid "Missing deployment platform id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:850 osinfo/osinfo_loader.c:1528
+#: osinfo/osinfo_loader.c:861 osinfo/osinfo_loader.c:1570
 msgid "Missing os id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:974
+#: osinfo/osinfo_loader.c:985
 msgid "Missing install script id property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:1208
+#: osinfo/osinfo_loader.c:1219
 msgid "Missing Media install script property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:1663
+#: osinfo/osinfo_loader.c:1705
 msgid "Missing OS install script property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:1727
+#: osinfo/osinfo_loader.c:1769
 msgid "Incorrect root element"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:1794
+#: osinfo/osinfo_loader.c:1836
 msgid "Unable to construct parser context"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:1816
+#: osinfo/osinfo_loader.c:1858
 msgid "Missing root XML element"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:2450
+#: osinfo/osinfo_loader.c:2492
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:2486 osinfo/osinfo_loader.c:2518
+#: osinfo/osinfo_loader.c:2528 osinfo/osinfo_loader.c:2560
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -259,23 +259,23 @@ msgstr ""
 msgid "The URL to this media"
 msgstr ""
 
-#: osinfo/osinfo_media.c:498 osinfo/osinfo_tree.c:311
+#: osinfo/osinfo_media.c:498 osinfo/osinfo_tree.c:322
 msgid "The expected ISO9660 volume ID"
 msgstr ""
 
-#: osinfo/osinfo_media.c:511 osinfo/osinfo_tree.c:324
+#: osinfo/osinfo_media.c:511 osinfo/osinfo_tree.c:335
 msgid "The expected ISO9660 publisher ID"
 msgstr ""
 
-#: osinfo/osinfo_media.c:524 osinfo/osinfo_tree.c:337
+#: osinfo/osinfo_media.c:524 osinfo/osinfo_tree.c:348
 msgid "The expected ISO9660 application ID"
 msgstr ""
 
-#: osinfo/osinfo_media.c:537 osinfo/osinfo_tree.c:350
+#: osinfo/osinfo_media.c:537 osinfo/osinfo_tree.c:361
 msgid "The expected ISO9660 system ID"
 msgstr ""
 
-#: osinfo/osinfo_media.c:550 osinfo/osinfo_tree.c:363
+#: osinfo/osinfo_media.c:550 osinfo/osinfo_tree.c:374
 msgid "The path to the kernel image"
 msgstr ""
 
@@ -413,27 +413,27 @@ msgstr ""
 msgid "Amount of storage space in bytes"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:298
+#: osinfo/osinfo_tree.c:309
 msgid "The URL to this tree"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:376
+#: osinfo/osinfo_tree.c:387
 msgid "The path to the inirtd image"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:389
+#: osinfo/osinfo_tree.c:400
 msgid "The path to the bootable ISO image"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:402
+#: osinfo/osinfo_tree.c:413
 msgid "Whether the tree has treeinfo"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:639
-msgid "Failed to load .treeinfo file: "
+#: osinfo/osinfo_tree.c:667
+msgid "Failed to load .treeinfo|treeinfo file: "
 msgstr ""
 
-#: osinfo/osinfo_tree.c:649
+#: osinfo/osinfo_tree.c:677
 msgid "Failed to process keyinfo file: "
 msgstr ""
 
@@ -455,7 +455,7 @@ msgid "plain|env."
 msgstr ""
 
 #: tools/osinfo-detect.c:101
-msgid "URL type. Default: media"
+msgid "The type to be used. Default: media"
 msgstr ""
 
 #: tools/osinfo-detect.c:102
@@ -484,32 +484,36 @@ msgstr ""
 msgid "Available OS variants on media:\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:206
+#: tools/osinfo-detect.c:219
 #, c-format
 msgid "Tree is an installer for OS '%s'\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:223
+#: tools/osinfo-detect.c:224
+msgid "Available OS variants on tree:\n"
+msgstr ""
+
+#: tools/osinfo-detect.c:251
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
 
-#: tools/osinfo-detect.c:227 tools/osinfo-query.c:414
+#: tools/osinfo-detect.c:255 tools/osinfo-query.c:414
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:245 tools/osinfo-install-script.c:351
+#: tools/osinfo-detect.c:273 tools/osinfo-install-script.c:351
 #: tools/osinfo-query.c:430
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:261
+#: tools/osinfo-detect.c:289
 #, c-format
 msgid "Error parsing media: %s\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:279
+#: tools/osinfo-detect.c:307
 #, c-format
 msgid "Error parsing installer tree: %s\n"
 msgstr ""
