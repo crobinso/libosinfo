@@ -31,6 +31,8 @@
     <xi:include href="xml/osinfo_entity.xml"/>
     <xi:include href="xml/osinfo_enum_types.xml"/>
     <xi:include href="xml/osinfo_filter.xml"/>
+    <xi:include href="xml/osinfo_image.xml"/>
+    <xi:include href="xml/osinfo_imagelist.xml"/>
     <xi:include href="xml/osinfo_install_config.xml"/>
     <xi:include href="xml/osinfo_install_config_param.xml"/>
     <xi:include href="xml/osinfo_install_config_paramlist.xml"/>
