@@ -1,4 +1,4 @@
-AC_INIT([libosinfo], [1.5.0], [libosinfo@redhat.com])
+AC_INIT([libosinfo], [1.6.0], [libosinfo@redhat.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.11.1 foreign color-tests tar-ustar])
