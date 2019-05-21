@@ -790,6 +790,7 @@ static gboolean compare_tree(OsinfoTree *tree,
         OsinfoTreeList *tree_list = osinfo_os_get_tree_list(os);
         GList *trees = osinfo_list_get_elements(OSINFO_LIST(tree_list));
         GList *tree_iter;
+        gboolean found = FALSE;
 
         for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
             OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
@@ -820,8 +821,11 @@ static gboolean compare_tree(OsinfoTree *tree,
                 match_regex(os_treeinfo_version, treeinfo_version) &&
                 match_regex(os_treeinfo_arch, treeinfo_arch)) {
                 *ret_os = os;
-                if (matched != NULL)
+                if (matched != NULL) {
                     *matched = os_tree;
+                    osinfo_tree_set_os(*matched, *ret_os);
+                    found = TRUE;
+                }
                 break;
             }
         }
@@ -829,10 +833,8 @@ static gboolean compare_tree(OsinfoTree *tree,
         g_list_free(trees);
         g_object_unref(tree_list);
 
-        if (*ret_os != NULL) {
-            osinfo_tree_set_os(*matched, *ret_os);
+        if (found)
             return TRUE;
-        }
     }
 
     return FALSE;
