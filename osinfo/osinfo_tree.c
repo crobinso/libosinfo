@@ -702,9 +702,6 @@ osinfo_tree_create_from_location_async_helper(const gchar *url,
     g_clear_object(&data->file);
     data->file = g_file_new_for_uri(location);
 
-    g_free(data->location);
-    data->location = g_strdup(url);
-
     g_free(data->treeinfo);
     data->treeinfo = g_strdup(treeinfo);
 
@@ -739,6 +736,8 @@ void osinfo_tree_create_from_location_async(const gchar *location,
                            callback,
                            user_data);
     g_task_set_priority(data->res, priority);
+
+    data->location = g_strdup(location);
 
     osinfo_tree_create_from_location_async_helper(location,
                                                   ".treeinfo",
