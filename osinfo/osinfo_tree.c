@@ -631,10 +631,8 @@ static OsinfoTree *load_keyinfo(const gchar *location,
 }
 
 static void
-osinfo_tree_create_from_location_async_helper(const gchar *url,
-                                              const gchar *treeinfo,
-                                              GCancellable *cancellable,
-                                              CreateFromLocationAsyncData *data);
+osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
+                                              const gchar *treeinfo);
 
 static void on_location_read(GObject *source,
                              GAsyncResult *res,
@@ -657,10 +655,7 @@ static void on_location_read(GObject *source,
         /* It means no ".treeinfo" file has been found. Try again, this time
          * looking for a "treeinfo" file. */
         if (g_str_equal(data->treeinfo, ".treeinfo")) {
-            osinfo_tree_create_from_location_async_helper(data->location,
-                                                          "treeinfo",
-                                                          g_task_get_cancellable(data->res),
-                                                          data);
+            osinfo_tree_create_from_location_async_helper(data, "treeinfo");
             return;
         }
 
@@ -687,17 +682,14 @@ static void on_location_read(GObject *source,
 }
 
 static void
-osinfo_tree_create_from_location_async_helper(const gchar *url,
-                                              const gchar *treeinfo,
-                                              GCancellable *cancellable,
-                                              CreateFromLocationAsyncData *data)
+osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
+                                              const gchar *treeinfo)
 {
     gchar *location;
 
-    g_return_if_fail(url != NULL);
     g_return_if_fail(treeinfo != NULL);
 
-    location = g_strdup_printf("%s/%s", url, treeinfo);
+    location = g_strdup_printf("%s/%s", data->location, treeinfo);
 
     g_clear_object(&data->file);
     data->file = g_file_new_for_uri(location);
@@ -706,7 +698,7 @@ osinfo_tree_create_from_location_async_helper(const gchar *url,
     data->treeinfo = g_strdup(treeinfo);
 
     g_file_load_contents_async(data->file,
-                               cancellable,
+                               g_task_get_cancellable(data->res),
                                on_location_read,
                                data);
     g_free(location);
@@ -739,10 +731,7 @@ void osinfo_tree_create_from_location_async(const gchar *location,
 
     data->location = g_strdup(location);
 
-    osinfo_tree_create_from_location_async_helper(location,
-                                                  ".treeinfo",
-                                                  cancellable,
-                                                  data);
+    osinfo_tree_create_from_location_async_helper(data, ".treeinfo");
 }
 
 
