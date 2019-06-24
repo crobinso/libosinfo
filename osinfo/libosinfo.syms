@@ -586,6 +586,8 @@ LIBOSINFO_1.5.0 {
 
 LIBOSINFO_1.6.0 {
     global:
+	osinfo_media_detect_flags_get_type;
+
 	osinfo_os_get_kernel_url_argument;
 } LIBOSINFO_1.5.0;
 

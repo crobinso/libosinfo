@@ -58,6 +58,16 @@ typedef enum {
     OSINFO_MEDIA_ERROR_NO_DIRECTORY_RECORD_EXTENT
 } OsinfoMediaError;
 
+/**
+ * OsinfoMediaDetectFlags
+ * OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE: Requires a media to be bootable.
+ *
+ * Flags used for detecting a media.
+ */
+typedef enum {
+    OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE = 1 << 0,
+} OsinfoMediaDetectFlags;
+
 /*
  * Type macros.
  */
