@@ -1068,8 +1068,16 @@ static void search_ppc_bootinfo_callback(GObject *source,
     data = (CreateFromLocationAsyncData *)user_data;
 
     ret = search_ppc_bootinfo_finish(res, &error);
-    if (!ret)
-        goto cleanup;
+    if (!ret) {
+        if (g_error_matches(error,
+                            OSINFO_MEDIA_ERROR,
+                            OSINFO_MEDIA_ERROR_NOT_BOOTABLE)) {
+            if ((data->flags & OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE) != 0)
+                goto cleanup;
+            else
+                g_clear_error(&error);
+        }
+    }
 
     media = create_from_location_async_data(data);
 
