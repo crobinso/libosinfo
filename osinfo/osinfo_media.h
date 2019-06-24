@@ -105,6 +105,7 @@ typedef struct _OsinfoMediaPrivate OsinfoMediaPrivate;
 #define OSINFO_MEDIA_PROP_VOLUME_SIZE    "volume-size"
 #define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
 #define OSINFO_MEDIA_PROP_INSTALLER_SCRIPT "installer-script"
+#define OSINFO_MEDIA_PROP_BOOTABLE        "bootable"
 
 /* object */
 struct _OsinfoMedia
@@ -161,6 +162,7 @@ const gchar *osinfo_media_get_publisher_id(OsinfoMedia *media);
 const gchar *osinfo_media_get_application_id(OsinfoMedia *media);
 const gchar *osinfo_media_get_kernel_path(OsinfoMedia *media);
 const gchar *osinfo_media_get_initrd_path(OsinfoMedia *media);
+gboolean osinfo_media_is_bootable(OsinfoMedia *media);
 OsinfoOs *osinfo_media_get_os(OsinfoMedia *media);
 OsinfoOsVariantList *osinfo_media_get_os_variants(OsinfoMedia *media);
 GList *osinfo_media_get_languages(OsinfoMedia *media);

@@ -590,6 +590,7 @@ LIBOSINFO_1.6.0 {
 	osinfo_media_create_from_location_with_flags_async;
 	osinfo_media_create_from_location_with_flags_finish;
 	osinfo_media_detect_flags_get_type;
+	osinfo_media_is_bootable;
 
 	osinfo_os_get_kernel_url_argument;
 } LIBOSINFO_1.5.0;

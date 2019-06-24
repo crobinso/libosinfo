@@ -144,6 +144,7 @@ struct _CreateFromLocationAsyncData {
     gchar *publisher;
 
     guint flags;
+    gboolean bootable;
 };
 
 static void create_from_location_async_data_free
@@ -870,6 +871,10 @@ create_from_location_async_data(CreateFromLocationAsyncData *data)
                                   OSINFO_MEDIA_PROP_VOLUME_SIZE,
                                   vol_size);
 
+    osinfo_entity_set_param_boolean(OSINFO_ENTITY(media),
+                                    OSINFO_MEDIA_PROP_BOOTABLE,
+                                    data->bootable);
+
     return media;
 }
 
@@ -1067,15 +1072,18 @@ static void search_ppc_bootinfo_callback(GObject *source,
 
     data = (CreateFromLocationAsyncData *)user_data;
 
+    data->bootable = TRUE;
     ret = search_ppc_bootinfo_finish(res, &error);
     if (!ret) {
         if (g_error_matches(error,
                             OSINFO_MEDIA_ERROR,
                             OSINFO_MEDIA_ERROR_NOT_BOOTABLE)) {
-            if ((data->flags & OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE) != 0)
+            if ((data->flags & OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE) != 0) {
                 goto cleanup;
-            else
+            } else {
                 g_clear_error(&error);
+                data->bootable = FALSE;
+            }
         }
     }
 
@@ -1154,6 +1162,7 @@ static void on_svd_read(GObject *source,
         return;
     }
 
+    data->bootable = TRUE;
     media = create_from_location_async_data(data);
 
  cleanup:
@@ -1797,4 +1806,18 @@ OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media
     new_list = osinfo_list_new_copy(OSINFO_LIST(media->priv->scripts));
 
     return OSINFO_INSTALL_SCRIPTLIST(new_list);
+}
+
+/**
+ * osinfo_media_is_bootable:
+ * @media: and #OsinfoMedia instance
+ *
+ * Returns: #TRUE if the @media is bootable. #FALSE otherwise.
+ */
+gboolean osinfo_media_is_bootable(OsinfoMedia *media)
+{
+    g_return_val_if_fail(OSINFO_IS_MEDIA(media), FALSE);
+
+    return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(media),
+                                                 OSINFO_MEDIA_PROP_BOOTABLE);
 }
