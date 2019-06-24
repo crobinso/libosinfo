@@ -913,7 +913,7 @@ static void on_directory_record_extent_read(GObject *source,
 
         check = check_directory_record_entry_flags(dr->flags, is_dir);
         if (check &&
-            strncmp(data->filepath[data->filepath_index], dr->filename, strlen(data->filepath[data->filepath_index])) == 0) {
+            g_ascii_strncasecmp(data->filepath[data->filepath_index], dr->filename, strlen(data->filepath[data->filepath_index])) == 0) {
             data->filepath_index++;
             break;
         }
