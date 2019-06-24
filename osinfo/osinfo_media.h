@@ -140,6 +140,19 @@ void osinfo_media_create_from_location_async(const gchar *location,
 OsinfoMedia *osinfo_media_create_from_location_finish(GAsyncResult *res,
                                                       GError **error);
 
+OsinfoMedia *osinfo_media_create_from_location_with_flags(const gchar *location,
+                                                          GCancellable *cancellable,
+                                                          guint flags,
+                                                          GError **error);
+void osinfo_media_create_from_location_with_flags_async(const gchar *location,
+                                                        gint priority,
+                                                        GCancellable *cancellable,
+                                                        GAsyncReadyCallback callback,
+                                                        guint flags,
+                                                        gpointer user_data);
+OsinfoMedia *osinfo_media_create_from_location_with_flags_finish(GAsyncResult *res,
+                                                                 GError **error);
+
 const gchar *osinfo_media_get_architecture(OsinfoMedia *media);
 const gchar *osinfo_media_get_url(OsinfoMedia *media);
 const gchar *osinfo_media_get_volume_id(OsinfoMedia *media);

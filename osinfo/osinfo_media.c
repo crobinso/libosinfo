@@ -142,6 +142,8 @@ struct _CreateFromLocationAsyncData {
     gchar *system;
     gchar *application;
     gchar *publisher;
+
+    guint flags;
 };
 
 static void create_from_location_async_data_free
@@ -777,6 +779,48 @@ OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
     return ret;
 }
 
+/**
+ * osinfo_media_create_from_location_with_flags:
+ * @location: the location of an installation media
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @error: The location where to store any error, or %NULL
+ * @flags: An #OsinfoMediaDetectFlag, or 0.
+ *
+ * Creates a new #OsinfoMedia for installation media at @location. The @location
+ * could be any URI that GIO can handle or a local path.
+ *
+ * NOTE: Currently this only works for ISO images/devices.
+ *
+ * Returns: (transfer full): a new #OsinfoMedia , or NULL on error
+ */
+OsinfoMedia *osinfo_media_create_from_location_with_flags(const gchar *location,
+                                                          GCancellable *cancellable,
+                                                          guint flags,
+                                                          GError **error)
+{
+    CreateFromLocationData *data;
+    OsinfoMedia *ret;
+
+    data = g_slice_new0(CreateFromLocationData);
+    data->main_loop = g_main_loop_new(g_main_context_get_thread_default(),
+                                      FALSE);
+
+    osinfo_media_create_from_location_with_flags_async(location,
+                                                       G_PRIORITY_DEFAULT,
+                                                       cancellable,
+                                                       on_media_create_from_location_ready,
+                                                       flags,
+                                                       data);
+
+    /* Loop till we get a reply (or time out) */
+    g_main_loop_run(data->main_loop);
+
+    ret = osinfo_media_create_from_location_with_flags_finish(data->res, error);
+    create_from_location_data_free(data);
+
+    return ret;
+}
+
 static gboolean is_str_empty(const gchar *str) {
     guint8 i;
     gboolean ret = TRUE;
@@ -1318,6 +1362,64 @@ void osinfo_media_create_from_location_async(const gchar *location,
  */
 OsinfoMedia *osinfo_media_create_from_location_finish(GAsyncResult *res,
                                                       GError **error)
+{
+    GTask *task = G_TASK(res);
+
+    g_return_val_if_fail(error == NULL || *error == NULL, NULL);
+
+    return g_task_propagate_pointer(task, error);
+}
+
+/**
+ * osinfo_media_create_from_location_with_flags_async:
+ * @location: the location of an installation media
+ * @priority: the I/O priority of the request
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @callback: Function to call when result of this call is ready
+ * @flags: An #OsinfoMediaDetectFlag, or 0.
+ * @user_data: The user data to pass to @callback, or %NULL
+ *
+ * Asynchronous variant of #osinfo_media_create_from_location.
+ */
+void osinfo_media_create_from_location_with_flags_async(const gchar *location,
+                                                        gint priority,
+                                                        GCancellable *cancellable,
+                                                        GAsyncReadyCallback callback,
+                                                        guint flags,
+                                                        gpointer user_data)
+{
+    CreateFromLocationAsyncData *data;
+
+    g_return_if_fail(location != NULL);
+
+    data = g_slice_new0(CreateFromLocationAsyncData);
+    data->res = g_task_new(NULL,
+                           cancellable,
+                           callback,
+                           user_data);
+    g_task_set_priority(data->res, priority);
+    data->flags = flags;
+
+    data->file = g_file_new_for_commandline_arg(location);
+    g_file_read_async(data->file,
+                      priority,
+                      cancellable,
+                      on_location_read,
+                      data);
+}
+
+/**
+ * osinfo_media_create_from_location_with_flags_finish:
+ * @res: a #GAsyncResult
+ * @error: The location where to store any error, or %NULL
+ *
+ * Finishes an asynchronous media object creation process started with
+ * #osinfo_media_create_from_location_async.
+ *
+ * Returns: (transfer full): a new #OsinfoMedia , or NULL on error
+ */
+OsinfoMedia *osinfo_media_create_from_location_with_flags_finish(GAsyncResult *res,
+                                                                 GError **error)
 {
     GTask *task = G_TASK(res);
 
