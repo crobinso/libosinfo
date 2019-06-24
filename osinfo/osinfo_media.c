@@ -757,26 +757,10 @@ OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
                                                GCancellable *cancellable,
                                                GError **error)
 {
-    CreateFromLocationData *data;
-    OsinfoMedia *ret;
-
-    data = g_slice_new0(CreateFromLocationData);
-    data->main_loop = g_main_loop_new(g_main_context_get_thread_default(),
-                                      FALSE);
-
-    osinfo_media_create_from_location_async(location,
-                                            G_PRIORITY_DEFAULT,
-                                            cancellable,
-                                            on_media_create_from_location_ready,
-                                            data);
-
-    /* Loop till we get a reply (or time out) */
-    g_main_loop_run(data->main_loop);
-
-    ret = osinfo_media_create_from_location_finish(data->res, error);
-    create_from_location_data_free(data);
-
-    return ret;
+    return osinfo_media_create_from_location_with_flags(location,
+                                                        cancellable,
+                                                        OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE,
+                                                        error);
 }
 
 /**
@@ -1331,23 +1315,12 @@ void osinfo_media_create_from_location_async(const gchar *location,
                                              GAsyncReadyCallback callback,
                                              gpointer user_data)
 {
-    CreateFromLocationAsyncData *data;
-
-    g_return_if_fail(location != NULL);
-
-    data = g_slice_new0(CreateFromLocationAsyncData);
-    data->res = g_task_new(NULL,
-                           cancellable,
-                           callback,
-                           user_data);
-    g_task_set_priority(data->res, priority);
-
-    data->file = g_file_new_for_commandline_arg(location);
-    g_file_read_async(data->file,
-                      priority,
-                      cancellable,
-                      on_location_read,
-                      data);
+    osinfo_media_create_from_location_with_flags_async(location,
+                                                       priority,
+                                                       cancellable,
+                                                       callback,
+                                                       OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE,
+                                                       user_data);
 }
 
 /**
@@ -1363,11 +1336,7 @@ void osinfo_media_create_from_location_async(const gchar *location,
 OsinfoMedia *osinfo_media_create_from_location_finish(GAsyncResult *res,
                                                       GError **error)
 {
-    GTask *task = G_TASK(res);
-
-    g_return_val_if_fail(error == NULL || *error == NULL, NULL);
-
-    return g_task_propagate_pointer(task, error);
+    return osinfo_media_create_from_location_with_flags_finish(res, error);
 }
 
 /**
