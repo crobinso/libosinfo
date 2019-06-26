@@ -1295,13 +1295,13 @@ static void on_location_read(GObject *source,
                              GAsyncResult *res,
                              gpointer user_data)
 {
-    GFileInputStream *stream;
+    GInputStream *stream;
     CreateFromLocationAsyncData *data;
     GError *error = NULL;
 
     data = (CreateFromLocationAsyncData *)user_data;
 
-    stream = g_file_read_finish(G_FILE(source), res, &error);
+    stream = G_INPUT_STREAM(g_file_read_finish(G_FILE(source), res, &error));
     if (error != NULL) {
         g_prefix_error(&error, _("Failed to open file: "));
         g_task_return_error(data->res, error);
@@ -1310,7 +1310,7 @@ static void on_location_read(GObject *source,
         return;
     }
 
-    g_input_stream_skip_async(G_INPUT_STREAM(stream),
+    g_input_stream_skip_async(stream,
                               PVD_OFFSET,
                               g_task_get_priority(data->res),
                               g_task_get_cancellable(data->res),
