@@ -359,7 +359,7 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
     pspec = g_param_spec_boolean("has-treeinfo",
                                  "HasTreeinfo",
                                  _("Whether the tree has treeinfo"),
-                                 TRUE /* default value */,
+                                 FALSE /* default value */,
                                  G_PARAM_READWRITE |
                                  G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_HAS_TREEINFO, pspec);
