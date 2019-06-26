@@ -875,6 +875,111 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
     return ret;
 }
 
+static void fill_tree(OsinfoDb *db, OsinfoTree *tree,
+                      OsinfoTree *matched_tree,
+                      OsinfoOs *os)
+{
+    const gchar *id;
+    const gchar *kernel_path;
+    const gchar *initrd_path;
+    const gchar *boot_iso_path;
+    const gchar *arch;
+    const gchar *url;
+    gboolean has_treeinfo;
+    GList *variants, *node;
+
+    id = osinfo_entity_get_id(OSINFO_ENTITY(matched_tree));
+    g_object_set(G_OBJECT(tree), "id", id, NULL);
+
+    arch = osinfo_tree_get_architecture(matched_tree);
+    if (arch != NULL)
+        g_object_set(G_OBJECT(tree), "architecture", arch, NULL);
+    url = osinfo_tree_get_url(matched_tree);
+    if (url != NULL)
+        g_object_set(G_OBJECT(tree), "url", url, NULL);
+    variants = osinfo_entity_get_param_value_list(OSINFO_ENTITY(matched_tree),
+                                                  "variant");
+    for (node = variants; node != NULL; node = node->next)
+        osinfo_entity_add_param(OSINFO_ENTITY(tree),
+                                "variant",
+                                (gchar *) node->data);
+    g_list_free(variants);
+    kernel_path = osinfo_tree_get_kernel_path(matched_tree);
+    if (kernel_path != NULL)
+        g_object_set(G_OBJECT(tree), "kernel", kernel_path, NULL);
+
+    initrd_path = osinfo_tree_get_initrd_path(matched_tree);
+    if (initrd_path != NULL)
+        g_object_set(G_OBJECT(tree), "initrd", initrd_path, NULL);
+
+    boot_iso_path = osinfo_tree_get_boot_iso_path(matched_tree);
+    if (boot_iso_path != NULL)
+        g_object_set(G_OBJECT(tree), "boot-iso", boot_iso_path, NULL);
+
+    has_treeinfo = osinfo_tree_has_treeinfo(matched_tree);
+    if (has_treeinfo) {
+        const gchar *treeinfo_family;
+        const gchar *treeinfo_variant;
+        const gchar *treeinfo_version;
+        const gchar *treeinfo_arch;
+
+        treeinfo_family = osinfo_tree_get_treeinfo_family(matched_tree);
+        if (treeinfo_family != NULL)
+            g_object_set(G_OBJECT(tree), "treeinfo-family", treeinfo_family, NULL);
+
+        treeinfo_variant = osinfo_tree_get_treeinfo_variant(matched_tree);
+        if (treeinfo_variant != NULL)
+            g_object_set(G_OBJECT(tree), "treeinfo-variant", treeinfo_variant, NULL);
+
+        treeinfo_version = osinfo_tree_get_treeinfo_version(matched_tree);
+        if (treeinfo_version != NULL)
+            g_object_set(G_OBJECT(tree), "treeinfo-version", treeinfo_version, NULL);
+
+        treeinfo_arch = osinfo_tree_get_treeinfo_arch(matched_tree);
+        if (treeinfo_arch != NULL)
+            g_object_set(G_OBJECT(tree), "treeinfo-arch", treeinfo_arch, NULL);
+
+        g_object_set(G_OBJECT(tree), "has-treeinfo", TRUE, NULL);
+    }
+
+    if (os != NULL)
+        osinfo_tree_set_os(tree, os);
+}
+
+/**
+ * osinfo_db_identify_tree:
+ * @db: an #OsinfoDb database
+ * @tree: the installation tree
+ * data
+ *
+ * Try to match a newly created @tree with a tree description from @db.
+ * If found, @tree will be filled with the corresponding information
+ * stored in @db. In particular, after a call to osinfo_db_identify_tree(), if
+ * the tree could be identified, its OsinfoEntify::id and OsinfoMedia::os
+ * properties will be set.
+ *
+ * Returns: TRUE if @tree was found in @db, FALSE otherwise
+ */
+gboolean osinfo_db_identify_tree(OsinfoDb *db,
+                                 OsinfoTree *tree)
+{
+    OsinfoTree *matched_tree;
+    OsinfoOs *matched_os;
+
+    g_return_val_if_fail(OSINFO_IS_TREE(tree), FALSE);
+    g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
+
+    matched_os = osinfo_db_guess_os_from_tree(db, tree,
+                                              &matched_tree);
+    if (matched_os == NULL) {
+        return FALSE;
+    }
+
+    fill_tree(db, tree, matched_tree, matched_os);
+
+    return TRUE;
+}
+
 struct osinfo_db_populate_values_args {
     GHashTable *values;
     const gchar *property;

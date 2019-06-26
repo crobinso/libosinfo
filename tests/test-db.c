@@ -528,6 +528,35 @@ test_guess_os_from_tree(void)
 }
 
 
+static void
+test_identify_tree(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoTree *tree;
+
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    /* Matching against an "all" architecture" */
+    tree = create_tree("x86_64", FALSE);
+    g_assert_true(osinfo_db_identify_tree(db, tree));
+    g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "all");
+    g_object_unref(tree);
+
+    /* Matching against a known architecture, which has to have precendence */
+    tree = create_tree("i686", TRUE);
+    g_assert_true(osinfo_db_identify_tree(db, tree));
+    g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "i686");
+    g_object_unref(tree);
+
+    g_object_unref(loader);
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -543,6 +572,7 @@ main(int argc, char *argv[])
     g_test_add_func("/db/rel_os", test_rel_os);
     g_test_add_func("/db/identify_media", test_identify_media);
     g_test_add_func("/db/guess_os_from_tree", test_guess_os_from_tree);
+    g_test_add_func("/db/identify_tree", test_identify_tree);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_entity_get_type();

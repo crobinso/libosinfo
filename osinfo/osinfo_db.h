@@ -110,6 +110,8 @@ gboolean osinfo_db_identify_media(OsinfoDb *db,
 OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
                                        OsinfoTree *tree,
                                        OsinfoTree **matched_tree);
+gboolean osinfo_db_identify_tree(OsinfoDb *db,
+                                 OsinfoTree *tree);
 
 // Get me all unique values for property "vendor" among operating systems
 GList *osinfo_db_unique_values_for_property_in_os(OsinfoDb *db, const gchar *propName);
