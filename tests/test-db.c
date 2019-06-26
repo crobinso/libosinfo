@@ -493,42 +493,6 @@ create_tree(const gchar *arch, gboolean set_treeinfo_arch)
 
 
 static void
-test_guess_os_from_tree(void)
-{
-    OsinfoLoader *loader = osinfo_loader_new();
-    OsinfoDb *db;
-    OsinfoTree *tree;
-    OsinfoTree *matched_tree = NULL;
-    OsinfoOs *os;
-
-    GError *error = NULL;
-
-    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
-    g_assert_no_error(error);
-    db = osinfo_loader_get_db(loader);
-
-    /* Matching against an "all" architecture" */
-    tree = create_tree("x86_64", FALSE);
-    os = osinfo_db_guess_os_from_tree(db, tree, &matched_tree);
-    g_assert_nonnull(os);
-    g_assert_nonnull(matched_tree);
-    g_assert_cmpstr(osinfo_tree_get_architecture(matched_tree), ==, "all");
-    g_object_unref(tree);
-    matched_tree = NULL;
-
-    /* Matching against a known architecture, which has to have precendence */
-    tree = create_tree("i686", TRUE);
-    os = osinfo_db_guess_os_from_tree(db, tree, &matched_tree);
-    g_assert_nonnull(os);
-    g_assert_nonnull(matched_tree);
-    g_assert_cmpstr(osinfo_tree_get_architecture(matched_tree), ==, "i686");
-
-    g_object_unref(tree);
-    g_object_unref(loader);
-}
-
-
-static void
 test_identify_tree(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
@@ -571,7 +535,6 @@ main(int argc, char *argv[])
     g_test_add_func("/db/prop_os", test_prop_os);
     g_test_add_func("/db/rel_os", test_rel_os);
     g_test_add_func("/db/identify_media", test_identify_media);
-    g_test_add_func("/db/guess_os_from_tree", test_guess_os_from_tree);
     g_test_add_func("/db/identify_tree", test_identify_tree);
 
     /* Upfront so we don't confuse valgrind */

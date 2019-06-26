@@ -107,6 +107,7 @@ OsinfoOs *osinfo_db_guess_os_from_media(OsinfoDb *db,
 gboolean osinfo_db_identify_media(OsinfoDb *db,
                                   OsinfoMedia *media);
 
+G_DEPRECATED_FOR(osinfo_db_identify_tree)
 OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
                                        OsinfoTree *tree,
                                        OsinfoTree **matched_tree);

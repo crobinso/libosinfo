@@ -840,20 +840,10 @@ static gboolean compare_tree(OsinfoTree *tree,
     return FALSE;
 }
 
-/**
- * osinfo_db_guess_os_from_tree:
- * @db: the database
- * @tree: the installation tree
- * @matched_tree: (out) (transfer none) (allow-none): the matched operating
- * system tree
- *
- * Guess operating system given an #OsinfoTree object.
- *
- * Returns: (transfer none): the operating system, or NULL if guessing failed
- */
-OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
-                                       OsinfoTree *tree,
-                                       OsinfoTree **matched_tree)
+static OsinfoOs *
+osinfo_db_guess_os_from_tree_internal(OsinfoDb *db,
+                                      OsinfoTree *tree,
+                                      OsinfoTree **matched_tree)
 {
     OsinfoOs *ret = NULL;
     GList *oss = NULL;
@@ -873,6 +863,25 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
     g_list_free(fallback_oss);
 
     return ret;
+}
+
+/**
+ * osinfo_db_guess_os_from_tree:
+ * @db: the database
+ * @tree: the installation tree
+ * @matched_tree: (out) (transfer none) (allow-none): the matched operating
+ * system tree
+ *
+ * Guess operating system given an #OsinfoTree object.
+ *
+ * Returns: (transfer none): the operating system, or NULL if guessing failed
+ * Deprecated: 1.6.0: Use osinfo_db_identify_tree() instead.
+ */
+OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
+                                       OsinfoTree *tree,
+                                       OsinfoTree **matched_tree)
+{
+    return osinfo_db_guess_os_from_tree_internal(db, tree, matched_tree);
 }
 
 static void fill_tree(OsinfoDb *db, OsinfoTree *tree,
@@ -969,8 +978,8 @@ gboolean osinfo_db_identify_tree(OsinfoDb *db,
     g_return_val_if_fail(OSINFO_IS_TREE(tree), FALSE);
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
-    matched_os = osinfo_db_guess_os_from_tree(db, tree,
-                                              &matched_tree);
+    matched_os = osinfo_db_guess_os_from_tree_internal(db, tree,
+                                                       &matched_tree);
     if (matched_os == NULL) {
         return FALSE;
     }
