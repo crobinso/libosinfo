@@ -363,6 +363,58 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
                                  G_PARAM_READWRITE |
                                  G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_HAS_TREEINFO, pspec);
+
+    /**
+     * OsinfoTree:treeinfo-family
+     *
+     * The treeinfo family
+     */
+    pspec = g_param_spec_string("treeinfo-family",
+                                "TreeInfoFamily",
+                                _("The treeinfo family"),
+                                NULL /* default value */,
+                                G_PARAM_READWRITE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+
+    /**
+     * OsinfoTree:treeinfo-variant
+     *
+     * The treeinfo variant
+     */
+    pspec = g_param_spec_string("treeinfo-variant",
+                                "TreeInfoVariant",
+                                _("The treeinfo variant"),
+                                NULL /* default value */,
+                                G_PARAM_READWRITE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+
+    /**
+     * OsinfoTree:treeinfo-version
+     *
+     * The treeinfo version
+     */
+    pspec = g_param_spec_string("treeinfo-version",
+                                "TreeInfoVersion",
+                                _("The treeinfo version"),
+                                NULL /* default value */,
+                                G_PARAM_READWRITE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+
+    /**
+     * OsinfoTree:treeinfo-arch
+     *
+     * The treeinfo arch
+     */
+    pspec = g_param_spec_string("treeinfo-arch",
+                                "TreeInfoArch",
+                                _("The treeinfo architecture"),
+                                NULL /* default value */,
+                                G_PARAM_READWRITE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
 }
 
 static void
