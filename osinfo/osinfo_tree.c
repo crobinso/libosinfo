@@ -313,58 +313,6 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
     g_object_class_install_property(g_klass, PROP_URL, pspec);
 
     /**
-     * OsinfoTree:volume-id:
-     *
-     * Expected volume ID (regular expression) for ISO9660 image/device.
-     */
-    pspec = g_param_spec_string("volume-id",
-                                "VolumeID",
-                                _("The expected ISO9660 volume ID"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
-
-    /**
-     * OsinfoTree:publisher-id:
-     *
-     * Expected publisher ID (regular expression) for ISO9660 image/device.
-     */
-    pspec = g_param_spec_string("publisher-id",
-                                "PublisherID",
-                                _("The expected ISO9660 publisher ID"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_VARIANT, pspec);
-
-    /**
-     * OsinfoTree:application-id:
-     *
-     * Expected application ID (regular expression) for ISO9660 image/device.
-     */
-    pspec = g_param_spec_string("application-id",
-                                "ApplicationID",
-                                _("The expected ISO9660 application ID"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_VERSION, pspec);
-
-    /**
-     * OsinfoTree:system-id:
-     *
-     * Expected system ID (regular expression) for ISO9660 image/device.
-     */
-    pspec = g_param_spec_string("system-id",
-                                "SystemID",
-                                _("The expected ISO9660 system ID"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_ARCH, pspec);
-
-    /**
      * OsinfoTree:kernel-path:
      *
      * The path to the kernel image in the install tree.
