@@ -173,8 +173,11 @@ static void print_media(OsinfoMedia *media)
     g_object_unref(os);
 }
 
-static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tree)
+static void print_tree(OsinfoTree *tree)
 {
+    OsinfoOs *os;
+
+    g_object_get(G_OBJECT(tree), "os", &os, NULL);
     if (os == NULL)
         return;
 
@@ -185,15 +188,15 @@ static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tr
         const gchar *bootiso = osinfo_tree_get_boot_iso_path(tree);
 
         if (!kernel)
-            kernel = osinfo_tree_get_kernel_path(matched_tree);
+            kernel = osinfo_tree_get_kernel_path(tree);
         if (!initrd)
-            initrd = osinfo_tree_get_initrd_path(matched_tree);
+            initrd = osinfo_tree_get_initrd_path(tree);
         if (!bootiso)
-            bootiso = osinfo_tree_get_boot_iso_path(matched_tree);
+            bootiso = osinfo_tree_get_boot_iso_path(tree);
 
         g_print("OSINFO_INSTALLER=%s\n", id);
         g_print("OSINFO_TREE=%s\n",
-                osinfo_entity_get_id(OSINFO_ENTITY(matched_tree)));
+                osinfo_entity_get_id(OSINFO_ENTITY(tree)));
         if (kernel)
             g_print("OSINFO_TREE_KERNEL=%s\n", kernel);
         if (initrd)
@@ -205,7 +208,7 @@ static void print_os_tree(OsinfoOs *os, OsinfoTree *tree, OsinfoTree *matched_tr
         const gchar *name;
         guint num_variants;
 
-        variants = osinfo_tree_get_os_variants(matched_tree);
+        variants = osinfo_tree_get_os_variants(tree);
         num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
         if (num_variants == 1) {
             OsinfoEntity *variant;
@@ -299,9 +302,7 @@ gint main(gint argc, gchar **argv)
         osinfo_db_identify_media(db, media);
         print_media(media);
     } else if (type == URL_TYPE_TREE) {
-        OsinfoOs *os = NULL;
         OsinfoTree *tree = NULL;
-        OsinfoTree *matched_tree = NULL;
         tree = osinfo_tree_create_from_location(argv[1], NULL, &error);
         if (error != NULL) {
             g_printerr(_("Error parsing installer tree: %s\n"), error->message);
@@ -309,8 +310,8 @@ gint main(gint argc, gchar **argv)
             ret = -3;
             goto EXIT;
         }
-        os = osinfo_db_guess_os_from_tree(db, tree, &matched_tree);
-        print_os_tree(os, tree, matched_tree);
+        osinfo_db_identify_tree(db, tree);
+        print_tree(tree);
     }
 
 
