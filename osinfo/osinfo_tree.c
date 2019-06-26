@@ -787,14 +787,12 @@ const gchar *osinfo_tree_get_url(OsinfoTree *tree)
  * osinfo_tree_get_treeinfo_family:
  * @tree: an #OsinfoTree instance
  *
- * If @tree is an ISO9660 image/device, this function retrieves the expected
- * volume ID.
+ * If @tree has treeinfo, this function retrieves the expected family.
  *
- * Note: In practice, this will usually not be the exact copy of the volume ID
- * string on the ISO image/device but rather a regular expression that matches
- * it.
+ * Note: In practice, this will usually not be the exact copy of the family
+ * but rather a regular expression that matches it.
  *
- * Returns: (transfer none): the volume id, or NULL
+ * Returns: (transfer none): the treeinfo family, or NULL
  */
 const gchar *osinfo_tree_get_treeinfo_family(OsinfoTree *tree)
 {
@@ -806,14 +804,12 @@ const gchar *osinfo_tree_get_treeinfo_family(OsinfoTree *tree)
  * osinfo_tree_get_treeinfo_arch:
  * @tree: an #OsinfoTree instance
  *
- * If @tree is an ISO9660 image/device, this function retrieves the expected
- * system ID.
+ * If @tree has treeinfo, this function retrieves the expected architecture.
  *
- * Note: In practice, this will usually not be the exact copy of the system ID
- * string on the ISO image/device but rather a regular expression that matches
- * it.
+ * Note: In practice, this will usually not be the exact copy of the
+ * architecture but rather a regular expression that matches it.
  *
- * Returns: (transfer none): the system id, or NULL
+ * Returns: (transfer none): the treeinfo architecture, or NULL
  */
 const gchar *osinfo_tree_get_treeinfo_arch(OsinfoTree *tree)
 {
@@ -825,14 +821,12 @@ const gchar *osinfo_tree_get_treeinfo_arch(OsinfoTree *tree)
  * osinfo_tree_get_treeinfo_variant:
  * @tree: an #OsinfoTree instance
  *
- * If @tree is an ISO9660 image/device, this function retrieves the expected
- * publisher ID.
+ * If @tree has treeinfo, this function retrieves the expected variant.
  *
- * Note: In practice, this will usually not be the exact copy of the publisher
- * ID string on the ISO image/device but rather a regular expression that
- * matches it.
+ * Note: In practice, this will usually not be the exact copy of the variant
+ * but rather a regular expression that matches it.
  *
- * Returns: (transfer none): the publisher id, or NULL
+ * Returns: (transfer none): the treeinfo variant, or NULL
  */
 const gchar *osinfo_tree_get_treeinfo_variant(OsinfoTree *tree)
 {
@@ -844,14 +838,12 @@ const gchar *osinfo_tree_get_treeinfo_variant(OsinfoTree *tree)
  * osinfo_tree_get_treeinfo_version:
  * @tree: an #OsinfoTree instance
  *
- * If @tree is an ISO9660 image/device, this function retrieves the expected
- * application ID.
+ * If @tree has treeinfo, this function retrieves the expected version.
  *
- * Note: In practice, this will usually not be the exact copy of the application
- * ID string on the ISO image/device but rather a regular expression that
- * matches it.
+ * Note: In practice, this will usually not be the exact copy of version but
+ * rather a regular expression that matches it.
  *
- * Returns: (transfer none): the application id, or NULL
+ * Returns: (transfer none): the treeinfo version, or NULL
  */
 const gchar *osinfo_tree_get_treeinfo_version(OsinfoTree *tree)
 {
