@@ -1303,7 +1303,7 @@ static void on_location_read(GObject *source,
 
     stream = g_file_read_finish(G_FILE(source), res, &error);
     if (error != NULL) {
-        g_prefix_error(&error, _("Failed to open file"));
+        g_prefix_error(&error, _("Failed to open file: "));
         g_task_return_error(data->res, error);
         create_from_location_async_data_free(data);
 
