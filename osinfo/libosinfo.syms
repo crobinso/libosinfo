@@ -605,6 +605,8 @@ LIBOSINFO_1.6.0 {
 	osinfo_media_is_bootable;
 
 	osinfo_os_get_kernel_url_argument;
+
+	osinfo_tree_error_get_type;
 } LIBOSINFO_1.5.0;
 
 /* Symbols in next release...

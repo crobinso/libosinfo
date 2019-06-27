@@ -37,8 +37,8 @@ m4_if(m4_version_compare([2.61a.100],
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 # Keep these two definitions in agreement.
-GLIB_MINIMUM_VERSION="2.38"
-GLIB_ENCODED_VERSION="GLIB_VERSION_2_38"
+GLIB_MINIMUM_VERSION="2.44"
+GLIB_ENCODED_VERSION="GLIB_VERSION_2_44"
 
 PKG_CHECK_MODULES([LIBXML], [libxml-2.0 >= 2.6.0])
 PKG_CHECK_MODULES([LIBXSLT], [libxslt >= 1.0.0])

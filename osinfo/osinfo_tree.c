@@ -26,14 +26,19 @@
 #include <config.h>
 
 #include <osinfo/osinfo.h>
+#include "osinfo_util_private.h"
 #include <gio/gio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
+#include <libsoup/soup.h>
 
 typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
-    GFile *file;
+    SoupSession *session;
+    SoupMessage *message;
+
+    gchar *content;
     gchar *location;
     gchar *treeinfo;
 
@@ -42,7 +47,8 @@ struct _CreateFromLocationAsyncData {
 
 static void create_from_location_async_data_free(CreateFromLocationAsyncData *data)
 {
-    g_object_unref(data->file);
+    g_object_unref(data->session);
+    g_object_unref(data->message);
     g_object_unref(data->res);
 
     g_slice_free(CreateFromLocationAsyncData, data);
@@ -476,7 +482,7 @@ static void on_tree_create_from_location_ready(GObject *source_object,
  * @error: The location where to store any error, or %NULL
  *
  * Creates a new #OsinfoTree for installation tree at @location. The @location
- * could be any URI that GIO can handle or a local path.
+ * could be a http:// or a https:// URI.
  *
  * NOTE: Currently this only works for trees with a .treeinfo file
  *
@@ -653,39 +659,28 @@ static void
 osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
                                               const gchar *treeinfo);
 
-static void on_location_read(GObject *source,
-                             GAsyncResult *res,
-                             gpointer user_data)
+static void on_content_read(GObject *source,
+                            GAsyncResult *res,
+                            gpointer user_data)
 {
     CreateFromLocationAsyncData *data;
-    GError *error = NULL;
-    gchar *content = NULL;
     gsize length = 0;
-    OsinfoTree *ret = NULL;
+    GError *error = NULL;
+    OsinfoTree *ret;
 
     data = (CreateFromLocationAsyncData *)user_data;
 
-    if (!g_file_load_contents_finish(G_FILE(source),
-                                     res,
-                                     &content,
-                                     &length,
-                                     NULL,
-                                     &error)) {
-        /* It means no ".treeinfo" file has been found. Try again, this time
-         * looking for a "treeinfo" file. */
-        if (g_str_equal(data->treeinfo, ".treeinfo")) {
-            osinfo_tree_create_from_location_async_helper(data, "treeinfo");
-            return;
-        }
-
-        g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo file: "));
+    if (!g_input_stream_read_all_finish(G_INPUT_STREAM(source),
+                                        res,
+                                        &length,
+                                        &error)) {
+        g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo content: "));
         g_task_return_error(data->res, error);
         create_from_location_async_data_free(data);
-        return;
     }
 
     if (!(ret = load_keyinfo(data->location,
-                             content,
+                             data->content,
                              length,
                              &error))) {
         g_prefix_error(&error, _("Failed to process keyinfo file: "));
@@ -697,7 +692,53 @@ static void on_location_read(GObject *source,
 
  cleanup:
     create_from_location_async_data_free(data);
-    g_free(content);
+}
+
+static void on_location_read(GObject *source,
+                             GAsyncResult *res,
+                             gpointer user_data)
+{
+    CreateFromLocationAsyncData *data;
+    GError *error = NULL;
+    GInputStream *stream;
+    goffset content_size;
+
+    data = (CreateFromLocationAsyncData *)user_data;
+
+    stream = soup_session_send_finish(SOUP_SESSION(source),
+                                      res,
+                                      &error);
+    if (stream == NULL ||
+        !SOUP_STATUS_IS_SUCCESSFUL(data->message->status_code)) {
+        /* It means no ".treeinfo" file has been found. Try again, this time
+         * looking for a "treeinfo" file. */
+        if (g_str_equal(data->treeinfo, ".treeinfo")) {
+            osinfo_tree_create_from_location_async_helper(data, "treeinfo");
+            return;
+        }
+
+        if (error == NULL) {
+            g_set_error_literal(&error,
+                                OSINFO_TREE_ERROR,
+                                OSINFO_TREE_ERROR_NO_TREEINFO,
+                                soup_status_get_phrase(data->message->status_code));
+        }
+        g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo file: "));
+        g_task_return_error(data->res, error);
+        create_from_location_async_data_free(data);
+        return;
+    }
+
+    content_size = soup_message_headers_get_content_length(data->message->response_headers);
+    data->content = g_malloc0(content_size);
+
+    g_input_stream_read_all_async(stream,
+                                  data->content,
+                                  content_size,
+                                  g_task_get_priority(data->res),
+                                  g_task_get_cancellable(data->res),
+                                  on_content_read,
+                                  data);
 }
 
 static void
@@ -708,18 +749,33 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
 
     g_return_if_fail(treeinfo != NULL);
 
+    if (!osinfo_util_requires_soup(data->location)) {
+        GError *error = NULL;
+
+        g_set_error_literal(&error,
+                            OSINFO_TREE_ERROR,
+                            OSINFO_TREE_ERROR_NOT_SUPPORTED_PROTOCOL,
+                            _("URL protocol is not supported"));
+
+        g_task_return_error(data->res, error);
+    }
+
     location = g_strdup_printf("%s/%s", data->location, treeinfo);
 
-    g_clear_object(&data->file);
-    data->file = g_file_new_for_uri(location);
+    if (data->session == NULL)
+        data->session = soup_session_new();
+
+    g_clear_object(&data->message);
+    data->message = soup_message_new("GET", location);
 
     g_free(data->treeinfo);
     data->treeinfo = g_strdup(treeinfo);
 
-    g_file_load_contents_async(data->file,
-                               g_task_get_cancellable(data->res),
-                               on_location_read,
-                               data);
+    soup_session_send_async(data->session,
+                            data->message,
+                            g_task_get_cancellable(data->res),
+                            on_location_read,
+                            data);
     g_free(location);
 }
 
