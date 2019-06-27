@@ -22,7 +22,6 @@ BuildRequires: osinfo-db
 Requires: hwdata
 Requires: osinfo-db
 Requires: osinfo-db-tools
-Requires: gvfs
 
 %description
 libosinfo is a library that allows virtualization provisioning tools to
