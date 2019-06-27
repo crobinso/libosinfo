@@ -27,10 +27,12 @@
 
 #include <osinfo/osinfo.h>
 #include "osinfo_media_private.h"
+#include "osinfo_util_private.h"
 #include <gio/gio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
+#include <libsoup/soup.h>
 
 #define MAX_VOLUME 32
 #define MAX_SYSTEM 32
@@ -129,6 +131,9 @@ static void search_ppc_bootinfo_async_data_free(SearchPPCBootinfoAsyncData *data
 typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
     GFile *file;
+    SoupSession *session;
+    SoupMessage *message;
+    gchar *uri;
 
     GTask *res;
 
@@ -150,7 +155,12 @@ struct _CreateFromLocationAsyncData {
 static void create_from_location_async_data_free
                                 (CreateFromLocationAsyncData *data)
 {
-    g_object_unref(data->file);
+    if (data->file != NULL)
+        g_object_unref(data->file);
+    if (data->session != NULL)
+        g_object_unref(data->session);
+    if (data->message != NULL)
+        g_object_unref(data->message);
     g_object_unref(data->res);
     g_free(data->volume);
     g_free(data->system);
@@ -748,7 +758,7 @@ static void on_media_create_from_location_ready(GObject *source_object,
  * @error: The location where to store any error, or %NULL
  *
  * Creates a new #OsinfoMedia for installation media at @location. The @location
- * could be any URI that GIO can handle or a local path.
+ * could be a http:// or a https:// URI or a local path.
  *
  * NOTE: Currently this only works for ISO images/devices.
  *
@@ -772,7 +782,7 @@ OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
  * @flags: An #OsinfoMediaDetectFlag, or 0.
  *
  * Creates a new #OsinfoMedia for installation media at @location. The @location
- * could be any URI that GIO can handle or a local path.
+ * could be a http:// or a https:// URI or a local path.
  *
  * NOTE: Currently this only works for ISO images/devices.
  *
@@ -837,18 +847,15 @@ static OsinfoMedia *
 create_from_location_async_data(CreateFromLocationAsyncData *data)
 {
     OsinfoMedia *media;
-    gchar *uri;
     guint64 vol_size;
     guint8 index;
 
-    uri = g_file_get_uri(data->file);
     media = g_object_new(OSINFO_TYPE_MEDIA,
-                         "id", uri,
+                         "id", data->uri,
                          NULL);
     osinfo_entity_set_param(OSINFO_ENTITY(media),
                             OSINFO_MEDIA_PROP_URL,
-                            uri);
-    g_free(uri);
+                            data->uri);
     if (!is_str_empty(data->volume))
         osinfo_entity_set_param(OSINFO_ENTITY(media),
                                 OSINFO_MEDIA_PROP_VOLUME_ID,
@@ -1301,7 +1308,17 @@ static void on_location_read(GObject *source,
 
     data = (CreateFromLocationAsyncData *)user_data;
 
-    stream = G_INPUT_STREAM(g_file_read_finish(G_FILE(source), res, &error));
+    if (data->file != NULL) {
+        stream = G_INPUT_STREAM(g_file_read_finish(G_FILE(source), res, &error));
+    } else {
+        stream = soup_session_send_finish(SOUP_SESSION(source), res, &error);
+        if (!SOUP_STATUS_IS_SUCCESSFUL(data->message->status_code) && error == NULL) {
+            g_set_error_literal(&error,
+                                OSINFO_MEDIA_ERROR,
+                                OSINFO_MEDIA_ERROR_NO_DESCRIPTORS,
+                                soup_status_get_phrase(data->message->status_code));
+        }
+    }
     if (error != NULL) {
         g_prefix_error(&error, _("Failed to open file: "));
         g_task_return_error(data->res, error);
@@ -1392,12 +1409,25 @@ void osinfo_media_create_from_location_with_flags_async(const gchar *location,
     g_task_set_priority(data->res, priority);
     data->flags = flags;
 
-    data->file = g_file_new_for_commandline_arg(location);
-    g_file_read_async(data->file,
-                      priority,
-                      cancellable,
-                      on_location_read,
-                      data);
+    data->uri = g_strdup(location);
+
+    if (osinfo_util_requires_soup(location)) {
+        data->session = soup_session_new();
+        data->message = soup_message_new("GET", location);
+
+        soup_session_send_async(data->session,
+                                data->message,
+                                cancellable,
+                                on_location_read,
+                                data);
+    } else {
+        data->file = g_file_new_for_commandline_arg(location);
+        g_file_read_async(data->file,
+                          priority,
+                          cancellable,
+                          on_location_read,
+                          data);
+    }
 }
 
 /**

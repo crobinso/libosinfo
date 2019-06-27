@@ -13,6 +13,7 @@ BuildRequires: gettext-devel
 BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
 BuildRequires: libxslt-devel >= 1.0.0
+BuildRequires: libsoup-devel
 BuildRequires: vala
 BuildRequires: /usr/bin/pod2man
 BuildRequires: hwdata

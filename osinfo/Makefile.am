@@ -50,6 +50,7 @@ libosinfo_impl_la_CFLAGS = \
 	$(GOBJECT_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
+	$(LIBSOUP_CFLAGS) \
 	-DDATA_DIR='"$(datadir)"' \
 	-DPKG_DATA_DIR='"$(pkgdatadir)"' \
 	-DSYS_CONF_DIR='"$(sysconfdir)"' \
@@ -61,7 +62,9 @@ libosinfo_impl_la_LIBADD = \
 	$(LIBXSLT_LIBS) \
 	$(GOBJECT_LIBS) \
 	$(GLIB_LIBS) \
-	$(GIO_LIBS)
+	$(GIO_LIBS) \
+	$(LIBSOUP_LIBS) \
+	$(NULL)
 
 libosinfo_impl_includedir = $(includedir)/libosinfo-1.0/osinfo
 
@@ -153,6 +156,7 @@ libosinfo_c_files =		\
   osinfo_imagelist.c		\
   osinfo_db.c				\
   osinfo_loader.c			\
+  osinfo_util_private.c		\
   $(NULL)
 
 libosinfo_private_header_files =	\
@@ -161,6 +165,7 @@ libosinfo_private_header_files =	\
   osinfo_product_private.h		\
   osinfo_media_private.h		\
   osinfo_resources_private.h		\
+  osinfo_util_private.h		\
   ignore-value.h			\
   $(NULL)
 
