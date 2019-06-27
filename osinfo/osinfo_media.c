@@ -150,14 +150,14 @@ struct _CreateFromLocationAsyncData {
 static void create_from_location_async_data_free
                                 (CreateFromLocationAsyncData *data)
 {
-   g_object_unref(data->file);
-   g_object_unref(data->res);
-   g_free(data->volume);
-   g_free(data->system);
-   g_free(data->application);
-   g_free(data->publisher);
+    g_object_unref(data->file);
+    g_object_unref(data->res);
+    g_free(data->volume);
+    g_free(data->system);
+    g_free(data->application);
+    g_free(data->publisher);
 
-   g_slice_free(CreateFromLocationAsyncData, data);
+    g_slice_free(CreateFromLocationAsyncData, data);
 }
 
 typedef struct _CreateFromLocationData CreateFromLocationData;
