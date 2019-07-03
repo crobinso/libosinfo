@@ -37,6 +37,34 @@ static gboolean list_profile = FALSE;
 static gboolean list_inj_method = FALSE;
 static gboolean quiet = FALSE;
 
+static const gchar *configs[] = {
+    OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH,
+    OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE,
+    OSINFO_INSTALL_CONFIG_PROP_L10N_LANGUAGE,
+    OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD,
+    OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD,
+    OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD,
+    OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN,
+    OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME,
+    OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN,
+    OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN,
+    OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN,
+    OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD,
+    OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY,
+    OSINFO_INSTALL_CONFIG_PROP_HOSTNAME,
+    OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK,
+    OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK,
+    OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION,
+    OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK,
+    OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_DISK,
+    OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_LOCATION,
+    OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_DISK,
+    OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_LOCATION,
+    OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING,
+    OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL,
+    NULL
+};
+
 static OsinfoInstallConfig *config;
 
 static gboolean handle_config(const gchar *option_name G_GNUC_UNUSED,
@@ -65,6 +93,47 @@ static gboolean handle_config(const gchar *option_name G_GNUC_UNUSED,
 }
 
 
+static gboolean handle_config_file(const gchar *option_name G_GNUC_UNUSED,
+                                   const gchar *value,
+                                   gpointer data G_GNUC_UNUSED,
+                                   GError **error)
+{
+    GKeyFile *key_file = NULL;
+    gchar *val = NULL;
+    gsize i;
+    gboolean ret = FALSE;
+
+    key_file = g_key_file_new();
+    if (!g_key_file_load_from_file(key_file, value, G_KEY_FILE_NONE, error))
+        goto error;
+
+    for (i = 0; configs[i] != NULL; i++) {
+        val = g_key_file_get_string(key_file, "install-script", configs[i], error);
+        if (val == NULL) {
+            if (g_error_matches(*error, G_KEY_FILE_ERROR,
+                                G_KEY_FILE_ERROR_KEY_NOT_FOUND)) {
+                g_clear_error(error);
+                continue;
+            }
+
+            goto error;
+        }
+
+        osinfo_entity_set_param(OSINFO_ENTITY(config),
+                                configs[i],
+                                val);
+        g_free(val);
+    }
+
+    ret = TRUE;
+
+error:
+    g_key_file_unref(key_file);
+
+    return ret;
+}
+
+
 static GOptionEntry entries[] =
 {
     { "profile", 'p', 0, G_OPTION_ARG_STRING, (void*)&profile,
@@ -78,6 +147,9 @@ static GOptionEntry entries[] =
     { "config", 'c', 0, G_OPTION_ARG_CALLBACK,
       handle_config,
       N_("Set configuration parameter"), "key=value" },
+    { "config-file", 'f', 0, G_OPTION_ARG_CALLBACK,
+      handle_config_file,
+      N_("Set configuration parameters"), "file:///path/to/config/file" },
     { "list-config", '\0', 0, G_OPTION_ARG_NONE, (void*)&list_config,
       N_("List configuration parameters"), NULL },
     { "list-profiles", '\0', 0, G_OPTION_ARG_NONE, (void*)&list_profile,
@@ -448,6 +520,15 @@ script. Defaults to C<media>, but can also be C<network>.
 
 Set the configuration parameter C<key> to C<value>.
 
+=item B<--config-file=config-file>
+
+Set the configurations parameters according to the config-file passed.
+
+Note that use of --config-file is strongly recommended if the user or
+admin passwords need to be set. Providing passwords directly using
+B<--config=> is insecure as the password is visible to all processes
+and users on the same host.
+
 =back
 
 =head1 CONFIGURATION KEYS
@@ -510,9 +591,29 @@ The software registration user password
 
 =back
 
+=head1 CONFIGURATION FILE FORMAT
+
+The configuration file must consist in a file which contains a
+`install-script` group and, under this group, C<key>=C<value>
+pairs, as shown below:
+
+[install-script]
+l10n-timezone=GMT
+l10n-keyboard=uk
+l10n-language=en_GB
+admin-password=123456
+user-login=berrange
+user-password=123456
+user-realname="Daniel P Berrange"
+
 =head1 EXAMPLE USAGE
 
-The following usage generates a Fedora 16 kickstart script
+The following usages generates a Fedora 16 kickstart script
+
+  # osinfo-install-script \
+         --profile jeos \
+         --config-file /path/to/config/file \
+         fedora16
 
   # osinfo-install-script \
          --profile jeos \
