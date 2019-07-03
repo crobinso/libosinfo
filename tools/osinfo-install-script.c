@@ -85,6 +85,12 @@ static gboolean handle_config(const gchar *option_name G_GNUC_UNUSED,
     val++;
     key = g_strndup(value, len);
 
+    if (g_str_equal(key, OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD) ||
+        g_str_equal(key, OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD)) {
+        g_warning("When setting user or admin password, use --config-file "
+                  "instead.\n");
+    }
+
     osinfo_entity_set_param(OSINFO_ENTITY(config),
                             key,
                             val);
@@ -556,10 +562,14 @@ The local language
 =item C<admin-password>
 
 The administrator password
+This option has been deprecated, use B<--config-file>
+for setting the admin password.
 
 =item C<user-password>
 
 The user password
+This option has been deprecated, use B<--config-file>
+for setting the user password.
 
 =item C<user-login>
 
