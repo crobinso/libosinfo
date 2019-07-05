@@ -123,6 +123,7 @@ enum {
     PROP_INITRD_PATH,
     PROP_BOOT_ISO_PATH,
     PROP_HAS_TREEINFO,
+    PROP_OS,
 };
 
 static void
@@ -182,6 +183,10 @@ osinfo_tree_get_property(GObject *object,
     case PROP_HAS_TREEINFO:
         g_value_set_boolean(value,
                             osinfo_tree_has_treeinfo(tree));
+        break;
+
+    case PROP_OS:
+        g_value_take_object(value, osinfo_tree_get_os(tree));
         break;
 
     default:
@@ -259,6 +264,10 @@ osinfo_tree_set_property(GObject      *object,
         osinfo_entity_set_param_boolean(OSINFO_ENTITY(tree),
                                         OSINFO_TREE_PROP_HAS_TREEINFO,
                                         g_value_get_boolean(value));
+        break;
+
+    case PROP_OS:
+        osinfo_tree_set_os(tree, g_value_get_object(value));
         break;
 
     default:
@@ -426,6 +435,22 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
                                 G_PARAM_READWRITE |
                                 G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+
+    /**
+     * OsinfoTree:os:
+     *
+     * Os information for the current tree. For tree stored in an
+     * #OsinfoDB, it will be filled when the database is loaded, otherwise
+     * the property will be filled after a successful call to
+     * osinfo_db_identify_tree().
+     */
+    pspec = g_param_spec_object("os",
+                                "Os",
+                                _("Information about the operating system on this tree"),
+                                OSINFO_TYPE_OS,
+                                G_PARAM_READWRITE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_OS, pspec);
 }
 
 static void
