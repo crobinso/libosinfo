@@ -1557,6 +1557,8 @@ const gchar *osinfo_media_get_initrd_path(OsinfoMedia *media)
  * Whether @media provides an installer for an OS.
  *
  * Returns: #TRUE if media is installer, #FALSE otherwise
+ *
+ * Since: 0.0.3
  */
 gboolean osinfo_media_get_installer(OsinfoMedia *media)
 {
@@ -1571,6 +1573,8 @@ gboolean osinfo_media_get_installer(OsinfoMedia *media)
  * Whether @media can boot directly an OS without any installations.
  *
  * Returns: #TRUE if media is live, #FALSE otherwise
+ *
+ * Since: 0.0.3
  */
 gboolean osinfo_media_get_live(OsinfoMedia *media)
 {
