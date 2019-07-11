@@ -620,6 +620,8 @@ const gchar *osinfo_os_get_distro(OsinfoOs *os)
  * Use this to determine the release status of the @os.
  *
  * Returns: (type OsinfoReleaseStatus): release status of @os.
+ *
+ * Since: 0.2.9
  */
 int osinfo_os_get_release_status(OsinfoOs *os)
 {
@@ -744,6 +746,8 @@ void osinfo_os_add_image(OsinfoOs *os, OsinfoImage *image)
  * Gets all known variants of operating system @os.
  *
  * Returns: (transfer full): A list of variants
+ *
+ * Since: 0.2.9
  */
 OsinfoOsVariantList *osinfo_os_get_variant_list(OsinfoOs *os)
 {
@@ -762,6 +766,8 @@ OsinfoOsVariantList *osinfo_os_get_variant_list(OsinfoOs *os)
  * @variant: (transfer none): the variant to add
  *
  * Adds a variant @variant to operating system @os.
+ *
+ * Since: 0.2.9
  */
 void osinfo_os_add_variant(OsinfoOs *os, OsinfoOsVariant *variant)
 {

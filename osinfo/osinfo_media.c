@@ -1641,6 +1641,8 @@ void osinfo_media_set_os(OsinfoMedia *media, OsinfoOs *os)
  * Gets the variants of the associated operating system.
  *
  * Returns: (transfer full): the operating system variant, or NULL
+ *
+ * Since: 0.2.9
  */
 OsinfoOsVariantList *osinfo_media_get_os_variants(OsinfoMedia *media)
 {

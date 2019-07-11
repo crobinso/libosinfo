@@ -86,6 +86,7 @@ struct _OsinfoOsClass
 
 /**
  * OsinfoReleaseStatus:
+ * Since: 0.2.9
  * @OSINFO_RELEASE_STATUS_RELEASED: A released OS.
  * @OSINFO_RELEASE_STATUS_SNAPSHOT: A continuous integration snapshot and not
  * an actual released product yet. For example, gnome-continuous images for
