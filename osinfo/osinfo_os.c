@@ -338,6 +338,8 @@ osinfo_os_get_all_device_links_internal(OsinfoOs *os,
  * systems.
  *
  * Returns: (transfer full): A list of devices
+ *
+ * Since: 0.0.5
  */
 OsinfoDeviceList *osinfo_os_get_all_devices(OsinfoOs *os, OsinfoFilter *filter)
 {
