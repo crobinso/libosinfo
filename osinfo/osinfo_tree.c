@@ -67,6 +67,15 @@ static void create_from_location_data_free(CreateFromLocationData *data)
     g_slice_free(CreateFromLocationData, data);
 }
 
+/**
+ * osinfo_tree_error_quark:
+ *
+ * Gets a #GQuark representing the string "osinfo-tree-error"
+ *
+ * Returns: the #GQuark representing the string.
+ *
+ * Since: 0.1.0
+ */
 GQuark
 osinfo_tree_error_quark(void)
 {
@@ -425,6 +434,18 @@ osinfo_tree_init(OsinfoTree *tree)
     g_weak_ref_init(&tree->priv->os, NULL);
 }
 
+/**
+ * osinfo_tree_new:
+ *
+ * @id: the id of the tree to be created
+ * @architecture: the architecture of the tree to be created
+ *
+ * Create a new tree entity
+ *
+ * Returns: (trasfer full): A tree entity
+ *
+ * Since: 0.1.0
+ */
 OsinfoTree *osinfo_tree_new(const gchar *id,
                             const gchar *architecture)
 {
@@ -464,6 +485,8 @@ static void on_tree_create_from_location_ready(GObject *source_object,
  * NOTE: Currently this only works for trees with a .treeinfo file
  *
  * Returns: (transfer full): a new #OsinfoTree , or NULL on error
+ *
+ * Since: 0.1.0
  */
 OsinfoTree *osinfo_tree_create_from_location(const gchar *location,
                                              GCancellable *cancellable,
@@ -713,6 +736,8 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
  * @user_data: The user data to pass to @callback, or %NULL
  *
  * Asynchronous variant of #osinfo_tree_create_from_location.
+ *
+ * Since: 0.1.0
  */
 void osinfo_tree_create_from_location_async(const gchar *location,
                                             gint priority,
@@ -744,6 +769,8 @@ void osinfo_tree_create_from_location_async(const gchar *location,
  * #osinfo_tree_create_from_location_async.
  *
  * Returns: (transfer full): a new #OsinfoTree , or NULL on error
+ *
+ * Since: 0.1.0
  */
 OsinfoTree *osinfo_tree_create_from_location_finish(GAsyncResult *res,
                                                     GError **error)
@@ -762,6 +789,8 @@ OsinfoTree *osinfo_tree_create_from_location_finish(GAsyncResult *res,
  * Retrieves the target hardware architecture of the OS @tree provides.
  *
  * Returns: (transfer none): the hardware architecture, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_architecture(OsinfoTree *tree)
 {
@@ -793,6 +822,8 @@ const gchar *osinfo_tree_get_url(OsinfoTree *tree)
  * but rather a regular expression that matches it.
  *
  * Returns: (transfer none): the treeinfo family, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_treeinfo_family(OsinfoTree *tree)
 {
@@ -810,6 +841,8 @@ const gchar *osinfo_tree_get_treeinfo_family(OsinfoTree *tree)
  * architecture but rather a regular expression that matches it.
  *
  * Returns: (transfer none): the treeinfo architecture, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_treeinfo_arch(OsinfoTree *tree)
 {
@@ -827,6 +860,8 @@ const gchar *osinfo_tree_get_treeinfo_arch(OsinfoTree *tree)
  * but rather a regular expression that matches it.
  *
  * Returns: (transfer none): the treeinfo variant, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_treeinfo_variant(OsinfoTree *tree)
 {
@@ -844,6 +879,8 @@ const gchar *osinfo_tree_get_treeinfo_variant(OsinfoTree *tree)
  * rather a regular expression that matches it.
  *
  * Returns: (transfer none): the treeinfo version, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_treeinfo_version(OsinfoTree *tree)
 {
@@ -858,6 +895,8 @@ const gchar *osinfo_tree_get_treeinfo_version(OsinfoTree *tree)
  * Retrieves the path to the boot_iso image in the install tree.
  *
  * Returns: (transfer none): the path to boot_iso image, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_boot_iso_path(OsinfoTree *tree)
 {
@@ -874,6 +913,8 @@ const gchar *osinfo_tree_get_boot_iso_path(OsinfoTree *tree)
  * Note: This only applies to installer trees of 'linux' OS family.
  *
  * Returns: (transfer none): the path to kernel image, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_kernel_path(OsinfoTree *tree)
 {
@@ -890,6 +931,8 @@ const gchar *osinfo_tree_get_kernel_path(OsinfoTree *tree)
  * Note: This only applies to installer trees of 'linux' OS family.
  *
  * Returns: (transfer none): the path to initrd image, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree)
 {
