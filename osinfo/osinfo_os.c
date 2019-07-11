@@ -408,6 +408,8 @@ OsinfoDeviceList *osinfo_os_get_all_devices(OsinfoOs *os, OsinfoFilter *filter)
  * @os supports, for which the value of @property is @value.
  *
  * Returns: (transfer full): The found devices
+ *
+ * Since: 0.0.6
  */
 OsinfoDeviceList *osinfo_os_get_devices_by_property(OsinfoOs *os,
                                                     const gchar *property,
