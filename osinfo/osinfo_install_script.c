@@ -1937,6 +1937,8 @@ unsigned int osinfo_install_script_get_injection_methods(OsinfoInstallScript *sc
  *
  * Returns: TRUE if script needs an internet connection, FALSE otherwise
  * internet connection.
+ *
+ * Since: 0.2.11
  */
 gboolean osinfo_install_script_get_needs_internet(OsinfoInstallScript *script)
 {
