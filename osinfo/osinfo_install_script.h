@@ -118,6 +118,7 @@ typedef enum {
 
 /**
  * OsinfoInstallScriptInjectionMethod:
+ * Since: 0.2.10
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM: Support injection of the
  * installation script trough a CD-ROM.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK: Support injection of the

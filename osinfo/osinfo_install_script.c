@@ -1918,6 +1918,8 @@ int osinfo_install_script_get_post_install_drivers_signing_req(OsinfoInstallScri
  *
  * Returns: (type OsinfoInstallScriptInjectionMethod): bitwise-or of
  * supported methods for install script injection.
+ *
+ * Since: 0.2.10
  */
 unsigned int osinfo_install_script_get_injection_methods(OsinfoInstallScript *script)
 {
