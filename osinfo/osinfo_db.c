@@ -980,6 +980,8 @@ static void fill_tree(OsinfoDb *db, OsinfoTree *tree,
  * properties will be set.
  *
  * Returns: TRUE if @tree was found in @db, FALSE otherwise
+ *
+ * Since: 1.6.0
  */
 gboolean osinfo_db_identify_tree(OsinfoDb *db,
                                  OsinfoTree *tree)

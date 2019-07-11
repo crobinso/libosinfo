@@ -777,6 +777,8 @@ OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
  * NOTE: Currently this only works for ISO images/devices.
  *
  * Returns: (transfer full): a new #OsinfoMedia , or NULL on error
+ *
+ * Since: 1.6.0
  */
 OsinfoMedia *osinfo_media_create_from_location_with_flags(const gchar *location,
                                                           GCancellable *cancellable,
@@ -1349,6 +1351,8 @@ void osinfo_media_create_from_location_async(const gchar *location,
  * #osinfo_media_create_from_location_async.
  *
  * Returns: (transfer full): a new #OsinfoMedia , or NULL on error
+ *
+ * Since: 1.6.0
  */
 OsinfoMedia *osinfo_media_create_from_location_finish(GAsyncResult *res,
                                                       GError **error)
@@ -1365,7 +1369,9 @@ OsinfoMedia *osinfo_media_create_from_location_finish(GAsyncResult *res,
  * @flags: An #OsinfoMediaDetectFlag, or 0.
  * @user_data: The user data to pass to @callback, or %NULL
  *
- * Asynchronous variant of #osinfo_media_create_from_location.
+ * Asynchronous variant of #osinfo_media_create_from_location_with_flags.
+ *
+ * Since: 1.6.0
  */
 void osinfo_media_create_from_location_with_flags_async(const gchar *location,
                                                         gint priority,
@@ -1833,6 +1839,8 @@ OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media
  * @media: and #OsinfoMedia instance
  *
  * Returns: #TRUE if the @media is bootable. #FALSE otherwise.
+ *
+ * Since: 1.6.0
  */
 gboolean osinfo_media_is_bootable(OsinfoMedia *media)
 {

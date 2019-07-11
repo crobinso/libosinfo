@@ -60,6 +60,7 @@ typedef enum {
 
 /**
  * OsinfoMediaDetectFlags
+ * Since: 1.6.0
  * OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE: Requires a media to be bootable.
  *
  * Flags used for detecting a media.
