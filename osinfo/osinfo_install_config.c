@@ -106,6 +106,7 @@ osinfo_install_config_init(OsinfoInstallConfig *config)
  * Returns: (transfer full): an install configuration with default
  * values
  *
+ * Since: 0.2.0
  */
 OsinfoInstallConfig *osinfo_install_config_new(const gchar *id)
 {
@@ -114,6 +115,17 @@ OsinfoInstallConfig *osinfo_install_config_new(const gchar *id)
                         NULL);
 }
 
+/**
+ * osinfo_install_config_set_hardware_arch:
+ * @config: the install config
+ * @arch: the hardware architecture
+ *
+ * Sets the #OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH parameter.
+ *
+ * The list of valid architectures are part of osinfo.rng schema
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_hardware_arch(OsinfoInstallConfig *config,
                                              const gchar *arch)
 {
@@ -138,6 +150,8 @@ const gchar *osinfo_install_config_get_hardware_arch(OsinfoInstallConfig *config
  *
  * The expected format of this string is the same as
  * #osinfo_install_config_set_l10n_language function's 'language' parameter.
+ *
+ * Since: 0.2.0
  */
 void osinfo_install_config_set_l10n_keyboard(OsinfoInstallConfig *config,
                                              const gchar *keyboard)
@@ -147,7 +161,15 @@ void osinfo_install_config_set_l10n_keyboard(OsinfoInstallConfig *config,
                             keyboard);
 }
 
-
+/**
+ * osinfo_install_config_get_l10n_keyboard:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_l10n_keyboard(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -168,6 +190,8 @@ const gchar *osinfo_install_config_get_l10n_keyboard(OsinfoInstallConfig *config
  * Encoding and variant are (at least for now) not supported. For example,
  * 'pt_BR' is accepted is accepted as the language codes for Brazilian Portuguese
  * but 'pt_BR.utf8' is not.
+ *
+ * Since: 0.2.0
  */
 void osinfo_install_config_set_l10n_language(OsinfoInstallConfig *config,
                                              const gchar *language)
@@ -178,6 +202,15 @@ void osinfo_install_config_set_l10n_language(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_l10n_language:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_L10N_LANGUAGE parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_l10n_language(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -185,6 +218,17 @@ const gchar *osinfo_install_config_get_l10n_language(OsinfoInstallConfig *config
 }
 
 
+/**
+ * osinfo_install_config_set_l10n_timezone:
+ * @config: the install config.
+ * @tz: the timezone
+ *
+ * Set the #OSINFO_INSTALL_CONFIG_PROP_L10B_TIMEZONE parameter.
+ *
+ * The expected format of this string is the tzdata names standard.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_l10n_timezone(OsinfoInstallConfig *config,
                                              const gchar *tz)
 {
@@ -194,6 +238,15 @@ void osinfo_install_config_set_l10n_timezone(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_l10n_timezone:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_l10n_timezone(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -201,6 +254,15 @@ const gchar *osinfo_install_config_get_l10n_timezone(OsinfoInstallConfig *config
 }
 
 
+/**
+ * osinfo_install_config_set_admin_password:
+ * @config: the install config
+ * @password: the administrator password to be set
+ *
+ * Sets the #OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD parameter
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_admin_password(OsinfoInstallConfig *config,
                                               const gchar *password)
 {
@@ -210,6 +272,15 @@ void osinfo_install_config_set_admin_password(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_admin_password:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_admin_password(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -217,6 +288,15 @@ const gchar *osinfo_install_config_get_admin_password(OsinfoInstallConfig *confi
 }
 
 
+/**
+ * osinfo_install_config_set_user_login:
+ * @config: the install config
+ * @username: the chosen username for the user log into the system
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_user_login(OsinfoInstallConfig *config,
                                           const gchar *username)
 {
@@ -226,6 +306,15 @@ void osinfo_install_config_set_user_login(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_user_login:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_user_login(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -233,7 +322,15 @@ const gchar *osinfo_install_config_get_user_login(OsinfoInstallConfig *config)
 }
 
 
-
+/**
+ * osinfo_install_config_set_user_password:
+ * @config: the install config
+ * @password: the user password to be set
+ *
+ * Sets the #OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD parameter
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_user_password(OsinfoInstallConfig *config,
                                              const gchar *password)
 {
@@ -243,6 +340,15 @@ void osinfo_install_config_set_user_password(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_user_password:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_user_password(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -250,6 +356,15 @@ const gchar *osinfo_install_config_get_user_password(OsinfoInstallConfig *config
 }
 
 
+/**
+ * osinfo_install_config_set_user_realname:
+ * @config: the install config
+ * @name: the user real name to be displayed
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_user_realname(OsinfoInstallConfig *config,
                                              const gchar *name)
 {
@@ -259,6 +374,15 @@ void osinfo_install_config_set_user_realname(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_user_realname:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_config_get_user_realname(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -267,6 +391,15 @@ const gchar *osinfo_install_config_get_user_realname(OsinfoInstallConfig *config
 
 
 
+/**
+ * osinfo_install_config_set_user_autologin:
+ * @config: the install config
+ * @autologin: whether autologin should be set for the user or not
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_user_autologin(OsinfoInstallConfig *config,
                                               gboolean autologin)
 {
@@ -276,6 +409,15 @@ void osinfo_install_config_set_user_autologin(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_user_autologin:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 gboolean osinfo_install_config_get_user_autologin(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(config),
@@ -283,6 +425,15 @@ gboolean osinfo_install_config_get_user_autologin(OsinfoInstallConfig *config)
 }
 
 
+/**
+ * osinfo_install_config_set_user_administrator:
+ * @config: the install config
+ * @admin: whether the user should be set as administrator or not
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_user_administrator(OsinfoInstallConfig *config,
                                                   gboolean admin)
 {
@@ -292,6 +443,15 @@ void osinfo_install_config_set_user_administrator(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_user_administrator:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.0
+ */
 gboolean osinfo_install_config_get_user_administrator(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(config),
@@ -299,6 +459,15 @@ gboolean osinfo_install_config_get_user_administrator(OsinfoInstallConfig *confi
 }
 
 
+/**
+ * osinfo_install_config_set_reg_login:
+ * @config: the install config
+ * @name: the registration login
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_reg_login(OsinfoInstallConfig *config,
                                          const gchar *name)
 {
@@ -314,6 +483,15 @@ const gchar *osinfo_install_config_get_reg_login(OsinfoInstallConfig *config)
 }
 
 
+/**
+ * osinfo_install_config_set_reg_password:
+ * @config: the install config
+ * @password: the registration password
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_reg_password(OsinfoInstallConfig *config,
                                             const gchar *password)
 {
@@ -329,6 +507,15 @@ const gchar *osinfo_install_config_get_reg_password(OsinfoInstallConfig *config)
 }
 
 
+/**
+ * osinfo_install_config_set_reg_key:
+ * @config: the install config
+ * @key: the registration key
+ *
+ * Sets the value of #OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY parameter.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_config_set_reg_product_key(OsinfoInstallConfig *config,
                                                const gchar *key)
 {
@@ -356,6 +543,8 @@ const gchar *osinfo_install_config_get_reg_product_key(OsinfoInstallConfig *conf
  * characters long and make sure that it does not contain any characters other
  * than ASCII alphanumeric and '-'. Otherwise unattended installation might
  * fail.
+ *
+ * Since: 0.2.0
  */
 void osinfo_install_config_set_hostname(OsinfoInstallConfig *config,
                                         const gchar *hostname)

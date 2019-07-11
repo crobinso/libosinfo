@@ -277,6 +277,8 @@ OsinfoDatamap *osinfo_db_get_datamap(OsinfoDb *db, const gchar *id)
  * @id: the unique operating system identifier
  *
  * Returns: (transfer none): the install script, or NULL if none is found
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScript *osinfo_db_get_install_script(OsinfoDb *db, const gchar *id)
 {
@@ -417,6 +419,8 @@ OsinfoDatamapList *osinfo_db_get_datamap_list(OsinfoDb *db)
  * @db: the database
  *
  * Returns: (transfer full): the list of install scripts
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScriptList *osinfo_db_get_install_script_list(OsinfoDb *db)
 {
@@ -509,6 +513,7 @@ void osinfo_db_add_datamap(OsinfoDb *db, OsinfoDatamap *datamap)
  * @db: the database
  * @script: (transfer none): an install script
  *
+ * Since: 0.2.0
  */
 void osinfo_db_add_install_script(OsinfoDb *db, OsinfoInstallScript *script)
 {

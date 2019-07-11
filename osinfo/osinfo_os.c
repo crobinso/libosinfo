@@ -1093,6 +1093,8 @@ void osinfo_os_add_network_install_resources(OsinfoOs *os,
  * OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP or OSINFO_INSTALL_SCRIPT_PROFILE_JEOS
  *
  * Returns: (transfer none): A new #OsinfoInstallScript for the @os @profile
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *profile)
 {
@@ -1126,6 +1128,8 @@ OsinfoInstallScript *osinfo_os_find_install_script(OsinfoOs *os, const gchar *pr
  * @os: an operating system
  *
  * Returns: (transfer full): a list of the install scripts for the specified os
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScriptList *osinfo_os_get_install_script_list(OsinfoOs *os)
 {
@@ -1138,6 +1142,15 @@ OsinfoInstallScriptList *osinfo_os_get_install_script_list(OsinfoOs *os)
 }
 
 
+/**
+ * osinfo_os_add_install_script:
+ * @os: an operating system
+ * @script: (transfer none): the install script to add
+ *
+ * Adds @script to the list of scripts of operating system @os.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_os_add_install_script(OsinfoOs *os, OsinfoInstallScript *script)
 {
     g_return_if_fail(OSINFO_IS_OS(os));

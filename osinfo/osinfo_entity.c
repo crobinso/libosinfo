@@ -187,6 +187,18 @@ void osinfo_entity_set_param(OsinfoEntity *entity, const gchar *key, const gchar
 }
 
 
+/**
+ * osinfo_entity_set_param_boolean:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ * @value: the boolean value to be associated with that key
+ *
+ * Sets a new parameter against the entity. If the key already
+ * has a value associated with it, the existing value will be
+ * cleared.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_entity_set_param_boolean(OsinfoEntity *entity, const gchar *key, gboolean value)
 {
     osinfo_entity_set_param(entity, key, value ? "true" : "false");
@@ -331,6 +343,19 @@ static gboolean str_to_bool(const char *str)
     return (g_strcmp0("true", str) == 0 || g_strcmp0("yes", str) == 0);
 }
 
+/**
+ * osinfo_entity_get_param_value_boolean:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ *
+ * Retrieve the parameter value associated with a named key as a
+ * boolean. If multiple values are stored against the key, only the
+ * first value is returned. If no value is associated, FALSE is returned
+ *
+ * Returns: the value associated with the key as a boolean, or FALSE
+ *
+ * Since: 0.2.0
+ */
 gboolean osinfo_entity_get_param_value_boolean(OsinfoEntity *entity, const gchar *key)
 {
     const gchar *value = osinfo_entity_get_param_value(entity, key);

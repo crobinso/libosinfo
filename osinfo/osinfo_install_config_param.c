@@ -206,6 +206,8 @@ osinfo_install_config_param_init(OsinfoInstallConfigParam *config_param)
  * Construct a new configuration parameter for an #OsinfoInstallScript.
  *
  * Returns: (transfer full): the new configuration parameter
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallConfigParam *osinfo_install_config_param_new(const gchar *name)
 {
@@ -220,6 +222,8 @@ OsinfoInstallConfigParam *osinfo_install_config_param_new(const gchar *name)
  * @config_param: the configuration parameter
  *
  * Returns: (transfer none): the name of the configuration parameter
+ *
+ * Since: 0.2.0
  */
 const gchar *osinfo_install_config_param_get_name(OsinfoInstallConfigParam *config_param)
 {
@@ -232,6 +236,8 @@ const gchar *osinfo_install_config_param_get_name(OsinfoInstallConfigParam *conf
  * @config_param: the configuration parameter
  *
  * Returns: (transfer none): the policy of the configuration parameter
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(OsinfoInstallConfigParam *config_param)
 {

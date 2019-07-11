@@ -74,6 +74,8 @@ osinfo_install_scriptlist_init(OsinfoInstallScriptList *list)
  * Construct a new install_script list that is initially empty.
  *
  * Returns: (transfer full): an empty install_script list
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScriptList *osinfo_install_scriptlist_new(void)
 {
@@ -90,6 +92,8 @@ OsinfoInstallScriptList *osinfo_install_scriptlist_new(void)
  * from @source
  *
  * Returns: (transfer full): a copy of the install_script list
+ *
+ * Since: 0.2.0
  * Deprecated: 0.2.2: Use osinfo_list_new_copy() instead.
  */
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_copy(OsinfoInstallScriptList *source)
@@ -109,6 +113,8 @@ OsinfoInstallScriptList *osinfo_install_scriptlist_new_copy(OsinfoInstallScriptL
  * from @source that match @filter
  *
  * Returns: (transfer full): a filtered copy of the install_script list
+ *
+ * Since: 0.2.0
  * Deprecated: 0.2.2: Use osinfo_list_new_filtered() instead.
  */
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_filtered(OsinfoInstallScriptList *source,
@@ -130,6 +136,8 @@ OsinfoInstallScriptList *osinfo_install_scriptlist_new_filtered(OsinfoInstallScr
  * install_scripts that are present in both @sourceOne and @sourceTwo.
  *
  * Returns: (transfer full): an intersection of the two install_script lists
+ *
+ * Since: 0.2.0
  * Deprecated: 0.2.2: Use osinfo_list_new_intersection() instead.
  */
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_intersection(OsinfoInstallScriptList *sourceOne,
@@ -151,6 +159,8 @@ OsinfoInstallScriptList *osinfo_install_scriptlist_new_intersection(OsinfoInstal
  * install_scripts that are present in either @sourceOne and @sourceTwo.
  *
  * Returns: (transfer full): a union of the two install_script lists
+ *
+ * Since: 0.2.0
  * Deprecated: 0.2.2: Use osinfo_list_new_union() instead.
  */
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_union(OsinfoInstallScriptList *sourceOne,

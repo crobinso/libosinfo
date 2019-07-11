@@ -311,15 +311,32 @@ void osinfo_install_script_add_config_param(OsinfoInstallScript *script, OsinfoI
                     OSINFO_ENTITY(param));
 }
 
+/**
+ * osinfo_install_script_has_config_param:
+ * @script: the install script
+ * @config_param: an #OsinfoInstallConfigParam
+ *
+ * Returns whether the @script has the @config_param searched or not.
+ *
+ * This code assumes that the 'id' and 'name' entity properties are the same.
+ *
+ * Since: 0.2.0
+ */
 gboolean osinfo_install_script_has_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *config_param)
 {
-    /* NB: this code assumes that the 'id' and 'name' entity properties
-     * are the same
-     */
     const char *name = osinfo_install_config_param_get_name(config_param);
     return osinfo_install_script_has_config_param_name(script, name);
 }
 
+/**
+ * osinfo_install_script_has_config_param_name:
+ * @script: the install script
+ * @name: the configuration parameter name
+ *
+ * Returns whether the @script has a configuration parameter matching @name or not.
+ *
+ * Since: 0.2.0
+ */
 gboolean osinfo_install_script_has_config_param_name(OsinfoInstallScript *script, const gchar *name)
 {
     OsinfoList *l = OSINFO_LIST(script->priv->config_params);
@@ -335,6 +352,8 @@ gboolean osinfo_install_script_has_config_param_name(OsinfoInstallScript *script
  * Returns: (transfer container) (element-type OsinfoInstallScript): the
  * list of valid #OsinfoInstallConfigParam parameters. Free with
  * g_list_free() when done. The elements are owned by libosinfo.
+ *
+ * Since: 0.2.0
  */
 GList *osinfo_install_script_get_config_param_list(OsinfoInstallScript *script)
 {
@@ -389,6 +408,16 @@ osinfo_install_script_init(OsinfoInstallScript *list)
 }
 
 
+/**
+ * oisinfo_install_script_new:
+ * @id: a unique identifier
+ *
+ * Construct an empty new install script.
+ *
+ * Returns: (transfer full): a new install script
+ *
+ * Since: 0.2.0
+ */
 OsinfoInstallScript *osinfo_install_script_new(const gchar *id)
 {
     return g_object_new(OSINFO_TYPE_INSTALL_SCRIPT,
@@ -405,6 +434,8 @@ OsinfoInstallScript *osinfo_install_script_new(const gchar *id)
  * Construct a new install script from stylesheet data
  *
  * Returns: (transfer full): an new install script
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScript *osinfo_install_script_new_data(const gchar *id,
                                                     const gchar *profile,
@@ -427,6 +458,8 @@ OsinfoInstallScript *osinfo_install_script_new_data(const gchar *id,
  * Construct a new install script from a stylesheet URI
  *
  * Returns: (transfer full): an new install script
+ *
+ * Since: 0.2.0
  */
 OsinfoInstallScript *osinfo_install_script_new_uri(const gchar *id,
                                                    const gchar *profile,
@@ -440,18 +473,46 @@ OsinfoInstallScript *osinfo_install_script_new_uri(const gchar *id,
 }
 
 
+/**
+ * osinfo_install_script_get_template_uri:
+ * @script: the install script
+ *
+ * Returns the stylesheet URI used to construct the install script.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_script_get_template_uri(OsinfoInstallScript *script)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(script),
                                          OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_URI);
 }
 
+/**
+ * osinfo_install_script_get_template_data:
+ * @script: the install script
+ *
+ * Returns the stylesheet data used to construct the install script.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_script_get_template_data(OsinfoInstallScript *script)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(script),
                                          OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_DATA);
 }
 
+/**
+ * osinfo_install_script_get_profile:
+ * @script: the install script
+ *
+ * Returns a string representing the install script profile that's going to be
+ * used.
+ *
+ * The values supported are "jeos" for minimal installations and "desktop" for
+ * workstation/desktop installations.
+ *
+ * Since: 0.2.0
+ */
 const gchar *osinfo_install_script_get_profile(OsinfoInstallScript *script)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(script),
@@ -488,6 +549,15 @@ const gchar *osinfo_install_script_get_product_key_format(OsinfoInstallScript *s
                                          OSINFO_INSTALL_SCRIPT_PROP_PRODUCT_KEY_FORMAT);
 }
 
+/**
+ * osinfo_install_script_set_output_prefix:
+ * @script: the install script
+ * @prefix: a prefix to be added to the file generated
+ *
+ * Mind that not all installers support any name for the installer scripts.
+ *
+ * Since: 0.2.0
+ */
 void osinfo_install_script_set_output_prefix(OsinfoInstallScript *script,
                                              const gchar *prefix)
 {
@@ -535,6 +605,8 @@ const gchar *osinfo_install_script_get_expected_filename(OsinfoInstallScript *sc
  * osinfo_install_script_set_output_prefix() function.
  *
  * Returns: (transfer none): the output script filename
+ *
+ * Since: 0.2.0
  */
 const gchar *osinfo_install_script_get_output_filename(OsinfoInstallScript *script)
 {
@@ -1041,6 +1113,8 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
  *
  * If you are generating the script for a specific media, it is recommended that
  * you use #osinfo_install_script_generate_for_media_async() instead.
+ *
+ * Since: 0.2.0
  */
 void osinfo_install_script_generate_async(OsinfoInstallScript *script,
                                           OsinfoOs *os,
@@ -1076,6 +1150,8 @@ static gpointer osinfo_install_script_generate_finish_common(OsinfoInstallScript
  * @error:  The location where to store any error, or NULL
  *
  * Returns: (transfer full): the generated script, or NULL on error
+ *
+ * Since: 0.2.0
  */
 gchar *osinfo_install_script_generate_finish(OsinfoInstallScript *script,
                                              GAsyncResult *res,
@@ -1216,6 +1292,8 @@ static void osinfo_install_script_generate_done(GObject *src,
  *
  * If you are generating the script for a specific media, it is recommended
  * that you use #osinfo_install_script_generate_for_media() instead.
+ *
+ * Since: 0.2.0
  */
 gchar *osinfo_install_script_generate(OsinfoInstallScript *script,
                                       OsinfoOs *os,
@@ -1450,6 +1528,8 @@ static void osinfo_install_script_generate_output_async_common(OsinfoInstallScri
  *
  * If you are generating the script for a specific media, it is recommended that
  * you use #osinfo_install_script_generate_output_for_media_async() instead.
+ *
+ * Since: 0.2.0
  */
 void osinfo_install_script_generate_output_async(OsinfoInstallScript *script,
                                                  OsinfoOs *os,
@@ -1529,6 +1609,8 @@ static GFile *osinfo_install_script_generate_output_common(OsinfoInstallScript *
  *
  * If you are generating the script for a specific media, it is recommended
  * that you use #osinfo_install_script_generate_output_for_media() instead.
+ *
+ * Since: 0.2.0
  */
 GFile *osinfo_install_script_generate_output(OsinfoInstallScript *script,
                                              OsinfoOs *os,
