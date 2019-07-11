@@ -1725,6 +1725,8 @@ GFile *osinfo_install_script_generate_output_for_media(OsinfoInstallScript *scri
  * #osinfo_install_script_generate_command_line_for_media() instead.
  *
  * Returns: (transfer full): The generated command line string, NULL otherwise.
+ *
+ * Since: 0.2.7
  */
 gchar *osinfo_install_script_generate_command_line(OsinfoInstallScript *script,
                                                    OsinfoOs *os,

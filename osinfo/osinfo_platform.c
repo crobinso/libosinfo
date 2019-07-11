@@ -129,6 +129,8 @@ static void get_all_devices_cb(OsinfoProduct *product, gpointer user_data)
  * all derived and upgraded platforms.
  *
  * Returns: (transfer full): A list of devices
+ *
+ * Since: 0.2.7
  */
 OsinfoDeviceList *osinfo_platform_get_all_devices(OsinfoPlatform *platform,
                                                   OsinfoFilter *filter)
