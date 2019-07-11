@@ -1800,6 +1800,8 @@ gboolean osinfo_media_supports_installer_script(OsinfoMedia *media)
  * @script: an #OsinfoInstallScript instance
  *
  * Adds an @script to the specified @media
+ *
+ * Since: 1.4.0
  */
 void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *script)
 {
@@ -1813,6 +1815,8 @@ void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *sc
  * @media: an #OsinfoMedia instance
  *
  * Returns: (transfer full): a list of the install scripts for the specified media
+ *
+ * Since: 1.4.0
  */
 OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media)
 {
