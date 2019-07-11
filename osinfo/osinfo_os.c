@@ -552,6 +552,8 @@ osinfo_os_get_all_device_links_internal(OsinfoOs *os,
  * derived and cloned operating systems.
  *
  * Returns: (transfer full): A list of OsinfoDeviceLink
+ *
+ * Since: 1.3.0
  */
 OsinfoDeviceLinkList *osinfo_os_get_all_device_links(OsinfoOs *os, OsinfoFilter *filter)
 {
@@ -711,6 +713,8 @@ void osinfo_os_add_tree(OsinfoOs *os, OsinfoTree *tree)
  * Get all installed images associated with operating system @os.
  *
  * Returns: (transfer full): A list of images
+ *
+ * Since: 1.3.0
  */
 OsinfoImageList *osinfo_os_get_image_list(OsinfoOs *os)
 {
@@ -729,6 +733,8 @@ OsinfoImageList *osinfo_os_get_image_list(OsinfoOs *os)
  * @image: (transfer none): the image to add
  *
  * Adds an installed image @image to operating system @os.
+ *
+ * Since: 1.3.0
  */
 void osinfo_os_add_image(OsinfoOs *os, OsinfoImage *image)
 {
@@ -942,6 +948,8 @@ osinfo_os_get_maximum_resources_without_inheritance(OsinfoOs *os)
  * Get the list of maximum resources for the operating system @os.
  *
  * Returns: (transfer full): A list of resources
+ *
+ * Since: 1.3.0
  */
 OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
 {
@@ -1018,6 +1026,8 @@ osinfo_os_get_network_install_resources_without_inheritance(OsinfoOs *os)
  * @os.
  *
  * Returns: (transfer full): A list of resources
+ *
+ * Since: 1.3.0
  */
 OsinfoResourcesList *osinfo_os_get_network_install_resources(OsinfoOs *os)
 {
@@ -1063,6 +1073,8 @@ void osinfo_os_add_recommended_resources(OsinfoOs *os,
  * @resources: (transfer none): the resources to add
  *
  * Adds @resources to list of maximum resources of operating system @os.
+ *
+ * Since: 1.3.0
  */
 void osinfo_os_add_maximum_resources(OsinfoOs *os,
                                      OsinfoResources *resources)
@@ -1081,6 +1093,8 @@ void osinfo_os_add_maximum_resources(OsinfoOs *os,
  *
  * Adds @resources to list of resources needed for network installing an
  * operating system @os.
+ *
+ * Since: 1.3.0
  */
 void osinfo_os_add_network_install_resources(OsinfoOs *os,
                                      OsinfoResources *resources)

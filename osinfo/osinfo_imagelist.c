@@ -73,6 +73,8 @@ osinfo_imagelist_init(OsinfoImageList *list)
  * Construct a new image list that is initially empty.
  *
  * Returns: (transfer full): an empty image list
+ *
+ * Since: 1.3.0
  */
 OsinfoImageList *osinfo_imagelist_new(void)
 {

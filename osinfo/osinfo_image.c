@@ -230,6 +230,8 @@ OsinfoImage *osinfo_image_new(const gchar *id,
  * Retrieves the target hardware architecture of the OS @image provides.
  *
  * Returns: (transfer none): the hardware architecture, or NULL
+ *
+ * Since: 1.3.0
  */
 const gchar *osinfo_image_get_architecture(OsinfoImage *image)
 {
@@ -244,6 +246,8 @@ const gchar *osinfo_image_get_architecture(OsinfoImage *image)
  * The format of the @image
  *
  * Returns: (transfer none): the format, or NULL
+ *
+ * Since: 1.3.0
  */
 const gchar *osinfo_image_get_format(OsinfoImage *image)
 {
@@ -258,6 +262,8 @@ const gchar *osinfo_image_get_format(OsinfoImage *image)
  * The URL to the @image
  *
  * Returns: (transfer none): the URL, or NULL
+ *
+ * Since: 1.3.0
  */
 const gchar *osinfo_image_get_url(OsinfoImage *image)
 {
@@ -273,6 +279,8 @@ const gchar *osinfo_image_get_url(OsinfoImage *image)
  *
  * Returns: #TRUE if @image supports cloud init customizations, #FALSE
  * otherwise.
+ *
+ * Since: 1.3.0
  */
 gboolean osinfo_image_get_cloud_init(OsinfoImage *image)
 {

@@ -1764,6 +1764,8 @@ gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media)
  *
  * Returns: #TRUE if install-scripts are supported by the media,
  * #FALSE otherwise
+ *
+ * Since: 1.3.0
  */
 gboolean osinfo_media_supports_installer_script(OsinfoMedia *media)
 {

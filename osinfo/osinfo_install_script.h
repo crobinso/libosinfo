@@ -140,6 +140,7 @@ typedef enum {
 
 /**
  * OsinfoInstallScriptInstallationSource:
+ * Since: 1.3.0
  * @OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA: A media will be used as
  * the installation source.
  * @OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK: A network method will

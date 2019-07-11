@@ -1961,6 +1961,8 @@ gboolean osinfo_install_script_get_needs_internet(OsinfoInstallScript *script)
  * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB
  *
  * Set the preferred injection method to be used with the @script
+ *
+ * Since: 1.3.0
  */
 void osinfo_install_script_set_preferred_injection_method(OsinfoInstallScript *script,
                                                           OsinfoInstallScriptInjectionMethod method)
@@ -1988,6 +1990,8 @@ void osinfo_install_script_set_preferred_injection_method(OsinfoInstallScript *s
  * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK is supported,
  * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK is returned, otherwise
  * OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD is returned.
+ *
+ * Since: 1.3.0
  */
 OsinfoInstallScriptInjectionMethod
 osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script)
@@ -2025,6 +2029,8 @@ osinfo_install_script_get_preferred_injection_method(OsinfoInstallScript *script
  * OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK
  *
  * Set the installation source to be used with the @script.
+ *
+ * Since: 1.3.0
  */
 void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
                                                    OsinfoInstallScriptInstallationSource source)
@@ -2041,6 +2047,8 @@ void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
  *
  * Returns: the installation source to be used with the script. If none is set, it defaults to
  * OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA.
+ *
+ * Since: 1.3.0
  */
 OsinfoInstallScriptInstallationSource
 osinfo_install_script_get_installation_source(OsinfoInstallScript *script)

@@ -151,6 +151,8 @@ OsinfoLoader *osinfo_loader_new(void)
  * Gets a #GQuark representing the string "libosinfo"
  *
  * Returns: the #GQuark representing the string.
+ *
+ * Since: 1.3.0
  **/
 GQuark
 osinfo_error_quark(void)

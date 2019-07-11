@@ -947,6 +947,8 @@ const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree)
  * Return whether a tree has treeinfo or not.
  *
  * Returns: TRUE if the tree has treeinfo. FALSE otherwise.
+ *
+ * Since: 1.3.0
  */
 gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree)
 {
