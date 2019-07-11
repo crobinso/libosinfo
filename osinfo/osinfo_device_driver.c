@@ -188,6 +188,8 @@ void osinfo_device_driver_add_device(OsinfoDeviceDriver *driver,
  * before these device drivers could be installed on their OS.
  *
  * Returns: TRUE if @driver is signed, FALSE otherwise.
+ *
+ * Since: 0.2.6
  */
 gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver)
 {

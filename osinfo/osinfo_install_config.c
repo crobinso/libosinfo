@@ -882,6 +882,8 @@ const gchar *osinfo_install_config_get_post_install_drivers_location(OsinfoInsta
  * If a script requires drivers to be signed, this function can be used to
  * disable that security feature. WARNING: Disabling driver signing may very
  * well mean disabling it permanently.
+ *
+ * Since: 0.2.6
  */
 void osinfo_install_config_set_driver_signing(OsinfoInstallConfig *config,
                                               gboolean signing)
@@ -898,6 +900,8 @@ void osinfo_install_config_set_driver_signing(OsinfoInstallConfig *config,
  * Returns: %TRUE if driver signing is currently enabled, %FALSE otherwise, see
  * #osinfo_install_config_set_driver_signing() for more details about driver
  * signing.
+ *
+ * Since: 0.2.6
  */
 gboolean osinfo_install_config_get_driver_signing(OsinfoInstallConfig *config)
 {

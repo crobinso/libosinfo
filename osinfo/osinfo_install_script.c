@@ -1868,6 +1868,8 @@ gboolean osinfo_install_script_get_can_post_install_drivers(OsinfoInstallScript 
  * this function retrieves the requirement about signed status of drivers.
  *
  * Returns: (type OsinfoDeviceDriverSigningReq):
+ *
+ * Since: 0.2.6
  */
 int osinfo_install_script_get_pre_install_drivers_signing_req(OsinfoInstallScript *script)
 {
@@ -1886,6 +1888,8 @@ int osinfo_install_script_get_pre_install_drivers_signing_req(OsinfoInstallScrip
  * function retrieves the requirement about signed status of drivers.
  *
  * Returns: (type OsinfoDeviceDriverSigningReq):
+ *
+ * Since: 0.2.6
  */
 int osinfo_install_script_get_post_install_drivers_signing_req(OsinfoInstallScript *script)
 {

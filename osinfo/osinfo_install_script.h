@@ -95,6 +95,7 @@ typedef enum {
 
 /**
  * OsinfoDeviceDriverSigningReq:
+ * Since: 0.2.6
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_NONE: Script do not require device drivers
  * to be signed.
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT: Script must only be given signed
