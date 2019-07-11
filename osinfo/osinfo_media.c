@@ -1747,6 +1747,8 @@ gint64 osinfo_media_get_volume_size(OsinfoMedia *media)
  * Whether @media should ejected after the installation procces.
  *
  * Returns: #TRUE if media should be ejected, #FALSE otherwise
+ *
+ * Since: 0.2.13
  */
 gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media)
 {
