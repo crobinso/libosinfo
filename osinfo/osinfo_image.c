@@ -293,6 +293,8 @@ gboolean osinfo_image_get_cloud_init(OsinfoImage *image)
  * @image: an #OsinfoImage instance
  *
  * Returns: (transfer full): the operating system, or NULL
+ *
+ * Since: 1.5.0
  */
 OsinfoOs *osinfo_image_get_os(OsinfoImage *image)
 {
@@ -307,6 +309,8 @@ OsinfoOs *osinfo_image_get_os(OsinfoImage *image)
  * @os: an #OsinfoOs instance
  *
  * Sets the #OsinfoOs associated to the #OsinfoImage instance.
+ *
+ * Since: 1.5.0
  */
 void osinfo_image_set_os(OsinfoImage *image, OsinfoOs *os)
 {
@@ -324,6 +328,8 @@ void osinfo_image_set_os(OsinfoImage *image, OsinfoOs *os)
  * Gets the varriants of the associated operating system
  *
  * Returns: (transfer full): the operating system variants, or NULL
+ *
+ * Since: 1.5.0
  */
 OsinfoOsVariantList *osinfo_image_get_os_variants(OsinfoImage *image)
 {

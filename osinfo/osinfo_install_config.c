@@ -963,6 +963,8 @@ gboolean osinfo_install_config_get_driver_signing(OsinfoInstallConfig *config)
  *
  * When performing a tree based installation the script will need the installation
  * URL to be set, whenever the installation is performed from a non canonical place.
+ *
+ * Since: 1.5.0
  */
 void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
                                                 const gchar *url)
@@ -977,6 +979,8 @@ void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
  * @config: the install config
  *
  * Returns the URL the script will use to perform the installation.
+ *
+ * Since: 1.5.0
  */
 const gchar *osinfo_install_config_get_installation_url(OsinfoInstallConfig *config)
 {

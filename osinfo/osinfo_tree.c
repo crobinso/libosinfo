@@ -961,6 +961,8 @@ gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree)
  * @tree: an #OsinfoTree instance
  *
  * Returns: (transfer full): the operating system, or NULL
+ *
+ * Since: 1.5.0
  */
 OsinfoOs *osinfo_tree_get_os(OsinfoTree *tree)
 {
@@ -976,6 +978,8 @@ OsinfoOs *osinfo_tree_get_os(OsinfoTree *tree)
  * @os: an #OsinfoOs instance
  *
  * Sets the #OsinfoOs associated to the #OsinfoTree instance.
+ *
+ * Since: 1.5.0
  */
 void osinfo_tree_set_os(OsinfoTree *tree, OsinfoOs *os)
 {
@@ -993,6 +997,8 @@ void osinfo_tree_set_os(OsinfoTree *tree, OsinfoOs *os)
  * Gets the variants of the associated operating system.
  *
  * Returns: (transfer full): the operating system variant, or NULL
+ *
+ * Since: 1.5.0
  */
 OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree)
 {

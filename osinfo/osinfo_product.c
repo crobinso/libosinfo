@@ -485,6 +485,8 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
  * Retrieve all the short-ids associated with the product.
  *
  * Returns: (transfer container) (element-type utf8): the list of short-ids.
+ *
+ * Since: 1.5.0
  */
 GList *osinfo_product_get_short_id_list(OsinfoProduct *prod)
 {
