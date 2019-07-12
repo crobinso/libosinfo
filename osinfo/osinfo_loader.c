@@ -2603,7 +2603,9 @@ void osinfo_loader_process_default_path(OsinfoLoader *loader, GError **err)
  * @loader: the loader object
  * @err: (out): filled with error information upon failure
  *
- * Loads data from the default paths.
+ * Loads data from the system path.
+ *
+ * Since: 0.2.8
  */
 void osinfo_loader_process_system_path(OsinfoLoader *loader,
                                        GError **err)
@@ -2621,6 +2623,15 @@ void osinfo_loader_process_system_path(OsinfoLoader *loader,
     g_object_unref(dirs[2]);
 }
 
+/**
+ * osinfo_loader_process_local_path:
+ * @loader: the loader object
+ * @err: (out): filled with error information upen failures
+ *
+ * Loads data from the local path.
+ *
+ * Since: 0.2.8
+ */
 void osinfo_loader_process_local_path(OsinfoLoader *loader, GError **err)
 {
     GFile *dirs[] = {
@@ -2632,6 +2643,15 @@ void osinfo_loader_process_local_path(OsinfoLoader *loader, GError **err)
     g_object_unref(dirs[0]);
 }
 
+/**
+ * osinfo_loader_process_user_path:
+ * @loader: the loader object
+ * @err: (out): filled with error information upen failures
+ *
+ * Loads data from user path.
+ *
+ * Since: 0.2.8
+ */
 void osinfo_loader_process_user_path(OsinfoLoader *loader, GError **err)
 {
     GFile *dirs[] = {

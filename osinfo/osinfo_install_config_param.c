@@ -277,6 +277,15 @@ gboolean osinfo_install_config_param_is_optional(OsinfoInstallConfigParam *confi
             OSINFO_INSTALL_CONFIG_PARAM_POLICY_OPTIONAL);
 }
 
+/**
+ * osinfo_install_config_get_value_map:
+ * @config_param: the configuration parameter
+ *
+ * Returns: (transfer none): The data map used to transform values set for this
+ *                           parameter to OS-specific values, or NULL.
+ *
+ * Since: 0.2.8
+ */
 OsinfoDatamap *osinfo_install_config_param_get_value_map(OsinfoInstallConfigParam *config_param)
 {
     return config_param->priv->value_map;
@@ -291,6 +300,8 @@ OsinfoDatamap *osinfo_install_config_param_get_value_map(OsinfoInstallConfigPara
  * After a call to osinfo_install_config_param_set_value_map(), @datamap will
  * be used to transform values set for this parameter to OS-specific
  * values. A NULL @datamap will disable transformations.
+ *
+ * Since: 0.2.8
  */
 void osinfo_install_config_param_set_value_map(OsinfoInstallConfigParam *config_param, OsinfoDatamap *datamap)
 {

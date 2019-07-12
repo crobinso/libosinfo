@@ -135,6 +135,15 @@ void osinfo_install_config_set_hardware_arch(OsinfoInstallConfig *config,
 }
 
 
+/**
+ * osinfo_install_config_get_hardware_arch:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_install_config_get_hardware_arch(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -476,6 +485,15 @@ void osinfo_install_config_set_reg_login(OsinfoInstallConfig *config,
                             name);
 }
 
+/**
+ * osinfo_install_config_get_reg_login:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN paramater,
+ *          or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_install_config_get_reg_login(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -500,6 +518,15 @@ void osinfo_install_config_set_reg_password(OsinfoInstallConfig *config,
                             password);
 }
 
+/**
+ * osinfo_install_config_get_reg_password:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD paramater,
+ *          or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_install_config_get_reg_password(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -524,6 +551,15 @@ void osinfo_install_config_set_reg_product_key(OsinfoInstallConfig *config,
                             key);
 }
 
+/**
+ * osinfo_install_config_get_reg_product_key:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY paramater,
+ *          or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_install_config_get_reg_product_key(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),
@@ -554,6 +590,15 @@ void osinfo_install_config_set_hostname(OsinfoInstallConfig *config,
                             hostname);
 }
 
+/**
+ * osinfo_install_config_get_hostname:
+ * @config: the install config
+ *
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_HOSTNAME parameter,
+ *          or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_install_config_get_hostname(OsinfoInstallConfig *config)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(config),

@@ -315,16 +315,38 @@ const gchar *osinfo_product_get_name(OsinfoProduct *prod)
     return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_NAME);
 }
 
+/**
+ * osinfo_product_get_codename:
+ * @product: an product
+ *
+ * Returns: The product's codename, or NULL.
+ */
 const gchar *osinfo_product_get_codename(OsinfoProduct *prod)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_CODENAME);
 }
 
+/**
+ * osinfo_product_get_release_date_string:
+ * @product: an product
+ *
+ * Returns: A string representing the product's release date, or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_product_get_release_date_string(OsinfoProduct *prod)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_RELEASE_DATE);
 }
 
+/**
+ * osinfo_product_get_eol_date_string:
+ * @product: an product
+ *
+ * Returns: A string representing the product's EOL date, or NULL.
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_product_get_eol_date_string(OsinfoProduct *prod)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_EOL_DATE);
@@ -344,6 +366,15 @@ static GDate *date_from_string(const gchar *str)
     return g_date_new_dmy(d, m, y);
 }
 
+/**
+ * osinfo_product_get_release_date:
+ * @product: an product
+ *
+ * Returns: (transfer full): A #GDate representing the product's release date,
+ *                           or NULL.
+ *
+ * Since: 0.2.8
+ */
 GDate *osinfo_product_get_release_date(OsinfoProduct *prod)
 {
     const gchar *str = osinfo_product_get_release_date_string(prod);
@@ -354,6 +385,15 @@ GDate *osinfo_product_get_release_date(OsinfoProduct *prod)
 }
 
 
+/**
+ * osinfo_product_get_eol_date:
+ * @product: an product
+ *
+ * Returns: (transfer full): A #GDate representing the product's EOL date,
+ *                           or NULL.
+ *
+ * Since: 0.2.8
+ */
 GDate *osinfo_product_get_eol_date(OsinfoProduct *prod)
 {
     const gchar *str = osinfo_product_get_eol_date_string(prod);

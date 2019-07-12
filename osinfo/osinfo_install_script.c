@@ -581,6 +581,14 @@ void osinfo_install_script_set_output_prefix(OsinfoInstallScript *script,
                                               NULL);
 }
 
+/**
+ * osinfo_install_script_get_output_prefix:
+ * @script: the install script
+ *
+ * Returns: the prefix of the file generated
+ *
+ * Since: 0.2.8
+ */
 const gchar *osinfo_install_script_get_output_prefix(OsinfoInstallScript *script)
 {
     return script->priv->output_prefix;

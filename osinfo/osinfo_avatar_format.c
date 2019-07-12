@@ -175,6 +175,8 @@ osinfo_avatar_format_init(OsinfoAvatarFormat *avatar)
  *
  * Returns: (transfer full): the necessary information to create an avatar for
  *                           an user
+ *
+ * Since: 0.2.8
  */
 OsinfoAvatarFormat *
 osinfo_avatar_format_new(void)
