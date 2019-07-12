@@ -1165,6 +1165,8 @@ void osinfo_os_add_install_script(OsinfoOs *os, OsinfoInstallScript *script)
  * Gets list of all available device drivers for OS @os.
  *
  * Returns: (transfer none): A list of device drivers
+ *
+ * Since: 0.2.2
  */
 OsinfoDeviceDriverList *osinfo_os_get_device_drivers(OsinfoOs *os)
 {
@@ -1173,6 +1175,15 @@ OsinfoDeviceDriverList *osinfo_os_get_device_drivers(OsinfoOs *os)
     return os->priv->device_drivers;
 }
 
+/**
+ * osinfo_os_add_device_driver:
+ * @os: an operating system
+ * @driver: (transfer none): the device driver to add
+ *
+ * Adds @driver to the list of device drivers of operating system @os.
+ *
+ * Since: 0.2.2
+ */
 void osinfo_os_add_device_driver(OsinfoOs *os, OsinfoDeviceDriver *driver)
 {
     g_return_if_fail(OSINFO_IS_OS(os));

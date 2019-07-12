@@ -416,6 +416,8 @@ static OsinfoList *osinfo_list_new_same(OsinfoList *sourceOne,
  * Construct a new list that is filled with elements from @source
  *
  * Returns: (transfer full): a copy of the list
+ *
+ * Since: 0.2.2
  */
 OsinfoList *osinfo_list_new_copy(OsinfoList *source)
 {
@@ -435,6 +437,8 @@ OsinfoList *osinfo_list_new_copy(OsinfoList *source)
  * match @filter
  *
  * Returns: (transfer full): a filtered copy of the list
+ *
+ * Since: 0.2.2
  */
 OsinfoList *osinfo_list_new_filtered(OsinfoList *source, OsinfoFilter *filter)
 {
@@ -455,6 +459,8 @@ OsinfoList *osinfo_list_new_filtered(OsinfoList *source, OsinfoFilter *filter)
  * that are present in both @sourceOne and @sourceTwo.
  *
  * Returns: (transfer full): an intersection of the two lists
+ *
+ * Since: 0.2.2
  */
 OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne,
                                          OsinfoList *sourceTwo)
@@ -477,6 +483,8 @@ OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne,
  * the same type.
  *
  * Returns: (transfer full): a union of the two lists
+ *
+ * Since: 0.2.2
  */
 OsinfoList *osinfo_list_new_union(OsinfoList *sourceOne,
                                   OsinfoList *sourceTwo)

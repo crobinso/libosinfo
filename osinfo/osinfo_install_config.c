@@ -573,6 +573,8 @@ const gchar *osinfo_install_config_get_hostname(OsinfoInstallConfig *config)
  * does the script expects this string to be in. In case of
  * #OSINFO_PATH_FORMAT_UNIX unix device node names are expected, e.g "/dev/fd0".
  * In case of #OSINFO_PATH_FORMAT_DOS drive letters are expected, e.g "A".
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_target_disk(OsinfoInstallConfig *config,
                                            const gchar *disk)
@@ -588,6 +590,8 @@ void osinfo_install_config_set_target_disk(OsinfoInstallConfig *config,
  *
  * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK parameter,
  *          or NULL.
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_target_disk(OsinfoInstallConfig *config)
 {
@@ -604,6 +608,8 @@ const gchar *osinfo_install_config_get_target_disk(OsinfoInstallConfig *config)
  *
  * Please read documentation on #osinfo_install_config_set_target_disk() for
  * explanation on the format of @disk string.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_script_disk(OsinfoInstallConfig *config,
                                            const gchar *disk)
@@ -619,6 +625,8 @@ void osinfo_install_config_set_script_disk(OsinfoInstallConfig *config,
  *
  * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK parameter,
  *          or NULL.
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_script_disk(OsinfoInstallConfig *config)
 {
@@ -640,6 +648,8 @@ const gchar *osinfo_install_config_get_script_disk(OsinfoInstallConfig *config)
  *
  * Also note that in case of #OSINFO_PATH_FORMAT_DOS, the drive/disk letter
  * and the leading ':' must not be included in the path.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_avatar_location(OsinfoInstallConfig *config,
                                                const gchar *location)
@@ -655,6 +665,8 @@ void osinfo_install_config_set_avatar_location(OsinfoInstallConfig *config,
  *
  * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION parameter,
  *          or NULL.
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_avatar_location(OsinfoInstallConfig *config)
 {
@@ -671,6 +683,8 @@ const gchar *osinfo_install_config_get_avatar_location(OsinfoInstallConfig *conf
  *
  * Please read documentation on #osinfo_install_config_set_target_disk() for
  * explanation on the format of @disk string.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_avatar_disk(OsinfoInstallConfig *config,
                                            const gchar *disk)
@@ -686,6 +700,8 @@ void osinfo_install_config_set_avatar_disk(OsinfoInstallConfig *config,
  *
  * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK parameter,
  *          or NULL.
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_avatar_disk(OsinfoInstallConfig *config)
 {
@@ -727,6 +743,8 @@ void osinfo_install_config_set_pre_install_drivers_disk(OsinfoInstallConfig *con
  *
  * Returns: The disk on which pre-installation drivers are located, or NULL if
  * its not set using #osinfo_install_config_set_pre_install_drivers_disk().
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_pre_install_drivers_disk(OsinfoInstallConfig *config)
 {
@@ -747,6 +765,8 @@ const gchar *osinfo_install_config_get_pre_install_drivers_disk(OsinfoInstallCon
  *
  * Please read documentation on #osinfo_install_config_set_avatar_location() for
  * explanation on the format of @location string.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_pre_install_drivers_location(OsinfoInstallConfig *config,
                                                             const gchar *location)
@@ -762,6 +782,8 @@ void osinfo_install_config_set_pre_install_drivers_location(OsinfoInstallConfig 
  *
  * Returns: The location on which pre-installation drivers are located, or NULL if
  * its not set using #osinfo_install_config_set_pre_install_drivers_location().
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_pre_install_drivers_location(OsinfoInstallConfig *config)
 {
@@ -784,6 +806,8 @@ const gchar *osinfo_install_config_get_pre_install_drivers_location(OsinfoInstal
  * NOTE: Not every install script supports post-installation of drivers. Use
  * #osinfo_install_script_get_can_post_install_drivers() to find out if an
  * install script supports it.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_post_install_drivers_disk(OsinfoInstallConfig *config,
                                                          const gchar *disk)
@@ -799,6 +823,8 @@ void osinfo_install_config_set_post_install_drivers_disk(OsinfoInstallConfig *co
  *
  * Returns: The disk on which post-installation drivers are located, or NULL if
  * its not set using #osinfo_install_config_set_post_install_drivers_disk().
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_post_install_drivers_disk(OsinfoInstallConfig *config)
 {
@@ -821,6 +847,8 @@ const gchar *osinfo_install_config_get_post_install_drivers_disk(OsinfoInstallCo
  * NOTE: Not every install script supports post-installation of drivers. Use
  * #osinfo_install_script_get_can_post_install_drivers() to find out if an
  * install script supports it.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_post_install_drivers_location(OsinfoInstallConfig *config,
                                                              const gchar *location)
@@ -836,6 +864,8 @@ void osinfo_install_config_set_post_install_drivers_location(OsinfoInstallConfig
  *
  * Returns: The disk on which post-installation drivers are located, or NULL if
  * its not set using #osinfo_install_config_set_post_install_drivers_location().
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_config_get_post_install_drivers_location(OsinfoInstallConfig *config)
 {

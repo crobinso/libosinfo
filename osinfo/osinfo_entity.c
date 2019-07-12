@@ -225,6 +225,19 @@ void osinfo_entity_set_param_int64(OsinfoEntity *entity, const gchar *key, gint6
     g_free(str);
 }
 
+/**
+ * osinfo_entity_set_param_enum:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ * @value: the enum value to be associated with that key
+ * @enum_type: the enum type
+ *
+ * Sets a new parameter against the entity. If the key already
+ * has a value associated with it, the existing value will be
+ * cleared.
+ *
+ * Since: 0.2.2
+ */
 void osinfo_entity_set_param_enum(OsinfoEntity *entity, const gchar *key, gint value, GType enum_type)
 {
     GEnumClass *enum_class;
@@ -455,6 +468,23 @@ gint64 osinfo_entity_get_param_value_int64_with_default(OsinfoEntity *entity,
     return g_ascii_strtoll(str, NULL, 0);
 }
 
+/**
+ * osinfo_entity_get_param_value_enum:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ * @enum_type: the enum type
+ * @default_value: the default value to be used, in case there's
+ *                 no value associated with the key
+ *
+ * Retrieve the parameter value associated with a named key as an
+ * enum value. If multiple values are stored against the key, only
+ * the first value is returned. If no value is associated, the
+ * @default_value is returned.
+ *
+ * Returns: the enum value associated with the key, or @default_value.
+ *
+ * Since: 0.2.2
+ */
 gint osinfo_entity_get_param_value_enum(OsinfoEntity *entity,
                                         const char *key,
                                         GType enum_type,

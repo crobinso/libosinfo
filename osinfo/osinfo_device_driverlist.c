@@ -75,6 +75,8 @@ osinfo_device_driverlist_init(OsinfoDeviceDriverList *list)
  * Construct a new device driver list that is initially empty.
  *
  * Returns: (transfer full): an empty device driver list
+ *
+ * Since: 0.2.2
  */
 OsinfoDeviceDriverList *osinfo_device_driverlist_new(void)
 {

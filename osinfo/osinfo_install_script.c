@@ -544,6 +544,8 @@ const gchar *osinfo_install_script_get_profile(OsinfoInstallScript *script)
  * and 23.
  *
  * Returns: (transfer none): Product key format mask, or NULL.
+ *
+ * Since: 0.2.2
  */
 const gchar *osinfo_install_script_get_product_key_format(OsinfoInstallScript *script)
 {
@@ -642,6 +644,8 @@ osinfo_install_script_set_avatar_format(OsinfoInstallScript *script,
  *
  * Returns: (transfer none): The avatar format, or NULL if there is no restrictions on the
  *                           format of avatar
+ *
+ * Since: 0.2.2
  */
 OsinfoAvatarFormat *osinfo_install_script_get_avatar_format(OsinfoInstallScript *script)
 {
@@ -1792,6 +1796,18 @@ gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript
     return output;
 }
 
+/**
+ * osinfo_install_script_get_path_format:
+ * @script: the install script
+ *
+ * Returns the path format to be used for the files and disks which will
+ * be used during the installation.
+ *
+ * Returns: the path format to be used. OSINFO_PATH_FORMAT_UNIX is the
+ *          default option.
+ *
+ * Since: 0.2.2
+ */
 OsinfoPathFormat osinfo_install_script_get_path_format(OsinfoInstallScript *script)
 {
     return osinfo_entity_get_param_value_enum
@@ -1811,6 +1827,8 @@ OsinfoPathFormat osinfo_install_script_get_path_format(OsinfoInstallScript *scri
  * available during actual installation.
  *
  * Returns: TRUE if install script supports pre-installable drivers, FALSE otherwise.
+ *
+ * Since: 0.2.2
  */
 gboolean osinfo_install_script_get_can_pre_install_drivers(OsinfoInstallScript *script)
 {
@@ -1819,6 +1837,18 @@ gboolean osinfo_install_script_get_can_pre_install_drivers(OsinfoInstallScript *
          OSINFO_INSTALL_SCRIPT_PROP_CAN_PRE_INSTALL_DRIVERS);
 }
 
+/**
+ * osinfo_install_script_get_can_post_install_drivers:
+ * @script: the install script
+ *
+ * Whether install script can install drivers at the very end of installation
+ * This can be used for installing devices which the OS in question does not
+ * have out of the box support.
+ *
+ * Returns: TRUE if install script supports post-installable drivers, FALSE otherwise.
+ *
+ * Since: 0.2.2
+ */
 gboolean osinfo_install_script_get_can_post_install_drivers(OsinfoInstallScript *script)
 {
     return osinfo_entity_get_param_value_boolean
