@@ -253,6 +253,8 @@ OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(OsinfoInst
  *
  * Returns: (transfer none): TRUE if the config_param is required.
  *                           FALSE otherwise.
+ *
+ * Since: 0.2.1
  */
 gboolean osinfo_install_config_param_is_required(OsinfoInstallConfigParam *config_param)
 {
@@ -266,6 +268,8 @@ gboolean osinfo_install_config_param_is_required(OsinfoInstallConfigParam *confi
  *
  * Returns: (transfer none): TRUE if the config_param is optional.
  *                           FALSE otherwise.
+ *
+ * Since: 0.2.1
  */
 gboolean osinfo_install_config_param_is_optional(OsinfoInstallConfigParam *config_param)
 {

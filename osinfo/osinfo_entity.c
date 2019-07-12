@@ -204,6 +204,18 @@ void osinfo_entity_set_param_boolean(OsinfoEntity *entity, const gchar *key, gbo
     osinfo_entity_set_param(entity, key, value ? "true" : "false");
 }
 
+/**
+ * osinfo_entity_set_param_int64:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ * @value: the int64 value to be associated with that key
+ *
+ * Sets a new parameter against the entity. If the key already
+ * has a value associated with it, the existing value will be
+ * cleared.
+ *
+ * Since: 0.2.1
+ */
 void osinfo_entity_set_param_int64(OsinfoEntity *entity, const gchar *key, gint64 value)
 {
     gchar *str;
@@ -363,6 +375,23 @@ gboolean osinfo_entity_get_param_value_boolean(OsinfoEntity *entity, const gchar
     return value && str_to_bool(value);
 }
 
+/**
+ * osinfo_entity_get_param_value_boolean_with_default:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ * @default_value: the value to be returned in case there's no value
+ *                 associated with the @key
+ *
+ * Retrieve the parameter value associated with a named key as a
+ * boolean. If multiple values are stored against the key, only the
+ * first value is returned. If no value is associated, @default_value
+ * is returned.
+ *
+ * Returns: the value associated with the key as a boolean, or
+ * @default_value
+ *
+ * Since: 0.2.1
+ */
 gboolean osinfo_entity_get_param_value_boolean_with_default(OsinfoEntity *entity,
                                                             const char *key,
                                                             gboolean default_value)
@@ -376,12 +405,42 @@ gboolean osinfo_entity_get_param_value_boolean_with_default(OsinfoEntity *entity
         return str_to_bool(value);
 }
 
+/**
+ * osinfo_entity_get_param_value_int64:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ *
+ * Retrieve the parameter value associated with a named key as an
+ * int64. If multiple values are stored against the key, only the
+ * first value is returned. If no value is associated, -1 is returned.
+ *
+ * Returns: the value associated with the key as an int64, or -1.
+ *
+ * Since: 0.2.1
+ */
 gint64 osinfo_entity_get_param_value_int64(OsinfoEntity *entity,
                                            const gchar *key)
 {
     return osinfo_entity_get_param_value_int64_with_default(entity, key, -1);
 }
 
+/**
+ * osinfo_entity_get_param_value_int64_with_default:
+ * @entity: an #OsinfoEntity containing the parameters
+ * @key: the name of the key
+ * @default_value: the value to be returned in case there's no value
+ *                 associated with the @key
+ *
+ * Retrieve the parameter value associated with a named key as an
+ * int64. If multiple values are stored against the key, only the
+ * first value is returned. If no value is associated, @default_value
+ * is returned.
+ *
+ * Returns: the value associated with the key as an int64, or
+ * @default_value
+ *
+ * Since: 0.2.1
+ */
 gint64 osinfo_entity_get_param_value_int64_with_default(OsinfoEntity *entity,
                                                         const gchar *key,
                                                         gint64 default_value)

@@ -116,6 +116,14 @@ const gchar *osinfo_device_get_name(OsinfoDevice *dev)
     return osinfo_entity_get_param_value(OSINFO_ENTITY(dev), OSINFO_DEVICE_PROP_NAME);
 }
 
+/**
+ * osinfo_device_get_subsystem:
+ * @dev: the device
+ *
+ * Returns: the value of the device's subsystem.
+ *
+ * Since: 0.2.1
+ */
 const gchar *osinfo_device_get_subsystem(OsinfoDevice *dev)
 {
     return osinfo_entity_get_param_value(OSINFO_ENTITY(dev), OSINFO_DEVICE_PROP_SUBSYSTEM);

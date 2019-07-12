@@ -383,14 +383,16 @@ OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(OsinfoInst
  *
  * Returns: (transfer full): the sought config param, if exists.
  *                           NULL otherwise.
+ *
+ * This code assumes that the 'id' and 'name' entity properties are
+ * the same.
+ *
+ * Since: 0.2.1
  */
 OsinfoInstallConfigParam *
 osinfo_install_script_get_config_param(OsinfoInstallScript *script,
                                        const gchar *name)
 {
-    /* NB: this code assumes that the 'id' and 'name' entity properties
-     * are the same
-     */
     OsinfoInstallConfigParam *param;
     OsinfoList *l = OSINFO_LIST(script->priv->config_params);
     param = OSINFO_INSTALL_CONFIG_PARAM(osinfo_list_find_by_id(l, name));
@@ -588,6 +590,8 @@ const gchar *osinfo_install_script_get_output_prefix(OsinfoInstallScript *script
  * particular name to work.
  *
  * Returns: (transfer none): the expected script filename
+ *
+ * Since: 0.2.1
  */
 const gchar *osinfo_install_script_get_expected_filename(OsinfoInstallScript *script)
 {

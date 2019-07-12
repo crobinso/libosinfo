@@ -1598,6 +1598,8 @@ gboolean osinfo_media_get_live(OsinfoMedia *media)
  *
  * Returns: (transfer none): the number of installer reboots or -1 if media is
  * not an installer
+ *
+ * Since: 0.2.1
  */
 gint osinfo_media_get_installer_reboots(OsinfoMedia *media)
 {
