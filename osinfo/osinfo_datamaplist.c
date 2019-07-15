@@ -73,6 +73,8 @@ osinfo_datamaplist_init(OsinfoDatamapList *list)
  * Construct a new install_datamap list that is initially empty.
  *
  * Returns: (transfer full): an empty install_datamap list
+ *
+ * Since: 0.2.3
  */
 OsinfoDatamapList *osinfo_datamaplist_new(void)
 {

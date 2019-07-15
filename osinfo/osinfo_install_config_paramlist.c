@@ -75,6 +75,8 @@ osinfo_install_config_paramlist_init(OsinfoInstallConfigParamList *list)
  * Construct a new install_config_param list that is initially empty.
  *
  * Returns: (transfer full): an empty install_config_param list
+ *
+ * Since: 0.2.3
  */
 OsinfoInstallConfigParamList *osinfo_install_config_paramlist_new(void)
 {

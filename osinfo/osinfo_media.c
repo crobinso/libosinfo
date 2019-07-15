@@ -1615,6 +1615,8 @@ gint osinfo_media_get_installer_reboots(OsinfoMedia *media)
  * @media: an #OsinfoMedia instance
  *
  * Returns: (transfer full): the operating system, or NULL
+ *
+ * Since: 0.2.3
  */
 OsinfoOs *osinfo_media_get_os(OsinfoMedia *media)
 {
@@ -1691,6 +1693,8 @@ OsinfoOsVariantList *osinfo_media_get_os_variants(OsinfoMedia *media)
  * containing the list of the UI languages this media supports. The list
  * must be freed with g_list_free() when no longer needed. If the
  * supported languages are unknown, NULL will be returned.
+ *
+ * Since: 0.2.3
  */
 GList *osinfo_media_get_languages(OsinfoMedia *media)
 {

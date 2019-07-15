@@ -85,6 +85,16 @@ osinfo_datamap_init(OsinfoDatamap *list)
 }
 
 
+/**
+ * osinfo_datamap_new:
+ * @id: the unique identifier
+ *
+ * Construct a new datamapa that is initially empty.
+ *
+ * Returns: (transfer full): an empty datamap
+ *
+ * Since: 0.2.3
+ */
 OsinfoDatamap *osinfo_datamap_new(const gchar *id)
 {
     return g_object_new(OSINFO_TYPE_DATAMAP,
@@ -93,6 +103,17 @@ OsinfoDatamap *osinfo_datamap_new(const gchar *id)
 }
 
 
+/**
+ * osinfo_datamap_insert:
+ * @map: the OS datamap
+ * @inval: the input value
+ * @outval: the output value
+ *
+ * Adds the input value and the output value associated to it to
+ * the @map.
+ *
+ * Since: 0.2.3
+ */
 void osinfo_datamap_insert(OsinfoDatamap *map,
                            const gchar *inval,
                            const gchar *outval)
@@ -108,12 +129,30 @@ void osinfo_datamap_insert(OsinfoDatamap *map,
     g_hash_table_insert(map->priv->reverse_map, dup_outval, dup_inval);
 }
 
+/**
+ * osinfo_datamap_lookup:
+ * @map: the OS datamap
+ * @inval: the input value
+ *
+ * Returns the output value with which @inval is associated to.
+ *
+ * Since: 0.2.3
+ */
 const gchar *osinfo_datamap_lookup(OsinfoDatamap *map,
                                    const gchar *inval)
 {
     return g_hash_table_lookup(map->priv->map, inval);
 }
 
+/**
+ * osinfo_datamap_reverse_lookup:
+ * @map: the OS datamap
+ * @outval: the output value
+ *
+ * Returns the input value with which @outval is associated to.
+ *
+ * Since: 0.2.3
+ */
 const gchar *osinfo_datamap_reverse_lookup(OsinfoDatamap *map,
                                            const gchar *outval)
 {

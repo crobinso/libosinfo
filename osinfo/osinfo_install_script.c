@@ -368,6 +368,8 @@ GList *osinfo_install_script_get_config_param_list(OsinfoInstallScript *script)
  *
  * Returns: (transfer none): the list of valid #OsinfoInstallConfigParam
  * parameters.
+ *
+ * Since: 0.2.3
  */
 OsinfoInstallConfigParamList *osinfo_install_script_get_config_params(OsinfoInstallScript *script)
 {
@@ -1196,6 +1198,8 @@ gchar *osinfo_install_script_generate_for_media_finish(OsinfoInstallScript *scri
  * @error:  The location where to store any error, or NULL
  *
  * Returns: (transfer full): a file containing the script, or NULL on error
+ *
+ * Since: 0.2.3
  */
 GFile *osinfo_install_script_generate_output_finish(OsinfoInstallScript *script,
                                                     GAsyncResult *res,

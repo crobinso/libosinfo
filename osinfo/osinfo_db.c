@@ -261,6 +261,8 @@ OsinfoDeployment *osinfo_db_get_deployment(OsinfoDb *db, const gchar *id)
  * @id: the unique operating system identifier
  *
  * Returns: (transfer none): the install datamap, or NULL if none is found
+ *
+ * Since: 0.2.3
  */
 OsinfoDatamap *osinfo_db_get_datamap(OsinfoDb *db, const gchar *id)
 {
@@ -402,6 +404,8 @@ OsinfoDeploymentList *osinfo_db_get_deployment_list(OsinfoDb *db)
  * @db: the database
  *
  * Returns: (transfer full): the list of install datamaps
+ *
+ * Since: 0.2.3
  */
 OsinfoDatamapList *osinfo_db_get_datamap_list(OsinfoDb *db)
 {
@@ -498,6 +502,7 @@ void osinfo_db_add_deployment(OsinfoDb *db, OsinfoDeployment *deployment)
  * @db: the database
  * @datamap: (transfer none): an install datamap
  *
+ * Since: 0.2.3
  */
 void osinfo_db_add_datamap(OsinfoDb *db, OsinfoDatamap *datamap)
 {
@@ -753,6 +758,8 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
  * properties will be set.
  *
  * Returns: TRUE if @media was found in @db, FALSE otherwise
+ *
+ * Since: 0.2.3
  */
 gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
 {
