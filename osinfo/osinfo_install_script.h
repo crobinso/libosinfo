@@ -41,6 +41,7 @@
 
 typedef struct _OsinfoOs        OsinfoOs;
 typedef struct _OsinfoMedia     OsinfoMedia;
+typedef struct _OsinfoTree      OsinfoTree;
 typedef struct _OsinfoInstallScript        OsinfoInstallScript;
 typedef struct _OsinfoInstallScriptClass   OsinfoInstallScriptClass;
 typedef struct _OsinfoInstallScriptPrivate OsinfoInstallScriptPrivate;
@@ -251,6 +252,9 @@ gchar *osinfo_install_script_generate_command_line(OsinfoInstallScript *script,
 gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript *script,
                                                              OsinfoMedia *media,
                                                              OsinfoInstallConfig *config);
+gchar *osinfo_install_script_generate_command_line_for_tree(OsinfoInstallScript *script,
+                                                            OsinfoTree *tree,
+                                                            OsinfoInstallConfig *config);
 
 gboolean osinfo_install_script_has_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *config_param);
 
@@ -279,5 +283,37 @@ OsinfoInstallScriptInjectionMethod osinfo_install_script_get_preferred_injection
 void osinfo_install_script_set_installation_source(OsinfoInstallScript *script,
                                                    OsinfoInstallScriptInstallationSource source);
 OsinfoInstallScriptInstallationSource osinfo_install_script_get_installation_source(OsinfoInstallScript *script);
+
+void osinfo_install_script_generate_for_tree_async(OsinfoInstallScript *script,
+                                                   OsinfoTree *tree,
+                                                   OsinfoInstallConfig *config,
+                                                   GCancellable *cancellable,
+                                                   GAsyncReadyCallback callback,
+                                                   gpointer user_data);
+gchar *osinfo_install_script_generate_for_tree_finish(OsinfoInstallScript *script,
+                                                      GAsyncResult *res,
+                                                      GError **error);
+gchar *osinfo_install_script_generate_for_tree(OsinfoInstallScript *script,
+                                               OsinfoTree *tree,
+                                               OsinfoInstallConfig *config,
+                                               GCancellable *cancellable,
+                                               GError **error);
+
+void osinfo_install_script_generate_output_for_tree_async(OsinfoInstallScript *script,
+                                                          OsinfoTree *tree,
+                                                          OsinfoInstallConfig *config,
+                                                          GFile *output_dir,
+                                                          GCancellable *cancellable,
+                                                          GAsyncReadyCallback callback,
+                                                          gpointer user_data);
+GFile *osinfo_install_script_generate_output_for_tree_finish(OsinfoInstallScript *script,
+                                                             GAsyncResult *res,
+                                                             GError **error);
+GFile *osinfo_install_script_generate_output_for_tree(OsinfoInstallScript *script,
+                                                      OsinfoTree *tree,
+                                                      OsinfoInstallConfig *config,
+                                                      GFile *output_dir,
+                                                      GCancellable *cancellable,
+                                                      GError **error);
 
 #endif /* __OSINFO_INSTALL_SCRIPT_H__ */

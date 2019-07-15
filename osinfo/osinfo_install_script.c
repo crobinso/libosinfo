@@ -671,6 +671,7 @@ struct _OsinfoInstallScriptGenerateData {
     GTask *res;
     OsinfoOs *os;
     OsinfoMedia *media;
+    OsinfoTree *tree;
     OsinfoInstallConfig *config;
     OsinfoInstallScript *script;
 };
@@ -681,6 +682,8 @@ static void osinfo_install_script_generate_data_free(OsinfoInstallScriptGenerate
     g_object_unref(data->os);
     if (data->media != NULL)
         g_object_unref(data->media);
+    if (data->tree != NULL)
+        g_object_unref(data->tree);
     g_object_unref(data->config);
     g_object_unref(data->script);
     g_object_unref(data->res);
@@ -884,6 +887,7 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
 static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *script,
                                                            OsinfoOs *os,
                                                            OsinfoMedia *media,
+                                                           OsinfoTree *tree,
                                                            OsinfoInstallConfig *config,
                                                            const gchar *node_name,
                                                            GError **error)
@@ -926,6 +930,18 @@ static xmlDocPtr osinfo_install_script_generate_config_xml(OsinfoInstallScript *
             goto error;
         if (!(xmlAddChild(root, node))) {
             propagate_libxml_error(error, _("Unable to set 'media' node"));
+            goto error;
+        }
+    }
+
+    if (tree != NULL) {
+        if (!(node = osinfo_install_script_generate_entity_xml(script,
+                                                               OSINFO_ENTITY(tree),
+                                                               "tree",
+                                                               error)))
+            goto error;
+        if (!(xmlAddChild(root, node))) {
+            propagate_libxml_error(error, _("Unable to set 'tree' node"));
             goto error;
         }
     }
@@ -985,6 +1001,7 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
 static gboolean osinfo_install_script_apply_template(OsinfoInstallScript *script,
                                                      OsinfoOs *os,
                                                      OsinfoMedia *media,
+                                                     OsinfoTree *tree,
                                                      const gchar *templateUri,
                                                      const gchar *template,
                                                      const gchar *node_name,
@@ -994,7 +1011,7 @@ static gboolean osinfo_install_script_apply_template(OsinfoInstallScript *script
 {
     gboolean ret = FALSE;
     xsltStylesheetPtr templateXsl = osinfo_install_script_load_template(templateUri, template, error);
-    xmlDocPtr configXml = osinfo_install_script_generate_config_xml(script, os, media, config, node_name, error);
+    xmlDocPtr configXml = osinfo_install_script_generate_config_xml(script, os, media, tree, config, node_name, error);
 
     if (!templateXsl || !configXml)
         goto cleanup;
@@ -1038,6 +1055,7 @@ static void osinfo_install_script_template_loaded(GObject *src,
     if (!osinfo_install_script_apply_template(data->script,
                                               data->os,
                                               data->media,
+                                              data->tree,
                                               uri,
                                               input,
                                               "install-script-config",
@@ -1061,6 +1079,7 @@ static void osinfo_install_script_template_loaded(GObject *src,
 static void osinfo_install_script_generate_async_common(OsinfoInstallScript *script,
                                                         OsinfoOs *os,
                                                         OsinfoMedia *media,
+                                                        OsinfoTree *tree,
                                                         OsinfoInstallConfig *config,
                                                         GCancellable *cancellable,
                                                         GAsyncReadyCallback callback,
@@ -1079,6 +1098,8 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
     data->os = g_object_ref(os);
     if (media != NULL)
         data->media = g_object_ref(media);
+    if (tree != NULL)
+        data->tree = g_object_ref(tree);
     data->config = g_object_ref(config);
     data->script = g_object_ref(script);
     data->res = g_task_new(G_OBJECT(script),
@@ -1092,6 +1113,7 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
         if (!osinfo_install_script_apply_template(script,
                                                   os,
                                                   media,
+                                                  NULL,
                                                   "<data>",
                                                   templateData,
                                                   "install-script-config",
@@ -1143,6 +1165,7 @@ void osinfo_install_script_generate_async(OsinfoInstallScript *script,
 {
     osinfo_install_script_generate_async_common(script,
                                                 os,
+                                                NULL,
                                                 NULL,
                                                 config,
                                                 cancellable,
@@ -1200,6 +1223,25 @@ gchar *osinfo_install_script_generate_for_media_finish(OsinfoInstallScript *scri
 }
 
 /**
+ * osinfo_install_script_generate_for_tree_finish:
+ * @script: the install script
+ * @res:    a #GAsyncResult
+ * @error:  the location where to story any error, or NULL
+ *
+ * Returns: (transfer full): the generated script, or NULL or error
+ *
+ * Since: 1.6.0
+ */
+gchar *osinfo_install_script_generate_for_tree_finish(OsinfoInstallScript *script,
+                                                      GAsyncResult *res,
+                                                      GError **error)
+{
+    return osinfo_install_script_generate_finish_common(script,
+                                                        res,
+                                                        error);
+}
+
+/**
  * osinfo_install_script_generate_output_finish:
  * @script: the install script
  * @res:    a #GAsyncResult
@@ -1237,6 +1279,25 @@ GFile *osinfo_install_script_generate_output_for_media_finish(OsinfoInstallScrip
                                                         error);
 }
 
+/**
+ * osinfo_install_script_generate_output_for_tree_finish:
+ * @script: the install script
+ * @res:    a #GAsyncResult
+ * @error:  the location where to store any error, or NULL
+ *
+ * Returns: (transfer full): a file containing the script, or NULL on error.
+ *
+ * Since: 1.6.0
+ */
+GFile *osinfo_install_script_generate_output_for_tree_finish(OsinfoInstallScript *script,
+                                                             GAsyncResult *res,
+                                                             GError **error)
+{
+    return osinfo_install_script_generate_finish_common(script,
+                                                        res,
+                                                        error);
+}
+
 struct _OsinfoInstallScriptGenerateSyncData {
     GMainLoop *loop;
     GError *error;
@@ -1267,6 +1328,19 @@ static void osinfo_install_script_generate_output_for_media_done(GObject *src,
         osinfo_install_script_generate_output_for_media_finish(OSINFO_INSTALL_SCRIPT(src),
                                                                res,
                                                                &data->error);
+    g_main_loop_quit(data->loop);
+}
+
+static void osinfo_install_script_generate_output_for_tree_done(GObject *src,
+                                                                 GAsyncResult *res,
+                                                                 gpointer user_data)
+{
+    OsinfoInstallScriptGenerateSyncData *data = user_data;
+
+    data->file =
+        osinfo_install_script_generate_output_for_tree_finish(OSINFO_INSTALL_SCRIPT(src),
+                                                              res,
+                                                              &data->error);
     g_main_loop_quit(data->loop);
 }
 
@@ -1312,6 +1386,9 @@ static void osinfo_install_script_generate_done(GObject *src,
  *
  * If you are generating the script for a specific media, it is recommended
  * that you use #osinfo_install_script_generate_for_media() instead.
+ *
+ * If you are generating the script for a specific tree, it is recommended
+ * that you use #osinfo_install_script_generate_for_tree() in instead.
  *
  * Since: 0.2.0
  */
@@ -1374,6 +1451,7 @@ void osinfo_install_script_generate_for_media_async(OsinfoInstallScript *script,
     osinfo_install_script_generate_async_common(script,
                                                 os,
                                                 media,
+                                                NULL,
                                                 config,
                                                 cancellable,
                                                 callback,
@@ -1439,6 +1517,102 @@ gchar *osinfo_install_script_generate_for_media(OsinfoInstallScript *script,
     return data.output;
 }
 
+/**
+ * osinfo_install_script_generate_for_tree_async:
+ * @script:     the install script
+ * @tree:       the tree
+ * @config:     the install script config
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @callback: Function to call when result of this call is ready
+ * @user_data: The user data to pass to @callback, or %NULL
+ *
+ * Asynchronous variant of #osinfo_install_script_generate_for_tree(). From the
+ * callback, call #osinfo_install_script_generate_for_tree_finish() to
+ * conclude this call and get the generated script.
+ *
+ * Since: 1.6.0
+ */
+void osinfo_install_script_generate_for_tree_async(OsinfoInstallScript *script,
+                                                    OsinfoTree *tree,
+                                                    OsinfoInstallConfig *config,
+                                                    GCancellable *cancellable,
+                                                    GAsyncReadyCallback callback,
+                                                    gpointer user_data) {
+    OsinfoOs *os;
+
+    g_return_if_fail(tree != NULL);
+
+    os = osinfo_tree_get_os(tree);
+
+    osinfo_install_script_generate_async_common(script,
+                                                os,
+                                                NULL,
+                                                tree,
+                                                config,
+                                                cancellable,
+                                                callback,
+                                                user_data);
+
+    g_object_unref(os);
+}
+
+static void osinfo_install_script_generate_for_tree_done(GObject *src,
+                                                         GAsyncResult *res,
+                                                         gpointer user_data)
+{
+    OsinfoInstallScriptGenerateSyncData *data = user_data;
+
+    data->output =
+        osinfo_install_script_generate_for_tree_finish(OSINFO_INSTALL_SCRIPT(src),
+                                                        res,
+                                                        &data->error);
+    g_main_loop_quit(data->loop);
+}
+
+/**
+ * osinfo_install_script_generate_for_tree:
+ * @script:     the install script
+ * @tree:       the tree
+ * @config:     the install script config
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @error: The location where to store any error, or %NULL
+ *
+ * Creates an install script. The tree @tree must have been identified
+ * successfully using #osinfo_db_identify_tree() before calling this function.
+ *
+ * Returns: (transfer full): the script as string.
+ *
+ * Since: 1.6.0
+ */
+gchar *osinfo_install_script_generate_for_tree(OsinfoInstallScript *script,
+                                               OsinfoTree *tree,
+                                               OsinfoInstallConfig *config,
+                                               GCancellable *cancellable,
+                                               GError **error)
+{
+    GMainLoop *loop = g_main_loop_new(g_main_context_get_thread_default(),
+                                      FALSE);
+    OsinfoInstallScriptGenerateSyncData data = {
+        loop, NULL, NULL, NULL
+    };
+
+    osinfo_install_script_generate_for_tree_async(script,
+                                                   tree,
+                                                   config,
+                                                   cancellable,
+                                                   osinfo_install_script_generate_for_tree_done,
+                                                   &data);
+
+    g_main_loop_run(loop);
+
+    if (data.error)
+        g_propagate_error(error, data.error);
+
+    g_main_loop_unref(loop);
+
+    return data.output;
+}
+
 static void osinfo_install_script_generate_output_write_file(GObject *src,
                                                              GAsyncResult *res,
                                                              gpointer user_data)
@@ -1473,6 +1647,7 @@ static void osinfo_install_script_generate_output_write_file(GObject *src,
 static void osinfo_install_script_generate_output_async_common(OsinfoInstallScript *script,
                                                                OsinfoOs *os,
                                                                OsinfoMedia *media,
+                                                               OsinfoTree *tree,
                                                                OsinfoInstallConfig *config,
                                                                GFile *output_dir,
                                                                GCancellable *cancellable,
@@ -1498,6 +1673,12 @@ static void osinfo_install_script_generate_output_async_common(OsinfoInstallScri
                                                                 config,
                                                                 cancellable,
                                                                 &data->error);
+    } else if (tree != NULL) {
+        data->output = osinfo_install_script_generate_for_tree(script,
+                                                               tree,
+                                                               config,
+                                                               cancellable,
+                                                               &data->error);
     } else {
         data->output = osinfo_install_script_generate(script,
                                                       os,
@@ -1562,6 +1743,7 @@ void osinfo_install_script_generate_output_async(OsinfoInstallScript *script,
     osinfo_install_script_generate_output_async_common(script,
                                                        os,
                                                        NULL,
+                                                       NULL,
                                                        config,
                                                        output_dir,
                                                        cancellable,
@@ -1572,6 +1754,7 @@ void osinfo_install_script_generate_output_async(OsinfoInstallScript *script,
 static GFile *osinfo_install_script_generate_output_common(OsinfoInstallScript *script,
                                                            OsinfoOs *os,
                                                            OsinfoMedia *media,
+                                                           OsinfoTree *tree,
                                                            OsinfoInstallConfig *config,
                                                            GFile *output_dir,
                                                            GCancellable *cancellable,
@@ -1591,6 +1774,15 @@ static GFile *osinfo_install_script_generate_output_common(OsinfoInstallScript *
              output_dir,
              cancellable,
              osinfo_install_script_generate_output_for_media_done,
+             &data);
+    } else if (tree != NULL) {
+        osinfo_install_script_generate_output_for_tree_async
+            (script,
+             tree,
+             config,
+             output_dir,
+             cancellable,
+             osinfo_install_script_generate_output_for_tree_done,
              &data);
     } else {
         osinfo_install_script_generate_output_async
@@ -1630,6 +1822,9 @@ static GFile *osinfo_install_script_generate_output_common(OsinfoInstallScript *
  * If you are generating the script for a specific media, it is recommended
  * that you use #osinfo_install_script_generate_output_for_media() instead.
  *
+ * If you are generating the script for a specific tree, it is recommended
+ * that you use #osinfo_install_script_generate_output_for_tree() instead.
+ *
  * Since: 0.2.0
  */
 GFile *osinfo_install_script_generate_output(OsinfoInstallScript *script,
@@ -1641,6 +1836,7 @@ GFile *osinfo_install_script_generate_output(OsinfoInstallScript *script,
 {
     return osinfo_install_script_generate_output_common(script,
                                                         os,
+                                                        NULL,
                                                         NULL,
                                                         config,
                                                         output_dir,
@@ -1677,6 +1873,7 @@ void osinfo_install_script_generate_output_for_media_async(OsinfoInstallScript *
     osinfo_install_script_generate_output_async_common(script,
                                                        NULL,
                                                        media,
+                                                       NULL,
                                                        config,
                                                        output_dir,
                                                        cancellable,
@@ -1710,6 +1907,77 @@ GFile *osinfo_install_script_generate_output_for_media(OsinfoInstallScript *scri
     return osinfo_install_script_generate_output_common(script,
                                                         NULL,
                                                         media,
+                                                        NULL,
+                                                        config,
+                                                        output_dir,
+                                                        cancellable,
+                                                        error);
+}
+
+/**
+ * osinfo_install_script_generate_output_for_tree_async:
+ * @script:     the install script
+ * @tree:       the tree
+ * @config:     the install script config
+ * @output_dir: the directory where the file containing the output script
+ *              will be written
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @callback: Function to call when result of this call is ready
+ * @user_data: The user data to pass to @callback, or %NULL
+ *
+ * Asynchronous variant of #osinfo_install_script_generate_output_for_tree().
+ * From the callback, call
+ * #osinfo_install_script_generate_output_for_tree_finish() to conclude this
+ * call and get the generated file.
+ *
+ * Since: 1.6.0
+ */
+void osinfo_install_script_generate_output_for_tree_async(OsinfoInstallScript *script,
+                                                          OsinfoTree *tree,
+                                                          OsinfoInstallConfig *config,
+                                                          GFile *output_dir,
+                                                          GCancellable *cancellable,
+                                                          GAsyncReadyCallback callback,
+                                                          gpointer user_data)
+{
+    osinfo_install_script_generate_output_async_common(script,
+                                                       NULL,
+                                                       NULL,
+                                                       tree,
+                                                       config,
+                                                       output_dir,
+                                                       cancellable,
+                                                       callback,
+                                                       user_data);
+}
+
+/**
+ * osinfo_install_script_generate_output_for_tree:
+ * @script:     the install script
+ * @tree:       the tree
+ * @config:     the install script config
+ * @output_dir: the directory where the file containing the output script
+ *              will be written
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @error: The location where to store any error, or %NULL
+ *
+ * Creates an install script that is written to the returned file.
+ *
+ * Returns: (transfer full): a file containing the script.
+ *
+ * Since: 1.6.0
+ */
+GFile *osinfo_install_script_generate_output_for_tree(OsinfoInstallScript *script,
+                                                      OsinfoTree *tree,
+                                                      OsinfoInstallConfig *config,
+                                                      GFile *output_dir,
+                                                      GCancellable *cancellable,
+                                                      GError **error)
+{
+    return osinfo_install_script_generate_output_common(script,
+                                                        NULL,
+                                                        NULL,
+                                                        tree,
                                                         config,
                                                         output_dir,
                                                         cancellable,
@@ -1732,6 +2000,10 @@ GFile *osinfo_install_script_generate_output_for_media(OsinfoInstallScript *scri
  * recommended that you use
  * #osinfo_install_script_generate_command_line_for_media() instead.
  *
+ * If you are generating the command line for a specific tree, it is
+ * recommended that you use
+ * #osinfo_install_script_generate_command_line_for_tree() instead.
+ *
  * Returns: (transfer full): The generated command line string, NULL otherwise.
  *
  * Since: 0.2.7
@@ -1747,6 +2019,7 @@ gchar *osinfo_install_script_generate_command_line(OsinfoInstallScript *script,
         GError *error = NULL;
         if (!osinfo_install_script_apply_template(script,
                                                   os,
+                                                  NULL,
                                                   NULL,
                                                   "<data>",
                                                   templateData,
@@ -1798,6 +2071,57 @@ gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript
         if (!osinfo_install_script_apply_template(script,
                                                   os,
                                                   media,
+                                                  NULL,
+                                                  "<data>",
+                                                  templateData,
+                                                  "command-line",
+                                                  &output,
+                                                  config,
+                                                  &error)) {
+            g_prefix_error(&error, "%s", _("Failed to apply script template: "));
+        }
+    }
+    g_object_unref(os);
+
+    return output;
+}
+
+/**
+ * osinfo_install_script_generate_command_line_for_tree:
+ * @script: the install script
+ * @tree:   the tree
+ * @config: the install script config
+ *
+ * Some install scripts need to pass a command line to the kernel, Such install
+ * scripts belong to OSs that provide paths to the kernel and initrd files that
+ * can be used to directly boot
+ * (http://wiki.qemu.org/download/qemu-doc.html#direct_005flinux_005fboot)
+ * the OS in order to pass the needed commandline to it.
+ *
+ * The tree @tree must have been identified successfully using
+ * #osinfo_db_identify_tree() before calling this function.
+ *
+ * Returns: (transfer full): The generated command line string, NULL otherwise.
+ */
+gchar *osinfo_install_script_generate_command_line_for_tree(OsinfoInstallScript *script,
+                                                            OsinfoTree *tree,
+                                                            OsinfoInstallConfig *config)
+{
+    const gchar *templateData = osinfo_install_script_get_template_data(script);
+    gchar *output = NULL;
+    OsinfoOs *os;
+
+    g_return_val_if_fail(tree != NULL, NULL);
+
+    os = osinfo_tree_get_os(tree);
+    g_return_val_if_fail(os != NULL, NULL);
+
+    if (templateData) {
+        GError *error = NULL;
+        if (!osinfo_install_script_apply_template(script,
+                                                  os,
+                                                  NULL,
+                                                  tree,
                                                   "<data>",
                                                   templateData,
                                                   "command-line",

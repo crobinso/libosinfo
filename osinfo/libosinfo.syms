@@ -588,6 +588,16 @@ LIBOSINFO_1.6.0 {
     global:
 	osinfo_db_identify_tree;
 
+	osinfo_install_script_generate_command_line_for_tree;
+
+	osinfo_install_script_generate_for_tree;
+	osinfo_install_script_generate_for_tree_async;
+	osinfo_install_script_generate_for_tree_finish;
+
+	osinfo_install_script_generate_output_for_tree;
+	osinfo_install_script_generate_output_for_tree_async;
+	osinfo_install_script_generate_output_for_tree_finish;
+
 	osinfo_media_create_from_location_with_flags;
 	osinfo_media_create_from_location_with_flags_async;
 	osinfo_media_create_from_location_with_flags_finish;
