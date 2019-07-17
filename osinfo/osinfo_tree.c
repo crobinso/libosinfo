@@ -676,7 +676,7 @@ static void on_content_read(GObject *source,
                                         &error)) {
         g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo content: "));
         g_task_return_error(data->res, error);
-        create_from_location_async_data_free(data);
+        goto cleanup;
     }
 
     if (!(ret = load_keyinfo(data->location,
