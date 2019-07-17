@@ -137,10 +137,12 @@ static void print_media(OsinfoMedia *media)
     } else {
         OsinfoOsVariantList *variants;
         const gchar *name;
-        guint num_variants;
+        guint num_variants = 0;
 
         variants = osinfo_media_get_os_variants(media);
-        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+        if (variants != NULL)
+            num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+
         if (num_variants == 1) {
             OsinfoEntity *variant;
 
@@ -206,10 +208,12 @@ static void print_tree(OsinfoTree *tree)
     } else {
         OsinfoOsVariantList *variants;
         const gchar *name;
-        guint num_variants;
+        guint num_variants = 0;
 
         variants = osinfo_tree_get_os_variants(tree);
-        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+        if (variants != NULL)
+            num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+
         if (num_variants == 1) {
             OsinfoEntity *variant;
 
