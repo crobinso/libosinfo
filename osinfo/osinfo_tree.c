@@ -758,6 +758,8 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
                             _("URL protocol is not supported"));
 
         g_task_return_error(data->res, error);
+        create_from_location_async_data_free(data);
+        return;
     }
 
     location = g_strdup_printf("%s/%s", data->location, treeinfo);
