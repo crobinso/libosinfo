@@ -47,9 +47,9 @@ struct _CreateFromLocationAsyncData {
 
 static void create_from_location_async_data_free(CreateFromLocationAsyncData *data)
 {
-    g_object_unref(data->session);
-    g_object_unref(data->message);
-    g_object_unref(data->res);
+    g_clear_object(&data->session);
+    g_clear_object(&data->message);
+    g_clear_object(&data->res);
 
     g_slice_free(CreateFromLocationAsyncData, data);
 }
