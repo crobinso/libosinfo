@@ -1,6 +1,28 @@
                libosinfo News
                ==============
 
+1.6.0 - Jul 26, 2019
+====================
+
+- Add API to get the kernel URL argument for an OsinfoOs
+- Improve detection of PPC ISOs
+- Add API to create an OsinfoMedia from location using
+  OsinfoMediaDetectFlags
+- Add API to get whether a media is bootable or not
+- Add OsinfoTree treeinfo properties
+- Add API to identify an OsinfoTree
+- Deprecate API to guess an OsinfoOs from OsinfoTree
+- Add --config-file to osinfo-install-script tool
+- Deprecate --config usage for user & admin passwords on
+  osinfo-install-script tool
+- Add API to generate an install-script and its command-line
+  for OsinfoTree
+- Use libsoup for "http://" & "https://" requests for creating
+  both OsinfoMedia & OsinfoTree
+- Drop GVFS dependency
+- Add OsinfoOs property to OsinfoTree
+
+
 1.5.0 - May 09, 2019
 ====================
 
