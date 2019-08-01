@@ -51,8 +51,6 @@ Libraries, includes, etc. to compile with the libosinfo library
 %configure --enable-introspection=yes --enable-vala=yes
 %__make %{?_smp_mflags} V=1
 
-chmod a-x examples/*.js examples/*.py
-
 %install
 rm -fr %{buildroot}
 %__make install DESTDIR=%{buildroot}
@@ -87,8 +85,6 @@ rm -fr %{buildroot}
 %{_libdir}/girepository-1.0/Libosinfo-1.0.typelib
 
 %files devel
-%doc examples/demo.js
-%doc examples/demo.py
 %{_libdir}/%{name}-1.0.so
 %dir %{_includedir}/%{name}-1.0/
 %dir %{_includedir}/%{name}-1.0/osinfo/

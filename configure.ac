@@ -282,7 +282,6 @@ AC_CONFIG_FILES([
 	tests/Makefile
 	docs/Makefile
 	docs/reference/Makefile
-	examples/Makefile
 	po/Makefile.in
 ])
 AC_OUTPUT

@@ -1,5 +1,5 @@
 
-SUBDIRS = osinfo tools docs po examples
+SUBDIRS = osinfo tools docs po
 
 if ENABLE_TESTS
 SUBDIRS += tests
