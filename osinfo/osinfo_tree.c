@@ -1113,3 +1113,25 @@ OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree)
 
     return tree_variants;
 }
+
+/**
+ * osinfo_tree_create_from_treeinfo:
+ * @treeinfo: a string representing the .treeinfo content
+ * @location: the location of the original @treeinfo
+ * @error: The location where to store any error, or %NULL
+ *
+ * Creates a new #OsinfoTree for installation tree represented by @treeinfo.
+ *
+ * Returns: (transfer full): a new #OsinfoTree, or NULL on error
+ *
+ * Since: 1.7.0
+ */
+OsinfoTree *osinfo_tree_create_from_treeinfo(const gchar *treeinfo,
+                                             const gchar *location,
+                                             GError **error)
+{
+    g_return_val_if_fail(treeinfo != NULL, NULL);
+    g_return_val_if_fail(location != NULL, NULL);
+
+    return load_keyinfo(location, treeinfo, strlen(treeinfo), error);
+}

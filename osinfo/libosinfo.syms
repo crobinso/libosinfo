@@ -609,6 +609,11 @@ LIBOSINFO_1.6.0 {
 	osinfo_tree_error_get_type;
 } LIBOSINFO_1.5.0;
 
+LIBOSINFO_1.7.0 {
+    global:
+	osinfo_tree_create_from_treeinfo;
+} LIBOSINFO_1.6.0;
+
 /* Symbols in next release...
 
   LIBOSINFO_0.0.2 {

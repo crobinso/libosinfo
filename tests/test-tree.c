@@ -69,6 +69,47 @@ test_os_variants(void)
     g_object_unref(loader);
 }
 
+static void
+test_create_from_treeinfo(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    OsinfoTree *tree;
+    GError *error = NULL;
+    const gchar *treeinfo = "[general]\n"
+                            "arch = ppc64le\n"
+                            "family = Tree\n"
+                            "version = unknown\n"
+                            "[images-ppc64le]\n"
+                            "boot.iso = images/boot.iso\n"
+                            "efiboot.img = images/efiboot.img\n"
+                            "initrd = images/pxeboot/initrd.img\n"
+                            "kernel = images/pxeboot/vmlinuz\n"
+                            "macboot.img = images/macboot.img\n";
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    tree = osinfo_tree_create_from_treeinfo(treeinfo,
+                                            "libosinfo.org/test",
+                                            &error);
+    g_assert_no_error(error);
+
+    g_assert_cmpstr(osinfo_tree_get_treeinfo_arch(tree), ==, "ppc64le");
+    g_assert_cmpstr(osinfo_tree_get_treeinfo_family(tree), ==, "Tree");
+    g_assert_cmpstr(osinfo_tree_get_treeinfo_version(tree), ==, "unknown");
+
+    g_assert_true(osinfo_db_identify_tree(db, tree));
+
+    os = osinfo_tree_get_os(tree);
+    g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "http://libosinfo.org/test/tree");
+    g_object_unref(os);
+
+    g_object_unref(loader);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -76,6 +117,7 @@ main(int argc, char *argv[])
 
     g_test_add_func("/tree/basic", test_basic);
     g_test_add_func("/tree/os-variants", test_os_variants);
+    g_test_add_func("/tree/create-from-treeinfo", test_create_from_treeinfo);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_tree_get_type();

@@ -113,6 +113,10 @@ void osinfo_tree_create_from_location_async(const gchar *location,
 OsinfoTree *osinfo_tree_create_from_location_finish(GAsyncResult *res,
                                                     GError **error);
 
+OsinfoTree *osinfo_tree_create_from_treeinfo(const gchar *treeinfo,
+                                             const gchar *location,
+                                             GError **error);
+
 const gchar *osinfo_tree_get_architecture(OsinfoTree *tree);
 const gchar *osinfo_tree_get_url(OsinfoTree *tree);
 gboolean osinfo_tree_has_treeinfo(OsinfoTree *tree);
