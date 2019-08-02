@@ -37,6 +37,7 @@ typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
     SoupSession *session;
     SoupMessage *message;
+    GFile *file;
 
     gchar *content;
     gchar *location;
@@ -49,6 +50,7 @@ static void create_from_location_async_data_free(CreateFromLocationAsyncData *da
 {
     g_clear_object(&data->session);
     g_clear_object(&data->message);
+    g_clear_object(&data->file);
     g_clear_object(&data->res);
 
     g_slice_free(CreateFromLocationAsyncData, data);
@@ -507,7 +509,7 @@ static void on_tree_create_from_location_ready(GObject *source_object,
  * @error: The location where to store any error, or %NULL
  *
  * Creates a new #OsinfoTree for installation tree at @location. The @location
- * could be a http:// or a https:// URI.
+ * could be a http:// or a https:// URI, or a local file.
  *
  * NOTE: Currently this only works for trees with a .treeinfo file
  *
@@ -766,15 +768,62 @@ static void on_soup_location_read(GObject *source,
                                   data);
 }
 
+static void on_local_location_read(GObject *source,
+                                   GAsyncResult *res,
+                                   gpointer user_data)
+{
+    CreateFromLocationAsyncData *data;
+    GError *error = NULL;
+    gchar *content = NULL;
+    gsize length = 0;
+    OsinfoTree *ret = NULL;
+
+    data = (CreateFromLocationAsyncData *)user_data;
+
+    if (!g_file_load_contents_finish(G_FILE(source),
+                                     res,
+                                     &content,
+                                     &length,
+                                     NULL,
+                                     &error)) {
+        if (g_str_equal(data->treeinfo, ".treeinfo")) {
+            osinfo_tree_create_from_location_async_helper(data, "treeinfo");
+            return;
+        }
+
+        g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo file: "));
+        g_task_return_error(data->res, error);
+        goto cleanup;
+    }
+
+    if (!(ret = load_keyinfo(data->location,
+                             content,
+                             length,
+                             &error))) {
+        g_prefix_error(&error, _("Failed to process keyinfo file: "));
+        g_task_return_error(data->res, error);
+        goto cleanup;
+    }
+
+    g_task_return_pointer(data->res, ret, g_object_unref);
+
+ cleanup:
+    create_from_location_async_data_free(data);
+    g_free(content);
+}
+
 static void
 osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
                                               const gchar *treeinfo)
 {
     gchar *location;
+    gboolean requires_soup;
 
     g_return_if_fail(treeinfo != NULL);
 
-    if (!osinfo_util_requires_soup(data->location)) {
+    requires_soup = osinfo_util_requires_soup(data->location);
+    if (!requires_soup &&
+        !g_str_has_prefix(data->location, "file://")) {
         GError *error = NULL;
 
         g_set_error_literal(&error,
@@ -789,20 +838,30 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
 
     location = g_strdup_printf("%s/%s", data->location, treeinfo);
 
-    if (data->session == NULL)
-        data->session = soup_session_new();
-
-    g_clear_object(&data->message);
-    data->message = soup_message_new("GET", location);
-
     g_free(data->treeinfo);
     data->treeinfo = g_strdup(treeinfo);
 
-    soup_session_send_async(data->session,
-                            data->message,
-                            g_task_get_cancellable(data->res),
-                            on_soup_location_read,
-                            data);
+    if (requires_soup) {
+        if (data->session == NULL)
+            data->session = soup_session_new();
+
+        g_clear_object(&data->message);
+        data->message = soup_message_new("GET", location);
+
+        soup_session_send_async(data->session,
+                                data->message,
+                                g_task_get_cancellable(data->res),
+                                on_soup_location_read,
+                                data);
+    } else {
+        g_clear_object(&data->file);
+        data->file = g_file_new_for_uri(location);
+
+        g_file_load_contents_async(data->file,
+                                   g_task_get_cancellable(data->res),
+                                   on_local_location_read,
+                                   data);
+    }
     g_free(location);
 }
 
