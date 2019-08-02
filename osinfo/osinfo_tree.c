@@ -719,9 +719,9 @@ static void on_content_read(GObject *source,
     create_from_location_async_data_free(data);
 }
 
-static void on_location_read(GObject *source,
-                             GAsyncResult *res,
-                             gpointer user_data)
+static void on_soup_location_read(GObject *source,
+                                  GAsyncResult *res,
+                                  gpointer user_data)
 {
     CreateFromLocationAsyncData *data;
     GError *error = NULL;
@@ -801,7 +801,7 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
     soup_session_send_async(data->session,
                             data->message,
                             g_task_get_cancellable(data->res),
-                            on_location_read,
+                            on_soup_location_read,
                             data);
     g_free(location);
 }
