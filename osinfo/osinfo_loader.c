@@ -1844,7 +1844,7 @@ static void osinfo_loader_process_xml(OsinfoLoader *loader,
     pctxt->sax->error = catchXMLError;
 
     xml = xmlCtxtReadDoc(pctxt, BAD_CAST xmlStr, src, NULL,
-                         XML_PARSE_NOENT | XML_PARSE_NONET |
+                         XML_PARSE_NONET |
                          XML_PARSE_NOWARNING);
     if (!xml)
         goto cleanup;
