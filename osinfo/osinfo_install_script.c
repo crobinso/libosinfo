@@ -725,7 +725,7 @@ static xsltStylesheetPtr osinfo_install_script_load_template(const gchar *uri,
     }
 
     if (!(doc = xmlCtxtReadDoc(pctxt, BAD_CAST template, uri, NULL,
-                               XML_PARSE_NOENT | XML_PARSE_NONET |
+                               XML_PARSE_NONET |
                                XML_PARSE_NOWARNING))) {
         g_set_error_literal(error, OSINFO_ERROR, 0,
                             _("Unable to read XSL template"));
