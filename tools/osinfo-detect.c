@@ -200,6 +200,7 @@ static void print_tree(OsinfoTree *tree)
     }
 
     g_clear_object(&variants);
+    g_object_unref(os);
 }
 
 gint main(gint argc, gchar **argv)
