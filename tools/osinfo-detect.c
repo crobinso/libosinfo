@@ -137,6 +137,7 @@ static void print_media(OsinfoMedia *media)
     } else {
         OsinfoOsVariantList *variants;
         const gchar *name;
+        const gchar *arch;
         guint num_variants = 0;
 
         variants = osinfo_media_get_os_variants(media);
@@ -152,10 +153,12 @@ static void print_media(OsinfoMedia *media)
             name = osinfo_product_get_name(OSINFO_PRODUCT(os));
         }
 
+        arch = osinfo_media_get_architecture(media);
+
         if (osinfo_media_get_installer(media))
-            g_print(_("Media is an installer for OS '%s'\n"), name);
+            g_print(_("Media is an installer for OS '%s (%s)'\n"), name, arch);
         if (osinfo_media_get_live(media))
-            g_print(_("Media is live media for OS '%s'\n"), name);
+            g_print(_("Media is live media for OS '%s (%s)'\n"), name, arch);
 
         if (num_variants > 1) {
             guint i;
@@ -208,6 +211,7 @@ static void print_tree(OsinfoTree *tree)
     } else {
         OsinfoOsVariantList *variants;
         const gchar *name;
+        const gchar *arch;
         guint num_variants = 0;
 
         variants = osinfo_tree_get_os_variants(tree);
@@ -223,7 +227,8 @@ static void print_tree(OsinfoTree *tree)
             name = osinfo_product_get_name(OSINFO_PRODUCT(os));
         }
 
-        g_print(_("Tree is an installer for OS '%s'\n"), name);
+        arch = osinfo_tree_get_architecture(tree);
+        g_print(_("Tree is an installer for OS '%s (%s)'\n"), name, arch);
 
         if (num_variants > 1) {
             guint i;
