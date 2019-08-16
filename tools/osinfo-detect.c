@@ -29,11 +29,9 @@
 #include <glib/gi18n.h>
 
 #define FORMAT_STR_PLAIN "plain"
-#define FORMAT_STR_ENV "env"
 
 typedef enum {
     OUTPUT_FORMAT_PLAIN,
-    OUTPUT_FORMAT_ENV
 } OutputFormat;
 
 static OutputFormat format = OUTPUT_FORMAT_PLAIN;
@@ -53,9 +51,7 @@ static gboolean parse_format_str(const gchar *option_name,
                                  gpointer data,
                                  GError **error)
 {
-    if (g_str_equal(value, FORMAT_STR_ENV))
-        format = OUTPUT_FORMAT_ENV;
-    else if (g_str_equal(value, FORMAT_STR_PLAIN))
+    if (g_str_equal(value, FORMAT_STR_PLAIN))
         format = OUTPUT_FORMAT_PLAIN;
     else {
         g_set_error(error,
@@ -95,7 +91,7 @@ static GOptionEntry entries[] =
     { "format", 'f', 0,
       G_OPTION_ARG_CALLBACK, parse_format_str,
       N_("Output format. Default: plain"),
-      N_("plain|env.") },
+      N_("plain.") },
     { "type", 't', 0,
       G_OPTION_ARG_CALLBACK, parse_type_str,
       N_("The type to be used. Default: media"),
@@ -106,145 +102,104 @@ static GOptionEntry entries[] =
 static void print_bootable(gboolean bootable)
 {
     if (bootable)
-        if (format == OUTPUT_FORMAT_ENV)
-            g_print("OSINFO_BOOTABLE=1\n");
-        else
-            g_print(_("Media is bootable.\n"));
+        g_print(_("Media is bootable.\n"));
     else
-        if (format == OUTPUT_FORMAT_ENV)
-            g_print("OSINFO_BOOTABLE=0\n");
-        else
-            g_print(_("Media is not bootable.\n"));
+        g_print(_("Media is not bootable.\n"));
 }
 
 static void print_media(OsinfoMedia *media)
 {
     OsinfoOs *os;
+    OsinfoOsVariantList *variants;
+    const gchar *name;
+    const gchar *arch;
+    guint num_variants = 0;
 
     g_object_get(G_OBJECT(media), "os", &os, NULL);
     if (os == NULL)
         return;
 
-    if (format == OUTPUT_FORMAT_ENV) {
-        const gchar *id = osinfo_entity_get_id(OSINFO_ENTITY(os));
+    variants = osinfo_media_get_os_variants(media);
+    if (variants != NULL)
+        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
 
-        if (osinfo_media_get_installer(media))
-            g_print("OSINFO_INSTALLER=%s\n", id);
-        if (osinfo_media_get_live(media))
-            g_print("OSINFO_LIVE=%s\n", id);
-        g_print("OSINFO_MEDIA=%s\n",
-                osinfo_entity_get_id(OSINFO_ENTITY(media)));
+    if (num_variants == 1) {
+        OsinfoEntity *variant;
+
+        variant = osinfo_list_get_nth(OSINFO_LIST(variants), 0);
+        name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
     } else {
-        OsinfoOsVariantList *variants;
-        const gchar *name;
-        const gchar *arch;
-        guint num_variants = 0;
+        name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+    }
 
-        variants = osinfo_media_get_os_variants(media);
-        if (variants != NULL)
-            num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+    arch = osinfo_media_get_architecture(media);
 
-        if (num_variants == 1) {
+    if (osinfo_media_get_installer(media))
+        g_print(_("Media is an installer for OS '%s (%s)'\n"), name, arch);
+    if (osinfo_media_get_live(media))
+        g_print(_("Media is live media for OS '%s (%s)'\n"), name, arch);
+
+    if (num_variants > 1) {
+        guint i;
+
+        g_print(_("Available OS variants on media:\n"));
+        for (i = 0; i < num_variants; i++) {
             OsinfoEntity *variant;
 
-            variant = osinfo_list_get_nth(OSINFO_LIST(variants), 0);
+            variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
             name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
-        } else {
-            name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+            g_print("%s\n", name);
         }
-
-        arch = osinfo_media_get_architecture(media);
-
-        if (osinfo_media_get_installer(media))
-            g_print(_("Media is an installer for OS '%s (%s)'\n"), name, arch);
-        if (osinfo_media_get_live(media))
-            g_print(_("Media is live media for OS '%s (%s)'\n"), name, arch);
-
-        if (num_variants > 1) {
-            guint i;
-
-            g_print(_("Available OS variants on media:\n"));
-            for (i = 0; i < num_variants; i++) {
-                OsinfoEntity *variant;
-
-                variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
-                name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
-                g_print("%s\n", name);
-            }
-        }
-
-        g_clear_object(&variants);
     }
+
+    g_clear_object(&variants);
     g_object_unref(os);
 }
 
 static void print_tree(OsinfoTree *tree)
 {
     OsinfoOs *os;
+    OsinfoOsVariantList *variants;
+    const gchar *name;
+    const gchar *arch;
+    guint num_variants = 0;
+
 
     g_object_get(G_OBJECT(tree), "os", &os, NULL);
     if (os == NULL)
         return;
 
-    if (format == OUTPUT_FORMAT_ENV) {
-        const gchar *id = osinfo_entity_get_id(OSINFO_ENTITY(os));
-        const gchar *kernel = osinfo_tree_get_kernel_path(tree);
-        const gchar *initrd = osinfo_tree_get_initrd_path(tree);
-        const gchar *bootiso = osinfo_tree_get_boot_iso_path(tree);
 
-        if (!kernel)
-            kernel = osinfo_tree_get_kernel_path(tree);
-        if (!initrd)
-            initrd = osinfo_tree_get_initrd_path(tree);
-        if (!bootiso)
-            bootiso = osinfo_tree_get_boot_iso_path(tree);
+    variants = osinfo_tree_get_os_variants(tree);
+    if (variants != NULL)
+        num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
 
-        g_print("OSINFO_INSTALLER=%s\n", id);
-        g_print("OSINFO_TREE=%s\n",
-                osinfo_entity_get_id(OSINFO_ENTITY(tree)));
-        if (kernel)
-            g_print("OSINFO_TREE_KERNEL=%s\n", kernel);
-        if (initrd)
-            g_print("OSINFO_TREE_INITRD=%s\n", initrd);
-        if (bootiso)
-            g_print("OSINFO_TREE_BOOT_ISO=%s\n", bootiso);
+    if (num_variants == 1) {
+        OsinfoEntity *variant;
+
+        variant = osinfo_list_get_nth(OSINFO_LIST(variants), 0);
+        name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
     } else {
-        OsinfoOsVariantList *variants;
-        const gchar *name;
-        const gchar *arch;
-        guint num_variants = 0;
+        name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+    }
 
-        variants = osinfo_tree_get_os_variants(tree);
-        if (variants != NULL)
-            num_variants = osinfo_list_get_length(OSINFO_LIST(variants));
+    arch = osinfo_tree_get_architecture(tree);
+    g_print(_("Tree is an installer for OS '%s (%s)'\n"), name, arch);
 
-        if (num_variants == 1) {
+    if (num_variants > 1) {
+        guint i;
+
+        g_print(_("Available OS variants on tree:\n"));
+        for (i = 0; i < num_variants; i++) {
             OsinfoEntity *variant;
 
-            variant = osinfo_list_get_nth(OSINFO_LIST(variants), 0);
+            variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
             name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
-        } else {
-            name = osinfo_product_get_name(OSINFO_PRODUCT(os));
+            g_print("%s\n", name);
         }
-
-        arch = osinfo_tree_get_architecture(tree);
-        g_print(_("Tree is an installer for OS '%s (%s)'\n"), name, arch);
-
-        if (num_variants > 1) {
-            guint i;
-
-            g_print(_("Available OS variants on tree:\n"));
-            for (i = 0; i < num_variants; i++) {
-                OsinfoEntity *variant;
-
-                variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
-                name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
-                g_print("%s\n", name);
-            }
-        }
-
-        g_clear_object(&variants);
     }
+
+    g_clear_object(&variants);
 }
 
 gint main(gint argc, gchar **argv)
@@ -351,18 +306,13 @@ By default C<PATH> or C<URI> will be interpreted as pointing to
 ISO media. To request examination of an install tree instead, the
 option C<--type=tree> should be given.
 
-The output information is formatted for humans; to obtain machine
-readable output, the option C<--format=env> should be given to
-produce shell-like key/value pairs.
+The output information is formatted for humans;
 
 =head1 OPTIONS
 
 =over 8
 
-=item B<--format=plain|env>
-
-Switch between human readable output (B<plain>, the default) or machine
-readable output (B<env>).
+=item B<--format=plain>
 
 =item B<--type=media|tree>
 
