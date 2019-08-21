@@ -106,5 +106,3 @@ exclude_file_name_regexp--sc_bindtextdomain = ^(libvirt-gconfig/tests|examples)/
 exclude_file_name_regexp--sc_trailing_blank = ^tests/isodata/.*|docs/object-model.fig
 
 exclude_file_name_regexp--sc_bindtextdomain = ^tools/.*.c|tests/.*.c
-
-exclude_file_name_regexp--sc_space_tab = ^tests/isodata/.*
