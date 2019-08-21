@@ -101,8 +101,6 @@ sc_bracket_spacing_check:
 # We don't use this feature of maint.mk.
 prev_version_file = /dev/null
 
-exclude_file_name_regexp--sc_bindtextdomain = ^(libvirt-gconfig/tests|examples)/
-
 exclude_file_name_regexp--sc_trailing_blank = ^tests/isodata/.*|docs/object-model.fig
 
-exclude_file_name_regexp--sc_bindtextdomain = ^tools/.*.c|tests/.*.c
+exclude_file_name_regexp--sc_bindtextdomain = ^tests/.*.c
