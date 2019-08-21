@@ -108,5 +108,3 @@ exclude_file_name_regexp--sc_trailing_blank = ^tests/isodata/.*|docs/object-mode
 exclude_file_name_regexp--sc_bindtextdomain = ^tools/.*.c|tests/.*.c
 
 exclude_file_name_regexp--sc_space_tab = ^tests/isodata/.*
-
-exclude_file_name_regexp--sc_prohibit_atoi_atof = ^tests/.*\.c
