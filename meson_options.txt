@@ -1,0 +1,37 @@
+option('enable-gtk-doc',
+    type: 'boolean',
+    value: true,
+    description: 'Enable generating te API reference'
+)
+
+option('enable-introspection',
+    type: 'feature',
+    value: 'auto',
+    yield: true,
+    description: 'Enable GObject Introspection'
+)
+
+option('enable-tests',
+    type: 'boolean',
+    value: true,
+    description: 'Enable test suite'
+)
+
+option('enable-vala',
+    type: 'feature',
+    value: 'auto',
+    yield: true,
+    description: 'Enable Vala bindings'
+)
+
+option('with-pci-ids-path',
+    type: 'string',
+    value: '',
+    description: 'Location of pci.ids database'
+)
+
+option('with-usb-ids-path',
+    type: 'string',
+    value: '',
+    description: 'Location of usb.ids database'
+)

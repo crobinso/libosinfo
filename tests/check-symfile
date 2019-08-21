@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$MESON_SOURCE_ROOT/osinfo/check-symfile.pl $MESON_SOURCE_ROOT/osinfo/libosinfo.syms $MESON_BUILD_ROOT/osinfo/libosinfo-1.0.so

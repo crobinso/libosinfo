@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $MESON_BUILD_ROOT
+wget -q -O usb.ids http://www.linux-usb.org/usb.ids

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$MESON_SOURCE_ROOT/osinfo/check-symsorting.pl $MESON_SOURCE_ROOT/osinfo $MESON_SOURCE_ROOT/osinfo/libosinfo.syms
