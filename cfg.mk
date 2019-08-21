@@ -103,9 +103,6 @@ prev_version_file = /dev/null
 
 exclude_file_name_regexp--sc_bindtextdomain = ^(libvirt-gconfig/tests|examples)/
 
-exclude_file_name_regexp--sc_require_config_h = python/libvirt-glib.c
-exclude_file_name_regexp--sc_require_config_h_first = python/libvirt-glib.c
-
 exclude_file_name_regexp--sc_trailing_blank = ^tests/isodata/.*|docs/object-model.fig
 
 exclude_file_name_regexp--sc_bindtextdomain = ^tools/.*.c|tests/.*.c
