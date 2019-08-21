@@ -27,17 +27,17 @@
 #include <osinfo/osinfo_productlist.h>
 
 #ifndef __OSINFO_PLATFORMLIST_H__
-#define __OSINFO_PLATFORMLIST_H__
+# define __OSINFO_PLATFORMLIST_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_PLATFORMLIST                  (osinfo_platformlist_get_type ())
-#define OSINFO_PLATFORMLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformList))
-#define OSINFO_IS_PLATFORMLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PLATFORMLIST))
-#define OSINFO_PLATFORMLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListClass))
-#define OSINFO_IS_PLATFORMLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PLATFORMLIST))
-#define OSINFO_PLATFORMLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListClass))
+# define OSINFO_TYPE_PLATFORMLIST                  (osinfo_platformlist_get_type ())
+# define OSINFO_PLATFORMLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformList))
+# define OSINFO_IS_PLATFORMLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PLATFORMLIST))
+# define OSINFO_PLATFORMLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListClass))
+# define OSINFO_IS_PLATFORMLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PLATFORMLIST))
+# define OSINFO_PLATFORMLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListClass))
 
 typedef struct _OsinfoPlatformList        OsinfoPlatformList;
 

@@ -26,17 +26,17 @@
 #include <osinfo/osinfo_productlist.h>
 
 #ifndef __OSINFO_PRODUCT_H__
-#define __OSINFO_PRODUCT_H__
+# define __OSINFO_PRODUCT_H__
 
 /*
  * Type macrproduct.
  */
-#define OSINFO_TYPE_PRODUCT                  (osinfo_product_get_type ())
-#define OSINFO_PRODUCT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PRODUCT, OsinfoProduct))
-#define OSINFO_IS_PRODUCT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PRODUCT))
-#define OSINFO_PRODUCT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PRODUCT, OsinfoProductClass))
-#define OSINFO_IS_PRODUCT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PRODUCT))
-#define OSINFO_PRODUCT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PRODUCT, OsinfoProductClass))
+# define OSINFO_TYPE_PRODUCT                  (osinfo_product_get_type ())
+# define OSINFO_PRODUCT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PRODUCT, OsinfoProduct))
+# define OSINFO_IS_PRODUCT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PRODUCT))
+# define OSINFO_PRODUCT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PRODUCT, OsinfoProductClass))
+# define OSINFO_IS_PRODUCT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PRODUCT))
+# define OSINFO_PRODUCT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PRODUCT, OsinfoProductClass))
 
 typedef struct _OsinfoProduct        OsinfoProduct;
 
@@ -44,14 +44,14 @@ typedef struct _OsinfoProductClass   OsinfoProductClass;
 
 typedef struct _OsinfoProductPrivate OsinfoProductPrivate;
 
-#define OSINFO_PRODUCT_PROP_VENDOR       "vendor"
-#define OSINFO_PRODUCT_PROP_VERSION      "version"
-#define OSINFO_PRODUCT_PROP_SHORT_ID     "short-id"
-#define OSINFO_PRODUCT_PROP_NAME         "name"
-#define OSINFO_PRODUCT_PROP_RELEASE_DATE "release-date"
-#define OSINFO_PRODUCT_PROP_EOL_DATE     "eol-date"
-#define OSINFO_PRODUCT_PROP_CODENAME     "codename"
-#define OSINFO_PRODUCT_PROP_LOGO         "logo"
+# define OSINFO_PRODUCT_PROP_VENDOR       "vendor"
+# define OSINFO_PRODUCT_PROP_VERSION      "version"
+# define OSINFO_PRODUCT_PROP_SHORT_ID     "short-id"
+# define OSINFO_PRODUCT_PROP_NAME         "name"
+# define OSINFO_PRODUCT_PROP_RELEASE_DATE "release-date"
+# define OSINFO_PRODUCT_PROP_EOL_DATE     "eol-date"
+# define OSINFO_PRODUCT_PROP_CODENAME     "codename"
+# define OSINFO_PRODUCT_PROP_LOGO         "logo"
 
 /* object */
 struct _OsinfoProduct

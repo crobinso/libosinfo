@@ -41,10 +41,10 @@
 #include "osinfo_resources_private.h"
 
 #ifndef USB_IDS
-#define USB_IDS PKG_DATA_DIR "/usb.ids"
+# define USB_IDS PKG_DATA_DIR "/usb.ids"
 #endif
 #ifndef PCI_IDS
-#define PCI_IDS PKG_DATA_DIR "/pci.ids"
+# define PCI_IDS PKG_DATA_DIR "/pci.ids"
 #endif
 
 G_DEFINE_TYPE(OsinfoLoader, osinfo_loader, G_TYPE_OBJECT);

@@ -23,17 +23,17 @@
  */
 
 #ifndef __OSINFO_PRODUCTFILTER_H__
-#define __OSINFO_PRODUCTFILTER_H__
+# define __OSINFO_PRODUCTFILTER_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_PRODUCTFILTER                  (osinfo_productfilter_get_type ())
-#define OSINFO_PRODUCTFILTER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilter))
-#define OSINFO_IS_PRODUCTFILTER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PRODUCTFILTER))
-#define OSINFO_PRODUCTFILTER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterClass))
-#define OSINFO_IS_PRODUCTFILTER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PRODUCTFILTER))
-#define OSINFO_PRODUCTFILTER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterClass))
+# define OSINFO_TYPE_PRODUCTFILTER                  (osinfo_productfilter_get_type ())
+# define OSINFO_PRODUCTFILTER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilter))
+# define OSINFO_IS_PRODUCTFILTER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PRODUCTFILTER))
+# define OSINFO_PRODUCTFILTER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterClass))
+# define OSINFO_IS_PRODUCTFILTER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PRODUCTFILTER))
+# define OSINFO_PRODUCTFILTER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterClass))
 
 typedef struct _OsinfoProductFilter        OsinfoProductFilter;
 

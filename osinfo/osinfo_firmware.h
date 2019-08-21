@@ -23,21 +23,21 @@
 #include <osinfo/osinfo_entity.h>
 
 #ifndef __OSINFO_FIRMWARE_H__
-#define __OSINFO_FIRMWARE_H__
+# define __OSINFO_FIRMWARE_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_FIRMWARE                  (osinfo_firmware_get_type ())
-#define OSINFO_FIRMWARE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_FIRMWARE, OsinfoFirmware))
-#define OSINFO_IS_FIRMWARE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_FIRMWARE))
-#define OSINFO_FIRMWARE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_FIRMWARE, OsinfoFirmwareClass))
-#define OSINFO_IS_FIRMWARE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_FIRMWARE))
-#define OSINFO_FIRMWARE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_FIRMWARE, OsinfoFirmwareClass))
+# define OSINFO_TYPE_FIRMWARE                  (osinfo_firmware_get_type ())
+# define OSINFO_FIRMWARE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_FIRMWARE, OsinfoFirmware))
+# define OSINFO_IS_FIRMWARE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_FIRMWARE))
+# define OSINFO_FIRMWARE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_FIRMWARE, OsinfoFirmwareClass))
+# define OSINFO_IS_FIRMWARE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_FIRMWARE))
+# define OSINFO_FIRMWARE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_FIRMWARE, OsinfoFirmwareClass))
 
-#define OSINFO_FIRMWARE_PROP_ARCHITECTURE   "architecture"
-#define OSINFO_FIRMWARE_PROP_TYPE           "type"
-#define OSINFO_FIRMWARE_PROP_SUPPORTED      "supported"
+# define OSINFO_FIRMWARE_PROP_ARCHITECTURE   "architecture"
+# define OSINFO_FIRMWARE_PROP_TYPE           "type"
+# define OSINFO_FIRMWARE_PROP_SUPPORTED      "supported"
 
 typedef struct _OsinfoFirmware          OsinfoFirmware;
 typedef struct _OsinfoFirmwareClass     OsinfoFirmwareClass;

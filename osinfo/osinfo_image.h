@@ -25,17 +25,17 @@
 #include <gio/gio.h>
 
 #ifndef __OSINFO_IMAGE_H__
-#define __OSINFO_IMAGE_H__
+# define __OSINFO_IMAGE_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_IMAGE                  (osinfo_image_get_type ())
-#define OSINFO_IMAGE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_IMAGE, OsinfoImage))
-#define OSINFO_IS_IMAGE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_IMAGE))
-#define OSINFO_IMAGE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_IMAGE, OsinfoImageClass))
-#define OSINFO_IS_IMAGE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_IMAGE))
-#define OSINFO_IMAGE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_IMAGE, OsinfoImageClass))
+# define OSINFO_TYPE_IMAGE                  (osinfo_image_get_type ())
+# define OSINFO_IMAGE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_IMAGE, OsinfoImage))
+# define OSINFO_IS_IMAGE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_IMAGE))
+# define OSINFO_IMAGE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_IMAGE, OsinfoImageClass))
+# define OSINFO_IS_IMAGE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_IMAGE))
+# define OSINFO_IMAGE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_IMAGE, OsinfoImageClass))
 
 typedef struct _OsinfoImage        OsinfoImage;
 
@@ -43,11 +43,11 @@ typedef struct _OsinfoImageClass   OsinfoImageClass;
 
 typedef struct _OsinfoImagePrivate OsinfoImagePrivate;
 
-#define OSINFO_IMAGE_PROP_ARCHITECTURE      "architecture"
-#define OSINFO_IMAGE_PROP_FORMAT            "format"
-#define OSINFO_IMAGE_PROP_URL               "url"
-#define OSINFO_IMAGE_PROP_CLOUD_INIT        "cloud-init"
-#define OSINFO_IMAGE_PROP_VARIANT           "variant"
+# define OSINFO_IMAGE_PROP_ARCHITECTURE      "architecture"
+# define OSINFO_IMAGE_PROP_FORMAT            "format"
+# define OSINFO_IMAGE_PROP_URL               "url"
+# define OSINFO_IMAGE_PROP_CLOUD_INIT        "cloud-init"
+# define OSINFO_IMAGE_PROP_VARIANT           "variant"
 
 /* object */
 struct _OsinfoImage

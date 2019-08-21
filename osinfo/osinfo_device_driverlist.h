@@ -27,25 +27,25 @@
 #include <osinfo/osinfo_list.h>
 
 #ifndef __OSINFO_DEVICE_DRIVERLIST_H__
-#define __OSINFO_DEVICE_DRIVERLIST_H__
+# define __OSINFO_DEVICE_DRIVERLIST_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_DEVICE_DRIVERLIST                  (osinfo_device_driverlist_get_type ())
-#define OSINFO_DEVICE_DRIVERLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
-                                                        OSINFO_TYPE_DEVICE_DRIVERLIST,     \
-                                                        OsinfoDeviceDriverList))
-#define OSINFO_IS_DEVICE_DRIVERLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
-                                                        OSINFO_TYPE_DEVICE_DRIVERLIST))
-#define OSINFO_DEVICE_DRIVERLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), \
-                                                        OSINFO_TYPE_DEVICE_DRIVERLIST, \
-                                                        OsinfoDeviceDriverListClass))
-#define OSINFO_IS_DEVICE_DRIVERLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), \
-                                                        OSINFO_TYPE_DEVICE_DRIVERLIST))
-#define OSINFO_DEVICE_DRIVERLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), \
-                                                        OSINFO_TYPE_DEVICE_DRIVERLIST, \
-                                                        OsinfoDeviceDriverListClass))
+# define OSINFO_TYPE_DEVICE_DRIVERLIST                  (osinfo_device_driverlist_get_type ())
+# define OSINFO_DEVICE_DRIVERLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
+                                                         OSINFO_TYPE_DEVICE_DRIVERLIST,     \
+                                                         OsinfoDeviceDriverList))
+# define OSINFO_IS_DEVICE_DRIVERLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
+                                                         OSINFO_TYPE_DEVICE_DRIVERLIST))
+# define OSINFO_DEVICE_DRIVERLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), \
+                                                         OSINFO_TYPE_DEVICE_DRIVERLIST, \
+                                                         OsinfoDeviceDriverListClass))
+# define OSINFO_IS_DEVICE_DRIVERLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), \
+                                                         OSINFO_TYPE_DEVICE_DRIVERLIST))
+# define OSINFO_DEVICE_DRIVERLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), \
+                                                         OSINFO_TYPE_DEVICE_DRIVERLIST, \
+                                                         OsinfoDeviceDriverListClass))
 
 typedef struct _OsinfoDeviceDriverList        OsinfoDeviceDriverList;
 

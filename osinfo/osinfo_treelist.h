@@ -27,17 +27,17 @@
 #include <osinfo/osinfo_list.h>
 
 #ifndef __OSINFO_TREELIST_H__
-#define __OSINFO_TREELIST_H__
+# define __OSINFO_TREELIST_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_TREELIST                  (osinfo_treelist_get_type ())
-#define OSINFO_TREELIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_TREELIST, OsinfoTreeList))
-#define OSINFO_IS_TREELIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_TREELIST))
-#define OSINFO_TREELIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_TREELIST, OsinfoTreeListClass))
-#define OSINFO_IS_TREELIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_TREELIST))
-#define OSINFO_TREELIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_TREELIST, OsinfoTreeListClass))
+# define OSINFO_TYPE_TREELIST                  (osinfo_treelist_get_type ())
+# define OSINFO_TREELIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_TREELIST, OsinfoTreeList))
+# define OSINFO_IS_TREELIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_TREELIST))
+# define OSINFO_TREELIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_TREELIST, OsinfoTreeListClass))
+# define OSINFO_IS_TREELIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_TREELIST))
+# define OSINFO_TREELIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_TREELIST, OsinfoTreeListClass))
 
 typedef struct _OsinfoTreeList        OsinfoTreeList;
 

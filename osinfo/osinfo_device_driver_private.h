@@ -24,7 +24,7 @@
 #include "osinfo_device_driver.h"
 
 #ifndef __OSINFO_DEVICE_DRIVER_PRIVATE_H__
-#define __OSINFO_DEVICE_DRIVER_PRIVATE_H__
+# define __OSINFO_DEVICE_DRIVER_PRIVATE_H__
 
 OsinfoDeviceDriver *osinfo_device_driver_new(const gchar *id);
 void osinfo_device_driver_add_device(OsinfoDeviceDriver *driver,

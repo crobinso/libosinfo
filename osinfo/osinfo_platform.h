@@ -28,17 +28,17 @@
 #include <osinfo/osinfo_devicelist.h>
 
 #ifndef __OSINFO_PLATFORM_H__
-#define __OSINFO_PLATFORM_H__
+# define __OSINFO_PLATFORM_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_PLATFORM                  (osinfo_platform_get_type ())
-#define OSINFO_PLATFORM(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatform))
-#define OSINFO_IS_PLATFORM(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PLATFORM))
-#define OSINFO_PLATFORM_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PLATFORM, OsinfoPlatformClass))
-#define OSINFO_IS_PLATFORM_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PLATFORM))
-#define OSINFO_PLATFORM_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatformClass))
+# define OSINFO_TYPE_PLATFORM                  (osinfo_platform_get_type ())
+# define OSINFO_PLATFORM(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatform))
+# define OSINFO_IS_PLATFORM(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PLATFORM))
+# define OSINFO_PLATFORM_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PLATFORM, OsinfoPlatformClass))
+# define OSINFO_IS_PLATFORM_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PLATFORM))
+# define OSINFO_PLATFORM_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatformClass))
 
 typedef struct _OsinfoPlatform        OsinfoPlatform;
 

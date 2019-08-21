@@ -26,17 +26,17 @@
 #include <osinfo/osinfo_entity.h>
 
 #ifndef __OSINFO_OS_VARIANT_H__
-#define __OSINFO_OS_VARIANT_H__
+# define __OSINFO_OS_VARIANT_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_OS_VARIANT                  (osinfo_os_variant_get_type ())
-#define OSINFO_OS_VARIANT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_OS_VARIANT, OsinfoOsVariant))
-#define OSINFO_IS_OS_VARIANT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_OS_VARIANT))
-#define OSINFO_OS_VARIANT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_OS_VARIANT, OsinfoOsVariantClass))
-#define OSINFO_IS_OS_VARIANT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_OS_VARIANT))
-#define OSINFO_OS_VARIANT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_OS_VARIANT, OsinfoOsVariantClass))
+# define OSINFO_TYPE_OS_VARIANT                  (osinfo_os_variant_get_type ())
+# define OSINFO_OS_VARIANT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_OS_VARIANT, OsinfoOsVariant))
+# define OSINFO_IS_OS_VARIANT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_OS_VARIANT))
+# define OSINFO_OS_VARIANT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_OS_VARIANT, OsinfoOsVariantClass))
+# define OSINFO_IS_OS_VARIANT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_OS_VARIANT))
+# define OSINFO_OS_VARIANT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_OS_VARIANT, OsinfoOsVariantClass))
 
 typedef struct _OsinfoOsVariant        OsinfoOsVariant;
 
@@ -44,7 +44,7 @@ typedef struct _OsinfoOsVariantClass   OsinfoOsVariantClass;
 
 typedef struct _OsinfoOsVariantPrivate OsinfoOsVariantPrivate;
 
-#define OSINFO_OS_VARIANT_PROP_NAME "name"
+# define OSINFO_OS_VARIANT_PROP_NAME "name"
 
 /* object */
 struct _OsinfoOsVariant

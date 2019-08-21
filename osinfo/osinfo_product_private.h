@@ -24,7 +24,7 @@
 #include "osinfo_product.h"
 
 #ifndef __OSINFO_PRODUCT_PRIVATE_H__
-#define __OSINFO_PRODUCT_PRIVATE_H__
+# define __OSINFO_PRODUCT_PRIVATE_H__
 
 
 typedef void (*OsinfoProductForeach)(OsinfoProduct *product, gpointer user_data);

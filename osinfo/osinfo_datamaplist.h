@@ -27,17 +27,17 @@
 #include <osinfo/osinfo_list.h>
 
 #ifndef __OSINFO_DATAMAPLIST_H__
-#define __OSINFO_DATAMAPLIST_H__
+# define __OSINFO_DATAMAPLIST_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_DATAMAPLIST                  (osinfo_datamaplist_get_type ())
-#define OSINFO_DATAMAPLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapList))
-#define OSINFO_IS_DATAMAPLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DATAMAPLIST))
-#define OSINFO_DATAMAPLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapListClass))
-#define OSINFO_IS_DATAMAPLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DATAMAPLIST))
-#define OSINFO_DATAMAPLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapListClass))
+# define OSINFO_TYPE_DATAMAPLIST                  (osinfo_datamaplist_get_type ())
+# define OSINFO_DATAMAPLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapList))
+# define OSINFO_IS_DATAMAPLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DATAMAPLIST))
+# define OSINFO_DATAMAPLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapListClass))
+# define OSINFO_IS_DATAMAPLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DATAMAPLIST))
+# define OSINFO_DATAMAPLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapListClass))
 
 typedef struct _OsinfoDatamapList        OsinfoDatamapList;
 

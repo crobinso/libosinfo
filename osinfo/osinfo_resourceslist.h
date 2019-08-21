@@ -27,25 +27,25 @@
 #include <osinfo/osinfo_list.h>
 
 #ifndef __OSINFO_RESOURCESLIST_H__
-#define __OSINFO_RESOURCESLIST_H__
+# define __OSINFO_RESOURCESLIST_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_RESOURCESLIST                  (osinfo_resourceslist_get_type ())
-#define OSINFO_RESOURCESLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
-                                                    OSINFO_TYPE_RESOURCESLIST,         \
-                                                    OsinfoResourcesList))
-#define OSINFO_IS_RESOURCESLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
-                                                    OSINFO_TYPE_RESOURCESLIST))
-#define OSINFO_RESOURCESLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass),  \
-                                                    OSINFO_TYPE_RESOURCESLIST,         \
-                                                    OsinfoResourcesListClass))
-#define OSINFO_IS_RESOURCESLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass),  \
-                                                    OSINFO_TYPE_RESOURCESLIST))
-#define OSINFO_RESOURCESLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj),  \
-                                                    OSINFO_TYPE_RESOURCESLIST,         \
-                                                    OsinfoResourcesListClass))
+# define OSINFO_TYPE_RESOURCESLIST                  (osinfo_resourceslist_get_type ())
+# define OSINFO_RESOURCESLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
+                                                     OSINFO_TYPE_RESOURCESLIST,         \
+                                                     OsinfoResourcesList))
+# define OSINFO_IS_RESOURCESLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
+                                                     OSINFO_TYPE_RESOURCESLIST))
+# define OSINFO_RESOURCESLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass),  \
+                                                     OSINFO_TYPE_RESOURCESLIST,         \
+                                                     OsinfoResourcesListClass))
+# define OSINFO_IS_RESOURCESLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass),  \
+                                                     OSINFO_TYPE_RESOURCESLIST))
+# define OSINFO_RESOURCESLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj),  \
+                                                     OSINFO_TYPE_RESOURCESLIST,         \
+                                                     OsinfoResourcesListClass))
 
 typedef struct _OsinfoResourcesList        OsinfoResourcesList;
 

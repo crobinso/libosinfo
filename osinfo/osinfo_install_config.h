@@ -24,52 +24,52 @@
 #include <glib-object.h>
 
 #ifndef __OSINFO_INSTALL_CONFIG_H__
-#define __OSINFO_INSTALL_CONFIG_H__
+# define __OSINFO_INSTALL_CONFIG_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_INSTALL_CONFIG                  (osinfo_install_config_get_type ())
-#define OSINFO_INSTALL_CONFIG(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfig))
-#define OSINFO_IS_INSTALL_CONFIG(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_CONFIG))
-#define OSINFO_INSTALL_CONFIG_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigClass))
-#define OSINFO_IS_INSTALL_CONFIG_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_CONFIG))
-#define OSINFO_INSTALL_CONFIG_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigClass))
+# define OSINFO_TYPE_INSTALL_CONFIG                  (osinfo_install_config_get_type ())
+# define OSINFO_INSTALL_CONFIG(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfig))
+# define OSINFO_IS_INSTALL_CONFIG(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_CONFIG))
+# define OSINFO_INSTALL_CONFIG_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigClass))
+# define OSINFO_IS_INSTALL_CONFIG_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_CONFIG))
+# define OSINFO_INSTALL_CONFIG_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigClass))
 
-#define OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH  "hardware-arch"
+# define OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH  "hardware-arch"
 
-#define OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE  "l10n-timezone"
-#define OSINFO_INSTALL_CONFIG_PROP_L10N_LANGUAGE  "l10n-language"
-#define OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD  "l10n-keyboard"
+# define OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE  "l10n-timezone"
+# define OSINFO_INSTALL_CONFIG_PROP_L10N_LANGUAGE  "l10n-language"
+# define OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD  "l10n-keyboard"
 
-#define OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD "admin-password"
+# define OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD "admin-password"
 
-#define OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD  "user-password"
-#define OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN     "user-login"
-#define OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME  "user-realname"
-#define OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN "user-autologin"
-#define OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN     "user-admin"
+# define OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD  "user-password"
+# define OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN     "user-login"
+# define OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME  "user-realname"
+# define OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN "user-autologin"
+# define OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN     "user-admin"
 
-#define OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN      "reg-login"
-#define OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD   "reg-password"
-#define OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY "reg-product-key"
+# define OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN      "reg-login"
+# define OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD   "reg-password"
+# define OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY "reg-product-key"
 
-#define OSINFO_INSTALL_CONFIG_PROP_HOSTNAME    "hostname"
-#define OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK "target-disk"
-#define OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK "script-disk"
+# define OSINFO_INSTALL_CONFIG_PROP_HOSTNAME    "hostname"
+# define OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK "target-disk"
+# define OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK "script-disk"
 
-#define OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION "avatar-location"
-#define OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK     "avatar-disk"
+# define OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION "avatar-location"
+# define OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK     "avatar-disk"
 
-#define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_DISK "pre-install-drivers-disk"
-#define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_LOCATION "pre-install-drivers-location"
+# define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_DISK "pre-install-drivers-disk"
+# define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_LOCATION "pre-install-drivers-location"
 
-#define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_DISK "post-install-drivers-disk"
-#define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_LOCATION "post-install-drivers-location"
+# define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_DISK "post-install-drivers-disk"
+# define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_LOCATION "post-install-drivers-location"
 
-#define OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING "driver-signing"
+# define OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING "driver-signing"
 
-#define OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL "installation-url"
+# define OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL "installation-url"
 
 typedef struct _OsinfoInstallConfig        OsinfoInstallConfig;
 typedef struct _OsinfoInstallConfigClass   OsinfoInstallConfigClass;

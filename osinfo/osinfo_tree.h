@@ -28,12 +28,12 @@
 #include <osinfo/osinfo_entity.h>
 
 #ifndef __OSINFO_TREE_H__
-#define __OSINFO_TREE_H__
+# define __OSINFO_TREE_H__
 
 GQuark
 osinfo_tree_error_quark (void) G_GNUC_CONST;
 
-#define OSINFO_TREE_ERROR (osinfo_tree_error_quark ())
+# define OSINFO_TREE_ERROR (osinfo_tree_error_quark ())
 
 /**
  * OsinfoTreeError:
@@ -53,12 +53,12 @@ typedef enum {
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_TREE                  (osinfo_tree_get_type ())
-#define OSINFO_TREE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_TREE, OsinfoTree))
-#define OSINFO_IS_TREE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_TREE))
-#define OSINFO_TREE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_TREE, OsinfoTreeClass))
-#define OSINFO_IS_TREE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_TREE))
-#define OSINFO_TREE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_TREE, OsinfoTreeClass))
+# define OSINFO_TYPE_TREE                  (osinfo_tree_get_type ())
+# define OSINFO_TREE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_TREE, OsinfoTree))
+# define OSINFO_IS_TREE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_TREE))
+# define OSINFO_TREE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_TREE, OsinfoTreeClass))
+# define OSINFO_IS_TREE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_TREE))
+# define OSINFO_TREE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_TREE, OsinfoTreeClass))
 
 typedef struct _OsinfoTree        OsinfoTree;
 
@@ -66,17 +66,17 @@ typedef struct _OsinfoTreeClass   OsinfoTreeClass;
 
 typedef struct _OsinfoTreePrivate OsinfoTreePrivate;
 
-#define OSINFO_TREE_PROP_ARCHITECTURE     "architecture"
-#define OSINFO_TREE_PROP_URL              "url"
-#define OSINFO_TREE_PROP_TREEINFO_FAMILY  "treeinfo-family"
-#define OSINFO_TREE_PROP_TREEINFO_VARIANT "treeinfo-variant"
-#define OSINFO_TREE_PROP_TREEINFO_VERSION "treeinfo-version"
-#define OSINFO_TREE_PROP_TREEINFO_ARCH    "treeinfo-arch"
-#define OSINFO_TREE_PROP_BOOT_ISO         "boot-iso"
-#define OSINFO_TREE_PROP_KERNEL           "kernel"
-#define OSINFO_TREE_PROP_INITRD           "initrd"
-#define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
-#define OSINFO_TREE_PROP_VARIANT          "variant"
+# define OSINFO_TREE_PROP_ARCHITECTURE     "architecture"
+# define OSINFO_TREE_PROP_URL              "url"
+# define OSINFO_TREE_PROP_TREEINFO_FAMILY  "treeinfo-family"
+# define OSINFO_TREE_PROP_TREEINFO_VARIANT "treeinfo-variant"
+# define OSINFO_TREE_PROP_TREEINFO_VERSION "treeinfo-version"
+# define OSINFO_TREE_PROP_TREEINFO_ARCH    "treeinfo-arch"
+# define OSINFO_TREE_PROP_BOOT_ISO         "boot-iso"
+# define OSINFO_TREE_PROP_KERNEL           "kernel"
+# define OSINFO_TREE_PROP_INITRD           "initrd"
+# define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
+# define OSINFO_TREE_PROP_VARIANT          "variant"
 
 
 /* object */

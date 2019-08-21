@@ -29,12 +29,12 @@
 #include <osinfo/osinfo_os_variantlist.h>
 
 #ifndef __OSINFO_MEDIA_H__
-#define __OSINFO_MEDIA_H__
+# define __OSINFO_MEDIA_H__
 
 GQuark
 osinfo_media_error_quark (void) G_GNUC_CONST;
 
-#define OSINFO_MEDIA_ERROR (osinfo_media_error_quark ())
+# define OSINFO_MEDIA_ERROR (osinfo_media_error_quark ())
 
 /**
  * OsinfoMediaError:
@@ -72,12 +72,12 @@ typedef enum {
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_MEDIA                  (osinfo_media_get_type ())
-#define OSINFO_MEDIA(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_MEDIA, OsinfoMedia))
-#define OSINFO_IS_MEDIA(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_MEDIA))
-#define OSINFO_MEDIA_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
-#define OSINFO_IS_MEDIA_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_MEDIA))
-#define OSINFO_MEDIA_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
+# define OSINFO_TYPE_MEDIA                  (osinfo_media_get_type ())
+# define OSINFO_MEDIA(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_MEDIA, OsinfoMedia))
+# define OSINFO_IS_MEDIA(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_MEDIA))
+# define OSINFO_MEDIA_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
+# define OSINFO_IS_MEDIA_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_MEDIA))
+# define OSINFO_MEDIA_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
 
 /*
  * Forward declared in osinfo_install_script.h
@@ -88,25 +88,25 @@ typedef struct _OsinfoMediaClass   OsinfoMediaClass;
 
 typedef struct _OsinfoMediaPrivate OsinfoMediaPrivate;
 
-#define OSINFO_MEDIA_PROP_ARCHITECTURE   "architecture"
-#define OSINFO_MEDIA_PROP_URL            "url"
-#define OSINFO_MEDIA_PROP_VOLUME_ID      "volume-id"
-#define OSINFO_MEDIA_PROP_SYSTEM_ID      "system-id"
-#define OSINFO_MEDIA_PROP_PUBLISHER_ID   "publisher-id"
-#define OSINFO_MEDIA_PROP_APPLICATION_ID "application-id"
-#define OSINFO_MEDIA_PROP_KERNEL         "kernel"
-#define OSINFO_MEDIA_PROP_INITRD         "initrd"
-#define OSINFO_MEDIA_PROP_LIVE           "live"
-#define OSINFO_MEDIA_PROP_INSTALLER      "installer"
-#define OSINFO_MEDIA_PROP_INSTALLER_REBOOTS "installer-reboots"
-#define OSINFO_MEDIA_PROP_LANG           "l10n-language"
-#define OSINFO_MEDIA_PROP_LANG_REGEX     "l10n-language-regex"
-#define OSINFO_MEDIA_PROP_LANG_MAP       "l10n-language-map"
-#define OSINFO_MEDIA_PROP_VARIANT        "variant"
-#define OSINFO_MEDIA_PROP_VOLUME_SIZE    "volume-size"
-#define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
-#define OSINFO_MEDIA_PROP_INSTALLER_SCRIPT "installer-script"
-#define OSINFO_MEDIA_PROP_BOOTABLE        "bootable"
+# define OSINFO_MEDIA_PROP_ARCHITECTURE   "architecture"
+# define OSINFO_MEDIA_PROP_URL            "url"
+# define OSINFO_MEDIA_PROP_VOLUME_ID      "volume-id"
+# define OSINFO_MEDIA_PROP_SYSTEM_ID      "system-id"
+# define OSINFO_MEDIA_PROP_PUBLISHER_ID   "publisher-id"
+# define OSINFO_MEDIA_PROP_APPLICATION_ID "application-id"
+# define OSINFO_MEDIA_PROP_KERNEL         "kernel"
+# define OSINFO_MEDIA_PROP_INITRD         "initrd"
+# define OSINFO_MEDIA_PROP_LIVE           "live"
+# define OSINFO_MEDIA_PROP_INSTALLER      "installer"
+# define OSINFO_MEDIA_PROP_INSTALLER_REBOOTS "installer-reboots"
+# define OSINFO_MEDIA_PROP_LANG           "l10n-language"
+# define OSINFO_MEDIA_PROP_LANG_REGEX     "l10n-language-regex"
+# define OSINFO_MEDIA_PROP_LANG_MAP       "l10n-language-map"
+# define OSINFO_MEDIA_PROP_VARIANT        "variant"
+# define OSINFO_MEDIA_PROP_VOLUME_SIZE    "volume-size"
+# define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
+# define OSINFO_MEDIA_PROP_INSTALLER_SCRIPT "installer-script"
+# define OSINFO_MEDIA_PROP_BOOTABLE        "bootable"
 
 /* object */
 struct _OsinfoMedia

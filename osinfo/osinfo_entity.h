@@ -25,17 +25,17 @@
 #include <glib-object.h>
 
 #ifndef __OSINFO_ENTITY_H__
-#define __OSINFO_ENTITY_H__
+# define __OSINFO_ENTITY_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_ENTITY                  (osinfo_entity_get_type ())
-#define OSINFO_ENTITY(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_ENTITY, OsinfoEntity))
-#define OSINFO_IS_ENTITY(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_ENTITY))
-#define OSINFO_ENTITY_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_ENTITY, OsinfoEntityClass))
-#define OSINFO_IS_ENTITY_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_ENTITY))
-#define OSINFO_ENTITY_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_ENTITY, OsinfoEntityClass))
+# define OSINFO_TYPE_ENTITY                  (osinfo_entity_get_type ())
+# define OSINFO_ENTITY(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_ENTITY, OsinfoEntity))
+# define OSINFO_IS_ENTITY(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_ENTITY))
+# define OSINFO_ENTITY_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_ENTITY, OsinfoEntityClass))
+# define OSINFO_IS_ENTITY_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_ENTITY))
+# define OSINFO_ENTITY_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_ENTITY, OsinfoEntityClass))
 
 typedef struct _OsinfoEntity        OsinfoEntity;
 
@@ -43,7 +43,7 @@ typedef struct _OsinfoEntityClass   OsinfoEntityClass;
 
 typedef struct _OsinfoEntityPrivate OsinfoEntityPrivate;
 
-#define OSINFO_ENTITY_PROP_ID "id"
+# define OSINFO_ENTITY_PROP_ID "id"
 
 /* object */
 struct _OsinfoEntity

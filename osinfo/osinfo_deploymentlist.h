@@ -27,17 +27,17 @@
 #include <osinfo/osinfo_list.h>
 
 #ifndef __OSINFO_DEPLOYMENTLIST_H__
-#define __OSINFO_DEPLOYMENTLIST_H__
+# define __OSINFO_DEPLOYMENTLIST_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_DEPLOYMENTLIST                  (osinfo_deploymentlist_get_type ())
-#define OSINFO_DEPLOYMENTLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentList))
-#define OSINFO_IS_DEPLOYMENTLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEPLOYMENTLIST))
-#define OSINFO_DEPLOYMENTLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListClass))
-#define OSINFO_IS_DEPLOYMENTLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEPLOYMENTLIST))
-#define OSINFO_DEPLOYMENTLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListClass))
+# define OSINFO_TYPE_DEPLOYMENTLIST                  (osinfo_deploymentlist_get_type ())
+# define OSINFO_DEPLOYMENTLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentList))
+# define OSINFO_IS_DEPLOYMENTLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEPLOYMENTLIST))
+# define OSINFO_DEPLOYMENTLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListClass))
+# define OSINFO_IS_DEPLOYMENTLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEPLOYMENTLIST))
+# define OSINFO_DEPLOYMENTLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListClass))
 
 typedef struct _OsinfoDeploymentList        OsinfoDeploymentList;
 

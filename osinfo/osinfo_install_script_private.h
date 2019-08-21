@@ -25,7 +25,7 @@
 #include <osinfo/osinfo_avatar_format.h>
 
 #ifndef __OSINFO_INSTALL_SCRIPT_PRIVATE_H__
-#define __OSINFO_INSTALL_SCRIPT_PRIVATE_H__
+# define __OSINFO_INSTALL_SCRIPT_PRIVATE_H__
 
 void osinfo_install_script_add_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *param);
 

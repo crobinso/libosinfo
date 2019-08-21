@@ -19,9 +19,9 @@
  */
 
 #ifndef __OSINFO_UTIL_PRIVATE_H__
-#define __OSINFO_UTIL_PRIVATE_H__
+# define __OSINFO_UTIL_PRIVATE_H__
 
-#include <glib.h>
+# include <glib.h>
 
 gboolean osinfo_util_requires_soup(const gchar *location);
 

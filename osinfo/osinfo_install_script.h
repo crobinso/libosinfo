@@ -27,17 +27,17 @@
 #include <osinfo/osinfo_avatar_format.h>
 
 #ifndef __OSINFO_INSTALL_SCRIPT_H__
-#define __OSINFO_INSTALL_SCRIPT_H__
+# define __OSINFO_INSTALL_SCRIPT_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_INSTALL_SCRIPT                  (osinfo_install_script_get_type ())
-#define OSINFO_INSTALL_SCRIPT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScript))
-#define OSINFO_IS_INSTALL_SCRIPT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_SCRIPT))
-#define OSINFO_INSTALL_SCRIPT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptClass))
-#define OSINFO_IS_INSTALL_SCRIPT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_SCRIPT))
-#define OSINFO_INSTALL_SCRIPT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptClass))
+# define OSINFO_TYPE_INSTALL_SCRIPT                  (osinfo_install_script_get_type ())
+# define OSINFO_INSTALL_SCRIPT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScript))
+# define OSINFO_IS_INSTALL_SCRIPT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_SCRIPT))
+# define OSINFO_INSTALL_SCRIPT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptClass))
+# define OSINFO_IS_INSTALL_SCRIPT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_SCRIPT))
+# define OSINFO_INSTALL_SCRIPT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptClass))
 
 typedef struct _OsinfoOs        OsinfoOs;
 typedef struct _OsinfoMedia     OsinfoMedia;
@@ -46,23 +46,23 @@ typedef struct _OsinfoInstallScript        OsinfoInstallScript;
 typedef struct _OsinfoInstallScriptClass   OsinfoInstallScriptClass;
 typedef struct _OsinfoInstallScriptPrivate OsinfoInstallScriptPrivate;
 
-#define OSINFO_INSTALL_SCRIPT_PROFILE_JEOS    "jeos"
-#define OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP "desktop"
+# define OSINFO_INSTALL_SCRIPT_PROFILE_JEOS    "jeos"
+# define OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP "desktop"
 
-#define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_URI       "template-uri"
-#define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_DATA      "template-data"
-#define OSINFO_INSTALL_SCRIPT_PROP_PROFILE            "profile"
-#define OSINFO_INSTALL_SCRIPT_PROP_PRODUCT_KEY_FORMAT "product-key-format"
-#define OSINFO_INSTALL_SCRIPT_PROP_EXPECTED_FILENAME  "expected-filename"
-#define OSINFO_INSTALL_SCRIPT_PROP_PATH_FORMAT        "path-format"
-#define OSINFO_INSTALL_SCRIPT_PROP_CAN_PRE_INSTALL_DRIVERS "can-pre-install-drivers"
-#define OSINFO_INSTALL_SCRIPT_PROP_CAN_POST_INSTALL_DRIVERS "can-post-install-drivers"
-#define OSINFO_INSTALL_SCRIPT_PROP_NEEDS_INTERNET     "needs-internet"
-#define OSINFO_INSTALL_SCRIPT_PROP_PRE_INSTALL_DRIVERS_SIGNING_REQ "pre-install-drivers-signing-req"
-#define OSINFO_INSTALL_SCRIPT_PROP_POST_INSTALL_DRIVERS_SIGNING_REQ "post-install-drivers-signing-req"
-#define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
-#define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
-#define OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE "installation-source"
+# define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_URI       "template-uri"
+# define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_DATA      "template-data"
+# define OSINFO_INSTALL_SCRIPT_PROP_PROFILE            "profile"
+# define OSINFO_INSTALL_SCRIPT_PROP_PRODUCT_KEY_FORMAT "product-key-format"
+# define OSINFO_INSTALL_SCRIPT_PROP_EXPECTED_FILENAME  "expected-filename"
+# define OSINFO_INSTALL_SCRIPT_PROP_PATH_FORMAT        "path-format"
+# define OSINFO_INSTALL_SCRIPT_PROP_CAN_PRE_INSTALL_DRIVERS "can-pre-install-drivers"
+# define OSINFO_INSTALL_SCRIPT_PROP_CAN_POST_INSTALL_DRIVERS "can-post-install-drivers"
+# define OSINFO_INSTALL_SCRIPT_PROP_NEEDS_INTERNET     "needs-internet"
+# define OSINFO_INSTALL_SCRIPT_PROP_PRE_INSTALL_DRIVERS_SIGNING_REQ "pre-install-drivers-signing-req"
+# define OSINFO_INSTALL_SCRIPT_PROP_POST_INSTALL_DRIVERS_SIGNING_REQ "post-install-drivers-signing-req"
+# define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
+# define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
+# define OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE "installation-source"
 
 /* object */
 struct _OsinfoInstallScript

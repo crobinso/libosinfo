@@ -26,17 +26,17 @@
 #include <osinfo/osinfo_db.h>
 
 #ifndef __OSINFO_LOADER_H__
-#define __OSINFO_LOADER_H__
+# define __OSINFO_LOADER_H__
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_LOADER                  (osinfo_loader_get_type ())
-#define OSINFO_LOADER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_LOADER, OsinfoLoader))
-#define OSINFO_IS_LOADER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_LOADER))
-#define OSINFO_LOADER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_LOADER, OsinfoLoaderClass))
-#define OSINFO_IS_LOADER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_LOADER))
-#define OSINFO_LOADER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_LOADER, OsinfoLoaderClass))
+# define OSINFO_TYPE_LOADER                  (osinfo_loader_get_type ())
+# define OSINFO_LOADER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_LOADER, OsinfoLoader))
+# define OSINFO_IS_LOADER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_LOADER))
+# define OSINFO_LOADER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_LOADER, OsinfoLoaderClass))
+# define OSINFO_IS_LOADER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_LOADER))
+# define OSINFO_LOADER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_LOADER, OsinfoLoaderClass))
 
 typedef struct _OsinfoLoader        OsinfoLoader;
 
@@ -71,7 +71,7 @@ GType osinfo_loader_get_type(void);
  *
  * Error domain for generic libosinfo errors
  */
-#define OSINFO_ERROR osinfo_error_quark()
+# define OSINFO_ERROR osinfo_error_quark()
 GQuark osinfo_error_quark(void);
 
 OsinfoLoader *osinfo_loader_new(void);

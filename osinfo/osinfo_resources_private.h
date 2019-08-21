@@ -24,7 +24,7 @@
 #include <osinfo/osinfo_resources.h>
 
 #ifndef __OSINFO_RESOURCES_PRIVATE_H__
-#define __OSINFO_RESOURCES_PRIVATE_H__
+# define __OSINFO_RESOURCES_PRIVATE_H__
 
 void osinfo_resources_set_inherit(OsinfoResources *resources, gboolean inherit);
 gboolean osinfo_resources_get_inherit(OsinfoResources *resources);

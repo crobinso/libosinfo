@@ -24,19 +24,19 @@
 #include <glib-object.h>
 
 #ifndef __OSINFO_DATAMAP_H__
-#define __OSINFO_DATAMAP_H__
+# define __OSINFO_DATAMAP_H__
 
-#include <osinfo/osinfo_entity.h>
+# include <osinfo/osinfo_entity.h>
 
 /*
  * Type macros.
  */
-#define OSINFO_TYPE_DATAMAP                  (osinfo_datamap_get_type ())
-#define OSINFO_DATAMAP(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamap))
-#define OSINFO_IS_DATAMAP(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DATAMAP))
-#define OSINFO_DATAMAP_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DATAMAP, OsinfoDatamapClass))
-#define OSINFO_IS_DATAMAP_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DATAMAP))
-#define OSINFO_DATAMAP_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamapClass))
+# define OSINFO_TYPE_DATAMAP                  (osinfo_datamap_get_type ())
+# define OSINFO_DATAMAP(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamap))
+# define OSINFO_IS_DATAMAP(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DATAMAP))
+# define OSINFO_DATAMAP_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DATAMAP, OsinfoDatamapClass))
+# define OSINFO_IS_DATAMAP_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DATAMAP))
+# define OSINFO_DATAMAP_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamapClass))
 
 typedef struct _OsinfoDatamap        OsinfoDatamap;
 typedef struct _OsinfoDatamapClass   OsinfoDatamapClass;
