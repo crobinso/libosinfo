@@ -42,4 +42,12 @@ homepage
 
    https://libosinfo.org/
 
+Testing
+=======
+
+In order to test libosinfo, you should run:
+
+    $ meson build
+    $ ninja -C build check
+
 --End
