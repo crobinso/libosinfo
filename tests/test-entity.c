@@ -18,8 +18,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 
 /* OsinfoEntity is abstract, so we need to trivially subclass it to test it */

@@ -18,8 +18,6 @@
  *   Fabiano Fidênciog <fidencio@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 
 #define ID "foo"

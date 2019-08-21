@@ -18,8 +18,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 
 /* OsinfoProduct is abstract, so we need to trivially subclass it to test it */

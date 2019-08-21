@@ -22,7 +22,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
 #include <glib/gi18n-lib.h>
 
 #include <osinfo/osinfo.h>

@@ -20,8 +20,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <glib.h>
 #include <gio/gio.h>
 #include <stdlib.h>

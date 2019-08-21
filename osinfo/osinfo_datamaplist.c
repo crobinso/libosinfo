@@ -22,8 +22,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 
 G_DEFINE_TYPE(OsinfoDatamapList, osinfo_datamaplist, OSINFO_TYPE_LIST);

@@ -18,8 +18,6 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 #include <gio/gio.h>
 #include <stdlib.h>

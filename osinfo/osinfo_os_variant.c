@@ -21,8 +21,6 @@
  *   Zeeshan Ali <zeenix@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 

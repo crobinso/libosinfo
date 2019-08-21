@@ -23,8 +23,6 @@
  *   Fabiano Fidêncio <fabiano@fidencio.org>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 

@@ -23,8 +23,6 @@
  *   Daniel P. Berrange <berrange@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 #include "osinfo_media_private.h"
 #include "osinfo_util_private.h"

@@ -21,8 +21,6 @@
  *   Zeeshan Ali <zeenix@redhat.com>
  */
 
-#include <config.h>
-
 #include <osinfo/osinfo.h>
 
 G_DEFINE_TYPE(OsinfoOsVariantList, osinfo_os_variantlist, OSINFO_TYPE_LIST);

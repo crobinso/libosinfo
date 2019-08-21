@@ -18,7 +18,6 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
 #include "osinfo_util_private.h"
 
 gboolean
