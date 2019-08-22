@@ -2390,6 +2390,10 @@ static void osinfo_loader_process_list(OsinfoLoader *loader,
         case OSINFO_DATA_FORMAT_USB_IDS:
             osinfo_loader_process_file_reg_usb(loader, *tmp, allentries, &lerr);
             break;
+
+        default:
+            g_warn_if_reached();
+            break;
         }
 
         if (lerr) {
