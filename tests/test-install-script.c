@@ -21,6 +21,7 @@
 #include <config.h>
 
 #include <osinfo/osinfo.h>
+#include <glib/gstdio.h>
 
 static GError *error = NULL;
 static gchar *actualData = NULL;
@@ -163,7 +164,7 @@ test_script_file(void)
 
     g_main_loop_run(loop);
 
-    unlink(BUILDDIR "/tests/install-script-actual.txt");
+    g_unlink(BUILDDIR "/tests/install-script-actual.txt");
     g_assert_no_error(error);
 
     g_assert_cmpstr(actualData, ==, expectData);
