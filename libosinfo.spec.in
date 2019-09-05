@@ -5,8 +5,9 @@ Name: libosinfo
 Version: @VERSION@
 Release: 1%{?dist}
 License: LGPLv2+
-Source: https://releases.pagure.org/%{name}/%{name}-%{version}.tar.gz
+Source: https://releases.pagure.org/%{name}/%{name}-%{version}.tar.xz
 URL: https://libosinfo.org/
+BuildRequires: meson
 BuildRequires: gcc
 BuildRequires: gettext-devel
 BuildRequires: glib2-devel
@@ -47,23 +48,19 @@ Libraries, includes, etc. to compile with the libosinfo library
 %setup -q
 
 %build
-%configure --enable-introspection=yes --enable-vala=yes
-%__make %{?_smp_mflags} V=1
+%meson \
+    -Denable-gtk-doc=true \
+    -Denable-tests=true \
+    -Denable-introspection=enabled \
+    -Denable-vala=enabled
 
 %install
-rm -fr %{buildroot}
-%__make install DESTDIR=%{buildroot}
-rm -f %{buildroot}%{_libdir}/*.a
-rm -f %{buildroot}%{_libdir}/*.la
+%meson_install
 
 %find_lang %{name}
 
 %check
-if ! make check
-then
-  cat tests/test-suite.log || true
-  exit 1
-fi
+%meson_test
 
 %ldconfig_scriptlets
 
@@ -89,6 +86,7 @@ fi
 
 %dir %{_datadir}/vala
 %dir %{_datadir}/vala/vapi
+%{_datadir}/vala/vapi/libosinfo-1.0.deps
 %{_datadir}/vala/vapi/libosinfo-1.0.vapi
 
 %changelog

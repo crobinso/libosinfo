@@ -5,15 +5,16 @@ Version: @VERSION@
 Release: 1%{?dist}
 Summary: MinGW Windows port of a library for managing OS information for virtualization
 License: LGPLv2+
-Source: https://releases.pagure.org/libosinfo/libosinfo-%{version}.tar.gz
+Source: https://releases.pagure.org/libosinfo/libosinfo-%{version}.tar.xz
 URL: https://libosinfo.org/
 
 BuildArch: noarch
 
+BuildRequires: meson
 BuildRequires: gettext
 
-BuildRequires: mingw32-filesystem >= 95
-BuildRequires: mingw64-filesystem >= 95
+BuildRequires: mingw32-filesystem >= 107
+BuildRequires: mingw64-filesystem >= 107
 BuildRequires: mingw32-gcc
 BuildRequires: mingw64-gcc
 BuildRequires: mingw32-binutils
@@ -67,15 +68,15 @@ combination.
 %setup -q -n libosinfo-%{version}
 
 %build
-%mingw_configure \
-    --enable-introspection=no \
-    --enable-tests=no
-
-%mingw_make %{?_smp_mflags}
-
+%mingw_meson \
+    -Denable-gtk-doc=false \
+    -Denable-tests=false \
+    -Denable-introspection=disabled \
+    -Denable-vala=disabled
+%mingw_ninja
 
 %install
-%mingw_make_install DESTDIR=$RPM_BUILD_ROOT
+%mingw_ninja_install
 
 # Remove static libraries but DON'T remove *.dll.a files.
 rm -f $RPM_BUILD_ROOT%{mingw32_libdir}/libosinfo-1.0.a
