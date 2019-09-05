@@ -1,3 +1,12 @@
+test(
+    'syntax-check',
+    find_program('@0@/build-aux/syntax-check'.format(meson.source_root())),
+    suite: 'style',
+    env: [
+        'MESON_SOURCE_ROOT=@0@'.format(meson.source_root()),
+    ],
+)
+
 if host_machine.system() == 'linux'
     check_sources = [
         'check-symfile',
