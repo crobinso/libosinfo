@@ -66,12 +66,7 @@ then
   exit 1
 fi
 
-%clean
-rm -fr %{buildroot}
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
