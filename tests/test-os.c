@@ -216,6 +216,46 @@ test_device_driver(void)
 }
 
 
+static void
+test_device_driver_priority_helper(gint64* expected_priorities,
+                                   OsinfoDeviceDriverList *(*get_device_drivers_func)(OsinfoOs *),
+                                   gint expected_ddlist_length)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    OsinfoDeviceDriverList *ddlist;
+    GError *error = NULL;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = g_object_ref(osinfo_loader_get_db(loader));
+    g_object_unref(loader);
+
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/drivers/priority");
+
+    ddlist = get_device_drivers_func(os);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(ddlist)), ==, expected_ddlist_length);
+    for (int i = 0; i < osinfo_list_get_length(OSINFO_LIST(ddlist)); i++) {
+        OsinfoDeviceDriver *dd = OSINFO_DEVICE_DRIVER(osinfo_list_get_nth(OSINFO_LIST(ddlist), i));
+        g_assert_cmpint(osinfo_device_driver_get_priority(dd), ==, expected_priorities[i]);
+    }
+
+    g_object_unref(db);
+}
+
+
+static void
+test_device_driver_priority(void)
+{
+    gint64 expected_priorities[] = { OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY, 100 };
+
+    test_device_driver_priority_helper(expected_priorities,
+                                       osinfo_os_get_device_drivers,
+                                       2);
+}
+
+
 static void test_resources_basic(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
@@ -812,6 +852,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/devices", test_devices);
     g_test_add_func("/os/devices_filter", test_devices_filter);
     g_test_add_func("/os/device_driver", test_device_driver);
+    g_test_add_func("/os/device_driver/priority", test_device_driver_priority);
     g_test_add_func("/os/devices/inheritance/basic",
                     test_devices_inheritance_basic);
     g_test_add_func("/os/devices/inheritance/removal",

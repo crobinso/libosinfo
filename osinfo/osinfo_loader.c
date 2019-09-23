@@ -1514,6 +1514,7 @@ static OsinfoDeviceDriver *osinfo_loader_driver(OsinfoLoader *loader,
     xmlChar *location = xmlGetProp(root, BAD_CAST OSINFO_DEVICE_DRIVER_PROP_LOCATION);
     xmlChar *preinst = xmlGetProp(root, BAD_CAST OSINFO_DEVICE_DRIVER_PROP_PRE_INSTALLABLE);
     xmlChar *is_signed = xmlGetProp(root, BAD_CAST OSINFO_DEVICE_DRIVER_PROP_SIGNED);
+    xmlChar *priority = xmlGetProp(root, BAD_CAST OSINFO_DEVICE_DRIVER_PROP_PRIORITY);
 
     OsinfoDeviceDriver *driver = osinfo_device_driver_new(id);
 
@@ -1543,6 +1544,13 @@ static OsinfoDeviceDriver *osinfo_loader_driver(OsinfoLoader *loader,
                                 OSINFO_DEVICE_DRIVER_PROP_SIGNED,
                                 (gchar *)is_signed);
         xmlFree(is_signed);
+    }
+
+    if (priority) {
+        osinfo_entity_set_param(OSINFO_ENTITY(driver),
+                                OSINFO_DEVICE_DRIVER_PROP_PRIORITY,
+                                (gchar *)priority);
+        xmlFree(priority);
     }
 
     gint nnodes = osinfo_loader_nodeset("./*", loader, ctxt, &nodes, err);

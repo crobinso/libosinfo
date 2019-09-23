@@ -611,6 +611,8 @@ LIBOSINFO_1.6.0 {
 
 LIBOSINFO_1.7.0 {
     global:
+	osinfo_device_driver_get_priority;
+
 	osinfo_firmware_get_architecture;
 	osinfo_firmware_get_firmware_type;
 	osinfo_firmware_get_type;

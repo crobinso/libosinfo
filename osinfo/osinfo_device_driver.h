@@ -56,6 +56,8 @@ typedef struct _OsinfoDeviceDriverPrivate OsinfoDeviceDriverPrivate;
 # define OSINFO_DEVICE_DRIVER_PROP_FILE            "file"
 # define OSINFO_DEVICE_DRIVER_PROP_DEVICE          "device"
 # define OSINFO_DEVICE_DRIVER_PROP_SIGNED          "signed"
+# define OSINFO_DEVICE_DRIVER_PROP_PRIORITY        "priority"
+# define OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY     50
 
 /* object */
 struct _OsinfoDeviceDriver
@@ -85,5 +87,6 @@ gboolean osinfo_device_driver_get_pre_installable(OsinfoDeviceDriver *driver);
 GList *osinfo_device_driver_get_files(OsinfoDeviceDriver *driver);
 OsinfoDeviceList *osinfo_device_driver_get_devices(OsinfoDeviceDriver *driver);
 gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver);
+gint64 osinfo_device_driver_get_priority(OsinfoDeviceDriver *driver);
 
 #endif /* __OSINFO_DEVICE_DRIVER_H__ */

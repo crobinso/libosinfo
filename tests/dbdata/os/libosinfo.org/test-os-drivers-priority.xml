@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+    <os id="http://libosinfo.org/test/os/drivers/priority">
+    <short-id>devices-basic-1</short-id>
+    <name>Devices Basic 1</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <driver signed="false" pre-installable="true" location="https://libosinfo.org/example/drivers/" arch="i686">
+      <file>prioritydefault</file>
+    </driver>
+
+    <driver signed="false" pre-installable="true" location="https://libosinfo.org/exmaple/drivers/" arch="i686" priority="100">
+      <file>priority100</file>
+    </driver>
+  </os>
+</libosinfo>

@@ -195,3 +195,11 @@ gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver)
                 (OSINFO_ENTITY(driver),
                  OSINFO_DEVICE_DRIVER_PROP_SIGNED);
 }
+
+gint64 osinfo_device_driver_get_priority(OsinfoDeviceDriver *driver)
+{
+    return osinfo_entity_get_param_value_int64_with_default
+                (OSINFO_ENTITY(driver),
+                 OSINFO_DEVICE_DRIVER_PROP_PRIORITY,
+                 OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY);
+}
