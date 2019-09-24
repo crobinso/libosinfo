@@ -1196,6 +1196,50 @@ OsinfoDeviceDriverList *osinfo_os_get_device_drivers(OsinfoOs *os)
     return os->priv->device_drivers;
 }
 
+static gint osinfo_device_drivers_sort_by_priority(gconstpointer a,
+                                                   gconstpointer b)
+{
+    OsinfoDeviceDriver *adriver = OSINFO_DEVICE_DRIVER(a);
+    OsinfoDeviceDriver *bdriver = OSINFO_DEVICE_DRIVER(b);
+
+    return osinfo_device_driver_get_priority(bdriver) - osinfo_device_driver_get_priority(adriver);
+}
+
+/**
+ * osinfo_os_get_device_drivers_prioritized:
+ * @os: an operating system
+ *
+ * Gets list of the highest priority device drivers for OS @os.
+ *
+ * Returns: (transfer full): A list of device drivers
+ *
+ * Since: 1.7.0
+ */
+OsinfoDeviceDriverList *osinfo_os_get_device_drivers_prioritized(OsinfoOs *os)
+{
+    OsinfoDeviceDriverList *device_drivers;
+    GList *list, *sorted, *l;
+    gint priority = -1;
+
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    list = osinfo_list_get_elements(OSINFO_LIST(os->priv->device_drivers));
+    sorted = g_list_sort(list, osinfo_device_drivers_sort_by_priority);
+
+    device_drivers = osinfo_device_driverlist_new();
+    for (l = sorted; l != NULL; l = l->next) {
+        if (priority == -1)
+            priority = osinfo_device_driver_get_priority(OSINFO_DEVICE_DRIVER(l->data));
+
+        if (priority != osinfo_device_driver_get_priority(OSINFO_DEVICE_DRIVER(l->data)))
+            break;
+
+        osinfo_list_add(OSINFO_LIST(device_drivers), OSINFO_ENTITY(l->data));
+    }
+
+    return device_drivers;
+}
+
 /**
  * osinfo_os_add_device_driver:
  * @os: an operating system

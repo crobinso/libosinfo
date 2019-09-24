@@ -143,6 +143,7 @@ OsinfoInstallScriptList *osinfo_os_get_install_script_list(OsinfoOs *os);
 void osinfo_os_add_install_script(OsinfoOs *os, OsinfoInstallScript *script);
 
 OsinfoDeviceDriverList *osinfo_os_get_device_drivers(OsinfoOs *os);
+OsinfoDeviceDriverList *osinfo_os_get_device_drivers_prioritized(OsinfoOs *os);
 void osinfo_os_add_device_driver(OsinfoOs *os, OsinfoDeviceDriver *driver);
 
 const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os);

@@ -622,6 +622,7 @@ LIBOSINFO_1.7.0 {
 	osinfo_firmwarelist_new;
 
 	osinfo_os_add_firmware;
+	osinfo_os_get_device_drivers_prioritized;
 	osinfo_os_get_firmware_list;
 
 	osinfo_tree_create_from_treeinfo;

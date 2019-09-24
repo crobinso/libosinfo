@@ -256,6 +256,17 @@ test_device_driver_priority(void)
 }
 
 
+static void
+test_device_driver_prioritized_priority(void)
+{
+    gint64 expected_priorities[] = { 100 };
+
+    test_device_driver_priority_helper(expected_priorities,
+                                       osinfo_os_get_device_drivers_prioritized,
+                                       1);
+}
+
+
 static void test_resources_basic(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
@@ -853,6 +864,8 @@ main(int argc, char *argv[])
     g_test_add_func("/os/devices_filter", test_devices_filter);
     g_test_add_func("/os/device_driver", test_device_driver);
     g_test_add_func("/os/device_driver/priority", test_device_driver_priority);
+    g_test_add_func("/os/device_driver/prioritized_priority",
+                    test_device_driver_prioritized_priority);
     g_test_add_func("/os/devices/inheritance/basic",
                     test_devices_inheritance_basic);
     g_test_add_func("/os/devices/inheritance/removal",
