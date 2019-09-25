@@ -614,6 +614,7 @@ LIBOSINFO_1.7.0 {
 	osinfo_firmware_get_architecture;
 	osinfo_firmware_get_firmware_type;
 	osinfo_firmware_get_type;
+	osinfo_firmware_new;
 
 	osinfo_firmwarelist_get_type;
 	osinfo_firmwarelist_new;
