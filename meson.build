@@ -233,9 +233,8 @@ if host_machine.system() == 'linux'
     libosinfo_check_cflags += ['-fstack-protector-all']
 endif
 
-
-# Builds on macOS would fail without those.
-if host_machine.system() == 'darwin'
+# Builds os macOS and BSDs will fail without those.
+if host_machine.system() != 'linux'
     libosinfo_check_cflags += [
         '-Wno-typedef-redefinition',
         '-Wno-missing-field-initializers',
