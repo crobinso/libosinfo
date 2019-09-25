@@ -349,7 +349,7 @@ endif
 subdir('osinfo')
 subdir('tools')
 subdir('po')
-if get_option('enable-gtk-doc')
+if get_option('enable-gtk-doc') and not meson.is_cross_build()
     if find_program('gtkdoc-scan', required: true).found()
         subdir('docs/reference')
     else
