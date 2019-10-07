@@ -528,8 +528,8 @@ Set the configuration parameter C<key> to C<value>.
 
 Set the configurations parameters according to the config-file passed.
 
-Note that use of --config-file is strongly recommended if the user or
-admin passwords need to be set. Providing passwords directly using
+Note that use of B<--config-file> is strongly recommended if the user
+or admin passwords need to be set. Providing passwords directly using
 B<--config=> is insecure as the password is visible to all processes
 and users on the same host.
 
@@ -602,26 +602,26 @@ The software registration user password
 =head1 CONFIGURATION FILE FORMAT
 
 The configuration file must consist in a file which contains a
-`install-script` group and, under this group, C<key>=C<value>
+C<install-script> group and, under this group, C<key>=C<value>
 pairs, as shown below:
 
-[install-script]
-l10n-timezone=GMT
-l10n-keyboard=uk
-l10n-language=en_GB
-admin-password=123456
-user-login=berrange
-user-password=123456
-user-realname="Daniel P Berrange"
+  [install-script]
+  l10n-timezone=GMT
+  l10n-keyboard=uk
+  l10n-language=en_GB
+  admin-password=123456
+  user-login=berrange
+  user-password=123456
+  user-realname="Daniel P Berrange"
 
 =head1 EXAMPLE USAGE
 
-The following usages generates a Fedora 16 kickstart script
+The following usages generate a Fedora 30 kickstart script:
 
   # osinfo-install-script \
          --profile jeos \
          --config-file /path/to/config/file \
-         fedora16
+         fedora30
 
   # osinfo-install-script \
          --profile jeos \
@@ -632,7 +632,7 @@ The following usages generates a Fedora 16 kickstart script
          --config user-login=berrange \
          --config user-password=123456 \
          --config user-realname="Daniel P Berrange" \
-         fedora16
+         fedora30
 
 =head1 EXIT STATUS
 

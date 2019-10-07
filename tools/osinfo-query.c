@@ -523,7 +523,7 @@ For example, to filter only distros from the Fedora Project, use
    fedora2              | Fedora Core 2 ...
    ...
 
-The set of fields which are printed can be controlled using the C<--fields>
+The set of fields which are printed can be controlled using the B<--fields>
 command line argument:
 
   # List all operating systems
@@ -698,7 +698,7 @@ or 1 if not matches were found
 
 =head1 SEE ALSO
 
-C<osinfo-db-validate(1)>, C<osinfo-detect(1)>
+L<osinfo-db-validate(1)>, L<osinfo-detect(1)>
 
 =head1 AUTHORS
 

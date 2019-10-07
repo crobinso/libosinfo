@@ -303,7 +303,7 @@ Examine the C<PATH> or C<URI> to determine what (if any) operating
 system it is for, and whether it is installable or is a Live image.
 By default C<PATH> or C<URI> will be interpreted as pointing to
 ISO media. To request examination of an install tree instead, the
-option C<--type=tree> should be given.
+option B<--type=tree> should be given.
 
 The output information is formatted for humans;
 
