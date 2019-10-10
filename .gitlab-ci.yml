@@ -84,6 +84,26 @@
   $NINJA install
   popd
 
+debian-10:
+  script:
+    - *multilib-deb
+    - *environment
+    - *osinfo-db-tools-build
+    - *osinfo-db-build
+    - *libosinfo-build
+    - *libosinfo-check
+  image: quay.io/libvirt/buildenv-libosinfo-debian-10:latest
+
+debian-sid:
+  script:
+    - *multilib-deb
+    - *environment
+    - *osinfo-db-tools-build
+    - *osinfo-db-build
+    - *libosinfo-build
+    - *libosinfo-check
+  image: quay.io/libvirt/buildenv-libosinfo-debian-sid:latest
+
 fedora-29:
   script:
     - *multilib-rpm
@@ -118,23 +138,3 @@ fedora-rawhide:
     - *libosinfo-check
     - *libosinfo-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide:latest
-
-debian-10:
-  script:
-    - *multilib-deb
-    - *environment
-    - *osinfo-db-tools-build
-    - *osinfo-db-build
-    - *libosinfo-build
-    - *libosinfo-check
-  image: quay.io/libvirt/buildenv-libosinfo-debian-10:latest
-
-debian-sid:
-  script:
-    - *multilib-deb
-    - *environment
-    - *osinfo-db-tools-build
-    - *osinfo-db-build
-    - *libosinfo-build
-    - *libosinfo-check
-  image: quay.io/libvirt/buildenv-libosinfo-debian-sid:latest
