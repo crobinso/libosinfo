@@ -97,6 +97,15 @@ centos-7:
     - *libosinfo-check
   image: quay.io/libvirt/buildenv-libosinfo-centos-7:latest
 
+debian-9:
+  script:
+    - *multilib-deb
+    - *environment
+    - *osinfo-db-tools-build
+    - *libosinfo-build
+    - *libosinfo-check
+  image: quay.io/libvirt/buildenv-libosinfo-debian-9:latest
+
 debian-10:
   script:
     - *multilib-deb
