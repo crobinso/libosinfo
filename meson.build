@@ -194,7 +194,6 @@ libosinfo_check_cflags = [
     '-Wtype-limits',
     '-Wuninitialized',
     '-Wunknown-pragmas',
-    '-Wunsafe-loop-optimizations',
     '-Wunused',
     '-Wunused-but-set-parameter',
     '-Wunused-but-set-variable',
