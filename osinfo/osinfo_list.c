@@ -449,8 +449,7 @@ OsinfoList *osinfo_list_new_copy(OsinfoList *source)
 {
     OsinfoList *newList = osinfo_list_new_same(source, NULL);
     g_return_val_if_fail(newList != NULL, NULL);
-    osinfo_list_add_all(OSINFO_LIST(newList),
-                        OSINFO_LIST(source));
+    osinfo_list_add_all(newList, source);
     return newList;
 }
 
@@ -470,9 +469,7 @@ OsinfoList *osinfo_list_new_filtered(OsinfoList *source, OsinfoFilter *filter)
 {
     OsinfoList *newList = osinfo_list_new_same(source, NULL);
     g_return_val_if_fail(newList != NULL, NULL);
-    osinfo_list_add_filtered(OSINFO_LIST(newList),
-                             OSINFO_LIST(source),
-                             filter);
+    osinfo_list_add_filtered(newList, source, filter);
     return newList;
 }
 
@@ -493,9 +490,7 @@ OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne,
 {
     OsinfoList *newList = osinfo_list_new_same(sourceOne, sourceTwo);
     g_return_val_if_fail(newList != NULL, NULL);
-    osinfo_list_add_intersection(OSINFO_LIST(newList),
-                                 OSINFO_LIST(sourceOne),
-                                 OSINFO_LIST(sourceTwo));
+    osinfo_list_add_intersection(newList, sourceOne, sourceTwo);
     return newList;
 }
 
@@ -517,8 +512,6 @@ OsinfoList *osinfo_list_new_union(OsinfoList *sourceOne,
 {
     OsinfoList *newList = osinfo_list_new_same(sourceOne, sourceTwo);
     g_return_val_if_fail(newList != NULL, NULL);
-    osinfo_list_add_union(OSINFO_LIST(newList),
-                          OSINFO_LIST(sourceOne),
-                          OSINFO_LIST(sourceTwo));
+    osinfo_list_add_union(newList, sourceOne, sourceTwo);
     return newList;
 }
