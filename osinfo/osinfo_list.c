@@ -52,6 +52,8 @@ enum {
 static GParamSpec *properties[LAST_PROP];
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE(OsinfoList, osinfo_list, G_TYPE_OBJECT)
 
+static void osinfo_list_set_element_type(OsinfoList *list, GType type);
+
 static void
 osinfo_list_set_property(GObject      *object,
                          guint         property_id,
@@ -62,7 +64,7 @@ osinfo_list_set_property(GObject      *object,
 
     switch (property_id) {
     case PROP_ELEMENT_TYPE:
-        list->priv->elementType = g_value_get_gtype(value);
+        osinfo_list_set_element_type(list, g_value_get_gtype(value));
         break;
 
     default:
@@ -161,6 +163,23 @@ GType osinfo_list_get_element_type(OsinfoList *list)
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
 
     return priv->elementType;
+}
+
+/**
+ * osinfo_list_set_element_type:
+ * @list: the entity list
+ * @type: the type for stored entities
+ *
+ * Sets the type of the subclass of #OsinfoEntity
+ * that may be stored in the list
+ *
+ * Returns: the type of entity stored
+ */
+static void osinfo_list_set_element_type(OsinfoList *list, GType type)
+{
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    priv->elementType = type;
 }
 
 
