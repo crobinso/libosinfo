@@ -97,9 +97,10 @@ static void
 osinfo_list_finalize(GObject *object)
 {
     OsinfoList *list = OSINFO_LIST(object);
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
 
-    g_ptr_array_free(list->priv->array, TRUE);
-    g_hash_table_unref(list->priv->entities);
+    g_ptr_array_free(priv->array, TRUE);
+    g_hash_table_unref(priv->entities);
 
     /* Chain up to the parent class */
     G_OBJECT_CLASS(osinfo_list_parent_class)->finalize(object);
@@ -136,13 +137,15 @@ osinfo_list_class_init(OsinfoListClass *klass)
 static void
 osinfo_list_init(OsinfoList *list)
 {
-    list->priv = OSINFO_LIST_GET_PRIVATE(list);
-    list->priv->array = g_ptr_array_new_with_free_func(NULL);
-    list->priv->entities = g_hash_table_new_full(g_str_hash,
-                                                 g_str_equal,
-                                                 NULL,
-                                                 g_object_unref);
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    priv->array = g_ptr_array_new_with_free_func(NULL);
+    priv->entities = g_hash_table_new_full(g_str_hash,
+                                           g_str_equal,
+                                           NULL,
+                                           g_object_unref);
 }
+
 
 /**
  * osinfo_list_get_element_type:
@@ -172,7 +175,9 @@ GType osinfo_list_get_element_type(OsinfoList *list)
  */
 gint osinfo_list_get_length(OsinfoList *list)
 {
-    return list->priv->array->len;
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    return priv->array->len;
 }
 
 /**
@@ -188,7 +193,9 @@ gint osinfo_list_get_length(OsinfoList *list)
  */
 OsinfoEntity *osinfo_list_get_nth(OsinfoList *list, gint idx)
 {
-    return g_ptr_array_index(list->priv->array, idx);
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    return g_ptr_array_index(priv->array, idx);
 }
 
 
@@ -202,7 +209,9 @@ OsinfoEntity *osinfo_list_get_nth(OsinfoList *list, gint idx)
  */
 GList *osinfo_list_get_elements(OsinfoList *list)
 {
-    return g_hash_table_get_values(list->priv->entities);
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    return g_hash_table_get_values(priv->entities);
 }
 
 /**
@@ -217,7 +226,9 @@ GList *osinfo_list_get_elements(OsinfoList *list)
  */
 OsinfoEntity *osinfo_list_find_by_id(OsinfoList *list, const gchar *id)
 {
-    return g_hash_table_lookup(list->priv->entities, id);
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    return g_hash_table_lookup(priv->entities, id);
 }
 
 
@@ -230,16 +241,18 @@ OsinfoEntity *osinfo_list_find_by_id(OsinfoList *list, const gchar *id)
  */
 void osinfo_list_add(OsinfoList *list, OsinfoEntity *entity)
 {
+    OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
     OsinfoEntity *preexisting;
-    g_return_if_fail(G_TYPE_CHECK_INSTANCE_TYPE(entity, list->priv->elementType));
+
+    g_return_if_fail(G_TYPE_CHECK_INSTANCE_TYPE(entity, priv->elementType));
 
     g_object_ref(entity);
     preexisting = osinfo_list_find_by_id(list, osinfo_entity_get_id(entity));
     if (preexisting != NULL) {
-        g_ptr_array_remove(list->priv->array, preexisting);
+        g_ptr_array_remove(priv->array, preexisting);
     }
-    g_ptr_array_add(list->priv->array, entity);
-    g_hash_table_replace(list->priv->entities,
+    g_ptr_array_add(priv->array, entity);
+    g_hash_table_replace(priv->entities,
                          (gchar *)osinfo_entity_get_id(entity), entity);
 }
 
