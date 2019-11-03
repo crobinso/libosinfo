@@ -208,7 +208,7 @@ gint osinfo_list_get_length(OsinfoList *list)
  * @idx is less than zero, or greater than the number of
  * elements in the list, the results are undefined.
  *
- * Returns: (transfer none): the list element
+ * Returns: (transfer none): the list element or %NULL
  */
 OsinfoEntity *osinfo_list_get_nth(OsinfoList *list, gint idx)
 {
