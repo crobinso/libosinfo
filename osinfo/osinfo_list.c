@@ -162,6 +162,8 @@ GType osinfo_list_get_element_type(OsinfoList *list)
 {
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
 
+    g_return_val_if_fail(OSINFO_IS_LIST(list), G_TYPE_INVALID);
+
     return priv->elementType;
 }
 
@@ -179,6 +181,8 @@ static void osinfo_list_set_element_type(OsinfoList *list, GType type)
 {
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
 
+    g_return_if_fail(OSINFO_IS_LIST(list));
+
     priv->elementType = type;
 }
 
@@ -195,6 +199,8 @@ static void osinfo_list_set_element_type(OsinfoList *list, GType type)
 gint osinfo_list_get_length(OsinfoList *list)
 {
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    g_return_val_if_fail(OSINFO_IS_LIST(list), 0);
 
     return priv->array->len;
 }
@@ -214,6 +220,9 @@ OsinfoEntity *osinfo_list_get_nth(OsinfoList *list, gint idx)
 {
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
 
+    g_return_val_if_fail(OSINFO_IS_LIST(list), NULL);
+    g_return_val_if_fail(priv->array->len > idx, NULL);
+
     return g_ptr_array_index(priv->array, idx);
 }
 
@@ -229,6 +238,8 @@ OsinfoEntity *osinfo_list_get_nth(OsinfoList *list, gint idx)
 GList *osinfo_list_get_elements(OsinfoList *list)
 {
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
+
+    g_return_val_if_fail(OSINFO_IS_LIST(list), NULL);
 
     return g_hash_table_get_values(priv->entities);
 }
@@ -247,6 +258,8 @@ OsinfoEntity *osinfo_list_find_by_id(OsinfoList *list, const gchar *id)
 {
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
 
+    g_return_val_if_fail(OSINFO_IS_LIST(list), NULL);
+
     return g_hash_table_lookup(priv->entities, id);
 }
 
@@ -263,6 +276,7 @@ void osinfo_list_add(OsinfoList *list, OsinfoEntity *entity)
     OsinfoListPrivate *priv = osinfo_list_get_instance_private(list);
     OsinfoEntity *preexisting;
 
+    g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(G_TYPE_CHECK_INSTANCE_TYPE(entity, priv->elementType));
 
     g_object_ref(entity);
@@ -290,6 +304,7 @@ void osinfo_list_add_filtered(OsinfoList *list, OsinfoList *source, OsinfoFilter
 {
     int i, len;
 
+    g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(source));
 
     len = osinfo_list_get_length(source);
@@ -315,6 +330,8 @@ void osinfo_list_add_filtered(OsinfoList *list, OsinfoList *source, OsinfoFilter
 void osinfo_list_add_intersection(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *sourceTwo)
 {
     int i, len;
+
+    g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceOne));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceTwo));
 
@@ -361,6 +378,8 @@ void osinfo_list_add_union(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *
 {
     // Make set version of new list
     GHashTable *newSet;
+
+    g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceOne));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceTwo));
 
@@ -401,6 +420,8 @@ void osinfo_list_add_union(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *
 void osinfo_list_add_all(OsinfoList *list, OsinfoList *source)
 {
     int i, len;
+
+    g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(source));
 
     len = osinfo_list_get_length(source);
@@ -447,9 +468,16 @@ static OsinfoList *osinfo_list_new_same(OsinfoList *sourceOne,
  */
 OsinfoList *osinfo_list_new_copy(OsinfoList *source)
 {
-    OsinfoList *newList = osinfo_list_new_same(source, NULL);
-    g_return_val_if_fail(newList != NULL, NULL);
+    OsinfoList *newList;
+
+    g_return_val_if_fail(OSINFO_IS_LIST(source), NULL);
+
+    newList = osinfo_list_new_same(source, NULL);
+
+    g_return_val_if_fail(OSINFO_IS_LIST(newList), NULL);
+
     osinfo_list_add_all(newList, source);
+
     return newList;
 }
 
@@ -467,9 +495,16 @@ OsinfoList *osinfo_list_new_copy(OsinfoList *source)
  */
 OsinfoList *osinfo_list_new_filtered(OsinfoList *source, OsinfoFilter *filter)
 {
-    OsinfoList *newList = osinfo_list_new_same(source, NULL);
-    g_return_val_if_fail(newList != NULL, NULL);
+    OsinfoList *newList;
+
+    g_return_val_if_fail(OSINFO_IS_LIST(source), NULL);
+
+    newList = osinfo_list_new_same(source, NULL);
+
+    g_return_val_if_fail(OSINFO_IS_LIST(newList), NULL);
+
     osinfo_list_add_filtered(newList, source, filter);
+
     return newList;
 }
 
@@ -488,9 +523,17 @@ OsinfoList *osinfo_list_new_filtered(OsinfoList *source, OsinfoFilter *filter)
 OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne,
                                          OsinfoList *sourceTwo)
 {
-    OsinfoList *newList = osinfo_list_new_same(sourceOne, sourceTwo);
-    g_return_val_if_fail(newList != NULL, NULL);
+    OsinfoList *newList;
+
+    g_return_val_if_fail(OSINFO_IS_LIST(sourceOne), NULL);
+    g_return_val_if_fail(OSINFO_IS_LIST(sourceTwo), NULL);
+
+    newList = osinfo_list_new_same(sourceOne, sourceTwo);
+
+    g_return_val_if_fail(OSINFO_IS_LIST(newList), NULL);
+
     osinfo_list_add_intersection(newList, sourceOne, sourceTwo);
+
     return newList;
 }
 
@@ -510,8 +553,16 @@ OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne,
 OsinfoList *osinfo_list_new_union(OsinfoList *sourceOne,
                                   OsinfoList *sourceTwo)
 {
-    OsinfoList *newList = osinfo_list_new_same(sourceOne, sourceTwo);
-    g_return_val_if_fail(newList != NULL, NULL);
+    OsinfoList *newList;
+
+    g_return_val_if_fail(OSINFO_IS_LIST(sourceOne), NULL);
+    g_return_val_if_fail(OSINFO_IS_LIST(sourceTwo), NULL);
+
+    newList = osinfo_list_new_same(sourceOne, sourceTwo);
+
+    g_return_val_if_fail(OSINFO_IS_LIST(newList), NULL);
+
     osinfo_list_add_union(newList, sourceOne, sourceTwo);
+
     return newList;
 }
