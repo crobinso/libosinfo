@@ -26,10 +26,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_ABSTRACT_TYPE(OsinfoList, osinfo_list, G_TYPE_OBJECT);
-
-#define OSINFO_LIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_LIST, OsinfoListPrivate))
-
 /**
  * SECTION:osinfo_list
  * @short_description: Abstract base class for entity lists
@@ -39,20 +35,22 @@ G_DEFINE_ABSTRACT_TYPE(OsinfoList, osinfo_list, G_TYPE_OBJECT);
  *
  */
 
-struct _OsinfoListPrivate
+typedef struct
 {
     GPtrArray *array;
     GHashTable *entities;
 
     GType elementType;
-};
+} OsinfoListPrivate;
 
 enum {
     PROP_O,
-
-    PROP_ELEMENT_TYPE
+    PROP_ELEMENT_TYPE,
+    LAST_PROP
 };
 
+static GParamSpec *properties[LAST_PROP];
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE(OsinfoList, osinfo_list, G_TYPE_OBJECT)
 
 static void
 osinfo_list_set_property(GObject      *object,
@@ -112,7 +110,6 @@ static void
 osinfo_list_class_init(OsinfoListClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->set_property = osinfo_list_set_property;
     g_klass->get_property = osinfo_list_get_property;
@@ -125,19 +122,15 @@ osinfo_list_class_init(OsinfoListClass *klass)
      * restricted to storing #OsinfoEntity objects of
      * the specified type.
      */
-    pspec = g_param_spec_gtype("element-type",
-                               "Element type",
-                               _("List element type"),
-                               OSINFO_TYPE_ENTITY,
-                               G_PARAM_CONSTRUCT_ONLY |
-                               G_PARAM_READWRITE |
-                               G_PARAM_STATIC_STRINGS);
+    properties[PROP_ELEMENT_TYPE] = g_param_spec_gtype("element-type",
+                                                       "Element type",
+                                                       _("List element type"),
+                                                       OSINFO_TYPE_ENTITY,
+                                                       G_PARAM_CONSTRUCT_ONLY |
+                                                       G_PARAM_READWRITE |
+                                                       G_PARAM_STATIC_STRINGS);
 
-    g_object_class_install_property(g_klass,
-                                    PROP_ELEMENT_TYPE,
-                                    pspec);
-
-    g_type_class_add_private(klass, sizeof(OsinfoListPrivate));
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void
