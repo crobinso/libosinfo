@@ -538,11 +538,21 @@ static gint media_volume_compare(gconstpointer a, gconstpointer b)
         /* Order doesn't matter then */
         return 0;
 
-    if (strstr(volume_a, volume_b) != NULL)
+    if (strstr(volume_a, volume_b) != NULL) {
+        gint64 volume_size_a = osinfo_media_get_volume_size(media_a);
+        gint64 volume_size_b = osinfo_media_get_volume_size(media_b);
+
+        if (volume_size_a != -1 && volume_size_b == -1)
+            return -1;
+
+        if (volume_size_b != -1 && volume_size_a == -1)
+            return 1;
+
         return -1;
-    else
+    } else {
         /* Sub-string comes later */
         return 1;
+    }
 }
 
 static gboolean compare_media(OsinfoMedia *media,
