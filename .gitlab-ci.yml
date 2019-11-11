@@ -150,6 +150,17 @@ fedora-30:
     - *libosinfo-mingw64-build
   image: quay.io/libvirt/buildenv-libosinfo-fedora-30:latest
 
+fedora-31:
+  script:
+    - *multilib-rpm
+    - *environment
+    - *osinfo-db-tools-build
+    - *osinfo-db-build
+    - *libosinfo-build
+    - *libosinfo-check
+    - *libosinfo-rpm
+  image: quay.io/libvirt/buildenv-libosinfo-fedora-31:latest
+
 fedora-rawhide:
   script:
     - *multilib-rpm
