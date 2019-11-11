@@ -126,17 +126,6 @@ debian-sid:
     - *libosinfo-check
   image: quay.io/libvirt/buildenv-libosinfo-debian-sid:latest
 
-fedora-29:
-  script:
-    - *multilib-rpm
-    - *environment
-    - *osinfo-db-tools-build
-    - *osinfo-db-build
-    - *libosinfo-build
-    - *libosinfo-check
-    - *libosinfo-rpm
-  image: quay.io/libvirt/buildenv-libosinfo-fedora-29:latest
-
 fedora-30:
   script:
     - *multilib-rpm
