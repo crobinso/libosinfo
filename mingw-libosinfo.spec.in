@@ -13,7 +13,6 @@ BuildArch: noarch
 BuildRequires: intltool
 BuildRequires: meson
 BuildRequires: gcc
-BuildRequires: gettext
 BuildRequires: hwdata
 
 BuildRequires: mingw32-filesystem >= 107
