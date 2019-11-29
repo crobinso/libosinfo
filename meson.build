@@ -116,7 +116,6 @@ libosinfo_check_cflags = [
     '-Warray-bounds',
     '-Wattributes',
     '-Wbuiltin-macro-redefined',
-    '-Wcast-align',
     '-Wchar-subscripts',
     '-Wclobbered',
     '-Wcomment',
