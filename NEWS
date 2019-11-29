@@ -1,6 +1,20 @@
                libosinfo News
                ==============
 
+1.7.0 - Nov 29, 2019
+====================
+
+- Add API to expose a device driver "priority"
+- Improve media detection when using "volume-size" to distinguish medias
+- General improvements on OsinfoList APIs to avoid unsafe access
+- Minor POD fixes
+- Switch to meson build system
+- Add API to expose "firmware" support on OsinfoOS
+- Drop "env" type support from osinfo-detect
+- Print the architecture of the detected tree / media on osinfo-detect
+- Add API to create an OsinfoTree from a treeinfo file
+
+
 1.6.0 - Jul 26, 2019
 ====================
 
