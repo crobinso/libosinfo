@@ -259,6 +259,8 @@ if pci_ids_path == ''
         '/usr/local/share/pciids/pci.ids',
     ]
 
+    install_file = meson.is_cross_build()
+
     foreach file: pci_id_files
         if run_command('[', '-f', file, ']').returncode() == 0
             pci_ids_path = file
@@ -272,8 +274,13 @@ if pci_ids_path == ''
             r = run_command(download)
             if r.returncode() == 0
                 pci_ids_path = join_paths(meson.build_root(), 'pci.ids')
+                install_file = true
             endif
         endif
+    endif
+
+    if install_file
+        install_data(pci_ids_path)
     endif
 endif
 libosinfo_cflags += ['-DPCI_IDS="@0@"'.format(pci_ids_path)]
@@ -288,6 +295,8 @@ if usb_ids_path == ''
         '/usr/local/share/usbids/usb.ids',
     ]
 
+    install_file = meson.is_cross_build()
+
     foreach file: usb_id_files
         if run_command('[', '-f', file, ']').returncode() == 0
             usb_ids_path = file
@@ -301,8 +310,14 @@ if usb_ids_path == ''
             r = run_command(download)
             if r.returncode() == 0
                 usb_ids_path = join_paths(meson.build_root(), 'usb.ids')
+                install_file = true
             endif
         endif
+    endif
+
+
+    if install_file
+        install_data(usb_ids_path)
     endif
 endif
 libosinfo_cflags += ['-DUSB_IDS="@0@"'.format(usb_ids_path)]
