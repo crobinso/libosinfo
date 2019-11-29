@@ -10,6 +10,8 @@ URL: https://libosinfo.org/
 
 BuildArch: noarch
 
+BuildRequires: git
+
 BuildRequires: intltool
 BuildRequires: meson
 BuildRequires: gcc
@@ -67,7 +69,7 @@ combination.
 %{?mingw_debug_package}
 
 %prep
-%setup -q -n libosinfo-%{version}
+%autosetup -S git -n libosinfo-%{version}
 
 %build
 %mingw_meson \
