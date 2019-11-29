@@ -10,10 +10,10 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: libosinfo 1.6.0\n"
-"Report-Msgid-Bugs-To: https://gitlab.com/libosinfo/libosinfo/issues\n"
-"POT-Creation-Date: 2019-07-26 20:53+0200\n"
-"PO-Revision-Date: 2019-05-08 05:27+0000\n"
+"Project-Id-Version: libosinfo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-29 13:52+0100\n"
+"PO-Revision-Date: 2019-07-28 04:36+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/libosinfo/"
 "language/uk/)\n"
@@ -25,234 +25,240 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Zanata 4.6.2\n"
 
-#: osinfo/osinfo_avatar_format.c:109
+#: osinfo/osinfo_avatar_format.c:107
 msgid "The allowed mime-types for the avatar"
 msgstr "Дозволені типи MIME для аватару"
 
-#: osinfo/osinfo_avatar_format.c:123
+#: osinfo/osinfo_avatar_format.c:121
 msgid "The required width (in pixels) of the avatar"
 msgstr "Потрібна ширина (у пікселях) аватару"
 
-#: osinfo/osinfo_avatar_format.c:140
+#: osinfo/osinfo_avatar_format.c:138
 msgid "The required height (in pixels) of the avatar."
 msgstr "Потрібна висота (у пікселях) аватару."
 
-#: osinfo/osinfo_avatar_format.c:157
+#: osinfo/osinfo_avatar_format.c:155
 msgid "Whether alpha channel is supported in the avatar."
 msgstr "Визначає, чи передбачено підтримку каналу прозорості у аватарі."
 
-#: osinfo/osinfo_deployment.c:148
+#: osinfo/osinfo_deployment.c:146
 msgid "Operating system"
 msgstr "Операційна система"
 
-#: osinfo/osinfo_deployment.c:163
+#: osinfo/osinfo_deployment.c:161
 msgid "Virtualization platform"
 msgstr "Платформа віртуалізації"
 
-#: osinfo/osinfo_devicelink.c:129
+#: osinfo/osinfo_devicelink.c:127
 msgid "Target device"
 msgstr "Пристрій призначення"
 
-#: osinfo/osinfo_devicelinkfilter.c:134
+#: osinfo/osinfo_devicelinkfilter.c:132
 msgid "Device link target filter"
 msgstr "Фільтр призначення посилання на пристрій"
 
-#: osinfo/osinfo_entity.c:136
+#: osinfo/osinfo_entity.c:134
 msgid "Unique identifier"
 msgstr "Унікальний ідентифікатор"
 
-#: osinfo/osinfo_image.c:170 osinfo/osinfo_media.c:485
-#: osinfo/osinfo_resources.c:171 osinfo/osinfo_tree.c:316
+#: osinfo/osinfo_firmware.c:133 osinfo/osinfo_image.c:168
+#: osinfo/osinfo_media.c:483 osinfo/osinfo_resources.c:169
+#: osinfo/osinfo_tree.c:316
 msgid "CPU Architecture"
 msgstr "Архітектура процесора"
 
-#: osinfo/osinfo_image.c:183
+#: osinfo/osinfo_firmware.c:146
+msgid "The firmware type"
+msgstr ""
+
+#: osinfo/osinfo_image.c:181
 msgid "The image format"
 msgstr "Формат образу"
 
-#: osinfo/osinfo_image.c:196
+#: osinfo/osinfo_image.c:194
 msgid "The URL to this image"
 msgstr "Адреса образу"
 
-#: osinfo/osinfo_install_config_param.c:152
+#: osinfo/osinfo_install_config_param.c:150
 msgid "Parameter name"
 msgstr "Назва параметра"
 
-#: osinfo/osinfo_install_config_param.c:168
+#: osinfo/osinfo_install_config_param.c:166
 msgid "Parameter policy"
 msgstr "Правила щодо параметра"
 
-#: osinfo/osinfo_install_config_param.c:184
+#: osinfo/osinfo_install_config_param.c:182
 msgid "Parameter Value Mapping"
 msgstr "Прив’язка значення параметра"
 
-#: osinfo/osinfo_install_script.c:214
+#: osinfo/osinfo_install_script.c:212
 msgid "URI for install script template"
 msgstr "Адреса шаблона скрипту для встановлення"
 
-#: osinfo/osinfo_install_script.c:226
+#: osinfo/osinfo_install_script.c:224
 msgid "Data for install script template"
 msgstr "Дані для шаблону скрипту для встановлення"
 
-#: osinfo/osinfo_install_script.c:238
+#: osinfo/osinfo_install_script.c:236
 msgid "Install script profile name"
 msgstr "Назва профілю скрипту для встановлення"
 
-#: osinfo/osinfo_install_script.c:250
+#: osinfo/osinfo_install_script.c:248
 msgid "Product key format mask"
 msgstr "Маска формату ключа продукту"
 
-#: osinfo/osinfo_install_script.c:260
+#: osinfo/osinfo_install_script.c:258
 msgid "Expected path format"
 msgstr "Очікуваний формат шляху"
 
-#: osinfo/osinfo_install_script.c:271
+#: osinfo/osinfo_install_script.c:269
 msgid "Expected avatar format"
 msgstr "Очікуваний формат аватару"
 
-#: osinfo/osinfo_install_script.c:281
+#: osinfo/osinfo_install_script.c:279
 msgid "The preferred injection method"
 msgstr "Бажаний спосіб вставляння"
 
-#: osinfo/osinfo_install_script.c:293
+#: osinfo/osinfo_install_script.c:291
 msgid "The installation source to be used"
 msgstr "Джерело даних для встановлення, яке буде використано"
 
-#: osinfo/osinfo_install_script.c:723
+#: osinfo/osinfo_install_script.c:721
 msgid "Unable to create XML parser context"
 msgstr "Не вдалося створити контекст обробки XML"
 
-#: osinfo/osinfo_install_script.c:731
+#: osinfo/osinfo_install_script.c:729
 msgid "Unable to read XSL template"
 msgstr "Не вдалося прочитати шаблон XSL"
 
-#: osinfo/osinfo_install_script.c:737
+#: osinfo/osinfo_install_script.c:735
 msgid "Unable to parse XSL template"
 msgstr "Не вдалося обробити шаблон XSL"
 
-#: osinfo/osinfo_install_script.c:828 osinfo/osinfo_install_script.c:859
+#: osinfo/osinfo_install_script.c:826 osinfo/osinfo_install_script.c:857
 #, c-format
 msgid "Unable to create XML node '%s'"
 msgstr "Не вдалося створити вузол XML «%s»"
 
-#: osinfo/osinfo_install_script.c:834
+#: osinfo/osinfo_install_script.c:832
 msgid "Unable to create XML node 'id'"
 msgstr "Не вдалося створити вузол XML «id»"
 
-#: osinfo/osinfo_install_script.c:838 osinfo/osinfo_install_script.c:864
+#: osinfo/osinfo_install_script.c:836 osinfo/osinfo_install_script.c:862
 msgid "Unable to add XML child"
 msgstr "Не вдалося додати дочірній об'єкт XML"
 
-#: osinfo/osinfo_install_script.c:911 osinfo/osinfo_install_script.c:921
-#: osinfo/osinfo_install_script.c:955
+#: osinfo/osinfo_install_script.c:909 osinfo/osinfo_install_script.c:919
+#: osinfo/osinfo_install_script.c:953
 msgid "Unable to set XML root"
 msgstr "Не вдалося встановити кореневий об'єкт XML"
 
-#: osinfo/osinfo_install_script.c:932
+#: osinfo/osinfo_install_script.c:930
 msgid "Unable to set 'media' node"
 msgstr "Не вдалося встановити вузол «media»"
 
-#: osinfo/osinfo_install_script.c:944
+#: osinfo/osinfo_install_script.c:942
 msgid "Unable to set 'tree' node"
-msgstr ""
+msgstr "Не вдалося встановити вузол «tree»"
 
-#: osinfo/osinfo_install_script.c:978
+#: osinfo/osinfo_install_script.c:976
 msgid "Unable to create XSL transform context"
 msgstr "Не вдалося створити контекст перетворення XSL"
 
-#: osinfo/osinfo_install_script.c:983
+#: osinfo/osinfo_install_script.c:981
 msgid "Unable to apply XSL transform context"
 msgstr "Не вдалося застосувати контекст перетворення XSL"
 
-#: osinfo/osinfo_install_script.c:988
+#: osinfo/osinfo_install_script.c:986
 msgid "Unable to convert XSL output to string"
 msgstr "Не вдалося перетворити виведені XSL дані на рядок"
 
-#: osinfo/osinfo_install_script.c:1049
+#: osinfo/osinfo_install_script.c:1047
 #, c-format
 msgid "Failed to load script template %s: "
 msgstr "Не вдалося завантажити шаблон скрипту %s: "
 
-#: osinfo/osinfo_install_script.c:1065
+#: osinfo/osinfo_install_script.c:1063
 #, c-format
 msgid "Failed to apply script template %s: "
 msgstr "Не вдалося застосувати шаблон скрипту %s: "
 
-#: osinfo/osinfo_install_script.c:1123 osinfo/osinfo_install_script.c:2030
-#: osinfo/osinfo_install_script.c:2081 osinfo/osinfo_install_script.c:2131
+#: osinfo/osinfo_install_script.c:1121 osinfo/osinfo_install_script.c:2028
+#: osinfo/osinfo_install_script.c:2079 osinfo/osinfo_install_script.c:2129
 msgid "Failed to apply script template: "
 msgstr "Не вдалося застосувати шаблон скрипту: "
 
-#: osinfo/osinfo_list.c:132
+#: osinfo/osinfo_list.c:130
 msgid "List element type"
 msgstr "Тип списку елементів"
 
-#: osinfo/osinfo_loader.c:216
+#: osinfo/osinfo_loader.c:215
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
 msgstr "Очікуваний набір вузлів у запиті XPath %s"
 
-#: osinfo/osinfo_loader.c:296 osinfo/osinfo_loader.c:439
+#: osinfo/osinfo_loader.c:295 osinfo/osinfo_loader.c:438
 msgid "Expected a text node attribute value"
 msgstr "Мало бути вказано значення атрибута текстового вузла"
 
-#: osinfo/osinfo_loader.c:592
+#: osinfo/osinfo_loader.c:591
 msgid "Missing device id property"
 msgstr "Не вистачає властивості ідентифікатора пристрою"
 
-#: osinfo/osinfo_loader.c:627
+#: osinfo/osinfo_loader.c:626
 msgid "Missing device link id property"
 msgstr "Не вистачає властивості прив’язки до пристрою"
 
-#: osinfo/osinfo_loader.c:686
+#: osinfo/osinfo_loader.c:685
 msgid "Missing product upgrades id property"
 msgstr "Не вистачає властивості ідентифікатора оновлення продукту"
 
-#: osinfo/osinfo_loader.c:770
+#: osinfo/osinfo_loader.c:769
 msgid "Missing platform id property"
 msgstr "Не вистачає властивості ідентифікатора платформи"
 
-#: osinfo/osinfo_loader.c:804
+#: osinfo/osinfo_loader.c:803
 msgid "Missing deployment id property"
 msgstr "Не вистачає властивості ідентифікатора розгортання"
 
-#: osinfo/osinfo_loader.c:814
+#: osinfo/osinfo_loader.c:813
 msgid "Missing deployment os id property"
 msgstr "Не вистачає властивості ідентифікатора ОС розгортання"
 
-#: osinfo/osinfo_loader.c:824
+#: osinfo/osinfo_loader.c:823
 msgid "Missing deployment platform id property"
 msgstr "Не вистачає властивості платформи розгортання"
 
-#: osinfo/osinfo_loader.c:863 osinfo/osinfo_loader.c:1573
+#: osinfo/osinfo_loader.c:862 osinfo/osinfo_loader.c:1607
 msgid "Missing os id property"
 msgstr "Не вистачає властивості ідентифікатора ОС"
 
-#: osinfo/osinfo_loader.c:987
+#: osinfo/osinfo_loader.c:986
 msgid "Missing install script id property"
 msgstr "Не вистачає властивості ідентифікатора скрипту встановлення"
 
-#: osinfo/osinfo_loader.c:1221
+#: osinfo/osinfo_loader.c:1220
 msgid "Missing Media install script property"
 msgstr "Не вказано властивості скрипту встановлення носія"
 
-#: osinfo/osinfo_loader.c:1708
+#: osinfo/osinfo_loader.c:1760
 msgid "Missing OS install script property"
 msgstr "Не вистачає властивості скрипту встановлення"
 
-#: osinfo/osinfo_loader.c:1772
+#: osinfo/osinfo_loader.c:1824
 msgid "Incorrect root element"
 msgstr "Помилковий кореневий елемент"
 
-#: osinfo/osinfo_loader.c:1839
+#: osinfo/osinfo_loader.c:1891
 msgid "Unable to construct parser context"
 msgstr "Не вдалося побудувати контекст обробки"
 
-#: osinfo/osinfo_loader.c:1861
+#: osinfo/osinfo_loader.c:1913
 msgid "Missing root XML element"
 msgstr "Не вистачає кореневого елемента XML"
 
-#: osinfo/osinfo_loader.c:2495
+#: osinfo/osinfo_loader.c:2551
+#, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
@@ -261,7 +267,7 @@ msgstr ""
 "нього $OSINFO_SYSTEM_DIR. Підтримку $OSINFO_DATA_DIR буде вилучено у "
 "наступному випуску\n"
 
-#: osinfo/osinfo_loader.c:2531 osinfo/osinfo_loader.c:2563
+#: osinfo/osinfo_loader.c:2587 osinfo/osinfo_loader.c:2619
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -270,80 +276,81 @@ msgstr ""
 "%s вважається застарілим, будь ласка, використовуйте замість нього %s. "
 "Підтримку %s буде вилучено у наступному випуску\n"
 
-#: osinfo/osinfo_media.c:498
+#: osinfo/osinfo_media.c:496
 msgid "The URL to this media"
 msgstr "Адреса цього носія"
 
-#: osinfo/osinfo_media.c:511
+#: osinfo/osinfo_media.c:509
 msgid "The expected ISO9660 volume ID"
 msgstr "Очікуваний ідентифікатор тому ISO9660"
 
-#: osinfo/osinfo_media.c:524
+#: osinfo/osinfo_media.c:522
 msgid "The expected ISO9660 publisher ID"
 msgstr "Очікуваний ідентифікатор оприлюднювача ISO9660"
 
-#: osinfo/osinfo_media.c:537
+#: osinfo/osinfo_media.c:535
 msgid "The expected ISO9660 application ID"
 msgstr "Очікуваний ідентифікатор програми ISO9660"
 
-#: osinfo/osinfo_media.c:550
+#: osinfo/osinfo_media.c:548
 msgid "The expected ISO9660 system ID"
 msgstr "Очікуваний ідентифікатор системи ISO9660"
 
-#: osinfo/osinfo_media.c:563 osinfo/osinfo_tree.c:342
+#: osinfo/osinfo_media.c:561 osinfo/osinfo_tree.c:342
 msgid "The path to the kernel image"
 msgstr "Шлях до образу ядра"
 
-#: osinfo/osinfo_media.c:576
+#: osinfo/osinfo_media.c:574
 msgid "The path to the initrd image"
 msgstr "Шлях до образу initrd"
 
-#: osinfo/osinfo_media.c:589
+#: osinfo/osinfo_media.c:587
 msgid "Media provides an installer"
 msgstr "На носії є встановлювач"
 
-#: osinfo/osinfo_media.c:602
+#: osinfo/osinfo_media.c:600
 msgid "Media can boot directly w/o installation"
 msgstr "Безпосереднє завантаження з носія без встановлення неможливе"
 
-#: osinfo/osinfo_media.c:624
+#: osinfo/osinfo_media.c:622
 msgid "Number of installer reboots"
 msgstr "Кількість перезавантажень засобом для встановлення"
 
-#: osinfo/osinfo_media.c:642
+#: osinfo/osinfo_media.c:640
 msgid "Information about the operating system on this media"
 msgstr "Інформація щодо операційної системи на цьому носії"
 
-#: osinfo/osinfo_media.c:664
+#: osinfo/osinfo_media.c:662
 msgid "Supported languages"
 msgstr "Підтримувані мови"
 
-#: osinfo/osinfo_media.c:676
+#: osinfo/osinfo_media.c:674
 msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Розмір тому мало бути вказано у форматі ISO9660 у байтах"
 
-#: osinfo/osinfo_media.c:696
+#: osinfo/osinfo_media.c:694
 msgid "Whether the media should be ejected after the installtion process"
 msgstr ""
 "Визначає, чи слід виштовхувати носій з даними після виконання встановлення"
 
-#: osinfo/osinfo_media.c:712
+#: osinfo/osinfo_media.c:710
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
 "Визначає, чи слід використовувати носій даних для встановлення за допомогою "
 "скриптів для встановлення"
 
-#: osinfo/osinfo_media.c:843
+#: osinfo/osinfo_media.c:841
+#, c-format
 msgid "Install media is not bootable"
 msgstr "Носій для встановлення непридатний до завантаження"
 
-#: osinfo/osinfo_media.c:917
+#: osinfo/osinfo_media.c:915
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
 msgstr "Не вдалося прочитати розширення запису каталогу «%s»: "
 
-#: osinfo/osinfo_media.c:926
+#: osinfo/osinfo_media.c:924
 #, c-format
 msgid "No \"%s\" directory record extent"
 msgstr "Немає розширення запису каталогу «%s»"
@@ -353,6 +360,7 @@ msgid "Failed to read supplementary volume descriptor: "
 msgstr "Не вдалося прочитати дескриптор допоміжного тому: "
 
 #: osinfo/osinfo_media.c:1135
+#, c-format
 msgid "Supplementary volume descriptor was truncated"
 msgstr "Дескриптор допоміжного тому було обрізано"
 
@@ -361,10 +369,12 @@ msgid "Failed to read primary volume descriptor: "
 msgstr "Не вдалося прочитати дескриптор основного тому: "
 
 #: osinfo/osinfo_media.c:1209
+#, c-format
 msgid "Primary volume descriptor was truncated"
 msgstr "Дескриптор основного тому було обрізано"
 
 #: osinfo/osinfo_media.c:1241
+#, c-format
 msgid "Insufficient metadata on installation media"
 msgstr "Недостатньо метаданих на носії для встановлення"
 
@@ -374,12 +384,13 @@ msgid "Failed to skip %d bytes"
 msgstr "Не вдалося пропустити %d байтів"
 
 #: osinfo/osinfo_media.c:1281
+#, c-format
 msgid "No volume descriptors"
 msgstr "Немає дескрипторів тому"
 
 #: osinfo/osinfo_media.c:1323
 msgid "Failed to open file: "
-msgstr ""
+msgstr "Не вдалося відкрити файл: "
 
 #: osinfo/osinfo_os.c:158
 msgid "Generic Family"
@@ -391,47 +402,47 @@ msgstr "Загальний дистрибутив"
 
 #: osinfo/osinfo_os.c:190
 msgid "Kernel URL Argument"
-msgstr ""
+msgstr "Аргумент адреси ядра"
 
-#: osinfo/osinfo_product.c:168 tools/osinfo-query.c:58 tools/osinfo-query.c:82
-#: tools/osinfo-query.c:108
+#: osinfo/osinfo_product.c:166 tools/osinfo-query.c:56 tools/osinfo-query.c:80
+#: tools/osinfo-query.c:106
 msgid "Name"
 msgstr "Назва"
 
-#: osinfo/osinfo_product.c:181 tools/osinfo-query.c:56 tools/osinfo-query.c:80
+#: osinfo/osinfo_product.c:179 tools/osinfo-query.c:54 tools/osinfo-query.c:78
 msgid "Short ID"
 msgstr "Короткий ід."
 
-#: osinfo/osinfo_product.c:194 tools/osinfo-query.c:66 tools/osinfo-query.c:86
-#: tools/osinfo-query.c:100
+#: osinfo/osinfo_product.c:192 tools/osinfo-query.c:64 tools/osinfo-query.c:84
+#: tools/osinfo-query.c:98
 msgid "Vendor"
 msgstr "Виробник"
 
-#: osinfo/osinfo_product.c:207 tools/osinfo-query.c:60 tools/osinfo-query.c:84
+#: osinfo/osinfo_product.c:205 tools/osinfo-query.c:58 tools/osinfo-query.c:82
 msgid "Version"
 msgstr "Версія"
 
-#: osinfo/osinfo_product.c:220
+#: osinfo/osinfo_product.c:218
 msgid "Codename"
 msgstr "Кодова назва"
 
-#: osinfo/osinfo_product.c:233
+#: osinfo/osinfo_product.c:231
 msgid "URI of the logo"
 msgstr "Адреса логотипу"
 
-#: osinfo/osinfo_resources.c:187
+#: osinfo/osinfo_resources.c:185
 msgid "CPU frequency in hertz (Hz)"
 msgstr "Частота процесора у Гц"
 
-#: osinfo/osinfo_resources.c:204
+#: osinfo/osinfo_resources.c:202
 msgid "Number of CPUs"
 msgstr "Кількість процесорів"
 
-#: osinfo/osinfo_resources.c:221
+#: osinfo/osinfo_resources.c:219
 msgid "Amount of Random Access Memory (RAM) in bytes"
 msgstr "Об’єм оперативної пам’яті (RAM) у байтах"
 
-#: osinfo/osinfo_resources.c:238
+#: osinfo/osinfo_resources.c:236
 msgid "Amount of storage space in bytes"
 msgstr "Об’єм сховища даних у байтах"
 
@@ -453,200 +464,205 @@ msgstr "Визначає, чи є у ієрархії treeinfo"
 
 #: osinfo/osinfo_tree.c:394
 msgid "The treeinfo family"
-msgstr ""
+msgstr "Сімейство treeinfo"
 
 #: osinfo/osinfo_tree.c:407
 msgid "The treeinfo variant"
-msgstr ""
+msgstr "Варіант treeinfo"
 
 #: osinfo/osinfo_tree.c:420
 msgid "The treeinfo version"
-msgstr ""
+msgstr "Версія treeinfo"
 
 #: osinfo/osinfo_tree.c:433
 msgid "The treeinfo architecture"
-msgstr ""
+msgstr "Архітектура treeinfo"
 
 #: osinfo/osinfo_tree.c:449
 msgid "Information about the operating system on this tree"
-msgstr ""
+msgstr "Інформація щодо операційної системи у цій ієрархії"
 
 #: osinfo/osinfo_tree.c:702
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr ""
+msgstr "Не вдалося завантажити вміст .treeinfo|treeinfo: "
 
-#: osinfo/osinfo_tree.c:711
+#: osinfo/osinfo_tree.c:711 osinfo/osinfo_tree.c:801
 msgid "Failed to process keyinfo file: "
 msgstr "Не вдалося обробити файл keyinfo: "
 
-#: osinfo/osinfo_tree.c:751
+#: osinfo/osinfo_tree.c:751 osinfo/osinfo_tree.c:792
 msgid "Failed to load .treeinfo|treeinfo file: "
 msgstr "Не вдалося завантажити файл .treeinfo|treeinfo: "
 
-#: osinfo/osinfo_tree.c:783
+#: osinfo/osinfo_tree.c:830
 msgid "URL protocol is not supported"
-msgstr ""
+msgstr "Підтримки протоколу URL не передбачено"
 
-#: osinfo/osinfo_os_variant.c:115
+#: osinfo/osinfo_os_variant.c:113
 msgid "The name to this variant"
 msgstr "Назва цього варіанта"
 
-#: tools/osinfo-detect.c:64 tools/osinfo-detect.c:85
+#: tools/osinfo-detect.c:58 tools/osinfo-detect.c:79
 #, c-format
 msgid "Invalid value '%s'"
 msgstr "Некоректне значення, «%s»"
 
-#: tools/osinfo-detect.c:97
+#: tools/osinfo-detect.c:91
 msgid "Output format. Default: plain"
 msgstr "Формат виведення даних. Типове значення: plain (без форматування)"
 
-#: tools/osinfo-detect.c:98
-msgid "plain|env."
-msgstr "plain|env."
+#: tools/osinfo-detect.c:92
+msgid "plain."
+msgstr ""
 
-#: tools/osinfo-detect.c:101
+#: tools/osinfo-detect.c:95
 msgid "The type to be used. Default: media"
 msgstr "Тип, який слід використати. Типове значення: media"
 
-#: tools/osinfo-detect.c:102
+#: tools/osinfo-detect.c:96
 msgid "media|tree."
 msgstr "media|tree."
 
-#: tools/osinfo-detect.c:112
+#: tools/osinfo-detect.c:103
+#, c-format
 msgid "Media is bootable.\n"
 msgstr "Носій є придатним до завантаження.\n"
 
-#: tools/osinfo-detect.c:117
+#: tools/osinfo-detect.c:105
+#, c-format
 msgid "Media is not bootable.\n"
 msgstr "Носій є непридатним до завантаження.\n"
 
-#: tools/osinfo-detect.c:156
+#: tools/osinfo-detect.c:136
 #, c-format
-msgid "Media is an installer for OS '%s'\n"
-msgstr "Носій є засобом встановлення для ОС «%s»\n"
+msgid "Media is an installer for OS '%s (%s)'\n"
+msgstr ""
 
-#: tools/osinfo-detect.c:158
+#: tools/osinfo-detect.c:138
 #, c-format
-msgid "Media is live media for OS '%s'\n"
-msgstr "Носій є образом портативної ОС «%s»\n"
+msgid "Media is live media for OS '%s (%s)'\n"
+msgstr ""
 
-#: tools/osinfo-detect.c:163
+#: tools/osinfo-detect.c:143
+#, c-format
 msgid "Available OS variants on media:\n"
 msgstr "Доступні варіанти ОС на носії.\n"
 
-#: tools/osinfo-detect.c:226
+#: tools/osinfo-detect.c:185
 #, c-format
-msgid "Tree is an installer for OS '%s'\n"
-msgstr "Дерево каталогів є засобом встановлення ОС «%s»\n"
+msgid "Tree is an installer for OS '%s (%s)'\n"
+msgstr ""
 
-#: tools/osinfo-detect.c:231
+#: tools/osinfo-detect.c:190
+#, c-format
 msgid "Available OS variants on tree:\n"
 msgstr "Доступні варіанти ОС у ієрархії:\n"
 
-#: tools/osinfo-detect.c:258
+#: tools/osinfo-detect.c:217
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
 "- Визначення того, чи є носій придатним до завантаження, а також відповідної "
 "ОС і дистрибутива."
 
-#: tools/osinfo-detect.c:262 tools/osinfo-query.c:414
+#: tools/osinfo-detect.c:221 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "Помилка під час спроби обробити параметри командного рядка: %s\n"
 
-#: tools/osinfo-detect.c:280 tools/osinfo-install-script.c:429
-#: tools/osinfo-query.c:430
+#: tools/osinfo-detect.c:239 tools/osinfo-install-script.c:427
+#: tools/osinfo-query.c:428
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "Помилка під час спроби завантаження даних ОС: %s\n"
 
-#: tools/osinfo-detect.c:296
+#: tools/osinfo-detect.c:255
 #, c-format
 msgid "Error parsing media: %s\n"
 msgstr "Помилка під час обробки носія: %s\n"
 
-#: tools/osinfo-detect.c:312
+#: tools/osinfo-detect.c:271
 #, c-format
 msgid "Error parsing installer tree: %s\n"
 msgstr "Помилка під час обробки дерева каталогів засобу встановлення: %s\n"
 
-#: tools/osinfo-install-script.c:81
+#: tools/osinfo-install-script.c:79
+#, c-format
 msgid "Expected configuration key=value"
 msgstr "Налаштування мало бути визначено у форматі ключ=значення"
 
-#: tools/osinfo-install-script.c:146
+#: tools/osinfo-install-script.c:144
 msgid "Install script profile"
 msgstr "Профіль скрипту для встановлення"
 
-#: tools/osinfo-install-script.c:148
+#: tools/osinfo-install-script.c:146
 msgid "Install script output directory"
 msgstr "Каталог виведення даних скрипту для встановлення"
 
-#: tools/osinfo-install-script.c:150
+#: tools/osinfo-install-script.c:148
 msgid "The output filename prefix"
 msgstr "Префікс назви файла виведених даних"
 
-#: tools/osinfo-install-script.c:152
+#: tools/osinfo-install-script.c:150
 msgid "The installation source to be used with the script"
 msgstr "Джерело даних для встановлення, яке буде використано скриптом"
 
-#: tools/osinfo-install-script.c:155
+#: tools/osinfo-install-script.c:153
 msgid "Set configuration parameter"
 msgstr "Встановити значення параметра налаштування"
 
-#: tools/osinfo-install-script.c:158
+#: tools/osinfo-install-script.c:156
 msgid "Set configuration parameters"
-msgstr ""
+msgstr "Встановити параметри налаштування"
 
-#: tools/osinfo-install-script.c:160
+#: tools/osinfo-install-script.c:158
 msgid "List configuration parameters"
 msgstr "Список параметрів налаштування"
 
-#: tools/osinfo-install-script.c:162
+#: tools/osinfo-install-script.c:160
 msgid "List install script profiles"
 msgstr "Список профілів скрипту встановлення"
 
-#: tools/osinfo-install-script.c:164
+#: tools/osinfo-install-script.c:162
 msgid "List supported injection methods"
 msgstr "Список підтримуваних методів вставлення"
 
-#: tools/osinfo-install-script.c:166
+#: tools/osinfo-install-script.c:164
 msgid "Do not display output filenames"
 msgstr "Не показувати виведених назв файлів"
 
-#: tools/osinfo-install-script.c:223
+#: tools/osinfo-install-script.c:221
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
 msgstr "Немає скрипту встановлення для профілю «%s» та ОС «%s»"
 
-#: tools/osinfo-install-script.c:239
+#: tools/osinfo-install-script.c:237
 msgid "required"
 msgstr "обов’язковий"
 
-#: tools/osinfo-install-script.c:239
+#: tools/osinfo-install-script.c:237
 msgid "optional"
 msgstr "додатковий"
 
-#: tools/osinfo-install-script.c:325
+#: tools/osinfo-install-script.c:323
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
 msgstr "Немає скрипту для встановлення для профілю «%s» і ОС «%s»\n"
 
-#: tools/osinfo-install-script.c:361
+#: tools/osinfo-install-script.c:359
 #, c-format
 msgid "Unable to generate install script: %s\n"
 msgstr "Не вдалося створити скрипт для встановлення: %s\n"
 
-#: tools/osinfo-install-script.c:398
+#: tools/osinfo-install-script.c:396
 msgid "- Generate an OS install script"
 msgstr "- Створення скрипту для встановлення ОС"
 
-#: tools/osinfo-install-script.c:401
+#: tools/osinfo-install-script.c:399
 #, c-format
 msgid "Error while parsing options: %s\n"
 msgstr "Помилка під час спроби обробити параметри: %s\n"
 
-#: tools/osinfo-install-script.c:419
+#: tools/osinfo-install-script.c:417
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
@@ -654,92 +670,93 @@ msgstr ""
 "Можна задавати лише один з параметрів, --list-profile, --list-config або --"
 "list-injection-methods"
 
-#: tools/osinfo-install-script.c:448
+#: tools/osinfo-install-script.c:446
 #, c-format
 msgid "Error finding OS: %s\n"
 msgstr "Помилка під час спроби знайти ОС: %s\n"
 
-#: tools/osinfo-query.c:62
+#: tools/osinfo-query.c:60
 msgid "Family"
 msgstr "Сімейство"
 
-#: tools/osinfo-query.c:64
+#: tools/osinfo-query.c:62
 msgid "Distro"
 msgstr "Дистрибутив"
 
-#: tools/osinfo-query.c:68 tools/osinfo-query.c:88
+#: tools/osinfo-query.c:66 tools/osinfo-query.c:86
 msgid "Release date"
 msgstr "Дата випуску"
 
-#: tools/osinfo-query.c:70 tools/osinfo-query.c:90
+#: tools/osinfo-query.c:68 tools/osinfo-query.c:88
 msgid "End of life"
 msgstr "Дата завершення підтримки"
 
-#: tools/osinfo-query.c:72 tools/osinfo-query.c:92
+#: tools/osinfo-query.c:70 tools/osinfo-query.c:90
 msgid "Code name"
 msgstr "Кодова назва"
 
-#: tools/osinfo-query.c:74 tools/osinfo-query.c:94 tools/osinfo-query.c:114
-#: tools/osinfo-query.c:120
+#: tools/osinfo-query.c:72 tools/osinfo-query.c:92 tools/osinfo-query.c:112
+#: tools/osinfo-query.c:118
 msgid "ID"
 msgstr "Ід."
 
-#: tools/osinfo-query.c:102
+#: tools/osinfo-query.c:100
 msgid "Vendor ID"
 msgstr "Ід. виробника"
 
-#: tools/osinfo-query.c:104
+#: tools/osinfo-query.c:102
 msgid "Product"
 msgstr "Продукт"
 
-#: tools/osinfo-query.c:106
+#: tools/osinfo-query.c:104
 msgid "Product ID"
 msgstr "Ід. продукту"
 
-#: tools/osinfo-query.c:110
+#: tools/osinfo-query.c:108
 msgid "Class"
 msgstr "Клас"
 
-#: tools/osinfo-query.c:112
+#: tools/osinfo-query.c:110
 msgid "Bus"
 msgstr "Канал"
 
-#: tools/osinfo-query.c:152 tools/osinfo-query.c:190
+#: tools/osinfo-query.c:150 tools/osinfo-query.c:188
 #, c-format
 msgid "Unknown property name %s"
 msgstr "Невідома назва властивості, %s"
 
-#: tools/osinfo-query.c:176
+#: tools/osinfo-query.c:174
 msgid "Syntax error in condition, expecting KEY=VALUE"
 msgstr "Синтаксична помилка у записі умови, мало бути: КЛЮЧ=ЗНАЧЕННЯ"
 
-#: tools/osinfo-query.c:402
+#: tools/osinfo-query.c:400
 msgid "Sort column"
 msgstr "Стовпчик для впорядковування"
 
-#: tools/osinfo-query.c:404
+#: tools/osinfo-query.c:402
 msgid "Display fields"
 msgstr "Показані поля"
 
-#: tools/osinfo-query.c:409
+#: tools/osinfo-query.c:407
 msgid "- Query the OS info database"
 msgstr "- Надсилання запиту до бази даних щодо ОС"
 
-#: tools/osinfo-query.c:421
+#: tools/osinfo-query.c:419
+#, c-format
 msgid "Missing data type parameter\n"
 msgstr "Не вистачає параметра типу даних\n"
 
-#: tools/osinfo-query.c:449
+#: tools/osinfo-query.c:447
 #, c-format
 msgid "Unknown type '%s' requested\n"
 msgstr "Надіслано запит щодо невідомого типу, «%s»\n"
 
-#: tools/osinfo-query.c:454
+#: tools/osinfo-query.c:452
 #, c-format
 msgid "Unable to construct filter: %s\n"
 msgstr "Не вдалося побудувати фільтр: %s\n"
 
-#: tools/osinfo-query.c:459
+#: tools/osinfo-query.c:457
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "Не вдалося встановити параметр видимості поля: %s\n"
