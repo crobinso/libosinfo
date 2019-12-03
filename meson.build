@@ -284,8 +284,10 @@ if pci_ids_path == ''
         pci_ids_path = join_paths(libosinfo_pkgdatadir, 'pci.ids')
     endif
 endif
-libosinfo_cflags += ['-DPCI_IDS="@0@"'.format(pci_ids_path)]
-message('Location of pci.ids: "@0@"'.format(pci_ids_path))
+if pci_ids_path != ''
+    libosinfo_cflags += ['-DPCI_IDS="@0@"'.format(pci_ids_path)]
+    message('Location of pci.ids: "@0@"'.format(pci_ids_path))
+endif
 
 usb_ids_path = get_option('with-usb-ids-path')
 if usb_ids_path == ''
@@ -321,8 +323,10 @@ if usb_ids_path == ''
         usb_ids_path = join_paths(libosinfo_pkgdatadir, 'usb.ids')
     endif
 endif
-libosinfo_cflags += ['-DUSB_IDS="@0@"'.format(usb_ids_path)]
-message('Location of usb.ids: "@0@"'.format(usb_ids_path))
+if usb_ids_path != ''
+    libosinfo_cflags += ['-DUSB_IDS="@0@"'.format(usb_ids_path)]
+    message('Location of usb.ids: "@0@"'.format(usb_ids_path))
+endif
 
 add_project_arguments(libosinfo_cflags, language: 'c')
 
