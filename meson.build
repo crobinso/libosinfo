@@ -273,14 +273,15 @@ if pci_ids_path == ''
         if download.found()
             r = run_command(download)
             if r.returncode() == 0
-                pci_ids_path = join_paths(meson.build_root(), 'pci.ids')
+                file = join_paths(meson.build_root(), 'pci.ids')
                 install_file = true
             endif
         endif
     endif
 
     if install_file
-        install_data(pci_ids_path)
+        install_data(file, install_dir: libosinfo_pkgdatadir)
+        pci_ids_path = join_paths(libosinfo_pkgdatadir, 'pci.ids')
     endif
 endif
 libosinfo_cflags += ['-DPCI_IDS="@0@"'.format(pci_ids_path)]
@@ -309,15 +310,15 @@ if usb_ids_path == ''
         if download.found()
             r = run_command(download)
             if r.returncode() == 0
-                usb_ids_path = join_paths(meson.build_root(), 'usb.ids')
+                file = join_paths(meson.build_root(), 'usb.ids')
                 install_file = true
             endif
         endif
     endif
 
-
     if install_file
-        install_data(usb_ids_path)
+        install_data(file, install_dir: libosinfo_pkgdatadir)
+        usb_ids_path = join_paths(libosinfo_pkgdatadir, 'usb.ids')
     endif
 endif
 libosinfo_cflags += ['-DUSB_IDS="@0@"'.format(usb_ids_path)]
