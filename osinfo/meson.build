@@ -128,6 +128,20 @@ libosinfo_private_headers = [
     'ignore-value.h',
 ]
 
+libosinfo_link_args = []
+if meson.get_compiler('c').has_link_argument('-Wl,--no-undefined')
+    libosinfo_link_args += ['-Wl,--no-undefined']
+endif
+
+if host_machine.system() == 'linux'
+    libosinfo_link_args += [
+        '-Wl,--version-script,@0@/@1@'.format(
+            meson.current_source_dir(),
+            'libosinfo.syms'
+        )
+    ]
+endif
+
 libosinfo = library(
     'osinfo-1.0',
     sources: [
@@ -136,6 +150,7 @@ libosinfo = library(
     ],
     dependencies: libosinfo_dependencies,
     include_directories: libosinfo_include,
+    link_args: libosinfo_link_args,
     version: libosinfo_version,
     darwin_versions: libosinfo_darwin_versions,
     soversion: libosinfo_soversion,

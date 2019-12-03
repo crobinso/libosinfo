@@ -345,20 +345,6 @@ libosinfo_darwin_versions = [
     '@0@.@1@.0'.format(osx_current, libosinfo_interface_age)
 ]
 
-libosinfo_ldflags = []
-if meson.get_compiler('c').has_link_argument('-Wl,--no-undefined')
-    libosinfo_ldflags += ['-Wl,--no-undefined']
-endif
-
-if host_machine.system() == 'linux'
-    libosinfo_ldflags += [
-        '-Wl,--version-script.@0@/@1@'.format(
-            meson.current_source_dir(),
-            'libosinfo.syms'
-        )
-    ]
-endif
-
 subdir('osinfo')
 subdir('tools')
 subdir('po')
