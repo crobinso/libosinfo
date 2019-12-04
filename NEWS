@@ -1,6 +1,14 @@
                libosinfo News
                ==============
 
+1.7.1 - Dec 04, 2019
+====================
+
+- Fix usage of versioned symbols
+- MinGW spec file fixes and improvements
+- Fix pci.ids and usb.ids installation
+
+
 1.7.0 - Nov 29, 2019
 ====================
 
