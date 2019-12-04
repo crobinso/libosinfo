@@ -1,6 +1,6 @@
 project(
     'libosinfo', 'c',
-    version: '1.8.0',
+    version: '1.7.1',
     license: 'LGPLv2+',
     meson_version: '>= 0.49.0',
     default_options: [
