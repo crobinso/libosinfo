@@ -54,7 +54,7 @@ if pod2man.found()
             output: file + '.1',
             input: file + '.c',
             install: true,
-            install_dir: join_paths(libosinfo_datadir, 'man', 'man1'),
+            install_dir: join_paths(libosinfo_mandir, 'man1'),
             build_by_default: true,
             command: [
                 pod2man,
