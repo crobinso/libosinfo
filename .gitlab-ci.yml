@@ -161,7 +161,7 @@ fedora-rawhide:
     - *libosinfo-rpm
   image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide:latest
 
-ubuntu-16:
+ubuntu-1604:
   script:
     - *multilib-deb
     - *environment
@@ -169,9 +169,9 @@ ubuntu-16:
     - *osinfo-db-build
     - *libosinfo-build
     - *libosinfo-check
-  image: quay.io/libvirt/buildenv-libosinfo-ubuntu-16:latest
+  image: quay.io/libvirt/buildenv-libosinfo-ubuntu-1604:latest
 
-ubuntu-18:
+ubuntu-1804:
   script:
     - *multilib-deb
     - *environment
@@ -179,4 +179,4 @@ ubuntu-18:
     - *osinfo-db-build
     - *libosinfo-build
     - *libosinfo-check
-  image: quay.io/libvirt/buildenv-libosinfo-ubuntu-18:latest
+  image: quay.io/libvirt/buildenv-libosinfo-ubuntu-1804:latest
