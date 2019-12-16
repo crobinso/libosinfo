@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-29 13:52+0100\n"
-"PO-Revision-Date: 2019-07-27 12:37+0000\n"
+"POT-Creation-Date: 2019-12-16 14:48+0000\n"
+"PO-Revision-Date: 2019-12-02 12:20+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/libosinfo/"
 "language/pl/)\n"
@@ -69,7 +69,7 @@ msgstr "Architektura procesora"
 
 #: osinfo/osinfo_firmware.c:146
 msgid "The firmware type"
-msgstr ""
+msgstr "Typ oprogramowania sprzętowego"
 
 #: osinfo/osinfo_image.c:181
 msgid "The image format"
@@ -509,7 +509,7 @@ msgstr "Format wyjściowy. Domyślny: plain"
 
 #: tools/osinfo-detect.c:92
 msgid "plain."
-msgstr ""
+msgstr "plain."
 
 #: tools/osinfo-detect.c:95
 msgid "The type to be used. Default: media"
@@ -532,12 +532,12 @@ msgstr "Nośnik nie jest startowy.\n"
 #: tools/osinfo-detect.c:136
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Nośnik jest instalatorem dla systemu operacyjnego „%s (%s)”\n"
 
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Nośnik jest nośnikiem live dla systemu operacyjnego „%s (%s)”\n"
 
 #: tools/osinfo-detect.c:143
 #, c-format
@@ -547,7 +547,7 @@ msgstr "Dostępne warianty systemu operacyjnego na tym nośniku:\n"
 #: tools/osinfo-detect.c:185
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Drzewo jest instalatorem dla systemu operacyjnego „%s (%s)”\n"
 
 #: tools/osinfo-detect.c:190
 #, c-format

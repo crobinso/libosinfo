@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-29 13:52+0100\n"
-"PO-Revision-Date: 2019-07-28 04:36+0000\n"
+"POT-Creation-Date: 2019-12-16 14:48+0000\n"
+"PO-Revision-Date: 2019-11-29 07:17+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/libosinfo/"
 "language/uk/)\n"
@@ -69,7 +69,7 @@ msgstr "Архітектура процесора"
 
 #: osinfo/osinfo_firmware.c:146
 msgid "The firmware type"
-msgstr ""
+msgstr "Тип мікропрограми"
 
 #: osinfo/osinfo_image.c:181
 msgid "The image format"
@@ -513,7 +513,7 @@ msgstr "Формат виведення даних. Типове значенн�
 
 #: tools/osinfo-detect.c:92
 msgid "plain."
-msgstr ""
+msgstr "звичайний."
 
 #: tools/osinfo-detect.c:95
 msgid "The type to be used. Default: media"
@@ -536,12 +536,12 @@ msgstr "Носій є непридатним до завантаження.\n"
 #: tools/osinfo-detect.c:136
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Носієм є засіб встановлення для ОС «%s (%s)»\n"
 
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Носієм є носій портативної версії ОС «%s (%s)»\n"
 
 #: tools/osinfo-detect.c:143
 #, c-format
@@ -551,7 +551,7 @@ msgstr "Доступні варіанти ОС на носії.\n"
 #: tools/osinfo-detect.c:185
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Ієрархія є засобом встановлення для ОС «%s (%s)»\n"
 
 #: tools/osinfo-detect.c:190
 #, c-format
