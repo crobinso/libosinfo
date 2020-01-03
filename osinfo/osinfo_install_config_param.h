@@ -46,12 +46,13 @@ typedef struct _OsinfoInstallConfigParamClass   OsinfoInstallConfigParamClass;
 typedef struct _OsinfoInstallConfigParamPrivate OsinfoInstallConfigParamPrivate;
 /**
  * OsinfoInstallConfigParamPolicy:
- * Since: 0.2.2
  * @OSINFO_INSTALL_CONFIG_PARAM_POLICY_NONE: no policy defined
  * @OSINFO_INSTALL_CONFIG_PARAM_POLICY_REQUIRED: config parameter is required
  * @OSINFO_INSTALL_CONFIG_PARAM_POLICY_OPTIONAL: config parameter may be omitted
  *
  * Policy for configuration parameter presence
+ *
+ * Since: 0.2.2
  */
 typedef enum {
     OSINFO_INSTALL_CONFIG_PARAM_POLICY_NONE,
