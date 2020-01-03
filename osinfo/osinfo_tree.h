@@ -37,12 +37,13 @@ osinfo_tree_error_quark (void) G_GNUC_CONST;
 
 /**
  * OsinfoTreeError:
- * Since: 1.6.0
  * @OSINFO_TREE_ERROR_NO_TREEINFO: No treeinfo found;
  * @OSINFO_TREE_ERROR_NOT_SUPPORTED_PROTOCOL: The URL protocol is not supported.
  *
  * #GError codes used for errors in the #OSINFO_TREE_ERROR domain, during
  * reading the treeinfo from a URI.
+ *
+ * Since: 1.6.0
  */
 typedef enum {
     OSINFO_TREE_ERROR_NO_TREEINFO,
