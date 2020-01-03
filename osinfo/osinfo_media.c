@@ -1629,8 +1629,7 @@ gboolean osinfo_media_get_live(OsinfoMedia *media)
  * Warning: Some media allow you to install from live sessions, in which case
  * number of reboots *alone* is not a reliable method for tracking installation.
  *
- * Returns: (transfer none): the number of installer reboots or -1 if media is
- * not an installer
+ * Returns: the number of installer reboots or -1 if media is not an installer
  *
  * Since: 0.2.1
  */
@@ -1762,7 +1761,7 @@ void osinfo_media_set_languages(OsinfoMedia *media, GList *languages)
  * osinfo_media_get_volume_size:
  * @media: an #OsinfoMedia instance
  *
- * Returns: (transfer none): the ISO9660 volume size, in bytes or -1 if size is
+ * Returns: the ISO9660 volume size, in bytes or -1 if size is
  * unknown or media is not an ISO9660 device/image.
  */
 gint64 osinfo_media_get_volume_size(OsinfoMedia *media)
