@@ -296,21 +296,21 @@ void osinfo_product_add_related(OsinfoProduct *product, OsinfoProductRelationshi
     product->priv->productLinks = g_list_prepend(product->priv->productLinks, productLink);
 }
 
-const gchar *osinfo_product_get_vendor(OsinfoProduct *prod)
+const gchar *osinfo_product_get_vendor(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_VENDOR);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_VENDOR);
 }
-const gchar *osinfo_product_get_version(OsinfoProduct *prod)
+const gchar *osinfo_product_get_version(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_VERSION);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_VERSION);
 }
-const gchar *osinfo_product_get_short_id(OsinfoProduct *prod)
+const gchar *osinfo_product_get_short_id(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_SHORT_ID);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_SHORT_ID);
 }
-const gchar *osinfo_product_get_name(OsinfoProduct *prod)
+const gchar *osinfo_product_get_name(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_NAME);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_NAME);
 }
 
 /**
@@ -319,9 +319,9 @@ const gchar *osinfo_product_get_name(OsinfoProduct *prod)
  *
  * Returns: The product's codename, or NULL.
  */
-const gchar *osinfo_product_get_codename(OsinfoProduct *prod)
+const gchar *osinfo_product_get_codename(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_CODENAME);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_CODENAME);
 }
 
 /**
@@ -332,9 +332,9 @@ const gchar *osinfo_product_get_codename(OsinfoProduct *prod)
  *
  * Since: 0.2.8
  */
-const gchar *osinfo_product_get_release_date_string(OsinfoProduct *prod)
+const gchar *osinfo_product_get_release_date_string(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_RELEASE_DATE);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_RELEASE_DATE);
 }
 
 /**
@@ -345,9 +345,9 @@ const gchar *osinfo_product_get_release_date_string(OsinfoProduct *prod)
  *
  * Since: 0.2.8
  */
-const gchar *osinfo_product_get_eol_date_string(OsinfoProduct *prod)
+const gchar *osinfo_product_get_eol_date_string(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_EOL_DATE);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_EOL_DATE);
 }
 
 
@@ -373,9 +373,9 @@ static GDate *date_from_string(const gchar *str)
  *
  * Since: 0.2.8
  */
-GDate *osinfo_product_get_release_date(OsinfoProduct *prod)
+GDate *osinfo_product_get_release_date(OsinfoProduct *product)
 {
-    const gchar *str = osinfo_product_get_release_date_string(prod);
+    const gchar *str = osinfo_product_get_release_date_string(product);
     if (!str)
         return NULL;
 
@@ -392,18 +392,18 @@ GDate *osinfo_product_get_release_date(OsinfoProduct *prod)
  *
  * Since: 0.2.8
  */
-GDate *osinfo_product_get_eol_date(OsinfoProduct *prod)
+GDate *osinfo_product_get_eol_date(OsinfoProduct *product)
 {
-    const gchar *str = osinfo_product_get_eol_date_string(prod);
+    const gchar *str = osinfo_product_get_eol_date_string(product);
     if (!str)
         return NULL;
 
     return date_from_string(str);
 }
 
-const gchar *osinfo_product_get_logo(OsinfoProduct *prod)
+const gchar *osinfo_product_get_logo(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value(OSINFO_ENTITY(prod), OSINFO_PRODUCT_PROP_LOGO);
+    return osinfo_entity_get_param_value(OSINFO_ENTITY(product), OSINFO_PRODUCT_PROP_LOGO);
 }
 
 static OsinfoList *osinfo_list_append(OsinfoList *appendee,
@@ -478,7 +478,7 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
 
 /**
  * osinfo_product_get_short_id_list:
- * @prod: an #OsinfoProduct
+ * @product: an #OsinfoProduct
  *
  * Retrieve all the short-ids associated with the product.
  *
@@ -486,8 +486,8 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
  *
  * Since: 1.5.0
  */
-GList *osinfo_product_get_short_id_list(OsinfoProduct *prod)
+GList *osinfo_product_get_short_id_list(OsinfoProduct *product)
 {
-    return osinfo_entity_get_param_value_list(OSINFO_ENTITY(prod),
+    return osinfo_entity_get_param_value_list(OSINFO_ENTITY(product),
                                               OSINFO_PRODUCT_PROP_SHORT_ID);
 }

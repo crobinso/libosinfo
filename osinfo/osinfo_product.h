@@ -86,18 +86,18 @@ OsinfoProductList *osinfo_product_get_related(OsinfoProduct *product, OsinfoProd
 
 void osinfo_product_add_related(OsinfoProduct *product, OsinfoProductRelationship relshp, OsinfoProduct *otherproduct);
 
-const gchar *osinfo_product_get_vendor(OsinfoProduct *prod);
-const gchar *osinfo_product_get_version(OsinfoProduct *prod);
-const gchar *osinfo_product_get_short_id(OsinfoProduct *prod);
-const gchar *osinfo_product_get_name(OsinfoProduct *prod);
-const gchar *osinfo_product_get_codename(OsinfoProduct *prod);
+const gchar *osinfo_product_get_vendor(OsinfoProduct *product);
+const gchar *osinfo_product_get_version(OsinfoProduct *product);
+const gchar *osinfo_product_get_short_id(OsinfoProduct *product);
+const gchar *osinfo_product_get_name(OsinfoProduct *product);
+const gchar *osinfo_product_get_codename(OsinfoProduct *product);
 
-const gchar *osinfo_product_get_release_date_string(OsinfoProduct *prod);
-const gchar *osinfo_product_get_eol_date_string(OsinfoProduct *prod);
-GDate *osinfo_product_get_release_date(OsinfoProduct *prod);
-GDate *osinfo_product_get_eol_date(OsinfoProduct *prod);
-const gchar *osinfo_product_get_logo(OsinfoProduct *prod);
+const gchar *osinfo_product_get_release_date_string(OsinfoProduct *product);
+const gchar *osinfo_product_get_eol_date_string(OsinfoProduct *product);
+GDate *osinfo_product_get_release_date(OsinfoProduct *product);
+GDate *osinfo_product_get_eol_date(OsinfoProduct *product);
+const gchar *osinfo_product_get_logo(OsinfoProduct *product);
 
-GList *osinfo_product_get_short_id_list(OsinfoProduct *prod);
+GList *osinfo_product_get_short_id_list(OsinfoProduct *product);
 
 #endif /* __OSINFO_PRODUCT_H__ */
