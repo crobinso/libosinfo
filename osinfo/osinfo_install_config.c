@@ -228,20 +228,20 @@ const gchar *osinfo_install_config_get_l10n_language(OsinfoInstallConfig *config
 /**
  * osinfo_install_config_set_l10n_timezone:
  * @config: the install config.
- * @tz: the timezone
+ * @timezone: the timezone
  *
- * Set the #OSINFO_INSTALL_CONFIG_PROP_L10B_TIMEZONE parameter.
+ * Set the #OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE parameter.
  *
  * The expected format of this string is the tzdata names standard.
  *
  * Since: 0.2.0
  */
 void osinfo_install_config_set_l10n_timezone(OsinfoInstallConfig *config,
-                                             const gchar *tz)
+                                             const gchar *timezone)
 {
     osinfo_entity_set_param(OSINFO_ENTITY(config),
                             OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE,
-                            tz);
+                            timezone);
 }
 
 
