@@ -233,7 +233,7 @@ const gchar *osinfo_install_config_param_get_name(OsinfoInstallConfigParam *conf
  * osinfo_install_config_param_get_policy:
  * @config_param: the configuration parameter
  *
- * Returns: (transfer none): the policy of the configuration parameter
+ * Returns: the policy of the configuration parameter
  *
  * Since: 0.2.0
  */
@@ -249,8 +249,7 @@ OsinfoInstallConfigParamPolicy osinfo_install_config_param_get_policy(OsinfoInst
  * osinfo_install_config_param_is_required:
  * @config_param: the configuration parameter
  *
- * Returns: (transfer none): TRUE if the config_param is required.
- *                           FALSE otherwise.
+ * Returns: TRUE if the config_param is required. FALSE otherwise.
  *
  * Since: 0.2.1
  */
@@ -264,8 +263,7 @@ gboolean osinfo_install_config_param_is_required(OsinfoInstallConfigParam *confi
  * osinfo_install_config_param_is_optional:
  * @config_param: the configuration parameter
  *
- * Returns: (transfer none): TRUE if the config_param is optional.
- *                           FALSE otherwise.
+ * Returns: TRUE if the config_param is optional. FALSE otherwise.
  *
  * Since: 0.2.1
  */
