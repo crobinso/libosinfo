@@ -463,7 +463,6 @@ osinfo_tree_init(OsinfoTree *tree)
 
 /**
  * osinfo_tree_new:
- *
  * @id: the id of the tree to be created
  * @architecture: the architecture of the tree to be created
  *
