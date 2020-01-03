@@ -274,7 +274,7 @@ gboolean osinfo_install_config_param_is_optional(OsinfoInstallConfigParam *confi
 }
 
 /**
- * osinfo_install_config_get_value_map:
+ * osinfo_install_config_param_get_value_map:
  * @config_param: the configuration parameter
  *
  * Returns: (transfer none): The data map used to transform values set for this
