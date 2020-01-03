@@ -180,9 +180,6 @@ osinfo_db_init(OsinfoDb *db)
     db->priv->scripts = osinfo_install_scriptlist_new();
 }
 
-/** PUBLIC METHODS */
-
-
 /**
  * osinfo_db_new:
  *
