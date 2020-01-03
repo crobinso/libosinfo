@@ -644,7 +644,7 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
     g_object_class_install_property(g_klass, PROP_OS, pspec);
 
     /**
-     * OsinfoMedia:languages:
+     * OsinfoMedia:languages: (type GLib.List(utf8)) (transfer container):
      *
      * If media is an installer, this property indicates the languages that
      * can be used during automatic installations.
@@ -653,9 +653,6 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
      * languages that the user interface can be displayed in.
      * Use #osinfo_media_get_installer(or OsinfoMedia::installer) to know
      * if the media is an installer or not.
-     *
-     * Type: GLib.List(utf8)
-     * Transfer: container
      */
     pspec = g_param_spec_pointer("languages",
                                  "Languages",
