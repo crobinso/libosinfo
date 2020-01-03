@@ -96,7 +96,6 @@ typedef enum {
 
 /**
  * OsinfoDeviceDriverSigningReq:
- * Since: 0.2.6
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_NONE: Script do not require device drivers
  * to be signed.
  * @OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT: Script must only be given signed
@@ -110,6 +109,8 @@ typedef enum {
  * input (and thus breaking unattended installation). See
  * #OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT on how this warning can be disabled
  * for some scripts.
+ *
+ * Since: 0.2.6
  */
 typedef enum {
     OSINFO_DEVICE_DRIVER_SIGNING_REQ_NONE,
@@ -119,7 +120,6 @@ typedef enum {
 
 /**
  * OsinfoInstallScriptInjectionMethod:
- * Since: 0.2.10
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM: Support injection of the
  * installation script trough a CD-ROM.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK: Support injection of the
@@ -130,6 +130,8 @@ typedef enum {
  * installation script trough the initrd.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB: Support injection of the
  * installation script from the web.
+ *
+ * Since: 0.2.10
  */
 typedef enum {
     OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM  = 1 << 0,
@@ -141,11 +143,12 @@ typedef enum {
 
 /**
  * OsinfoInstallScriptInstallationSource:
- * Since: 1.3.0
  * @OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA: A media will be used as
  * the installation source.
  * @OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK: A network method will
  * be used as installation source.
+ *
+ * Since: 1.3.0
  */
 typedef enum {
     OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
