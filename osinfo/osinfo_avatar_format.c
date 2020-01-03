@@ -95,12 +95,9 @@ osinfo_avatar_format_class_init(OsinfoAvatarFormatClass *klass)
     g_klass->get_property = osinfo_avatar_format_get_property;
 
     /**
-     * OsinfoAvatarFormat:mime-types:
+     * OsinfoAvatarFormat:mime-types: (type GLib.List(utf8)) (transfer container):
      *
      * The allowed mime-types for the avatar.
-     *
-     * Type: GLib.List(utf8)
-     * Transfer: container
      **/
     pspec = g_param_spec_pointer("mime-types",
                                 "MIME Types",
