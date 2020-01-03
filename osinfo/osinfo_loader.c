@@ -130,8 +130,6 @@ osinfo_loader_init(OsinfoLoader *loader)
                                                       NULL);
 }
 
-/** PUBLIC METHODS */
-
 /**
  * osinfo_loader_new:
  *
