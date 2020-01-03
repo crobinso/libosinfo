@@ -86,16 +86,15 @@ struct _OsinfoOsClass
 
 /**
  * OsinfoReleaseStatus:
- * Since: 0.2.9
- * @OSINFO_RELEASE_STATUS_RELEASED: A released OS.
+ * @OSINFO_RELEASE_STATUS_RELEASED: A released OS. (Since: 0.2.9)
  * @OSINFO_RELEASE_STATUS_SNAPSHOT: A continuous integration snapshot and not
  * an actual released product yet. For example, gnome-continuous images for
  * development snapshots of GNOME and nightly build ISOs of Fedora etc.
+ * (Since: 0.2.9)
  * @OSINFO_RELEASE_STATUS_PRERELEASE: A pre-release. For example, alpha and
- * beta pre-releases of Fedora etc.
- * Since: 1.4.0
+ * beta pre-releases of Fedora etc. (Since: 0.2.9)
  * @OSINFO_RELEASE_STATUS_ROLLING: A rolling version of an OS and thus with no
- * actual releases. For example, Gentoo, Arch Linux, etc.
+ * actual releases. For example, Gentoo, Arch Linux, etc. (Since: 1.4.0)
  */
 typedef enum {
     OSINFO_RELEASE_STATUS_RELEASED,
