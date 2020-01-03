@@ -468,7 +468,7 @@ osinfo_tree_init(OsinfoTree *tree)
  *
  * Create a new tree entity
  *
- * Returns: (trasfer full): A tree entity
+ * Returns: (transfer full): A tree entity
  *
  * Since: 0.1.0
  */
