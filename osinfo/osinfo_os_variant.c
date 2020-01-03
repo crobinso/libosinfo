@@ -125,7 +125,6 @@ osinfo_os_variant_init(OsinfoOsVariant *variant)
 
 /**
  * osinfo_os_variant_new:
- *
  * @id: the id of the os variant to be created
  *
  * Creates a new os variant
