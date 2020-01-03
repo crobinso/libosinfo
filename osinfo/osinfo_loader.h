@@ -67,6 +67,17 @@ struct _OsinfoLoaderClass
 GType osinfo_loader_get_type(void);
 
 /**
+ * OsinfoError:
+ * @OSINFO_ERROR_GENERIC: Generic Osinfo error;
+ *
+ * #GError codes used for errors in #OSINFO_ERROR domain.
+ * Since: 1.8.0
+ */
+typedef enum {
+    OSINFO_ERROR_GENERIC = 0,
+} OsinfoError;
+
+/**
  * OSINFO_ERROR:
  *
  * Error domain for generic libosinfo errors
