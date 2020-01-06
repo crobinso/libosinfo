@@ -288,6 +288,8 @@ void osinfo_entity_add_param(OsinfoEntity *entity, const gchar *key, const gchar
  */
 void osinfo_entity_clear_param(OsinfoEntity *entity, const gchar *key)
 {
+    g_return_if_fail(OSINFO_IS_ENTITY(entity));
+
     g_hash_table_remove(entity->priv->params, key);
 }
 
