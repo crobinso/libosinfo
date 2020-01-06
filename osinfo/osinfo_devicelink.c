@@ -112,6 +112,7 @@ osinfo_devicelink_class_init(OsinfoDeviceLinkClass *klass)
 
     g_klass->set_property = osinfo_devicelink_set_property;
     g_klass->get_property = osinfo_devicelink_get_property;
+    g_klass->finalize = osinfo_devicelink_finalize;
 
     /**
      * OsinfoDeviceLink:target:
@@ -127,8 +128,6 @@ osinfo_devicelink_class_init(OsinfoDeviceLinkClass *klass)
                                                   G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(g_klass, LAST_PROP, properties);
-
-    g_klass->finalize = osinfo_devicelink_finalize;
 }
 
 static void

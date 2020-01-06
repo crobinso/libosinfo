@@ -116,6 +116,7 @@ osinfo_entity_class_init(OsinfoEntityClass *klass)
 
     g_klass->set_property = osinfo_entity_set_property;
     g_klass->get_property = osinfo_entity_get_property;
+    g_klass->finalize = osinfo_entity_finalize;
 
     /**
      * OsinfoEntity:id:
@@ -134,8 +135,6 @@ osinfo_entity_class_init(OsinfoEntityClass *klass)
                                               G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(g_klass, LAST_PROP, properties);
-
-    g_klass->finalize = osinfo_entity_finalize;
 }
 
 

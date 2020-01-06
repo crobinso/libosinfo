@@ -134,6 +134,7 @@ osinfo_install_config_param_class_init(OsinfoInstallConfigParamClass *klass)
 
     g_klass->set_property = osinfo_install_config_param_set_property;
     g_klass->get_property = osinfo_install_config_param_get_property;
+    g_klass->finalize = osinfo_install_config_param_finalize;
 
     /**
      * OsinfoInstallConfigParam:name:
@@ -174,8 +175,6 @@ osinfo_install_config_param_class_init(OsinfoInstallConfigParamClass *klass)
                                                      G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(g_klass, LAST_PROP, properties);
-
-    g_klass->finalize = osinfo_install_config_param_finalize;
 }
 
 static void

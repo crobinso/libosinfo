@@ -129,6 +129,7 @@ osinfo_deployment_class_init(OsinfoDeploymentClass *klass)
 
     g_klass->set_property = osinfo_deployment_set_property;
     g_klass->get_property = osinfo_deployment_get_property;
+    g_klass->finalize = osinfo_deployment_finalize;
 
     /**
      * OsinfoDeployment:os:
@@ -156,8 +157,6 @@ osinfo_deployment_class_init(OsinfoDeploymentClass *klass)
                                                     G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(g_klass, LAST_PROP, properties);
-
-    g_klass->finalize = osinfo_deployment_finalize;
 }
 
 static void
