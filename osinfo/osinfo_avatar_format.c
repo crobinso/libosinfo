@@ -36,7 +36,10 @@ enum {
     PROP_WIDTH,
     PROP_HEIGHT,
     PROP_ALPHA,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_avatar_format_get_property(GObject *object,
@@ -80,7 +83,6 @@ static void
 osinfo_avatar_format_class_init(OsinfoAvatarFormatClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->get_property = osinfo_avatar_format_get_property;
 
@@ -89,63 +91,53 @@ osinfo_avatar_format_class_init(OsinfoAvatarFormatClass *klass)
      *
      * The allowed mime-types for the avatar.
      **/
-    pspec = g_param_spec_pointer("mime-types",
-                                "MIME Types",
-                                _("The allowed mime-types for the avatar"),
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_MIME_TYPES,
-                                    pspec);
+    properties[PROP_MIME_TYPES] = g_param_spec_pointer("mime-types",
+                                                       "MIME Types",
+                                                       _("The allowed mime-types for the avatar"),
+                                                       G_PARAM_READABLE |
+                                                       G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoAvatarFormat:width:
      *
      * The required width (in pixels) of the avatar.
      **/
-    pspec = g_param_spec_int("width",
-                             "Width",
-                             _("The required width (in pixels) of the avatar"),
-                             -1,
-                             G_MAXINT,
-                             -1,
-                             G_PARAM_READABLE |
-                             G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_WIDTH,
-                                    pspec);
+    properties[PROP_WIDTH] = g_param_spec_int("width",
+                                              "Width",
+                                              _("The required width (in pixels) of the avatar"),
+                                              -1,
+                                              G_MAXINT,
+                                              -1,
+                                              G_PARAM_READABLE |
+                                              G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoAvatarFormat:height:
      *
      * The required height (in pixels) of the avatar.
      **/
-    pspec = g_param_spec_int("height",
-                             "Height",
-                             _("The required height (in pixels) of the avatar."),
-                             -1,
-                             G_MAXINT,
-                             -1,
-                             G_PARAM_READABLE |
-                             G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_HEIGHT,
-                                    pspec);
+    properties[PROP_HEIGHT] = g_param_spec_int("height",
+                                               "Height",
+                                               _("The required height (in pixels) of the avatar."),
+                                               -1,
+                                               G_MAXINT,
+                                               -1,
+                                               G_PARAM_READABLE |
+                                               G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoAvatarFormat:alpha:
      *
      * Whether alpha channel is supported in the avatar.
      **/
-    pspec = g_param_spec_boolean("alpha",
-                                 "Alpha",
-                                 _("Whether alpha channel is supported in the avatar."),
-                                 TRUE,
-                                 G_PARAM_READABLE |
-                                 G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_ALPHA,
-                                    pspec);
+    properties[PROP_ALPHA] = g_param_spec_boolean("alpha",
+                                                  "Alpha",
+                                                  _("Whether alpha channel is supported in the avatar."),
+                                                  TRUE,
+                                                  G_PARAM_READABLE |
+                                                  G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void

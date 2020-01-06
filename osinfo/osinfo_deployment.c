@@ -46,8 +46,10 @@ enum {
 
     PROP_OS,
     PROP_PLATFORM,
-};
 
+    LAST_PROP
+};
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_deployment_set_property(GObject *object,
@@ -124,7 +126,6 @@ static void
 osinfo_deployment_class_init(OsinfoDeploymentClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->set_property = osinfo_deployment_set_property;
     g_klass->get_property = osinfo_deployment_get_property;
@@ -134,31 +135,27 @@ osinfo_deployment_class_init(OsinfoDeploymentClass *klass)
      *
      * The operating system to be deployed
      */
-    pspec = g_param_spec_object("os",
-                                "Os",
-                                _("Operating system"),
-                                OSINFO_TYPE_OS,
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_OS,
-                                    pspec);
+    properties[PROP_OS] = g_param_spec_object("os",
+                                              "Os",
+                                              _("Operating system"),
+                                              OSINFO_TYPE_OS,
+                                              G_PARAM_CONSTRUCT_ONLY |
+                                              G_PARAM_READWRITE |
+                                              G_PARAM_STATIC_STRINGS);
     /**
      * OsinfoDeployment:platform:
      *
      * The platform to deploy on
      */
-    pspec = g_param_spec_object("platform",
-                                "Platform",
-                                _("Virtualization platform"),
-                                OSINFO_TYPE_PLATFORM,
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_PLATFORM,
-                                    pspec);
+    properties[PROP_PLATFORM] = g_param_spec_object("platform",
+                                                    "Platform",
+                                                    _("Virtualization platform"),
+                                                    OSINFO_TYPE_PLATFORM,
+                                                    G_PARAM_CONSTRUCT_ONLY |
+                                                    G_PARAM_READWRITE |
+                                                    G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 
     g_klass->finalize = osinfo_deployment_finalize;
 }

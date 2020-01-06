@@ -45,7 +45,10 @@ enum {
 
     PROP_ARCHITECTURE,
     PROP_FIRMWARE_TYPE,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_firmware_get_property(GObject *object,
@@ -111,7 +114,6 @@ static void
 osinfo_firmware_class_init(OsinfoFirmwareClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->finalize = osinfo_firmware_finalize;
     g_klass->get_property = osinfo_firmware_get_property;
@@ -122,26 +124,26 @@ osinfo_firmware_class_init(OsinfoFirmwareClass *klass)
      *
      * The target hardware architecture of this firmware.
      */
-    pspec = g_param_spec_string("architecture",
-                                "ARCHITECTURE",
-                                _("CPU Architecture"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_ARCHITECTURE, pspec);
+    properties[PROP_ARCHITECTURE] = g_param_spec_string("architecture",
+                                                        "ARCHITECTURE",
+                                                        _("CPU Architecture"),
+                                                        NULL /* default value */,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoFirmware:firmware-type:
      *
      * The firmware type.
      */
-    pspec = g_param_spec_string("type",
-                                "TYPE",
-                                _("The firmware type"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_FIRMWARE_TYPE, pspec);
+    properties[PROP_FIRMWARE_TYPE] = g_param_spec_string("type",
+                                                         "TYPE",
+                                                         _("The firmware type"),
+                                                         NULL /* default value */,
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void

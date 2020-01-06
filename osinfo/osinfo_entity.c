@@ -50,7 +50,10 @@ enum {
     PROP_0,
 
     PROP_ID,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_entity_set_property(GObject      *object,
@@ -110,7 +113,6 @@ static void
 osinfo_entity_class_init(OsinfoEntityClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->set_property = osinfo_entity_set_property;
     g_klass->get_property = osinfo_entity_get_property;
@@ -123,16 +125,15 @@ osinfo_entity_class_init(OsinfoEntityClass *klass)
      * This parameter must be set at time of construction as no
      * default value is provided.
      */
-    pspec = g_param_spec_string("id",
-                                 "ID",
-                                 _("Unique identifier"),
-                                 NULL /* default value */,
-                                 G_PARAM_CONSTRUCT |
-                                 G_PARAM_READWRITE |
-                                 G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                     PROP_ID,
-                                     pspec);
+    properties[PROP_ID] = g_param_spec_string("id",
+                                              "ID",
+                                              _("Unique identifier"),
+                                              NULL /* default value */,
+                                              G_PARAM_CONSTRUCT |
+                                              G_PARAM_READWRITE |
+                                              G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 
     g_klass->finalize = osinfo_entity_finalize;
 }

@@ -47,7 +47,10 @@ enum {
     PROP_FORMAT,
     PROP_URL,
     PROP_CLOUD_INIT,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_image_get_property(GObject *object,
@@ -142,7 +145,6 @@ static void
 osinfo_image_class_init(OsinfoImageClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->dispose = osinfo_image_dispose;
     g_klass->finalize = osinfo_image_finalize;
@@ -154,52 +156,50 @@ osinfo_image_class_init(OsinfoImageClass *klass)
      *
      * The target hardware architecture of this image.
      */
-    pspec = g_param_spec_string("architecture",
-                                "ARCHITECTURE",
-                                _("CPU Architecture"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_ARCHITECTURE, pspec);
+    properties[PROP_ARCHITECTURE] = g_param_spec_string("architecture",
+                                                        "ARCHITECTURE",
+                                                        _("CPU Architecture"),
+                                                        NULL /* default value */,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoImage:format:
      *
      * The image format.
      */
-    pspec = g_param_spec_string("format",
-                                "FORMAT",
-                                _("The image format"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_FORMAT, pspec);
+    properties[PROP_FORMAT] = g_param_spec_string("format",
+                                                  "FORMAT",
+                                                  _("The image format"),
+                                                  NULL /* default value */,
+                                                  G_PARAM_READWRITE |
+                                                  G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoImage:url:
      *
      * The URL to this image.
      */
-    pspec = g_param_spec_string("url",
-                                "URL",
-                                _("The URL to this image"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_URL, pspec);
+    properties[PROP_URL] = g_param_spec_string("url",
+                                               "URL",
+                                               _("The URL to this image"),
+                                               NULL /* default value */,
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoImage:cloud-init:
      *
      * Whether the image supports cloud-init customizations or not.
      */
-    pspec = g_param_spec_string("cloud-init",
-                                "CloudInit",
-                                _("Whether cloud-init customizations are supported or not"),
-                                FALSE /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_CLOUD_INIT, pspec);
+    properties[PROP_CLOUD_INIT] = g_param_spec_string("cloud-init",
+                                                      "CloudInit",
+                                                      _("Whether cloud-init customizations are supported or not"),
+                                                      FALSE /* default value */,
+                                                      G_PARAM_READWRITE |
+                                                      G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void

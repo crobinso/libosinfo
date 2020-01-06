@@ -45,8 +45,10 @@ enum {
     PROP_0,
 
     PROP_TARGET_FILTER,
-};
 
+    LAST_PROP
+};
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_devicelinkfilter_set_property(GObject *object,
@@ -110,7 +112,6 @@ osinfo_devicelinkfilter_class_init(OsinfoDeviceLinkFilterClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
     OsinfoFilterClass *filter_klass = OSINFO_FILTER_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->finalize = osinfo_devicelinkfilter_finalize;
     g_klass->set_property = osinfo_devicelinkfilter_set_property;
@@ -121,16 +122,14 @@ osinfo_devicelinkfilter_class_init(OsinfoDeviceLinkFilterClass *klass)
      *
      * The operating system to be deployed
      */
-    pspec = g_param_spec_object("target-filter",
-                                "Target Filter",
-                                _("Device link target filter"),
-                                OSINFO_TYPE_FILTER,
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_TARGET_FILTER,
-                                    pspec);
+    properties[PROP_TARGET_FILTER] = g_param_spec_object("target-filter",
+                                                         "Target Filter",
+                                                         _("Device link target filter"),
+                                                         OSINFO_TYPE_FILTER,
+                                                         G_PARAM_CONSTRUCT_ONLY |
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS);
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 
     filter_klass->matches = osinfo_devicelinkfilter_matches_default;
 }

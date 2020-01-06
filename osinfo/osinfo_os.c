@@ -70,7 +70,9 @@ enum {
     PROP_DISTRO,
     PROP_KERNEL_URL_ARGUMENT,
     PROP_CLOUD_IMAGE_USERNAME,
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void osinfo_os_finalize(GObject *object);
 
@@ -140,7 +142,6 @@ static void
 osinfo_os_class_init(OsinfoOsClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->get_property = osinfo_os_get_property;
     g_klass->finalize = osinfo_os_finalize;
@@ -151,15 +152,12 @@ osinfo_os_class_init(OsinfoOsClass *klass)
      * The generic family this OS belongs to, based upon its kernel,
      * for example linux, winnt, solaris, freebsd etc.
      */
-    pspec = g_param_spec_string("family",
-                                "Family",
-                                _("Generic Family"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                     PROP_FAMILY,
-                                     pspec);
+    properties[PROP_FAMILY] = g_param_spec_string("family",
+                                                  "Family",
+                                                  _("Generic Family"),
+                                                  NULL /* default value */,
+                                                  G_PARAM_READABLE |
+                                                  G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoOs:distro:
@@ -167,15 +165,12 @@ osinfo_os_class_init(OsinfoOsClass *klass)
      * The generic distro this OS belongs to, for example fedora, windows,
      * solaris, freebsd etc.
      */
-    pspec = g_param_spec_string("distro",
-                                "Distro",
-                                _("Generic Distro"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_DISTRO,
-                                    pspec);
+    properties[PROP_DISTRO] = g_param_spec_string("distro",
+                                                  "Distro",
+                                                  _("Generic Distro"),
+                                                  NULL /* default value */,
+                                                  G_PARAM_READABLE |
+                                                  G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoOs:kernel-url-argument:
@@ -183,30 +178,26 @@ osinfo_os_class_init(OsinfoOsClass *klass)
      * The argument to be passed to kernel command line when performing a
      * tree based installation of this OS.
      */
-    pspec = g_param_spec_string("kernel-url-argument",
-                                "KernelURLArgument",
-                                _("Kernel URL Argument"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_KERNEL_URL_ARGUMENT,
-                                    pspec);
+    properties[PROP_KERNEL_URL_ARGUMENT] = g_param_spec_string("kernel-url-argument",
+                                                               "KernelURLArgument",
+                                                               _("Kernel URL Argument"),
+                                                               NULL /* default value */,
+                                                               G_PARAM_READABLE |
+                                                               G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoOs:cloud-image-username:
      *
      * The username to be passed to the cloud-init program.
      */
-    pspec = g_param_spec_string("cloud-image-username",
-                                "CloudImageUsername",
-                                _("Cloud image username"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_CLOUD_IMAGE_USERNAME,
-                                    pspec);
+    properties[PROP_CLOUD_IMAGE_USERNAME] = g_param_spec_string("cloud-image-username",
+                                                                "CloudImageUsername",
+                                                                _("Cloud image username"),
+                                                                NULL /* default value */,
+                                                                G_PARAM_READABLE |
+                                                                G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void

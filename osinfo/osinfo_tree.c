@@ -114,7 +114,10 @@ enum {
     PROP_BOOT_ISO_PATH,
     PROP_HAS_TREEINFO,
     PROP_OS,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_tree_get_property(GObject *object,
@@ -288,7 +291,6 @@ static void
 osinfo_tree_class_init(OsinfoTreeClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->dispose = osinfo_tree_dispose;
     g_klass->finalize = osinfo_tree_finalize;
@@ -300,130 +302,120 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
      *
      * The target hardware architecture of this tree.
      */
-    pspec = g_param_spec_string("architecture",
-                                "ARCHITECTURE",
-                                _("CPU Architecture"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_ARCHITECTURE, pspec);
+    properties[PROP_ARCHITECTURE] = g_param_spec_string("architecture",
+                                                        "ARCHITECTURE",
+                                                        _("CPU Architecture"),
+                                                        NULL /* default value */,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:url:
      *
      * The URL to this tree.
      */
-    pspec = g_param_spec_string("url",
-                                "URL",
-                                _("The URL to this tree"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_URL, pspec);
+    properties[PROP_URL] = g_param_spec_string("url",
+                                               "URL",
+                                               _("The URL to this tree"),
+                                               NULL /* default value */,
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:kernel-path:
      *
      * The path to the kernel image in the install tree.
      */
-    pspec = g_param_spec_string("kernel-path",
-                                "KernelPath",
-                                _("The path to the kernel image"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_KERNEL_PATH, pspec);
+    properties[PROP_KERNEL_PATH] = g_param_spec_string("kernel-path",
+                                                       "KernelPath",
+                                                       _("The path to the kernel image"),
+                                                       NULL /* default value */,
+                                                       G_PARAM_READWRITE |
+                                                       G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:initrd-path:
      *
      * The path to the initrd image in the install tree.
      */
-    pspec = g_param_spec_string("initrd-path",
-                                "InitrdPath",
-                                _("The path to the initrd image"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_INITRD_PATH, pspec);
+    properties[PROP_INITRD_PATH] = g_param_spec_string("initrd-path",
+                                                       "InitrdPath",
+                                                       _("The path to the initrd image"),
+                                                       NULL /* default value */,
+                                                       G_PARAM_READWRITE |
+                                                       G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:boot-iso-path:
      *
      * The path to the boot ISO in the install tree
      */
-    pspec = g_param_spec_string("boot-iso-path",
-                                "BootISOPath",
-                                _("The path to the bootable ISO image"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_BOOT_ISO_PATH, pspec);
+    properties[PROP_BOOT_ISO_PATH] = g_param_spec_string("boot-iso-path",
+                                                         "BootISOPath",
+                                                         _("The path to the bootable ISO image"),
+                                                         NULL /* default value */,
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:has-treeinfo
      *
      * Whether the tree has treeinfo or not
      */
-    pspec = g_param_spec_boolean("has-treeinfo",
-                                 "HasTreeinfo",
-                                 _("Whether the tree has treeinfo"),
-                                 FALSE /* default value */,
-                                 G_PARAM_READWRITE |
-                                 G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_HAS_TREEINFO, pspec);
+    properties[PROP_HAS_TREEINFO] = g_param_spec_boolean("has-treeinfo",
+                                                         "HasTreeinfo",
+                                                         _("Whether the tree has treeinfo"),
+                                                         FALSE /* default value */,
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:treeinfo-family
      *
      * The treeinfo family
      */
-    pspec = g_param_spec_string("treeinfo-family",
-                                "TreeInfoFamily",
-                                _("The treeinfo family"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+    properties[PROP_TREEINFO_FAMILY] = g_param_spec_string("treeinfo-family",
+                                                           "TreeInfoFamily",
+                                                           _("The treeinfo family"),
+                                                           NULL /* default value */,
+                                                           G_PARAM_READWRITE |
+                                                           G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:treeinfo-variant
      *
      * The treeinfo variant
      */
-    pspec = g_param_spec_string("treeinfo-variant",
-                                "TreeInfoVariant",
-                                _("The treeinfo variant"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+    properties[PROP_TREEINFO_VARIANT] = g_param_spec_string("treeinfo-variant",
+                                                            "TreeInfoVariant",
+                                                            _("The treeinfo variant"),
+                                                            NULL /* default value */,
+                                                            G_PARAM_READWRITE |
+                                                            G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:treeinfo-version
      *
      * The treeinfo version
      */
-    pspec = g_param_spec_string("treeinfo-version",
-                                "TreeInfoVersion",
-                                _("The treeinfo version"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+    properties[PROP_TREEINFO_VERSION] = g_param_spec_string("treeinfo-version",
+                                                            "TreeInfoVersion",
+                                                            _("The treeinfo version"),
+                                                            NULL /* default value */,
+                                                            G_PARAM_READWRITE |
+                                                            G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:treeinfo-arch
      *
      * The treeinfo arch
      */
-    pspec = g_param_spec_string("treeinfo-arch",
-                                "TreeInfoArch",
-                                _("The treeinfo architecture"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_TREEINFO_FAMILY, pspec);
+    properties[PROP_TREEINFO_ARCH] = g_param_spec_string("treeinfo-arch",
+                                                         "TreeInfoArch",
+                                                         _("The treeinfo architecture"),
+                                                         NULL /* default value */,
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoTree:os:
@@ -433,13 +425,14 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
      * the property will be filled after a successful call to
      * osinfo_db_identify_tree().
      */
-    pspec = g_param_spec_object("os",
-                                "Os",
-                                _("Information about the operating system on this tree"),
-                                OSINFO_TYPE_OS,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_OS, pspec);
+    properties[PROP_OS] = g_param_spec_object("os",
+                                              "Os",
+                                              _("Information about the operating system on this tree"),
+                                              OSINFO_TYPE_OS,
+                                              G_PARAM_READWRITE |
+                                              G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void

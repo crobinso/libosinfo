@@ -45,8 +45,11 @@ enum {
 
     PROP_NAME,
     PROP_POLICY,
-    PROP_VALUE_MAP
+    PROP_VALUE_MAP,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_install_config_param_set_property(GObject *object,
@@ -128,7 +131,6 @@ static void
 osinfo_install_config_param_class_init(OsinfoInstallConfigParamClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->set_property = osinfo_install_config_param_set_property;
     g_klass->get_property = osinfo_install_config_param_get_property;
@@ -138,47 +140,40 @@ osinfo_install_config_param_class_init(OsinfoInstallConfigParamClass *klass)
      *
      * The name of the configuration parameter.
      **/
-    pspec = g_param_spec_string("name",
-                                "Name",
-                                _("Parameter name"),
-                                NULL,
-                                G_PARAM_WRITABLE |
-                                G_PARAM_READABLE |
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_NAME,
-                                    pspec);
+    properties[PROP_NAME] = g_param_spec_string("name",
+                                                "Name",
+                                                _("Parameter name"),
+                                                NULL,
+                                                G_PARAM_WRITABLE |
+                                                G_PARAM_READABLE |
+                                                G_PARAM_CONSTRUCT_ONLY |
+                                                G_PARAM_STATIC_STRINGS);
     /**
      * OsinfoInstallConfigParam:policy:
      *
      * The policy of the configuration parameter.
      **/
-    pspec = g_param_spec_enum("policy",
-                              "Policy",
-                              _("Parameter policy"),
-                              OSINFO_TYPE_INSTALL_CONFIG_PARAM_POLICY,
-                              OSINFO_INSTALL_CONFIG_PARAM_POLICY_OPTIONAL,
-                              G_PARAM_READABLE |
-                              G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_POLICY,
-                                    pspec);
+    properties[PROP_POLICY] = g_param_spec_enum("policy",
+                                                "Policy",
+                                                _("Parameter policy"),
+                                                OSINFO_TYPE_INSTALL_CONFIG_PARAM_POLICY,
+                                                OSINFO_INSTALL_CONFIG_PARAM_POLICY_OPTIONAL,
+                                                G_PARAM_READABLE |
+                                                G_PARAM_STATIC_STRINGS);
     /**
      * OsinfoInstallConfigParam:value-map:
      *
      * The mapping between generic values and OS-specific values for this
      * configuration parameter
      **/
-    pspec = g_param_spec_object("value-map",
-                              "Value Mapping",
-                              _("Parameter Value Mapping"),
-                              OSINFO_TYPE_DATAMAP,
-                              G_PARAM_READWRITE |
-                              G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_VALUE_MAP,
-                                    pspec);
+    properties[PROP_VALUE_MAP] = g_param_spec_object("value-map",
+                                                     "Value Mapping",
+                                                     _("Parameter Value Mapping"),
+                                                     OSINFO_TYPE_DATAMAP,
+                                                     G_PARAM_READWRITE |
+                                                     G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 
     g_klass->finalize = osinfo_install_config_param_finalize;
 }

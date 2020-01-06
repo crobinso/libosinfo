@@ -41,8 +41,11 @@ G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceLink, osinfo_devicelink, OSINFO_TYPE_ENTI
 enum {
     PROP_0,
 
-    PROP_TARGET
+    PROP_TARGET,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_devicelink_set_property(GObject *object,
@@ -106,7 +109,6 @@ static void
 osinfo_devicelink_class_init(OsinfoDeviceLinkClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->set_property = osinfo_devicelink_set_property;
     g_klass->get_property = osinfo_devicelink_get_property;
@@ -116,17 +118,15 @@ osinfo_devicelink_class_init(OsinfoDeviceLinkClass *klass)
      *
      * The target of the device link.
      */
-    pspec = g_param_spec_object("target",
-                                "Target",
-                                _("Target device"),
-                                OSINFO_TYPE_DEVICE,
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_TARGET,
-                                    pspec);
+    properties[PROP_TARGET] = g_param_spec_object("target",
+                                                  "Target",
+                                                  _("Target device"),
+                                                  OSINFO_TYPE_DEVICE,
+                                                  G_PARAM_CONSTRUCT_ONLY |
+                                                  G_PARAM_READWRITE |
+                                                  G_PARAM_STATIC_STRINGS);
 
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 
     g_klass->finalize = osinfo_devicelink_finalize;
 }

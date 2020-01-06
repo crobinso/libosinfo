@@ -72,7 +72,10 @@ enum {
     PROP_VERSION,
     PROP_CODENAME,
     PROP_LOGO,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void osinfo_product_link_free(gpointer data)
 {
@@ -144,7 +147,6 @@ static void
 osinfo_product_class_init(OsinfoProductClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->get_property = osinfo_product_get_property;
     g_klass->finalize = osinfo_product_finalize;
@@ -154,78 +156,74 @@ osinfo_product_class_init(OsinfoProductClass *klass)
      *
      * The name of this product.
      */
-    pspec = g_param_spec_string("name",
-                                "Name",
-                                _("Name"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_NAME, pspec);
+    properties[PROP_NAME] = g_param_spec_string("name",
+                                                "Name",
+                                                _("Name"),
+                                                NULL /* default value */,
+                                                G_PARAM_READABLE |
+                                                G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoProduct:short-id:
      *
      * The short ID of this product.
      */
-    pspec = g_param_spec_string("short-id",
-                                "ShortID",
-                                _("Short ID"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_SHORT_ID, pspec);
+    properties[PROP_SHORT_ID] = g_param_spec_string("short-id",
+                                                    "ShortID",
+                                                    _("Short ID"),
+                                                    NULL /* default value */,
+                                                    G_PARAM_READABLE |
+                                                    G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoProduct:vendor:
      *
      * The Vendor of this product.
      */
-    pspec = g_param_spec_string("vendor",
-                                "Vendor",
-                                _("Vendor"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_VENDOR, pspec);
+    properties[PROP_VENDOR] = g_param_spec_string("vendor",
+                                                  "Vendor",
+                                                  _("Vendor"),
+                                                  NULL /* default value */,
+                                                  G_PARAM_READABLE |
+                                                  G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoProduct:version:
      *
      * The version of the product.
      */
-    pspec = g_param_spec_string("version",
-                                "Version",
-                                _("Version"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_VERSION, pspec);
+    properties[PROP_VERSION] = g_param_spec_string("version",
+                                                   "Version",
+                                                   _("Version"),
+                                                   NULL /* default value */,
+                                                   G_PARAM_READABLE |
+                                                   G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoProduct:codename:
      *
      * The codename of this product.
      */
-    pspec = g_param_spec_string("codename",
-                                "Codename",
-                                _("Codename"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_NAME, pspec);
+    properties[PROP_CODENAME] = g_param_spec_string("codename",
+                                                    "Codename",
+                                                    _("Codename"),
+                                                    NULL /* default value */,
+                                                    G_PARAM_READABLE |
+                                                    G_PARAM_STATIC_STRINGS);
 
     /**
      * OsinfoProduct:logo:
      *
      * The URI of the logo of the product.
      */
-    pspec = g_param_spec_string("logo",
-                                "Logo",
-                                _("URI of the logo"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_LOGO, pspec);
+    properties[PROP_LOGO] = g_param_spec_string("logo",
+                                                "Logo",
+                                                _("URI of the logo"),
+                                                NULL /* default value */,
+                                                G_PARAM_READABLE |
+                                                G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void

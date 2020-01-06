@@ -58,8 +58,11 @@ enum {
     PROP_PATH_FORMAT,
     PROP_AVATAR_FORMAT,
     PROP_PREFERRED_INJECTION_METHOD,
-    PROP_INSTALLATION_SOURCE
+    PROP_INSTALLATION_SOURCE,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 typedef struct _OsinfoInstallScriptGenerateData OsinfoInstallScriptGenerateData;
 typedef struct _OsinfoInstallScriptGenerateOutputData OsinfoInstallScriptGenerateOutputData;
@@ -196,101 +199,78 @@ static void
 osinfo_install_script_class_init(OsinfoInstallScriptClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->get_property = osinfo_install_script_get_property;
     g_klass->set_property = osinfo_install_script_set_property;
     g_klass->finalize = osinfo_install_script_finalize;
 
-    pspec = g_param_spec_string("template-uri",
-                                "TemplateURI",
-                                _("URI for install script template"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_WRITABLE |
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_TEMPLATE_URI,
-                                    pspec);
+    properties[PROP_TEMPLATE_URI] = g_param_spec_string("template-uri",
+                                                        "TemplateURI",
+                                                        _("URI for install script template"),
+                                                        NULL /* default value */,
+                                                        G_PARAM_READABLE |
+                                                        G_PARAM_WRITABLE |
+                                                        G_PARAM_CONSTRUCT_ONLY |
+                                                        G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_string("template-data",
-                                "TemplateData",
-                                _("Data for install script template"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_WRITABLE |
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_TEMPLATE_DATA,
-                                    pspec);
+    properties[PROP_TEMPLATE_DATA] = g_param_spec_string("template-data",
+                                                         "TemplateData",
+                                                         _("Data for install script template"),
+                                                         NULL /* default value */,
+                                                         G_PARAM_READABLE |
+                                                         G_PARAM_WRITABLE |
+                                                         G_PARAM_CONSTRUCT_ONLY |
+                                                         G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_string("profile",
-                                "Profile",
-                                _("Install script profile name"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_WRITABLE |
-                                G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_PROFILE,
-                                    pspec);
+    properties[PROP_PROFILE] = g_param_spec_string("profile",
+                                                   "Profile",
+                                                   _("Install script profile name"),
+                                                   NULL /* default value */,
+                                                   G_PARAM_READABLE |
+                                                   G_PARAM_WRITABLE |
+                                                   G_PARAM_CONSTRUCT_ONLY |
+                                                   G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_string("product-key-format",
-                                "Product Key Format",
-                                _("Product key format mask"),
-                                NULL /* default value */,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_PRODUCT_KEY_FORMAT,
-                                    pspec);
+    properties[PROP_PRODUCT_KEY_FORMAT] = g_param_spec_string("product-key-format",
+                                                              "Product Key Format",
+                                                              _("Product key format mask"),
+                                                              NULL /* default value */,
+                                                              G_PARAM_READABLE |
+                                                              G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_enum("path-format",
-                              "Path Format",
-                              _("Expected path format"),
-                              OSINFO_TYPE_PATH_FORMAT,
-                              OSINFO_PATH_FORMAT_UNIX /* default value */,
-                              G_PARAM_READABLE |
-                              G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_PATH_FORMAT,
-                                    pspec);
+    properties[PROP_PATH_FORMAT] = g_param_spec_enum("path-format",
+                                                     "Path Format",
+                                                     _("Expected path format"),
+                                                     OSINFO_TYPE_PATH_FORMAT,
+                                                     OSINFO_PATH_FORMAT_UNIX /* default value */,
+                                                     G_PARAM_READABLE |
+                                                     G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_object("avatar-format",
-                                "Avatar Format",
-                                _("Expected avatar format"),
-                                OSINFO_TYPE_AVATAR_FORMAT,
-                                G_PARAM_READABLE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_AVATAR_FORMAT,
-                                    pspec);
+    properties[PROP_AVATAR_FORMAT] = g_param_spec_object("avatar-format",
+                                                         "Avatar Format",
+                                                         _("Expected avatar format"),
+                                                         OSINFO_TYPE_AVATAR_FORMAT,
+                                                         G_PARAM_READABLE |
+                                                         G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_flags("preferred-injection-method",
-                               "Preferred Injection Method",
-                               _("The preferred injection method"),
-                               OSINFO_TYPE_INSTALL_SCRIPT_INJECTION_METHOD,
-                               OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK, /* default value */
-                               G_PARAM_READABLE |
-                               G_PARAM_WRITABLE |
-                               G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_PREFERRED_INJECTION_METHOD,
-                                    pspec);
+    properties[PROP_PREFERRED_INJECTION_METHOD] = g_param_spec_flags("preferred-injection-method",
+                                                                     "Preferred Injection Method",
+                                                                     _("The preferred injection method"),
+                                                                     OSINFO_TYPE_INSTALL_SCRIPT_INJECTION_METHOD,
+                                                                     OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK, /* default value */
+                                                                     G_PARAM_READABLE |
+                                                                     G_PARAM_WRITABLE |
+                                                                     G_PARAM_STATIC_STRINGS);
 
-    pspec = g_param_spec_enum("installation-source",
-                              "Installation Source",
-                              _("The installation source to be used"),
-                              OSINFO_TYPE_INSTALL_SCRIPT_INSTALLATION_SOURCE,
-                              OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
-                              G_PARAM_READABLE |
-                              G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass,
-                                    PROP_INSTALLATION_SOURCE,
-                                    pspec);
+    properties[PROP_INSTALLATION_SOURCE] = g_param_spec_enum("installation-source",
+                                                             "Installation Source",
+                                                             _("The installation source to be used"),
+                                                             OSINFO_TYPE_INSTALL_SCRIPT_INSTALLATION_SOURCE,
+                                                             OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
+                                                             G_PARAM_READABLE |
+                                                             G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 void osinfo_install_script_add_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *param)

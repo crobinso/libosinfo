@@ -38,8 +38,11 @@ G_DEFINE_TYPE_WITH_PRIVATE(OsinfoOsVariant, osinfo_os_variant, OSINFO_TYPE_ENTIT
 enum {
     PROP_0,
 
-    PROP_NAME
+    PROP_NAME,
+
+    LAST_PROP
 };
+static GParamSpec *properties[LAST_PROP];
 
 static void
 osinfo_os_variant_get_property(GObject    *object,
@@ -89,7 +92,6 @@ static void
 osinfo_os_variant_class_init(OsinfoOsVariantClass *klass)
 {
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
-    GParamSpec *pspec;
 
     g_klass->get_property = osinfo_os_variant_get_property;
     g_klass->set_property = osinfo_os_variant_set_property;
@@ -99,13 +101,14 @@ osinfo_os_variant_class_init(OsinfoOsVariantClass *klass)
      *
      * The name to this variant.
      */
-    pspec = g_param_spec_string("name",
-                                "Name",
-                                _("The name to this variant"),
-                                NULL /* default value */,
-                                G_PARAM_READWRITE |
-                                G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_NAME, pspec);
+    properties[PROP_NAME] = g_param_spec_string("name",
+                                                "Name",
+                                                _("The name to this variant"),
+                                                NULL /* default value */,
+                                                G_PARAM_READWRITE |
+                                                G_PARAM_STATIC_STRINGS);
+
+    g_object_class_install_properties(g_klass, LAST_PROP, properties);
 }
 
 static void
