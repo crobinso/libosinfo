@@ -69,14 +69,14 @@ osinfo_datamap_class_init(OsinfoDatamapClass *klass)
 }
 
 static void
-osinfo_datamap_init(OsinfoDatamap *list)
+osinfo_datamap_init(OsinfoDatamap *map)
 {
-    list->priv = OSINFO_DATAMAP_GET_PRIVATE(list);
-    list->priv->map = g_hash_table_new_full(g_str_hash,
+    map->priv = OSINFO_DATAMAP_GET_PRIVATE(map);
+    map->priv->map = g_hash_table_new_full(g_str_hash,
                                             g_str_equal,
                                             g_free,
                                             g_free);
-    list->priv->reverse_map = g_hash_table_new(g_str_hash, g_str_equal);
+    map->priv->reverse_map = g_hash_table_new(g_str_hash, g_str_equal);
 }
 
 
