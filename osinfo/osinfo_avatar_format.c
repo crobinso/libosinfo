@@ -23,11 +23,6 @@
 
 G_DEFINE_TYPE(OsinfoAvatarFormat, osinfo_avatar_format, OSINFO_TYPE_ENTITY);
 
-#define OSINFO_AVATAR_FORMAT_GET_PRIVATE(obj)  \
-        (G_TYPE_INSTANCE_GET_PRIVATE((obj),                \
-         OSINFO_TYPE_AVATAR_FORMAT,            \
-         OsinfoAvatarFormatPrivate))
-
 /**
  * SECTION: osinfo_avatar_format
  * @short_description: The required format of avatar for an install script
