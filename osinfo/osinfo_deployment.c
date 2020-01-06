@@ -240,11 +240,14 @@ OsinfoPlatform *osinfo_deployment_get_platform(OsinfoDeployment *deployment)
  */
 OsinfoDevice *osinfo_deployment_get_preferred_device(OsinfoDeployment *deployment, OsinfoFilter *filter)
 {
+    OsinfoDeviceLinkFilter *linkfilter;
+    OsinfoDeviceLink *devlink;
+
     g_return_val_if_fail(OSINFO_IS_DEPLOYMENT(deployment), NULL);
     g_return_val_if_fail(OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceLinkFilter *linkfilter = osinfo_devicelinkfilter_new(filter);
-    OsinfoDeviceLink *devlink = osinfo_deployment_get_preferred_device_link(deployment, OSINFO_FILTER(linkfilter));
+    linkfilter = osinfo_devicelinkfilter_new(filter);
+    devlink = osinfo_deployment_get_preferred_device_link(deployment, OSINFO_FILTER(linkfilter));
     if (devlink)
         return osinfo_devicelink_get_target(devlink);
     return NULL;
@@ -263,10 +266,12 @@ OsinfoDevice *osinfo_deployment_get_preferred_device(OsinfoDeployment *deploymen
  */
 OsinfoDeviceLink *osinfo_deployment_get_preferred_device_link(OsinfoDeployment *deployment, OsinfoFilter *filter)
 {
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_DEPLOYMENT(deployment), NULL);
     g_return_val_if_fail(OSINFO_IS_FILTER(filter), NULL);
 
-    GList *tmp = deployment->priv->deviceLinks;
+    tmp = deployment->priv->deviceLinks;
 
     // For each device in section list, apply filter. If filter passes, return device.
     while (tmp) {
@@ -296,11 +301,14 @@ OsinfoDeviceLink *osinfo_deployment_get_preferred_device_link(OsinfoDeployment *
  */
 OsinfoDeviceList *osinfo_deployment_get_devices(OsinfoDeployment *deployment, OsinfoFilter *filter)
 {
+    OsinfoDeviceList *newList;
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_DEPLOYMENT(deployment), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceList *newList = osinfo_devicelist_new();
-    GList *tmp = deployment->priv->deviceLinks;
+    newList = osinfo_devicelist_new();
+    tmp = deployment->priv->deviceLinks;
 
     while (tmp) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(tmp->data);
@@ -327,11 +335,14 @@ OsinfoDeviceList *osinfo_deployment_get_devices(OsinfoDeployment *deployment, Os
  */
 OsinfoDeviceLinkList *osinfo_deployment_get_device_links(OsinfoDeployment *deployment, OsinfoFilter *filter)
 {
+    OsinfoDeviceLinkList *newList;
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_DEPLOYMENT(deployment), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceLinkList *newList = osinfo_devicelinklist_new();
-    GList *tmp = deployment->priv->deviceLinks;
+    newList = osinfo_devicelinklist_new();
+    tmp = deployment->priv->deviceLinks;
 
     while (tmp) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(tmp->data);
@@ -358,10 +369,12 @@ OsinfoDeviceLinkList *osinfo_deployment_get_device_links(OsinfoDeployment *deplo
  */
 OsinfoDeviceLink *osinfo_deployment_add_device(OsinfoDeployment *deployment, OsinfoDevice *dev)
 {
+    OsinfoDeviceLink *devlink;
+
     g_return_val_if_fail(OSINFO_IS_DEPLOYMENT(deployment), NULL);
     g_return_val_if_fail(OSINFO_IS_DEVICE(dev), NULL);
 
-    OsinfoDeviceLink *devlink = osinfo_devicelink_new(dev);
+    devlink = osinfo_devicelink_new(dev);
 
     deployment->priv->deviceLinks = g_list_prepend(deployment->priv->deviceLinks, devlink);
 

@@ -122,15 +122,15 @@ osinfo_productfilter_init(OsinfoProductFilter *productfilter)
  */
 gint osinfo_productfilter_add_product_constraint(OsinfoProductFilter *productfilter, OsinfoProductRelationship relshp, OsinfoProduct *product)
 {
+    GList *values = NULL;
+    gpointer origKey, foundValue;
+    gboolean found;
+
     g_return_val_if_fail(OSINFO_IS_PRODUCTFILTER(productfilter), -1);
     g_return_val_if_fail(OSINFO_IS_PRODUCT(product), -1);
 
     // First check if there exists an array of entries for this key
     // If not, create a ptrarray of strings for this key and insert into map
-    gboolean found;
-    gpointer origKey, foundValue;
-    GList *values = NULL;
-
     found = g_hash_table_lookup_extended(productfilter->priv->productConstraints, GINT_TO_POINTER(relshp), &origKey, &foundValue);
     if (found) {
         values = foundValue;
@@ -181,9 +181,11 @@ void osinfo_productfilter_clear_product_constraints(OsinfoProductFilter *product
  */
 GList *osinfo_productfilter_get_product_constraint_values(OsinfoProductFilter *productfilter, OsinfoProductRelationship relshp)
 {
+    GList *values;
+
     g_return_val_if_fail(OSINFO_IS_PRODUCTFILTER(productfilter), NULL);
 
-    GList *values = g_hash_table_lookup(productfilter->priv->productConstraints, GINT_TO_POINTER(relshp));
+    values = g_hash_table_lookup(productfilter->priv->productConstraints, GINT_TO_POINTER(relshp));
 
     return g_list_copy(values);
 }
@@ -252,13 +254,20 @@ static void osinfo_productfilter_match_product_iterator(gpointer key, gpointer v
 
 static gboolean osinfo_productfilter_matches_default(OsinfoFilter *filter, OsinfoEntity *entity)
 {
+    OsinfoProductFilter *productfilter;
+    struct osinfo_productfilter_match_args args;
+
     g_return_val_if_fail(OSINFO_IS_PRODUCTFILTER(filter), FALSE);
     g_return_val_if_fail(OSINFO_IS_PRODUCT(entity), FALSE);
-    OsinfoProductFilter *productfilter = OSINFO_PRODUCTFILTER(filter);
-    struct osinfo_productfilter_match_args args = { productfilter, entity, TRUE };
 
     if (!OSINFO_FILTER_CLASS(osinfo_productfilter_parent_class)->matches(filter, entity))
         return FALSE;
+
+    productfilter = OSINFO_PRODUCTFILTER(filter);
+
+    args.productfilter = productfilter;
+    args.entity = entity;
+    args.matched = TRUE;
 
     g_hash_table_foreach(productfilter->priv->productConstraints,
                          osinfo_productfilter_match_product_iterator,

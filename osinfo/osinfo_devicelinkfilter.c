@@ -181,9 +181,12 @@ OsinfoFilter *osinfo_devicelinkfilter_get_target_filter(OsinfoDeviceLinkFilter *
 
 static gboolean osinfo_devicelinkfilter_matches_default(OsinfoFilter *filter, OsinfoEntity *entity)
 {
+    OsinfoDeviceLinkFilter *linkfilter;
+
     g_return_val_if_fail(OSINFO_IS_DEVICELINKFILTER(filter), FALSE);
     g_return_val_if_fail(OSINFO_IS_DEVICELINK(entity), FALSE);
-    OsinfoDeviceLinkFilter *linkfilter = OSINFO_DEVICELINKFILTER(filter);
+
+    linkfilter = OSINFO_DEVICELINKFILTER(filter);
 
     if (!OSINFO_FILTER_CLASS(osinfo_devicelinkfilter_parent_class)->matches(filter, entity))
         return FALSE;

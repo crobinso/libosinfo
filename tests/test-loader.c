@@ -21,10 +21,10 @@ static void
 test_basic(void)
 {
     OsinfoLoader *loader = osinfo_loader_new();
+    GError *error = NULL;
 
     g_assert_true(OSINFO_IS_LOADER(loader));
 
-    GError *error = NULL;
     osinfo_loader_process_default_path(loader, &error);
     g_assert_no_error(error);
 

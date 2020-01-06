@@ -63,6 +63,7 @@ test_relproduct(void)
     OsinfoProduct *product3 = osinfo_dummy_new("wathog");
     OsinfoProduct *product4 = osinfo_dummy_new("aardvark");
     OsinfoProduct *product5 = osinfo_dummy_new("unicorn");
+    OsinfoProductList *product1rel;
 
     osinfo_product_add_related(product1, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product2);
     osinfo_product_add_related(product1, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES, product3);
@@ -70,7 +71,7 @@ test_relproduct(void)
     osinfo_product_add_related(product3, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES, product4);
     osinfo_product_add_related(product1, OSINFO_PRODUCT_RELATIONSHIP_CLONES, product5);
 
-    OsinfoProductList *product1rel = osinfo_product_get_related(product1, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
+    product1rel = osinfo_product_get_related(product1, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(product1rel)), ==, 1);
     g_assert_true(osinfo_list_get_nth(OSINFO_LIST(product1rel), 0) == OSINFO_ENTITY(product2));
     g_object_unref(product1rel);

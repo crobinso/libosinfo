@@ -166,14 +166,18 @@ static gboolean build_filter(struct OsinfoLabel *labels,
     gsize i, j;
 
     for (i = 0; i < argc; i++) {
-        const gchar *tmp = strchr(argv[i], '=');
+        const gchar *tmp;
+        gchar *key = NULL;
+        gchar *val = NULL;
+        gboolean found = FALSE;
+
+        tmp = strchr(argv[i], '=');
         if (!tmp) {
             g_set_error(error, OSINFO_ERROR, 0, "%s", _("Syntax error in condition, expecting KEY=VALUE"));
             goto cleanup;
         }
-        gchar *key = g_strndup(argv[i], tmp-argv[i]);
-        gchar *val = g_strdup(tmp+1);
-        gboolean found = FALSE;
+        key = g_strndup(argv[i], tmp-argv[i]);
+        val = g_strdup(tmp+1);
 
         for (j = 0; labels[j].prop != NULL; j++) {
             if (g_str_equal(key, labels[j].prop))
@@ -359,12 +363,6 @@ gint main(gint argc, gchar **argv)
     gsize i;
     const gchar *sortKey = NULL;
     const gchar *fields = NULL;
-
-    setlocale(LC_ALL, "");
-    textdomain(GETTEXT_PACKAGE);
-    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-
     struct OsinfoType types[] = {
         { "os",
           (osinfo_list_func)osinfo_db_get_os_list,
@@ -391,7 +389,6 @@ gint main(gint argc, gchar **argv)
           OSINFO_TYPE_DEPLOYMENTLIST,
           deployment_labels },
     };
-
     GOptionEntry entries[] = {
         { "sort", 's', 0, G_OPTION_ARG_STRING, &sortKey,
           _("Sort column"), NULL },
@@ -400,6 +397,10 @@ gint main(gint argc, gchar **argv)
         { NULL, 0, 0, 0, NULL, NULL, NULL }
     };
 
+    setlocale(LC_ALL, "");
+    textdomain(GETTEXT_PACKAGE);
+    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 
     context = g_option_context_new(_("- Query the OS info database"));
 

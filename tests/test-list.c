@@ -64,12 +64,12 @@ static void osinfo_dummy_list_init(OsinfoDummyList *self G_GNUC_UNUSED) {}
 static void
 test_basic(void)
 {
+    GType type;
     OsinfoList *list = g_object_new(osinfo_dummy_list_get_type(), NULL);
 
     g_assert_cmpint(osinfo_list_get_length(list), ==, 0);
     g_assert_null(osinfo_list_find_by_id(list, "wibble"));
 
-    GType type;
     g_object_get(list, "element-type", &type, NULL);
     g_assert_cmpint(type, ==, OSINFO_TYPE_ENTITY);
 
@@ -133,6 +133,11 @@ test_union(void)
     OsinfoEntity *ent2 = g_object_new(osinfo_dummy_get_type(), "id", "wibble2", NULL);
     OsinfoEntity *ent3 = g_object_new(osinfo_dummy_get_type(), "id", "wibble3", NULL);
     OsinfoEntity *ent4 = g_object_new(osinfo_dummy_get_type(), "id", "wibble4", NULL);
+    gboolean has1;
+    gboolean has2;
+    gboolean has3;
+    gboolean has4;
+    gboolean hasBad;
 
     osinfo_list_add(list1, ent1);
     osinfo_list_add(list1, ent2);
@@ -146,13 +151,12 @@ test_union(void)
 
     g_assert_cmpint(osinfo_list_get_length(list3), ==, 4);
 
-    gboolean has1 = FALSE;
-    gboolean has2 = FALSE;
-    gboolean has3 = FALSE;
-    gboolean has4 = FALSE;
-    gboolean hasBad = FALSE;
-    int i;
-    for (i = 0; i < osinfo_list_get_length(list3); i++) {
+    has1 = FALSE;
+    has2 = FALSE;
+    has3 = FALSE;
+    has4 = FALSE;
+    hasBad = FALSE;
+    for (int i = 0; i < osinfo_list_get_length(list3); i++) {
         OsinfoEntity *ent = osinfo_list_get_nth(list3, i);
         if (ent == ent1)
             has1 = TRUE;
@@ -193,6 +197,11 @@ test_intersect(void)
     OsinfoEntity *ent2 = g_object_new(osinfo_dummy_get_type(), "id", "wibble2", NULL);
     OsinfoEntity *ent3 = g_object_new(osinfo_dummy_get_type(), "id", "wibble3", NULL);
     OsinfoEntity *ent4 = g_object_new(osinfo_dummy_get_type(), "id", "wibble4", NULL);
+    gboolean has1;
+    gboolean has2;
+    gboolean has3;
+    gboolean has4;
+    gboolean hasBad;
 
     osinfo_list_add(list1, ent1);
     osinfo_list_add(list1, ent2);
@@ -207,13 +216,12 @@ test_intersect(void)
 
     g_assert_cmpint(osinfo_list_get_length(list3), ==, 2);
 
-    gboolean has1 = FALSE;
-    gboolean has2 = FALSE;
-    gboolean has3 = FALSE;
-    gboolean has4 = FALSE;
-    gboolean hasBad = FALSE;
-    int i;
-    for (i = 0; i < osinfo_list_get_length(list3); i++) {
+    has1 = FALSE;
+    has2 = FALSE;
+    has3 = FALSE;
+    has4 = FALSE;
+    hasBad = FALSE;
+    for (int i = 0; i < osinfo_list_get_length(list3); i++) {
         OsinfoEntity *ent = osinfo_list_get_nth(list3, i);
         if (ent == ent1)
             has1 = TRUE;
@@ -253,6 +261,11 @@ test_filter(void)
     OsinfoEntity *ent2 = g_object_new(osinfo_dummy_get_type(), "id", "wibble2", NULL);
     OsinfoEntity *ent3 = g_object_new(osinfo_dummy_get_type(), "id", "wibble3", NULL);
     OsinfoEntity *ent4 = g_object_new(osinfo_dummy_get_type(), "id", "wibble4", NULL);
+    gboolean has1;
+    gboolean has2;
+    gboolean has3;
+    gboolean has4;
+    gboolean hasBad;
 
     osinfo_entity_add_param(ent1, "class", "network");
     osinfo_entity_add_param(ent1, "class", "wilma");
@@ -272,13 +285,12 @@ test_filter(void)
 
     g_assert_cmpint(osinfo_list_get_length(list2), ==, 3);
 
-    gboolean has1 = FALSE;
-    gboolean has2 = FALSE;
-    gboolean has3 = FALSE;
-    gboolean has4 = FALSE;
-    gboolean hasBad = FALSE;
-    int i;
-    for (i = 0; i < osinfo_list_get_length(list2); i++) {
+    has1 = FALSE;
+    has2 = FALSE;
+    has3 = FALSE;
+    has4 = FALSE;
+    hasBad = FALSE;
+    for (int i = 0; i < osinfo_list_get_length(list2); i++) {
         OsinfoEntity *ent = osinfo_list_get_nth(list2, i);
         if (ent == ent1)
             has1 = TRUE;
@@ -344,6 +356,8 @@ test_iterate(void)
     OsinfoEntity *ent2 = g_object_new(osinfo_dummy_get_type(), "id", "wibble2", NULL);
     OsinfoEntity *ent3 = g_object_new(osinfo_dummy_get_type(), "id", "wibble3", NULL);
     OsinfoEntity *ent4 = g_object_new(osinfo_dummy_get_type(), "id", "wibble4", NULL);
+    struct iterateData data;
+    GList *elements;
 
     osinfo_list_add(list1, ent1);
     osinfo_list_add(list1, ent2);
@@ -352,11 +366,17 @@ test_iterate(void)
     osinfo_list_add(list2, ent1);
     osinfo_list_add(list2, ent4);
 
-    struct iterateData data = {
-        ent1, ent2, ent3, ent4,
-        FALSE, FALSE, FALSE, FALSE, FALSE
-    };
-    GList *elements = osinfo_list_get_elements(list1);
+    data.ent1 = ent1;
+    data.ent2 = ent2;
+    data.ent3 = ent3;
+    data.ent4 = ent4;
+    data.has1 = FALSE;
+    data.has2 = FALSE;
+    data.has3 = FALSE;
+    data.has4 = FALSE;
+    data.hasBad = FALSE;
+
+    elements = osinfo_list_get_elements(list1);
     g_list_foreach(elements, iterator, &data);
     g_list_free(elements);
     g_assert_true(data.has1);

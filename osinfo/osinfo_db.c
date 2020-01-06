@@ -296,12 +296,15 @@ OsinfoDeployment *osinfo_db_find_deployment(OsinfoDb *db,
                                             OsinfoOs *os,
                                             OsinfoPlatform *platform)
 {
+    GList *deployments;
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(OSINFO_IS_PLATFORM(platform), NULL);
 
-    GList *deployments = osinfo_list_get_elements(OSINFO_LIST(db->priv->deployments));
-    GList *tmp = deployments;
+    deployments = osinfo_list_get_elements(OSINFO_LIST(db->priv->deployments));
+    tmp = deployments;
 
     while (tmp) {
         OsinfoDeployment *deployment = OSINFO_DEPLOYMENT(tmp->data);
@@ -1164,11 +1167,18 @@ static void __osinfoAddProductIfRelationship(gpointer data, gpointer opaque)
  */
 OsinfoOsList *osinfo_db_unique_values_for_os_relationship(OsinfoDb *db, OsinfoProductRelationship relshp)
 {
+    OsinfoOsList *newList;
+    struct __osinfoProductCheckRelationshipArgs args;
+    GList *entities;
+
     g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
 
-    OsinfoOsList *newList = osinfo_oslist_new();
-    struct __osinfoProductCheckRelationshipArgs args = {OSINFO_LIST(newList), relshp};
-    GList *entities = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
+    newList = osinfo_oslist_new();
+
+    args.list = OSINFO_LIST(newList);
+    args.relshp = relshp;
+
+    entities = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
 
     g_list_foreach(entities, __osinfoAddProductIfRelationship, &args);
     g_list_free(entities);
@@ -1189,11 +1199,18 @@ OsinfoOsList *osinfo_db_unique_values_for_os_relationship(OsinfoDb *db, OsinfoPr
  */
 OsinfoPlatformList *osinfo_db_unique_values_for_platform_relationship(OsinfoDb *db, OsinfoProductRelationship relshp)
 {
+    OsinfoPlatformList *newList;
+    struct __osinfoProductCheckRelationshipArgs args;
+    GList *entities;
+
     g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
 
-    OsinfoPlatformList *newList = osinfo_platformlist_new();
-    struct __osinfoProductCheckRelationshipArgs args = {OSINFO_LIST(newList), relshp};
-    GList *entities = osinfo_list_get_elements(OSINFO_LIST(db->priv->platforms));
+    newList = osinfo_platformlist_new();
+
+    args.list = OSINFO_LIST(newList);
+    args.relshp = relshp;
+
+    entities = osinfo_list_get_elements(OSINFO_LIST(db->priv->platforms));
 
     g_list_foreach(entities, __osinfoAddProductIfRelationship, &args);
     g_list_free(entities);

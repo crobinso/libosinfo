@@ -118,16 +118,16 @@ void osinfo_filter_add_constraint(OsinfoFilter *filter,
                                   const gchar *propName,
                                   const gchar *propVal)
 {
+    GList *values = NULL;
+    gpointer origKey, foundValue;
+    gboolean found;
+
     g_return_if_fail(OSINFO_IS_FILTER(filter));
     g_return_if_fail(propName != NULL);
     g_return_if_fail(propVal != NULL);
 
     // First check if there exists an array of entries for this key
     // If not, create a ptrarray of strings for this key and insert into map
-    gboolean found;
-    gpointer origKey, foundValue;
-    GList *values = NULL;
-
     found = g_hash_table_lookup_extended(filter->priv->propertyConstraints, propName, &origKey, &foundValue);
     if (found) {
         g_hash_table_steal(filter->priv->propertyConstraints, propName);
@@ -190,10 +190,12 @@ GList *osinfo_filter_get_constraint_keys(OsinfoFilter *filter)
  */
 GList *osinfo_filter_get_constraint_values(OsinfoFilter *filter, const gchar *propName)
 {
+    GList *values;
+
     g_return_val_if_fail(OSINFO_IS_FILTER(filter), NULL);
     g_return_val_if_fail(propName != NULL, NULL);
 
-    GList *values = g_hash_table_lookup(filter->priv->propertyConstraints, propName);
+    values = g_hash_table_lookup(filter->priv->propertyConstraints, propName);
 
     return g_list_copy(values);
 }
@@ -246,10 +248,15 @@ static void osinfo_filter_match_iterator(gpointer key, gpointer value, gpointer 
 
 static gboolean osinfo_filter_matches_default(OsinfoFilter *filter, OsinfoEntity *entity)
 {
+    struct osinfo_filter_match_args args;
+
     g_return_val_if_fail(OSINFO_IS_FILTER(filter), FALSE);
     g_return_val_if_fail(OSINFO_IS_ENTITY(entity), FALSE);
 
-    struct osinfo_filter_match_args args = { filter, entity, TRUE };
+    args.filter = filter;
+    args.entity = entity;
+    args.matched = TRUE;
+
     g_hash_table_foreach(filter->priv->propertyConstraints,
                          osinfo_filter_match_iterator,
                          &args);

@@ -170,11 +170,11 @@ osinfo_entity_init(OsinfoEntity *entity)
  */
 void osinfo_entity_set_param(OsinfoEntity *entity, const gchar *key, const gchar *value)
 {
+    GList *values = NULL;
+
     g_return_if_fail(OSINFO_IS_ENTITY(entity));
     g_return_if_fail(key != NULL);
     g_return_if_fail(value != NULL);
-
-    GList *values = NULL;
 
     values = g_list_append(values, g_strdup(value));
     g_hash_table_replace(entity->priv->params, g_strdup(key), values);
@@ -259,16 +259,17 @@ void osinfo_entity_set_param_enum(OsinfoEntity *entity, const gchar *key, gint v
  */
 void osinfo_entity_add_param(OsinfoEntity *entity, const gchar *key, const gchar *value)
 {
+    GList *values = NULL;
+    gpointer origKey = NULL;
+    gpointer foundValue = NULL;
+    gboolean found;
+
     g_return_if_fail(OSINFO_IS_ENTITY(entity));
     g_return_if_fail(key != NULL);
     g_return_if_fail(value != NULL);
 
     // First check if there exists an existing array of entries for this key
     // If not, create a ptrarray of strings for this key and insert into map
-    gboolean found;
-    gpointer origKey, foundValue;
-    GList *values = NULL;
-
     found = g_hash_table_lookup_extended(entity->priv->params, key, &origKey, &foundValue);
     if (found) {
         g_hash_table_steal(entity->priv->params, key);
@@ -321,8 +322,11 @@ const gchar *osinfo_entity_get_id(OsinfoEntity *entity)
  */
 GList *osinfo_entity_get_param_keys(OsinfoEntity *entity)
 {
+    GList *keys;
+
     g_return_val_if_fail(OSINFO_IS_ENTITY(entity), NULL);
-    GList *keys = g_hash_table_get_keys(entity->priv->params);
+
+    keys = g_hash_table_get_keys(entity->priv->params);
     keys = g_list_append(keys, (char *)"id");
 
     return keys;
@@ -342,10 +346,10 @@ GList *osinfo_entity_get_param_keys(OsinfoEntity *entity)
  */
 const gchar *osinfo_entity_get_param_value(OsinfoEntity *entity, const gchar *key)
 {
+    GList *values;
+
     g_return_val_if_fail(OSINFO_IS_ENTITY(entity), NULL);
     g_return_val_if_fail(key != NULL, NULL);
-
-    GList *values;
 
     if (g_str_equal(key, OSINFO_ENTITY_PROP_ID))
         return entity->priv->id;
@@ -516,13 +520,15 @@ gint osinfo_entity_get_param_value_enum(OsinfoEntity *entity,
  */
 GList *osinfo_entity_get_param_value_list(OsinfoEntity *entity, const gchar *key)
 {
+    GList *values;
+
     g_return_val_if_fail(OSINFO_IS_ENTITY(entity), NULL);
     g_return_val_if_fail(key != NULL, NULL);
 
     if (g_str_equal(key, OSINFO_ENTITY_PROP_ID))
         return g_list_append(NULL, entity->priv->id);
 
-    GList *values = g_hash_table_lookup(entity->priv->params, key);
+    values = g_hash_table_lookup(entity->priv->params, key);
 
     return g_list_copy(values);
 }

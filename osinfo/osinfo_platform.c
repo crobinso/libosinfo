@@ -155,11 +155,14 @@ OsinfoDeviceList *osinfo_platform_get_all_devices(OsinfoPlatform *platform,
  */
 OsinfoDeviceList *osinfo_platform_get_devices(OsinfoPlatform *platform, OsinfoFilter *filter)
 {
+    OsinfoDeviceList *newList;
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_PLATFORM(platform), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceList *newList = osinfo_devicelist_new();
-    GList *tmp = platform->priv->deviceLinks;
+    newList = osinfo_devicelist_new();
+    tmp = platform->priv->deviceLinks;
 
     while (tmp) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(tmp->data);
@@ -186,11 +189,14 @@ OsinfoDeviceList *osinfo_platform_get_devices(OsinfoPlatform *platform, OsinfoFi
  */
 OsinfoDeviceLinkList *osinfo_platform_get_device_links(OsinfoPlatform *platform, OsinfoFilter *filter)
 {
+    OsinfoDeviceLinkList *newList;
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_PLATFORM(platform), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceLinkList *newList = osinfo_devicelinklist_new();
-    GList *tmp = platform->priv->deviceLinks;
+    newList = osinfo_devicelinklist_new();
+    tmp = platform->priv->deviceLinks;
 
     while (tmp) {
         OsinfoDeviceLink *devlink = OSINFO_DEVICELINK(tmp->data);
@@ -217,10 +223,12 @@ OsinfoDeviceLinkList *osinfo_platform_get_device_links(OsinfoPlatform *platform,
  */
 OsinfoDeviceLink *osinfo_platform_add_device(OsinfoPlatform *platform, OsinfoDevice *dev)
 {
+    OsinfoDeviceLink *devlink;
+
     g_return_val_if_fail(OSINFO_IS_PLATFORM(platform), NULL);
     g_return_val_if_fail(OSINFO_IS_DEVICE(dev), NULL);
 
-    OsinfoDeviceLink *devlink = osinfo_devicelink_new(dev);
+    devlink = osinfo_devicelink_new(dev);
 
     platform->priv->deviceLinks = g_list_prepend(platform->priv->deviceLinks,
                                                  devlink);

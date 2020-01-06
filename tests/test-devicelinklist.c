@@ -31,6 +31,11 @@ test_get_devices(void)
     OsinfoDeviceLink *ent3 = osinfo_devicelink_new(dev3);
     OsinfoDeviceLink *ent4 = osinfo_devicelink_new(dev4);
     OsinfoDeviceList *dev_list;
+    gboolean has1;
+    gboolean has2;
+    gboolean has3;
+    gboolean has4;
+    gboolean hasBad;
 
     osinfo_list_add(OSINFO_LIST(devlink_list), OSINFO_ENTITY(ent1));
     osinfo_list_add(OSINFO_LIST(devlink_list), OSINFO_ENTITY(ent2));
@@ -41,13 +46,12 @@ test_get_devices(void)
     dev_list = osinfo_devicelinklist_get_devices(devlink_list, NULL);
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(dev_list)), ==, 4);
 
-    gboolean has1 = FALSE;
-    gboolean has2 = FALSE;
-    gboolean has3 = FALSE;
-    gboolean has4 = FALSE;
-    gboolean hasBad = FALSE;
-    int i;
-    for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(dev_list)); i++) {
+    has1 = FALSE;
+    has2 = FALSE;
+    has3 = FALSE;
+    has4 = FALSE;
+    hasBad = FALSE;
+    for (int i = 0; i < osinfo_list_get_length(OSINFO_LIST(dev_list)); i++) {
         OsinfoDevice *dev = OSINFO_DEVICE(osinfo_list_get_nth(OSINFO_LIST(dev_list), i));
         if (dev == dev1)
             has1 = TRUE;

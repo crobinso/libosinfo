@@ -325,14 +325,16 @@ void osinfo_list_add_filtered(OsinfoList *list, OsinfoList *source, OsinfoFilter
 void osinfo_list_add_intersection(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *sourceTwo)
 {
     int i, len;
+    GHashTable *otherSet;
+    GHashTable *newSet;
 
     g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceOne));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceTwo));
 
     // Make set representation of otherList and newList
-    GHashTable *otherSet = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
-    GHashTable *newSet = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
+    otherSet = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
+    newSet = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
 
     // Add all from otherList to otherSet
     len = osinfo_list_get_length(sourceTwo);
@@ -373,6 +375,7 @@ void osinfo_list_add_union(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *
 {
     // Make set version of new list
     GHashTable *newSet;
+    int i, len;
 
     g_return_if_fail(OSINFO_IS_LIST(list));
     g_return_if_fail(osinfo_list_get_element_type(list) == osinfo_list_get_element_type(sourceOne));
@@ -381,7 +384,6 @@ void osinfo_list_add_union(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *
     newSet = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
 
     // Add all from first list to new list
-    int i, len;
     len = osinfo_list_get_length(sourceOne);
     for (i = 0; i < len; i++) {
         OsinfoEntity *entity = osinfo_list_get_nth(sourceOne, i);

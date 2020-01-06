@@ -35,18 +35,20 @@ test_device(void)
     OsinfoDevice *dev1 = osinfo_device_new("dev1");
     OsinfoDevice *dev2 = osinfo_device_new("dev2");
     OsinfoDevice *dev3 = osinfo_device_new("dev3");
+    OsinfoDeviceList *list;
+    OsinfoDevice *dev;
 
     osinfo_db_add_device(db, dev1);
     osinfo_db_add_device(db, dev2);
     osinfo_db_add_device(db, dev3);
 
-    OsinfoDeviceList *list = osinfo_db_get_device_list(db);
+    list = osinfo_db_get_device_list(db);
     g_assert_true(OSINFO_ENTITY(dev1) == osinfo_list_get_nth(OSINFO_LIST(list), 0));
     g_assert_true(OSINFO_ENTITY(dev2) == osinfo_list_get_nth(OSINFO_LIST(list), 1));
     g_assert_true(OSINFO_ENTITY(dev3) == osinfo_list_get_nth(OSINFO_LIST(list), 2));
     g_object_unref(list);
 
-    OsinfoDevice *dev = osinfo_db_get_device(db, "dev2");
+    dev = osinfo_db_get_device(db, "dev2");
     g_assert_nonnull(dev);
     g_assert_true(dev == dev2);
 
@@ -64,18 +66,20 @@ test_platform(void)
     OsinfoPlatform *hv1 = osinfo_platform_new("hv1");
     OsinfoPlatform *hv2 = osinfo_platform_new("hv2");
     OsinfoPlatform *hv3 = osinfo_platform_new("hv3");
+    OsinfoPlatformList *list;
+    OsinfoPlatform *hv;
 
     osinfo_db_add_platform(db, hv1);
     osinfo_db_add_platform(db, hv2);
     osinfo_db_add_platform(db, hv3);
 
-    OsinfoPlatformList *list = osinfo_db_get_platform_list(db);
+    list = osinfo_db_get_platform_list(db);
     g_assert_true(OSINFO_ENTITY(hv1) == osinfo_list_get_nth(OSINFO_LIST(list), 0));
     g_assert_true(OSINFO_ENTITY(hv2) == osinfo_list_get_nth(OSINFO_LIST(list), 1));
     g_assert_true(OSINFO_ENTITY(hv3) == osinfo_list_get_nth(OSINFO_LIST(list), 2));
     g_object_unref(list);
 
-    OsinfoPlatform *hv = osinfo_db_get_platform(db, "hv2");
+    hv = osinfo_db_get_platform(db, "hv2");
     g_assert_nonnull(hv);
     g_assert_true(hv == hv2);
 
@@ -93,18 +97,20 @@ test_os(void)
     OsinfoOs *os1 = osinfo_os_new("os1");
     OsinfoOs *os2 = osinfo_os_new("os2");
     OsinfoOs *os3 = osinfo_os_new("os3");
+    OsinfoOsList *list;
+    OsinfoOs *os;
 
     osinfo_db_add_os(db, os1);
     osinfo_db_add_os(db, os2);
     osinfo_db_add_os(db, os3);
 
-    OsinfoOsList *list = osinfo_db_get_os_list(db);
+    list = osinfo_db_get_os_list(db);
     g_assert_true(OSINFO_ENTITY(os1) == osinfo_list_get_nth(OSINFO_LIST(list), 0));
     g_assert_true(OSINFO_ENTITY(os2) == osinfo_list_get_nth(OSINFO_LIST(list), 1));
     g_assert_true(OSINFO_ENTITY(os3) == osinfo_list_get_nth(OSINFO_LIST(list), 2));
     g_object_unref(list);
 
-    OsinfoOs *os = osinfo_db_get_os(db, "os2");
+    os = osinfo_db_get_os(db, "os2");
     g_assert_nonnull(os);
     g_assert_true(os == os2);
 
@@ -123,6 +129,13 @@ test_prop_device(void)
     OsinfoDevice *dev1 = osinfo_device_new("dev1");
     OsinfoDevice *dev2 = osinfo_device_new("dev2");
     OsinfoDevice *dev3 = osinfo_device_new("dev3");
+    GList *uniq;
+    GList *tmp;
+    gboolean hasNetwork;
+    gboolean hasAudio;
+    gboolean hasInput;
+    gboolean hasDisplay;
+    gboolean hasBad;
 
     osinfo_entity_add_param(OSINFO_ENTITY(dev1), "class", "network");
     osinfo_entity_add_param(OSINFO_ENTITY(dev1), "class", "audio");
@@ -134,13 +147,13 @@ test_prop_device(void)
     osinfo_db_add_device(db, dev2);
     osinfo_db_add_device(db, dev3);
 
-    GList *uniq = osinfo_db_unique_values_for_property_in_device(db, "class");
-    GList *tmp = uniq;
-    gboolean hasNetwork = FALSE;
-    gboolean hasAudio = FALSE;
-    gboolean hasInput = FALSE;
-    gboolean hasDisplay = FALSE;
-    gboolean hasBad = FALSE;
+    uniq = osinfo_db_unique_values_for_property_in_device(db, "class");
+    tmp = uniq;
+    hasNetwork = FALSE;
+    hasAudio = FALSE;
+    hasInput = FALSE;
+    hasDisplay = FALSE;
+    hasBad = FALSE;
     while (tmp) {
         if (g_strcmp0(tmp->data, "network") == 0)
             hasNetwork = TRUE;
@@ -176,6 +189,12 @@ test_prop_platform(void)
     OsinfoPlatform *hv1 = osinfo_platform_new("hv1");
     OsinfoPlatform *hv2 = osinfo_platform_new("hv2");
     OsinfoPlatform *hv3 = osinfo_platform_new("hv3");
+    GList *uniq;
+    GList *tmp;
+    gboolean hasAcme;
+    gboolean hasFrog;
+    gboolean hasDog;
+    gboolean hasBad;
 
     osinfo_entity_add_param(OSINFO_ENTITY(hv1), "vendor", "acme");
     osinfo_entity_add_param(OSINFO_ENTITY(hv1), "vendor", "frog");
@@ -187,12 +206,12 @@ test_prop_platform(void)
     osinfo_db_add_platform(db, hv2);
     osinfo_db_add_platform(db, hv3);
 
-    GList *uniq = osinfo_db_unique_values_for_property_in_platform(db, "vendor");
-    GList *tmp = uniq;
-    gboolean hasAcme = FALSE;
-    gboolean hasFrog = FALSE;
-    gboolean hasDog = FALSE;
-    gboolean hasBad = FALSE;
+    uniq = osinfo_db_unique_values_for_property_in_platform(db, "vendor");
+    tmp = uniq;
+    hasAcme = FALSE;
+    hasFrog = FALSE;
+    hasDog = FALSE;
+    hasBad = FALSE;
     while (tmp) {
         if (g_strcmp0(tmp->data, "acme") == 0)
             hasAcme = TRUE;
@@ -225,6 +244,12 @@ test_prop_os(void)
     OsinfoOs *os1 = osinfo_os_new("os1");
     OsinfoOs *os2 = osinfo_os_new("os2");
     OsinfoOs *os3 = osinfo_os_new("os3");
+    GList *uniq;
+    GList *tmp;
+    gboolean hasAcme;
+    gboolean hasFrog;
+    gboolean hasDog;
+    gboolean hasBad;
 
     osinfo_entity_add_param(OSINFO_ENTITY(os1), "vendor", "acme");
     osinfo_entity_add_param(OSINFO_ENTITY(os1), "vendor", "frog");
@@ -236,12 +261,12 @@ test_prop_os(void)
     osinfo_db_add_os(db, os2);
     osinfo_db_add_os(db, os3);
 
-    GList *uniq = osinfo_db_unique_values_for_property_in_os(db, "vendor");
-    GList *tmp = uniq;
-    gboolean hasAcme = FALSE;
-    gboolean hasFrog = FALSE;
-    gboolean hasDog = FALSE;
-    gboolean hasBad = FALSE;
+    uniq = osinfo_db_unique_values_for_property_in_os(db, "vendor");
+    tmp = uniq;
+    hasAcme = FALSE;
+    hasFrog = FALSE;
+    hasDog = FALSE;
+    hasBad = FALSE;
     while (tmp) {
         if (g_strcmp0(tmp->data, "acme") == 0)
             hasAcme = TRUE;
@@ -277,6 +302,13 @@ test_rel_os(void)
     OsinfoOs *os3 = osinfo_os_new("os3");
     OsinfoOs *os4 = osinfo_os_new("os4");
     OsinfoOs *os5 = osinfo_os_new("os5");
+    OsinfoOsList *sublist;
+    gboolean hasOs1;
+    gboolean hasOs2;
+    gboolean hasOs3;
+    gboolean hasOs4;
+    gboolean hasOs5;
+    gboolean hasBad;
 
     osinfo_db_add_os(db, os1);
     osinfo_db_add_os(db, os2);
@@ -289,15 +321,14 @@ test_rel_os(void)
     osinfo_product_add_related(OSINFO_PRODUCT(os2), OSINFO_PRODUCT_RELATIONSHIP_CLONES, OSINFO_PRODUCT(os4));
     osinfo_product_add_related(OSINFO_PRODUCT(os3), OSINFO_PRODUCT_RELATIONSHIP_UPGRADES, OSINFO_PRODUCT(os5));
 
-    OsinfoOsList *sublist = osinfo_db_unique_values_for_os_relationship(db, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
-    gboolean hasOs1 = FALSE;
-    gboolean hasOs2 = FALSE;
-    gboolean hasOs3 = FALSE;
-    gboolean hasOs4 = FALSE;
-    gboolean hasOs5 = FALSE;
-    gboolean hasBad = FALSE;
-    int i;
-    for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(sublist)); i++) {
+    sublist = osinfo_db_unique_values_for_os_relationship(db, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
+    hasOs1 = FALSE;
+    hasOs2 = FALSE;
+    hasOs3 = FALSE;
+    hasOs4 = FALSE;
+    hasOs5 = FALSE;
+    hasBad = FALSE;
+    for (int i = 0; i < osinfo_list_get_length(OSINFO_LIST(sublist)); i++) {
         OsinfoOs *ent = OSINFO_OS(osinfo_list_get_nth(OSINFO_LIST(sublist), i));
 
         if (ent == os1)
@@ -325,7 +356,7 @@ test_rel_os(void)
 
     sublist = osinfo_db_unique_values_for_os_relationship(db, OSINFO_PRODUCT_RELATIONSHIP_UPGRADES);
     hasOs1 = hasOs2 = hasOs3 = hasOs4 = hasOs5 = hasBad = FALSE;
-    for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(sublist)); i++) {
+    for (int i = 0; i < osinfo_list_get_length(OSINFO_LIST(sublist)); i++) {
         OsinfoOs *ent = OSINFO_OS(osinfo_list_get_nth(OSINFO_LIST(sublist), i));
 
         if (ent == os1)
@@ -353,7 +384,7 @@ test_rel_os(void)
 
     sublist = osinfo_db_unique_values_for_os_relationship(db, OSINFO_PRODUCT_RELATIONSHIP_CLONES);
     hasOs1 = hasOs2 = hasOs3 = hasOs4 = hasOs5 = hasBad = FALSE;
-    for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(sublist)); i++) {
+    for (int i = 0; i < osinfo_list_get_length(OSINFO_LIST(sublist)); i++) {
         OsinfoOs *ent = OSINFO_OS(osinfo_list_get_nth(OSINFO_LIST(sublist), i));
 
         if (ent == os1)

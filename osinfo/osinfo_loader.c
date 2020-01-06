@@ -331,12 +331,13 @@ osinfo_loader_doc(const char *xpath,
     xmlNodePtr relnode;
     gchar *ret;
     xmlBufferPtr buf;
+    xmlXPathCompExprPtr comp;
 
     g_return_val_if_fail(ctxt != NULL, NULL);
     g_return_val_if_fail(xpath != NULL, NULL);
     g_return_val_if_fail(loader != NULL, NULL);
 
-    xmlXPathCompExprPtr comp = osinfo_loader_get_comp_xpath(loader, xpath);
+    comp = osinfo_loader_get_comp_xpath(loader, xpath);
 
     relnode = ctxt->node;
     obj = xmlXPathCompiledEval(comp, ctxt);
@@ -371,6 +372,8 @@ static void osinfo_loader_entity(OsinfoLoader *loader,
 {
     int i = 0;
     const gchar * const *langs = g_get_language_names();
+    xmlNodePtr *custom = NULL;
+    int ncustom;
 
     /* Standard well-known keys first, allow single value only */
     for (i = 0; keys != NULL && keys[i].name != NULL; i++) {
@@ -439,9 +442,8 @@ static void osinfo_loader_entity(OsinfoLoader *loader,
     }
 
     /* Then any site specific custom keys. x-... Can be repeated */
-    xmlNodePtr *custom = NULL;
-    int ncustom = osinfo_loader_nodeset("./*[substring(name(),1,2)='x-']",
-                                        loader, ctxt, &custom, err);
+    ncustom = osinfo_loader_nodeset("./*[substring(name(),1,2)='x-']",
+                                    loader, ctxt, &custom, err);
     if (error_is_set(err))
         return;
 
@@ -590,6 +592,7 @@ static void osinfo_loader_device(OsinfoLoader *loader,
                                  xmlNodePtr root,
                                  GError **err)
 {
+    OsinfoDevice *device;
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
     const OsinfoEntityKey keys[] = {
         { OSINFO_DEVICE_PROP_VENDOR, G_TYPE_STRING },
@@ -611,7 +614,7 @@ static void osinfo_loader_device(OsinfoLoader *loader,
         return;
     }
 
-    OsinfoDevice *device = osinfo_loader_get_device(loader, id);
+    device = osinfo_loader_get_device(loader, id);
     g_hash_table_remove(loader->priv->entity_refs, id);
     xmlFree(id);
 
@@ -632,19 +635,22 @@ static void osinfo_loader_device_link(OsinfoLoader *loader,
         return;
 
     for (i = 0; i < nrelated; i++) {
+        OsinfoDevice *dev;
+        OsinfoDeviceLink *devlink = NULL;
         const OsinfoEntityKey keys[] = {
             { OSINFO_DEVICELINK_PROP_DRIVER, G_TYPE_STRING },
             { NULL, G_TYPE_INVALID }
         };
         gchar *id = (gchar *)xmlGetProp(related[i], BAD_CAST "id");
+        gchar *supported;
+        xmlNodePtr saved;
         if (!id) {
             OSINFO_LOADER_SET_ERROR(err, _("Missing device link id property"));
             goto cleanup;
         }
-        OsinfoDevice *dev = osinfo_loader_get_device(loader, id);
+        dev = osinfo_loader_get_device(loader, id);
         xmlFree(id);
 
-        OsinfoDeviceLink *devlink = NULL;
         if (OSINFO_IS_PLATFORM(entity)) {
             devlink = osinfo_platform_add_device(OSINFO_PLATFORM(entity), dev);
         } else if (OSINFO_IS_OS(entity)) {
@@ -653,7 +659,7 @@ static void osinfo_loader_device_link(OsinfoLoader *loader,
             devlink = osinfo_deployment_add_device(OSINFO_DEPLOYMENT(entity), dev);
         }
 
-        gchar *supported = (gchar *)xmlGetProp(related[i],
+        supported = (gchar *)xmlGetProp(related[i],
                                                BAD_CAST OSINFO_DEVICELINK_PROP_SUPPORTED);
         if (supported != NULL) {
             osinfo_entity_set_param_boolean(OSINFO_ENTITY(devlink),
@@ -662,7 +668,7 @@ static void osinfo_loader_device_link(OsinfoLoader *loader,
             xmlFree(supported);
         }
 
-        xmlNodePtr saved = ctxt->node;
+        saved = ctxt->node;
         ctxt->node = related[i];
         osinfo_loader_entity(loader, OSINFO_ENTITY(devlink), keys, ctxt, root, err);
         ctxt->node = saved;
@@ -689,18 +695,20 @@ static void osinfo_loader_product_relshp(OsinfoLoader *loader,
         return;
 
     for (it = root->children; it; it = it->next) {
+        gchar *id;
+        OsinfoProduct *relproduct;
+
         if (it->type != XML_ELEMENT_NODE)
             continue;
 
         if (!xmlStrEqual(it->name, BAD_CAST name))
             continue;
 
-        gchar *id = (gchar *) xmlGetProp(it, BAD_CAST "id");
+        id = (gchar *) xmlGetProp(it, BAD_CAST "id");
         if (!id) {
             OSINFO_LOADER_SET_ERROR(err, _("Missing product upgrades id property"));
             goto cleanup;
         }
-        OsinfoProduct *relproduct;
         if (OSINFO_IS_PLATFORM(product))
             relproduct = OSINFO_PRODUCT(osinfo_loader_get_platform(loader, id));
         else
@@ -779,6 +787,7 @@ static void osinfo_loader_platform(OsinfoLoader *loader,
                                    xmlNodePtr root,
                                    GError **err)
 {
+    OsinfoPlatform *platform;
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
     if (!id) {
         OSINFO_LOADER_SET_ERROR(err, _("Missing platform id property"));
@@ -789,7 +798,7 @@ static void osinfo_loader_platform(OsinfoLoader *loader,
         return;
     }
 
-    OsinfoPlatform *platform = osinfo_loader_get_platform(loader, id);
+    platform = osinfo_loader_get_platform(loader, id);
     g_hash_table_remove(loader->priv->entity_refs, id);
     xmlFree(id);
 
@@ -813,6 +822,11 @@ static void osinfo_loader_deployment(OsinfoLoader *loader,
                                      xmlNodePtr root,
                                      GError **err)
 {
+    OsinfoOs *os;
+    OsinfoPlatform *platform;
+    OsinfoDeployment *deployment;
+    gchar *platformid;
+    gchar *osid;
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
     if (!id) {
         OSINFO_LOADER_SET_ERROR(err, _("Missing deployment id property"));
@@ -823,26 +837,26 @@ static void osinfo_loader_deployment(OsinfoLoader *loader,
         return;
     }
 
-    gchar *osid = osinfo_loader_string("string(./os/@id)", loader, ctxt, err);
+    osid = osinfo_loader_string("string(./os/@id)", loader, ctxt, err);
     if (!osid && 0) {
         OSINFO_LOADER_SET_ERROR(err, _("Missing deployment os id property"));
         xmlFree(id);
         return;
     }
-    OsinfoOs *os = osinfo_loader_get_os(loader, osid);
+    os = osinfo_loader_get_os(loader, osid);
     g_free(osid);
 
-    gchar *platformid = osinfo_loader_string("string(./platform/@id)", loader,
+    platformid = osinfo_loader_string("string(./platform/@id)", loader,
                                              ctxt, err);
     if (!platformid) {
         OSINFO_LOADER_SET_ERROR(err, _("Missing deployment platform id property"));
         xmlFree(id);
         return;
     }
-    OsinfoPlatform *platform = osinfo_loader_get_platform(loader, platformid);
+    platform = osinfo_loader_get_platform(loader, platformid);
     g_free(platformid);
 
-    OsinfoDeployment *deployment = osinfo_deployment_new(id, os, platform);
+    deployment = osinfo_deployment_new(id, os, platform);
     xmlFree(id);
 
     osinfo_loader_entity(loader, OSINFO_ENTITY(deployment), NULL, ctxt, root, err);
@@ -870,7 +884,7 @@ static void osinfo_loader_datamap(OsinfoLoader *loader,
     xmlNodePtr *nodes = NULL;
     guint i;
     int nnodes;
-
+    OsinfoDatamap *map;
     gchar *id = (gchar *)xmlGetProp(root, BAD_CAST "id");
 
     if (!id) {
@@ -882,7 +896,7 @@ static void osinfo_loader_datamap(OsinfoLoader *loader,
         return;
     }
 
-    OsinfoDatamap *map = osinfo_loader_get_datamap(loader, id);
+    map = osinfo_loader_get_datamap(loader, id);
     g_hash_table_remove(loader->priv->entity_refs, id);
 
     nnodes = osinfo_loader_nodeset("./entry", loader, ctxt, &nodes, err);
@@ -996,6 +1010,7 @@ static void osinfo_loader_install_script(OsinfoLoader *loader,
     int i, nnodes;
     unsigned int injection_methods = 0;
     GFlagsClass *flags_class;
+    OsinfoInstallScript *installScript;
 
     if (!id) {
         OSINFO_LOADER_SET_ERROR(err, _("Missing install script id property"));
@@ -1006,8 +1021,7 @@ static void osinfo_loader_install_script(OsinfoLoader *loader,
         xmlFree(id);
         return;
     }
-    OsinfoInstallScript *installScript = osinfo_loader_get_install_script(loader,
-                                                                          id);
+    installScript = osinfo_loader_get_install_script(loader, id);
     g_hash_table_remove(loader->priv->entity_refs, id);
     xmlFree(id);
 
@@ -1095,6 +1109,7 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
                                          GError **err)
 {
     xmlNodePtr *nodes = NULL;
+    gint nnodes;
     guint i;
 
     gchar *arch = (gchar *)xmlGetProp(root, BAD_CAST "arch");
@@ -1152,7 +1167,7 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
         xmlFree(installer_script);
     }
 
-    gint nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
+    nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
     if (error_is_set(err)) {
         g_object_unref(media);
         return NULL;
@@ -1255,6 +1270,7 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
                                          GError **err)
 {
     xmlNodePtr *nodes = NULL;
+    gint nnodes;
     guint i;
 
     gchar *arch = (gchar *)xmlGetProp(root, BAD_CAST "arch");
@@ -1269,7 +1285,7 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
     OsinfoTree *tree = osinfo_tree_new(id, arch);
     xmlFree(arch);
 
-    gint nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
+    nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
     if (error_is_set(err)) {
         g_object_unref(tree);
         return NULL;
@@ -1523,6 +1539,7 @@ static OsinfoDeviceDriver *osinfo_loader_driver(OsinfoLoader *loader,
                                                 GError **err)
 {
     xmlNodePtr *nodes = NULL;
+    gint nnodes;
     guint i;
 
     xmlChar *arch = xmlGetProp(root, BAD_CAST OSINFO_DEVICE_DRIVER_PROP_ARCHITECTURE);
@@ -1568,7 +1585,7 @@ static OsinfoDeviceDriver *osinfo_loader_driver(OsinfoLoader *loader,
         xmlFree(priority);
     }
 
-    gint nnodes = osinfo_loader_nodeset("./*", loader, ctxt, &nodes, err);
+    nnodes = osinfo_loader_nodeset("./*", loader, ctxt, &nodes, err);
     if (error_is_set(err)) {
         g_object_unref(G_OBJECT(driver));
         return NULL;
@@ -1618,6 +1635,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         { OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME, G_TYPE_STRING },
         { NULL, G_TYPE_INVALID }
     };
+    OsinfoOs *os;
 
     if (!id) {
         OSINFO_LOADER_SET_ERROR(err, _("Missing os id property"));
@@ -1628,7 +1646,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         return;
     }
 
-    OsinfoOs *os = osinfo_loader_get_os(loader, id);
+    os = osinfo_loader_get_os(loader, id);
     g_hash_table_remove(loader->priv->entity_refs, id);
 
     osinfo_loader_entity(loader, OSINFO_ENTITY(os), keys, ctxt, root, err);
@@ -1649,10 +1667,13 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        gchar *firmware_id;
+        OsinfoFirmware *firmware;
         xmlNodePtr saved = ctxt->node;
+
         ctxt->node = nodes[i];
-        gchar *firmware_id = osinfo_build_internal_id(relpath, id, i);
-        OsinfoFirmware *firmware = osinfo_loader_firmware(loader, ctxt, nodes[i], firmware_id, err);
+        firmware_id = osinfo_build_internal_id(relpath, id, i);
+        firmware = osinfo_loader_firmware(loader, ctxt, nodes[i], firmware_id, err);
         g_free(firmware_id);
         ctxt->node = saved;
         if (error_is_set(err))
@@ -1667,10 +1688,13 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        gchar *media_id;
+        OsinfoMedia *media;
         xmlNodePtr saved = ctxt->node;
+
         ctxt->node = nodes[i];
-        gchar *media_id = osinfo_build_internal_id(relpath, id, i);
-        OsinfoMedia *media = osinfo_loader_media(loader, ctxt, nodes[i], media_id, err);
+        media_id = osinfo_build_internal_id(relpath, id, i);
+        media = osinfo_loader_media(loader, ctxt, nodes[i], media_id, err);
         g_free(media_id);
         ctxt->node = saved;
         if (error_is_set(err))
@@ -1687,10 +1711,13 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        gchar *tree_id;
+        OsinfoTree *tree;
         xmlNodePtr saved = ctxt->node;
+
         ctxt->node = nodes[i];
-        gchar *tree_id = osinfo_build_internal_id(relpath, id, i);
-        OsinfoTree *tree = osinfo_loader_tree(loader, ctxt, nodes[i], tree_id, err);
+        tree_id = osinfo_build_internal_id(relpath, id, i);
+        tree = osinfo_loader_tree(loader, ctxt, nodes[i], tree_id, err);
         g_free(tree_id);
         ctxt->node = saved;
         if (error_is_set(err))
@@ -1707,10 +1734,13 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        gchar *image_id;
+        OsinfoImage *image;
         xmlNodePtr saved = ctxt->node;
+
         ctxt->node = nodes[i];
-        gchar *image_id = osinfo_build_internal_id(relpath, id, i);
-        OsinfoImage *image = osinfo_loader_image(loader, ctxt, nodes[i], image_id, err);
+        image_id = osinfo_build_internal_id(relpath, id, i);
+        image = osinfo_loader_image(loader, ctxt, nodes[i], image_id, err);
         g_free(image_id);
         ctxt->node = saved;
         if (error_is_set(err))
@@ -1727,12 +1757,13 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        OsinfoOsVariant *variant;
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        OsinfoOsVariant *variant = osinfo_loader_os_variant(loader,
-                                                            ctxt,
-                                                            nodes[i],
-                                                            err);
+        variant = osinfo_loader_os_variant(loader,
+                                           ctxt,
+                                           nodes[i],
+                                           err);
         ctxt->node = saved;
         if (error_is_set(err))
             goto cleanup;
@@ -1748,9 +1779,10 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        gchar *resources_id;
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *resources_id = osinfo_build_internal_id(relpath, id, i);
+        resources_id = osinfo_build_internal_id(relpath, id, i);
 
         osinfo_loader_resources_list(loader,
                                      ctxt,
@@ -1771,12 +1803,12 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        OsinfoInstallScript *script;
         gchar *scriptid = (gchar *)xmlGetProp(nodes[i], BAD_CAST "id");
         if (!scriptid) {
             OSINFO_LOADER_SET_ERROR(err, _("Missing OS install script property"));
             goto cleanup;
         }
-        OsinfoInstallScript *script;
         script = osinfo_loader_get_install_script(loader, scriptid);
         xmlFree(scriptid);
 
@@ -1790,14 +1822,17 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         goto cleanup;
 
     for (i = 0; i < nnodes; i++) {
+        gchar *driver_id;
+        OsinfoDeviceDriver *driver;
         xmlNodePtr saved = ctxt->node;
+
         ctxt->node = nodes[i];
-        gchar *driver_id = osinfo_build_internal_id(relpath, id, i);
-        OsinfoDeviceDriver *driver= osinfo_loader_driver(loader,
-                                                         ctxt,
-                                                         nodes[i],
-                                                         driver_id,
-                                                         err);
+        driver_id = osinfo_build_internal_id(relpath, id, i);
+        driver= osinfo_loader_driver(loader,
+                                     ctxt,
+                                     nodes[i],
+                                     driver_id,
+                                     err);
         g_free(driver_id);
         ctxt->node = saved;
         if (error_is_set(err))
@@ -1842,10 +1877,12 @@ static void osinfo_loader_root(OsinfoLoader *loader,
     }
 
     for (it = root->children; it; it = it->next) {
+        xmlNodePtr saved;
+
         if (it->type != XML_ELEMENT_NODE)
             continue;
 
-        xmlNodePtr saved = ctxt->node;
+        saved = ctxt->node;
         ctxt->node = it;
 
         if (xmlStrEqual(it->name, BAD_CAST "device"))
@@ -1953,11 +1990,8 @@ osinfo_loader_process_file_reg_ids(OsinfoLoader *loader,
                                    const char *busType,
                                    GError **err)
 {
-    GFileInputStream *is = g_file_read(file, NULL, err);
-    if (error_is_set(err))
-        return;
-
-    GDataInputStream *dis = g_data_input_stream_new(G_INPUT_STREAM(is));
+    GFileInputStream *is;
+    GDataInputStream *dis;
 
     gchar *data;
     gsize datalen;
@@ -1971,6 +2005,12 @@ osinfo_loader_process_file_reg_ids(OsinfoLoader *loader,
     gchar *subsystem = NULL;
     gchar *subvendor_id = NULL;
     gchar *subdevice_id = NULL;
+
+    is = g_file_read(file, NULL, err);
+    if (error_is_set(err))
+        return;
+
+    dis = g_data_input_stream_new(G_INPUT_STREAM(is));
 
     while ((data = g_data_input_stream_read_line(dis, &datalen, NULL, err)) != NULL) {
         char *tmp = data;
@@ -2025,16 +2065,22 @@ osinfo_loader_process_file_reg_ids(OsinfoLoader *loader,
                 ignore_value(subdevice_id);
                 ignore_value(subsystem);
             } else {
+                gchar *id;
+                gchar *key;
+                OsinfoLoaderEntityFiles *files;
+                OsinfoDevice *dev;
+                OsinfoEntity *entity;
+
                 FREE_BUF(device_buf);
                 WANT_ID(device_id);
                 WANT_REST(device);
                 SAVE_BUF(device_buf);
 
-                gchar *id = g_strdup_printf("%s/%s/%s/%s",
+                id = g_strdup_printf("%s/%s/%s/%s",
                                             baseURI, busType, vendor_id, device_id);
-                gchar *key = g_strdup_printf("/device/%s/%s-%s-%s",
+                key = g_strdup_printf("/device/%s/%s-%s-%s",
                                               baseURI + 7, busType, vendor_id, device_id);
-                OsinfoLoaderEntityFiles *files = g_hash_table_lookup(allentries, key);
+                files = g_hash_table_lookup(allentries, key);
                 g_free(key);
                 if (files && files->master) {
                     /* Native database has a matching entry that completely
@@ -2042,9 +2088,9 @@ osinfo_loader_process_file_reg_ids(OsinfoLoader *loader,
                     continue;
                 }
 
-                OsinfoDevice *dev = osinfo_loader_get_device(loader, id);
+                dev = osinfo_loader_get_device(loader, id);
                 g_hash_table_remove(loader->priv->entity_refs, id);
-                OsinfoEntity *entity = OSINFO_ENTITY(dev);
+                entity = OSINFO_ENTITY(dev);
                 osinfo_entity_set_param(entity,
                                         OSINFO_DEVICE_PROP_VENDOR_ID,
                                         vendor_id);
@@ -2120,6 +2166,7 @@ osinfo_loader_process_file_reg_xml(OsinfoLoader *loader,
     gchar *xml = NULL;
     gsize xmlLen;
     gchar *relpath = NULL;
+    gchar *uri = NULL;
 
     g_file_load_contents(file, NULL, &xml, &xmlLen, NULL, err);
     if (error_is_set(err))
@@ -2132,7 +2179,7 @@ osinfo_loader_process_file_reg_xml(OsinfoLoader *loader,
             g_warning("File %s does not have expected prefix", relpath);
         }
     }
-    gchar *uri = g_file_get_uri(file);
+    uri = g_file_get_uri(file);
     osinfo_loader_process_xml(loader,
                               relpath,
                               xml,
@@ -2287,9 +2334,12 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
         children = g_list_sort(children, osinfo_sort_files);
         tmp = children;
         while (tmp) {
+            const gchar *name;
+            GFile *ent;
+
             info = tmp->data;
-            const gchar *name = g_file_info_get_name(info);
-            GFile *ent = g_file_get_child(file, name);
+            name = g_file_info_get_name(info);
+            ent = g_file_get_child(file, name);
             type = g_file_info_get_attribute_uint32(info,
                                                     G_FILE_ATTRIBUTE_STANDARD_TYPE);
             if (type == G_FILE_TYPE_REGULAR) {
@@ -2341,16 +2391,17 @@ static void osinfo_loader_process_list(OsinfoLoader *loader,
     tmp = dirs;
     while (tmp && *tmp) {
         OsinfoLoaderDataFormat fmt = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(*tmp), "data-format"));
+        GHashTable *entries;
 
         if (fmt != OSINFO_DATA_FORMAT_NATIVE) {
             tmp++;
             continue;
         }
 
-        GHashTable *entries = g_hash_table_new_full(g_str_hash,
-                                                    g_str_equal,
-                                                    g_free,
-                                                    (GDestroyNotify)osinfo_loader_entity_files_free);
+        entries = g_hash_table_new_full(g_str_hash,
+                                        g_str_equal,
+                                        g_free,
+                                        (GDestroyNotify)osinfo_loader_entity_files_free);
 
         osinfo_loader_find_files(loader, *tmp, *tmp, entries, skipMissing, &lerr);
         if (lerr) {

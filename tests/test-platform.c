@@ -36,21 +36,26 @@ test_devices(void)
     OsinfoPlatform *hv = osinfo_platform_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
     OsinfoDevice *dev2 = osinfo_device_new("rtl8139");
+    OsinfoDeviceLink *link1;
+    OsinfoDeviceLink *link2;
+    OsinfoDeviceList *devices;
+    gboolean hasDev1;
+    gboolean hasDev2;
+    gboolean hasBad;
 
-    OsinfoDeviceLink *link1 = osinfo_platform_add_device(hv, dev1);
+    link1 = osinfo_platform_add_device(hv, dev1);
     osinfo_entity_add_param(OSINFO_ENTITY(link1), "device", "pci-e1000");
-    OsinfoDeviceLink *link2 = osinfo_platform_add_device(hv, dev2);
+    link2 = osinfo_platform_add_device(hv, dev2);
     osinfo_entity_add_param(OSINFO_ENTITY(link2), "device", "pci-8139");
 
-    OsinfoDeviceList *devices = osinfo_platform_get_devices(hv, NULL);
+    devices = osinfo_platform_get_devices(hv, NULL);
 
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 2);
 
-    gboolean hasDev1 = FALSE;
-    gboolean hasDev2 = FALSE;
-    gboolean hasBad = FALSE;
-    int i;
-    for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(devices)); i++) {
+    hasDev1 = FALSE;
+    hasDev2 = FALSE;
+    hasBad = FALSE;
+    for (int i = 0; i < osinfo_list_get_length(OSINFO_LIST(devices)); i++) {
         OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(devices), i);
         g_assert_true(OSINFO_IS_DEVICE(ent));
         if (OSINFO_DEVICE(ent) == dev1)
@@ -78,21 +83,25 @@ test_devices_filter(void)
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
     OsinfoDevice *dev2 = osinfo_device_new("sb16");
     OsinfoFilter *filter = osinfo_filter_new();
+    OsinfoDeviceLink *link1;
+    OsinfoDeviceLink *link2;
+    OsinfoDeviceList *devices;
+    OsinfoEntity *ent;
 
     osinfo_entity_add_param(OSINFO_ENTITY(dev1), "class", "network");
     osinfo_entity_add_param(OSINFO_ENTITY(dev2), "class", "audio");
 
-    OsinfoDeviceLink *link1 = osinfo_platform_add_device(hv, dev1);
+    link1 = osinfo_platform_add_device(hv, dev1);
     osinfo_entity_add_param(OSINFO_ENTITY(link1), "device", "pci-e1000");
-    OsinfoDeviceLink *link2 = osinfo_platform_add_device(hv, dev2);
+    link2 = osinfo_platform_add_device(hv, dev2);
     osinfo_entity_add_param(OSINFO_ENTITY(link2), "device", "isa-sb16");
 
     osinfo_filter_add_constraint(filter, "class", "network");
 
-    OsinfoDeviceList *devices = osinfo_platform_get_devices(hv, filter);
+    devices = osinfo_platform_get_devices(hv, filter);
 
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 1);
-    OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(devices), 0);
+    ent = osinfo_list_get_nth(OSINFO_LIST(devices), 0);
     g_assert_true(OSINFO_IS_DEVICE(ent));
     g_assert_true(OSINFO_DEVICE(ent) == dev1);
 

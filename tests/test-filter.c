@@ -24,12 +24,14 @@ test_basic(void)
 {
     OsinfoFilter *filter = osinfo_filter_new();
     OsinfoDevice *dev = osinfo_device_new("e1000");
+    GList *keys;
+    GList *values;
 
     g_assert_true(OSINFO_IS_FILTER(filter));
     g_assert_true(osinfo_filter_matches(filter, OSINFO_ENTITY(dev)));
 
     osinfo_filter_add_constraint(filter, "class", "network");
-    GList *keys = osinfo_filter_get_constraint_keys(filter);
+    keys = osinfo_filter_get_constraint_keys(filter);
     g_assert_nonnull(keys);
     g_assert_cmpstr(keys->data, ==, "class");
     g_assert_null(keys->next);
@@ -51,7 +53,7 @@ test_basic(void)
     g_assert_null(keys->next->next);
     g_list_free(keys);
 
-    GList *values = osinfo_filter_get_constraint_values(filter, "bus");
+    values = osinfo_filter_get_constraint_values(filter, "bus");
     g_assert_nonnull(values);
     g_assert_cmpstr(values->data, ==, "pci");
     g_assert_null(values->next);

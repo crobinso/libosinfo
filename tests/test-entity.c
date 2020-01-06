@@ -58,16 +58,19 @@ static void
 test_empty_props(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
+    GList *keys;
+    const gchar *value;
+    GList *values;
 
-    GList *keys = osinfo_entity_get_param_keys(ent);
+    keys = osinfo_entity_get_param_keys(ent);
     g_assert_nonnull(keys);
     g_assert_null(keys->next);
     g_list_free(keys);
 
-    const gchar *value = osinfo_entity_get_param_value(ent, "wibble");
+    value = osinfo_entity_get_param_value(ent, "wibble");
     g_assert_null(value);
 
-    GList *values = osinfo_entity_get_param_value_list(ent, "wibble");
+    values = osinfo_entity_get_param_value_list(ent, "wibble");
     g_assert_null(values);
 
     g_object_unref(ent);
@@ -77,21 +80,24 @@ static void
 test_single_prop_value(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
+    GList *keys;
+    const gchar *value;
+    GList *values;
 
     osinfo_entity_add_param(ent, "hello", "world");
 
-    GList *keys = osinfo_entity_get_param_keys(ent);
+    keys = osinfo_entity_get_param_keys(ent);
     g_assert_nonnull(keys);
     g_assert_null(keys->next->next);
     g_assert_cmpstr(keys->data, ==, "hello");
     g_list_free(keys);
 
-    const gchar *value = osinfo_entity_get_param_value(ent, "hello");
+    value = osinfo_entity_get_param_value(ent, "hello");
     g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "world");
     g_assert_null(value);
 
-    GList *values = osinfo_entity_get_param_value_list(ent, "hello");
+    values = osinfo_entity_get_param_value_list(ent, "hello");
     g_assert_nonnull(values);
     g_assert_null(values->next);
     g_assert_cmpstr(values->data, ==, "world");
@@ -104,23 +110,26 @@ static void
 test_multi_prop_value(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
+    GList *keys;
+    const gchar *value;
+    GList *values;
 
     osinfo_entity_add_param(ent, "hello", "world");
     osinfo_entity_add_param(ent, "hello", "fred");
     osinfo_entity_add_param(ent, "hello", "elephant");
 
-    GList *keys = osinfo_entity_get_param_keys(ent);
+    keys = osinfo_entity_get_param_keys(ent);
     g_assert_nonnull(keys);
     g_assert_null(keys->next->next);
     g_assert_cmpstr(keys->data, ==, "hello");
     g_list_free(keys);
 
-    const gchar *value = osinfo_entity_get_param_value(ent, "hello");
+    value = osinfo_entity_get_param_value(ent, "hello");
     g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "world");
     g_assert_null(value);
 
-    GList *values = osinfo_entity_get_param_value_list(ent, "hello");
+    values = osinfo_entity_get_param_value_list(ent, "hello");
     g_assert_nonnull(values);
     g_assert_nonnull(values->next);
     g_assert_nonnull(values->next->next);
@@ -137,17 +146,26 @@ static void
 test_multi_props(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
+    GList *keys;
+    GList *tmp;
+    const gchar *value;
+    GList *values;
+    gboolean foundHello;
+    gboolean foundFish;
+    gboolean foundKevin;
+    gboolean foundBad;
+
 
     osinfo_entity_add_param(ent, "hello", "world");
     osinfo_entity_add_param(ent, "fish", "food");
     osinfo_entity_add_param(ent, "kevin", "bacon");
 
-    GList *keys = osinfo_entity_get_param_keys(ent);
-    GList *tmp = keys;
-    gboolean foundHello = FALSE;
-    gboolean foundFish = FALSE;
-    gboolean foundKevin = FALSE;
-    gboolean foundBad = FALSE;
+    keys = osinfo_entity_get_param_keys(ent);
+    tmp = keys;
+    foundHello = FALSE;
+    foundFish = FALSE;
+    foundKevin = FALSE;
+    foundBad = FALSE;
     while (tmp) {
         if (g_strcmp0(tmp->data, "hello") == 0)
             foundHello = TRUE;
@@ -165,14 +183,14 @@ test_multi_props(void)
     g_assert_false(foundBad);
     g_list_free(keys);
 
-    const gchar *value = osinfo_entity_get_param_value(ent, "hello");
+    value = osinfo_entity_get_param_value(ent, "hello");
     g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "fish");
     g_assert_cmpstr(value, ==, "food");
     value = osinfo_entity_get_param_value(ent, "kevin");
     g_assert_cmpstr(value, ==, "bacon");
 
-    GList *values = osinfo_entity_get_param_value_list(ent, "hello");
+    values = osinfo_entity_get_param_value_list(ent, "hello");
     g_assert_nonnull(values);
     g_assert_null(values->next);
     g_assert_cmpstr(values->data, ==, "world");
@@ -198,15 +216,21 @@ static void
 test_multi_props_clear(void)
 {
     OsinfoEntity *ent = g_object_new(osinfo_dummy_get_type(), "id", "myentity", NULL);
+    GList *keys;
+    GList *tmp;
+    gboolean foundHello;
+    gboolean foundFish;
+    gboolean foundBad;
+    const gchar *value;
 
     osinfo_entity_add_param(ent, "hello", "world");
     osinfo_entity_add_param(ent, "fish", "food");
 
-    GList *keys = osinfo_entity_get_param_keys(ent);
-    GList *tmp = keys;
-    gboolean foundHello = FALSE;
-    gboolean foundFish = FALSE;
-    gboolean foundBad = FALSE;
+    keys = osinfo_entity_get_param_keys(ent);
+    tmp = keys;
+    foundHello = FALSE;
+    foundFish = FALSE;
+    foundBad = FALSE;
     while (tmp) {
         if (g_strcmp0(tmp->data, "hello") == 0)
             foundHello = TRUE;
@@ -221,7 +245,7 @@ test_multi_props_clear(void)
     g_assert_false(foundBad);
     g_list_free(keys);
 
-    const gchar *value = osinfo_entity_get_param_value(ent, "hello");
+    value = osinfo_entity_get_param_value(ent, "hello");
     g_assert_cmpstr(value, ==, "world");
     value = osinfo_entity_get_param_value(ent, "fish");
     g_assert_cmpstr(value, ==, "food");

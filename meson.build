@@ -123,6 +123,7 @@ libosinfo_check_cflags = [
     '-Wcoverage-mismatch',
     '-Wcpp',
     '-Wdate-time',
+    '-Wdeclaration-after-statement',
     '-Wdeprecated-declarations',
     '-Wdisabled-optimization',
     '-Wdiv-by-zero',

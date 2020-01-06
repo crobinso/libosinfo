@@ -251,11 +251,14 @@ osinfo_product_init(OsinfoProduct *product)
  */
 OsinfoProductList *osinfo_product_get_related(OsinfoProduct *product, OsinfoProductRelationship relshp)
 {
+    OsinfoProductList *newList;
+    GList *tmp;
+
     g_return_val_if_fail(OSINFO_IS_PRODUCT(product), NULL);
 
     // Create our list
-    OsinfoProductList *newList = osinfo_productlist_new();
-    GList *tmp = product->priv->productLinks;
+    newList = osinfo_productlist_new();
+    tmp = product->priv->productLinks;
 
     while (tmp) {
         struct _OsinfoProductProductLink *prodlink = tmp->data;
@@ -280,10 +283,12 @@ OsinfoProductList *osinfo_product_get_related(OsinfoProduct *product, OsinfoProd
  */
 void osinfo_product_add_related(OsinfoProduct *product, OsinfoProductRelationship relshp, OsinfoProduct *otherproduct)
 {
+    struct _OsinfoProductProductLink *productLink;
+
     g_return_if_fail(OSINFO_IS_PRODUCT(product));
     g_return_if_fail(OSINFO_IS_PRODUCT(otherproduct));
 
-    struct _OsinfoProductProductLink *productLink = g_new0(struct _OsinfoProductProductLink, 1);
+    productLink = g_new0(struct _OsinfoProductProductLink, 1);
 
     g_object_ref(otherproduct);
     productLink->otherProduct = otherproduct;

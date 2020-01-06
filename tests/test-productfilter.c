@@ -49,12 +49,13 @@ test_basic(void)
     OsinfoProductFilter *productfilter = osinfo_productfilter_new();
     OsinfoProduct *product1 = osinfo_dummy_new("pretty");
     OsinfoProduct *product2 = osinfo_dummy_new("ugly");
+    GList *tmp;
 
     g_assert_true(OSINFO_IS_PRODUCTFILTER(productfilter));
     g_assert_true(osinfo_filter_matches(OSINFO_FILTER(productfilter), OSINFO_ENTITY(product1)));
 
     osinfo_productfilter_add_product_constraint(productfilter, OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM, product1);
-    GList *tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
+    tmp = osinfo_productfilter_get_product_constraint_values(productfilter,
                                                                OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM);
     g_assert_nonnull(tmp);
     g_assert_true(tmp->data == product1);

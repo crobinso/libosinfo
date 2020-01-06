@@ -37,13 +37,16 @@ test_devices(void)
     OsinfoOs *os = osinfo_os_new("awesome");
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
     OsinfoDevice *dev2 = osinfo_device_new("rtl8139");
+    OsinfoDeviceLink *link1;
+    OsinfoDeviceLink *link2;
+    OsinfoDeviceList *devices;
 
-    OsinfoDeviceLink *link1 = osinfo_os_add_device(os, dev1);
+    link1 = osinfo_os_add_device(os, dev1);
     osinfo_entity_add_param(OSINFO_ENTITY(link1), "device", "pci-e1000");
-    OsinfoDeviceLink *link2 = osinfo_os_add_device(os, dev2);
+    link2 = osinfo_os_add_device(os, dev2);
     osinfo_entity_add_param(OSINFO_ENTITY(link2), "device", "pci-8139");
 
-    OsinfoDeviceList *devices = osinfo_os_get_devices(os, NULL);
+    devices = osinfo_os_get_devices(os, NULL);
 
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 2);
     g_assert_true(osinfo_list_get_nth(OSINFO_LIST(devices), 0) == OSINFO_ENTITY(dev1));
@@ -150,21 +153,25 @@ test_devices_filter(void)
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
     OsinfoDevice *dev2 = osinfo_device_new("sb16");
     OsinfoFilter *filter = osinfo_filter_new();
+    OsinfoDeviceLink *link1;
+    OsinfoDeviceLink *link2;
+    OsinfoDeviceList *devices;
+    OsinfoEntity *ent;
 
     osinfo_entity_add_param(OSINFO_ENTITY(dev1), "class", "network");
     osinfo_entity_add_param(OSINFO_ENTITY(dev2), "class", "audio");
 
-    OsinfoDeviceLink *link1 = osinfo_os_add_device(os, dev1);
+    link1 = osinfo_os_add_device(os, dev1);
     osinfo_entity_add_param(OSINFO_ENTITY(link1), "driver", "pci-e1000");
-    OsinfoDeviceLink *link2 = osinfo_os_add_device(os, dev2);
+    link2 = osinfo_os_add_device(os, dev2);
     osinfo_entity_add_param(OSINFO_ENTITY(link2), "driver", "isa-sb16");
 
     osinfo_filter_add_constraint(filter, "class", "network");
 
-    OsinfoDeviceList *devices = osinfo_os_get_devices(os, filter);
+    devices = osinfo_os_get_devices(os, filter);
 
     g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(devices)), ==, 1);
-    OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(devices), 0);
+    ent = osinfo_list_get_nth(OSINFO_LIST(devices), 0);
     g_assert_true(OSINFO_IS_DEVICE(ent));
     g_assert_true(OSINFO_DEVICE(ent) == dev1);
 
@@ -183,13 +190,15 @@ test_device_driver(void)
     OsinfoDevice *dev1 = osinfo_device_new("e1000");
     OsinfoDevice *dev2 = osinfo_device_new("rtl8139");
     OsinfoFilter *filter = osinfo_filter_new();
+    OsinfoDeviceLink *link1;
+    OsinfoDeviceLink *link2;
 
     osinfo_entity_add_param(OSINFO_ENTITY(dev1), "class", "network");
     osinfo_entity_add_param(OSINFO_ENTITY(dev2), "class", "network");
 
-    OsinfoDeviceLink *link1 = osinfo_os_add_device(os, dev1);
+    link1 = osinfo_os_add_device(os, dev1);
     osinfo_entity_add_param(OSINFO_ENTITY(link1), "driver", "pci-e1000");
-    OsinfoDeviceLink *link2 = osinfo_os_add_device(os, dev2);
+    link2 = osinfo_os_add_device(os, dev2);
     osinfo_entity_add_param(OSINFO_ENTITY(link2), "driver", "pci-8139");
 
     osinfo_filter_add_constraint(filter, "class", "network");

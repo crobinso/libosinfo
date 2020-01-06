@@ -277,12 +277,13 @@ osinfo_os_get_devices_internal(OsinfoOs *os,
                                OsinfoFilter *filter,
                                gboolean include_unsupported)
 {
+    OsinfoDeviceList *newList;
+    GList *tmp = NULL;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceList *newList = osinfo_devicelist_new();
-    GList *tmp = NULL;
-
+    newList = osinfo_devicelist_new();
     tmp = os->priv->deviceLinks;
 
     while (tmp) {
@@ -455,12 +456,13 @@ osinfo_os_get_device_links_internal(OsinfoOs *os,
                                     OsinfoFilter *filter,
                                     gboolean include_unsupported)
 {
+    OsinfoDeviceLinkList *newList;
+    GList *tmp = NULL;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    OsinfoDeviceLinkList *newList = osinfo_devicelinklist_new();
-    GList *tmp = NULL;
-
+    newList = osinfo_devicelinklist_new();
     tmp = os->priv->deviceLinks;
 
     while (tmp) {
@@ -591,11 +593,12 @@ OsinfoDeviceLinkList *osinfo_os_get_all_device_links(OsinfoOs *os, OsinfoFilter 
  */
 OsinfoDeviceLink *osinfo_os_add_device(OsinfoOs *os, OsinfoDevice *dev)
 {
+    OsinfoDeviceLink *devlink;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(OSINFO_IS_DEVICE(dev), NULL);
 
-    OsinfoDeviceLink *devlink = osinfo_devicelink_new(dev);
-
+    devlink = osinfo_devicelink_new(dev);
     os->priv->deviceLinks = g_list_append(os->priv->deviceLinks, devlink);
 
     return devlink;
@@ -664,9 +667,11 @@ int osinfo_os_get_release_status(OsinfoOs *os)
  */
 OsinfoMediaList *osinfo_os_get_media_list(OsinfoOs *os)
 {
+    OsinfoMediaList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoMediaList *newList = osinfo_medialist_new();
+    newList = osinfo_medialist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->medias));
 
@@ -699,10 +704,11 @@ void osinfo_os_add_media(OsinfoOs *os, OsinfoMedia *media)
  */
 OsinfoTreeList *osinfo_os_get_tree_list(OsinfoOs *os)
 {
+    OsinfoTreeList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoTreeList *newList = osinfo_treelist_new();
-
+    newList = osinfo_treelist_new();
     osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->trees));
 
     return newList;
@@ -736,9 +742,11 @@ void osinfo_os_add_tree(OsinfoOs *os, OsinfoTree *tree)
  */
 OsinfoImageList *osinfo_os_get_image_list(OsinfoOs *os)
 {
+    OsinfoImageList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoImageList *newList = osinfo_imagelist_new();
+    newList = osinfo_imagelist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->images));
 
@@ -775,9 +783,11 @@ void osinfo_os_add_image(OsinfoOs *os, OsinfoImage *image)
  */
 OsinfoOsVariantList *osinfo_os_get_variant_list(OsinfoOs *os)
 {
+    OsinfoOsVariantList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoOsVariantList *newList = osinfo_os_variantlist_new();
+    newList = osinfo_os_variantlist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->variants));
 
@@ -913,9 +923,11 @@ osinfo_os_get_resources_internal(OsinfoOs *os,
 static OsinfoResourcesList *
 osinfo_os_get_minimum_resources_without_inheritance(OsinfoOs *os)
 {
+    OsinfoResourcesList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+    newList = osinfo_resourceslist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList), OSINFO_LIST(os->priv->minimum));
 
@@ -949,9 +961,11 @@ OsinfoResourcesList *osinfo_os_get_minimum_resources(OsinfoOs *os)
 static OsinfoResourcesList *
 osinfo_os_get_maximum_resources_without_inheritance(OsinfoOs *os)
 {
+    OsinfoResourcesList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+    newList = osinfo_resourceslist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList),
                         OSINFO_LIST(os->priv->maximum));
@@ -988,9 +1002,11 @@ OsinfoResourcesList *osinfo_os_get_maximum_resources(OsinfoOs *os)
 static OsinfoResourcesList *
 osinfo_os_get_recommended_resources_without_inheritance(OsinfoOs *os)
 {
+    OsinfoResourcesList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+    newList = osinfo_resourceslist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList),
                         OSINFO_LIST(os->priv->recommended));
@@ -1026,9 +1042,11 @@ OsinfoResourcesList *osinfo_os_get_recommended_resources(OsinfoOs *os)
 static OsinfoResourcesList *
 osinfo_os_get_network_install_resources_without_inheritance(OsinfoOs *os)
 {
+    OsinfoResourcesList *newList;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
 
-    OsinfoResourcesList *newList = osinfo_resourceslist_new();
+    newList = osinfo_resourceslist_new();
 
     osinfo_list_add_all(OSINFO_LIST(newList),
                         OSINFO_LIST(os->priv->network_install));
@@ -1491,17 +1509,17 @@ static void get_all_firmwares_cb(OsinfoProduct *product, gpointer user_data)
  */
 OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filter)
 {
+    struct GetAllFirmwaresData foreach_data;
+
     g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
     g_return_val_if_fail(!filter || OSINFO_IS_FILTER(filter), NULL);
 
-    struct GetAllFirmwaresData foreach_data = {
-        .filter = filter,
-        .unsupported_filter = NULL,
-        .firmwares = osinfo_firmwarelist_new(),
-        .unsupported_firmwares = osinfo_firmwarelist_new()
-    };
-
+    foreach_data.filter = filter;
+    foreach_data.unsupported_filter = NULL;
+    foreach_data.firmwares = osinfo_firmwarelist_new();
+    foreach_data.unsupported_firmwares = osinfo_firmwarelist_new();
     foreach_data.unsupported_filter = osinfo_filter_new();
+
     osinfo_filter_add_constraint(foreach_data.unsupported_filter,
                                  OSINFO_FIRMWARE_PROP_SUPPORTED,
                                  "false");
