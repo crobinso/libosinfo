@@ -193,6 +193,19 @@ osinfo_image_class_init(OsinfoImageClass *klass)
                                 G_PARAM_READWRITE |
                                 G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_URL, pspec);
+
+    /**
+     * OsinfoImage:cloud-init:
+     *
+     * Whether the image supports cloud-init customizations or not.
+     */
+    pspec = g_param_spec_string("cloud-init",
+                                "CloudInit",
+                                _("Whether cloud-init customizations are supported or not"),
+                                FALSE /* default value */,
+                                G_PARAM_READWRITE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass, PROP_CLOUD_INIT, pspec);
 }
 
 static void
