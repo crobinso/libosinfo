@@ -289,7 +289,6 @@ void osinfo_install_config_param_set_value_map(OsinfoInstallConfigParam *config_
 {
     g_return_if_fail(OSINFO_IS_INSTALL_CONFIG_PARAM(config_param));
 
-    if (config_param->priv->value_map != NULL)
-        g_object_unref(G_OBJECT(config_param->priv->value_map));
+    g_clear_object(&config_param->priv->value_map);
     config_param->priv->value_map = g_object_ref(datamap);
 }
