@@ -16,12 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library. If not, see
  * <http://www.gnu.org/licenses/>.
- *
- * Authors:
- *   Arjun Roy <arroy@redhat.com>
- *   Christophe Fergeau <cfergeau@redhat.com>
- *   Daniel P. Berrange <berrange@redhat.com>
- *   Zeeshan Ali <zeenix@redhat.com>
  */
 
 #include <glib-object.h>
