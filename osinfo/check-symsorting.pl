@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# Copyright (C) 2012-2013 Red Hat, Inc.
+# Copyright (C) 2012-2020 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
