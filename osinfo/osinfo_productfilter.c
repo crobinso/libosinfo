@@ -149,6 +149,8 @@ gint osinfo_productfilter_add_product_constraint(OsinfoProductFilter *productfil
  */
 void osinfo_productfilter_clear_product_constraint(OsinfoProductFilter *productfilter, OsinfoProductRelationship relshp)
 {
+    g_return_if_fail(OSINFO_IS_PRODUCTFILTER(productfilter));
+
     g_hash_table_remove(productfilter->priv->productConstraints, (gpointer) relshp);
 }
 
@@ -161,6 +163,8 @@ void osinfo_productfilter_clear_product_constraint(OsinfoProductFilter *productf
  */
 void osinfo_productfilter_clear_product_constraints(OsinfoProductFilter *productfilter)
 {
+    g_return_if_fail(OSINFO_IS_PRODUCTFILTER(productfilter));
+
     g_hash_table_remove_all(productfilter->priv->productConstraints);
 }
 
