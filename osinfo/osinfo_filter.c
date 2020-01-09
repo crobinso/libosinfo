@@ -145,6 +145,8 @@ void osinfo_filter_add_constraint(OsinfoFilter *filter,
  */
 void osinfo_filter_clear_constraint(OsinfoFilter *filter, const gchar *propName)
 {
+    g_return_if_fail(OSINFO_IS_FILTER(filter));
+
     g_hash_table_remove(filter->priv->propertyConstraints, propName);
 }
 
@@ -157,6 +159,8 @@ void osinfo_filter_clear_constraint(OsinfoFilter *filter, const gchar *propName)
  */
 void osinfo_filter_clear_constraints(OsinfoFilter *filter)
 {
+    g_return_if_fail(OSINFO_IS_FILTER(filter));
+
     g_hash_table_remove_all(filter->priv->propertyConstraints);
 }
 
