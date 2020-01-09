@@ -170,6 +170,8 @@ osinfo_devicelinkfilter_init(OsinfoDeviceLinkFilter *devicelinkfilter)
  */
 OsinfoFilter *osinfo_devicelinkfilter_get_target_filter(OsinfoDeviceLinkFilter *filter)
 {
+    g_return_val_if_fail(OSINFO_IS_DEVICELINKFILTER(filter), NULL);
+
     return filter->priv->targetFilter;
 }
 
