@@ -131,8 +131,6 @@ struct _OsinfoDbPrivate
 
 G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDb, osinfo_db, G_TYPE_OBJECT);
 
-static void osinfo_db_finalize(GObject *object);
-
 static void
 osinfo_db_finalize(GObject *object)
 {
