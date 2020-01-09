@@ -111,6 +111,7 @@ centos-8:
     - *osinfo-db-tools-build
     - *libosinfo-build
     - *libosinfo-check
+    - *libosinfo-rpm
   image: quay.io/libvirt/buildenv-libosinfo-centos-8:latest
 
 debian-9:
