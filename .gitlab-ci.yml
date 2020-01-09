@@ -107,6 +107,7 @@ centos-8:
   script:
     - *multilib-rpm
     - *environment
+    - *dco
     - *osinfo-db-tools-build
     - *libosinfo-build
     - *libosinfo-check
