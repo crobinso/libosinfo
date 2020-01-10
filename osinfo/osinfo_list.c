@@ -35,13 +35,13 @@
  *
  */
 
-typedef struct
+struct _OsinfoListPrivate
 {
     GPtrArray *array;
     GHashTable *entities;
 
     GType elementType;
-} OsinfoListPrivate;
+};
 
 enum {
     PROP_O,
