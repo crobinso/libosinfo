@@ -125,6 +125,7 @@ libosinfo_private_headers = [
     'osinfo_media_private.h',
     'osinfo_resources_private.h',
     'osinfo_util_private.h',
+    'osinfo_macros.h',
     'ignore-value.h',
 ]
 
