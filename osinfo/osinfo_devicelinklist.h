@@ -25,43 +25,14 @@
 #ifndef __OSINFO_DEVICELINKLIST_H__
 # define __OSINFO_DEVICELINKLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DEVICELINKLIST                  (osinfo_devicelinklist_get_type ())
-# define OSINFO_DEVICELINKLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEVICELINKLIST, OsinfoDeviceLinkList))
-# define OSINFO_IS_DEVICELINKLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEVICELINKLIST))
-# define OSINFO_DEVICELINKLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEVICELINKLIST, OsinfoDeviceLinkListClass))
-# define OSINFO_IS_DEVICELINKLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEVICELINKLIST))
-# define OSINFO_DEVICELINKLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEVICELINKLIST, OsinfoDeviceLinkListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDeviceLinkList        OsinfoDeviceLinkList;
-
-typedef struct _OsinfoDeviceLinkListClass   OsinfoDeviceLinkListClass;
-
-typedef struct _OsinfoDeviceLinkListPrivate OsinfoDeviceLinkListPrivate;
-
-/* object */
-struct _OsinfoDeviceLinkList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDeviceLinkListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDeviceLinkListClass
-{
-    /*< private >*/
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_devicelinklist_get_type(void);
+# define OSINFO_TYPE_DEVICELINKLIST (osinfo_devicelinklist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLinkList,
+                                           osinfo_devicelinklist,
+                                           OSINFO,
+                                           DEVICELINKLIST,
+                                           OsinfoList)
 
 OsinfoDeviceLinkList *osinfo_devicelinklist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

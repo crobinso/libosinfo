@@ -24,41 +24,14 @@
 # define __OSINFO_DATAMAP_H__
 
 # include <osinfo/osinfo_entity.h>
+# include "osinfo/osinfo_macros.h"
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DATAMAP                  (osinfo_datamap_get_type ())
-# define OSINFO_DATAMAP(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamap))
-# define OSINFO_IS_DATAMAP(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DATAMAP))
-# define OSINFO_DATAMAP_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DATAMAP, OsinfoDatamapClass))
-# define OSINFO_IS_DATAMAP_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DATAMAP))
-# define OSINFO_DATAMAP_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamapClass))
-
-typedef struct _OsinfoDatamap        OsinfoDatamap;
-typedef struct _OsinfoDatamapClass   OsinfoDatamapClass;
-typedef struct _OsinfoDatamapPrivate OsinfoDatamapPrivate;
-
-/* object */
-struct _OsinfoDatamap
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDatamapPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDatamapClass
-{
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_datamap_get_type(void);
+# define OSINFO_TYPE_DATAMAP (osinfo_datamap_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDatamap,
+                                           osinfo_datamap,
+                                           OSINFO,
+                                           DATAMAP,
+                                           OsinfoEntity);
 
 OsinfoDatamap *osinfo_datamap_new(const gchar *id);
 

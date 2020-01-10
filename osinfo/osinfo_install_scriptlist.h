@@ -24,43 +24,14 @@
 #ifndef __OSINFO_INSTALL_SCRIPTLIST_H__
 # define __OSINFO_INSTALL_SCRIPTLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_INSTALL_SCRIPTLIST                  (osinfo_install_scriptlist_get_type ())
-# define OSINFO_INSTALL_SCRIPTLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_SCRIPTLIST, OsinfoInstallScriptList))
-# define OSINFO_IS_INSTALL_SCRIPTLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_SCRIPTLIST))
-# define OSINFO_INSTALL_SCRIPTLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_SCRIPTLIST, OsinfoInstallScriptListClass))
-# define OSINFO_IS_INSTALL_SCRIPTLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_SCRIPTLIST))
-# define OSINFO_INSTALL_SCRIPTLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_SCRIPTLIST, OsinfoInstallScriptListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoInstallScriptList        OsinfoInstallScriptList;
-
-typedef struct _OsinfoInstallScriptListClass   OsinfoInstallScriptListClass;
-
-typedef struct _OsinfoInstallScriptListPrivate OsinfoInstallScriptListPrivate;
-
-/* object */
-struct _OsinfoInstallScriptList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoInstallScriptListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoInstallScriptListClass
-{
-    /*< private >*/
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_install_scriptlist_get_type(void);
+# define OSINFO_TYPE_INSTALL_SCRIPTLIST (osinfo_install_scriptlist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallScriptList,
+                                           osinfo_install_scriptlist,
+                                           OSINFO,
+                                           INSTALL_SCRIPTLIST,
+                                           OsinfoList)
 
 OsinfoInstallScriptList *osinfo_install_scriptlist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

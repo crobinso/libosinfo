@@ -25,43 +25,14 @@
 #ifndef __OSINFO_DEPLOYMENTLIST_H__
 # define __OSINFO_DEPLOYMENTLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DEPLOYMENTLIST                  (osinfo_deploymentlist_get_type ())
-# define OSINFO_DEPLOYMENTLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentList))
-# define OSINFO_IS_DEPLOYMENTLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEPLOYMENTLIST))
-# define OSINFO_DEPLOYMENTLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListClass))
-# define OSINFO_IS_DEPLOYMENTLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEPLOYMENTLIST))
-# define OSINFO_DEPLOYMENTLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDeploymentList        OsinfoDeploymentList;
-
-typedef struct _OsinfoDeploymentListClass   OsinfoDeploymentListClass;
-
-typedef struct _OsinfoDeploymentListPrivate OsinfoDeploymentListPrivate;
-
-/* object */
-struct _OsinfoDeploymentList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDeploymentListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDeploymentListClass
-{
-    /*< private >*/
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_deploymentlist_get_type(void);
+# define OSINFO_TYPE_DEPLOYMENTLIST (osinfo_deploymentlist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeploymentList,
+                                           osinfo_deploymentlist,
+                                           OSINFO,
+                                           DEPLOYMENTLIST,
+                                           OsinfoList)
 
 OsinfoDeploymentList *osinfo_deploymentlist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

@@ -21,43 +21,14 @@
 #ifndef __OSINFO_PRODUCTFILTER_H__
 # define __OSINFO_PRODUCTFILTER_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_PRODUCTFILTER                  (osinfo_productfilter_get_type ())
-# define OSINFO_PRODUCTFILTER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilter))
-# define OSINFO_IS_PRODUCTFILTER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PRODUCTFILTER))
-# define OSINFO_PRODUCTFILTER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterClass))
-# define OSINFO_IS_PRODUCTFILTER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PRODUCTFILTER))
-# define OSINFO_PRODUCTFILTER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoProductFilter        OsinfoProductFilter;
-
-typedef struct _OsinfoProductFilterClass  OsinfoProductFilterClass;
-
-typedef struct _OsinfoProductFilterPrivate OsinfoProductFilterPrivate;
-
-/* object */
-struct _OsinfoProductFilter
-{
-    OsinfoFilter parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoProductFilterPrivate *priv;
-};
-
-/* class */
-struct _OsinfoProductFilterClass
-{
-    /*< private >*/
-    OsinfoFilterClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_productfilter_get_type(void);
+# define OSINFO_TYPE_PRODUCTFILTER (osinfo_productfilter_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoProductFilter,
+                                           osinfo_productfilter,
+                                           OSINFO,
+                                           PRODUCTFILTER,
+                                           OsinfoFilter)
 
 OsinfoProductFilter *osinfo_productfilter_new(void);
 

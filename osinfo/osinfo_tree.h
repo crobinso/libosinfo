@@ -25,6 +25,8 @@
 #ifndef __OSINFO_TREE_H__
 # define __OSINFO_TREE_H__
 
+# include "osinfo/osinfo_macros.h"
+
 GQuark
 osinfo_tree_error_quark (void) G_GNUC_CONST;
 
@@ -45,22 +47,12 @@ typedef enum {
     OSINFO_TREE_ERROR_NOT_SUPPORTED_PROTOCOL
 } OsinfoTreeError;
 
-
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_TREE                  (osinfo_tree_get_type ())
-# define OSINFO_TREE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_TREE, OsinfoTree))
-# define OSINFO_IS_TREE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_TREE))
-# define OSINFO_TREE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_TREE, OsinfoTreeClass))
-# define OSINFO_IS_TREE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_TREE))
-# define OSINFO_TREE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_TREE, OsinfoTreeClass))
-
-typedef struct _OsinfoTree        OsinfoTree;
-
-typedef struct _OsinfoTreeClass   OsinfoTreeClass;
-
-typedef struct _OsinfoTreePrivate OsinfoTreePrivate;
+# define OSINFO_TYPE_TREE (osinfo_tree_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoTree,
+                                           osinfo_tree,
+                                           OSINFO,
+                                           TREE,
+                                           OsinfoEntity)
 
 # define OSINFO_TREE_PROP_ARCHITECTURE     "architecture"
 # define OSINFO_TREE_PROP_URL              "url"
@@ -73,29 +65,6 @@ typedef struct _OsinfoTreePrivate OsinfoTreePrivate;
 # define OSINFO_TREE_PROP_INITRD           "initrd"
 # define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
 # define OSINFO_TREE_PROP_VARIANT          "variant"
-
-
-/* object */
-struct _OsinfoTree
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoTreePrivate *priv;
-};
-
-/* class */
-struct _OsinfoTreeClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_tree_get_type(void);
 
 OsinfoTree *osinfo_tree_new(const gchar *id, const gchar *architecture);
 OsinfoTree *osinfo_tree_create_from_location(const gchar *location,

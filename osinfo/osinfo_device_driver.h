@@ -26,26 +26,14 @@
 #ifndef __OSINFO_DEVICE_DRIVER_H__
 # define __OSINFO_DEVICE_DRIVER_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DEVICE_DRIVER                  (osinfo_device_driver_get_type ())
-# define OSINFO_DEVICE_DRIVER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
-                                                     OSINFO_TYPE_DEVICE_DRIVER, OsinfoDeviceDriver))
-# define OSINFO_IS_DEVICE_DRIVER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
-                                                     OSINFO_TYPE_DEVICE_DRIVER))
-# define OSINFO_DEVICE_DRIVER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), \
-                                                     OSINFO_TYPE_DEVICE_DRIVER, OsinfoDeviceDriverClass))
-# define OSINFO_IS_DEVICE_DRIVER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), \
-                                                     OSINFO_TYPE_DEVICE_DRIVER))
-# define OSINFO_DEVICE_DRIVER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), \
-                                                     OSINFO_TYPE_DEVICE_DRIVER, OsinfoDeviceDriverClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDeviceDriver        OsinfoDeviceDriver;
-
-typedef struct _OsinfoDeviceDriverClass   OsinfoDeviceDriverClass;
-
-typedef struct _OsinfoDeviceDriverPrivate OsinfoDeviceDriverPrivate;
+# define OSINFO_TYPE_DEVICE_DRIVER (osinfo_device_driver_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceDriver,
+                                           osinfo_device_driver,
+                                           OSINFO,
+                                           DEVICE_DRIVER,
+                                           OsinfoEntity)
 
 # define OSINFO_DEVICE_DRIVER_PROP_ARCHITECTURE    "arch"
 # define OSINFO_DEVICE_DRIVER_PROP_LOCATION        "location"
@@ -55,28 +43,6 @@ typedef struct _OsinfoDeviceDriverPrivate OsinfoDeviceDriverPrivate;
 # define OSINFO_DEVICE_DRIVER_PROP_SIGNED          "signed"
 # define OSINFO_DEVICE_DRIVER_PROP_PRIORITY        "priority"
 # define OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY     50
-
-/* object */
-struct _OsinfoDeviceDriver
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDeviceDriverPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDeviceDriverClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_device_driver_get_type(void);
 
 const gchar *osinfo_device_driver_get_architecture(OsinfoDeviceDriver *driver);
 const gchar *osinfo_device_driver_get_location(OsinfoDeviceDriver *driver);

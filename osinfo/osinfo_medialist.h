@@ -24,43 +24,12 @@
 #ifndef __OSINFO_MEDIALIST_H__
 # define __OSINFO_MEDIALIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_MEDIALIST                  (osinfo_medialist_get_type ())
-# define OSINFO_MEDIALIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_MEDIALIST, OsinfoMediaList))
-# define OSINFO_IS_MEDIALIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_MEDIALIST))
-# define OSINFO_MEDIALIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_MEDIALIST, OsinfoMediaListClass))
-# define OSINFO_IS_MEDIALIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_MEDIALIST))
-# define OSINFO_MEDIALIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_MEDIALIST, OsinfoMediaListClass))
-
-typedef struct _OsinfoMediaList        OsinfoMediaList;
-
-typedef struct _OsinfoMediaListClass   OsinfoMediaListClass;
-
-typedef struct _OsinfoMediaListPrivate OsinfoMediaListPrivate;
-
-/* object */
-struct _OsinfoMediaList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoMediaListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoMediaListClass
-{
-    /*< private >*/
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_medialist_get_type(void);
+# define OSINFO_TYPE_MEDIALIST (osinfo_medialist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoMediaList,
+                                           osinfo_medialist,
+                                           OSINFO,
+                                           MEDIALIST,
+                                           OsinfoList)
 
 OsinfoMediaList *osinfo_medialist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

@@ -24,49 +24,20 @@
 #ifndef __OSINFO_IMAGE_H__
 # define __OSINFO_IMAGE_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_IMAGE                  (osinfo_image_get_type ())
-# define OSINFO_IMAGE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_IMAGE, OsinfoImage))
-# define OSINFO_IS_IMAGE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_IMAGE))
-# define OSINFO_IMAGE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_IMAGE, OsinfoImageClass))
-# define OSINFO_IS_IMAGE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_IMAGE))
-# define OSINFO_IMAGE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_IMAGE, OsinfoImageClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoImage        OsinfoImage;
-
-typedef struct _OsinfoImageClass   OsinfoImageClass;
-
-typedef struct _OsinfoImagePrivate OsinfoImagePrivate;
+# define OSINFO_TYPE_IMAGE (osinfo_image_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoImage,
+                                           osinfo_image,
+                                           OSINFO,
+                                           IMAGE,
+                                           OsinfoEntity)
 
 # define OSINFO_IMAGE_PROP_ARCHITECTURE      "architecture"
 # define OSINFO_IMAGE_PROP_FORMAT            "format"
 # define OSINFO_IMAGE_PROP_URL               "url"
 # define OSINFO_IMAGE_PROP_CLOUD_INIT        "cloud-init"
 # define OSINFO_IMAGE_PROP_VARIANT           "variant"
-
-/* object */
-struct _OsinfoImage
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoImagePrivate *priv;
-};
-
-/* class */
-struct _OsinfoImageClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_image_get_type(void);
 
 OsinfoImage *osinfo_image_new(const gchar *id, const gchar *architecture, const gchar *format);
 const gchar *osinfo_image_get_architecture(OsinfoImage *image);

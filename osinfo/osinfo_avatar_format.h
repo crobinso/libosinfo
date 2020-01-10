@@ -23,57 +23,19 @@
 #ifndef __OSINFO_AVATAR_FORMAT_H__
 # define __OSINFO_AVATAR_FORMAT_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_AVATAR_FORMAT              \
-         (osinfo_avatar_format_get_type ())
+# include "osinfo/osinfo_macros.h"
 
-# define OSINFO_AVATAR_FORMAT(obj)              \
-         (G_TYPE_CHECK_INSTANCE_CAST ((obj),    \
-          OSINFO_TYPE_AVATAR_FORMAT,            \
-          OsinfoAvatarFormat))
-
-# define OSINFO_IS_AVATAR_FORMAT(obj)           \
-         (G_TYPE_CHECK_INSTANCE_TYPE ((obj),    \
-          OSINFO_TYPE_AVATAR_FORMAT))
-
-# define OSINFO_AVATAR_FORMAT_CLASS(klass)      \
-         (G_TYPE_CHECK_CLASS_CAST ((klass),     \
-          OSINFO_TYPE_AVATAR_FORMAT,            \
-          OsinfoAvatarFormatClass))
-
-# define OSINFO_IS_AVATAR_FORMAT_CLASS(klass)   \
-         (G_TYPE_CHECK_CLASS_TYPE ((klass),     \
-          OSINFO_TYPE_AVATAR_FORMAT))
-
-# define OSINFO_AVATAR_FORMAT_GET_CLASS(obj)    \
-         (G_TYPE_INSTANCE_GET_CLASS ((obj),     \
-          OSINFO_TYPE_AVATAR_FORMAT,            \
-          OsinfoAvatarFormatClass))
-
-typedef struct _OsinfoAvatarFormat OsinfoAvatarFormat;
-typedef struct _OsinfoAvatarFormatClass OsinfoAvatarFormatClass;
+# define OSINFO_TYPE_AVATAR_FORMAT (osinfo_avatar_format_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoAvatarFormat,
+                                           osinfo_avatar_format,
+                                           OSINFO,
+                                           AVATAR_FORMAT,
+                                           OsinfoEntity)
 
 # define OSINFO_AVATAR_FORMAT_PROP_MIME_TYPE "mime-type"
 # define OSINFO_AVATAR_FORMAT_PROP_WIDTH     "width"
 # define OSINFO_AVATAR_FORMAT_PROP_HEIGHT    "height"
 # define OSINFO_AVATAR_FORMAT_PROP_ALPHA     "alpha"
-
-/* object */
-struct _OsinfoAvatarFormat
-{
-    OsinfoEntity parent_instance;
-};
-
-/* class */
-struct _OsinfoAvatarFormatClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-};
-
-GType osinfo_avatar_format_get_type(void);
 
 OsinfoAvatarFormat *osinfo_avatar_format_new(void);
 

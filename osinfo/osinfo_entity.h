@@ -23,45 +23,16 @@
 #ifndef __OSINFO_ENTITY_H__
 # define __OSINFO_ENTITY_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_ENTITY                  (osinfo_entity_get_type ())
-# define OSINFO_ENTITY(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_ENTITY, OsinfoEntity))
-# define OSINFO_IS_ENTITY(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_ENTITY))
-# define OSINFO_ENTITY_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_ENTITY, OsinfoEntityClass))
-# define OSINFO_IS_ENTITY_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_ENTITY))
-# define OSINFO_ENTITY_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_ENTITY, OsinfoEntityClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoEntity        OsinfoEntity;
-
-typedef struct _OsinfoEntityClass   OsinfoEntityClass;
-
-typedef struct _OsinfoEntityPrivate OsinfoEntityPrivate;
+# define OSINFO_TYPE_ENTITY (osinfo_entity_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoEntity,
+                                           osinfo_entity,
+                                           OSINFO,
+                                           ENTITY,
+                                           GObject)
 
 # define OSINFO_ENTITY_PROP_ID "id"
-
-/* object */
-struct _OsinfoEntity
-{
-    GObject parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoEntityPrivate *priv;
-};
-
-/* class */
-struct _OsinfoEntityClass
-{
-    /*< private >*/
-    GObjectClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_entity_get_type(void);
 
 const gchar *osinfo_entity_get_id(OsinfoEntity *entity);
 

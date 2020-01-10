@@ -25,45 +25,18 @@
 #ifndef __OSINFO_FIRMWARE_H__
 # define __OSINFO_FIRMWARE_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_FIRMWARE                  (osinfo_firmware_get_type ())
-# define OSINFO_FIRMWARE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_FIRMWARE, OsinfoFirmware))
-# define OSINFO_IS_FIRMWARE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_FIRMWARE))
-# define OSINFO_FIRMWARE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_FIRMWARE, OsinfoFirmwareClass))
-# define OSINFO_IS_FIRMWARE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_FIRMWARE))
-# define OSINFO_FIRMWARE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_FIRMWARE, OsinfoFirmwareClass))
+# include "osinfo/osinfo_macros.h"
+
+# define OSINFO_TYPE_FIRMWARE (osinfo_firmware_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoFirmware,
+                                           osinfo_firmware,
+                                           OSINFO,
+                                           FIRMWARE,
+                                           OsinfoEntity)
 
 # define OSINFO_FIRMWARE_PROP_ARCHITECTURE   "architecture"
 # define OSINFO_FIRMWARE_PROP_TYPE           "type"
 # define OSINFO_FIRMWARE_PROP_SUPPORTED      "supported"
-
-typedef struct _OsinfoFirmware          OsinfoFirmware;
-typedef struct _OsinfoFirmwareClass     OsinfoFirmwareClass;
-typedef struct _OsinfoFirmwarePrivate   OsinfoFirmwarePrivate;
-
-/* object */
-struct _OsinfoFirmware
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoFirmwarePrivate *priv;
-};
-
-/* class */
-struct _OsinfoFirmwareClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_firmware_get_type(void);
 
 OsinfoFirmware *osinfo_firmware_new(const gchar *id, const gchar *architecture, const gchar *type);
 const gchar *osinfo_firmware_get_architecture(OsinfoFirmware *firmware);

@@ -25,43 +25,14 @@
 #ifndef __OSINFO_PRODUCTLIST_H__
 # define __OSINFO_PRODUCTLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_PRODUCTLIST                  (osinfo_productlist_get_type ())
-# define OSINFO_PRODUCTLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PRODUCTLIST, OsinfoProductList))
-# define OSINFO_IS_PRODUCTLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PRODUCTLIST))
-# define OSINFO_PRODUCTLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PRODUCTLIST, OsinfoProductListClass))
-# define OSINFO_IS_PRODUCTLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PRODUCTLIST))
-# define OSINFO_PRODUCTLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PRODUCTLIST, OsinfoProductListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoProductList        OsinfoProductList;
-
-typedef struct _OsinfoProductListClass   OsinfoProductListClass;
-
-typedef struct _OsinfoProductListPrivate OsinfoProductListPrivate;
-
-/* object */
-struct _OsinfoProductList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoProductListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoProductListClass
-{
-    /*< private >*/
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_productlist_get_type(void);
+# define OSINFO_TYPE_PRODUCTLIST (osinfo_productlist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoProductList,
+                                           osinfo_productlist,
+                                           OSINFO,
+                                           PRODUCTLIST,
+                                           OsinfoList)
 
 OsinfoProductList *osinfo_productlist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

@@ -23,15 +23,14 @@
 #ifndef __OSINFO_INSTALL_CONFIG_H__
 # define __OSINFO_INSTALL_CONFIG_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_INSTALL_CONFIG                  (osinfo_install_config_get_type ())
-# define OSINFO_INSTALL_CONFIG(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfig))
-# define OSINFO_IS_INSTALL_CONFIG(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_CONFIG))
-# define OSINFO_INSTALL_CONFIG_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigClass))
-# define OSINFO_IS_INSTALL_CONFIG_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_CONFIG))
-# define OSINFO_INSTALL_CONFIG_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigClass))
+# include "osinfo/osinfo_macros.h"
+
+# define OSINFO_TYPE_INSTALL_CONFIG (osinfo_install_config_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfig,
+                                           osinfo_install_config,
+                                           OSINFO,
+                                           INSTALL_CONFIG,
+                                           OsinfoEntity)
 
 # define OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH  "hardware-arch"
 
@@ -67,32 +66,6 @@
 # define OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING "driver-signing"
 
 # define OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL "installation-url"
-
-typedef struct _OsinfoInstallConfig        OsinfoInstallConfig;
-typedef struct _OsinfoInstallConfigClass   OsinfoInstallConfigClass;
-typedef struct _OsinfoInstallConfigPrivate OsinfoInstallConfigPrivate;
-
-/* object */
-struct _OsinfoInstallConfig
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoInstallConfigPrivate *priv;
-};
-
-/* class */
-struct _OsinfoInstallConfigClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_install_config_get_type(void);
 
 OsinfoInstallConfig *osinfo_install_config_new(const gchar *id);
 

@@ -30,44 +30,14 @@
 #ifndef __OSINFO_DB_H__
 # define __OSINFO_DB_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DB                  (osinfo_db_get_type ())
-# define OSINFO_DB(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DB, OsinfoDb))
-# define OSINFO_IS_DB(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DB))
-# define OSINFO_DB_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DB, OsinfoDbClass))
-# define OSINFO_IS_DB_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DB))
-# define OSINFO_DB_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DB, OsinfoDbClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDb        OsinfoDb;
-
-typedef struct _OsinfoDbClass   OsinfoDbClass;
-
-typedef struct _OsinfoDbPrivate OsinfoDbPrivate;
-
-
-/* object */
-struct _OsinfoDb
-{
-    GObject parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDbPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDbClass
-{
-    /*< private >*/
-    GObjectClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_db_get_type(void);
+# define OSINFO_TYPE_DB (osinfo_db_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDb,
+                                           osinfo_db,
+                                           OSINFO,
+                                           DB,
+                                           GObject)
 
 OsinfoDb *osinfo_db_new(void);
 

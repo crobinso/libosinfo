@@ -24,43 +24,14 @@
 #ifndef __OSINFO_TREELIST_H__
 # define __OSINFO_TREELIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_TREELIST                  (osinfo_treelist_get_type ())
-# define OSINFO_TREELIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_TREELIST, OsinfoTreeList))
-# define OSINFO_IS_TREELIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_TREELIST))
-# define OSINFO_TREELIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_TREELIST, OsinfoTreeListClass))
-# define OSINFO_IS_TREELIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_TREELIST))
-# define OSINFO_TREELIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_TREELIST, OsinfoTreeListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoTreeList        OsinfoTreeList;
-
-typedef struct _OsinfoTreeListClass   OsinfoTreeListClass;
-
-typedef struct _OsinfoTreeListPrivate OsinfoTreeListPrivate;
-
-/* object */
-struct _OsinfoTreeList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoTreeListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoTreeListClass
-{
-    /*< private >*/
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_treelist_get_type(void);
+# define OSINFO_TYPE_TREELIST (osinfo_treelist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoTreeList,
+                                           osinfo_treelist,
+                                           OSINFO,
+                                           TREELIST,
+                                           OsinfoList)
 
 OsinfoTreeList *osinfo_treelist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

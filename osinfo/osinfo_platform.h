@@ -29,40 +29,12 @@
 /*
  * Type macros.
  */
-# define OSINFO_TYPE_PLATFORM                  (osinfo_platform_get_type ())
-# define OSINFO_PLATFORM(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatform))
-# define OSINFO_IS_PLATFORM(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PLATFORM))
-# define OSINFO_PLATFORM_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PLATFORM, OsinfoPlatformClass))
-# define OSINFO_IS_PLATFORM_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PLATFORM))
-# define OSINFO_PLATFORM_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatformClass))
-
-typedef struct _OsinfoPlatform        OsinfoPlatform;
-
-typedef struct _OsinfoPlatformClass   OsinfoPlatformClass;
-
-typedef struct _OsinfoPlatformPrivate OsinfoPlatformPrivate;
-
-/* object */
-struct _OsinfoPlatform
-{
-    OsinfoProduct parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoPlatformPrivate *priv;
-};
-
-/* class */
-struct _OsinfoPlatformClass
-{
-    /*< private >*/
-    OsinfoProductClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_platform_get_type(void);
+# define OSINFO_TYPE_PLATFORM (osinfo_platform_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoPlatform,
+                                           osinfo_platform,
+                                           OSINFO,
+                                           PLATFORM,
+                                           OsinfoProduct)
 
 OsinfoPlatform *osinfo_platform_new(const gchar *id);
 

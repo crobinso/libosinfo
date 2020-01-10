@@ -36,50 +36,20 @@
 #ifndef __OSINFO_OS_H__
 # define __OSINFO_OS_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_OS                  (osinfo_os_get_type ())
-# define OSINFO_OS(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_OS, OsinfoOs))
-# define OSINFO_IS_OS(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_OS))
-# define OSINFO_OS_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_OS, OsinfoOsClass))
-# define OSINFO_IS_OS_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_OS))
-# define OSINFO_OS_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_OS, OsinfoOsClass))
+# include "osinfo/osinfo_macros.h"
 
-/*
- * Forward declared in osinfo_install_script.h
- *
- * typedef struct _OsinfoOs        OsinfoOs;
- */
-typedef struct _OsinfoOsClass   OsinfoOsClass;
-
-typedef struct _OsinfoOsPrivate OsinfoOsPrivate;
+# define OSINFO_TYPE_OS (osinfo_os_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOs,
+                                           osinfo_os,
+                                           OSINFO,
+                                           OS,
+                                           OsinfoProduct)
 
 # define OSINFO_OS_PROP_FAMILY                 "family"
 # define OSINFO_OS_PROP_DISTRO                 "distro"
 # define OSINFO_OS_PROP_RELEASE_STATUS         "release-status"
 # define OSINFO_OS_PROP_KERNEL_URL_ARGUMENT    "kernel-url-argument"
 # define OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME   "cloud-image-username"
-
-/* object */
-struct _OsinfoOs
-{
-    OsinfoProduct parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoOsPrivate *priv;
-};
-
-/* class */
-struct _OsinfoOsClass
-{
-    /*< private >*/
-    OsinfoProductClass parent_class;
-
-    /* class members */
-};
 
 /**
  * OsinfoReleaseStatus:
@@ -99,8 +69,6 @@ typedef enum {
     OSINFO_RELEASE_STATUS_PRERELEASE,
     OSINFO_RELEASE_STATUS_ROLLING
 } OsinfoReleaseStatus;
-
-GType osinfo_os_get_type(void);
 
 OsinfoOs *osinfo_os_new(const gchar *id);
 

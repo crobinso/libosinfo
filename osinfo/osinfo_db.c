@@ -525,8 +525,8 @@ void osinfo_db_add_install_script(OsinfoDb *db, OsinfoInstallScript *script)
 
 static gint media_volume_compare(gconstpointer a, gconstpointer b)
 {
-    OsinfoMedia *media_a = OSINFO_MEDIA(a);
-    OsinfoMedia *media_b = OSINFO_MEDIA(b);
+    OsinfoMedia *media_a = OSINFO_MEDIA((gpointer) a);
+    OsinfoMedia *media_b = OSINFO_MEDIA((gpointer) b);
     const gchar *volume_a = osinfo_media_get_volume_id(media_a);
     const gchar *volume_b = osinfo_media_get_volume_id(media_b);
 

@@ -26,22 +26,16 @@
 #ifndef __OSINFO_INSTALL_SCRIPT_H__
 # define __OSINFO_INSTALL_SCRIPT_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_INSTALL_SCRIPT                  (osinfo_install_script_get_type ())
-# define OSINFO_INSTALL_SCRIPT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScript))
-# define OSINFO_IS_INSTALL_SCRIPT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_SCRIPT))
-# define OSINFO_INSTALL_SCRIPT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptClass))
-# define OSINFO_IS_INSTALL_SCRIPT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_SCRIPT))
-# define OSINFO_INSTALL_SCRIPT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptClass))
+# define OSINFO_TYPE_INSTALL_SCRIPT (osinfo_install_script_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallScript,
+                                           osinfo_install_script,
+                                           OSINFO,
+                                           INSTALL_SCRIPT,
+                                           OsinfoEntity)
 
 typedef struct _OsinfoOs        OsinfoOs;
 typedef struct _OsinfoMedia     OsinfoMedia;
 typedef struct _OsinfoTree      OsinfoTree;
-typedef struct _OsinfoInstallScript        OsinfoInstallScript;
-typedef struct _OsinfoInstallScriptClass   OsinfoInstallScriptClass;
-typedef struct _OsinfoInstallScriptPrivate OsinfoInstallScriptPrivate;
 
 # define OSINFO_INSTALL_SCRIPT_PROFILE_JEOS    "jeos"
 # define OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP "desktop"
@@ -60,26 +54,6 @@ typedef struct _OsinfoInstallScriptPrivate OsinfoInstallScriptPrivate;
 # define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
 # define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
 # define OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE "installation-source"
-
-/* object */
-struct _OsinfoInstallScript
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoInstallScriptPrivate *priv;
-};
-
-/* class */
-struct _OsinfoInstallScriptClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
 
 /**
  * OsinfoPathFormat:
@@ -151,8 +125,6 @@ typedef enum {
     OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_MEDIA,
     OSINFO_INSTALL_SCRIPT_INSTALLATION_SOURCE_NETWORK
 } OsinfoInstallScriptInstallationSource;
-
-GType osinfo_install_script_get_type(void);
 
 OsinfoInstallScript *osinfo_install_script_new(const gchar *id);
 OsinfoInstallScript *osinfo_install_script_new_uri(const gchar *id,

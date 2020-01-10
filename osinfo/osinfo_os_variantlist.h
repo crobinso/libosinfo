@@ -24,42 +24,14 @@
 #ifndef __OSINFO_OS_VARIANTLIST_H__
 # define __OSINFO_OS_VARIANTLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_OS_VARIANTLIST                  (osinfo_os_variantlist_get_type ())
-# define OSINFO_OS_VARIANTLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_OS_VARIANTLIST, OsinfoOsVariantList))
-# define OSINFO_IS_OS_VARIANTLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_OS_VARIANTLIST))
-# define OSINFO_OS_VARIANTLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_OS_VARIANTLIST, OsinfoOsVariantListClass))
-# define OSINFO_IS_OS_VARIANTLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_OS_VARIANTLIST))
-# define OSINFO_OS_VARIANTLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_OS_VARIANTLIST, OsinfoOsVariantListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoOsVariantList        OsinfoOsVariantList;
-
-typedef struct _OsinfoOsVariantListClass   OsinfoOsVariantListClass;
-
-typedef struct _OsinfoOsVariantListPrivate OsinfoOsVariantListPrivate;
-
-/* object */
-struct _OsinfoOsVariantList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoOsVariantListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoOsVariantListClass
-{
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_os_variantlist_get_type(void);
+# define OSINFO_TYPE_OS_VARIANTLIST (osinfo_os_variantlist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOsVariantList,
+                                           osinfo_os_variantlist,
+                                           OSINFO,
+                                           OS_VARIANTLIST,
+                                           OsinfoList)
 
 OsinfoOsVariantList *osinfo_os_variantlist_new(void);
 

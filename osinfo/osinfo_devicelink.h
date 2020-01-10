@@ -24,46 +24,17 @@
 #ifndef __OSINFO_DEVICELINK_H__
 # define __OSINFO_DEVICELINK_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DEVICELINK                  (osinfo_devicelink_get_type ())
-# define OSINFO_DEVICELINK(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEVICELINK, OsinfoDeviceLink))
-# define OSINFO_IS_DEVICELINK(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEVICELINK))
-# define OSINFO_DEVICELINK_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEVICELINK, OsinfoDeviceLinkClass))
-# define OSINFO_IS_DEVICELINK_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEVICELINK))
-# define OSINFO_DEVICELINK_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEVICELINK, OsinfoDeviceLinkClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDeviceLink        OsinfoDeviceLink;
-
-typedef struct _OsinfoDeviceLinkClass   OsinfoDeviceLinkClass;
-
-typedef struct _OsinfoDeviceLinkPrivate OsinfoDeviceLinkPrivate;
+# define OSINFO_TYPE_DEVICELINK (osinfo_devicelink_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLink,
+                                           osinfo_devicelink,
+                                           OSINFO,
+                                           DEVICELINK,
+                                           OsinfoEntity)
 
 # define OSINFO_DEVICELINK_PROP_DRIVER   "driver"
 # define OSINFO_DEVICELINK_PROP_SUPPORTED  "supported"
-
-/* object */
-struct _OsinfoDeviceLink
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDeviceLinkPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDeviceLinkClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_devicelink_get_type(void);
 
 OsinfoDeviceLink *osinfo_devicelink_new(OsinfoDevice *target);
 

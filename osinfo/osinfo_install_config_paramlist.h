@@ -24,42 +24,14 @@
 #ifndef __OSINFO_INSTALL_CONFIG_PARAMLIST_H__
 # define __OSINFO_INSTALL_CONFIG_PARAMLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST                  (osinfo_install_config_paramlist_get_type ())
-# define OSINFO_INSTALL_CONFIG_PARAMLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST, OsinfoInstallConfigParamList))
-# define OSINFO_IS_INSTALL_CONFIG_PARAMLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST))
-# define OSINFO_INSTALL_CONFIG_PARAMLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST, OsinfoInstallConfigParamListClass))
-# define OSINFO_IS_INSTALL_CONFIG_PARAMLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST))
-# define OSINFO_INSTALL_CONFIG_PARAMLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST, OsinfoInstallConfigParamListClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoInstallConfigParamList        OsinfoInstallConfigParamList;
-
-typedef struct _OsinfoInstallConfigParamListClass   OsinfoInstallConfigParamListClass;
-
-typedef struct _OsinfoInstallConfigParamListPrivate OsinfoInstallConfigParamListPrivate;
-
-/* object */
-struct _OsinfoInstallConfigParamList
-{
-    OsinfoList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoInstallConfigParamListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoInstallConfigParamListClass
-{
-    OsinfoListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_install_config_paramlist_get_type(void);
+# define OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST (osinfo_install_config_paramlist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfigParamList,
+                                           osinfo_install_config_paramlist,
+                                           OSINFO,
+                                           INSTALL_CONFIG_PARAMLIST,
+                                           OsinfoList)
 
 OsinfoInstallConfigParamList *osinfo_install_config_paramlist_new(void);
 

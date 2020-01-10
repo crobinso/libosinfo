@@ -21,43 +21,14 @@
 #ifndef __OSINFO_DEVICELINKFILTER_H__
 # define __OSINFO_DEVICELINKFILTER_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DEVICELINKFILTER                  (osinfo_devicelinkfilter_get_type ())
-# define OSINFO_DEVICELINKFILTER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEVICELINKFILTER, OsinfoDeviceLinkFilter))
-# define OSINFO_IS_DEVICELINKFILTER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEVICELINKFILTER))
-# define OSINFO_DEVICELINKFILTER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEVICELINKFILTER, OsinfoDeviceLinkFilterClass))
-# define OSINFO_IS_DEVICELINKFILTER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEVICELINKFILTER))
-# define OSINFO_DEVICELINKFILTER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEVICELINKFILTER, OsinfoDeviceLinkFilterClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDeviceLinkFilter        OsinfoDeviceLinkFilter;
-
-typedef struct _OsinfoDeviceLinkFilterClass  OsinfoDeviceLinkFilterClass;
-
-typedef struct _OsinfoDeviceLinkFilterPrivate OsinfoDeviceLinkFilterPrivate;
-
-/* object */
-struct _OsinfoDeviceLinkFilter
-{
-    OsinfoFilter parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDeviceLinkFilterPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDeviceLinkFilterClass
-{
-    /*< private >*/
-    OsinfoFilterClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_devicelinkfilter_get_type(void);
+# define OSINFO_TYPE_DEVICELINKFILTER (osinfo_devicelinkfilter_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLinkFilter,
+                                           osinfo_devicelinkfilter,
+                                           OSINFO,
+                                           DEVICELINKFILTER,
+                                           OsinfoFilter)
 
 OsinfoDeviceLinkFilter *osinfo_devicelinkfilter_new(OsinfoFilter *filter);
 

@@ -25,43 +25,14 @@
 #ifndef __OSINFO_DEPLOYMENT_H__
 # define __OSINFO_DEPLOYMENT_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_DEPLOYMENT                  (osinfo_deployment_get_type ())
-# define OSINFO_DEPLOYMENT(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_DEPLOYMENT, OsinfoDeployment))
-# define OSINFO_IS_DEPLOYMENT(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_DEPLOYMENT))
-# define OSINFO_DEPLOYMENT_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_DEPLOYMENT, OsinfoDeploymentClass))
-# define OSINFO_IS_DEPLOYMENT_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_DEPLOYMENT))
-# define OSINFO_DEPLOYMENT_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_DEPLOYMENT, OsinfoDeploymentClass))
+# include "osinfo/osinfo_macros.h"
 
-typedef struct _OsinfoDeployment        OsinfoDeployment;
-
-typedef struct _OsinfoDeploymentClass   OsinfoDeploymentClass;
-
-typedef struct _OsinfoDeploymentPrivate OsinfoDeploymentPrivate;
-
-/* object */
-struct _OsinfoDeployment
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoDeploymentPrivate *priv;
-};
-
-/* class */
-struct _OsinfoDeploymentClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_deployment_get_type(void);
+# define OSINFO_TYPE_DEPLOYMENT (osinfo_deployment_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeployment,
+                                           osinfo_deployment,
+                                           OSINFO,
+                                           DEPLOYMENT,
+                                           OsinfoEntity)
 
 OsinfoDeployment *osinfo_deployment_new(const gchar *id,
                                         OsinfoOs *os,

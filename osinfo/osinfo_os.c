@@ -1234,8 +1234,8 @@ OsinfoDeviceDriverList *osinfo_os_get_device_drivers(OsinfoOs *os)
 static gint osinfo_device_drivers_sort_by_priority(gconstpointer a,
                                                    gconstpointer b)
 {
-    OsinfoDeviceDriver *adriver = OSINFO_DEVICE_DRIVER(a);
-    OsinfoDeviceDriver *bdriver = OSINFO_DEVICE_DRIVER(b);
+    OsinfoDeviceDriver *adriver = OSINFO_DEVICE_DRIVER((gpointer) a);
+    OsinfoDeviceDriver *bdriver = OSINFO_DEVICE_DRIVER((gpointer) b);
 
     return osinfo_device_driver_get_priority(bdriver) - osinfo_device_driver_get_priority(adriver);
 }

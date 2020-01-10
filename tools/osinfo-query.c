@@ -205,8 +205,8 @@ static gint sort_entity(gconstpointer a,
                         gconstpointer b,
                         gpointer data)
 {
-    OsinfoEntity *entityA = OSINFO_ENTITY(a);
-    OsinfoEntity *entityB = OSINFO_ENTITY(b);
+    OsinfoEntity *entityA = OSINFO_ENTITY((gpointer) a);
+    OsinfoEntity *entityB = OSINFO_ENTITY((gpointer) b);
     gchar *key = data;
     const gchar *valA;
     const gchar *valB;

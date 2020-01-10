@@ -25,43 +25,12 @@
 #ifndef __OSINFO_PLATFORMLIST_H__
 # define __OSINFO_PLATFORMLIST_H__
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_PLATFORMLIST                  (osinfo_platformlist_get_type ())
-# define OSINFO_PLATFORMLIST(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformList))
-# define OSINFO_IS_PLATFORMLIST(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_PLATFORMLIST))
-# define OSINFO_PLATFORMLIST_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListClass))
-# define OSINFO_IS_PLATFORMLIST_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_PLATFORMLIST))
-# define OSINFO_PLATFORMLIST_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListClass))
-
-typedef struct _OsinfoPlatformList        OsinfoPlatformList;
-
-typedef struct _OsinfoPlatformListClass   OsinfoPlatformListClass;
-
-typedef struct _OsinfoPlatformListPrivate OsinfoPlatformListPrivate;
-
-/* object */
-struct _OsinfoPlatformList
-{
-    OsinfoProductList parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoPlatformListPrivate *priv;
-};
-
-/* class */
-struct _OsinfoPlatformListClass
-{
-    /*< private >*/
-    OsinfoProductListClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_platformlist_get_type(void);
+# define OSINFO_TYPE_PLATFORMLIST (osinfo_platformlist_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoPlatformList,
+                                           osinfo_platformlist,
+                                           OSINFO,
+                                           PLATFORMLIST,
+                                           OsinfoProductList)
 
 OsinfoPlatformList *osinfo_platformlist_new(void);
 G_DEPRECATED_FOR(osinfo_list_new_copy)

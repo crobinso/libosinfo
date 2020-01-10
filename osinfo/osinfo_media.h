@@ -26,6 +26,8 @@
 #ifndef __OSINFO_MEDIA_H__
 # define __OSINFO_MEDIA_H__
 
+# include "osinfo/osinfo_macros.h"
+
 GQuark
 osinfo_media_error_quark (void) G_GNUC_CONST;
 
@@ -65,24 +67,12 @@ typedef enum {
     OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE = 1 << 0,
 } OsinfoMediaDetectFlags;
 
-/*
- * Type macros.
- */
-# define OSINFO_TYPE_MEDIA                  (osinfo_media_get_type ())
-# define OSINFO_MEDIA(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), OSINFO_TYPE_MEDIA, OsinfoMedia))
-# define OSINFO_IS_MEDIA(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), OSINFO_TYPE_MEDIA))
-# define OSINFO_MEDIA_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
-# define OSINFO_IS_MEDIA_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_MEDIA))
-# define OSINFO_MEDIA_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
-
-/*
- * Forward declared in osinfo_install_script.h
- *
- * typedef struct _OsinfoMedia        OsinfoMedia;
- */
-typedef struct _OsinfoMediaClass   OsinfoMediaClass;
-
-typedef struct _OsinfoMediaPrivate OsinfoMediaPrivate;
+# define OSINFO_TYPE_MEDIA (osinfo_media_get_type ())
+OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoMedia,
+                                           osinfo_media,
+                                           OSINFO,
+                                           MEDIA,
+                                           OsinfoEntity)
 
 # define OSINFO_MEDIA_PROP_ARCHITECTURE   "architecture"
 # define OSINFO_MEDIA_PROP_URL            "url"
@@ -103,28 +93,6 @@ typedef struct _OsinfoMediaPrivate OsinfoMediaPrivate;
 # define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
 # define OSINFO_MEDIA_PROP_INSTALLER_SCRIPT "installer-script"
 # define OSINFO_MEDIA_PROP_BOOTABLE        "bootable"
-
-/* object */
-struct _OsinfoMedia
-{
-    OsinfoEntity parent_instance;
-
-    /* public */
-
-    /* private */
-    OsinfoMediaPrivate *priv;
-};
-
-/* class */
-struct _OsinfoMediaClass
-{
-    /*< private >*/
-    OsinfoEntityClass parent_class;
-
-    /* class members */
-};
-
-GType osinfo_media_get_type(void);
 
 OsinfoMedia *osinfo_media_new(const gchar *id, const gchar *architecture);
 OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
