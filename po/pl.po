@@ -1,29 +1,28 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Translators:
-# Piotr Drąg <piotrdrag@gmail.com>, 2012.
-# Piotr Drąg <piotrdrag@gmail.com>, 2015. #zanata
-# Piotr Drąg <piotrdrag@gmail.com>, 2016. #zanata
-# Piotr Drąg <piotrdrag@gmail.com>, 2017. #zanata
-# Piotr Drąg <piotrdrag@gmail.com>, 2019. #zanata
+# Piotr Drąg <piotrdrag@gmail.com>, 2012, 2020.
+# Piotr Drąg <piotrdrag@gmail.com>, 2015. #zanata, 2020.
+# Piotr Drąg <piotrdrag@gmail.com>, 2016. #zanata, 2020.
+# Piotr Drąg <piotrdrag@gmail.com>, 2017. #zanata, 2020.
+# Piotr Drąg <piotrdrag@gmail.com>, 2019. #zanata, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-16 14:48+0000\n"
-"PO-Revision-Date: 2019-12-02 12:20+0000\n"
+"PO-Revision-Date: 2020-01-11 11:04+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/libosinfo/"
-"language/pl/)\n"
+"Language-Team: Polish <https://translate.stg.fedoraproject.org/projects/"
+"libosinfo/libosinfo/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The allowed mime-types for the avatar"
@@ -219,7 +218,7 @@ msgstr "Brak właściwości identyfikatora platformy"
 
 #: osinfo/osinfo_loader.c:803
 msgid "Missing deployment id property"
-msgstr "Brak właściwości identyfikatora "
+msgstr "Brak właściwości identyfikatora wdrożenia"
 
 #: osinfo/osinfo_loader.c:813
 msgid "Missing deployment os id property"
