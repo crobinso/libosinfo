@@ -225,6 +225,7 @@ libosinfo_check_cflags = [
     '-fipa-pure-const',
     '-Wno-suggest-attribute=pure',
     '-Wno-suggest-attribute=const',
+    '-Wno-string-plus-int',
 ]
 
 if host_machine.system() == 'linux'
