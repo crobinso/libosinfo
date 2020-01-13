@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoImageList, osinfo_imagelist, OSINFO_TYPE_LIST);
-
-#define OSINFO_IMAGELIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_IMAGELIST, OsinfoImageListPrivate))
-
 /**
  * SECTION:osinfo_imagelist
  * @short_description: A list of pre-installated images
@@ -38,6 +34,8 @@ struct _OsinfoImageListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoImageList, osinfo_imagelist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_imagelist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_imagelist_class_init(OsinfoImageListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_imagelist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoImageListPrivate));
 }
 
 static void
 osinfo_imagelist_init(OsinfoImageList *list)
 {
-    list->priv = OSINFO_IMAGELIST_GET_PRIVATE(list);
+    list->priv = osinfo_imagelist_get_instance_private(list);
 }
 
 /**

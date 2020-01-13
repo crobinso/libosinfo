@@ -84,13 +84,6 @@ osinfo_tree_error_quark(void)
     return quark;
 }
 
-G_DEFINE_TYPE(OsinfoTree, osinfo_tree, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_TREE_GET_PRIVATE(obj)                    \
-    (G_TYPE_INSTANCE_GET_PRIVATE((obj),                \
-                                  OSINFO_TYPE_TREE,     \
-                                  OsinfoTreePrivate))
-
 /**
  * SECTION:osinfo_tree
  * @short_description: An installation tree for a (guest) OS
@@ -104,6 +97,8 @@ struct _OsinfoTreePrivate
 {
     GWeakRef os;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoTree, osinfo_tree, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -299,7 +294,6 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
     g_klass->finalize = osinfo_tree_finalize;
     g_klass->get_property = osinfo_tree_get_property;
     g_klass->set_property = osinfo_tree_set_property;
-    g_type_class_add_private(klass, sizeof(OsinfoTreePrivate));
 
     /**
      * OsinfoTree:architecture:
@@ -451,7 +445,7 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
 static void
 osinfo_tree_init(OsinfoTree *tree)
 {
-    tree->priv = OSINFO_TREE_GET_PRIVATE(tree);
+    tree->priv = osinfo_tree_get_instance_private(tree);
 
     g_weak_ref_init(&tree->priv->os, NULL);
 }

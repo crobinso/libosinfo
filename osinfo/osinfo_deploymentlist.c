@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeploymentList, osinfo_deploymentlist, OSINFO_TYPE_LIST);
-
-#define OSINFO_DEPLOYMENTLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEPLOYMENTLIST, OsinfoDeploymentListPrivate))
-
 /**
  * SECTION:osinfo_deploymentlist
  * @short_description: A list of hardware deployment
@@ -38,6 +34,8 @@ struct _OsinfoDeploymentListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeploymentList, osinfo_deploymentlist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_deploymentlist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_deploymentlist_class_init(OsinfoDeploymentListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_deploymentlist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeploymentListPrivate));
 }
 
 static void
 osinfo_deploymentlist_init(OsinfoDeploymentList *list)
 {
-    list->priv = OSINFO_DEPLOYMENTLIST_GET_PRIVATE(list);
+    list->priv = osinfo_deploymentlist_get_instance_private(list);
 }
 
 

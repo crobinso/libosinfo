@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoInstallConfigParam, osinfo_install_config_param, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_INSTALL_CONFIG_PARAM_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_INSTALL_CONFIG_PARAM, OsinfoInstallConfigParamPrivate))
-
 /**
  * SECTION:osinfo_install_config_param
  * @short_description: OS install configuration parameters (and its policies)
@@ -41,6 +37,8 @@ struct _OsinfoInstallConfigParamPrivate
 {
     OsinfoDatamap *value_map;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoInstallConfigParam, osinfo_install_config_param, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -183,13 +181,12 @@ osinfo_install_config_param_class_init(OsinfoInstallConfigParamClass *klass)
                                     pspec);
 
     g_klass->finalize = osinfo_install_config_param_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoInstallConfigParamPrivate));
 }
 
 static void
 osinfo_install_config_param_init(OsinfoInstallConfigParam *config_param)
 {
-    config_param->priv = OSINFO_INSTALL_CONFIG_PARAM_GET_PRIVATE(config_param);
+    config_param->priv = osinfo_install_config_param_get_instance_private(config_param);
 }
 
 /**

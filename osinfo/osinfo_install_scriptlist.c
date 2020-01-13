@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoInstallScriptList, osinfo_install_scriptlist, OSINFO_TYPE_LIST);
-
-#define OSINFO_INSTALL_SCRIPTLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_INSTALL_SCRIPTLIST, OsinfoInstallScriptListPrivate))
-
 /**
  * SECTION:osinfo_install_scriptlist
  * @short_description: A list of installation install_script
@@ -38,6 +34,8 @@ struct _OsinfoInstallScriptListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoInstallScriptList, osinfo_install_scriptlist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_install_scriptlist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_install_scriptlist_class_init(OsinfoInstallScriptListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_install_scriptlist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoInstallScriptListPrivate));
 }
 
 static void
 osinfo_install_scriptlist_init(OsinfoInstallScriptList *list)
 {
-    list->priv = OSINFO_INSTALL_SCRIPTLIST_GET_PRIVATE(list);
+    list->priv = osinfo_install_scriptlist_get_instance_private(list);
 }
 
 /**

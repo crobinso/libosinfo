@@ -24,10 +24,6 @@
 #include "osinfo/osinfo_resources_private.h"
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoOs, osinfo_os, OSINFO_TYPE_PRODUCT);
-
-#define OSINFO_OS_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_OS, OsinfoOsPrivate))
-
 /**
  * SECTION:osinfo_os
  * @short_description: An operating system
@@ -59,6 +55,8 @@ struct _OsinfoOsPrivate
 
     OsinfoDeviceDriverList *device_drivers;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoOs, osinfo_os, OSINFO_TYPE_PRODUCT);
 
 struct _OsinfoOsDeviceLink {
     OsinfoDevice *dev;
@@ -147,8 +145,6 @@ osinfo_os_class_init(OsinfoOsClass *klass)
     g_klass->get_property = osinfo_os_get_property;
     g_klass->finalize = osinfo_os_finalize;
 
-    g_type_class_add_private(klass, sizeof(OsinfoOsPrivate));
-
     /**
      * OsinfoOs:family:
      *
@@ -216,7 +212,7 @@ osinfo_os_class_init(OsinfoOsClass *klass)
 static void
 osinfo_os_init(OsinfoOs *os)
 {
-    os->priv = OSINFO_OS_GET_PRIVATE(os);
+    os->priv = osinfo_os_get_instance_private(os);
 
     os->priv->deviceLinks = NULL;
     os->priv->firmwares = osinfo_firmwarelist_new();

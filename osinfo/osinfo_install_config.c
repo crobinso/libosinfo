@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoInstallConfig, osinfo_install_config, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_INSTALL_CONFIG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_INSTALL_CONFIG, OsinfoInstallConfigPrivate))
-
 /**
  * SECTION:osinfo_install_config
  * @short_description: OS install configuration
@@ -40,12 +36,12 @@ struct _OsinfoInstallConfigPrivate
     gboolean unused;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoInstallConfig, osinfo_install_config, OSINFO_TYPE_ENTITY);
 
 /* Init functions */
 static void
 osinfo_install_config_class_init(OsinfoInstallConfigClass *klass)
 {
-    g_type_class_add_private(klass, sizeof(OsinfoInstallConfigPrivate));
 }
 
 static const gchar valid[] = {
@@ -65,7 +61,7 @@ osinfo_install_config_init(OsinfoInstallConfig *config)
     gchar pass[9];
     gsize i;
 
-    config->priv = OSINFO_INSTALL_CONFIG_GET_PRIVATE(config);
+    config->priv = osinfo_install_config_get_instance_private(config);
 
     osinfo_entity_set_param(OSINFO_ENTITY(config),
                             OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD,

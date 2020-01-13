@@ -25,8 +25,6 @@
 #include <glib/gi18n-lib.h>
 #include "osinfo_resources_private.h"
 
-G_DEFINE_TYPE(OsinfoResources, osinfo_resources, OSINFO_TYPE_ENTITY);
-
 enum {
     PROP_0,
 
@@ -36,11 +34,6 @@ enum {
     PROP_RAM,
     PROP_STORAGE,
 };
-
-#define OSINFO_RESOURCES_GET_PRIVATE(obj) \
-        (G_TYPE_INSTANCE_GET_PRIVATE((obj), \
-                                     OSINFO_TYPE_RESOURCES,     \
-                                     OsinfoResourcesPrivate))
 
 /**
  * SECTION:osinfo_resources
@@ -55,6 +48,8 @@ struct _OsinfoResourcesPrivate
 {
     gboolean inherit;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoResources, osinfo_resources, OSINFO_TYPE_ENTITY);
 
 static void
 osinfo_resources_finalize(GObject *object)
@@ -152,7 +147,6 @@ osinfo_resources_class_init(OsinfoResourcesClass *klass)
     g_klass->get_property = osinfo_resources_get_property;
     g_klass->set_property = osinfo_resources_set_property;
     g_klass->finalize = osinfo_resources_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoResourcesPrivate));
 
     /**
      * OsinfoResources:architecture:
@@ -242,7 +236,7 @@ osinfo_resources_class_init(OsinfoResourcesClass *klass)
 static void
 osinfo_resources_init(OsinfoResources *resources)
 {
-    resources->priv = OSINFO_RESOURCES_GET_PRIVATE(resources);
+    resources->priv = osinfo_resources_get_instance_private(resources);
 }
 
 OsinfoResources *osinfo_resources_new(const gchar *id,

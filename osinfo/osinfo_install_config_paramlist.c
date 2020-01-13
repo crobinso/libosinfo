@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoInstallConfigParamList, osinfo_install_config_paramlist, OSINFO_TYPE_LIST);
-
-#define OSINFO_INSTALL_CONFIG_PARAMLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST, OsinfoInstallConfigParamListPrivate))
-
 /**
  * SECTION:osinfo_install_config_paramlist
  * @short_description: A list of installation install_config_param
@@ -38,6 +34,8 @@ struct _OsinfoInstallConfigParamListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoInstallConfigParamList, osinfo_install_config_paramlist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_install_config_paramlist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_install_config_paramlist_class_init(OsinfoInstallConfigParamListClass *kl
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_install_config_paramlist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoInstallConfigParamListPrivate));
 }
 
 static void
 osinfo_install_config_paramlist_init(OsinfoInstallConfigParamList *list)
 {
-    list->priv = OSINFO_INSTALL_CONFIG_PARAMLIST_GET_PRIVATE(list);
+    list->priv = osinfo_install_config_paramlist_get_instance_private(list);
 }
 
 /**

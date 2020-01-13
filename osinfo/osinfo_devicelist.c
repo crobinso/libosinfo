@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeviceList, osinfo_devicelist, OSINFO_TYPE_LIST);
-
-#define OSINFO_DEVICELIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEVICELIST, OsinfoDeviceListPrivate))
-
 /**
  * SECTION:osinfo_devicelist
  * @short_description: A list of hardware device
@@ -38,6 +34,8 @@ struct _OsinfoDeviceListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceList, osinfo_devicelist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_devicelist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_devicelist_class_init(OsinfoDeviceListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_devicelist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeviceListPrivate));
 }
 
 static void
 osinfo_devicelist_init(OsinfoDeviceList *list)
 {
-    list->priv = OSINFO_DEVICELIST_GET_PRIVATE(list);
+    list->priv = osinfo_devicelist_get_instance_private(list);
 }
 
 

@@ -20,10 +20,6 @@
 
 #include <osinfo/osinfo.h>
 
-G_DEFINE_TYPE(OsinfoOsVariantList, osinfo_os_variantlist, OSINFO_TYPE_LIST);
-
-#define OSINFO_OS_VARIANTLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_OS_VARIANTLIST, OsinfoOsVariantListPrivate))
-
 /**
  * SECTION:osinfo_os_variantlist
  * @short_description: A list of OS variants
@@ -38,17 +34,18 @@ struct _OsinfoOsVariantListPrivate
     gboolean unused;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoOsVariantList, osinfo_os_variantlist, OSINFO_TYPE_LIST);
+
 /* Init functions */
 static void
 osinfo_os_variantlist_class_init(OsinfoOsVariantListClass *klass)
 {
-    g_type_class_add_private(klass, sizeof(OsinfoOsVariantListPrivate));
 }
 
 static void
 osinfo_os_variantlist_init(OsinfoOsVariantList *list)
 {
-    list->priv = OSINFO_OS_VARIANTLIST_GET_PRIVATE(list);
+    list->priv = osinfo_os_variantlist_get_instance_private(list);
 }
 
 /**

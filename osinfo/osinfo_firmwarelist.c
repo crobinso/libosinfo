@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoFirmwareList, osinfo_firmwarelist, OSINFO_TYPE_LIST);
-
-#define OSINFO_FIRMWARELIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_FIRMWARELIST, OsinfoFirmwareListPrivate))
-
 /**
  * SECTION:osinfo_firmwarelist
  * @short_description: A list of firmwares
@@ -38,6 +34,8 @@ struct _OsinfoFirmwareListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoFirmwareList, osinfo_firmwarelist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_firmwarelist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_firmwarelist_class_init(OsinfoFirmwareListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_firmwarelist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoFirmwareListPrivate));
 }
 
 static void
 osinfo_firmwarelist_init(OsinfoFirmwareList *list)
 {
-    list->priv = OSINFO_FIRMWARELIST_GET_PRIVATE(list);
+    list->priv = osinfo_firmwarelist_get_instance_private(list);
 }
 
 /**

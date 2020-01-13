@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_ABSTRACT_TYPE(OsinfoEntity, osinfo_entity, G_TYPE_OBJECT);
-
-#define OSINFO_ENTITY_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_ENTITY, OsinfoEntityPrivate))
-
 /**
  * SECTION:osinfo_entity
  * @short_description: Abstract base class for metadata objects
@@ -45,6 +41,8 @@ struct _OsinfoEntityPrivate
     // Value: GList of gchar* values
     GHashTable *params;
 };
+
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE(OsinfoEntity, osinfo_entity, G_TYPE_OBJECT);
 
 static void osinfo_entity_finalize(GObject *object);
 
@@ -137,7 +135,6 @@ osinfo_entity_class_init(OsinfoEntityClass *klass)
                                      pspec);
 
     g_klass->finalize = osinfo_entity_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoEntityPrivate));
 }
 
 
@@ -150,7 +147,7 @@ static void osinfo_entity_param_values_free(gpointer values)
 static void
 osinfo_entity_init(OsinfoEntity *entity)
 {
-    entity->priv = OSINFO_ENTITY_GET_PRIVATE(entity);
+    entity->priv = osinfo_entity_get_instance_private(entity);
     entity->priv->params = g_hash_table_new_full(g_str_hash,
                                                g_str_equal,
                                                g_free,

@@ -26,10 +26,6 @@
 
 #include "osinfo/osinfo_product_private.h"
 
-G_DEFINE_ABSTRACT_TYPE(OsinfoProduct, osinfo_product, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_PRODUCT_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_PRODUCT, OsinfoProductPrivate))
-
 /**
  * SECTION:osinfo_product
  * @short_description: An software product
@@ -54,6 +50,8 @@ struct _OsinfoProductPrivate
     // Value: Array of product_link structs
     GList *productLinks;
 };
+
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE(OsinfoProduct, osinfo_product, OSINFO_TYPE_ENTITY);
 
 struct _OsinfoProductProductLink {
     /* <product> 'verbs' <other_product>
@@ -150,7 +148,6 @@ osinfo_product_class_init(OsinfoProductClass *klass)
 
     g_klass->get_property = osinfo_product_get_property;
     g_klass->finalize = osinfo_product_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoProductPrivate));
 
     /**
      * OsinfoProduct:name:
@@ -234,7 +231,7 @@ osinfo_product_class_init(OsinfoProductClass *klass)
 static void
 osinfo_product_init(OsinfoProduct *product)
 {
-    product->priv = OSINFO_PRODUCT_GET_PRIVATE(product);
+    product->priv = osinfo_product_get_instance_private(product);
     product->priv->productLinks = NULL;
 }
 

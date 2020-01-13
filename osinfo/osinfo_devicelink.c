@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeviceLink, osinfo_devicelink, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_DEVICELINK_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEVICELINK, OsinfoDeviceLinkPrivate))
-
 /**
  * SECTION:osinfo_devicelink
  * @short_description: A hardware devicelink
@@ -39,6 +35,8 @@ struct _OsinfoDeviceLinkPrivate
 {
     OsinfoDevice *target;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceLink, osinfo_devicelink, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -131,13 +129,12 @@ osinfo_devicelink_class_init(OsinfoDeviceLinkClass *klass)
 
 
     g_klass->finalize = osinfo_devicelink_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeviceLinkPrivate));
 }
 
 static void
 osinfo_devicelink_init(OsinfoDeviceLink *devlink)
 {
-    devlink->priv = OSINFO_DEVICELINK_GET_PRIVATE(devlink);
+    devlink->priv = osinfo_devicelink_get_instance_private(devlink);
 }
 
 

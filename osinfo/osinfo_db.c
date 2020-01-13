@@ -24,10 +24,6 @@
 #include <string.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDb, osinfo_db, G_TYPE_OBJECT);
-
-#define OSINFO_DB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DB, OsinfoDbPrivate))
-
 #define match_regex(pattern, str)                                       \
     (((pattern) == NULL) ||                                             \
      (((str) != NULL) &&                                                \
@@ -133,6 +129,8 @@ struct _OsinfoDbPrivate
     OsinfoInstallScriptList *scripts;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDb, osinfo_db, G_TYPE_OBJECT);
+
 static void osinfo_db_finalize(GObject *object);
 
 static void
@@ -159,15 +157,13 @@ osinfo_db_class_init(OsinfoDbClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_db_finalize;
-
-    g_type_class_add_private(klass, sizeof(OsinfoDbPrivate));
 }
 
 
 static void
 osinfo_db_init(OsinfoDb *db)
 {
-    db->priv = OSINFO_DB_GET_PRIVATE(db);
+    db->priv = osinfo_db_get_instance_private(db);
     db->priv->devices = osinfo_devicelist_new();
     db->priv->platforms = osinfo_platformlist_new();
     db->priv->oses = osinfo_oslist_new();

@@ -22,10 +22,6 @@
 #include "osinfo/osinfo_product_private.h"
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoPlatform, osinfo_platform, OSINFO_TYPE_PRODUCT);
-
-#define OSINFO_PLATFORM_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_PLATFORM, OsinfoPlatformPrivate))
-
 /**
  * SECTION:osinfo_platform
  * @short_description: An virtualization platform
@@ -40,6 +36,8 @@ struct _OsinfoPlatformPrivate
     // Value: List of device_link structs
     GList *deviceLinks;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoPlatform, osinfo_platform, OSINFO_TYPE_PRODUCT);
 
 struct _OsinfoPlatformDeviceLink {
     OsinfoDevice *dev;
@@ -64,13 +62,12 @@ osinfo_platform_class_init(OsinfoPlatformClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_platform_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoPlatformPrivate));
 }
 
 static void
 osinfo_platform_init(OsinfoPlatform *platform)
 {
-    platform->priv = OSINFO_PLATFORM_GET_PRIVATE(platform);
+    platform->priv = osinfo_platform_get_instance_private(platform);
     platform->priv->deviceLinks = NULL;
 }
 

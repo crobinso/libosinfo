@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeviceDriverList, osinfo_device_driverlist, OSINFO_TYPE_LIST);
-
-#define OSINFO_DEVICE_DRIVERLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEVICE_DRIVERLIST, OsinfoDeviceDriverListPrivate))
-
 /**
  * SECTION:osinfo_device_driverlist
  * @short_description: A list of device drivers
@@ -38,6 +34,8 @@ struct _OsinfoDeviceDriverListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceDriverList, osinfo_device_driverlist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_device_driverlist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_device_driverlist_class_init(OsinfoDeviceDriverListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_device_driverlist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeviceDriverListPrivate));
 }
 
 static void
 osinfo_device_driverlist_init(OsinfoDeviceDriverList *list)
 {
-    list->priv = OSINFO_DEVICE_DRIVERLIST_GET_PRIVATE(list);
+    list->priv = osinfo_device_driverlist_get_instance_private(list);
 }
 
 /**

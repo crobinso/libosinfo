@@ -26,13 +26,6 @@
 
 #include "osinfo_device_driver_private.h"
 
-G_DEFINE_TYPE(OsinfoDeviceDriver, osinfo_device_driver, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_DEVICE_DRIVER_GET_PRIVATE(obj) \
-        (G_TYPE_INSTANCE_GET_PRIVATE((obj), \
-                                     OSINFO_TYPE_DEVICE_DRIVER,         \
-                                     OsinfoDeviceDriverPrivate))
-
 /**
  * SECTION:osinfo_device_driver
  * @short_description: Information about device driver
@@ -46,6 +39,8 @@ struct _OsinfoDeviceDriverPrivate
 {
     OsinfoDeviceList *devices;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceDriver, osinfo_device_driver, OSINFO_TYPE_ENTITY);
 
 static void
 osinfo_device_driver_finalize(GObject *object)
@@ -65,13 +60,12 @@ osinfo_device_driver_class_init(OsinfoDeviceDriverClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_device_driver_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeviceDriverPrivate));
 }
 
 static void
 osinfo_device_driver_init(OsinfoDeviceDriver *driver)
 {
-    driver->priv = OSINFO_DEVICE_DRIVER_GET_PRIVATE(driver);
+    driver->priv = osinfo_device_driver_get_instance_private(driver);
     driver->priv->devices = osinfo_devicelist_new();
 }
 

@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeviceLinkList, osinfo_devicelinklist, OSINFO_TYPE_LIST);
-
-#define OSINFO_DEVICELINKLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEVICELINKLIST, OsinfoDeviceLinkListPrivate))
-
 /**
  * SECTION:osinfo_devicelinklist
  * @short_description: A list of hardware devicelink
@@ -38,6 +34,8 @@ struct _OsinfoDeviceLinkListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceLinkList, osinfo_devicelinklist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_devicelinklist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_devicelinklist_class_init(OsinfoDeviceLinkListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_devicelinklist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeviceLinkListPrivate));
 }
 
 static void
 osinfo_devicelinklist_init(OsinfoDeviceLinkList *list)
 {
-    list->priv = OSINFO_DEVICELINKLIST_GET_PRIVATE(list);
+    list->priv = osinfo_devicelinklist_get_instance_private(list);
 }
 
 

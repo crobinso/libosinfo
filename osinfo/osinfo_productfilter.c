@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoProductFilter, osinfo_productfilter, OSINFO_TYPE_FILTER);
-
-#define OSINFO_PRODUCTFILTER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_PRODUCTFILTER, OsinfoProductFilterPrivate))
-
 /**
  * SECTION:osinfo_productfilter
  * @short_description: an operating system filter
@@ -45,6 +41,8 @@ struct _OsinfoProductFilterPrivate
 
     GDate *supportDate;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoProductFilter, osinfo_productfilter, OSINFO_TYPE_FILTER);
 
 static void osinfo_productfilter_finalize(GObject *object);
 static gboolean osinfo_productfilter_matches_default(OsinfoFilter *productfilter, OsinfoEntity *entity);
@@ -71,7 +69,6 @@ osinfo_productfilter_class_init(OsinfoProductFilterClass *klass)
     OsinfoFilterClass *filter_klass = OSINFO_FILTER_CLASS(klass);
 
     g_klass->finalize = osinfo_productfilter_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoProductFilterPrivate));
 
     filter_klass->matches = osinfo_productfilter_matches_default;
 }
@@ -100,7 +97,7 @@ osinfo_productfilter_product_constraints_free(gpointer relshps)
 static void
 osinfo_productfilter_init(OsinfoProductFilter *productfilter)
 {
-    productfilter->priv = OSINFO_PRODUCTFILTER_GET_PRIVATE(productfilter);
+    productfilter->priv = osinfo_productfilter_get_instance_private(productfilter);
     productfilter->priv->productConstraints =
         g_hash_table_new_full(g_direct_hash,
                               g_direct_equal,

@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoPlatformList, osinfo_platformlist, OSINFO_TYPE_PRODUCTLIST);
-
-#define OSINFO_PLATFORMLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_PLATFORMLIST, OsinfoPlatformListPrivate))
-
 /**
  * SECTION:osinfo_platformlist
  * @short_description: A list of virtualization platforms
@@ -38,6 +34,8 @@ struct _OsinfoPlatformListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoPlatformList, osinfo_platformlist, OSINFO_TYPE_PRODUCTLIST);
 
 static void
 osinfo_platformlist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_platformlist_class_init(OsinfoPlatformListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_platformlist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoPlatformListPrivate));
 }
 
 static void
 osinfo_platformlist_init(OsinfoPlatformList *list)
 {
-    list->priv = OSINFO_PLATFORMLIST_GET_PRIVATE(list);
+    list->priv = osinfo_platformlist_get_instance_private(list);
 }
 
 

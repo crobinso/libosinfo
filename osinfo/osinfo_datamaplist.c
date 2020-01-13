@@ -20,10 +20,6 @@
 
 #include <osinfo/osinfo.h>
 
-G_DEFINE_TYPE(OsinfoDatamapList, osinfo_datamaplist, OSINFO_TYPE_LIST);
-
-#define OSINFO_DATAMAPLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DATAMAPLIST, OsinfoDatamapListPrivate))
-
 /**
  * SECTION:osinfo_datamaplist
  * @short_description: A list of datamaps
@@ -37,6 +33,8 @@ struct _OsinfoDatamapListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDatamapList, osinfo_datamaplist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_datamaplist_finalize(GObject *object)
@@ -52,13 +50,12 @@ osinfo_datamaplist_class_init(OsinfoDatamapListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_datamaplist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDatamapListPrivate));
 }
 
 static void
 osinfo_datamaplist_init(OsinfoDatamapList *list)
 {
-    list->priv = OSINFO_DATAMAPLIST_GET_PRIVATE(list);
+    list->priv = osinfo_datamaplist_get_instance_private(list);
 }
 
 /**

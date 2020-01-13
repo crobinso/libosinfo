@@ -42,10 +42,6 @@
 # define PCI_IDS PKG_DATA_DIR "/pci.ids"
 #endif
 
-G_DEFINE_TYPE(OsinfoLoader, osinfo_loader, G_TYPE_OBJECT);
-
-#define OSINFO_LOADER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_LOADER, OsinfoLoaderPrivate))
-
 /**
  * SECTION:osinfo_loader
  * @short_description: An database loader
@@ -62,6 +58,8 @@ struct _OsinfoLoaderPrivate
     GHashTable *xpath_cache;
     GHashTable *entity_refs;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoLoader, osinfo_loader, G_TYPE_OBJECT);
 
 struct _OsinfoEntityKey
 {
@@ -101,8 +99,6 @@ osinfo_loader_class_init(OsinfoLoaderClass *klass)
     bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 
     g_klass->finalize = osinfo_loader_finalize;
-
-    g_type_class_add_private(klass, sizeof(OsinfoLoaderPrivate));
 }
 
 
@@ -114,7 +110,7 @@ static void xpath_cache_value_free(gpointer values)
 static void
 osinfo_loader_init(OsinfoLoader *loader)
 {
-    loader->priv = OSINFO_LOADER_GET_PRIVATE(loader);
+    loader->priv = osinfo_loader_get_instance_private(loader);
     loader->priv->db = osinfo_db_new();
     loader->priv->xpath_cache = g_hash_table_new_full(g_str_hash,
                                                       g_str_equal,

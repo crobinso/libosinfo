@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDevice, osinfo_device, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_DEVICE_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEVICE, OsinfoDevicePrivate))
-
 /**
  * SECTION:osinfo_device
  * @short_description: A hardware device
@@ -40,6 +36,7 @@ struct _OsinfoDevicePrivate
     gboolean unused;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDevice, osinfo_device, OSINFO_TYPE_ENTITY);
 
 static void osinfo_device_finalize(GObject *object);
 
@@ -57,13 +54,12 @@ osinfo_device_class_init(OsinfoDeviceClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_device_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDevicePrivate));
 }
 
 static void
 osinfo_device_init(OsinfoDevice *device)
 {
-    device->priv = OSINFO_DEVICE_GET_PRIVATE(device);
+    device->priv = osinfo_device_get_instance_private(device);
 }
 
 OsinfoDevice *osinfo_device_new(const gchar *id)

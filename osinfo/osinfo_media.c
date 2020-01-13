@@ -189,13 +189,6 @@ osinfo_media_error_quark(void)
     return quark;
 }
 
-G_DEFINE_TYPE(OsinfoMedia, osinfo_media, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_MEDIA_GET_PRIVATE(obj) \
-        (G_TYPE_INSTANCE_GET_PRIVATE((obj), \
-                                     OSINFO_TYPE_MEDIA,         \
-                                     OsinfoMediaPrivate))
-
 /**
  * SECTION:osinfo_media
  * @short_description: An installation media for a (guest) OS
@@ -210,6 +203,8 @@ struct _OsinfoMediaPrivate
     GWeakRef os;
     OsinfoInstallScriptList *scripts;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoMedia, osinfo_media, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -466,7 +461,6 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
     g_klass->finalize = osinfo_media_finalize;
     g_klass->get_property = osinfo_media_get_property;
     g_klass->set_property = osinfo_media_set_property;
-    g_type_class_add_private(klass, sizeof(OsinfoMediaPrivate));
 
     /**
      * OsinfoMedia:architecture:
@@ -709,7 +703,7 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
 static void
 osinfo_media_init(OsinfoMedia *media)
 {
-    media->priv = OSINFO_MEDIA_GET_PRIVATE(media);
+    media->priv = osinfo_media_get_instance_private(media);
     g_weak_ref_init(&media->priv->os, NULL);
     media->priv->scripts = osinfo_install_scriptlist_new();
 }

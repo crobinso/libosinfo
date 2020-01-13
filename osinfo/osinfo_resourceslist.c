@@ -21,12 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoResourcesList, osinfo_resourceslist, OSINFO_TYPE_LIST);
-
-#define OSINFO_RESOURCESLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), \
-                                               OSINFO_TYPE_RESOURCESLIST,          \
-                                               OsinfoResourcesListPrivate))
-
 /**
  * SECTION:osinfo_resourceslist
  * @short_description: A list of installation resources
@@ -40,6 +34,8 @@ struct _OsinfoResourcesListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoResourcesList, osinfo_resourceslist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_resourceslist_finalize(GObject *object)
@@ -55,14 +51,12 @@ osinfo_resourceslist_class_init(OsinfoResourcesListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_resourceslist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoResourcesListPrivate));
 }
 
 static void
 osinfo_resourceslist_init(OsinfoResourcesList *list)
 {
-    list->priv = OSINFO_RESOURCESLIST_GET_PRIVATE(list);
-
+    list->priv = osinfo_resourceslist_get_instance_private(list);
 }
 
 /**

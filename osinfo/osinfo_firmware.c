@@ -24,13 +24,6 @@
 #include <string.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoFirmware, osinfo_firmware, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_FIRMWARE_GET_PRIVATE(obj)                    \
-    (G_TYPE_INSTANCE_GET_PRIVATE((obj),                \
-                                  OSINFO_TYPE_FIRMWARE,     \
-                                  OsinfoFirmwarePrivate))
-
 /**
  * SECTION:osinfo_firmware
  * @short_description: A firmware representation for a (guest) OS
@@ -44,6 +37,8 @@ struct _OsinfoFirmwarePrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoFirmware, osinfo_firmware, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -121,7 +116,6 @@ osinfo_firmware_class_init(OsinfoFirmwareClass *klass)
     g_klass->finalize = osinfo_firmware_finalize;
     g_klass->get_property = osinfo_firmware_get_property;
     g_klass->set_property = osinfo_firmware_set_property;
-    g_type_class_add_private(klass, sizeof(OsinfoFirmwarePrivate));
 
     /**
      * OsinfoFirmware:architecture:
@@ -153,7 +147,7 @@ osinfo_firmware_class_init(OsinfoFirmwareClass *klass)
 static void
 osinfo_firmware_init(OsinfoFirmware *firmware)
 {
-    firmware->priv = OSINFO_FIRMWARE_GET_PRIVATE(firmware);
+    firmware->priv = osinfo_firmware_get_instance_private(firmware);
 }
 
 OsinfoFirmware *osinfo_firmware_new(const gchar *id,

@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoMediaList, osinfo_medialist, OSINFO_TYPE_LIST);
-
-#define OSINFO_MEDIALIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_MEDIALIST, OsinfoMediaListPrivate))
-
 /**
  * SECTION:osinfo_medialist
  * @short_description: A list of installation media
@@ -38,6 +34,8 @@ struct _OsinfoMediaListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoMediaList, osinfo_medialist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_medialist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_medialist_class_init(OsinfoMediaListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_medialist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoMediaListPrivate));
 }
 
 static void
 osinfo_medialist_init(OsinfoMediaList *list)
 {
-    list->priv = OSINFO_MEDIALIST_GET_PRIVATE(list);
+    list->priv = osinfo_medialist_get_instance_private(list);
 }
 
 /**

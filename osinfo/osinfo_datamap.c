@@ -25,10 +25,6 @@
 #include <libxslt/xsltutils.h>
 #include <libxslt/xsltInternals.h>
 
-G_DEFINE_TYPE(OsinfoDatamap, osinfo_datamap, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_DATAMAP_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DATAMAP, OsinfoDatamapPrivate))
-
 /**
  * SECTION:osinfo_datamap
  * @short_descripion: OS  datamap
@@ -44,6 +40,8 @@ struct _OsinfoDatamapPrivate
     GHashTable *map;
     GHashTable *reverse_map;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDatamap, osinfo_datamap, OSINFO_TYPE_ENTITY);
 
 static void
 osinfo_datamap_finalize(GObject *object)
@@ -64,14 +62,12 @@ osinfo_datamap_class_init(OsinfoDatamapClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_datamap_finalize;
-
-    g_type_class_add_private(klass, sizeof(OsinfoDatamapPrivate));
 }
 
 static void
 osinfo_datamap_init(OsinfoDatamap *map)
 {
-    map->priv = OSINFO_DATAMAP_GET_PRIVATE(map);
+    map->priv = osinfo_datamap_get_instance_private(map);
     map->priv->map = g_hash_table_new_full(g_str_hash,
                                             g_str_equal,
                                             g_free,

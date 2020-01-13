@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoTreeList, osinfo_treelist, OSINFO_TYPE_LIST);
-
-#define OSINFO_TREELIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_TREELIST, OsinfoTreeListPrivate))
-
 /**
  * SECTION:osinfo_treelist
  * @short_description: A list of installation tree
@@ -38,6 +34,8 @@ struct _OsinfoTreeListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoTreeList, osinfo_treelist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_treelist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_treelist_class_init(OsinfoTreeListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_treelist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoTreeListPrivate));
 }
 
 static void
 osinfo_treelist_init(OsinfoTreeList *list)
 {
-    list->priv = OSINFO_TREELIST_GET_PRIVATE(list);
+    list->priv = osinfo_treelist_get_instance_private(list);
 }
 
 /**

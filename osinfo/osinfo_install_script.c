@@ -27,10 +27,6 @@
 #include <glib/gi18n-lib.h>
 #include "osinfo_install_script_private.h"
 
-G_DEFINE_TYPE(OsinfoInstallScript, osinfo_install_script, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_INSTALL_SCRIPT_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_INSTALL_SCRIPT, OsinfoInstallScriptPrivate))
-
 /**
  * SECTION:osinfo_install_script
  * @short_description: OS install script generation
@@ -49,6 +45,8 @@ struct _OsinfoInstallScriptPrivate
     OsinfoInstallConfigParamList *config_params;
     OsinfoAvatarFormat *avatar;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoInstallScript, osinfo_install_script, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -293,8 +291,6 @@ osinfo_install_script_class_init(OsinfoInstallScriptClass *klass)
     g_object_class_install_property(g_klass,
                                     PROP_INSTALLATION_SOURCE,
                                     pspec);
-
-    g_type_class_add_private(klass, sizeof(OsinfoInstallScriptPrivate));
 }
 
 void osinfo_install_script_add_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *param)
@@ -402,7 +398,7 @@ osinfo_install_script_get_config_param(OsinfoInstallScript *script,
 static void
 osinfo_install_script_init(OsinfoInstallScript *list)
 {
-    list->priv = OSINFO_INSTALL_SCRIPT_GET_PRIVATE(list);
+    list->priv = osinfo_install_script_get_instance_private(list);
     list->priv->config_params = osinfo_install_config_paramlist_new();
 }
 

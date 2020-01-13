@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoProductList, osinfo_productlist, OSINFO_TYPE_LIST);
-
-#define OSINFO_PRODUCTLIST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_PRODUCTLIST, OsinfoProductListPrivate))
-
 /**
  * SECTION:osinfo_productlist
  * @short_description: A list of software products
@@ -38,6 +34,8 @@ struct _OsinfoProductListPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoProductList, osinfo_productlist, OSINFO_TYPE_LIST);
 
 static void
 osinfo_productlist_finalize(GObject *object)
@@ -53,13 +51,12 @@ osinfo_productlist_class_init(OsinfoProductListClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_productlist_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoProductListPrivate));
 }
 
 static void
 osinfo_productlist_init(OsinfoProductList *list)
 {
-    list->priv = OSINFO_PRODUCTLIST_GET_PRIVATE(list);
+    list->priv = osinfo_productlist_get_instance_private(list);
 }
 
 

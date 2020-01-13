@@ -24,13 +24,6 @@
 #include <string.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoImage, osinfo_image, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_IMAGE_GET_PRIVATE(obj)                    \
-    (G_TYPE_INSTANCE_GET_PRIVATE((obj),                \
-                                  OSINFO_TYPE_IMAGE,     \
-                                  OsinfoImagePrivate))
-
 /**
  * SECTION:osinfo_image
  * @short_description: A pre-installed image for a (guest) OS
@@ -44,6 +37,8 @@ struct _OsinfoImagePrivate
 {
     GWeakRef os;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoImage, osinfo_image, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -153,7 +148,6 @@ osinfo_image_class_init(OsinfoImageClass *klass)
     g_klass->finalize = osinfo_image_finalize;
     g_klass->get_property = osinfo_image_get_property;
     g_klass->set_property = osinfo_image_set_property;
-    g_type_class_add_private(klass, sizeof(OsinfoImagePrivate));
 
     /**
      * OsinfoImage:architecture:
@@ -211,7 +205,7 @@ osinfo_image_class_init(OsinfoImageClass *klass)
 static void
 osinfo_image_init(OsinfoImage *image)
 {
-    image->priv = OSINFO_IMAGE_GET_PRIVATE(image);
+    image->priv = osinfo_image_get_instance_private(image);
 
     g_weak_ref_init(&image->priv->os, NULL);
 }

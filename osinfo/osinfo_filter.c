@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoFilter, osinfo_filter, G_TYPE_OBJECT);
-
-#define OSINFO_FILTER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_FILTER, OsinfoFilterPrivate))
-
 /**
  * SECTION:osinfo_filter
  * @short_description: An entity filter
@@ -41,6 +37,7 @@ struct _OsinfoFilterPrivate
     GHashTable *propertyConstraints;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoFilter, osinfo_filter, G_TYPE_OBJECT);
 
 static void osinfo_filter_finalize(GObject *object);
 static gboolean osinfo_filter_matches_default(OsinfoFilter *filter, OsinfoEntity *entity);
@@ -63,7 +60,6 @@ osinfo_filter_class_init(OsinfoFilterClass *klass)
     GObjectClass *g_klass = G_OBJECT_CLASS(klass);
 
     g_klass->finalize = osinfo_filter_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoFilterPrivate));
 
     klass->matches = osinfo_filter_matches_default;
 }
@@ -92,7 +88,7 @@ osinfo_filter_prop_constraints_free(gpointer props)
 static void
 osinfo_filter_init(OsinfoFilter *filter)
 {
-    filter->priv = OSINFO_FILTER_GET_PRIVATE(filter);
+    filter->priv = osinfo_filter_get_instance_private(filter);
 
     filter->priv->propertyConstraints =
         g_hash_table_new_full(g_str_hash,

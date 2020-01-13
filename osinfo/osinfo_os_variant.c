@@ -21,13 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoOsVariant, osinfo_os_variant, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_OS_VARIANT_GET_PRIVATE(obj) \
-        (G_TYPE_INSTANCE_GET_PRIVATE((obj), \
-                                      OSINFO_TYPE_OS_VARIANT, \
-                                      OsinfoOsVariantPrivate))
-
 /**
  * SECTION:osinfo_os_variant
  * @short_description: A variant of an OS
@@ -39,6 +32,8 @@ struct _OsinfoOsVariantPrivate
 {
     gboolean unused;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoOsVariant, osinfo_os_variant, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -98,7 +93,6 @@ osinfo_os_variant_class_init(OsinfoOsVariantClass *klass)
 
     g_klass->get_property = osinfo_os_variant_get_property;
     g_klass->set_property = osinfo_os_variant_set_property;
-    g_type_class_add_private(klass, sizeof(OsinfoOsVariantPrivate));
 
     /**
      * OsinfoOsVariant:name:
@@ -117,7 +111,7 @@ osinfo_os_variant_class_init(OsinfoOsVariantClass *klass)
 static void
 osinfo_os_variant_init(OsinfoOsVariant *variant)
 {
-    variant->priv = OSINFO_OS_VARIANT_GET_PRIVATE(variant);
+    variant->priv = osinfo_os_variant_get_instance_private(variant);
 }
 
 /**

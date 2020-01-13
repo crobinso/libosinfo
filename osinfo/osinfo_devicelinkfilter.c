@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeviceLinkFilter, osinfo_devicelinkfilter, OSINFO_TYPE_FILTER);
-
-#define OSINFO_DEVICELINKFILTER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEVICELINKFILTER, OsinfoDeviceLinkFilterPrivate))
-
 /**
  * SECTION:osinfo_devicelinkfilter
  * @short_description: an operating system filter
@@ -40,6 +36,8 @@ struct _OsinfoDeviceLinkFilterPrivate
 {
     OsinfoFilter *targetFilter;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeviceLinkFilter, osinfo_devicelinkfilter, OSINFO_TYPE_FILTER);
 
 static gboolean osinfo_devicelinkfilter_matches_default(OsinfoFilter *devicelinkfilter, OsinfoEntity *entity);
 
@@ -134,8 +132,6 @@ osinfo_devicelinkfilter_class_init(OsinfoDeviceLinkFilterClass *klass)
                                     PROP_TARGET_FILTER,
                                     pspec);
 
-    g_type_class_add_private(klass, sizeof(OsinfoDeviceLinkFilterPrivate));
-
     filter_klass->matches = osinfo_devicelinkfilter_matches_default;
 }
 
@@ -160,7 +156,7 @@ OsinfoDeviceLinkFilter *osinfo_devicelinkfilter_new(OsinfoFilter *filter)
 static void
 osinfo_devicelinkfilter_init(OsinfoDeviceLinkFilter *devicelinkfilter)
 {
-    devicelinkfilter->priv = OSINFO_DEVICELINKFILTER_GET_PRIVATE(devicelinkfilter);
+    devicelinkfilter->priv = osinfo_devicelinkfilter_get_instance_private(devicelinkfilter);
 }
 
 

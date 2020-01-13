@@ -21,10 +21,6 @@
 #include <osinfo/osinfo.h>
 #include <glib/gi18n-lib.h>
 
-G_DEFINE_TYPE(OsinfoDeployment, osinfo_deployment, OSINFO_TYPE_ENTITY);
-
-#define OSINFO_DEPLOYMENT_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), OSINFO_TYPE_DEPLOYMENT, OsinfoDeploymentPrivate))
-
 /**
  * SECTION:osinfo_deployment
  * @short_description: An virtualization deployment
@@ -43,6 +39,7 @@ struct _OsinfoDeploymentPrivate
     OsinfoPlatform *platform;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE(OsinfoDeployment, osinfo_deployment, OSINFO_TYPE_ENTITY);
 
 enum {
     PROP_0,
@@ -164,13 +161,12 @@ osinfo_deployment_class_init(OsinfoDeploymentClass *klass)
                                     pspec);
 
     g_klass->finalize = osinfo_deployment_finalize;
-    g_type_class_add_private(klass, sizeof(OsinfoDeploymentPrivate));
 }
 
 static void
 osinfo_deployment_init(OsinfoDeployment *deployment)
 {
-    deployment->priv = OSINFO_DEPLOYMENT_GET_PRIVATE(deployment);
+    deployment->priv = osinfo_deployment_get_instance_private(deployment);
     deployment->priv->deviceLinks = NULL;
 }
 
