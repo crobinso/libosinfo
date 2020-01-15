@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-16 14:48+0000\n"
-"PO-Revision-Date: 2020-01-11 11:04+0000\n"
+"PO-Revision-Date: 2020-01-15 15:25+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://translate.stg.fedoraproject.org/projects/"
 "libosinfo/libosinfo/pl/>\n"
@@ -218,7 +218,7 @@ msgstr "Brak właściwości identyfikatora platformy"
 
 #: osinfo/osinfo_loader.c:803
 msgid "Missing deployment id property"
-msgstr "Brak właściwości identyfikatora wdrożenia"
+msgstr "Brak właściwości identyfikatora"
 
 #: osinfo/osinfo_loader.c:813
 msgid "Missing deployment os id property"
