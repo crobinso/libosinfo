@@ -1,26 +1,27 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Jérôme Fenal <jfenal@gmail.com>, 2013
 # Christophe Fergeau <cfergeau@redhat.com>, 2015. #zanata
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2019. #zanata
+# Julien Humbert <julroy67@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 13:52+0100\n"
-"PO-Revision-Date: 2019-08-26 09:36+0000\n"
-"Last-Translator: Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/libosinfo/"
-"language/fr/)\n"
+"PO-Revision-Date: 2020-01-25 15:16+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/"
+"libosinfo/libosinfo/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10.3\n"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The allowed mime-types for the avatar"
@@ -32,11 +33,11 @@ msgstr "Largeur demandée (en pixels) pour l’avatar"
 
 #: osinfo/osinfo_avatar_format.c:138
 msgid "The required height (in pixels) of the avatar."
-msgstr "Hauteur demandée (en pixels) pour l’avatar"
+msgstr "Hauteur demandée (en pixels) pour l’avatar."
 
 #: osinfo/osinfo_avatar_format.c:155
 msgid "Whether alpha channel is supported in the avatar."
-msgstr "Indique si l’avatar supporte un canal alpha"
+msgstr "Indique si l’avatar supporte un canal alpha."
 
 #: osinfo/osinfo_deployment.c:146
 msgid "Operating system"
@@ -66,7 +67,7 @@ msgstr "Architecture CPU"
 
 #: osinfo/osinfo_firmware.c:146
 msgid "The firmware type"
-msgstr ""
+msgstr "Le type de micrologiciel"
 
 #: osinfo/osinfo_image.c:181
 msgid "The image format"
@@ -511,7 +512,7 @@ msgstr "Format de sortie. Par défaut : plain"
 
 #: tools/osinfo-detect.c:92
 msgid "plain."
-msgstr ""
+msgstr "simple."
 
 #: tools/osinfo-detect.c:95
 msgid "The type to be used. Default: media"
@@ -519,7 +520,7 @@ msgstr "Le type à utiliser. Par défaut : media"
 
 #: tools/osinfo-detect.c:96
 msgid "media|tree."
-msgstr "media|tree."
+msgstr "média|arbre."
 
 #: tools/osinfo-detect.c:103
 #, c-format
@@ -534,12 +535,12 @@ msgstr "Le média n’est pas amorçable.\n"
 #: tools/osinfo-detect.c:136
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Le média est un installeur pour OS « %s (%s) »\n"
 
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Le média est un média live pour OS « %s (%s) »\n"
 
 #: tools/osinfo-detect.c:143
 #, c-format
@@ -549,7 +550,7 @@ msgstr "Variantes de système d’exploitation disponibles sur ce média :\n"
 #: tools/osinfo-detect.c:185
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "L’arbre est un installeur pour OS « %s (%s) »\n"
 
 #: tools/osinfo-detect.c:190
 #, c-format
