@@ -130,6 +130,27 @@ osinfo_loader_init(OsinfoLoader *loader)
                                                       NULL);
 }
 
+static gchar *
+osinfo_build_internal_id(const gchar *relpath,
+                         const gchar *id,
+                         gint number)
+{
+    gchar *driver_id = NULL;
+    g_autofree gchar *dirname = NULL;
+
+    dirname = g_path_get_dirname(relpath);
+    if (g_str_has_suffix(dirname, ".d")) {
+        g_autofree gchar *basename = NULL;
+
+        basename = g_path_get_basename(relpath);
+        driver_id = g_strdup_printf("%s:%s:%u", id, basename, number);
+    } else {
+        driver_id = g_strdup_printf("%s:%u", id, number);
+    }
+
+    return driver_id;
+}
+
 /**
  * osinfo_loader_new:
  *
@@ -1633,7 +1654,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *firmware_id = g_strdup_printf("%s:%u", id, i);
+        gchar *firmware_id = osinfo_build_internal_id(relpath, id, i);
         OsinfoFirmware *firmware = osinfo_loader_firmware(loader, ctxt, nodes[i], firmware_id, err);
         g_free(firmware_id);
         ctxt->node = saved;
@@ -1651,7 +1672,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *media_id = g_strdup_printf("%s:%u", id, i);
+        gchar *media_id = osinfo_build_internal_id(relpath, id, i);
         OsinfoMedia *media = osinfo_loader_media(loader, ctxt, nodes[i], media_id, err);
         g_free(media_id);
         ctxt->node = saved;
@@ -1671,7 +1692,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *tree_id = g_strdup_printf("%s:%u", id, i);
+        gchar *tree_id = osinfo_build_internal_id(relpath, id, i);
         OsinfoTree *tree = osinfo_loader_tree(loader, ctxt, nodes[i], tree_id, err);
         g_free(tree_id);
         ctxt->node = saved;
@@ -1691,7 +1712,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *image_id = g_strdup_printf("%s:%u", id, i);
+        gchar *image_id = osinfo_build_internal_id(relpath, id, i);
         OsinfoImage *image = osinfo_loader_image(loader, ctxt, nodes[i], image_id, err);
         g_free(image_id);
         ctxt->node = saved;
@@ -1732,7 +1753,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *resources_id = g_strdup_printf("%s:%u", id, i);
+        gchar *resources_id = osinfo_build_internal_id(relpath, id, i);
 
         osinfo_loader_resources_list(loader,
                                      ctxt,
@@ -1774,7 +1795,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
     for (i = 0; i < nnodes; i++) {
         xmlNodePtr saved = ctxt->node;
         ctxt->node = nodes[i];
-        gchar *driver_id = g_strdup_printf("%s:%u", id, i);
+        gchar *driver_id = osinfo_build_internal_id(relpath, id, i);
         OsinfoDeviceDriver *driver= osinfo_loader_driver(loader,
                                                          ctxt,
                                                          nodes[i],
