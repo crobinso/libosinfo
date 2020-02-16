@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-29 13:52+0100\n"
-"PO-Revision-Date: 2020-01-25 15:16+0000\n"
+"PO-Revision-Date: 2020-02-16 09:38+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fr/>\n"
@@ -115,11 +115,11 @@ msgstr "Format attendu pour l’avatar"
 
 #: osinfo/osinfo_install_script.c:279
 msgid "The preferred injection method"
-msgstr "La méthode d'injection préférée"
+msgstr "La méthode d’injection préférée"
 
 #: osinfo/osinfo_install_script.c:291
 msgid "The installation source to be used"
-msgstr "La source d'installation à utiliser"
+msgstr "La source d’installation à utiliser"
 
 #: osinfo/osinfo_install_script.c:721
 msgid "Unable to create XML parser context"
@@ -336,7 +336,7 @@ msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
 "Indique si le média soit être utilisé pour une installation en utilisant les "
-"scripts d'installation"
+"scripts d’installation"
 
 #: osinfo/osinfo_media.c:841
 #, c-format
@@ -347,12 +347,12 @@ msgstr "Le média d’installation n’est pas amorçable"
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
 msgstr ""
-"Échec de la lecture de l'enregistrement correspondant au dossier « %s » :"
+"Échec de la lecture de l’enregistrement correspondant au dossier « %s » : "
 
 #: osinfo/osinfo_media.c:924
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr "Aucun enregistrement n'a été trouvé pour le dossier « %s »"
+msgstr "Aucun enregistrement n’a été trouvé pour le dossier « %s »"
 
 #: osinfo/osinfo_media.c:1128
 msgid "Failed to read supplementary volume descriptor: "
@@ -389,7 +389,7 @@ msgstr "Aucun descripteur de volume"
 
 #: osinfo/osinfo_media.c:1323
 msgid "Failed to open file: "
-msgstr "impossible d'ouvrir le fichier :"
+msgstr "impossible d’ouvrir le fichier : "
 
 #: osinfo/osinfo_os.c:158
 msgid "Generic Family"
@@ -401,7 +401,7 @@ msgstr "Distribution générique"
 
 #: osinfo/osinfo_os.c:190
 msgid "Kernel URL Argument"
-msgstr "Paramètre d'URL du noyau"
+msgstr "Paramètre d’URL du noyau"
 
 #: osinfo/osinfo_product.c:166 tools/osinfo-query.c:56 tools/osinfo-query.c:80
 #: tools/osinfo-query.c:106
@@ -459,7 +459,7 @@ msgstr "Le chemin vers l’image ISO amorçable"
 
 #: osinfo/osinfo_tree.c:381
 msgid "Whether the tree has treeinfo"
-msgstr "Si l'arbre possède treeinfo"
+msgstr "Si l’arbre possède treeinfo"
 
 #: osinfo/osinfo_tree.c:394
 msgid "The treeinfo family"
@@ -475,7 +475,7 @@ msgstr "La version treeinfo"
 
 #: osinfo/osinfo_tree.c:433
 msgid "The treeinfo architecture"
-msgstr "L'architecture treeinfo"
+msgstr "L’architecture treeinfo"
 
 #: osinfo/osinfo_tree.c:449
 msgid "Information about the operating system on this tree"
@@ -495,7 +495,7 @@ msgstr "Impossible de charger le fichier .treeinfo|treeinfo : "
 
 #: osinfo/osinfo_tree.c:830
 msgid "URL protocol is not supported"
-msgstr "Le protocol d'URL n'est pas pris en charge"
+msgstr "Le protocole d’URL n’est pas pris en charge"
 
 #: osinfo/osinfo_os_variant.c:113
 msgid "The name to this variant"
@@ -555,7 +555,7 @@ msgstr "L’arbre est un installeur pour OS « %s (%s) »\n"
 #: tools/osinfo-detect.c:190
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr "Variantes de système d’exploitation disponibles sur l'arbre :\n"
+msgstr "Variantes de système d’exploitation disponibles sur l’arbre :\n"
 
 #: tools/osinfo-detect.c:217
 msgid "- Detect if media is bootable and the relevant OS and distribution."
@@ -603,7 +603,7 @@ msgstr "Le préfixe des fichiers de sortie"
 
 #: tools/osinfo-install-script.c:150
 msgid "The installation source to be used with the script"
-msgstr "La source d'installation à utiliser avec le script"
+msgstr "La source d’installation à utiliser avec le script"
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameter"
