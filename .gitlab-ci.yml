@@ -159,8 +159,6 @@ fedora-30:
     - *libosinfo-build
     - *libosinfo-check
     - *libosinfo-rpm
-    - *libosinfo-mingw32-build
-    - *libosinfo-mingw64-build
   image: quay.io/libvirt/buildenv-libosinfo-fedora-30:latest
 
 fedora-31:
