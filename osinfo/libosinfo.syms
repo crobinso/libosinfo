@@ -632,6 +632,7 @@ LIBOSINFO_1.8.0 {
     global:
 
 	osinfo_error_get_type;
+	osinfo_firmware_is_supported;
 } LIBOSINFO_1.7.0;
 
 /* Symbols in next release...

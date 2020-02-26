@@ -198,3 +198,17 @@ const gchar *osinfo_firmware_get_firmware_type(OsinfoFirmware *firmware)
     return osinfo_entity_get_param_value(OSINFO_ENTITY(firmware),
                                          OSINFO_FIRMWARE_PROP_TYPE);
 }
+
+/**
+ * osinfo_firmware_is_supported:
+ * @firmware: an #OsinfoFirmware instance
+ *
+ * Whether the @firmware is supported or not
+ *
+ * Returns: TRUE if supported, FALSE otherwise.
+ */
+gboolean osinfo_firmware_is_supported(OsinfoFirmware *firmware)
+{
+    return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(firmware),
+                                                 OSINFO_FIRMWARE_PROP_SUPPORTED);
+}
