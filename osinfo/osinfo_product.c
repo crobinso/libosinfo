@@ -48,7 +48,7 @@ G_DEFINE_ABSTRACT_TYPE(OsinfoProduct, osinfo_product, OSINFO_TYPE_ENTITY);
 /**
  * OsinfoProductRelationship:
  * @OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM: a descendent (RHEL-5 derives from Fedora-6)
- * @OSINFO_PRODUCT_RELATIONSHIP_CLONES: a perfect clone (CentPRODUCT-5 clones RHEL-5)
+ * @OSINFO_PRODUCT_RELATIONSHIP_CLONES: a perfect clone (CentOS-5 clones RHEL-5)
  * @OSINFO_PRODUCT_RELATIONSHIP_UPGRADES: a new version release (RHEL-6 upgrades RHEL-4)
  *
  * Enum values used to form relationships between products
