@@ -440,7 +440,7 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
      * OsinfoTree:os:
      *
      * Os information for the current tree. For tree stored in an
-     * #OsinfoDB, it will be filled when the database is loaded, otherwise
+     * #OsinfoDb, it will be filled when the database is loaded, otherwise
      * the property will be filled after a successful call to
      * osinfo_db_identify_tree().
      */
