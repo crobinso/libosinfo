@@ -186,12 +186,12 @@ const gchar *osinfo_firmware_get_architecture(OsinfoFirmware *firmware)
 }
 
 /**
- * osinfo_firmware_get_format:
+ * osinfo_firmware_get_firmware_type:
  * @firmware: an #OsinfoFirmware instance
  *
- * The format of the @firmware
+ * The type of the @firmware
  *
- * Returns: (transfer none): the format, or NULL
+ * Returns: (transfer none): the type, or NULL
  */
 const gchar *osinfo_firmware_get_firmware_type(OsinfoFirmware *firmware)
 {
