@@ -196,6 +196,17 @@ gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver)
                  OSINFO_DEVICE_DRIVER_PROP_SIGNED);
 }
 
+/**
+ * osinfo_device_driver_get_priority:
+ * @driver: an #OsinfoDeviceDriver instance
+ *
+ * Returns the priority of the device driver. The higher the value, the more
+ * important it is.
+ *
+ * Returns: the priority of the device driver.
+ *
+ * Since: 1.7.0
+ */
 gint64 osinfo_device_driver_get_priority(OsinfoDeviceDriver *driver)
 {
     return osinfo_entity_get_param_value_int64_with_default
