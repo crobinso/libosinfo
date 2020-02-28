@@ -771,6 +771,8 @@ const gchar *osinfo_install_config_get_avatar_disk(OsinfoInstallConfig *config)
  *
  * NOTE: Microsoft Windows XP requires pre-installation driver files to be
  * present in the script disk under the toplevel directory.
+ *
+ * Since: 0.2.2
  */
 void osinfo_install_config_set_pre_install_drivers_disk(OsinfoInstallConfig *config,
                                                         const gchar *disk)

@@ -2100,6 +2100,8 @@ gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript
  * #osinfo_db_identify_tree() before calling this function.
  *
  * Returns: (transfer full): The generated command line string, NULL otherwise.
+ *
+ * Since: 1.6.0
  */
 gchar *osinfo_install_script_generate_command_line_for_tree(OsinfoInstallScript *script,
                                                             OsinfoTree *tree,

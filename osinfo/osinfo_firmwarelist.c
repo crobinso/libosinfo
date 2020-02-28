@@ -68,6 +68,8 @@ osinfo_firmwarelist_init(OsinfoFirmwareList *list)
  * Construct a new firmware list that is initially empty.
  *
  * Returns: (transfer full): an empty firmware list
+ *
+ * Since: 1.7.0
  */
 OsinfoFirmwareList *osinfo_firmwarelist_new(void)
 {

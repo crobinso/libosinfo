@@ -1425,6 +1425,8 @@ static void get_all_firmwares_cb(OsinfoProduct *product, gpointer user_data)
  * Get all firmwares matching a given filter
  *
  * Returns: (transfer full): A list of firmwares
+ *
+ * Since: 1.7.0
  */
 OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filter)
 {

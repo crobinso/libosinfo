@@ -178,6 +178,8 @@ OsinfoFirmware *osinfo_firmware_new(const gchar *id,
  * Retrieves the target hardware architecture of the OS @firmware provides.
  *
  * Returns: (transfer none): the hardware architecture, or NULL
+ *
+ * Since: 1.7.0
  */
 const gchar *osinfo_firmware_get_architecture(OsinfoFirmware *firmware)
 {
@@ -192,6 +194,8 @@ const gchar *osinfo_firmware_get_architecture(OsinfoFirmware *firmware)
  * The type of the @firmware
  *
  * Returns: (transfer none): the type, or NULL
+ *
+ * Since: 1.7.0
  */
 const gchar *osinfo_firmware_get_firmware_type(OsinfoFirmware *firmware)
 {
@@ -206,6 +210,8 @@ const gchar *osinfo_firmware_get_firmware_type(OsinfoFirmware *firmware)
  * Whether the @firmware is supported or not
  *
  * Returns: TRUE if supported, FALSE otherwise.
+ *
+ * Since: 1.8.0
  */
 gboolean osinfo_firmware_is_supported(OsinfoFirmware *firmware)
 {

@@ -940,6 +940,8 @@ const gchar *osinfo_tree_get_architecture(OsinfoTree *tree)
  * The URL to the @tree
  *
  * Returns: (transfer none): the URL, or NULL
+ *
+ * Since: 0.1.0
  */
 const gchar *osinfo_tree_get_url(OsinfoTree *tree)
 {
