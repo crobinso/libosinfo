@@ -15,7 +15,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>
  *
  * Authors:
- *   Fabiano Fidênciog <fidencio@redhat.com>
+ *   Fabiano Fidêncio <fidencio@redhat.com>
  */
 
 #include <osinfo/osinfo.h>
