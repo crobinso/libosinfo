@@ -63,6 +63,7 @@ typedef struct _OsinfoOsPrivate OsinfoOsPrivate;
 # define OSINFO_OS_PROP_DISTRO                 "distro"
 # define OSINFO_OS_PROP_RELEASE_STATUS         "release-status"
 # define OSINFO_OS_PROP_KERNEL_URL_ARGUMENT    "kernel-url-argument"
+# define OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME   "cloud-image-username"
 
 /* object */
 struct _OsinfoOs
@@ -149,5 +150,7 @@ const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os);
 
 OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filter);
 void osinfo_os_add_firmware(OsinfoOs *os, OsinfoFirmware *firmware);
+
+const gchar *osinfo_os_get_cloud_image_username(OsinfoOs *os);
 
 #endif /* __OSINFO_OS_H__ */

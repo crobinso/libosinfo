@@ -75,6 +75,7 @@ enum {
     PROP_FAMILY,
     PROP_DISTRO,
     PROP_KERNEL_URL_ARGUMENT,
+    PROP_CLOUD_IMAGE_USERNAME,
 };
 
 static void osinfo_os_finalize(GObject *object);
@@ -103,6 +104,11 @@ osinfo_os_get_property(GObject    *object,
             g_value_set_string(value,
                                osinfo_entity_get_param_value(entity,
                                                              OSINFO_OS_PROP_KERNEL_URL_ARGUMENT));
+            break;
+        case PROP_CLOUD_IMAGE_USERNAME:
+            g_value_set_string(value,
+                               osinfo_entity_get_param_value(entity,
+                                                             OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME));
             break;
         default:
             /* We don't have any other property... */
@@ -193,6 +199,21 @@ osinfo_os_class_init(OsinfoOsClass *klass)
                                 G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass,
                                     PROP_KERNEL_URL_ARGUMENT,
+                                    pspec);
+
+    /**
+     * OsinfoOs:cloud-image-username:
+     *
+     * The username to be passed to the cloud-init program.
+     */
+    pspec = g_param_spec_string("cloud-image-username",
+                                "CloudImageUsername",
+                                _("Cloud image username"),
+                                NULL /* default value */,
+                                G_PARAM_READABLE |
+                                G_PARAM_STATIC_STRINGS);
+    g_object_class_install_property(g_klass,
+                                    PROP_CLOUD_IMAGE_USERNAME,
                                     pspec);
 }
 
@@ -1302,6 +1323,50 @@ const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os)
                                    &foreach_data);
 
     return foreach_data.kernel_url_arg;
+}
+
+struct GetImageUsernameData {
+    const gchar *username;
+};
+
+static void get_cloud_image_username_cb(OsinfoProduct *product, gpointer user_data)
+{
+    OsinfoOs *os = OSINFO_OS(product);
+    struct GetImageUsernameData *foreach_data = user_data;
+
+    g_return_if_fail(OSINFO_IS_OS(os));
+
+    if (foreach_data->username != NULL)
+        return;
+
+    foreach_data->username =
+            osinfo_entity_get_param_value(OSINFO_ENTITY(os),
+                                          OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME);
+}
+
+/**
+ * osinfo_os_get_cloud_image_username:
+ * @os: an operating system
+ *
+ * Gets the username expected to be passed to the cloud image when performing
+ * installation.
+ *
+ * Returns: (transfer none): ther username, if present. Otherwise, NULL.
+ */
+const gchar *osinfo_os_get_cloud_image_username(OsinfoOs *os)
+{
+    struct GetImageUsernameData foreach_data = {
+        .username = NULL
+    };
+    g_return_val_if_fail(OSINFO_IS_OS(os), NULL);
+
+    osinfo_product_foreach_related(OSINFO_PRODUCT(os),
+                                   OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
+                                   OSINFO_PRODUCT_FOREACH_FLAG_CLONES,
+                                   get_cloud_image_username_cb,
+                                   &foreach_data);
+
+    return foreach_data.username;
 }
 
 struct GetAllFirmwaresData {

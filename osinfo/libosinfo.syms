@@ -633,6 +633,7 @@ LIBOSINFO_1.8.0 {
 
 	osinfo_error_get_type;
 	osinfo_firmware_is_supported;
+	osinfo_os_get_cloud_image_username;
 } LIBOSINFO_1.7.0;
 
 /* Symbols in next release...

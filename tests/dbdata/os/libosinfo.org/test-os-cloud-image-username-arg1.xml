@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/cloud-image-username-arg1">
+    <short-id>cloud-image-username-arg1</short-id>
+    <name>Cloud Image Username Arg 1</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <release-status>prerelease</release-status>
+
+    <cloud-image-username>cloud</cloud-image-username>
+    <kernel-url-argument>kernel.cloud</kernel-url-argument>
+  </os>
+</libosinfo>

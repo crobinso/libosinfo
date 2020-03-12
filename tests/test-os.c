@@ -843,6 +843,41 @@ test_firmwares_inheritance(void)
     g_object_unref(db);
 }
 
+static void
+test_cloud_image_username_arg(void)
+{
+    OsinfoLoader *loader;
+    OsinfoDb *db;
+    OsinfoOs *os;
+    GError *error = NULL;
+    const char *str;
+
+    loader = osinfo_loader_new();
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    g_debug("Testing http://libosinfo.org/test/os/cloud-image-username-arg1\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/cloud-image-username-arg1");
+    g_assert_nonnull(os);
+    str = osinfo_os_get_cloud_image_username(os);
+    g_assert_cmpstr(str, ==, "cloud");
+
+    g_debug("Testing http://libosinfo.org/test/os/cloud-image-username-arg2\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/cloud-image-username-arg2");
+    g_assert_nonnull(os);
+    str = osinfo_os_get_cloud_image_username(os);
+    g_assert_cmpstr(str, ==, "cloud");
+
+    g_debug("Testing http://libosinfo.org/test/os/cloud-image-username-arg3\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/cloud-image-username-arg3");
+    g_assert_nonnull(os);
+    str = osinfo_os_get_cloud_image_username(os);
+    g_assert_cmpstr(str, ==, "new.cloud");
+
+    g_object_unref(loader);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -867,6 +902,7 @@ main(int argc, char *argv[])
     g_test_add_func("/os/mulitple_short_ids", test_multiple_short_ids);
     g_test_add_func("/os/kernel_url_arg", test_kernel_url_arg);
     g_test_add_func("/os/firmwares/inheritance", test_firmwares_inheritance);
+    g_test_add_func("/os/cloud_image_username_arg", test_cloud_image_username_arg);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_platform_get_type();

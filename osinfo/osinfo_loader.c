@@ -1619,6 +1619,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         { OSINFO_OS_PROP_DISTRO, G_TYPE_STRING },
         { OSINFO_OS_PROP_RELEASE_STATUS, G_TYPE_STRING },
         { OSINFO_OS_PROP_KERNEL_URL_ARGUMENT, G_TYPE_STRING },
+        { OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME, G_TYPE_STRING },
         { NULL, G_TYPE_INVALID }
     };
 
