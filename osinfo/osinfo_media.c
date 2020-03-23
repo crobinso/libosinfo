@@ -1409,7 +1409,9 @@ void osinfo_media_create_from_location_with_flags_async(const gchar *location,
     data->uri = g_strdup(location);
 
     if (osinfo_util_requires_soup(location)) {
-        data->session = soup_session_new();
+        data->session = soup_session_new_with_options(
+                SOUP_SESSION_USER_AGENT, "Wget/1.0",
+                NULL);
         data->message = soup_message_new("GET", location);
 
         soup_session_send_async(data->session,
