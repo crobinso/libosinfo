@@ -465,6 +465,16 @@ test_identify_media(void)
     g_assert_cmpstr(osinfo_media_get_architecture(media), ==, "i686");
     g_object_unref(media);
 
+    /* Matching against a versioned ISO, which has to have precedence against the rolling */
+    media = osinfo_media_new("foo", "x86_64");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "ROLLING_VERSIONED");
+    g_assert_true(osinfo_db_identify_media(db, media));
+    os = osinfo_media_get_os(media);
+    g_assert_nonnull(os);
+    g_assert_cmpstr(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), ==, "versioned");
+
     g_object_unref(loader);
 }
 

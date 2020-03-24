@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/rolling/versioned">
+    <short-id>versioned</short-id>
+    <name>Rolling Versioned</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <media arch="x86_64">
+      <iso>
+        <volume-id>ROLLING_VERSIONED</volume-id>
+      </iso>
+    </media>
+
+  </os>
+</libosinfo>

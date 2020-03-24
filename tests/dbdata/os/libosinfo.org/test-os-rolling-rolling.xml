@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/rolling/rolling">
+    <short-id>rolling</short-id>
+    <name>Rolling Rolling</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+    <release-status>rolling</release-status>
+
+    <media arch="x86_64">
+      <iso>
+        <volume-id>ROLLING_</volume-id>
+      </iso>
+    </media>
+
+  </os>
+</libosinfo>
