@@ -117,15 +117,6 @@ test_loader(void)
     g_assert_cmpstr(str, ==, "test4");
     g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_SNAPSHOT);
 
-    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/test5");
-    g_assert_nonnull(os);
-    str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
-    g_assert_cmpstr(str, ==, "test5");
-    /* 'test5' OS intentionnally contains an invalid release status */
-    g_test_expect_message(NULL, G_LOG_LEVEL_CRITICAL,
-                          "*(osinfo_entity_get_param_value_enum): should not be reached*");
-    g_assert_cmpint(osinfo_os_get_release_status(os), ==, OSINFO_RELEASE_STATUS_RELEASED);
-
     os = osinfo_db_get_os(db, "http://fedoraproject.org/fedora/16");
     g_assert_nonnull(os);
     str = osinfo_product_get_short_id(OSINFO_PRODUCT(os));
