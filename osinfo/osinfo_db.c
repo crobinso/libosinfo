@@ -573,6 +573,7 @@ static gboolean compare_media(OsinfoMedia *media,
 
     for (os_iter = oss; os_iter; os_iter = os_iter->next) {
         OsinfoOs *os = OSINFO_OS(os_iter->data);
+        OsinfoReleaseStatus release_status = osinfo_os_get_release_status(os);
         OsinfoMediaList *media_list = osinfo_os_get_media_list(os);
         GList *medias = osinfo_list_get_elements(OSINFO_LIST(media_list));
         GList *media_iter;
@@ -597,6 +598,11 @@ static gboolean compare_media(OsinfoMedia *media,
 
             if (fallback_oss != NULL) {
                 if (g_str_equal(os_arch, "all")) {
+                    *fallback_oss = g_list_prepend(*fallback_oss, os);
+                    continue;
+                }
+
+                if (release_status == OSINFO_RELEASE_STATUS_ROLLING) {
                     *fallback_oss = g_list_prepend(*fallback_oss, os);
                     continue;
                 }
