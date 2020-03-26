@@ -435,7 +435,7 @@ msgid "The URL to this tree"
 msgstr ""
 
 #: osinfo/osinfo_tree.c:355
-msgid "The path to the inirtd image"
+msgid "The path to the initrd image"
 msgstr ""
 
 #: osinfo/osinfo_tree.c:368

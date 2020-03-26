@@ -352,7 +352,7 @@ osinfo_tree_class_init(OsinfoTreeClass *klass)
      */
     pspec = g_param_spec_string("initrd-path",
                                 "InitrdPath",
-                                _("The path to the inirtd image"),
+                                _("The path to the initrd image"),
                                 NULL /* default value */,
                                 G_PARAM_READWRITE |
                                 G_PARAM_STATIC_STRINGS);
