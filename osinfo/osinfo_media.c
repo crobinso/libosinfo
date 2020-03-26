@@ -688,7 +688,7 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
      */
     pspec = g_param_spec_boolean("eject-after-install",
                                  "EjectAfterInstall",
-                                 _("Whether the media should be ejected after the installtion process"),
+                                 _("Whether the media should be ejected after the installation process"),
                                  TRUE /* default value */,
                                  G_PARAM_READWRITE |
                                  G_PARAM_STATIC_STRINGS);
