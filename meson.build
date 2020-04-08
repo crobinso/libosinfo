@@ -142,7 +142,7 @@ libosinfo_check_cflags = [
     '-Wimplicit-function-declaration',
     '-Wimplicit-int',
     '-Winit-self',
-    '-Winline',
+    '-Wno-inline',
     '-Wint-to-pointer-cast',
     '-Winvalid-memory-model',
     '-Winvalid-pch',
