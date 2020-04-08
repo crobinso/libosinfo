@@ -58,6 +58,7 @@
   struct _##ModuleObjName##Class { ParentName##Class parent_class ; };                                            \
                                                                                                                   \
   _GLIB_DEFINE_AUTOPTR_CHAINUP (ModuleObjName, ParentName)                                                        \
+  G_DEFINE_AUTOPTR_CLEANUP_FUNC (ModuleObjName##Class, g_type_class_unref)                                        \
                                                                                                                   \
   static inline ModuleObjName * MODULE##_##OBJ_NAME (gpointer ptr) {                                              \
     return G_TYPE_CHECK_INSTANCE_CAST (ptr, module_obj_name##_get_type (), ModuleObjName); }                      \
