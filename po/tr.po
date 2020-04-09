@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:37+0100\n"
-"PO-Revision-Date: 2020-03-27 17:38+0000\n"
+"PO-Revision-Date: 2020-04-09 13:40+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/tr/>\n"
@@ -164,7 +164,7 @@ msgstr "XSL dönüşüm bağlamı uygulanamıyor"
 
 #: osinfo/osinfo_install_script.c:986
 msgid "Unable to convert XSL output to string"
-msgstr "XSL çıktısı dizeye dönüştürülemiyor"
+msgstr "XSL çıktısı dizgiye dönüştürülemiyor"
 
 #: osinfo/osinfo_install_script.c:1047
 #, c-format
