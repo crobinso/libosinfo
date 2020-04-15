@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:37+0100\n"
-"PO-Revision-Date: 2020-04-11 15:40+0000\n"
+"PO-Revision-Date: 2020-04-15 09:40+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/tr/>\n"
@@ -66,11 +66,11 @@ msgstr "Ürün yazılımı (firmware ) türü"
 
 #: osinfo/osinfo_image.c:181
 msgid "The image format"
-msgstr "Görüntü biçimi"
+msgstr "Kalıp biçimi"
 
 #: osinfo/osinfo_image.c:194
 msgid "The URL to this image"
-msgstr "Bu görüntünün URL'si"
+msgstr "Bu kalıbın URL'si"
 
 #: osinfo/osinfo_install_config_param.c:150
 msgid "Parameter name"
@@ -291,15 +291,15 @@ msgstr "Beklenen ISO9660 sistem kimliği"
 
 #: osinfo/osinfo_media.c:561 osinfo/osinfo_tree.c:342
 msgid "The path to the kernel image"
-msgstr "Çekirdek (kernel) görüntüsünün yolu"
+msgstr "Çekirdek (kernel) kalıbının yolu"
 
 #: osinfo/osinfo_media.c:574
 msgid "The path to the initrd image"
-msgstr "initrd görüntüsünün yolu"
+msgstr "initrd kalıbının yolu"
 
 #: osinfo/osinfo_media.c:587
 msgid "Media provides an installer"
-msgstr "Ortam, bir yükleyici sağlıyor"
+msgstr "Ortam, bir kurucu sağlıyor"
 
 #: osinfo/osinfo_media.c:600
 msgid "Media can boot directly w/o installation"
@@ -307,7 +307,7 @@ msgstr "Ortam, kurulum yapmadan doğrudan başlatılabilir"
 
 #: osinfo/osinfo_media.c:622
 msgid "Number of installer reboots"
-msgstr "Yükleyici yeniden başlatma sayısı"
+msgstr "Kurucu yeniden başlatma sayısı"
 
 #: osinfo/osinfo_media.c:640
 msgid "Information about the operating system on this media"
@@ -319,7 +319,7 @@ msgstr "Desteklenen diller"
 
 #: osinfo/osinfo_media.c:671
 msgid "Expected ISO9660 volume size, in bytes"
-msgstr "Byte cinsinden beklenen ISO9660 birim boyutu"
+msgstr "Bayt cinsinden beklenen ISO9660 birim boyutu"
 
 #: osinfo/osinfo_media.c:691
 msgid "Whether the media should be ejected after the installtion process"
@@ -368,12 +368,12 @@ msgstr "Birincil birim tanımlayıcı kesildi"
 #: osinfo/osinfo_media.c:1238
 #, c-format
 msgid "Insufficient metadata on installation media"
-msgstr "Kurulum ortamında yetersiz meta veri"
+msgstr "Kurulum ortamında yetersiz üst veri"
 
 #: osinfo/osinfo_media.c:1273
 #, c-format
 msgid "Failed to skip %d bytes"
-msgstr "%d byte atlanamadı"
+msgstr "%d bayt atlanamadı"
 
 #: osinfo/osinfo_media.c:1278
 #, c-format
@@ -432,11 +432,11 @@ msgstr "CPU sayısı"
 
 #: osinfo/osinfo_resources.c:219
 msgid "Amount of Random Access Memory (RAM) in bytes"
-msgstr "Byte cinsinden RAM (Random Access Memory) miktarı"
+msgstr "Bayt cinsinden RAM (Random Access Memory) miktarı"
 
 #: osinfo/osinfo_resources.c:236
 msgid "Amount of storage space in bytes"
-msgstr "Byte cinsinden depolama alanı miktarı"
+msgstr "Bayt cinsinden depolama alanı miktarı"
 
 #: osinfo/osinfo_tree.c:329
 msgid "The URL to this tree"
@@ -444,11 +444,11 @@ msgstr "Bu ağacın URL'si"
 
 #: osinfo/osinfo_tree.c:355
 msgid "The path to the inirtd image"
-msgstr "initrd görüntüsünün yolu"
+msgstr "initrd kalıbının yolu"
 
 #: osinfo/osinfo_tree.c:368
 msgid "The path to the bootable ISO image"
-msgstr "Önyüklenebilir ISO görüntüsünün yolu"
+msgstr "Önyüklenebilir ISO kalıbının yolu"
 
 #: osinfo/osinfo_tree.c:381
 msgid "Whether the tree has treeinfo"
@@ -501,7 +501,7 @@ msgstr "Geçersiz değer '%s'"
 
 #: tools/osinfo-detect.c:91
 msgid "Output format. Default: plain"
-msgstr "Çıktı biçimi. Varsayılan: plain (düz)"
+msgstr "Çıktı biçimi. Öntanımlı olarak: plain (düz)"
 
 #: tools/osinfo-detect.c:92
 msgid "plain."
@@ -509,7 +509,7 @@ msgstr "plain."
 
 #: tools/osinfo-detect.c:95
 msgid "The type to be used. Default: media"
-msgstr "Kullanılacak tür. Varsayılan: media"
+msgstr "Kullanılacak tür. Öntanımlı olarak: media"
 
 #: tools/osinfo-detect.c:96
 msgid "media|tree."
@@ -528,7 +528,7 @@ msgstr "Ortam önyüklenebilir değil.\n"
 #: tools/osinfo-detect.c:136
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr "Ortam, '%s (%s)' işletim sistemi için bir yükleyici\n"
+msgstr "Ortam, '%s (%s)' işletim sistemi için bir kurucu\n"
 
 #: tools/osinfo-detect.c:138
 #, c-format
@@ -543,7 +543,7 @@ msgstr "Ortamdaki mevcut işletim sistemi çeşitleri:\n"
 #: tools/osinfo-detect.c:185
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr "Ağaç, '%s (%s)' işletim sistemi için bir yükleyici\n"
+msgstr "Ağaç, '%s (%s)' işletim sistemi için bir kurucu\n"
 
 #: tools/osinfo-detect.c:190
 #, c-format
@@ -575,7 +575,7 @@ msgstr "Ortam ayrıştırılırken hata oluştu: %s\n"
 #: tools/osinfo-detect.c:271
 #, c-format
 msgid "Error parsing installer tree: %s\n"
-msgstr "Yükleyici ağacı ayrıştırılırken hata oluştu: %s\n"
+msgstr "Kurucu ağacı ayrıştırılırken hata oluştu: %s\n"
 
 #: tools/osinfo-install-script.c:79
 #, c-format
