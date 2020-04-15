@@ -61,6 +61,7 @@ libosinfo_headers = [
     'osinfo_treelist.h',
     'osinfo_image.h',
     'osinfo_imagelist.h',
+    'osinfo_macros.h',
 ]
 
 # generate osinfo-enum-types.[ch]
@@ -125,7 +126,6 @@ libosinfo_private_headers = [
     'osinfo_media_private.h',
     'osinfo_resources_private.h',
     'osinfo_util_private.h',
-    'osinfo_macros.h',
     'ignore-value.h',
 ]
 
