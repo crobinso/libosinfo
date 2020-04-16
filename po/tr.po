@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-23 11:37+0100\n"
-"PO-Revision-Date: 2020-04-15 09:40+0000\n"
+"PO-Revision-Date: 2020-04-16 18:40+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/tr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11.3\n"
+"X-Generator: Weblate 4.0.1\n"
 
 #: osinfo/osinfo_avatar_format.c:104
 msgid "The allowed mime-types for the avatar"
@@ -86,15 +86,15 @@ msgstr "Parametre/Değer Eşleştirme"
 
 #: osinfo/osinfo_install_script.c:212
 msgid "URI for install script template"
-msgstr "Kurulum komut dosyası şablonu URI'si"
+msgstr "Kurulum betiği şablonu URI'si"
 
 #: osinfo/osinfo_install_script.c:224
 msgid "Data for install script template"
-msgstr "Kurulum komut dosyası şablonu verileri"
+msgstr "Kurulum betiği şablonu için veriler"
 
 #: osinfo/osinfo_install_script.c:236
 msgid "Install script profile name"
-msgstr "Kurulum komut dosyası profil adı"
+msgstr "Kurulum betiği profil adı"
 
 #: osinfo/osinfo_install_script.c:248
 msgid "Product key format mask"
@@ -164,22 +164,22 @@ msgstr "XSL dönüşüm bağlamı uygulanamıyor"
 
 #: osinfo/osinfo_install_script.c:986
 msgid "Unable to convert XSL output to string"
-msgstr "XSL çıktısı dizgiye dönüştürülemiyor"
+msgstr "XSL çıktısı dizgeye dönüştürülemiyor"
 
 #: osinfo/osinfo_install_script.c:1047
 #, c-format
 msgid "Failed to load script template %s: "
-msgstr "%s komut dosyası şablonu yüklenemedi: "
+msgstr "%s betik şablonu yüklenemedi: "
 
 #: osinfo/osinfo_install_script.c:1063
 #, c-format
 msgid "Failed to apply script template %s: "
-msgstr "%s komut dosyası şablonu uygulanamadı: "
+msgstr "%s betik şablonu uygulanamadı: "
 
 #: osinfo/osinfo_install_script.c:1121 osinfo/osinfo_install_script.c:2028
 #: osinfo/osinfo_install_script.c:2079 osinfo/osinfo_install_script.c:2131
 msgid "Failed to apply script template: "
-msgstr "Komut dosyası şablonu uygulanamadı: "
+msgstr "Betik şablonu uygulanamadı: "
 
 #: osinfo/osinfo_list.c:130
 msgid "List element type"
@@ -228,15 +228,15 @@ msgstr "İşletim sistemi kimliği özelliği eksik"
 
 #: osinfo/osinfo_loader.c:1005
 msgid "Missing install script id property"
-msgstr "Kurulum komut dosyası kimliği özelliği eksik"
+msgstr "Kurulum betiği kimliği özelliği eksik"
 
 #: osinfo/osinfo_loader.c:1239
 msgid "Missing Media install script property"
-msgstr "Ortam kurulum komut dosyası özelliği eksik"
+msgstr "Ortam kurulum betiği özelliği eksik"
 
 #: osinfo/osinfo_loader.c:1779
 msgid "Missing OS install script property"
-msgstr "İşletim sistemi kurulum komut dosyası özelliği eksik"
+msgstr "İşletim sistemi kurulum betiği özelliği eksik"
 
 #: osinfo/osinfo_loader.c:1843
 msgid "Incorrect root element"
@@ -329,7 +329,7 @@ msgstr "Kurulum işleminden sonra ortamın çıkarılıp çıkarılmayacağı"
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
-"Ortamın, kurulum komut dosyaları kullanılarak bir kurulum için kullanılıp "
+"Ortamın, kurulum betikleri kullanılarak bir kurulum için kullanılıp "
 "kullanılmayacağı"
 
 #: osinfo/osinfo_media.c:838
@@ -538,7 +538,7 @@ msgstr "Ortam, '%s (%s)' işletim sistemi için canlı ortam (live media)\n"
 #: tools/osinfo-detect.c:143
 #, c-format
 msgid "Available OS variants on media:\n"
-msgstr "Ortamdaki mevcut işletim sistemi çeşitleri:\n"
+msgstr "Ortamdaki kullanılabilir işletim sistemi çeşitleri:\n"
 
 #: tools/osinfo-detect.c:185
 #, c-format
@@ -548,7 +548,7 @@ msgstr "Ağaç, '%s (%s)' işletim sistemi için bir kurucu\n"
 #: tools/osinfo-detect.c:190
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr "Ağaçtaki mevcut işletim sistemi çeşitleri:\n"
+msgstr "Ağaçtaki kullanılabilir işletim sistemi çeşitleri:\n"
 
 #: tools/osinfo-detect.c:217
 msgid "- Detect if media is bootable and the relevant OS and distribution."
@@ -584,11 +584,11 @@ msgstr "anahtar=değer biçiminde yapılandırma bekleniyor"
 
 #: tools/osinfo-install-script.c:144
 msgid "Install script profile"
-msgstr "Kurulum komut dosyası profili"
+msgstr "Kurulum betiği profili"
 
 #: tools/osinfo-install-script.c:146
 msgid "Install script output directory"
-msgstr "Kurulum komut dosyası çıktı dizini"
+msgstr "Kurulum betiği çıktı dizini"
 
 #: tools/osinfo-install-script.c:148
 msgid "The output filename prefix"
@@ -596,7 +596,7 @@ msgstr "Çıktı dosya adı ön eki"
 
 #: tools/osinfo-install-script.c:150
 msgid "The installation source to be used with the script"
-msgstr "Komut dosyası ile kullanılacak kurulum kaynağı"
+msgstr "Betik ile kullanılacak kurulum kaynağı"
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameter"
@@ -612,7 +612,7 @@ msgstr "Yapılandırma parametrelerini listele"
 
 #: tools/osinfo-install-script.c:160
 msgid "List install script profiles"
-msgstr "Kurulum komut dosyası profillerini listele"
+msgstr "Kurulum betiği profillerini listele"
 
 #: tools/osinfo-install-script.c:162
 msgid "List supported injection methods"
@@ -625,7 +625,7 @@ msgstr "Çıktı dosya adlarını görüntüleme"
 #: tools/osinfo-install-script.c:221
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr "'%s' profili ve '%s' işletim sistemi için kurulum komut dosyası yok"
+msgstr "'%s' profili ve '%s' işletim sistemi için kurulum betiği yok"
 
 #: tools/osinfo-install-script.c:237
 msgid "required"
@@ -638,16 +638,16 @@ msgstr "isteğe bağlı"
 #: tools/osinfo-install-script.c:323
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr "'%s' profili ve '%s' işletim sistemi için kurulum komut dosyası yok\n"
+msgstr "'%s' profili ve '%s' işletim sistemi için kurulum betiği yok\n"
 
 #: tools/osinfo-install-script.c:359
 #, c-format
 msgid "Unable to generate install script: %s\n"
-msgstr "Kurulum komut dosyası oluşturulamıyor: %s\n"
+msgstr "Kurulum betiği oluşturulamıyor: %s\n"
 
 #: tools/osinfo-install-script.c:396
 msgid "- Generate an OS install script"
-msgstr "- İşletim sistemi kurulum komut dosyası oluştur"
+msgstr "- İşletim sistemi kurulum betiği oluştur"
 
 #: tools/osinfo-install-script.c:399
 #, c-format
