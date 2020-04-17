@@ -4,9 +4,10 @@ set -e
 set -v
 
 INSTALL_ROOT="$PWD/install"
+RPMBUILD_ROOT="$PWD/rpmbuild"
 
 # Make things clean.
-rm -rf build "$INSTALL_ROOT"
+rm -rf build "$INSTALL_ROOT" "$RPMBUILD_ROOT"
 
 meson build/native \
     --werror \
@@ -22,6 +23,7 @@ ninja -C build/native dist
 
 if test -x /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
+     --define "_topdir $RPMBUILD_ROOT" \
      --define "_sourcedir `pwd`/build/native/meson-dist/" \
      -ba --clean build/native/libosinfo.spec
 fi
@@ -62,6 +64,7 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && \
    test -r /usr/share/mingw/toolchain-mingw64.meson && \
    test -x /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
+     --define "_topdir $RPMBUILD_ROOT" \
      --define "_sourcedir `pwd`/build/native/meson-dist/" \
      -ba --clean build/native/mingw-libosinfo.spec
 fi
