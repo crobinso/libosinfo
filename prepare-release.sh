@@ -54,7 +54,6 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && \
 
   ninja -C build/win32
   ninja -C build/win32 install
-
 fi
 
 # Test mingw64 cross-compile
@@ -74,7 +73,6 @@ if test -x /usr/bin/x86_64-w64-mingw32-gcc && \
 
   ninja -C build/win64
   ninja -C build/win64 install
-
 fi
 
 if test -x /usr/bin/i686-w64-mingw32-gcc && \
