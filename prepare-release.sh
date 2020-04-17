@@ -70,3 +70,5 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && \
      --define "_sourcedir $DIST_ROOT" \
      -ba --clean "$BUILD_ROOT/native/mingw-libosinfo.spec"
 fi
+
+mv "$DIST_ROOT"/*.tar.xz .
