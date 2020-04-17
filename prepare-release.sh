@@ -84,5 +84,5 @@ if test -x /usr/bin/i686-w64-mingw32-gcc && \
    test -f /usr/bin/rpmbuild; then
   rpmbuild --nodeps \
      --define "_sourcedir `pwd`/build/native/meson-dist/" \
-     -ba --clean build/native/libosinfo.spec
+     -ba --clean build/native/mingw-libosinfo.spec
 fi
