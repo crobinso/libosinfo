@@ -7,13 +7,16 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-26 10:09+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-05-01 07:40+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <https://translate.fedoraproject.org/projects/"
+"libosinfo/libosinfo/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.0.1\n"
 
 #: osinfo/osinfo_avatar_format.c:104
 msgid "The allowed mime-types for the avatar"
@@ -547,7 +550,7 @@ msgstr ""
 #: tools/osinfo-detect.c:221 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr ""
+msgstr "Kesalahan ketika mengurasi opsi baris perintah: %s\n"
 
 #: tools/osinfo-detect.c:239 tools/osinfo-install-script.c:427
 #: tools/osinfo-query.c:428
