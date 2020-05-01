@@ -1,3 +1,6 @@
+stages:
+  - builds
+
 .multilib-deb: &multilib-deb |
   multilib=$(dpkg-architecture -q DEB_TARGET_MULTIARCH)
 
@@ -94,6 +97,7 @@
   popd
 
 .x86_64-build-job-deb: &x86_64-build-job-deb
+  stage: builds
   cache:
     paths:
       - ccache
@@ -108,6 +112,7 @@
     - *libosinfo-check
 
 .x86_64-build-job-rpm: &x86_64-build-job-rpm
+  stage: builds
   cache:
     paths:
       - ccache
@@ -123,6 +128,7 @@
     - *libosinfo-rpm
 
 .mingw32-build-job: &mingw32-build-job
+  stage: builds
   cache:
     paths:
       - ccache
@@ -136,6 +142,7 @@
     - *libosinfo-mingw32-build
 
 .mingw64-build-job: &mingw64-build-job
+  stage: builds
   cache:
     paths:
       - ccache
