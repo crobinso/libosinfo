@@ -61,6 +61,9 @@
   popd
 
 .libosinfo-rpm: &libosinfo-rpm |
+  if test "$RPM" = "skip"; then
+    exit 0
+  fi
   pushd .
   cd build
   sed -i -e 's/BuildRequires: *osinfo-db.*//' *.spec*
