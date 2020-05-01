@@ -149,19 +149,9 @@
     - *libosinfo-mingw64-build
 
 centos-7:
-  cache:
-    paths:
-      - ccache
-    key: "$CI_JOB_NAME"
-  script:
-    - *multilib-rpm
-    - *environment
-    - *dco
-    - *osinfo-db-tools-build
-    - *osinfo-db-build
-    - *libosinfo-build
-    - *libosinfo-check
-  image: quay.io/libvirt/buildenv-libosinfo-centos-7:latest
+  <<: *x86_64-build-job-rpm
+  variables:
+    RPM: skip
 
 centos-8:
   <<: *x86_64-build-job-rpm
@@ -200,19 +190,9 @@ fedora-rawhide-cross-mingw64:
   image: quay.io/libvirt/buildenv-libosinfo-fedora-rawhide-cross-mingw64:latest
 
 opensuse-151:
-  cache:
-    paths:
-      - ccache
-    key: "$CI_JOB_NAME"
-  script:
-    - *multilib-rpm
-    - *environment
-    - *dco
-    - *osinfo-db-tools-build
-    - *osinfo-db-build
-    - *libosinfo-build
-    - *libosinfo-check
-  image: quay.io/libvirt/buildenv-libosinfo-opensuse-151:latest
+  <<: *x86_64-build-job-rpm
+  variables:
+    RPM: skip
 
 ubuntu-1804:
   script:
