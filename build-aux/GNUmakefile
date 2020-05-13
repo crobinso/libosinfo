@@ -45,7 +45,6 @@ ALL_RECURSIVE_TARGETS =
 _build-aux ?= build-aux
 _autoreconf ?= autoreconf -v
 
-include $(srcdir)/$(_build-aux)/cfg.mk
 include $(srcdir)/$(_build-aux)/maint.mk
 
 # Ensure that $(VERSION) is up to date for dist-related targets, but not
