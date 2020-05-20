@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-23 11:37+0100\n"
+"POT-Creation-Date: 2020-05-13 12:45+0200\n"
 "PO-Revision-Date: 2020-04-16 18:40+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
@@ -18,249 +18,253 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.0.1\n"
 
-#: osinfo/osinfo_avatar_format.c:104
+#: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
 msgstr "Avatar için izin verilen MIME türleri"
 
-#: osinfo/osinfo_avatar_format.c:118
+#: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
 msgstr "Gerekli avatar genişliği (piksel olarak)"
 
-#: osinfo/osinfo_avatar_format.c:135
+#: osinfo/osinfo_avatar_format.c:121
 msgid "The required height (in pixels) of the avatar."
 msgstr "Gerekli avatar yüksekliği (piksel olarak)."
 
-#: osinfo/osinfo_avatar_format.c:152
+#: osinfo/osinfo_avatar_format.c:135
 msgid "Whether alpha channel is supported in the avatar."
 msgstr "Avatarda alfa kanalının desteklenip desteklenmediği."
 
-#: osinfo/osinfo_deployment.c:146
+#: osinfo/osinfo_deployment.c:141
 msgid "Operating system"
 msgstr "İşletim sistemi"
 
-#: osinfo/osinfo_deployment.c:161
+#: osinfo/osinfo_deployment.c:153
 msgid "Virtualization platform"
 msgstr "Sanallaştırma platformu"
 
-#: osinfo/osinfo_devicelink.c:127
+#: osinfo/osinfo_devicelink.c:124
 msgid "Target device"
 msgstr "Hedef aygıt"
 
-#: osinfo/osinfo_devicelinkfilter.c:132
+#: osinfo/osinfo_devicelinkfilter.c:127
 msgid "Device link target filter"
 msgstr "Aygıt bağlantı hedefi filtresi"
 
-#: osinfo/osinfo_entity.c:134
+#: osinfo/osinfo_entity.c:131
 msgid "Unique identifier"
 msgstr "Benzersiz tanımlayıcı"
 
-#: osinfo/osinfo_firmware.c:133 osinfo/osinfo_image.c:168
-#: osinfo/osinfo_media.c:483 osinfo/osinfo_resources.c:169
-#: osinfo/osinfo_tree.c:316
+#: osinfo/osinfo_firmware.c:129 osinfo/osinfo_image.c:161
+#: osinfo/osinfo_media.c:474 osinfo/osinfo_resources.c:160
+#: osinfo/osinfo_tree.c:307
 msgid "CPU Architecture"
 msgstr "CPU Mimarisi"
 
-#: osinfo/osinfo_firmware.c:146
+#: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
 msgstr "Ürün yazılımı (firmware ) türü"
 
-#: osinfo/osinfo_image.c:181
+#: osinfo/osinfo_image.c:173
 msgid "The image format"
 msgstr "Kalıp biçimi"
 
-#: osinfo/osinfo_image.c:194
+#: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
 msgstr "Bu kalıbın URL'si"
 
-#: osinfo/osinfo_install_config_param.c:150
+#: osinfo/osinfo_image.c:197
+msgid "Whether cloud-init customizations are supported or not"
+msgstr ""
+
+#: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
 msgstr "Parametre adı"
 
-#: osinfo/osinfo_install_config_param.c:166
+#: osinfo/osinfo_install_config_param.c:159
 msgid "Parameter policy"
 msgstr "Parametre politikası"
 
-#: osinfo/osinfo_install_config_param.c:182
+#: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
 msgstr "Parametre/Değer Eşleştirme"
 
-#: osinfo/osinfo_install_script.c:212
+#: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
 msgstr "Kurulum betiği şablonu URI'si"
 
-#: osinfo/osinfo_install_script.c:224
+#: osinfo/osinfo_install_script.c:218
 msgid "Data for install script template"
 msgstr "Kurulum betiği şablonu için veriler"
 
-#: osinfo/osinfo_install_script.c:236
+#: osinfo/osinfo_install_script.c:227
 msgid "Install script profile name"
 msgstr "Kurulum betiği profil adı"
 
-#: osinfo/osinfo_install_script.c:248
+#: osinfo/osinfo_install_script.c:236
 msgid "Product key format mask"
 msgstr "Ürün anahtarı biçimi maskesi"
 
-#: osinfo/osinfo_install_script.c:258
+#: osinfo/osinfo_install_script.c:243
 msgid "Expected path format"
 msgstr "Beklenen yol biçimi"
 
-#: osinfo/osinfo_install_script.c:269
+#: osinfo/osinfo_install_script.c:251
 msgid "Expected avatar format"
 msgstr "Beklenen avatar biçimi"
 
-#: osinfo/osinfo_install_script.c:279
+#: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
 msgstr "Tercih edilen enjeksiyon yöntemi"
 
-#: osinfo/osinfo_install_script.c:291
+#: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
 msgstr "Kullanılacak kurulum kaynağı"
 
-#: osinfo/osinfo_install_script.c:721
+#: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
 msgstr "XML ayrıştırıcı bağlamı oluşturulamıyor"
 
-#: osinfo/osinfo_install_script.c:729
+#: osinfo/osinfo_install_script.c:702
 msgid "Unable to read XSL template"
 msgstr "XSL şablonu okunamıyor"
 
-#: osinfo/osinfo_install_script.c:735
+#: osinfo/osinfo_install_script.c:708
 msgid "Unable to parse XSL template"
 msgstr "XSL şablonu ayrıştırılamıyor"
 
-#: osinfo/osinfo_install_script.c:826 osinfo/osinfo_install_script.c:857
+#: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
 #, c-format
 msgid "Unable to create XML node '%s'"
 msgstr "'%s' XML düğümü oluşturulamıyor"
 
-#: osinfo/osinfo_install_script.c:832
+#: osinfo/osinfo_install_script.c:805
 msgid "Unable to create XML node 'id'"
 msgstr "'id' XML düğümü oluşturulamıyor"
 
-#: osinfo/osinfo_install_script.c:836 osinfo/osinfo_install_script.c:862
+#: osinfo/osinfo_install_script.c:809 osinfo/osinfo_install_script.c:835
 msgid "Unable to add XML child"
 msgstr "Alt XML ögesi eklenemıyor"
 
-#: osinfo/osinfo_install_script.c:909 osinfo/osinfo_install_script.c:919
-#: osinfo/osinfo_install_script.c:953
+#: osinfo/osinfo_install_script.c:882 osinfo/osinfo_install_script.c:892
+#: osinfo/osinfo_install_script.c:926
 msgid "Unable to set XML root"
 msgstr "Kök XML ögesi ayarlanıyor"
 
-#: osinfo/osinfo_install_script.c:930
+#: osinfo/osinfo_install_script.c:903
 msgid "Unable to set 'media' node"
 msgstr "'media' düğümü ayarlanamıyor"
 
-#: osinfo/osinfo_install_script.c:942
+#: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
 msgstr "'tree' düğümü ayarlanamıyor"
 
-#: osinfo/osinfo_install_script.c:976
+#: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
 msgstr "XSL dönüşüm bağlamı oluşturulamıyor"
 
-#: osinfo/osinfo_install_script.c:981
+#: osinfo/osinfo_install_script.c:954
 msgid "Unable to apply XSL transform context"
 msgstr "XSL dönüşüm bağlamı uygulanamıyor"
 
-#: osinfo/osinfo_install_script.c:986
+#: osinfo/osinfo_install_script.c:959
 msgid "Unable to convert XSL output to string"
 msgstr "XSL çıktısı dizgeye dönüştürülemiyor"
 
-#: osinfo/osinfo_install_script.c:1047
+#: osinfo/osinfo_install_script.c:1020
 #, c-format
 msgid "Failed to load script template %s: "
 msgstr "%s betik şablonu yüklenemedi: "
 
-#: osinfo/osinfo_install_script.c:1063
+#: osinfo/osinfo_install_script.c:1036
 #, c-format
 msgid "Failed to apply script template %s: "
 msgstr "%s betik şablonu uygulanamadı: "
 
-#: osinfo/osinfo_install_script.c:1121 osinfo/osinfo_install_script.c:2028
-#: osinfo/osinfo_install_script.c:2079 osinfo/osinfo_install_script.c:2131
+#: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
+#: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
 msgid "Failed to apply script template: "
 msgstr "Betik şablonu uygulanamadı: "
 
-#: osinfo/osinfo_list.c:130
+#: osinfo/osinfo_list.c:124
 msgid "List element type"
 msgstr "Liste ögesi türü"
 
-#: osinfo/osinfo_loader.c:234
+#: osinfo/osinfo_loader.c:226
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
 msgstr "%s XPath sorgusunda bir düğüm kümesi (nodeset) bekleniyor"
 
-#: osinfo/osinfo_loader.c:314 osinfo/osinfo_loader.c:457
+#: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
 msgstr "Bir metin düğümü öznitelik değeri bekleniyor"
 
-#: osinfo/osinfo_loader.c:610
+#: osinfo/osinfo_loader.c:605
 msgid "Missing device id property"
 msgstr "Aygıt kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:645
+#: osinfo/osinfo_loader.c:644
 msgid "Missing device link id property"
 msgstr "Aygıt bağlantı kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:704
+#: osinfo/osinfo_loader.c:705
 msgid "Missing product upgrades id property"
 msgstr "Ürün yükseltme kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:788
+#: osinfo/osinfo_loader.c:789
 msgid "Missing platform id property"
 msgstr "Platform kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:822
+#: osinfo/osinfo_loader.c:828
 msgid "Missing deployment id property"
 msgstr "Dağıtım kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:832
+#: osinfo/osinfo_loader.c:838
 msgid "Missing deployment os id property"
 msgstr "Dağıtım işletim sistemi kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:842
+#: osinfo/osinfo_loader.c:848
 msgid "Missing deployment platform id property"
 msgstr "Dağıtım platformu kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:881 osinfo/osinfo_loader.c:1626
+#: osinfo/osinfo_loader.c:887 osinfo/osinfo_loader.c:1637
 msgid "Missing os id property"
 msgstr "İşletim sistemi kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:1005
+#: osinfo/osinfo_loader.c:1012
 msgid "Missing install script id property"
 msgstr "Kurulum betiği kimliği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:1239
+#: osinfo/osinfo_loader.c:1246
 msgid "Missing Media install script property"
 msgstr "Ortam kurulum betiği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:1779
+#: osinfo/osinfo_loader.c:1805
 msgid "Missing OS install script property"
 msgstr "İşletim sistemi kurulum betiği özelliği eksik"
 
-#: osinfo/osinfo_loader.c:1843
+#: osinfo/osinfo_loader.c:1871
 msgid "Incorrect root element"
 msgstr "Geçersiz kök öge"
 
-#: osinfo/osinfo_loader.c:1910
+#: osinfo/osinfo_loader.c:1940
 msgid "Unable to construct parser context"
 msgstr "Ayrıştırıcı bağlamı oluşturulamıyor"
 
-#: osinfo/osinfo_loader.c:1932
+#: osinfo/osinfo_loader.c:1962
 msgid "Missing root XML element"
 msgstr "Kök XML ögesi eksik"
 
-#: osinfo/osinfo_loader.c:2570
+#: osinfo/osinfo_loader.c:2614
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
-"$OSINFO_DATA_DIR kullanımdan kaldırıldı, lütfen bunun yerine $"
-"OSINFO_SYSTEM_DIR kullanın. İlerideki bir sürümde $OSINFO_DATA_DIR için "
+"$OSINFO_DATA_DIR kullanımdan kaldırıldı, lütfen bunun yerine "
+"$OSINFO_SYSTEM_DIR kullanın. İlerideki bir sürümde $OSINFO_DATA_DIR için "
 "destek kaldırılacak\n"
 
-#: osinfo/osinfo_loader.c:2606 osinfo/osinfo_loader.c:2638
+#: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -269,392 +273,396 @@ msgstr ""
 "%s kullanımdan kaldırıldı, lütfen bunun yerine %s kullanın. İlerideki bir "
 "sürümde %s için destek kaldırılacak\n"
 
-#: osinfo/osinfo_media.c:496
+#: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
 msgstr "Bu ortamın URL'si"
 
-#: osinfo/osinfo_media.c:509
+#: osinfo/osinfo_media.c:498
 msgid "The expected ISO9660 volume ID"
 msgstr "Beklenen ISO9660 birim kimliği"
 
-#: osinfo/osinfo_media.c:522
+#: osinfo/osinfo_media.c:510
 msgid "The expected ISO9660 publisher ID"
 msgstr "Beklenen ISO9660 yayıncı kimliği"
 
-#: osinfo/osinfo_media.c:535
+#: osinfo/osinfo_media.c:522
 msgid "The expected ISO9660 application ID"
 msgstr "Beklenen ISO9660 uygulama kimliği"
 
-#: osinfo/osinfo_media.c:548
+#: osinfo/osinfo_media.c:534
 msgid "The expected ISO9660 system ID"
 msgstr "Beklenen ISO9660 sistem kimliği"
 
-#: osinfo/osinfo_media.c:561 osinfo/osinfo_tree.c:342
+#: osinfo/osinfo_media.c:546 osinfo/osinfo_tree.c:331
 msgid "The path to the kernel image"
 msgstr "Çekirdek (kernel) kalıbının yolu"
 
-#: osinfo/osinfo_media.c:574
+#: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
 msgstr "initrd kalıbının yolu"
 
-#: osinfo/osinfo_media.c:587
+#: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
 msgstr "Ortam, bir kurucu sağlıyor"
 
-#: osinfo/osinfo_media.c:600
+#: osinfo/osinfo_media.c:582
 msgid "Media can boot directly w/o installation"
 msgstr "Ortam, kurulum yapmadan doğrudan başlatılabilir"
 
-#: osinfo/osinfo_media.c:622
+#: osinfo/osinfo_media.c:603
 msgid "Number of installer reboots"
 msgstr "Kurucu yeniden başlatma sayısı"
 
-#: osinfo/osinfo_media.c:640
+#: osinfo/osinfo_media.c:620
 msgid "Information about the operating system on this media"
 msgstr "Bu ortamdaki işletim sistemi hakkında bilgi"
 
-#: osinfo/osinfo_media.c:659
+#: osinfo/osinfo_media.c:638
 msgid "Supported languages"
 msgstr "Desteklenen diller"
 
-#: osinfo/osinfo_media.c:671
+#: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Bayt cinsinden beklenen ISO9660 birim boyutu"
 
-#: osinfo/osinfo_media.c:691
-msgid "Whether the media should be ejected after the installtion process"
+#: osinfo/osinfo_media.c:668
+#, fuzzy
+#| msgid "Whether the media should be ejected after the installtion process"
+msgid "Whether the media should be ejected after the installation process"
 msgstr "Kurulum işleminden sonra ortamın çıkarılıp çıkarılmayacağı"
 
-#: osinfo/osinfo_media.c:707
+#: osinfo/osinfo_media.c:683
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
 "Ortamın, kurulum betikleri kullanılarak bir kurulum için kullanılıp "
 "kullanılmayacağı"
 
-#: osinfo/osinfo_media.c:838
+#: osinfo/osinfo_media.c:815
 #, c-format
 msgid "Install media is not bootable"
 msgstr "Kurulum ortamı önyüklenebilir değil"
 
-#: osinfo/osinfo_media.c:912
+#: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
 msgstr "\"%s\" dizin kayıt bölümü okunamadı: "
 
-#: osinfo/osinfo_media.c:921
+#: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
 msgstr "\"%s\" dizin kayıt bölümü yok"
 
-#: osinfo/osinfo_media.c:1125
+#: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
 msgstr "İlave birim tanımlayıcı okunamadı: "
 
-#: osinfo/osinfo_media.c:1132
+#: osinfo/osinfo_media.c:1109
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
 msgstr "İlave birim tanımlayıcı kesildi"
 
-#: osinfo/osinfo_media.c:1199
+#: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
 msgstr "Birincil birim tanımlayıcı okunamadı: "
 
-#: osinfo/osinfo_media.c:1206
+#: osinfo/osinfo_media.c:1183
 #, c-format
 msgid "Primary volume descriptor was truncated"
 msgstr "Birincil birim tanımlayıcı kesildi"
 
-#: osinfo/osinfo_media.c:1238
+#: osinfo/osinfo_media.c:1215
 #, c-format
 msgid "Insufficient metadata on installation media"
 msgstr "Kurulum ortamında yetersiz üst veri"
 
-#: osinfo/osinfo_media.c:1273
+#: osinfo/osinfo_media.c:1250
 #, c-format
 msgid "Failed to skip %d bytes"
 msgstr "%d bayt atlanamadı"
 
-#: osinfo/osinfo_media.c:1278
+#: osinfo/osinfo_media.c:1255
 #, c-format
 msgid "No volume descriptors"
 msgstr "Birim tanımlayıcı yok"
 
-#: osinfo/osinfo_media.c:1320
+#: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
 msgstr "Dosya açılamadı: "
 
-#: osinfo/osinfo_os.c:158
+#: osinfo/osinfo_os.c:157
 msgid "Generic Family"
 msgstr "Genel Aile"
 
-#: osinfo/osinfo_os.c:174
+#: osinfo/osinfo_os.c:170
 msgid "Generic Distro"
 msgstr "Genel Dağıtım"
 
-#: osinfo/osinfo_os.c:190
+#: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
 msgstr "Çekirdek (Kernel) URL Argümanı"
 
-#: osinfo/osinfo_product.c:166 tools/osinfo-query.c:56 tools/osinfo-query.c:80
-#: tools/osinfo-query.c:106
+#: osinfo/osinfo_os.c:195
+#, fuzzy
+#| msgid "Code name"
+msgid "Cloud image username"
+msgstr "Kod adı"
+
+#: osinfo/osinfo_os_variant.c:106
+msgid "The name to this variant"
+msgstr "Bu çeşidin adı"
+
+#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
+#: tools/osinfo-query.c:103
 msgid "Name"
 msgstr "İsim"
 
-#: osinfo/osinfo_product.c:179 tools/osinfo-query.c:54 tools/osinfo-query.c:78
+#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
 msgid "Short ID"
 msgstr "Kısa Tanımlayıcı"
 
-#: osinfo/osinfo_product.c:192 tools/osinfo-query.c:64 tools/osinfo-query.c:84
-#: tools/osinfo-query.c:98
+#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
+#: tools/osinfo-query.c:95
 msgid "Vendor"
 msgstr "Sağlayıcı"
 
-#: osinfo/osinfo_product.c:205 tools/osinfo-query.c:58 tools/osinfo-query.c:82
+#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
 msgid "Version"
 msgstr "Sürüm"
 
-#: osinfo/osinfo_product.c:218
+#: osinfo/osinfo_product.c:209
 msgid "Codename"
 msgstr "Kod adı"
 
-#: osinfo/osinfo_product.c:231
+#: osinfo/osinfo_product.c:221
 msgid "URI of the logo"
 msgstr "Logonun URI'si"
 
-#: osinfo/osinfo_resources.c:185
+#: osinfo/osinfo_resources.c:173
 msgid "CPU frequency in hertz (Hz)"
 msgstr "Hertz (Hz) cinsinden CPU frekansı"
 
-#: osinfo/osinfo_resources.c:202
+#: osinfo/osinfo_resources.c:187
 msgid "Number of CPUs"
 msgstr "CPU sayısı"
 
-#: osinfo/osinfo_resources.c:219
+#: osinfo/osinfo_resources.c:201
 msgid "Amount of Random Access Memory (RAM) in bytes"
 msgstr "Bayt cinsinden RAM (Random Access Memory) miktarı"
 
-#: osinfo/osinfo_resources.c:236
+#: osinfo/osinfo_resources.c:215
 msgid "Amount of storage space in bytes"
 msgstr "Bayt cinsinden depolama alanı miktarı"
 
-#: osinfo/osinfo_tree.c:329
+#: osinfo/osinfo_tree.c:319
 msgid "The URL to this tree"
 msgstr "Bu ağacın URL'si"
 
 #: osinfo/osinfo_tree.c:355
-msgid "The path to the inirtd image"
-msgstr "initrd kalıbının yolu"
-
-#: osinfo/osinfo_tree.c:368
 msgid "The path to the bootable ISO image"
 msgstr "Önyüklenebilir ISO kalıbının yolu"
 
-#: osinfo/osinfo_tree.c:381
+#: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
 msgstr "Ağacın treeinfo içerip içermediği"
 
-#: osinfo/osinfo_tree.c:394
+#: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
 msgstr "treeinfo ailesi"
 
-#: osinfo/osinfo_tree.c:407
+#: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
 msgstr "treeinfo çeşidi"
 
-#: osinfo/osinfo_tree.c:420
+#: osinfo/osinfo_tree.c:403
 msgid "The treeinfo version"
 msgstr "treeinfo sürümü"
 
-#: osinfo/osinfo_tree.c:433
+#: osinfo/osinfo_tree.c:415
 msgid "The treeinfo architecture"
 msgstr "treeinfo mimarisi"
 
-#: osinfo/osinfo_tree.c:449
+#: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
 msgstr "Bu ağaçtaki işletim sistemi hakkında bilgi"
 
-#: osinfo/osinfo_tree.c:701
+#: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
 msgstr ".treeinfo|treeinfo içeriği yüklenemedi: "
 
-#: osinfo/osinfo_tree.c:710 osinfo/osinfo_tree.c:800
+#: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
 msgstr "keyinfo dosyası işlenemedi: "
 
-#: osinfo/osinfo_tree.c:750 osinfo/osinfo_tree.c:791
+#: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
 msgstr ".treeinfo|treeinfo dosyası yüklenemedi: "
 
-#: osinfo/osinfo_tree.c:829
+#: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
 msgstr "URL protokolü desteklenmemektedir"
 
-#: osinfo/osinfo_os_variant.c:113
-msgid "The name to this variant"
-msgstr "Bu çeşidin adı"
-
-#: tools/osinfo-detect.c:58 tools/osinfo-detect.c:79
+#: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
 msgid "Invalid value '%s'"
 msgstr "Geçersiz değer '%s'"
 
-#: tools/osinfo-detect.c:91
+#: tools/osinfo-detect.c:88
 msgid "Output format. Default: plain"
 msgstr "Çıktı biçimi. Öntanımlı olarak: plain (düz)"
 
-#: tools/osinfo-detect.c:92
+#: tools/osinfo-detect.c:89
 msgid "plain."
 msgstr "plain."
 
-#: tools/osinfo-detect.c:95
+#: tools/osinfo-detect.c:92
 msgid "The type to be used. Default: media"
 msgstr "Kullanılacak tür. Öntanımlı olarak: media"
 
-#: tools/osinfo-detect.c:96
+#: tools/osinfo-detect.c:93
 msgid "media|tree."
 msgstr "media|tree."
 
-#: tools/osinfo-detect.c:103
+#: tools/osinfo-detect.c:100
 #, c-format
 msgid "Media is bootable.\n"
 msgstr "Ortam önyüklenebilir.\n"
 
-#: tools/osinfo-detect.c:105
+#: tools/osinfo-detect.c:102
 #, c-format
 msgid "Media is not bootable.\n"
 msgstr "Ortam önyüklenebilir değil.\n"
 
-#: tools/osinfo-detect.c:136
+#: tools/osinfo-detect.c:133
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
 msgstr "Ortam, '%s (%s)' işletim sistemi için bir kurucu\n"
 
-#: tools/osinfo-detect.c:138
+#: tools/osinfo-detect.c:135
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
 msgstr "Ortam, '%s (%s)' işletim sistemi için canlı ortam (live media)\n"
 
-#: tools/osinfo-detect.c:143
+#: tools/osinfo-detect.c:140
 #, c-format
 msgid "Available OS variants on media:\n"
 msgstr "Ortamdaki kullanılabilir işletim sistemi çeşitleri:\n"
 
-#: tools/osinfo-detect.c:185
+#: tools/osinfo-detect.c:182
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
 msgstr "Ağaç, '%s (%s)' işletim sistemi için bir kurucu\n"
 
-#: tools/osinfo-detect.c:190
+#: tools/osinfo-detect.c:187
 #, c-format
 msgid "Available OS variants on tree:\n"
 msgstr "Ağaçtaki kullanılabilir işletim sistemi çeşitleri:\n"
 
-#: tools/osinfo-detect.c:217
+#: tools/osinfo-detect.c:214
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
 "- Ortamın önyüklenebilir olup olmadığını ve ilgili işletim sistemini ve "
 "dağıtımı tespit et."
 
-#: tools/osinfo-detect.c:221 tools/osinfo-query.c:412
+#: tools/osinfo-detect.c:218 tools/osinfo-query.c:410
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "Komut satırı seçenekleri ayrıştırılırken hata oluştu: %s\n"
 
-#: tools/osinfo-detect.c:239 tools/osinfo-install-script.c:427
-#: tools/osinfo-query.c:428
+#: tools/osinfo-detect.c:236 tools/osinfo-install-script.c:424
+#: tools/osinfo-query.c:426
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "İşletim sistemi verileri yüklenirken hata oluştu: %s\n"
 
-#: tools/osinfo-detect.c:255
+#: tools/osinfo-detect.c:252
 #, c-format
 msgid "Error parsing media: %s\n"
 msgstr "Ortam ayrıştırılırken hata oluştu: %s\n"
 
-#: tools/osinfo-detect.c:271
+#: tools/osinfo-detect.c:268
 #, c-format
 msgid "Error parsing installer tree: %s\n"
 msgstr "Kurucu ağacı ayrıştırılırken hata oluştu: %s\n"
 
-#: tools/osinfo-install-script.c:79
+#: tools/osinfo-install-script.c:76
 #, c-format
 msgid "Expected configuration key=value"
 msgstr "anahtar=değer biçiminde yapılandırma bekleniyor"
 
-#: tools/osinfo-install-script.c:144
+#: tools/osinfo-install-script.c:141
 msgid "Install script profile"
 msgstr "Kurulum betiği profili"
 
-#: tools/osinfo-install-script.c:146
+#: tools/osinfo-install-script.c:143
 msgid "Install script output directory"
 msgstr "Kurulum betiği çıktı dizini"
 
-#: tools/osinfo-install-script.c:148
+#: tools/osinfo-install-script.c:145
 msgid "The output filename prefix"
 msgstr "Çıktı dosya adı ön eki"
 
-#: tools/osinfo-install-script.c:150
+#: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
 msgstr "Betik ile kullanılacak kurulum kaynağı"
 
-#: tools/osinfo-install-script.c:153
+#: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
 msgstr "Yapılandırma parametresini ayarla"
 
-#: tools/osinfo-install-script.c:156
+#: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
 msgstr "Yapılandırma parametrelerini ayarla"
 
-#: tools/osinfo-install-script.c:158
+#: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
 msgstr "Yapılandırma parametrelerini listele"
 
-#: tools/osinfo-install-script.c:160
+#: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
 msgstr "Kurulum betiği profillerini listele"
 
-#: tools/osinfo-install-script.c:162
+#: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
 msgstr "Desteklenen enjeksiyon yöntemlerini listele"
 
-#: tools/osinfo-install-script.c:164
+#: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
 msgstr "Çıktı dosya adlarını görüntüleme"
 
-#: tools/osinfo-install-script.c:221
+#: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
 msgstr "'%s' profili ve '%s' işletim sistemi için kurulum betiği yok"
 
-#: tools/osinfo-install-script.c:237
+#: tools/osinfo-install-script.c:234
 msgid "required"
 msgstr "gerekli"
 
-#: tools/osinfo-install-script.c:237
+#: tools/osinfo-install-script.c:234
 msgid "optional"
 msgstr "isteğe bağlı"
 
-#: tools/osinfo-install-script.c:323
+#: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
 msgstr "'%s' profili ve '%s' işletim sistemi için kurulum betiği yok\n"
 
-#: tools/osinfo-install-script.c:359
+#: tools/osinfo-install-script.c:356
 #, c-format
 msgid "Unable to generate install script: %s\n"
 msgstr "Kurulum betiği oluşturulamıyor: %s\n"
 
-#: tools/osinfo-install-script.c:396
+#: tools/osinfo-install-script.c:393
 msgid "- Generate an OS install script"
 msgstr "- İşletim sistemi kurulum betiği oluştur"
 
-#: tools/osinfo-install-script.c:399
+#: tools/osinfo-install-script.c:396
 #, c-format
 msgid "Error while parsing options: %s\n"
 msgstr "Seçenekler ayrıştırılırken hata oluştu: %s\n"
 
-#: tools/osinfo-install-script.c:417
+#: tools/osinfo-install-script.c:414
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
@@ -662,93 +670,96 @@ msgstr ""
 "--list-profile, --list-config ve --list-injection-methods seçeneklerinden "
 "sadece biri istenebilir"
 
-#: tools/osinfo-install-script.c:446
+#: tools/osinfo-install-script.c:443
 #, c-format
 msgid "Error finding OS: %s\n"
 msgstr "İşletim sistemi bulunurken hata oluştu: %s\n"
 
-#: tools/osinfo-query.c:60
+#: tools/osinfo-query.c:57
 msgid "Family"
 msgstr "Aile"
 
-#: tools/osinfo-query.c:62
+#: tools/osinfo-query.c:59
 msgid "Distro"
 msgstr "Dağıtım"
 
-#: tools/osinfo-query.c:66 tools/osinfo-query.c:86
+#: tools/osinfo-query.c:63 tools/osinfo-query.c:83
 msgid "Release date"
 msgstr "Yayınlanma tarihi"
 
-#: tools/osinfo-query.c:68 tools/osinfo-query.c:88
+#: tools/osinfo-query.c:65 tools/osinfo-query.c:85
 msgid "End of life"
 msgstr "Destek bitiş tarihi"
 
-#: tools/osinfo-query.c:70 tools/osinfo-query.c:90
+#: tools/osinfo-query.c:67 tools/osinfo-query.c:87
 msgid "Code name"
 msgstr "Kod adı"
 
-#: tools/osinfo-query.c:72 tools/osinfo-query.c:92 tools/osinfo-query.c:112
-#: tools/osinfo-query.c:118
+#: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
+#: tools/osinfo-query.c:115
 msgid "ID"
 msgstr "Tanımlayıcı"
 
-#: tools/osinfo-query.c:100
+#: tools/osinfo-query.c:97
 msgid "Vendor ID"
 msgstr "Sağlayıcı kimliği"
 
-#: tools/osinfo-query.c:102
+#: tools/osinfo-query.c:99
 msgid "Product"
 msgstr "Ürün"
 
-#: tools/osinfo-query.c:104
+#: tools/osinfo-query.c:101
 msgid "Product ID"
 msgstr "Ürün kimliği"
 
-#: tools/osinfo-query.c:108
+#: tools/osinfo-query.c:105
 msgid "Class"
 msgstr "Sınıf"
 
-#: tools/osinfo-query.c:110
+#: tools/osinfo-query.c:107
 msgid "Bus"
 msgstr "Yol (Bus)"
 
-#: tools/osinfo-query.c:150 tools/osinfo-query.c:188
+#: tools/osinfo-query.c:147 tools/osinfo-query.c:189
 #, c-format
 msgid "Unknown property name %s"
 msgstr "Bilinmeyen özellik adı '%s'"
 
-#: tools/osinfo-query.c:174
+#: tools/osinfo-query.c:176
 msgid "Syntax error in condition, expecting KEY=VALUE"
 msgstr "Koşulda söz dizimi hatası, ANAHTAR=DEĞER bekleniyor"
 
-#: tools/osinfo-query.c:400
+#: tools/osinfo-query.c:394
 msgid "Sort column"
 msgstr "Sütunu sırala"
 
-#: tools/osinfo-query.c:402
+#: tools/osinfo-query.c:396
 msgid "Display fields"
 msgstr "Alanları görüntüle"
 
-#: tools/osinfo-query.c:407
+#: tools/osinfo-query.c:405
 msgid "- Query the OS info database"
 msgstr "- İşletim sistemi veri tabanını sorgula"
 
-#: tools/osinfo-query.c:419
+#: tools/osinfo-query.c:417
 #, c-format
 msgid "Missing data type parameter\n"
 msgstr "Veri türü parametresi eksik\n"
 
-#: tools/osinfo-query.c:447
+#: tools/osinfo-query.c:445
 #, c-format
 msgid "Unknown type '%s' requested\n"
 msgstr "Bilinmeyen tür '%s' istendi\n"
 
-#: tools/osinfo-query.c:452
+#: tools/osinfo-query.c:450
 #, c-format
 msgid "Unable to construct filter: %s\n"
 msgstr "Filtre oluşturulamıyor: %s\n"
 
-#: tools/osinfo-query.c:457
+#: tools/osinfo-query.c:455
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "Alan görünürlüğü ayarlanamıyor: %s\n"
+
+#~ msgid "The path to the inirtd image"
+#~ msgstr "initrd kalıbının yolu"

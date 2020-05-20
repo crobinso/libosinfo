@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-29 13:52+0100\n"
+"POT-Creation-Date: 2020-05-13 12:45+0200\n"
 "PO-Revision-Date: 2020-01-09 14:35+0000\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <https://translate.stg.fedoraproject.org/projects/"
@@ -19,239 +19,243 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: osinfo/osinfo_avatar_format.c:107
+#: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
 msgstr "Els tipus MIME permesos per a l'avatar"
 
-#: osinfo/osinfo_avatar_format.c:121
+#: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
 msgstr "L'amplada requerida (en píxels) de l'avatar"
 
-#: osinfo/osinfo_avatar_format.c:138
+#: osinfo/osinfo_avatar_format.c:121
 msgid "The required height (in pixels) of the avatar."
 msgstr "L'alçada requerida (en píxels) de l'avatar."
 
-#: osinfo/osinfo_avatar_format.c:155
+#: osinfo/osinfo_avatar_format.c:135
 msgid "Whether alpha channel is supported in the avatar."
 msgstr "Si permet el canal alfa en l'avatar."
 
-#: osinfo/osinfo_deployment.c:146
+#: osinfo/osinfo_deployment.c:141
 msgid "Operating system"
 msgstr "Sistema operatiu"
 
-#: osinfo/osinfo_deployment.c:161
+#: osinfo/osinfo_deployment.c:153
 msgid "Virtualization platform"
 msgstr "Plataforma de virtualització"
 
-#: osinfo/osinfo_devicelink.c:127
+#: osinfo/osinfo_devicelink.c:124
 msgid "Target device"
 msgstr "Dispositiu de destinació"
 
-#: osinfo/osinfo_devicelinkfilter.c:132
+#: osinfo/osinfo_devicelinkfilter.c:127
 msgid "Device link target filter"
 msgstr "Filtre de la destinació de l'enllaç al dispositiu"
 
-#: osinfo/osinfo_entity.c:134
+#: osinfo/osinfo_entity.c:131
 msgid "Unique identifier"
 msgstr "Identificador únic"
 
-#: osinfo/osinfo_firmware.c:133 osinfo/osinfo_image.c:168
-#: osinfo/osinfo_media.c:483 osinfo/osinfo_resources.c:169
-#: osinfo/osinfo_tree.c:316
+#: osinfo/osinfo_firmware.c:129 osinfo/osinfo_image.c:161
+#: osinfo/osinfo_media.c:474 osinfo/osinfo_resources.c:160
+#: osinfo/osinfo_tree.c:307
 msgid "CPU Architecture"
 msgstr "Arquitectura de la CPU"
 
-#: osinfo/osinfo_firmware.c:146
+#: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
 msgstr "El tipus de microprogramari"
 
-#: osinfo/osinfo_image.c:181
+#: osinfo/osinfo_image.c:173
 msgid "The image format"
 msgstr "El format de la imatge"
 
-#: osinfo/osinfo_image.c:194
+#: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
 msgstr "L'URL a aquesta imatge"
 
-#: osinfo/osinfo_install_config_param.c:150
+#: osinfo/osinfo_image.c:197
+msgid "Whether cloud-init customizations are supported or not"
+msgstr ""
+
+#: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
 msgstr "Nom del paràmetre"
 
-#: osinfo/osinfo_install_config_param.c:166
+#: osinfo/osinfo_install_config_param.c:159
 msgid "Parameter policy"
 msgstr "Política del paràmetre"
 
-#: osinfo/osinfo_install_config_param.c:182
+#: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
 msgstr "Assignació del valor del paràmetre"
 
-#: osinfo/osinfo_install_script.c:212
+#: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
 msgstr "URI per a la plantilla de l'script d'instal·lació"
 
-#: osinfo/osinfo_install_script.c:224
+#: osinfo/osinfo_install_script.c:218
 msgid "Data for install script template"
 msgstr "Dades per a la plantilla de l'script d'instal·lació"
 
-#: osinfo/osinfo_install_script.c:236
+#: osinfo/osinfo_install_script.c:227
 msgid "Install script profile name"
 msgstr "Nom del perfil de l'script d'instal·lació"
 
-#: osinfo/osinfo_install_script.c:248
+#: osinfo/osinfo_install_script.c:236
 msgid "Product key format mask"
 msgstr "Format de la màscara de la clau del producte"
 
-#: osinfo/osinfo_install_script.c:258
+#: osinfo/osinfo_install_script.c:243
 msgid "Expected path format"
 msgstr "Format esperat del camí"
 
-#: osinfo/osinfo_install_script.c:269
+#: osinfo/osinfo_install_script.c:251
 msgid "Expected avatar format"
 msgstr "Format esperat de l'avatar"
 
-#: osinfo/osinfo_install_script.c:279
+#: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
 msgstr "El mètode d'injecció preferit"
 
-#: osinfo/osinfo_install_script.c:291
+#: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
 msgstr "La font d'instal·lació que s'emprarà"
 
-#: osinfo/osinfo_install_script.c:721
+#: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
 msgstr "No es pot crear el context de l'analitzador sintàctic XML"
 
-#: osinfo/osinfo_install_script.c:729
+#: osinfo/osinfo_install_script.c:702
 msgid "Unable to read XSL template"
 msgstr "No es pot llegir la plantilla XSL"
 
-#: osinfo/osinfo_install_script.c:735
+#: osinfo/osinfo_install_script.c:708
 msgid "Unable to parse XSL template"
 msgstr "No es pot crear analitzar sintàcticament la plantilla XSL"
 
-#: osinfo/osinfo_install_script.c:826 osinfo/osinfo_install_script.c:857
+#: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
 #, c-format
 msgid "Unable to create XML node '%s'"
 msgstr ""
 
-#: osinfo/osinfo_install_script.c:832
+#: osinfo/osinfo_install_script.c:805
 msgid "Unable to create XML node 'id'"
 msgstr ""
 
-#: osinfo/osinfo_install_script.c:836 osinfo/osinfo_install_script.c:862
+#: osinfo/osinfo_install_script.c:809 osinfo/osinfo_install_script.c:835
 msgid "Unable to add XML child"
 msgstr ""
 
-#: osinfo/osinfo_install_script.c:909 osinfo/osinfo_install_script.c:919
-#: osinfo/osinfo_install_script.c:953
+#: osinfo/osinfo_install_script.c:882 osinfo/osinfo_install_script.c:892
+#: osinfo/osinfo_install_script.c:926
 msgid "Unable to set XML root"
 msgstr ""
 
-#: osinfo/osinfo_install_script.c:930
+#: osinfo/osinfo_install_script.c:903
 msgid "Unable to set 'media' node"
 msgstr ""
 
-#: osinfo/osinfo_install_script.c:942
+#: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
 msgstr ""
 
-#: osinfo/osinfo_install_script.c:976
+#: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
 msgstr "No es pot crear el context de transformació XSL"
 
-#: osinfo/osinfo_install_script.c:981
+#: osinfo/osinfo_install_script.c:954
 msgid "Unable to apply XSL transform context"
 msgstr "No es pot aplicar el context de transformació XSL"
 
-#: osinfo/osinfo_install_script.c:986
+#: osinfo/osinfo_install_script.c:959
 msgid "Unable to convert XSL output to string"
 msgstr "No es pot convertir la sortida del XSL a una cadena de text"
 
-#: osinfo/osinfo_install_script.c:1047
+#: osinfo/osinfo_install_script.c:1020
 #, c-format
 msgid "Failed to load script template %s: "
 msgstr "Ha fallat en carregar la plantilla de l'script %s: "
 
-#: osinfo/osinfo_install_script.c:1063
+#: osinfo/osinfo_install_script.c:1036
 #, c-format
 msgid "Failed to apply script template %s: "
 msgstr "Ha fallat en aplicar la plantilla de l'script %s: "
 
-#: osinfo/osinfo_install_script.c:1121 osinfo/osinfo_install_script.c:2028
-#: osinfo/osinfo_install_script.c:2079 osinfo/osinfo_install_script.c:2129
+#: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
+#: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
 msgid "Failed to apply script template: "
 msgstr "Ha fallat en aplicar la plantilla de l'script: "
 
-#: osinfo/osinfo_list.c:130
+#: osinfo/osinfo_list.c:124
 msgid "List element type"
 msgstr "Llista els tipus d'elements"
 
-#: osinfo/osinfo_loader.c:215
+#: osinfo/osinfo_loader.c:226
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
 msgstr "S'esperava un nodeset en la consulta XPath %s"
 
-#: osinfo/osinfo_loader.c:295 osinfo/osinfo_loader.c:438
+#: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
 msgstr "S'esperava un text en el valor de l'atribut del node"
 
-#: osinfo/osinfo_loader.c:591
+#: osinfo/osinfo_loader.c:605
 msgid "Missing device id property"
 msgstr "Falta l'identificador de la propietat device"
 
-#: osinfo/osinfo_loader.c:626
+#: osinfo/osinfo_loader.c:644
 msgid "Missing device link id property"
 msgstr "Falta l'identificador de la propietat device link"
 
-#: osinfo/osinfo_loader.c:685
+#: osinfo/osinfo_loader.c:705
 msgid "Missing product upgrades id property"
 msgstr "Falta l'identificador de la propietat product upgrades"
 
-#: osinfo/osinfo_loader.c:769
+#: osinfo/osinfo_loader.c:789
 msgid "Missing platform id property"
 msgstr "Falta l'identificador de la propietat platform"
 
-#: osinfo/osinfo_loader.c:803
+#: osinfo/osinfo_loader.c:828
 msgid "Missing deployment id property"
 msgstr "Falta l'identificador de la propietat deployment"
 
-#: osinfo/osinfo_loader.c:813
+#: osinfo/osinfo_loader.c:838
 msgid "Missing deployment os id property"
 msgstr "Falta l'identificador de la propietat deployment os"
 
-#: osinfo/osinfo_loader.c:823
+#: osinfo/osinfo_loader.c:848
 msgid "Missing deployment platform id property"
 msgstr "Falta l'identificador de la propietat deployment platform"
 
-#: osinfo/osinfo_loader.c:862 osinfo/osinfo_loader.c:1607
+#: osinfo/osinfo_loader.c:887 osinfo/osinfo_loader.c:1637
 msgid "Missing os id property"
 msgstr "Falta l'identificador de la propietat os"
 
-#: osinfo/osinfo_loader.c:986
+#: osinfo/osinfo_loader.c:1012
 msgid "Missing install script id property"
 msgstr "Falta l'identificador de la propietat install script"
 
-#: osinfo/osinfo_loader.c:1220
+#: osinfo/osinfo_loader.c:1246
 msgid "Missing Media install script property"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:1760
+#: osinfo/osinfo_loader.c:1805
 msgid "Missing OS install script property"
 msgstr "Falta l'identificador de la propietat OS install script"
 
-#: osinfo/osinfo_loader.c:1824
+#: osinfo/osinfo_loader.c:1871
 msgid "Incorrect root element"
 msgstr "Element arrel incorrecte"
 
-#: osinfo/osinfo_loader.c:1891
+#: osinfo/osinfo_loader.c:1940
 msgid "Unable to construct parser context"
 msgstr "No es pot construir el context de l'analitzador sintàctic"
 
-#: osinfo/osinfo_loader.c:1913
+#: osinfo/osinfo_loader.c:1962
 msgid "Missing root XML element"
 msgstr "Falta l'element XML arrel"
 
-#: osinfo/osinfo_loader.c:2551
+#: osinfo/osinfo_loader.c:2614
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
@@ -260,7 +264,7 @@ msgstr ""
 "$OSINFO_DATA_DIR està en desús, utilitzeu $OSINFO_SYSTEM_DIR en lloc seu. La "
 "compatibilitat per a $OSINFO_DATA_DIR serà eliminada en un futur llançament\n"
 
-#: osinfo/osinfo_loader.c:2587 osinfo/osinfo_loader.c:2619
+#: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -269,392 +273,396 @@ msgstr ""
 "%s està en desús, utilitzeu %s en lloc seu. La compatibilitat per a %s serà "
 "eliminada en un futur llançament\n"
 
-#: osinfo/osinfo_media.c:496
+#: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
 msgstr "L'URL a aquest mitjà"
 
-#: osinfo/osinfo_media.c:509
+#: osinfo/osinfo_media.c:498
 msgid "The expected ISO9660 volume ID"
 msgstr "L'identificador ISO9660 esperat del volum"
 
-#: osinfo/osinfo_media.c:522
+#: osinfo/osinfo_media.c:510
 msgid "The expected ISO9660 publisher ID"
 msgstr "L'identificador ISO9660 esperat de l'editor"
 
-#: osinfo/osinfo_media.c:535
+#: osinfo/osinfo_media.c:522
 msgid "The expected ISO9660 application ID"
 msgstr "L'identificador ISO9660 esperat de l'aplicació"
 
-#: osinfo/osinfo_media.c:548
+#: osinfo/osinfo_media.c:534
 msgid "The expected ISO9660 system ID"
 msgstr "L'identificador ISO9660 esperat del sistema"
 
-#: osinfo/osinfo_media.c:561 osinfo/osinfo_tree.c:342
+#: osinfo/osinfo_media.c:546 osinfo/osinfo_tree.c:331
 msgid "The path to the kernel image"
 msgstr "El camí a la imatge del kernel"
 
-#: osinfo/osinfo_media.c:574
+#: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
 msgstr "El camí a la imatge initrd"
 
-#: osinfo/osinfo_media.c:587
+#: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
 msgstr "El mitjà proporciona una eina d'instal·lació"
 
-#: osinfo/osinfo_media.c:600
+#: osinfo/osinfo_media.c:582
 msgid "Media can boot directly w/o installation"
 msgstr "El mitjà pot arrencar sense la instal·lació"
 
-#: osinfo/osinfo_media.c:622
+#: osinfo/osinfo_media.c:603
 msgid "Number of installer reboots"
 msgstr "Número de re-arrencades de l'eina d'instal·lació"
 
-#: osinfo/osinfo_media.c:640
+#: osinfo/osinfo_media.c:620
 msgid "Information about the operating system on this media"
 msgstr "Informació quant al sistema operatiu en aquest mitjà"
 
-#: osinfo/osinfo_media.c:662
+#: osinfo/osinfo_media.c:638
 msgid "Supported languages"
 msgstr "Idiomes suportats"
 
-#: osinfo/osinfo_media.c:674
+#: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
 msgstr "S'esperava la mida del volum ISO9660, en bytes"
 
-#: osinfo/osinfo_media.c:694
-msgid "Whether the media should be ejected after the installtion process"
+#: osinfo/osinfo_media.c:668
+#, fuzzy
+#| msgid "Whether the media should be ejected after the installtion process"
+msgid "Whether the media should be ejected after the installation process"
 msgstr "Si els mitjans s'han d'expulsar després del procés d'instal·lació"
 
-#: osinfo/osinfo_media.c:710
+#: osinfo/osinfo_media.c:683
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
 
-#: osinfo/osinfo_media.c:841
+#: osinfo/osinfo_media.c:815
 #, c-format
 msgid "Install media is not bootable"
 msgstr "El mitjà d'instal·lació no es pot arrencar"
 
-#: osinfo/osinfo_media.c:915
+#: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
 msgstr ""
 
-#: osinfo/osinfo_media.c:924
+#: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
 msgstr ""
 
-#: osinfo/osinfo_media.c:1128
+#: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
 msgstr "Ha fallat la lectura del descriptor suplementari del volum: "
 
-#: osinfo/osinfo_media.c:1135
+#: osinfo/osinfo_media.c:1109
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
 msgstr "El descriptor secundari del volum estava truncat"
 
-#: osinfo/osinfo_media.c:1202
+#: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
 msgstr "Ha fallat la lectura del descriptor primari del volum: "
 
-#: osinfo/osinfo_media.c:1209
+#: osinfo/osinfo_media.c:1183
 #, c-format
 msgid "Primary volume descriptor was truncated"
 msgstr "El descriptor primari del volum estava truncat"
 
-#: osinfo/osinfo_media.c:1241
+#: osinfo/osinfo_media.c:1215
 #, c-format
 msgid "Insufficient metadata on installation media"
 msgstr "Metadades insuficients en el mitjà d'instal·lació"
 
-#: osinfo/osinfo_media.c:1276
+#: osinfo/osinfo_media.c:1250
 #, c-format
 msgid "Failed to skip %d bytes"
 msgstr "Ha fallat en ometre %d bytes"
 
-#: osinfo/osinfo_media.c:1281
+#: osinfo/osinfo_media.c:1255
 #, c-format
 msgid "No volume descriptors"
 msgstr "Sense descriptors de volum"
 
-#: osinfo/osinfo_media.c:1323
+#: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
 msgstr "Ha fallat en obrir el fitxer: "
 
-#: osinfo/osinfo_os.c:158
+#: osinfo/osinfo_os.c:157
 msgid "Generic Family"
 msgstr "Família genèrica"
 
-#: osinfo/osinfo_os.c:174
+#: osinfo/osinfo_os.c:170
 msgid "Generic Distro"
 msgstr "Distribució genèrica"
 
-#: osinfo/osinfo_os.c:190
+#: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
 msgstr ""
 
-#: osinfo/osinfo_product.c:166 tools/osinfo-query.c:56 tools/osinfo-query.c:80
-#: tools/osinfo-query.c:106
+#: osinfo/osinfo_os.c:195
+#, fuzzy
+#| msgid "Code name"
+msgid "Cloud image username"
+msgstr "Nom clau"
+
+#: osinfo/osinfo_os_variant.c:106
+msgid "The name to this variant"
+msgstr "El nom d'aquesta variant"
+
+#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
+#: tools/osinfo-query.c:103
 msgid "Name"
 msgstr "Nom"
 
-#: osinfo/osinfo_product.c:179 tools/osinfo-query.c:54 tools/osinfo-query.c:78
+#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
 msgid "Short ID"
 msgstr "Id. curt"
 
-#: osinfo/osinfo_product.c:192 tools/osinfo-query.c:64 tools/osinfo-query.c:84
-#: tools/osinfo-query.c:98
+#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
+#: tools/osinfo-query.c:95
 msgid "Vendor"
 msgstr "Proveïdor"
 
-#: osinfo/osinfo_product.c:205 tools/osinfo-query.c:58 tools/osinfo-query.c:82
+#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
 msgid "Version"
 msgstr "Versió"
 
-#: osinfo/osinfo_product.c:218
+#: osinfo/osinfo_product.c:209
 msgid "Codename"
 msgstr "Nom clau"
 
-#: osinfo/osinfo_product.c:231
+#: osinfo/osinfo_product.c:221
 msgid "URI of the logo"
 msgstr "URI del logotip"
 
-#: osinfo/osinfo_resources.c:185
+#: osinfo/osinfo_resources.c:173
 msgid "CPU frequency in hertz (Hz)"
 msgstr "Freqüència de la CPU amb hertz (Hz)"
 
-#: osinfo/osinfo_resources.c:202
+#: osinfo/osinfo_resources.c:187
 msgid "Number of CPUs"
 msgstr "Nombre de CPU"
 
-#: osinfo/osinfo_resources.c:219
+#: osinfo/osinfo_resources.c:201
 msgid "Amount of Random Access Memory (RAM) in bytes"
 msgstr "Quantitat de RAM (Random Access Memory) en bytes"
 
-#: osinfo/osinfo_resources.c:236
+#: osinfo/osinfo_resources.c:215
 msgid "Amount of storage space in bytes"
 msgstr "Quantitat d'espai d'emmagatzematge en bytes"
 
-#: osinfo/osinfo_tree.c:329
+#: osinfo/osinfo_tree.c:319
 msgid "The URL to this tree"
 msgstr "L'URL a aquest arbre"
 
 #: osinfo/osinfo_tree.c:355
-msgid "The path to the inirtd image"
-msgstr "El camí a la imatge de l'inirtd"
-
-#: osinfo/osinfo_tree.c:368
 msgid "The path to the bootable ISO image"
 msgstr "El camí a la imatge ISO d'arrencada"
 
-#: osinfo/osinfo_tree.c:381
+#: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:394
+#: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:407
+#: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:420
+#: osinfo/osinfo_tree.c:403
 msgid "The treeinfo version"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:433
+#: osinfo/osinfo_tree.c:415
 msgid "The treeinfo architecture"
 msgstr ""
 
-#: osinfo/osinfo_tree.c:449
+#: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
 msgstr "Informació quant al sistema operatiu en aquest arbre"
 
-#: osinfo/osinfo_tree.c:702
+#: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
 msgstr "Ha fallat en carregar el contingut de .treeinfo|treeinfo: "
 
-#: osinfo/osinfo_tree.c:711 osinfo/osinfo_tree.c:801
+#: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
 msgstr "Ha fallat el processament del fitxer keyinfo: "
 
-#: osinfo/osinfo_tree.c:751 osinfo/osinfo_tree.c:792
+#: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
 msgstr "Ha fallat en carregar el fitxer .treeinfo|treeinfo: "
 
-#: osinfo/osinfo_tree.c:830
+#: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
 msgstr ""
 
-#: osinfo/osinfo_os_variant.c:113
-msgid "The name to this variant"
-msgstr "El nom d'aquesta variant"
-
-#: tools/osinfo-detect.c:58 tools/osinfo-detect.c:79
+#: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
 msgid "Invalid value '%s'"
 msgstr "El valor no és vàlid «%s»"
 
-#: tools/osinfo-detect.c:91
+#: tools/osinfo-detect.c:88
 msgid "Output format. Default: plain"
 msgstr "Format de sortida. Per defecte: pla"
 
-#: tools/osinfo-detect.c:92
+#: tools/osinfo-detect.c:89
 msgid "plain."
 msgstr "pla."
 
-#: tools/osinfo-detect.c:95
+#: tools/osinfo-detect.c:92
 msgid "The type to be used. Default: media"
 msgstr "El tipus a emprar. Per defecte: media"
 
-#: tools/osinfo-detect.c:96
+#: tools/osinfo-detect.c:93
 msgid "media|tree."
 msgstr "media|tree."
 
-#: tools/osinfo-detect.c:103
+#: tools/osinfo-detect.c:100
 #, c-format
 msgid "Media is bootable.\n"
 msgstr "El mitjà és d'arrencada.\n"
 
-#: tools/osinfo-detect.c:105
+#: tools/osinfo-detect.c:102
 #, c-format
 msgid "Media is not bootable.\n"
 msgstr "El mitjà no és d'arrencada.\n"
 
-#: tools/osinfo-detect.c:136
+#: tools/osinfo-detect.c:133
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:138
+#: tools/osinfo-detect.c:135
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:143
+#: tools/osinfo-detect.c:140
 #, c-format
 msgid "Available OS variants on media:\n"
 msgstr "Variants disponibles del SO en el mitjà:\n"
 
-#: tools/osinfo-detect.c:185
+#: tools/osinfo-detect.c:182
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
 msgstr ""
 
-#: tools/osinfo-detect.c:190
+#: tools/osinfo-detect.c:187
 #, c-format
 msgid "Available OS variants on tree:\n"
 msgstr "Variants disponibles del SO a l'arbre:\n"
 
-#: tools/osinfo-detect.c:217
+#: tools/osinfo-detect.c:214
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
 "- Detecta si el sistema operatiu es d'arrencada, el rellevant del SO i la "
 "distribució."
 
-#: tools/osinfo-detect.c:221 tools/osinfo-query.c:412
+#: tools/osinfo-detect.c:218 tools/osinfo-query.c:410
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr ""
 "Error en analitzar sintàcticament les opcions de la línia d'ordres: %s\n"
 
-#: tools/osinfo-detect.c:239 tools/osinfo-install-script.c:427
-#: tools/osinfo-query.c:428
+#: tools/osinfo-detect.c:236 tools/osinfo-install-script.c:424
+#: tools/osinfo-query.c:426
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "Error en carregar les dades del SO: %s\n"
 
-#: tools/osinfo-detect.c:255
+#: tools/osinfo-detect.c:252
 #, c-format
 msgid "Error parsing media: %s\n"
 msgstr "Error en analitzar sintàcticament el mitjà: %s\n"
 
-#: tools/osinfo-detect.c:271
+#: tools/osinfo-detect.c:268
 #, c-format
 msgid "Error parsing installer tree: %s\n"
 msgstr "Error en analitzar sintàcticament l'arbre de l'instal·lador: %s\n"
 
-#: tools/osinfo-install-script.c:79
+#: tools/osinfo-install-script.c:76
 #, c-format
 msgid "Expected configuration key=value"
 msgstr "Configuració esperada clau=valor"
 
-#: tools/osinfo-install-script.c:144
+#: tools/osinfo-install-script.c:141
 msgid "Install script profile"
 msgstr "Perfil de l'script d'instal·lació"
 
-#: tools/osinfo-install-script.c:146
+#: tools/osinfo-install-script.c:143
 msgid "Install script output directory"
 msgstr "Directori de sortida de l'script d'instal·lació"
 
-#: tools/osinfo-install-script.c:148
+#: tools/osinfo-install-script.c:145
 msgid "The output filename prefix"
 msgstr "El prefix per al nom del fitxer de sortida"
 
-#: tools/osinfo-install-script.c:150
+#: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
 msgstr "La font d'instal·lació que s'emprarà amb l'script"
 
-#: tools/osinfo-install-script.c:153
+#: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
 msgstr "Estableix el paràmetre de configuració"
 
-#: tools/osinfo-install-script.c:156
+#: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
 msgstr "Estableix els paràmetres de la configuració"
 
-#: tools/osinfo-install-script.c:158
+#: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
 msgstr "Llista els paràmetres de configuració"
 
-#: tools/osinfo-install-script.c:160
+#: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
 msgstr "Llista els perfils de l'script d'instal·lació"
 
-#: tools/osinfo-install-script.c:162
+#: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
 msgstr "Llista els mètodes d'injecció suportats"
 
-#: tools/osinfo-install-script.c:164
+#: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
 msgstr "No mostris els noms dels fitxers de sortida"
 
-#: tools/osinfo-install-script.c:221
+#: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
 msgstr "No hi ha cap script d'instal·lació per al perfil «%s» i el SO «%s»"
 
-#: tools/osinfo-install-script.c:237
+#: tools/osinfo-install-script.c:234
 msgid "required"
 msgstr "obligatori"
 
-#: tools/osinfo-install-script.c:237
+#: tools/osinfo-install-script.c:234
 msgid "optional"
 msgstr "opcional"
 
-#: tools/osinfo-install-script.c:323
+#: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
 msgstr "Cap script d'instal·lació per al perfil «%s» i el SO «%s»\n"
 
-#: tools/osinfo-install-script.c:359
+#: tools/osinfo-install-script.c:356
 #, c-format
 msgid "Unable to generate install script: %s\n"
 msgstr "No es pot generar l'script d'instal·lació: %s\n"
 
-#: tools/osinfo-install-script.c:396
+#: tools/osinfo-install-script.c:393
 msgid "- Generate an OS install script"
 msgstr "- Genera un script d'instal·lació del SO"
 
-#: tools/osinfo-install-script.c:399
+#: tools/osinfo-install-script.c:396
 #, c-format
 msgid "Error while parsing options: %s\n"
 msgstr ""
 "S'ha produït un error mentre s'analitzaven sintàcticament les opcions: %s\n"
 
-#: tools/osinfo-install-script.c:417
+#: tools/osinfo-install-script.c:414
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
@@ -662,93 +670,96 @@ msgstr ""
 "Únicament es pot sol·licitar un dels següents --list-profile, --list-config "
 "o --list-injection-methods"
 
-#: tools/osinfo-install-script.c:446
+#: tools/osinfo-install-script.c:443
 #, c-format
 msgid "Error finding OS: %s\n"
 msgstr "Error en cercar el SO: %s\n"
 
-#: tools/osinfo-query.c:60
+#: tools/osinfo-query.c:57
 msgid "Family"
 msgstr "Família"
 
-#: tools/osinfo-query.c:62
+#: tools/osinfo-query.c:59
 msgid "Distro"
 msgstr "Distribució"
 
-#: tools/osinfo-query.c:66 tools/osinfo-query.c:86
+#: tools/osinfo-query.c:63 tools/osinfo-query.c:83
 msgid "Release date"
 msgstr "Data del llançament"
 
-#: tools/osinfo-query.c:68 tools/osinfo-query.c:88
+#: tools/osinfo-query.c:65 tools/osinfo-query.c:85
 msgid "End of life"
 msgstr "Fi del suport"
 
-#: tools/osinfo-query.c:70 tools/osinfo-query.c:90
+#: tools/osinfo-query.c:67 tools/osinfo-query.c:87
 msgid "Code name"
 msgstr "Nom clau"
 
-#: tools/osinfo-query.c:72 tools/osinfo-query.c:92 tools/osinfo-query.c:112
-#: tools/osinfo-query.c:118
+#: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
+#: tools/osinfo-query.c:115
 msgid "ID"
 msgstr "Identificador"
 
-#: tools/osinfo-query.c:100
+#: tools/osinfo-query.c:97
 msgid "Vendor ID"
 msgstr "Id. del proveïdor"
 
-#: tools/osinfo-query.c:102
+#: tools/osinfo-query.c:99
 msgid "Product"
 msgstr "Producte"
 
-#: tools/osinfo-query.c:104
+#: tools/osinfo-query.c:101
 msgid "Product ID"
 msgstr "Id. del producte"
 
-#: tools/osinfo-query.c:108
+#: tools/osinfo-query.c:105
 msgid "Class"
 msgstr "Classe"
 
-#: tools/osinfo-query.c:110
+#: tools/osinfo-query.c:107
 msgid "Bus"
 msgstr "Bus"
 
-#: tools/osinfo-query.c:150 tools/osinfo-query.c:188
+#: tools/osinfo-query.c:147 tools/osinfo-query.c:189
 #, c-format
 msgid "Unknown property name %s"
 msgstr "Nom desconegut de la propietat %s"
 
-#: tools/osinfo-query.c:174
+#: tools/osinfo-query.c:176
 msgid "Syntax error in condition, expecting KEY=VALUE"
 msgstr "Error sintàctic en la condició, s'espera CLAU=VALOR"
 
-#: tools/osinfo-query.c:400
+#: tools/osinfo-query.c:394
 msgid "Sort column"
 msgstr "Ordena la columna"
 
-#: tools/osinfo-query.c:402
+#: tools/osinfo-query.c:396
 msgid "Display fields"
 msgstr "Mostra els camps"
 
-#: tools/osinfo-query.c:407
+#: tools/osinfo-query.c:405
 msgid "- Query the OS info database"
 msgstr "- Consulta el SO en la base de dades"
 
-#: tools/osinfo-query.c:419
+#: tools/osinfo-query.c:417
 #, c-format
 msgid "Missing data type parameter\n"
 msgstr "Falta el paràmetre del tipus de dades\n"
 
-#: tools/osinfo-query.c:447
+#: tools/osinfo-query.c:445
 #, c-format
 msgid "Unknown type '%s' requested\n"
 msgstr "S'ha sol·licitat un tipus desconegut «%s»\n"
 
-#: tools/osinfo-query.c:452
+#: tools/osinfo-query.c:450
 #, c-format
 msgid "Unable to construct filter: %s\n"
 msgstr "No es pot construir el filtre: %s\n"
 
-#: tools/osinfo-query.c:457
+#: tools/osinfo-query.c:455
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "No es pot establir la visibilitat del camp: %s\n"
+
+#~ msgid "The path to the inirtd image"
+#~ msgstr "El camí a la imatge de l'inirtd"
