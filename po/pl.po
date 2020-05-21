@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-13 12:45+0200\n"
 "PO-Revision-Date: 2020-05-21 14:10+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/pl/>\n"
 "Language: pl\n"
@@ -81,7 +81,7 @@ msgstr "Adres URL do tego obrazu"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Czy personalizacje cloud-init są obsługiwane"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -405,10 +405,8 @@ msgid "Kernel URL Argument"
 msgstr "Parametr adresu URL jądra"
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Nazwa kodowa"
+msgstr "Nazwa użytkownika obrazu chmury"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
