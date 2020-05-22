@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-13 12:45+0200\n"
 "PO-Revision-Date: 2020-05-22 06:23+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/id/>\n"
 "Language: id\n"
@@ -411,7 +411,7 @@ msgstr "Nama untuk varian ini"
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
 #: tools/osinfo-query.c:103
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 #: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
 msgid "Short ID"
@@ -420,11 +420,11 @@ msgstr "ID Pendek"
 #: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
 #: tools/osinfo-query.c:95
 msgid "Vendor"
-msgstr ""
+msgstr "Vendor"
 
 #: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
 msgid "Version"
-msgstr ""
+msgstr "Versi"
 
 #: osinfo/osinfo_product.c:209
 msgid "Codename"
@@ -693,7 +693,7 @@ msgstr "Nama kode"
 #: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
 #: tools/osinfo-query.c:115
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: tools/osinfo-query.c:97
 msgid "Vendor ID"
@@ -709,11 +709,11 @@ msgstr "ID Produk"
 
 #: tools/osinfo-query.c:105
 msgid "Class"
-msgstr ""
+msgstr "Kelas"
 
 #: tools/osinfo-query.c:107
 msgid "Bus"
-msgstr ""
+msgstr "Bus"
 
 #: tools/osinfo-query.c:147 tools/osinfo-query.c:189
 #, c-format
