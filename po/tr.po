@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-13 12:45+0200\n"
-"PO-Revision-Date: 2020-04-16 18:40+0000\n"
+"PO-Revision-Date: 2020-05-22 06:23+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/tr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0.1\n"
+"X-Generator: Weblate 4.0.4\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -74,7 +74,7 @@ msgstr "Bu kalıbın URL'si"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Cloud-init özelleştirmelerinin desteklenip desteklenmediği"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -326,8 +326,6 @@ msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Bayt cinsinden beklenen ISO9660 birim boyutu"
 
 #: osinfo/osinfo_media.c:668
-#, fuzzy
-#| msgid "Whether the media should be ejected after the installtion process"
 msgid "Whether the media should be ejected after the installation process"
 msgstr "Kurulum işleminden sonra ortamın çıkarılıp çıkarılmayacağı"
 
@@ -403,10 +401,8 @@ msgid "Kernel URL Argument"
 msgstr "Çekirdek (Kernel) URL Argümanı"
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Kod adı"
+msgstr "Bulut kalıbı kullanıcı adı"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
