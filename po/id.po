@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-13 12:45+0200\n"
-"PO-Revision-Date: 2020-05-21 14:29+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-05-22 06:23+0000\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/id/>\n"
 "Language: id\n"
@@ -21,239 +21,239 @@ msgstr ""
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr ""
+msgstr "Jenis mime-types yang diizinkan untuk avatar"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
-msgstr ""
+msgstr "Lebar yang diperlukan (dalam piksel) dari avatar"
 
 #: osinfo/osinfo_avatar_format.c:121
 msgid "The required height (in pixels) of the avatar."
-msgstr ""
+msgstr "Tinggi yang diperlukan (dalam piksel) dari avatar."
 
 #: osinfo/osinfo_avatar_format.c:135
 msgid "Whether alpha channel is supported in the avatar."
-msgstr ""
+msgstr "Apakah saluran alfa didukung di avatar."
 
 #: osinfo/osinfo_deployment.c:141
 msgid "Operating system"
-msgstr ""
+msgstr "Sistem operasi"
 
 #: osinfo/osinfo_deployment.c:153
 msgid "Virtualization platform"
-msgstr "Platform Virtualisasi"
+msgstr "Platform virtualisasi"
 
 #: osinfo/osinfo_devicelink.c:124
 msgid "Target device"
-msgstr ""
+msgstr "Perangkat target"
 
 #: osinfo/osinfo_devicelinkfilter.c:127
 msgid "Device link target filter"
-msgstr ""
+msgstr "Filter target tautan perangkat"
 
 #: osinfo/osinfo_entity.c:131
 msgid "Unique identifier"
-msgstr ""
+msgstr "Pengidentifikasi unik"
 
 #: osinfo/osinfo_firmware.c:129 osinfo/osinfo_image.c:161
 #: osinfo/osinfo_media.c:474 osinfo/osinfo_resources.c:160
 #: osinfo/osinfo_tree.c:307
 msgid "CPU Architecture"
-msgstr ""
+msgstr "Arsitektur CPU"
 
 #: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
-msgstr ""
+msgstr "Tipe firmware"
 
 #: osinfo/osinfo_image.c:173
 msgid "The image format"
-msgstr ""
+msgstr "Format image"
 
 #: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
-msgstr ""
+msgstr "URL ke image ini"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Apakah kustomisasi cloud-init didukung atau tidak"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
-msgstr ""
+msgstr "Nama parameter"
 
 #: osinfo/osinfo_install_config_param.c:159
 msgid "Parameter policy"
-msgstr ""
+msgstr "Kebijakan parameter"
 
 #: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
-msgstr ""
+msgstr "Pemetaan Nilai Parameter"
 
 #: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
-msgstr ""
+msgstr "URI untuk templat skrip instalasi"
 
 #: osinfo/osinfo_install_script.c:218
 msgid "Data for install script template"
-msgstr ""
+msgstr "Data untuk templat skrip instalasi"
 
 #: osinfo/osinfo_install_script.c:227
 msgid "Install script profile name"
-msgstr ""
+msgstr "Nama profil skrip instalasi"
 
 #: osinfo/osinfo_install_script.c:236
 msgid "Product key format mask"
-msgstr ""
+msgstr "Mask format kunci produk"
 
 #: osinfo/osinfo_install_script.c:243
 msgid "Expected path format"
-msgstr ""
+msgstr "Format path yang diharapkan"
 
 #: osinfo/osinfo_install_script.c:251
 msgid "Expected avatar format"
-msgstr ""
+msgstr "Format avatar yang diharapkan"
 
 #: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
-msgstr ""
+msgstr "Metode injeksi yang disukai"
 
 #: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
-msgstr ""
+msgstr "Sumber instalasi yang akan digunakan"
 
 #: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
-msgstr ""
+msgstr "Tidak dapat membuat konteks parser XML"
 
 #: osinfo/osinfo_install_script.c:702
 msgid "Unable to read XSL template"
-msgstr ""
+msgstr "Tidak dapat membaca templat XSL"
 
 #: osinfo/osinfo_install_script.c:708
 msgid "Unable to parse XSL template"
-msgstr ""
+msgstr "Tidak dapat mengurai templat XSL"
 
 #: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
 #, c-format
 msgid "Unable to create XML node '%s'"
-msgstr ""
+msgstr "Tidak dapat membuat simpul '%s' XML"
 
 #: osinfo/osinfo_install_script.c:805
 msgid "Unable to create XML node 'id'"
-msgstr ""
+msgstr "Tidak dapat membuat simpul 'id' XML"
 
 #: osinfo/osinfo_install_script.c:809 osinfo/osinfo_install_script.c:835
 msgid "Unable to add XML child"
-msgstr ""
+msgstr "Tidak dapat menambahkan anak XML"
 
 #: osinfo/osinfo_install_script.c:882 osinfo/osinfo_install_script.c:892
 #: osinfo/osinfo_install_script.c:926
 msgid "Unable to set XML root"
-msgstr ""
+msgstr "Tidak dapat menetapkan root XML"
 
 #: osinfo/osinfo_install_script.c:903
 msgid "Unable to set 'media' node"
-msgstr ""
+msgstr "Tidak dapat menetapkan simpul 'media'"
 
 #: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
-msgstr ""
+msgstr "Tidak dapat menetapkan simpul 'tree'"
 
 #: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
-msgstr ""
+msgstr "Tidak dapat membuat konteks transformasi XSL"
 
 #: osinfo/osinfo_install_script.c:954
 msgid "Unable to apply XSL transform context"
-msgstr ""
+msgstr "Tidak dapat menerapkan konteks transformasi XSL"
 
 #: osinfo/osinfo_install_script.c:959
 msgid "Unable to convert XSL output to string"
-msgstr ""
+msgstr "Tidak dapat mengonversi keluaran XSL ke string"
 
 #: osinfo/osinfo_install_script.c:1020
 #, c-format
 msgid "Failed to load script template %s: "
-msgstr ""
+msgstr "Gagal memuat templat skrip %s: "
 
 #: osinfo/osinfo_install_script.c:1036
 #, c-format
 msgid "Failed to apply script template %s: "
-msgstr ""
+msgstr "Gagal menerapkan templat skrip %s: "
 
 #: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
 #: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
 msgid "Failed to apply script template: "
-msgstr ""
+msgstr "Gagal menerapkan templat skrip: "
 
 #: osinfo/osinfo_list.c:124
 msgid "List element type"
-msgstr ""
+msgstr "Tipe daftar elemen"
 
 #: osinfo/osinfo_loader.c:226
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
-msgstr ""
+msgstr "Mengharapkan nodeset dalam kuiri XPath %s"
 
 #: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
-msgstr ""
+msgstr "Mengharapkan nilai atribut simpul teks"
 
 #: osinfo/osinfo_loader.c:605
 msgid "Missing device id property"
-msgstr ""
+msgstr "Kurang properti id perangkat"
 
 #: osinfo/osinfo_loader.c:644
 msgid "Missing device link id property"
-msgstr ""
+msgstr "Kurang properti id link perangkat"
 
 #: osinfo/osinfo_loader.c:705
 msgid "Missing product upgrades id property"
-msgstr ""
+msgstr "Kurang properti id peningkatan produk"
 
 #: osinfo/osinfo_loader.c:789
 msgid "Missing platform id property"
-msgstr ""
+msgstr "Kurang properti id platform"
 
 #: osinfo/osinfo_loader.c:828
 msgid "Missing deployment id property"
-msgstr ""
+msgstr "Kurang properti id penggelaran"
 
 #: osinfo/osinfo_loader.c:838
 msgid "Missing deployment os id property"
-msgstr ""
+msgstr "Kurang properti id os penggelaran"
 
 #: osinfo/osinfo_loader.c:848
 msgid "Missing deployment platform id property"
-msgstr ""
+msgstr "Kurang properti id platform penggelaran"
 
 #: osinfo/osinfo_loader.c:887 osinfo/osinfo_loader.c:1637
 msgid "Missing os id property"
-msgstr ""
+msgstr "Kurang properti id os"
 
 #: osinfo/osinfo_loader.c:1012
 msgid "Missing install script id property"
-msgstr ""
+msgstr "Kurang properti id skrip instalasi"
 
 #: osinfo/osinfo_loader.c:1246
 msgid "Missing Media install script property"
-msgstr ""
+msgstr "Kurang properti skrip instalasi media"
 
 #: osinfo/osinfo_loader.c:1805
 msgid "Missing OS install script property"
-msgstr ""
+msgstr "Kurang properti skrip instalasi OS"
 
 #: osinfo/osinfo_loader.c:1871
 msgid "Incorrect root element"
-msgstr ""
+msgstr "Elemen root salah"
 
 #: osinfo/osinfo_loader.c:1940
 msgid "Unable to construct parser context"
-msgstr ""
+msgstr "Tidak dapat menyusun konteks parser"
 
 #: osinfo/osinfo_loader.c:1962
 msgid "Missing root XML element"
-msgstr ""
+msgstr "Kurang elemen XML root"
 
 #: osinfo/osinfo_loader.c:2614
 #, c-format
@@ -261,6 +261,9 @@ msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR sudah tidak digunakan lagi, silakan gunakan $"
+"OSINFO_SYSTEM_DIR sebagai gantinya. Dukungan untuk $OSINFO_DATA_DIR akan "
+"dihapus dalam rilis mendatang\n"
 
 #: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
 #, c-format
@@ -268,139 +271,142 @@ msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
+"%s sudah ditinggalkan, silakan gunakan %s sebagai gantinya. Dukungan untuk %"
+"s akan dihapus dalam rilis mendatang\n"
 
 #: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
-msgstr ""
+msgstr "URL ke media ini"
 
 #: osinfo/osinfo_media.c:498
 msgid "The expected ISO9660 volume ID"
-msgstr ""
+msgstr "ID volume ISO9660 yang diharapkan"
 
 #: osinfo/osinfo_media.c:510
 msgid "The expected ISO9660 publisher ID"
-msgstr ""
+msgstr "ID penerbit ISO9660 yang diharapkan"
 
 #: osinfo/osinfo_media.c:522
 msgid "The expected ISO9660 application ID"
-msgstr ""
+msgstr "ID aplikasi ISO9660 yang diharapkan"
 
 #: osinfo/osinfo_media.c:534
 msgid "The expected ISO9660 system ID"
-msgstr ""
+msgstr "ID sistem ISO9660 yang diharapkan"
 
 #: osinfo/osinfo_media.c:546 osinfo/osinfo_tree.c:331
 msgid "The path to the kernel image"
-msgstr ""
+msgstr "Path ke image kernel"
 
 #: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
-msgstr ""
+msgstr "Path ke image initrd"
 
 #: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
-msgstr ""
+msgstr "Media menyediakan penginstal"
 
 #: osinfo/osinfo_media.c:582
 msgid "Media can boot directly w/o installation"
-msgstr ""
+msgstr "Media bisa boot langsung tanpa instalasi"
 
 #: osinfo/osinfo_media.c:603
 msgid "Number of installer reboots"
-msgstr ""
+msgstr "Jumlah reboot pemasang"
 
 #: osinfo/osinfo_media.c:620
 msgid "Information about the operating system on this media"
-msgstr ""
+msgstr "Informasi tentang sistem operasi di media ini"
 
 #: osinfo/osinfo_media.c:638
 msgid "Supported languages"
-msgstr ""
+msgstr "Bahasa yang didukung"
 
 #: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
-msgstr ""
+msgstr "Ukuran volume ISO9660 yang diharapkan, dalam byte"
 
 #: osinfo/osinfo_media.c:668
 msgid "Whether the media should be ejected after the installation process"
-msgstr ""
+msgstr "Apakah media harus dikeluarkan setelah proses instalasi"
 
 #: osinfo/osinfo_media.c:683
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
+"Apakah media harus digunakan untuk instalasi menggunakan skrip instalasi"
 
 #: osinfo/osinfo_media.c:815
 #, c-format
 msgid "Install media is not bootable"
-msgstr ""
+msgstr "Media instalasi tidak dapat di-boot"
 
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr ""
+msgstr "Gagal membaca extent record direktori \"%s\": "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr ""
+msgstr "Tidak ada extent record direktori \"%s\""
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
-msgstr ""
+msgstr "Gagal membaca deskriptor volume tambahan: "
 
 #: osinfo/osinfo_media.c:1109
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
-msgstr ""
+msgstr "Deskriptor volume tambahan terpotong"
 
 #: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
-msgstr ""
+msgstr "Gagal membaca deskriptor volume primer: "
 
 #: osinfo/osinfo_media.c:1183
 #, c-format
 msgid "Primary volume descriptor was truncated"
-msgstr ""
+msgstr "Deskriptor volume primer terpotong"
 
 #: osinfo/osinfo_media.c:1215
 #, c-format
 msgid "Insufficient metadata on installation media"
-msgstr ""
+msgstr "Metadata tidak mencukupi pada media instalasi"
 
 #: osinfo/osinfo_media.c:1250
 #, c-format
 msgid "Failed to skip %d bytes"
-msgstr ""
+msgstr "Gagal melewati %d byte"
 
 #: osinfo/osinfo_media.c:1255
 #, c-format
 msgid "No volume descriptors"
-msgstr ""
+msgstr "Tidak ada deskriptor volume"
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
-msgstr ""
+msgstr "Gagal membuka berkas: "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
-msgstr ""
+msgstr "Keluarga Generik"
 
 #: osinfo/osinfo_os.c:170
 msgid "Generic Distro"
-msgstr ""
+msgstr "Distro Generik"
 
 #: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
-msgstr ""
+msgstr "Argumen URL kernel"
 
 #: osinfo/osinfo_os.c:195
 msgid "Cloud image username"
-msgstr ""
+msgstr "Nama pengguna image cloud"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
-msgstr ""
+msgstr "Nama untuk varian ini"
 
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
 #: tools/osinfo-query.c:103
@@ -409,7 +415,7 @@ msgstr ""
 
 #: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
 msgid "Short ID"
-msgstr ""
+msgstr "ID Pendek"
 
 #: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
 #: tools/osinfo-query.c:95
@@ -422,135 +428,136 @@ msgstr ""
 
 #: osinfo/osinfo_product.c:209
 msgid "Codename"
-msgstr ""
+msgstr "Nama kode"
 
 #: osinfo/osinfo_product.c:221
 msgid "URI of the logo"
-msgstr ""
+msgstr "URI logo"
 
 #: osinfo/osinfo_resources.c:173
 msgid "CPU frequency in hertz (Hz)"
-msgstr ""
+msgstr "Frekuensi CPU dalam hertz (Hz)"
 
 #: osinfo/osinfo_resources.c:187
 msgid "Number of CPUs"
-msgstr ""
+msgstr "Cacah CPU"
 
 #: osinfo/osinfo_resources.c:201
 msgid "Amount of Random Access Memory (RAM) in bytes"
-msgstr ""
+msgstr "Banyaknya Random Access Memory (RAM) dalam byte"
 
 #: osinfo/osinfo_resources.c:215
 msgid "Amount of storage space in bytes"
-msgstr ""
+msgstr "Banyaknya ruang penyimpanan dalam byte"
 
 #: osinfo/osinfo_tree.c:319
 msgid "The URL to this tree"
-msgstr ""
+msgstr "URL ke pohon ini"
 
 #: osinfo/osinfo_tree.c:355
 msgid "The path to the bootable ISO image"
-msgstr ""
+msgstr "Path ke image ISO yang dapat di-boot"
 
 #: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
-msgstr ""
+msgstr "Apakah pohon itu memiliki treeinfo"
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
-msgstr ""
+msgstr "Keluarga treeinfo"
 
 #: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
-msgstr ""
+msgstr "Varian treeinfo"
 
 #: osinfo/osinfo_tree.c:403
 msgid "The treeinfo version"
-msgstr ""
+msgstr "Versi treeinfo"
 
 #: osinfo/osinfo_tree.c:415
 msgid "The treeinfo architecture"
-msgstr ""
+msgstr "Arsitektur treeinfo"
 
 #: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
-msgstr ""
+msgstr "Informasi tentang sistem operasi pada pohon ini"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr ""
+msgstr "konten treeinfo: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
-msgstr ""
+msgstr "Gagal memroses berkas keyinfo: "
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr ""
+msgstr "berkas treeinfo: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
-msgstr ""
+msgstr "Protokol URL tidak didukung"
 
 #: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
 msgid "Invalid value '%s'"
-msgstr ""
+msgstr "Nilai '%s' tidak valid"
 
 #: tools/osinfo-detect.c:88
 msgid "Output format. Default: plain"
-msgstr ""
+msgstr "Format keluaran. Baku: polos"
 
 #: tools/osinfo-detect.c:89
 msgid "plain."
-msgstr ""
+msgstr "plain."
 
 #: tools/osinfo-detect.c:92
 msgid "The type to be used. Default: media"
-msgstr ""
+msgstr "Tipe yang akan digunakan. Baku: media"
 
 #: tools/osinfo-detect.c:93
 msgid "media|tree."
-msgstr ""
+msgstr "pohon."
 
 #: tools/osinfo-detect.c:100
 #, c-format
 msgid "Media is bootable.\n"
-msgstr ""
+msgstr "Media dapat di-boot.\n"
 
 #: tools/osinfo-detect.c:102
 #, c-format
 msgid "Media is not bootable.\n"
-msgstr ""
+msgstr "Media tidak dapat di-boot.\n"
 
 #: tools/osinfo-detect.c:133
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Media adalah penginstal untuk OS '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:135
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Media adalah media live untuk OS '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:140
 #, c-format
 msgid "Available OS variants on media:\n"
-msgstr ""
+msgstr "Varian OS yang tersedia di media:\n"
 
 #: tools/osinfo-detect.c:182
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Tree adalah penginstal untuk OS '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:187
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr ""
+msgstr "Varian OS yang tersedia di pohon:\n"
 
 #: tools/osinfo-detect.c:214
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr ""
+"- Mendeteksi apakah media dapat di-boot dan OS serta distribusi yang relevan."
 
 #: tools/osinfo-detect.c:218 tools/osinfo-query.c:410
 #, c-format
@@ -561,125 +568,127 @@ msgstr "Kesalahan ketika mengurasi opsi baris perintah: %s\n"
 #: tools/osinfo-query.c:426
 #, c-format
 msgid "Error loading OS data: %s\n"
-msgstr ""
+msgstr "Kesalahan saat memuat data OS: %s\n"
 
 #: tools/osinfo-detect.c:252
 #, c-format
 msgid "Error parsing media: %s\n"
-msgstr ""
+msgstr "Galat mengurai media: %s\n"
 
 #: tools/osinfo-detect.c:268
 #, c-format
 msgid "Error parsing installer tree: %s\n"
-msgstr ""
+msgstr "Galat mengurai pohon penginstal: %s\n"
 
 #: tools/osinfo-install-script.c:76
 #, c-format
 msgid "Expected configuration key=value"
-msgstr ""
+msgstr "Diharapkan konfigurasi kunci=nilai"
 
 #: tools/osinfo-install-script.c:141
 msgid "Install script profile"
-msgstr ""
+msgstr "Profil skrip instalasi"
 
 #: tools/osinfo-install-script.c:143
 msgid "Install script output directory"
-msgstr ""
+msgstr "Direktori keluaran skrip instalasi"
 
 #: tools/osinfo-install-script.c:145
 msgid "The output filename prefix"
-msgstr ""
+msgstr "Awalan nama berkas keluaran"
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr ""
+msgstr "Sumber instalasi untuk digunakan dengan skrip"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
-msgstr ""
+msgstr "Setel parameter konfigurasi"
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
-msgstr ""
+msgstr "Setel parameter konfigurasi"
 
 #: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
-msgstr ""
+msgstr "Daftar parameter konfigurasi"
 
 #: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
-msgstr ""
+msgstr "Daftar profil skrip instalasi"
 
 #: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
-msgstr ""
+msgstr "Daftar metode injeksi yang didukung"
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
-msgstr ""
+msgstr "Jangan tampilkan nama berkas keluaran"
 
 #: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr ""
+msgstr "Tidak ada skrip instalasi untuk profil '%s' dan OS '%s'"
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
-msgstr ""
+msgstr "dibutuhkan"
 
 #: tools/osinfo-install-script.c:234
 msgid "optional"
-msgstr ""
+msgstr "opsional"
 
 #: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr ""
+msgstr "Tidak ada skrip instalasi untuk profil '%s' dan OS '%s'\n"
 
 #: tools/osinfo-install-script.c:356
 #, c-format
 msgid "Unable to generate install script: %s\n"
-msgstr ""
+msgstr "Tidak dapat membuat skrip instalasi: %s\n"
 
 #: tools/osinfo-install-script.c:393
 msgid "- Generate an OS install script"
-msgstr ""
+msgstr "- Menghasilkan skrip instalasi OS"
 
 #: tools/osinfo-install-script.c:396
 #, c-format
 msgid "Error while parsing options: %s\n"
-msgstr ""
+msgstr "Galat saat mengurai opsi baris perintah: %s\n"
 
 #: tools/osinfo-install-script.c:414
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
+"Hanya satu dari --list-profile, --list-config, dan --list-injection-methods "
+"yang dapat diminta"
 
 #: tools/osinfo-install-script.c:443
 #, c-format
 msgid "Error finding OS: %s\n"
-msgstr ""
+msgstr "Galat menemukan OS: %s\n"
 
 #: tools/osinfo-query.c:57
 msgid "Family"
-msgstr ""
+msgstr "Keluarga"
 
 #: tools/osinfo-query.c:59
 msgid "Distro"
-msgstr ""
+msgstr "Distro"
 
 #: tools/osinfo-query.c:63 tools/osinfo-query.c:83
 msgid "Release date"
-msgstr ""
+msgstr "Tanggal rilis"
 
 #: tools/osinfo-query.c:65 tools/osinfo-query.c:85
 msgid "End of life"
-msgstr ""
+msgstr "Akhir hidup"
 
 #: tools/osinfo-query.c:67 tools/osinfo-query.c:87
 msgid "Code name"
-msgstr ""
+msgstr "Nama kode"
 
 #: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
 #: tools/osinfo-query.c:115
@@ -688,15 +697,15 @@ msgstr ""
 
 #: tools/osinfo-query.c:97
 msgid "Vendor ID"
-msgstr ""
+msgstr "ID Vendor"
 
 #: tools/osinfo-query.c:99
 msgid "Product"
-msgstr ""
+msgstr "Produk"
 
 #: tools/osinfo-query.c:101
 msgid "Product ID"
-msgstr ""
+msgstr "ID Produk"
 
 #: tools/osinfo-query.c:105
 msgid "Class"
@@ -709,40 +718,40 @@ msgstr ""
 #: tools/osinfo-query.c:147 tools/osinfo-query.c:189
 #, c-format
 msgid "Unknown property name %s"
-msgstr ""
+msgstr "Nama properti tidak dikenal %s"
 
 #: tools/osinfo-query.c:176
 msgid "Syntax error in condition, expecting KEY=VALUE"
-msgstr ""
+msgstr "Kesalahan sintaks dalam syarat, mengharapkan KUNCI=NILAI"
 
 #: tools/osinfo-query.c:394
 msgid "Sort column"
-msgstr ""
+msgstr "Sortir kolom"
 
 #: tools/osinfo-query.c:396
 msgid "Display fields"
-msgstr ""
+msgstr "Tampilan ruas"
 
 #: tools/osinfo-query.c:405
 msgid "- Query the OS info database"
-msgstr ""
+msgstr "- Mengkuiri basis data info OS"
 
 #: tools/osinfo-query.c:417
 #, c-format
 msgid "Missing data type parameter\n"
-msgstr ""
+msgstr "Parameter tipe data tidak ada\n"
 
 #: tools/osinfo-query.c:445
 #, c-format
 msgid "Unknown type '%s' requested\n"
-msgstr ""
+msgstr "Tipe '%s' yang diminta tidak dikenal\n"
 
 #: tools/osinfo-query.c:450
 #, c-format
 msgid "Unable to construct filter: %s\n"
-msgstr ""
+msgstr "Tidak dapat menyusun filter:%s\n"
 
 #: tools/osinfo-query.c:455
 #, c-format
 msgid "Unable to set field visibility: %s\n"
-msgstr ""
+msgstr "Tidak dapat mengatur visibilitas ruas: %s\n"
