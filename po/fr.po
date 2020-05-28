@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-13 12:45+0200\n"
-"PO-Revision-Date: 2020-02-16 09:38+0000\n"
+"PO-Revision-Date: 2020-05-28 12:40+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fr/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10.3\n"
+"X-Generator: Weblate 4.0.4\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -331,11 +331,8 @@ msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Taille du volume ISO9660 attendue, en octets"
 
 #: osinfo/osinfo_media.c:668
-#, fuzzy
-#| msgid "Whether the media should be ejected after the installtion process"
 msgid "Whether the media should be ejected after the installation process"
-msgstr ""
-"Indique si le média doit être éjecté après les processus d’installation"
+msgstr "Indique si le média doit être éjecté après les processus d’installation"
 
 #: osinfo/osinfo_media.c:683
 msgid ""
