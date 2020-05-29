@@ -1,6 +1,18 @@
                libosinfo News
                ==============
 
+1.8.0 - May 29, 2020
+====================
+
+- Several CI improvements
+- Several release scripts improvements
+- Several translations improvements
+- Several syntax-check improvements
+- Code cleanup in order to modernize the GObject usage
+- Add API to get whether a firmware is supported or not
+- Add API to get "cloud-image-username"
+
+
 1.7.1 - Dec 04, 2019
 ====================
 
