@@ -332,7 +332,8 @@ msgstr "Taille du volume ISO9660 attendue, en octets"
 
 #: osinfo/osinfo_media.c:668
 msgid "Whether the media should be ejected after the installation process"
-msgstr "Indique si le média doit être éjecté après les processus d’installation"
+msgstr ""
+"Indique si le média doit être éjecté après les processus d’installation"
 
 #: osinfo/osinfo_media.c:683
 msgid ""

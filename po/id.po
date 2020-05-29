@@ -261,8 +261,8 @@ msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
-"$OSINFO_DATA_DIR sudah tidak digunakan lagi, silakan gunakan $"
-"OSINFO_SYSTEM_DIR sebagai gantinya. Dukungan untuk $OSINFO_DATA_DIR akan "
+"$OSINFO_DATA_DIR sudah tidak digunakan lagi, silakan gunakan "
+"$OSINFO_SYSTEM_DIR sebagai gantinya. Dukungan untuk $OSINFO_DATA_DIR akan "
 "dihapus dalam rilis mendatang\n"
 
 #: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
@@ -271,8 +271,8 @@ msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
-"%s sudah ditinggalkan, silakan gunakan %s sebagai gantinya. Dukungan untuk %"
-"s akan dihapus dalam rilis mendatang\n"
+"%s sudah ditinggalkan, silakan gunakan %s sebagai gantinya. Dukungan untuk "
+"%s akan dihapus dalam rilis mendatang\n"
 
 #: osinfo/osinfo_media.c:486
 msgid "The URL to this media"

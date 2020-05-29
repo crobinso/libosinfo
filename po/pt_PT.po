@@ -551,7 +551,8 @@ msgstr "Variantes disponíveis do OS na árvore:\n"
 
 #: tools/osinfo-detect.c:214
 msgid "- Detect if media is bootable and the relevant OS and distribution."
-msgstr "- Detete se o disco é inicializável e o SO e a distribuição relevantes."
+msgstr ""
+"- Detete se o disco é inicializável e o SO e a distribuição relevantes."
 
 #: tools/osinfo-detect.c:218 tools/osinfo-query.c:410
 #, c-format
