@@ -90,9 +90,8 @@ stages:
   fi
   pushd .
   cd build
-  sed -i -e 's/BuildRequires: *osinfo-db.*//' *.spec*
   $NINJA dist
-  rpmbuild --clean --define "_topdir `pwd`/rpmbuild" -ta meson-dist/*.tar.xz
+  rpmbuild --nodeps -ta meson-dist/*.tar.xz
   popd
 
 .libosinfo-mingw-build: &libosinfo-mingw-build |
