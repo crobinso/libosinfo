@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-13 12:45+0200\n"
-"PO-Revision-Date: 2020-05-28 12:40+0000\n"
+"PO-Revision-Date: 2020-06-22 01:40+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fr/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.0.4\n"
+"X-Generator: Weblate 4.1.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -79,7 +79,7 @@ msgstr "L’URL de cette image"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Si les personnalisations de cloud-init sont prises en charge ou non"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -408,10 +408,8 @@ msgid "Kernel URL Argument"
 msgstr "Paramètre d’URL du noyau"
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Nom de code"
+msgstr "Nom d’utilisateur de l’image cloud"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
