@@ -85,14 +85,19 @@ static GOptionEntry entries[] =
 {
     { "format", 'f', 0,
       G_OPTION_ARG_CALLBACK, parse_format_str,
-      N_("Output format. Default: plain"),
-      N_("plain.") },
+      N_("Select the output format"),
+      N_("FORMAT") },
     { "type", 't', 0,
       G_OPTION_ARG_CALLBACK, parse_type_str,
-      N_("The type to be used. Default: media"),
-      N_("media|tree.") },
+      N_("Select the type of what is being detected"),
+      N_("TYPE") },
     { 0 }
 };
+
+static const gchar description_template[] =
+  N_("The only value available for FORMAT is '%s', which means plain text.\n"
+     "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
+     "or '%s' for install trees.");
 
 static void print_bootable(gboolean bootable)
 {
@@ -205,6 +210,7 @@ gint main(gint argc, gchar **argv)
     OsinfoLoader *loader = NULL;
     OsinfoDb *db = NULL;
     gint ret = 0;
+    gchar *description;
 
     setlocale(LC_ALL, "");
     textdomain(GETTEXT_PACKAGE);
@@ -214,6 +220,11 @@ gint main(gint argc, gchar **argv)
     context = g_option_context_new(_("- Detect if media is bootable " \
                                      "and the relevant OS and distribution."));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
+    description = g_strdup_printf(description_template,
+                                  FORMAT_STR_PLAIN, TYPE_STR_MEDIA,
+                                  TYPE_STR_TREE);
+    g_option_context_set_description(context, description);
+    g_free(description);
     if (!g_option_context_parse(context, &argc, &argv, &error)) {
         g_printerr(_("Error while parsing commandline options: %s\n"),
                    error->message);
