@@ -2136,7 +2136,7 @@ OsinfoPathFormat osinfo_install_script_get_path_format(OsinfoInstallScript *scri
  *
  * Whether install script can install drivers at the very beginning of
  * installation. This is needed for devices for which the OS in question does
- * not have out of the box support for and devices are required/prefered to be
+ * not have out of the box support for and devices are required/preferred to be
  * available during actual installation.
  *
  * Returns: TRUE if install script supports pre-installable drivers, FALSE otherwise.

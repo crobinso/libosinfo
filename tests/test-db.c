@@ -481,7 +481,7 @@ test_identify_media(void)
     g_assert_cmpstr(osinfo_media_get_architecture(media), ==, "all");
     g_object_unref(media);
 
-    /* Matching against a known architecture, which has to have precendence */
+    /* Matching against a known architecture, which has to have precedence */
     media = osinfo_media_new("foo", "i686");
     osinfo_entity_set_param(OSINFO_ENTITY(media),
                             OSINFO_MEDIA_PROP_VOLUME_ID,
@@ -547,7 +547,7 @@ test_identify_tree(void)
     g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "all");
     g_object_unref(tree);
 
-    /* Matching against a known architecture, which has to have precendence */
+    /* Matching against a known architecture, which has to have precedence */
     tree = create_tree("i686", TRUE);
     g_assert_true(osinfo_db_identify_tree(db, tree));
     g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "i686");

@@ -480,7 +480,7 @@ void osinfo_install_config_set_reg_login(OsinfoInstallConfig *config,
  * osinfo_install_config_get_reg_login:
  * @config: the install config
  *
- * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN paramater,
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN parameter,
  *          or NULL.
  *
  * Since: 0.2.8
@@ -513,7 +513,7 @@ void osinfo_install_config_set_reg_password(OsinfoInstallConfig *config,
  * osinfo_install_config_get_reg_password:
  * @config: the install config
  *
- * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD paramater,
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD parameter,
  *          or NULL.
  *
  * Since: 0.2.8
@@ -546,7 +546,7 @@ void osinfo_install_config_set_reg_product_key(OsinfoInstallConfig *config,
  * osinfo_install_config_get_reg_product_key:
  * @config: the install config
  *
- * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY paramater,
+ * Returns: The value of #OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY parameter,
  *          or NULL.
  *
  * Since: 0.2.8
@@ -753,7 +753,7 @@ const gchar *osinfo_install_config_get_avatar_disk(OsinfoInstallConfig *config)
  * Specify the disk on which drivers to be installed at the very beginning of
  * installation, are available. This is usually needed for devices for which the
  * OS in question does not have out of the box support for and devices are
- * required/prefered to be available during actual installation.
+ * required/preferred to be available during actual installation.
  *
  * Please read documentation on #osinfo_install_config_set_target_disk() for
  * explanation on the format of @disk string.

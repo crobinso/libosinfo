@@ -1,5 +1,5 @@
 /*
- * libosinfo: a mechanism to filter enities
+ * libosinfo: a mechanism to filter entities
  *
  * Copyright (C) 2009-2020 Red Hat, Inc.
  *

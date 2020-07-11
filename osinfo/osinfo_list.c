@@ -278,7 +278,7 @@ void osinfo_list_add(OsinfoList *list, OsinfoEntity *entity)
  * @filter: (transfer none): filter to process the source with
  *
  * Adds all entities from @source which are matched by @filter. Using one
- * of the constructors in a subclass is preferrable
+ * of the constructors in a subclass is preferable
  * to this method.
  */
 void osinfo_list_add_filtered(OsinfoList *list, OsinfoList *source, OsinfoFilter *filter)
@@ -305,7 +305,7 @@ void osinfo_list_add_filtered(OsinfoList *list, OsinfoList *source, OsinfoFilter
  *
  * Computes the intersection between @sourceOne and @sourceTwo and
  * adds the resulting list of entities to the @list. Using one
- * of the constructors in a subclass is preferrable
+ * of the constructors in a subclass is preferable
  * to this method.
  */
 void osinfo_list_add_intersection(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *sourceTwo)
@@ -354,7 +354,7 @@ void osinfo_list_add_intersection(OsinfoList *list, OsinfoList *sourceOne, Osinf
  *
  * Computes the union between @sourceOne and @sourceTwo and
  * adds the resulting list of entities to the @list. Using one
- * of the constructors in a subclass is preferrable
+ * of the constructors in a subclass is preferable
  * to this method.
  */
 void osinfo_list_add_union(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *sourceTwo)
@@ -397,7 +397,7 @@ void osinfo_list_add_union(OsinfoList *list, OsinfoList *sourceOne, OsinfoList *
  * @source: (transfer none): the list to add
  *
  * Adds all entities from @source to @list. Using one
- * of the constructors in a subclass is preferrable
+ * of the constructors in a subclass is preferable
  * to this method.
  */
 void osinfo_list_add_all(OsinfoList *list, OsinfoList *source)

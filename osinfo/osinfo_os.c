@@ -1352,7 +1352,7 @@ static void get_cloud_image_username_cb(OsinfoProduct *product, gpointer user_da
  * Gets the username expected to be passed to the cloud image when performing
  * installation.
  *
- * Returns: (transfer none): ther username, if present. Otherwise, NULL.
+ * Returns: (transfer none): the username, if present. Otherwise, NULL.
  */
 const gchar *osinfo_os_get_cloud_image_username(OsinfoOs *os)
 {

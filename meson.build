@@ -340,7 +340,7 @@ libosinfo_micro_version = libosinfo_version.split('.')[2].to_int()
 libosinfo_interface_age = 0
 libosinfo_binary_age = 1000 * libosinfo_major_version + libosinfo_minor_version
 
-# Mantain versin scheme with libtool
+# Maintain version scheme with libtool
 libosinfo_soversion = 0
 libosinfo_version = '@0@.@1@.@2@'.format(
     libosinfo_soversion,

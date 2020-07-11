@@ -184,7 +184,7 @@ GList *osinfo_filter_get_constraint_keys(OsinfoFilter *filter)
  * @filter: a filter object
  * @propName: the name of the key
  *
- * Get a list values for filter constriants with the named key
+ * Get a list values for filter constraints with the named key
  *
  * Returns: (transfer container)(element-type utf8): List of constraint values
  */

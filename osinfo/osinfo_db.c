@@ -1038,7 +1038,7 @@ static void osinfo_db_get_property_values_in_entity(gpointer data, gpointer opaq
 
 static GList *osinfo_db_unique_values_for_property_in_entity(OsinfoList *entities, const gchar *propName)
 {
-    /* Delibrately no free func for key, since we return those to caller */
+    /* Deliberately no free func for key, since we return those to caller */
     GHashTable *values = g_hash_table_new(g_str_hash, g_str_equal);
     GList *ret;
     struct osinfo_db_populate_values_args args = { values, propName };

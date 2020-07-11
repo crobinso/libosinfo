@@ -10,7 +10,7 @@
       <file>prioritydefault</file>
     </driver>
 
-    <driver signed="false" pre-installable="true" location="https://libosinfo.org/exmaple/drivers/" arch="i686" priority="100">
+    <driver signed="false" pre-installable="true" location="https://libosinfo.org/example/drivers/" arch="i686" priority="100">
       <file>priority100</file>
     </driver>
   </os>
