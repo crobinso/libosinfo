@@ -53,6 +53,7 @@ Libraries, includes, etc. to compile with the libosinfo library
     -Denable-tests=true \
     -Denable-introspection=enabled \
     -Denable-vala=enabled
+%meson_build
 
 %install
 %meson_install
