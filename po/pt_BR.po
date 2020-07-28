@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 12:45+0200\n"
+"POT-Creation-Date: 2020-07-28 11:00+0200\n"
 "PO-Revision-Date: 2020-07-17 21:29+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
@@ -400,10 +400,6 @@ msgstr "Argumento de URL do kernel"
 msgid "Cloud image username"
 msgstr "Nome de usuário da imagem na nuvem"
 
-#: osinfo/osinfo_os_variant.c:106
-msgid "The name to this variant"
-msgstr "O nome para este variante"
-
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
 #: tools/osinfo-query.c:103
 msgid "Name"
@@ -494,83 +490,97 @@ msgstr "Falha ao carregar .treeinfo|Arquivo treeinfo: "
 msgid "URL protocol is not supported"
 msgstr "O protocolo de URL não é suportado"
 
+#: osinfo/osinfo_os_variant.c:106
+msgid "The name to this variant"
+msgstr "O nome para este variante"
+
 #: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
 msgid "Invalid value '%s'"
 msgstr "Valor inválido \"%s\""
 
 #: tools/osinfo-detect.c:88
-msgid "Output format. Default: plain"
-msgstr "Formato da saída. Padrão: plain"
+#, fuzzy
+#| msgid "Expected path format"
+msgid "Select the output format"
+msgstr "Formato de caminho esperado"
 
 #: tools/osinfo-detect.c:89
-msgid "plain."
-msgstr "plain."
+msgid "FORMAT"
+msgstr ""
 
 #: tools/osinfo-detect.c:92
-msgid "The type to be used. Default: media"
-msgstr "O tipo a ser usado. Padrão: media"
+msgid "Select the type of what is being detected"
+msgstr ""
 
 #: tools/osinfo-detect.c:93
-msgid "media|tree."
-msgstr "media|tree."
+msgid "TYPE"
+msgstr ""
 
-#: tools/osinfo-detect.c:100
+#: tools/osinfo-detect.c:98
+#, c-format
+msgid ""
+"The only value available for FORMAT is '%s', which means plain text.\n"
+"TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
+"or '%s' for install trees."
+msgstr ""
+
+#: tools/osinfo-detect.c:105
 #, c-format
 msgid "Media is bootable.\n"
 msgstr "A mídia é inicializável.\n"
 
-#: tools/osinfo-detect.c:102
+#: tools/osinfo-detect.c:107
 #, c-format
 msgid "Media is not bootable.\n"
 msgstr "A mídia não é inicializável.\n"
 
-#: tools/osinfo-detect.c:133
+#: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
 msgstr "A mídia é um instalador para o SO \"%s (%s)\"\n"
 
-#: tools/osinfo-detect.c:135
+#: tools/osinfo-detect.c:140
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
 msgstr "A mídia é uma mídia live para o SO \"%s (%s)\"\n"
 
-#: tools/osinfo-detect.c:140
+#: tools/osinfo-detect.c:145
 #, c-format
 msgid "Available OS variants on media:\n"
 msgstr "Variantes de SO disponíveis na mídia:\n"
 
-#: tools/osinfo-detect.c:182
+#: tools/osinfo-detect.c:187
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
 msgstr "A árvore é um instalador do SO \"%s (%s)\"\n"
 
-#: tools/osinfo-detect.c:187
+#: tools/osinfo-detect.c:192
 #, c-format
 msgid "Available OS variants on tree:\n"
 msgstr "Variantes de SO disponíveis na árvore:\n"
 
-#: tools/osinfo-detect.c:214
+#: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr "- Detecta se a mídia é inicializável, o SO e distribuição relevantes."
 
-#: tools/osinfo-detect.c:218 tools/osinfo-query.c:410
+#: tools/osinfo-detect.c:229 tools/osinfo-query.c:410
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "Erro ao analisar as opções de linha de comando: %s\n"
 
-#: tools/osinfo-detect.c:236 tools/osinfo-install-script.c:424
+#: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
 #: tools/osinfo-query.c:426
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "Erro ao carregar dados de SO: %s\n"
 
-#: tools/osinfo-detect.c:252
+#: tools/osinfo-detect.c:263
 #, c-format
 msgid "Error parsing media: %s\n"
 msgstr "Erro ao analisar a mídia: %s\n"
 
-#: tools/osinfo-detect.c:268
+#: tools/osinfo-detect.c:279
 #, c-format
 msgid "Error parsing installer tree: %s\n"
 msgstr "Erro ao analisar a árvore do instalador: %s\n"
@@ -750,3 +760,15 @@ msgstr "Não foi possível construir o filtro: %s\n"
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "Não foi possível definir a visibilidade do campo: %s\n"
+
+#~ msgid "Output format. Default: plain"
+#~ msgstr "Formato da saída. Padrão: plain"
+
+#~ msgid "plain."
+#~ msgstr "plain."
+
+#~ msgid "The type to be used. Default: media"
+#~ msgstr "O tipo a ser usado. Padrão: media"
+
+#~ msgid "media|tree."
+#~ msgstr "media|tree."
