@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2020-05-22 06:23+0000\n"
+"PO-Revision-Date: 2020-07-29 15:29+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/tr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0.4\n"
+"X-Generator: Weblate 4.1.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -504,22 +504,20 @@ msgid "Invalid value '%s'"
 msgstr "Geçersiz değer '%s'"
 
 #: tools/osinfo-detect.c:88
-#, fuzzy
-#| msgid "Expected path format"
 msgid "Select the output format"
-msgstr "Beklenen yol biçimi"
+msgstr "Çıktı biçimini seç"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "BİÇİM"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Algılanan şeyin türünü seç"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "TÜR"
 
 #: tools/osinfo-detect.c:98
 #, c-format
@@ -528,6 +526,9 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"BİÇİM için kullanılabilir tek değer '%s', düz metin anlamına gelir.\n"
+"TÜR ya CD/DVD ISO dosyaları için '%s' (öntanımlı değer),\n"
+"ya da kurulum ağaçları için '%s' olabilir."
 
 #: tools/osinfo-detect.c:105
 #, c-format
