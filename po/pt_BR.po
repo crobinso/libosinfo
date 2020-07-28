@@ -258,8 +258,8 @@ msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
-"$OSINFO_DATA_DIR foi descontinuado, use $OSINFO_SYSTEM_DIR. Suporte para $"
-"OSINFO_DATA_DIR será removido em um lançamento futuro\n"
+"$OSINFO_DATA_DIR foi descontinuado, use $OSINFO_SYSTEM_DIR. Suporte para "
+"$OSINFO_DATA_DIR será removido em um lançamento futuro\n"
 
 #: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
 #, c-format
