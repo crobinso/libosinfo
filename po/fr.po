@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2020-06-22 01:40+0000\n"
+"PO-Revision-Date: 2020-07-31 09:29+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fr/>\n"
@@ -511,22 +511,20 @@ msgid "Invalid value '%s'"
 msgstr "Valeur invalide « %s »"
 
 #: tools/osinfo-detect.c:88
-#, fuzzy
-#| msgid "Expected path format"
 msgid "Select the output format"
-msgstr "Format attendu pour le chemin"
+msgstr "Sélectionnez le format de sortie"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "FORMAT"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Sélectionnez le type de ce qui est détecté"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "TYPE"
 
 #: tools/osinfo-detect.c:98
 #, c-format
@@ -535,6 +533,10 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"La seule valeur disponible pour le FORMAT est « %s », ce qui signifie texte "
+"brut.\n"
+"TYPE peut être soit « %s » (la valeur par défaut) pour les ISO de CD/DVD,\n"
+"ou « %s » pour installer des arbres."
 
 #: tools/osinfo-detect.c:105
 #, c-format
