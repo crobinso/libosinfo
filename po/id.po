@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the libosinfo package.
 # Andika Triwidada <andika@gmail.com>, 2020.
 # Anonymous <noreply@weblate.org>, 2020.
+# Kukuh Syafaat <kukuh@syafaat.id>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2020-05-22 06:23+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-08-07 11:29+0000\n"
+"Last-Translator: Kukuh Syafaat <kukuh@syafaat.id>\n"
 "Language-Team: Indonesian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/id/>\n"
 "Language: id\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.0.4\n"
+"X-Generator: Weblate 4.1.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -480,7 +481,7 @@ msgstr "Informasi tentang sistem operasi pada pohon ini"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr "konten treeinfo: "
+msgstr "Gagal memuat berkas .treeinfo|treeinfo content: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
@@ -488,7 +489,7 @@ msgstr "Gagal memroses berkas keyinfo: "
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr "berkas treeinfo: "
+msgstr "Gagal memuat berkas .treeinfo|treeinfo: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
@@ -504,22 +505,20 @@ msgid "Invalid value '%s'"
 msgstr "Nilai '%s' tidak valid"
 
 #: tools/osinfo-detect.c:88
-#, fuzzy
-#| msgid "Expected path format"
 msgid "Select the output format"
-msgstr "Format path yang diharapkan"
+msgstr "Pilih format keluaran"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "FORMAT"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Pilih tipe apa yang terdeteksi"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "TYPE"
 
 #: tools/osinfo-detect.c:98
 #, c-format
@@ -528,6 +527,10 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"Satu-satunya nilai yang tersedia untuk FORMAT adalah '%s', yang berarti teks "
+"biasa.\n"
+"TYPE bisa berupa '%s' (bawaan) untuk ISO CD/DVD,\n"
+"atau '%s' untuk memasang pohon."
 
 #: tools/osinfo-detect.c:105
 #, c-format
