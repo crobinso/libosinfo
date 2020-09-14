@@ -1,13 +1,14 @@
 # Milo Casagrande <milo@milo.name>, 2018. #zanata
 # Milo Casagrande <milo@milo.name>, 2019. #zanata
 # Gianluca Sforna <giallu@gmail.com>, 2020.
+# Pino Toscano <toscano.pino@tiscali.it>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2020-04-21 08:40+0000\n"
-"Last-Translator: Gianluca Sforna <giallu@gmail.com>\n"
+"PO-Revision-Date: 2020-09-14 06:29+0000\n"
+"Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/it/>\n"
 "Language: it\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0.1\n"
+"X-Generator: Weblate 4.2.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -387,7 +388,7 @@ msgstr "Nessun descrittore di volume"
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
-msgstr "Apertura del file non riuscita:"
+msgstr "Apertura del file non riuscita: "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
@@ -483,15 +484,15 @@ msgstr "Informazioni riguardo al sistema operativo su questo albero"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr "Caricamento dei contenuti .treeinfo|treeinfo non riuscito:"
+msgstr "Caricamento dei contenuti .treeinfo|treeinfo non riuscito: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
-msgstr "Elaborazione del file keyinfo non riuscita:"
+msgstr "Elaborazione del file keyinfo non riuscita: "
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr "Caricamento del file .treeinfo|treeinfo non riuscito:"
+msgstr "Caricamento del file .treeinfo|treeinfo non riuscito: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
