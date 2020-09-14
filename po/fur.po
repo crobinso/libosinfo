@@ -1,196 +1,194 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#
-# Translators:
-# Emilio Herrera <ehespinosa57@gmail.com>, 2020.
+# This file is distributed under the same license as the libosinfo package.
 # Fabio Tomat <f.t.public@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2020-08-15 14:29+0000\n"
-"Last-Translator: Emilio Herrera <ehespinosa57@gmail.com>\n"
-"Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
-"libosinfo/libosinfo/es/>\n"
-"Language: es\n"
+"PO-Revision-Date: 2020-09-14 06:29+0000\n"
+"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
+"Language-Team: Friulian <https://translate.fedoraproject.org/projects/"
+"libosinfo/libosinfo/fur/>\n"
+"Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1.1\n"
+"X-Generator: Weblate 4.2.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr "Los tipos de mimo permitidos para el avatar"
+msgstr "I gjenars di mime consintûts pal avatar"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
-msgstr ""
+msgstr "La largjece domandade (in pixel) pal avatar"
 
 #: osinfo/osinfo_avatar_format.c:121
 msgid "The required height (in pixels) of the avatar."
-msgstr ""
+msgstr "La altece domandade (in pixel) pal avatar."
 
 #: osinfo/osinfo_avatar_format.c:135
 msgid "Whether alpha channel is supported in the avatar."
-msgstr ""
+msgstr "Indiche se tal avatar al è supuartât il canâl alpha."
 
 #: osinfo/osinfo_deployment.c:141
 msgid "Operating system"
-msgstr "Sistema operativo"
+msgstr "Sisteme operatîf"
 
 #: osinfo/osinfo_deployment.c:153
 msgid "Virtualization platform"
-msgstr "Plataforma de virtualización"
+msgstr "Plateforme di virtualizazion"
 
 #: osinfo/osinfo_devicelink.c:124
 msgid "Target device"
-msgstr ""
+msgstr "Dispositîf di destinazion"
 
 #: osinfo/osinfo_devicelinkfilter.c:127
 msgid "Device link target filter"
-msgstr ""
+msgstr "Filtri di destinazion dal colegament dispositîf"
 
 #: osinfo/osinfo_entity.c:131
 msgid "Unique identifier"
-msgstr "Identificador único"
+msgstr "Identificadôr univoc"
 
 #: osinfo/osinfo_firmware.c:129 osinfo/osinfo_image.c:161
 #: osinfo/osinfo_media.c:474 osinfo/osinfo_resources.c:160
 #: osinfo/osinfo_tree.c:307
 msgid "CPU Architecture"
-msgstr "Arquitectura de CPU"
+msgstr "Architeture CPU"
 
 #: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
-msgstr ""
+msgstr "Il gjenar di firmware"
 
 #: osinfo/osinfo_image.c:173
 msgid "The image format"
-msgstr ""
+msgstr "Il formât de imagjin"
 
 #: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
-msgstr ""
+msgstr "L'URL par cheste imagjin"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
 msgstr ""
+"Indiche se lis personalizazions di cloud-init a son supuartadis o mancul"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
-msgstr "Nombre de parámetro"
+msgstr "Non parametri"
 
 #: osinfo/osinfo_install_config_param.c:159
 msgid "Parameter policy"
-msgstr ""
+msgstr "Politiche parametri"
 
 #: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
-msgstr ""
+msgstr "Mapadure valôr parametri"
 
 #: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
-msgstr ""
+msgstr "URI pal model di script di instalazion"
 
 #: osinfo/osinfo_install_script.c:218
 msgid "Data for install script template"
-msgstr ""
+msgstr "Dâts pal model di script di instalazion"
 
 #: osinfo/osinfo_install_script.c:227
 msgid "Install script profile name"
-msgstr ""
+msgstr "Non dal profîl di script di instalazion"
 
 #: osinfo/osinfo_install_script.c:236
 msgid "Product key format mask"
-msgstr ""
+msgstr "Mascare dal formât de clâf dal prodot"
 
 #: osinfo/osinfo_install_script.c:243
 msgid "Expected path format"
-msgstr ""
+msgstr "Formât percors spietât"
 
 #: osinfo/osinfo_install_script.c:251
 msgid "Expected avatar format"
-msgstr ""
+msgstr "Formât avatar spietât"
 
 #: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
-msgstr ""
+msgstr "Il metodi di iniezion preferît"
 
 #: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
-msgstr ""
+msgstr "La sorzint di instalazion di doprâ"
 
 #: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
-msgstr "Incapaz de crear contexto de parseo XML"
+msgstr "Impussibil creâ il contest dal analizadôr XML"
 
 #: osinfo/osinfo_install_script.c:702
 msgid "Unable to read XSL template"
-msgstr "Incapaz de leer plantilla XSL"
+msgstr "Impussibil lei il model XSL"
 
 #: osinfo/osinfo_install_script.c:708
 msgid "Unable to parse XSL template"
-msgstr "Incapaz de parsear plantilla XSL"
+msgstr "Impussibil analizâ il model XSL"
 
 #: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
 #, c-format
 msgid "Unable to create XML node '%s'"
-msgstr ""
+msgstr "Impussibil creâ il grop XML '%s'"
 
 #: osinfo/osinfo_install_script.c:805
 msgid "Unable to create XML node 'id'"
-msgstr ""
+msgstr "Impussibil creâ il grop XML 'id'"
 
 #: osinfo/osinfo_install_script.c:809 osinfo/osinfo_install_script.c:835
 msgid "Unable to add XML child"
-msgstr ""
+msgstr "Impussibil zontâ un fi XML"
 
 #: osinfo/osinfo_install_script.c:882 osinfo/osinfo_install_script.c:892
 #: osinfo/osinfo_install_script.c:926
 msgid "Unable to set XML root"
-msgstr ""
+msgstr "Impussibil stabilî la lidrîs XML"
 
 #: osinfo/osinfo_install_script.c:903
 msgid "Unable to set 'media' node"
-msgstr ""
+msgstr "Impussibil stabilî il grop 'media'"
 
 #: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
-msgstr ""
+msgstr "Impussibil stabilî il grop 'tree'"
 
 #: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
-msgstr ""
+msgstr "Impussibil creâ il contest di trasformazion XSL"
 
 #: osinfo/osinfo_install_script.c:954
 msgid "Unable to apply XSL transform context"
-msgstr ""
+msgstr "Impussibil aplicâ il contest di trasformazion XSL"
 
 #: osinfo/osinfo_install_script.c:959
 msgid "Unable to convert XSL output to string"
-msgstr ""
+msgstr "Impussibil convertî la jessude XSL in stringhe"
 
 #: osinfo/osinfo_install_script.c:1020
 #, c-format
 msgid "Failed to load script template %s: "
-msgstr ""
+msgstr "No si è rivâts a cjariâ il model di script %s: "
 
 #: osinfo/osinfo_install_script.c:1036
 #, c-format
 msgid "Failed to apply script template %s: "
-msgstr ""
+msgstr "No si è rivâts a aplicâ il model di script %s: "
 
 #: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
 #: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
 msgid "Failed to apply script template: "
-msgstr ""
+msgstr "No si è rivâts a aplicâ il model di script: "
 
 #: osinfo/osinfo_list.c:124
 msgid "List element type"
-msgstr ""
+msgstr "Liste il gjenar dal element"
 
 #: osinfo/osinfo_loader.c:226
 #, c-format
@@ -199,63 +197,63 @@ msgstr ""
 
 #: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
-msgstr ""
+msgstr "Si spietave un valôr di atribût di grop testuâl"
 
 #: osinfo/osinfo_loader.c:605
 msgid "Missing device id property"
-msgstr ""
+msgstr "E mancje la proprietât id dal dispositîf"
 
 #: osinfo/osinfo_loader.c:644
 msgid "Missing device link id property"
-msgstr ""
+msgstr "E mancje la proprietât id di colegament dal dispositîf"
 
 #: osinfo/osinfo_loader.c:705
 msgid "Missing product upgrades id property"
-msgstr ""
+msgstr "E mancje la proprietât id dai inzornaments dal prodot"
 
 #: osinfo/osinfo_loader.c:789
 msgid "Missing platform id property"
-msgstr ""
+msgstr "E mancje la proprietât id de plateforme"
 
 #: osinfo/osinfo_loader.c:828
 msgid "Missing deployment id property"
-msgstr ""
+msgstr "E mancje la proprietât id de distribuzion"
 
 #: osinfo/osinfo_loader.c:838
 msgid "Missing deployment os id property"
-msgstr ""
+msgstr "E mancje la proprietât id dal SO di distribuzion"
 
 #: osinfo/osinfo_loader.c:848
 msgid "Missing deployment platform id property"
-msgstr ""
+msgstr "E mancje la proprietât id de plateforme di distribuzion"
 
 #: osinfo/osinfo_loader.c:887 osinfo/osinfo_loader.c:1637
 msgid "Missing os id property"
-msgstr ""
+msgstr "E mancje la proprietât id dal SO"
 
 #: osinfo/osinfo_loader.c:1012
 msgid "Missing install script id property"
-msgstr ""
+msgstr "E mancje la proprietât id dal script di instalazion"
 
 #: osinfo/osinfo_loader.c:1246
 msgid "Missing Media install script property"
-msgstr ""
+msgstr "E mancje la proprietât dal script di instalazion dal supuart"
 
 #: osinfo/osinfo_loader.c:1805
 msgid "Missing OS install script property"
-msgstr ""
+msgstr "E mancje la proprietât dal script di instalazion dal SO"
 
 #: osinfo/osinfo_loader.c:1871
 msgid "Incorrect root element"
-msgstr ""
+msgstr "Element lidrîs no just"
 
 #: osinfo/osinfo_loader.c:1940
 msgid "Unable to construct parser context"
-msgstr ""
+msgstr "Impussibil costruî il contest dal analizadôr"
 
 #: osinfo/osinfo_loader.c:1962
 msgid "Missing root XML element"
-msgstr ""
+msgstr "Al mancje l'element XML lidrîs"
 
 #: osinfo/osinfo_loader.c:2614
 #, c-format
@@ -263,6 +261,8 @@ msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR al è deplorât, doprâ $OSINFO_SYSTEM_DIR al so puest. Il "
+"supuart par $OSINFO_DATA_DIR al vignarà gjavât intune version future\n"
 
 #: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
 #, c-format
@@ -270,62 +270,65 @@ msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
+"%s al è deplorât, doprâ %s al so puest. Il supuart par %s al vignarà gjavât "
+"intune version future\n"
 
 #: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
-msgstr "La URL a este medio"
+msgstr "L'URL a chest supuart"
 
 #: osinfo/osinfo_media.c:498
 msgid "The expected ISO9660 volume ID"
-msgstr ""
+msgstr "Il ID di volum ISO9660 spietât"
 
 #: osinfo/osinfo_media.c:510
 msgid "The expected ISO9660 publisher ID"
-msgstr ""
+msgstr "Il ID dal editôr ISO9660 spietât"
 
 #: osinfo/osinfo_media.c:522
 msgid "The expected ISO9660 application ID"
-msgstr ""
+msgstr "Il ID de aplicazion ISO9660 spietât"
 
 #: osinfo/osinfo_media.c:534
 msgid "The expected ISO9660 system ID"
-msgstr ""
+msgstr "Il ID di sisteme ISO9660 spietât"
 
 #: osinfo/osinfo_media.c:546 osinfo/osinfo_tree.c:331
 msgid "The path to the kernel image"
-msgstr ""
+msgstr "Il percors ae imagjin dal kernel"
 
 #: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
-msgstr ""
+msgstr "Il percors ae imagjin initrd"
 
 #: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
-msgstr ""
+msgstr "Il supuart al furnìs un instaladôr"
 
 #: osinfo/osinfo_media.c:582
 msgid "Media can boot directly w/o installation"
-msgstr ""
+msgstr "Al è pussibil inviâ il supuart daurman cence instalazion"
 
 #: osinfo/osinfo_media.c:603
 msgid "Number of installer reboots"
-msgstr ""
+msgstr "Numar di 're-inviaments' dal instaladôr"
 
 #: osinfo/osinfo_media.c:620
 msgid "Information about the operating system on this media"
-msgstr ""
+msgstr "Informazions in merit al sisteme operatîf su chest supuart"
 
 #: osinfo/osinfo_media.c:638
 msgid "Supported languages"
-msgstr ""
+msgstr "Lenghis supuartadis"
 
 #: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
-msgstr ""
+msgstr "Dimension in byte dal volum ISO9660 spietade"
 
 #: osinfo/osinfo_media.c:668
 msgid "Whether the media should be ejected after the installation process"
 msgstr ""
+"Indiche se si à di parâ fûr il supuart al tiermin dal procès di instalazion"
 
 #: osinfo/osinfo_media.c:683
 msgid ""
@@ -335,7 +338,7 @@ msgstr ""
 #: osinfo/osinfo_media.c:815
 #, c-format
 msgid "Install media is not bootable"
-msgstr ""
+msgstr "Il supuart di instalazion nol auto-partìs al inviament dal sisteme"
 
 #: osinfo/osinfo_media.c:889
 #, c-format
@@ -349,171 +352,171 @@ msgstr ""
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
-msgstr ""
+msgstr "No si è rivâts a lei il descritôr dal volum suplementâr: "
 
 #: osinfo/osinfo_media.c:1109
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
-msgstr ""
+msgstr "Il descritôr dal volum suplementâr al jere cjonçât"
 
 #: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
-msgstr ""
+msgstr "No si è rivâts a lei il descritôr dal volum primari: "
 
 #: osinfo/osinfo_media.c:1183
 #, c-format
 msgid "Primary volume descriptor was truncated"
-msgstr ""
+msgstr "Il descritôr dal volum primari al jere cjonçât"
 
 #: osinfo/osinfo_media.c:1215
 #, c-format
 msgid "Insufficient metadata on installation media"
-msgstr ""
+msgstr "Metadâts no suficients sul supuart di instalazion"
 
 #: osinfo/osinfo_media.c:1250
 #, c-format
 msgid "Failed to skip %d bytes"
-msgstr ""
+msgstr "No si è rivâts a saltâ di %d byte"
 
 #: osinfo/osinfo_media.c:1255
 #, c-format
 msgid "No volume descriptors"
-msgstr ""
+msgstr "Nissun descritôr di volum"
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
-msgstr ""
+msgstr "No si è rivâts a vierzi il file: "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
-msgstr ""
+msgstr "Famee gjeneriche"
 
 #: osinfo/osinfo_os.c:170
 msgid "Generic Distro"
-msgstr ""
+msgstr "Distribuzion gjeneriche"
 
 #: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
-msgstr ""
+msgstr "Parametri URL kernel"
 
 #: osinfo/osinfo_os.c:195
 msgid "Cloud image username"
-msgstr ""
+msgstr "Non utent de imagjin cloud"
 
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
 #: tools/osinfo-query.c:103
 msgid "Name"
-msgstr ""
+msgstr "Non"
 
 #: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
 msgid "Short ID"
-msgstr ""
+msgstr "ID curt"
 
 #: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
 #: tools/osinfo-query.c:95
 msgid "Vendor"
-msgstr ""
+msgstr "Produtôr"
 
 #: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
 msgid "Version"
-msgstr "Versión"
+msgstr "Version"
 
 #: osinfo/osinfo_product.c:209
 msgid "Codename"
-msgstr ""
+msgstr "Non in codiç"
 
 #: osinfo/osinfo_product.c:221
 msgid "URI of the logo"
-msgstr "URI del logo"
+msgstr "URI dal logo"
 
 #: osinfo/osinfo_resources.c:173
 msgid "CPU frequency in hertz (Hz)"
-msgstr ""
+msgstr "Frecuence CPU in hertz (Hz)"
 
 #: osinfo/osinfo_resources.c:187
 msgid "Number of CPUs"
-msgstr "Número de CPU"
+msgstr "Numar di CPU"
 
 #: osinfo/osinfo_resources.c:201
 msgid "Amount of Random Access Memory (RAM) in bytes"
-msgstr ""
+msgstr "Cuantitât di RAM (Random Access Memory) in byte"
 
 #: osinfo/osinfo_resources.c:215
 msgid "Amount of storage space in bytes"
-msgstr ""
+msgstr "Cuantitât di spazi di archiviazion in byte"
 
 #: osinfo/osinfo_tree.c:319
 msgid "The URL to this tree"
-msgstr ""
+msgstr "L'URL che al ponte a chest arbul"
 
 #: osinfo/osinfo_tree.c:355
 msgid "The path to the bootable ISO image"
-msgstr ""
+msgstr "Il percors ae imagjin ISO che e pues partî al inviament dal sisteme"
 
 #: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
-msgstr ""
+msgstr "Indiche se l'arbul al à treeinfo"
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
-msgstr ""
+msgstr "La famee di treeinfo"
 
 #: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
-msgstr ""
+msgstr "La variante di treeinfo"
 
 #: osinfo/osinfo_tree.c:403
 msgid "The treeinfo version"
-msgstr ""
+msgstr "La version di treeinfo"
 
 #: osinfo/osinfo_tree.c:415
 msgid "The treeinfo architecture"
-msgstr ""
+msgstr "La architeture di treeinfo"
 
 #: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
-msgstr ""
+msgstr "Informazions sul sisteme operatîf su chest arbul"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr ""
+msgstr "No si è rivâts a cjariâ i contignûts .treeinfo|treeinfo: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
-msgstr ""
+msgstr "No si è rivâts a elaborâ il file keyinfo: "
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr ""
+msgstr "No si è rivâts a cjariâ il file .treeinfo|treeinfo: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
-msgstr ""
+msgstr "Il protocol URL nol è supuartât"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
-msgstr ""
+msgstr "Il non di cheste variante"
 
 #: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
 msgid "Invalid value '%s'"
-msgstr "Valor inválido '%s'"
+msgstr "Valôr '%s' no valit"
 
 #: tools/osinfo-detect.c:88
 msgid "Select the output format"
-msgstr ""
+msgstr "Selezione il formât di jessude"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "FORMÂT"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Selezione il gjenar di ce che al ven rilevât"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "GJENAR"
 
 #: tools/osinfo-detect.c:98
 #, c-format
@@ -669,19 +672,19 @@ msgstr ""
 #: tools/osinfo-install-script.c:443
 #, c-format
 msgid "Error finding OS: %s\n"
-msgstr "Error al encontrar SO: %s\n"
+msgstr ""
 
 #: tools/osinfo-query.c:57
 msgid "Family"
-msgstr "Familia"
+msgstr ""
 
 #: tools/osinfo-query.c:59
 msgid "Distro"
-msgstr "Distribución"
+msgstr ""
 
 #: tools/osinfo-query.c:63 tools/osinfo-query.c:83
 msgid "Release date"
-msgstr "Fecha de lanzamiento"
+msgstr ""
 
 #: tools/osinfo-query.c:65 tools/osinfo-query.c:85
 msgid "End of life"
@@ -694,7 +697,7 @@ msgstr ""
 #: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
 #: tools/osinfo-query.c:115
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #: tools/osinfo-query.c:97
 msgid "Vendor ID"
@@ -702,7 +705,7 @@ msgstr ""
 
 #: tools/osinfo-query.c:99
 msgid "Product"
-msgstr "Producto"
+msgstr ""
 
 #: tools/osinfo-query.c:101
 msgid "Product ID"
@@ -727,11 +730,11 @@ msgstr ""
 
 #: tools/osinfo-query.c:394
 msgid "Sort column"
-msgstr "Ordenar columna"
+msgstr ""
 
 #: tools/osinfo-query.c:396
 msgid "Display fields"
-msgstr "Mostrar campos"
+msgstr ""
 
 #: tools/osinfo-query.c:405
 msgid "- Query the OS info database"
@@ -756,6 +759,3 @@ msgstr ""
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr ""
-
-#~ msgid "Output format. Default: plain"
-#~ msgstr "Formato de salida. Defecto: plano"
