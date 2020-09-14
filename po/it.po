@@ -1,5 +1,5 @@
-# Milo Casagrande <milo@milo.name>, 2018. #zanata
-# Milo Casagrande <milo@milo.name>, 2019. #zanata
+# Milo Casagrande <milo@milo.name>, 2018. #zanata, 2020.
+# Milo Casagrande <milo@milo.name>, 2019. #zanata, 2020.
 # Gianluca Sforna <giallu@gmail.com>, 2020.
 # Pino Toscano <toscano.pino@tiscali.it>, 2020.
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
 "PO-Revision-Date: 2020-09-14 06:29+0000\n"
-"Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
+"Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/it/>\n"
 "Language: it\n"
@@ -325,8 +325,6 @@ msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Attesa dimensione del volume ISO9660 in byte"
 
 #: osinfo/osinfo_media.c:668
-#, fuzzy
-#| msgid "Whether the media should be ejected after the installtion process"
 msgid "Whether the media should be ejected after the installation process"
 msgstr ""
 "Indica se il supporto debba essere espulso al termine dell'installazione"
@@ -403,10 +401,8 @@ msgid "Kernel URL Argument"
 msgstr "Parametro URL kernel"
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Nome in codice"
+msgstr "Nome utente immagine cloud"
 
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
 #: tools/osinfo-query.c:103
@@ -508,22 +504,20 @@ msgid "Invalid value '%s'"
 msgstr "Valore «%s» non valido"
 
 #: tools/osinfo-detect.c:88
-#, fuzzy
-#| msgid "Expected path format"
 msgid "Select the output format"
-msgstr "Formato percorso atteso"
+msgstr "Seleziona il formato di uscita"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "FORMATO"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Seleziona il tipo di cosa viene rilevato"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "TIPO"
 
 #: tools/osinfo-detect.c:98
 #, c-format
