@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2020-09-14 06:29+0000\n"
+"PO-Revision-Date: 2020-09-15 08:29+0000\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/it/>\n"
@@ -74,7 +74,7 @@ msgstr "L'URL di questa immagine"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Indica se le personalizzazione cloud-init sono supportate o meno"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -526,6 +526,9 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"L'unico valore disponibile per FORMATO è «%s», che indica testo normale.\n"
+"TIPO può essere «%s» (predefinito) per ISO CD/DVD\n"
+"oppure «%s» per alberi d'installazione."
 
 #: tools/osinfo-detect.c:105
 #, c-format
@@ -540,12 +543,12 @@ msgstr "Il supporto non è avviabile.\n"
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Il supporto è un sistema d'installazione per il SO «%s (%s)»\n"
 
 #: tools/osinfo-detect.c:140
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Il supporto è un sistema live per il SO «%s (%s)»\n"
 
 #: tools/osinfo-detect.c:145
 #, c-format
@@ -555,12 +558,12 @@ msgstr "Disponibili varianti del SO sul supporto:\n"
 #: tools/osinfo-detect.c:187
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "L'albero è un sistema d'installazione per il SO «%s (%s)»\n"
 
 #: tools/osinfo-detect.c:192
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr "Varianti SO disponibile sull'albero\n"
+msgstr "Varianti SO disponibili sull'albero:\n"
 
 #: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
