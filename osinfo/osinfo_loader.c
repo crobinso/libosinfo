@@ -1914,9 +1914,17 @@ catchXMLError(void *ctx, const char *msg ATTRIBUTE_UNUSED, ...)
     if (ctxt && ctxt->_private) {
         GError **err = ctxt->_private;
         if (!error_is_set(err)) {
-            gchar *xmlmsg = g_strdup_printf("at line %d: %s",
-                                            ctxt->lastError.line,
-                                            ctxt->lastError.message);
+            gchar *xmlmsg;
+            if (ctxt->lastError.file) {
+                xmlmsg = g_strdup_printf("%s:%d: %s",
+                                         ctxt->lastError.file,
+                                         ctxt->lastError.line,
+                                         ctxt->lastError.message);
+            } else {
+                xmlmsg = g_strdup_printf("at line %d: %s",
+                                         ctxt->lastError.line,
+                                         ctxt->lastError.message);
+            }
             OSINFO_LOADER_SET_ERROR(ctxt->_private, xmlmsg);
             g_free(xmlmsg);
         }
