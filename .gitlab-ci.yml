@@ -128,7 +128,6 @@ stages:
   script:
     - *multilib
     - *native-environment
-    - *osinfo-db-tools-build
     - *osinfo-db-build
     - *mingw-environment
     - *libosinfo-mingw-build
@@ -177,15 +176,15 @@ debian-sid-container:
   variables:
     NAME: debian-sid
 
-fedora-31-container:
-  <<: *container_job_definition
-  variables:
-    NAME: fedora-31
-
 fedora-32-container:
   <<: *container_job_definition
   variables:
     NAME: fedora-32
+
+fedora-33-container:
+  <<: *container_job_definition
+  variables:
+    NAME: fedora-33
 
 fedora-rawhide-container:
   <<: *container_job_definition
@@ -228,11 +227,13 @@ centos-8:
   <<: *native-build-job
   variables:
     NAME: centos-8
+    RPM: skip
 
 centos-stream:
   <<: *native-build-job
   variables:
     NAME: centos-stream
+    RPM: skip
 
 debian-9:
   <<: *native-build-job
@@ -249,15 +250,15 @@ debian-sid:
   variables:
     NAME: debian-sid
 
-fedora-31:
-  <<: *native-build-job
-  variables:
-    NAME: fedora-31
-
 fedora-32:
   <<: *native-build-job
   variables:
     NAME: fedora-32
+
+fedora-33:
+  <<: *native-build-job
+  variables:
+    NAME: fedora-33
 
 fedora-rawhide:
   <<: *native-build-job

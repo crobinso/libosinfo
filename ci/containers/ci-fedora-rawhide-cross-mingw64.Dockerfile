@@ -1,57 +1,39 @@
-FROM fedora:rawhide
+FROM registry.fedoraproject.org/fedora:rawhide
 
 RUN dnf update -y --nogpgcheck fedora-gpg-keys && \
     dnf update -y && \
     dnf install -y \
-        autoconf \
-        automake \
         bash \
         bash-completion \
         ca-certificates \
         ccache \
         check-devel \
-        chrony \
-        cppi \
         gcc \
-        gdb \
-        gettext \
-        gettext-devel \
         git \
-        glib2-devel \
-        glibc-devel \
         glibc-langpack-en \
-        gobject-introspection-devel \
         gtk-doc \
         hwdata \
         intltool \
         itstool \
-        json-glib-devel \
-        libarchive-devel \
-        libsoup-devel \
-        libtool \
         libxml2 \
-        libxml2-devel \
-        libxslt-devel \
-        lsof \
         make \
         meson \
-        net-tools \
         ninja-build \
+        osinfo-db-tools \
         patch \
         perl \
-        pkgconfig \
+        perl-App-cpanminus \
         python3 \
         python3-lxml \
+        python3-pip \
         python3-pytest \
         python3-requests \
         python3-setuptools \
         python3-wheel \
         rpm-build \
-        screen \
-        strace \
-        sudo \
         vala \
-        vim && \
+        wget \
+        xz && \
     dnf autoremove -y && \
     dnf clean all -y && \
     mkdir -p /usr/libexec/ccache-wrappers && \
@@ -59,13 +41,14 @@ RUN dnf update -y --nogpgcheck fedora-gpg-keys && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/x86_64-w64-mingw32-$(basename /usr/bin/gcc)
 
 RUN dnf install -y \
+        mingw64-gcc \
+        mingw64-gettext \
         mingw64-glib2 \
-        mingw64-json-glib \
-        mingw64-libarchive \
+        mingw64-headers \
         mingw64-libsoup \
         mingw64-libxml2 \
         mingw64-libxslt \
-        wget && \
+        mingw64-pkg-config && \
     dnf clean all -y
 
 ENV LANG "en_US.UTF-8"

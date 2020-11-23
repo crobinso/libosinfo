@@ -1,20 +1,14 @@
-FROM opensuse/leap:15.1
+FROM registry.opensuse.org/opensuse/leap:15.1
 
 RUN zypper update -y && \
     zypper install -y \
-           autoconf \
-           automake \
            bash \
            bash-completion \
            ca-certificates \
            ccache \
            check-devel \
-           chrony \
-           cppi \
            gcc \
-           gdb \
            gettext \
-           gettext-devel \
            git \
            glib2-devel \
            glibc-devel \
@@ -27,16 +21,14 @@ RUN zypper update -y && \
            json-glib-devel \
            libarchive-devel \
            libsoup-devel \
-           libtool \
            libxml2 \
            libxml2-devel \
            libxslt-devel \
-           lsof \
            make \
-           net-tools \
            ninja \
            patch \
            perl \
+           perl-App-cpanminus \
            pkgconfig \
            python3 \
            python3-lxml \
@@ -46,18 +38,16 @@ RUN zypper update -y && \
            python3-setuptools \
            python3-wheel \
            rpm-build \
-           screen \
-           strace \
-           sudo \
            vala \
-           vim && \
+           wget \
+           xz && \
     zypper clean --all && \
     mkdir -p /usr/libexec/ccache-wrappers && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/$(basename /usr/bin/gcc)
 
 RUN pip3 install \
-         meson==0.49.0
+         meson==0.54.0
 
 ENV LANG "en_US.UTF-8"
 
