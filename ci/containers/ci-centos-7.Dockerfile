@@ -33,8 +33,6 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
     yum install -y epel-release && \
     yum update -y && \
     yum install -y \
-        bash \
-        bash-completion \
         ca-certificates \
         ccache \
         check-devel \
@@ -43,7 +41,6 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
         git \
         glib2-devel \
         glibc-common \
-        glibc-devel \
         gobject-introspection-devel \
         gtk-doc \
         hwdata \
@@ -57,9 +54,6 @@ WEiJKtQrZDJloqtyi/mmRa1VsV7RYR0VPJjhK/R8EQ7Ysshy\n\
         libxslt-devel \
         make \
         ninja-build \
-        patch \
-        perl \
-        perl-App-cpanminus \
         pkgconfig \
         python3 \
         python3-pip \
@@ -82,9 +76,7 @@ RUN pip3 install \
          meson==0.54.0
 
 ENV LANG "en_US.UTF-8"
-
 ENV MAKE "/usr/bin/make"
 ENV NINJA "/usr/bin/ninja-build"
 ENV PYTHON "/usr/bin/python3"
-
 ENV CCACHE_WRAPPERSDIR "/usr/libexec/ccache-wrappers"
