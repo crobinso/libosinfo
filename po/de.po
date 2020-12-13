@@ -3,25 +3,26 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Fabian Affolter <mail@fabian-affolter.ch>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2015-02-20 07:44+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/libosinfo/"
-"language/de/)\n"
+"PO-Revision-Date: 2020-12-13 13:35+0000\n"
+"Last-Translator: Fabian Affolter <mail@fabian-affolter.ch>\n"
+"Language-Team: German <https://translate.fedoraproject.org/projects/"
+"libosinfo/libosinfo/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr ""
+msgstr "Die zugelassen mine-types für den Avatar"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
@@ -63,15 +64,15 @@ msgstr "CPU-Architektur"
 
 #: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
-msgstr ""
+msgstr "Der FIrmware-Typ"
 
 #: osinfo/osinfo_image.c:173
 msgid "The image format"
-msgstr ""
+msgstr "Das Abbild-Format"
 
 #: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
-msgstr ""
+msgstr "Der URL für dieses Abbild"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
@@ -107,11 +108,11 @@ msgstr "Formatmaske des Produktschlüssels"
 
 #: osinfo/osinfo_install_script.c:243
 msgid "Expected path format"
-msgstr ""
+msgstr "Erwartetes Format für den Pfad"
 
 #: osinfo/osinfo_install_script.c:251
 msgid "Expected avatar format"
-msgstr ""
+msgstr "Erwartetes Format für den Avatar"
 
 #: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
