@@ -82,7 +82,7 @@ void osinfo_install_config_set_l10n_language(OsinfoInstallConfig *config,
 const gchar *osinfo_install_config_get_l10n_language(OsinfoInstallConfig *config);
 
 void osinfo_install_config_set_l10n_timezone(OsinfoInstallConfig *config,
-                                             const gchar *timezone);
+                                             const gchar *tz);
 const gchar *osinfo_install_config_get_l10n_timezone(OsinfoInstallConfig *config);
 
 
