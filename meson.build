@@ -233,8 +233,10 @@ if host_machine.system() == 'linux'
     libosinfo_check_cflags += ['-fstack-protector-all']
 endif
 
-# Builds os macOS and BSDs will fail without those.
-if host_machine.system() != 'linux'
+compiler = meson.get_compiler('c')
+
+# Builds os clang  will fail without those.
+if compiler.get_id() == 'clang'
     libosinfo_check_cflags += [
         '-Wno-typedef-redefinition',
         '-Wno-missing-field-initializers',
@@ -245,7 +247,6 @@ if run_command('[', '-d', '.git', ']').returncode() == 0
     libosinfo_check_cflags += ['-Werror']
 endif
 
-compiler = meson.get_compiler('c')
 foreach cflag: libosinfo_check_cflags
   if compiler.has_argument(cflag)
     libosinfo_cflags += [cflag]
