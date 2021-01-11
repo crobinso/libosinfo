@@ -1,18 +1,20 @@
 # Toni Rantala <trantalafilo@gmail.com>, 2017. #zanata
+# Jan Kuparinen <copper_fin@hotmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2017-03-25 06:46+0000\n"
-"Last-Translator: Toni Rantala <trantalafilo@gmail.com>\n"
-"Language-Team: Finnish\n"
+"PO-Revision-Date: 2021-01-11 18:36+0000\n"
+"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
+"Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
+"libosinfo/libosinfo/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -390,10 +392,8 @@ msgid "Kernel URL Argument"
 msgstr ""
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Koodinimi"
+msgstr "Pilvi levykuvan käyttäjätunnus"
 
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
 #: tools/osinfo-query.c:103
@@ -427,7 +427,7 @@ msgstr "CPU taajuus hertseissä (Hz)"
 
 #: osinfo/osinfo_resources.c:187
 msgid "Number of CPUs"
-msgstr "CPU:n määrä."
+msgstr "CPU:n määrä"
 
 #: osinfo/osinfo_resources.c:201
 msgid "Amount of Random Access Memory (RAM) in bytes"
@@ -680,7 +680,7 @@ msgstr "Julkaisupäivä"
 
 #: tools/osinfo-query.c:65 tools/osinfo-query.c:85
 msgid "End of life"
-msgstr "End of life"
+msgstr "Elinkaaren loppu"
 
 #: tools/osinfo-query.c:67 tools/osinfo-query.c:87
 msgid "Code name"
