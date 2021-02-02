@@ -1,6 +1,16 @@
                libosinfo News
                ==============
 
+1.9.0 - Feb 02, 2021
+====================
+
+- Improve on the osinfo-tools' and osinfo-detect's help
+- Several CI improvements
+- Several translations improvements
+- Improve on debuggability of the loader code
+- Fix build when using clang
+
+
 1.8.0 - May 29, 2020
 ====================
 
