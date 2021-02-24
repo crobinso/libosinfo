@@ -67,6 +67,8 @@ static struct OsinfoLabel os_labels[] = {
       N_("Code name"), FALSE, 10 },
     { OSINFO_ENTITY_PROP_ID,
       N_("ID"), TRUE, 40 },
+    { OSINFO_OS_PROP_RELEASE_STATUS,
+      N_("Release status"), FALSE, 15 },
     { NULL, NULL, 0, 0},
 };
 
