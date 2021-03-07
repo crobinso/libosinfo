@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2021-02-16 16:40+0000\n"
-"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-07 16:01+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fi/>\n"
 "Language: fi\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.5.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr ""
+msgstr "Avatarin sallitut mime-ttyypit"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
@@ -43,7 +43,7 @@ msgstr "Virtualisointi alusta"
 
 #: osinfo/osinfo_devicelink.c:124
 msgid "Target device"
-msgstr "Kohde laita"
+msgstr "Kohdelaite"
 
 #: osinfo/osinfo_devicelinkfilter.c:127
 msgid "Device link target filter"
@@ -51,7 +51,7 @@ msgstr ""
 
 #: osinfo/osinfo_entity.c:131
 msgid "Unique identifier"
-msgstr ""
+msgstr "Ainutlaatuinen tunniste"
 
 #: osinfo/osinfo_firmware.c:129 osinfo/osinfo_image.c:161
 #: osinfo/osinfo_media.c:474 osinfo/osinfo_resources.c:160
@@ -61,11 +61,11 @@ msgstr "CPU arkkitehtuuri"
 
 #: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
-msgstr ""
+msgstr "Laiteohjelmistotyyppi"
 
 #: osinfo/osinfo_image.c:173
 msgid "The image format"
-msgstr ""
+msgstr "Kuvamuoto"
 
 #: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
@@ -382,7 +382,7 @@ msgstr "Ei voitu avata tiedostoa: "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
-msgstr ""
+msgstr "Geneerinen perhe"
 
 #: osinfo/osinfo_os.c:170
 msgid "Generic Distro"
@@ -452,7 +452,7 @@ msgstr ""
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
-msgstr ""
+msgstr "Puutieto perhe"
 
 #: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
@@ -715,7 +715,7 @@ msgstr "Väylä"
 #: tools/osinfo-query.c:147 tools/osinfo-query.c:189
 #, c-format
 msgid "Unknown property name %s"
-msgstr ""
+msgstr "Tuntematon-ominaisuuden nimi %s"
 
 #: tools/osinfo-query.c:176
 msgid "Syntax error in condition, expecting KEY=VALUE"
@@ -731,7 +731,7 @@ msgstr "Näytä kentät"
 
 #: tools/osinfo-query.c:405
 msgid "- Query the OS info database"
-msgstr ""
+msgstr "Kysele käyttöjärjestelmän tietokannan tietoja"
 
 #: tools/osinfo-query.c:417
 #, c-format
@@ -746,12 +746,12 @@ msgstr ""
 #: tools/osinfo-query.c:450
 #, c-format
 msgid "Unable to construct filter: %s\n"
-msgstr ""
+msgstr "Suodattimen muodostaminen epäonnistui: %s\n"
 
 #: tools/osinfo-query.c:455
 #, c-format
 msgid "Unable to set field visibility: %s\n"
-msgstr ""
+msgstr "Kentän näkyvyyttä ei voida asettaa: %s\n"
 
 #~ msgid "The path to the inirtd image"
 #~ msgstr "Polku inirtd-levykuvalle"
