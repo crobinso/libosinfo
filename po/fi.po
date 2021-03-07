@@ -1,12 +1,13 @@
 # Toni Rantala <trantalafilo@gmail.com>, 2017. #zanata
 # Jan Kuparinen <copper_fin@hotmail.com>, 2021.
+# Ricky Tigg <ricky.tigg@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2021-01-11 18:36+0000\n"
-"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
+"PO-Revision-Date: 2021-02-12 12:40+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fi/>\n"
 "Language: fi\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -292,7 +293,7 @@ msgstr ""
 
 #: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
-msgstr ""
+msgstr "Polku inirtd-levykuvalle"
 
 #: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
@@ -377,7 +378,7 @@ msgstr ""
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
-msgstr ""
+msgstr "Ei voitu avata tiedostoa: "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
@@ -492,7 +493,7 @@ msgstr ""
 #: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
 msgid "Invalid value '%s'"
-msgstr ""
+msgstr "Ei kelvollinen arvo '%s'"
 
 #: tools/osinfo-detect.c:88
 msgid "Select the output format"
@@ -668,7 +669,7 @@ msgstr ""
 
 #: tools/osinfo-query.c:57
 msgid "Family"
-msgstr ""
+msgstr "Perhe"
 
 #: tools/osinfo-query.c:59
 msgid "Distro"
@@ -709,7 +710,7 @@ msgstr "Luokka"
 
 #: tools/osinfo-query.c:107
 msgid "Bus"
-msgstr ""
+msgstr "Väylä"
 
 #: tools/osinfo-query.c:147 tools/osinfo-query.c:189
 #, c-format
