@@ -1,0 +1,761 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the libosinfo package.
+# simmon <simmon@nplob.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: libosinfo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-28 11:00+0200\n"
+"PO-Revision-Date: 2021-04-05 19:01+0000\n"
+"Last-Translator: simmon <simmon@nplob.com>\n"
+"Language-Team: Korean <https://translate.fedoraproject.org/projects/"
+"libosinfo/libosinfo/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.5.3\n"
+
+#: osinfo/osinfo_avatar_format.c:96
+msgid "The allowed mime-types for the avatar"
+msgstr "아바타을 위한 허용된 mime-유형"
+
+#: osinfo/osinfo_avatar_format.c:107
+msgid "The required width (in pixels) of the avatar"
+msgstr "아바타의 필수 너비 (픽셀)"
+
+#: osinfo/osinfo_avatar_format.c:121
+msgid "The required height (in pixels) of the avatar."
+msgstr "아바타의 필수 높이 (픽셀)."
+
+#: osinfo/osinfo_avatar_format.c:135
+msgid "Whether alpha channel is supported in the avatar."
+msgstr "알파 채널이 아바타에서 지원되는지 여부."
+
+#: osinfo/osinfo_deployment.c:141
+msgid "Operating system"
+msgstr "운영 체제"
+
+#: osinfo/osinfo_deployment.c:153
+msgid "Virtualization platform"
+msgstr "가상화 기반"
+
+#: osinfo/osinfo_devicelink.c:124
+msgid "Target device"
+msgstr "대상 장치"
+
+#: osinfo/osinfo_devicelinkfilter.c:127
+msgid "Device link target filter"
+msgstr "장치 연결 대상 필터"
+
+#: osinfo/osinfo_entity.c:131
+msgid "Unique identifier"
+msgstr "고유 식별자"
+
+#: osinfo/osinfo_firmware.c:129 osinfo/osinfo_image.c:161
+#: osinfo/osinfo_media.c:474 osinfo/osinfo_resources.c:160
+#: osinfo/osinfo_tree.c:307
+msgid "CPU Architecture"
+msgstr "CPU 구조"
+
+#: osinfo/osinfo_firmware.c:141
+msgid "The firmware type"
+msgstr "펨웨어 유형"
+
+#: osinfo/osinfo_image.c:173
+msgid "The image format"
+msgstr "이미지 형식"
+
+#: osinfo/osinfo_image.c:185
+msgid "The URL to this image"
+msgstr "이 이미지에 연결할 URL"
+
+#: osinfo/osinfo_image.c:197
+msgid "Whether cloud-init customizations are supported or not"
+msgstr "클라우드-초기화 맞춤이 지원하는지 또는 아닌지 여부"
+
+#: osinfo/osinfo_install_config_param.c:146
+msgid "Parameter name"
+msgstr "매개변수 이름"
+
+#: osinfo/osinfo_install_config_param.c:159
+msgid "Parameter policy"
+msgstr "매개변수 정책"
+
+#: osinfo/osinfo_install_config_param.c:172
+msgid "Parameter Value Mapping"
+msgstr "매개변수 값 대응하기"
+
+#: osinfo/osinfo_install_script.c:209
+msgid "URI for install script template"
+msgstr "설치 스크립트 템플리트를 위한 URI"
+
+#: osinfo/osinfo_install_script.c:218
+msgid "Data for install script template"
+msgstr "설치 스크립트 템플리트를 위한 자료"
+
+#: osinfo/osinfo_install_script.c:227
+msgid "Install script profile name"
+msgstr "설치 스크립트 프로파일 이름"
+
+#: osinfo/osinfo_install_script.c:236
+msgid "Product key format mask"
+msgstr "제품 키 형식 마스크"
+
+#: osinfo/osinfo_install_script.c:243
+msgid "Expected path format"
+msgstr "예상되는 경로 형식"
+
+#: osinfo/osinfo_install_script.c:251
+msgid "Expected avatar format"
+msgstr "예상되는 아바타 형식"
+
+#: osinfo/osinfo_install_script.c:258
+msgid "The preferred injection method"
+msgstr "선호하는 주입 방식"
+
+#: osinfo/osinfo_install_script.c:267
+msgid "The installation source to be used"
+msgstr "사용되는 설치 원천"
+
+#: osinfo/osinfo_install_script.c:694
+msgid "Unable to create XML parser context"
+msgstr "XML 구문 분석기 내용을 생성 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:702
+msgid "Unable to read XSL template"
+msgstr "XSL 템플리트를 읽을 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:708
+msgid "Unable to parse XSL template"
+msgstr "XSL 템플리트를 구문 분석 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
+#, c-format
+msgid "Unable to create XML node '%s'"
+msgstr "XML 노드 '%s'를 생성 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:805
+msgid "Unable to create XML node 'id'"
+msgstr "XML 노드 'id'를 생성 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:809 osinfo/osinfo_install_script.c:835
+msgid "Unable to add XML child"
+msgstr "XML 하위를 추가 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:882 osinfo/osinfo_install_script.c:892
+#: osinfo/osinfo_install_script.c:926
+msgid "Unable to set XML root"
+msgstr "XML root를 설정 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:903
+msgid "Unable to set 'media' node"
+msgstr "'미디어' 노드 설정을 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:915
+msgid "Unable to set 'tree' node"
+msgstr "'트리' 노드 설정을 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:949
+msgid "Unable to create XSL transform context"
+msgstr "XSL 변형 내용을 생성 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:954
+msgid "Unable to apply XSL transform context"
+msgstr "XSL 변형 내용을 적용 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:959
+msgid "Unable to convert XSL output to string"
+msgstr "XSL 출력을 문자열로 변환 할 수 없습니다"
+
+#: osinfo/osinfo_install_script.c:1020
+#, c-format
+msgid "Failed to load script template %s: "
+msgstr "스크립트 템플리트 %s를 적재에 실패하였습니다: "
+
+#: osinfo/osinfo_install_script.c:1036
+#, c-format
+msgid "Failed to apply script template %s: "
+msgstr "스크립트 템플리트 %s를 적용에 실패하였습니다: "
+
+#: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
+#: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
+msgid "Failed to apply script template: "
+msgstr "스크립트 템플리트 적용에 실패하였습니다: "
+
+#: osinfo/osinfo_list.c:124
+msgid "List element type"
+msgstr "요소 유형을 목록화합니다"
+
+#: osinfo/osinfo_loader.c:226
+#, c-format
+msgid "Expected a nodeset in XPath query %s"
+msgstr "XPath 질문 %s에서 예상되는 노드구성"
+
+#: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
+msgid "Expected a text node attribute value"
+msgstr "예상되는 텍스트 노드 속성 값"
+
+#: osinfo/osinfo_loader.c:605
+msgid "Missing device id property"
+msgstr "장치 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:644
+msgid "Missing device link id property"
+msgstr "장치 연결 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:705
+msgid "Missing product upgrades id property"
+msgstr "제품 향상 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:789
+msgid "Missing platform id property"
+msgstr "기반 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:828
+msgid "Missing deployment id property"
+msgstr "배포 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:838
+msgid "Missing deployment os id property"
+msgstr "배포 os id 특성 누락"
+
+#: osinfo/osinfo_loader.c:848
+msgid "Missing deployment platform id property"
+msgstr "배포 기반 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:887 osinfo/osinfo_loader.c:1637
+msgid "Missing os id property"
+msgstr "os id 특성 누락"
+
+#: osinfo/osinfo_loader.c:1012
+msgid "Missing install script id property"
+msgstr "설치 스크립트 id 특성 누락"
+
+#: osinfo/osinfo_loader.c:1246
+msgid "Missing Media install script property"
+msgstr "미디어 설치 스크립트 특성 누락"
+
+#: osinfo/osinfo_loader.c:1805
+msgid "Missing OS install script property"
+msgstr "OS 설치 스크립트 특성 누락"
+
+#: osinfo/osinfo_loader.c:1871
+msgid "Incorrect root element"
+msgstr "잘못된 root 요소"
+
+#: osinfo/osinfo_loader.c:1940
+msgid "Unable to construct parser context"
+msgstr "구문 분석기 내용 설치 오류가 발생하였습니다"
+
+#: osinfo/osinfo_loader.c:1962
+msgid "Missing root XML element"
+msgstr "root XML 요소 누락"
+
+#: osinfo/osinfo_loader.c:2614
+#, c-format
+msgid ""
+"$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
+"Support for $OSINFO_DATA_DIR will be removed in a future release\n"
+msgstr ""
+"$OSINFO_DATA_DIR는 더 이상 사용되지 않으며, 대신에 $OSINFO_SYSTEM_DIR 를 사용해주세요. $"
+"OSINFO_DATA_DIR를 위한 지원은 미래 출시에 제거될 것입니다\n"
+
+#: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
+#, c-format
+msgid ""
+"%s is deprecated, please use %s instead. Support for %s will be removed in a "
+"future release\n"
+msgstr "%s 는 더 이상 사용되지 않으며, 대신에 %s를 사용해주세요. %s를 위한 지원은 미래 출시에 제거될 것입니다\n"
+
+#: osinfo/osinfo_media.c:486
+msgid "The URL to this media"
+msgstr "이 미디어에 URL 연결"
+
+#: osinfo/osinfo_media.c:498
+msgid "The expected ISO9660 volume ID"
+msgstr "예상되는 ISO9660 볼륨 ID"
+
+#: osinfo/osinfo_media.c:510
+msgid "The expected ISO9660 publisher ID"
+msgstr "예상되는 ISO9660 게시자 ID"
+
+#: osinfo/osinfo_media.c:522
+msgid "The expected ISO9660 application ID"
+msgstr "예상되는 ISO9660 응용프로그램 ID"
+
+#: osinfo/osinfo_media.c:534
+msgid "The expected ISO9660 system ID"
+msgstr "예상되는 ISO9660 시스템 ID"
+
+#: osinfo/osinfo_media.c:546 osinfo/osinfo_tree.c:331
+msgid "The path to the kernel image"
+msgstr "커널 이미지에 경로"
+
+#: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
+msgid "The path to the initrd image"
+msgstr "initrd 이미지에 경로"
+
+#: osinfo/osinfo_media.c:570
+msgid "Media provides an installer"
+msgstr "미디어는 설치자를 제공합니다"
+
+#: osinfo/osinfo_media.c:582
+msgid "Media can boot directly w/o installation"
+msgstr "미디어를 직접 w/o에 동작(boot) 할 수 있습니다"
+
+#: osinfo/osinfo_media.c:603
+msgid "Number of installer reboots"
+msgstr "설치자의 재동작 수"
+
+#: osinfo/osinfo_media.c:620
+msgid "Information about the operating system on this media"
+msgstr "이 미디어에서 운영체제에 대한 정보"
+
+#: osinfo/osinfo_media.c:638
+msgid "Supported languages"
+msgstr "지원 언어"
+
+#: osinfo/osinfo_media.c:649
+msgid "Expected ISO9660 volume size, in bytes"
+msgstr "예상되는 ISO9660 볼륨 크기(바이트)"
+
+#: osinfo/osinfo_media.c:668
+msgid "Whether the media should be ejected after the installation process"
+msgstr "미디어 설치 처리 후에 꺼낼 수 있는지 여부"
+
+#: osinfo/osinfo_media.c:683
+msgid ""
+"Whether the media should be used for an installation using install scripts"
+msgstr "미디어는 설치 스크립트 사용하는 설치를 위해 사용되어지는지 여부"
+
+#: osinfo/osinfo_media.c:815
+#, c-format
+msgid "Install media is not bootable"
+msgstr "설치 미디어가 부팅 할 수 없습니다"
+
+#: osinfo/osinfo_media.c:889
+#, c-format
+msgid "Failed to read \"%s\" directory record extent: "
+msgstr "디렉토리 기록 범위 \"%s\" 읽기에 실패하였습니다: "
+
+#: osinfo/osinfo_media.c:898
+#, c-format
+msgid "No \"%s\" directory record extent"
+msgstr "\"%s\" 디렉토리 기록 확장이 없습니다"
+
+#: osinfo/osinfo_media.c:1102
+msgid "Failed to read supplementary volume descriptor: "
+msgstr "보충 볼륨 설명자 읽기에 실패하였습니다: "
+
+#: osinfo/osinfo_media.c:1109
+#, c-format
+msgid "Supplementary volume descriptor was truncated"
+msgstr "보충 볼륨 설명자는 짤렸습니다"
+
+#: osinfo/osinfo_media.c:1176
+msgid "Failed to read primary volume descriptor: "
+msgstr "기본 볼륨 설명자 읽기에 실패하였습니다: "
+
+#: osinfo/osinfo_media.c:1183
+#, c-format
+msgid "Primary volume descriptor was truncated"
+msgstr "기본 볼륨 설명자는 짤렸습니다"
+
+#: osinfo/osinfo_media.c:1215
+#, c-format
+msgid "Insufficient metadata on installation media"
+msgstr "설치 미디어에 불충분한 메타자료"
+
+#: osinfo/osinfo_media.c:1250
+#, c-format
+msgid "Failed to skip %d bytes"
+msgstr "%d 바이트 건너 띄기에 실패하였습니다"
+
+#: osinfo/osinfo_media.c:1255
+#, c-format
+msgid "No volume descriptors"
+msgstr "볼륨 설명자가 없습니다"
+
+#: osinfo/osinfo_media.c:1297
+msgid "Failed to open file: "
+msgstr "파일 열기에 실패하였습니다: "
+
+#: osinfo/osinfo_os.c:157
+msgid "Generic Family"
+msgstr "일반 제품군"
+
+#: osinfo/osinfo_os.c:170
+msgid "Generic Distro"
+msgstr "일반 배포판"
+
+#: osinfo/osinfo_os.c:183
+msgid "Kernel URL Argument"
+msgstr "커널 URL 인수"
+
+#: osinfo/osinfo_os.c:195
+msgid "Cloud image username"
+msgstr "클라우드 이미지 사용자이름"
+
+#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
+#: tools/osinfo-query.c:103
+msgid "Name"
+msgstr "이름"
+
+#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
+msgid "Short ID"
+msgstr "간편 ID"
+
+#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
+#: tools/osinfo-query.c:95
+msgid "Vendor"
+msgstr "제조사"
+
+#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
+msgid "Version"
+msgstr "버전"
+
+#: osinfo/osinfo_product.c:209
+msgid "Codename"
+msgstr "코드이름"
+
+#: osinfo/osinfo_product.c:221
+msgid "URI of the logo"
+msgstr "로고 URL"
+
+#: osinfo/osinfo_resources.c:173
+msgid "CPU frequency in hertz (Hz)"
+msgstr "CPU 주파수 (Hz)"
+
+#: osinfo/osinfo_resources.c:187
+msgid "Number of CPUs"
+msgstr "CPU 수"
+
+#: osinfo/osinfo_resources.c:201
+msgid "Amount of Random Access Memory (RAM) in bytes"
+msgstr "무작위 접근 메모리(RAM)의 양 (바이트)"
+
+#: osinfo/osinfo_resources.c:215
+msgid "Amount of storage space in bytes"
+msgstr "저장소 공간의 양 (바이트)"
+
+#: osinfo/osinfo_tree.c:319
+msgid "The URL to this tree"
+msgstr "이 트리 URL"
+
+#: osinfo/osinfo_tree.c:355
+msgid "The path to the bootable ISO image"
+msgstr "부팅 할 수 있는 ISO 이미지로 경로"
+
+#: osinfo/osinfo_tree.c:367
+msgid "Whether the tree has treeinfo"
+msgstr "트리가 트리정보를 가지고 있는지 여부"
+
+#: osinfo/osinfo_tree.c:379
+msgid "The treeinfo family"
+msgstr "트리정보 제품군"
+
+#: osinfo/osinfo_tree.c:391
+msgid "The treeinfo variant"
+msgstr "트리정보 변형"
+
+#: osinfo/osinfo_tree.c:403
+msgid "The treeinfo version"
+msgstr "트리정보 버전"
+
+#: osinfo/osinfo_tree.c:415
+msgid "The treeinfo architecture"
+msgstr "트리정보 구조"
+
+#: osinfo/osinfo_tree.c:430
+msgid "Information about the operating system on this tree"
+msgstr "이 트리에서 운영 체제에 대한 정보"
+
+#: osinfo/osinfo_tree.c:683
+msgid "Failed to load .treeinfo|treeinfo content: "
+msgstr "트리정보|트리정보 내용 적재에 실패하였습니다: "
+
+#: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
+msgid "Failed to process keyinfo file: "
+msgstr "키 정보 파일 처리에 실패하였습니다: "
+
+#: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
+msgid "Failed to load .treeinfo|treeinfo file: "
+msgstr "트리정보|트리정보 파일 적재에 실패하였습니다: "
+
+#: osinfo/osinfo_tree.c:811
+msgid "URL protocol is not supported"
+msgstr "URL 통신규약이 지원하지 않습니다"
+
+#: osinfo/osinfo_os_variant.c:106
+msgid "The name to this variant"
+msgstr "이 변형에서 이름"
+
+#: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
+#, c-format
+msgid "Invalid value '%s'"
+msgstr "유효하지 않은 값 '%s'"
+
+#: tools/osinfo-detect.c:88
+msgid "Select the output format"
+msgstr "출력 형식을 선택합니다"
+
+#: tools/osinfo-detect.c:89
+msgid "FORMAT"
+msgstr "형식"
+
+#: tools/osinfo-detect.c:92
+msgid "Select the type of what is being detected"
+msgstr "검출 되어진 유형을 선택합니다"
+
+#: tools/osinfo-detect.c:93
+msgid "TYPE"
+msgstr "유형"
+
+#: tools/osinfo-detect.c:98
+#, c-format
+msgid ""
+"The only value available for FORMAT is '%s', which means plain text.\n"
+"TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
+"or '%s' for install trees."
+msgstr ""
+"FORMAT을 위한 이용 가능한 단일 값은 '%s'이고, 이는 일반 텍스트를 의미합니다.\n"
+"유형은 CD/ DVD ISOs를 위한 '%s' (지정값), 또는 설치 트리를 위한 '%s' 중에\n"
+"하나입니다."
+
+#: tools/osinfo-detect.c:105
+#, c-format
+msgid "Media is bootable.\n"
+msgstr "미디어가 부팅 할 수 있습니다\n"
+
+#: tools/osinfo-detect.c:107
+#, c-format
+msgid "Media is not bootable.\n"
+msgstr "미디어가 부팅 할 수 없습니다\n"
+
+#: tools/osinfo-detect.c:138
+#, c-format
+msgid "Media is an installer for OS '%s (%s)'\n"
+msgstr "미디어가 OS '%s (%s)'를 위한 설치자입니다\n"
+
+#: tools/osinfo-detect.c:140
+#, c-format
+msgid "Media is live media for OS '%s (%s)'\n"
+msgstr "미디어가 OS '%s (%s)'를 위한 라이브 미디어입니다\n"
+
+#: tools/osinfo-detect.c:145
+#, c-format
+msgid "Available OS variants on media:\n"
+msgstr "미디어에 이용 할 수 있는 OS 변형\n"
+
+#: tools/osinfo-detect.c:187
+#, c-format
+msgid "Tree is an installer for OS '%s (%s)'\n"
+msgstr "트리는 OS '%s (%s)'를 위한 설치자입니다\n"
+
+#: tools/osinfo-detect.c:192
+#, c-format
+msgid "Available OS variants on tree:\n"
+msgstr "트리에서 사용 할 수 있는 OS 변형\n"
+
+#: tools/osinfo-detect.c:220
+msgid "- Detect if media is bootable and the relevant OS and distribution."
+msgstr "만약 미디어가 부팅 할 수 있는지 또는 연관된 OS 그리고 배포판 검출하기."
+
+#: tools/osinfo-detect.c:229 tools/osinfo-query.c:410
+#, c-format
+msgid "Error while parsing commandline options: %s\n"
+msgstr "명령행 선택: %s 구문 분석 중일 때에 오류가 발생하였습니다\n"
+
+#: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
+#: tools/osinfo-query.c:426
+#, c-format
+msgid "Error loading OS data: %s\n"
+msgstr "OS 자료 적재 오류: %s\n"
+
+#: tools/osinfo-detect.c:263
+#, c-format
+msgid "Error parsing media: %s\n"
+msgstr "미디어 구문 분석중 오류: %s\n"
+
+#: tools/osinfo-detect.c:279
+#, c-format
+msgid "Error parsing installer tree: %s\n"
+msgstr "설치자 트리 구문 분석중 오류: %s\n"
+
+#: tools/osinfo-install-script.c:76
+#, c-format
+msgid "Expected configuration key=value"
+msgstr "예상된 구성 키=값"
+
+#: tools/osinfo-install-script.c:141
+msgid "Install script profile"
+msgstr "설치 스크핍트 프로파일"
+
+#: tools/osinfo-install-script.c:143
+msgid "Install script output directory"
+msgstr "설치 스크립트 출력 디렉토리"
+
+#: tools/osinfo-install-script.c:145
+msgid "The output filename prefix"
+msgstr "출력 파일 접두사"
+
+#: tools/osinfo-install-script.c:147
+msgid "The installation source to be used with the script"
+msgstr "설치는 스크립트와 함께 사용되어지는 원천입니다"
+
+#: tools/osinfo-install-script.c:150
+msgid "Set configuration parameter"
+msgstr "구성 매개변수를 설정합니다"
+
+#: tools/osinfo-install-script.c:153
+msgid "Set configuration parameters"
+msgstr "구성 매개변수들을 설정합니다"
+
+#: tools/osinfo-install-script.c:155
+msgid "List configuration parameters"
+msgstr "구성 매개변수를 목록화합니다"
+
+#: tools/osinfo-install-script.c:157
+msgid "List install script profiles"
+msgstr "설치 스크립트 프로파일을 목록화합니다"
+
+#: tools/osinfo-install-script.c:159
+msgid "List supported injection methods"
+msgstr "지원하는 주입 방법을 목록화합니다"
+
+#: tools/osinfo-install-script.c:161
+msgid "Do not display output filenames"
+msgstr "출력 파일이름을 표시하지 않습니다"
+
+#: tools/osinfo-install-script.c:218
+#, c-format
+msgid "No install script for profile '%s' and OS '%s'"
+msgstr "프로파일 '%s' 와 OS '%s'를 위한 설치 스크립트가 아닙니다"
+
+#: tools/osinfo-install-script.c:234
+msgid "required"
+msgstr "요구되는"
+
+#: tools/osinfo-install-script.c:234
+msgid "optional"
+msgstr "선택적인"
+
+#: tools/osinfo-install-script.c:320
+#, c-format
+msgid "No install script for profile '%s' and OS '%s'\n"
+msgstr "프로파일 '%s' 과 OS '%s'을 위한 설치 스크립트가 아닙니다\n"
+
+#: tools/osinfo-install-script.c:356
+#, c-format
+msgid "Unable to generate install script: %s\n"
+msgstr "설치 스크립트를 생성 할 수 없습니다: %s\n"
+
+#: tools/osinfo-install-script.c:393
+msgid "- Generate an OS install script"
+msgstr "- OS 설치 스크립트를 생성합니다"
+
+#: tools/osinfo-install-script.c:396
+#, c-format
+msgid "Error while parsing options: %s\n"
+msgstr "구문 분석하기 선택 할 때에 오류: %s\n"
+
+#: tools/osinfo-install-script.c:414
+msgid ""
+"Only one of --list-profile, --list-config and --list-injection-methods can "
+"be requested"
+msgstr ""
+"--list-profile, --list-config and --list-injection-methods 중의 1개만 요청 될 수 있습니다"
+
+#: tools/osinfo-install-script.c:443
+#, c-format
+msgid "Error finding OS: %s\n"
+msgstr "OS 찾기 오류: %s\n"
+
+#: tools/osinfo-query.c:57
+msgid "Family"
+msgstr "제품군"
+
+#: tools/osinfo-query.c:59
+msgid "Distro"
+msgstr "배포판"
+
+#: tools/osinfo-query.c:63 tools/osinfo-query.c:83
+msgid "Release date"
+msgstr "출시 일"
+
+#: tools/osinfo-query.c:65 tools/osinfo-query.c:85
+msgid "End of life"
+msgstr "서비스 종료"
+
+#: tools/osinfo-query.c:67 tools/osinfo-query.c:87
+msgid "Code name"
+msgstr "코드 이름"
+
+#: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
+#: tools/osinfo-query.c:115
+msgid "ID"
+msgstr "ID"
+
+#: tools/osinfo-query.c:97
+msgid "Vendor ID"
+msgstr "제조사 ID"
+
+#: tools/osinfo-query.c:99
+msgid "Product"
+msgstr "제품"
+
+#: tools/osinfo-query.c:101
+msgid "Product ID"
+msgstr "제품 ID"
+
+#: tools/osinfo-query.c:105
+msgid "Class"
+msgstr "등급"
+
+#: tools/osinfo-query.c:107
+msgid "Bus"
+msgstr "버스"
+
+#: tools/osinfo-query.c:147 tools/osinfo-query.c:189
+#, c-format
+msgid "Unknown property name %s"
+msgstr "알지 못하믄 특성 이름 %s"
+
+#: tools/osinfo-query.c:176
+msgid "Syntax error in condition, expecting KEY=VALUE"
+msgstr "상테에 문법오류, 예상 KEY=VALUE"
+
+#: tools/osinfo-query.c:394
+msgid "Sort column"
+msgstr "열 정렬"
+
+#: tools/osinfo-query.c:396
+msgid "Display fields"
+msgstr "표비 부분"
+
+#: tools/osinfo-query.c:405
+msgid "- Query the OS info database"
+msgstr "OS 정보 자료 저장소를 문의합니다"
+
+#: tools/osinfo-query.c:417
+#, c-format
+msgid "Missing data type parameter\n"
+msgstr "자료 유형 매개 변수 누락\n"
+
+#: tools/osinfo-query.c:445
+#, c-format
+msgid "Unknown type '%s' requested\n"
+msgstr "알지 못하는 유형 '%s'가 요청되었습니다\n"
+
+#: tools/osinfo-query.c:450
+#, c-format
+msgid "Unable to construct filter: %s\n"
+msgstr "필터를 구성 할 수 없습니다: %s\n"
+
+#: tools/osinfo-query.c:455
+#, c-format
+msgid "Unable to set field visibility: %s\n"
+msgstr "부분 가시성을 설정 할 수 없습니다: %s\n"
