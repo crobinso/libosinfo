@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2021-04-13 07:02+0000\n"
+"PO-Revision-Date: 2021-04-15 12:02+0000\n"
 "Last-Translator: simmon <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ko/>\n"
@@ -118,7 +118,7 @@ msgstr "선호하는 주입 방식"
 
 #: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
-msgstr "사용되는 설치 원천"
+msgstr "사용되는 설치 소스"
 
 #: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
@@ -600,11 +600,11 @@ msgstr "설치 스크립트 출력 디렉토리"
 
 #: tools/osinfo-install-script.c:145
 msgid "The output filename prefix"
-msgstr "출력 파일 접두사"
+msgstr "출력 파일이름 프리픽스"
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr "설치는 스크립트와 함께 사용되어지는 원천입니다"
+msgstr "설치는 스크립트와 함께 사용되어지는 소스입니다"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
