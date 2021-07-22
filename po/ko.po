@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libosinfo package.
 # simmon <simmon@nplob.com>, 2021.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-28 11:00+0200\n"
-"PO-Revision-Date: 2021-04-15 12:02+0000\n"
-"Last-Translator: simmon <simmon@nplob.com>\n"
+"PO-Revision-Date: 2021-07-22 08:04+0000\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ko/>\n"
 "Language: ko\n"
@@ -16,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr "아바타을 위한 허용된 mime-유형"
+msgstr "아바타에 허용하는 MIME 형식"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
@@ -86,15 +87,15 @@ msgstr "매개변수 정책"
 
 #: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
-msgstr "매개변수 값 대응하기"
+msgstr "매개변수 값 대응"
 
 #: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
-msgstr "설치 스크립트 템플리트를 위한 URI"
+msgstr "설치 스크립트 양식 URI"
 
 #: osinfo/osinfo_install_script.c:218
 msgid "Data for install script template"
-msgstr "설치 스크립트 템플리트를 위한 자료"
+msgstr "설치 스크립트 양식 데이터"
 
 #: osinfo/osinfo_install_script.c:227
 msgid "Install script profile name"
@@ -126,11 +127,11 @@ msgstr "XML 구문 분석기 내용을 생성 할 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:702
 msgid "Unable to read XSL template"
-msgstr "XSL 템플리트를 읽을 수 없습니다"
+msgstr "XSL 양식을 읽을 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:708
 msgid "Unable to parse XSL template"
-msgstr "XSL 템플리트를 구문 분석 할 수 없습니다"
+msgstr "XSL 양식의 구문을 분석할 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
 #, c-format
@@ -152,11 +153,11 @@ msgstr "XML root를 설정 할 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:903
 msgid "Unable to set 'media' node"
-msgstr "'미디어' 노드 설정을 할 수 없습니다"
+msgstr "'media' 노드를 설정 할 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
-msgstr "'트리' 노드 설정을 할 수 없습니다"
+msgstr "'tree' 노드를 설정할 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
@@ -173,17 +174,17 @@ msgstr "XSL 출력을 문자열로 변환 할 수 없습니다"
 #: osinfo/osinfo_install_script.c:1020
 #, c-format
 msgid "Failed to load script template %s: "
-msgstr "스크립트 템플리트 %s를 적재에 실패하였습니다: "
+msgstr "%s 스크립트 양식 불러오기에 실패했습니다: "
 
 #: osinfo/osinfo_install_script.c:1036
 #, c-format
 msgid "Failed to apply script template %s: "
-msgstr "스크립트 템플리트 %s를 적용에 실패하였습니다: "
+msgstr "%s 스크립트 양식 적용에 실패했습니다: "
 
 #: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
 #: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
 msgid "Failed to apply script template: "
-msgstr "스크립트 템플리트 적용에 실패하였습니다: "
+msgstr "스크립트 양식 적용에 실패했습니다: "
 
 #: osinfo/osinfo_list.c:124
 msgid "List element type"
@@ -329,7 +330,7 @@ msgstr "미디어 설치 처리 후에 꺼낼 수 있는지 여부"
 #: osinfo/osinfo_media.c:683
 msgid ""
 "Whether the media should be used for an installation using install scripts"
-msgstr "미디어는 설치 스크립트 사용하는 설치를 위해 사용되어지는지 여부"
+msgstr "미디어가 설치 스크립트로 설치를 진행하는 지 여부"
 
 #: osinfo/osinfo_media.c:815
 #, c-format
@@ -600,11 +601,11 @@ msgstr "설치 스크립트 출력 디렉토리"
 
 #: tools/osinfo-install-script.c:145
 msgid "The output filename prefix"
-msgstr "출력 파일이름 프리픽스"
+msgstr "출력 파일이름 접두어"
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr "설치는 스크립트와 함께 사용되어지는 소스입니다"
+msgstr "스크립트를 사용하는 설치 원본"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
@@ -637,11 +638,11 @@ msgstr "프로파일 '%s' 와 OS '%s'를 위한 설치 스크립트가 아닙니
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
-msgstr "요구되는"
+msgstr "필요"
 
 #: tools/osinfo-install-script.c:234
 msgid "optional"
-msgstr "선택적인"
+msgstr "선택"
 
 #: tools/osinfo-install-script.c:320
 #, c-format
