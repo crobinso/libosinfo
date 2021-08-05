@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 11:00+0200\n"
+"POT-Creation-Date: 2021-08-04 17:27+0200\n"
 "PO-Revision-Date: 2020-12-13 13:35+0000\n"
 "Last-Translator: Fabian Affolter <mail@fabian-affolter.ch>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
@@ -248,22 +248,22 @@ msgstr "Eigenschaft »install script« fehlt"
 msgid "Incorrect root element"
 msgstr "Inkorrektes Wurzelelement"
 
-#: osinfo/osinfo_loader.c:1940
+#: osinfo/osinfo_loader.c:1948
 msgid "Unable to construct parser context"
 msgstr "Parser-Kontext konnte nicht konstruiert werden"
 
-#: osinfo/osinfo_loader.c:1962
+#: osinfo/osinfo_loader.c:1970
 msgid "Missing root XML element"
 msgstr "XML-Wurzelelement fehlt"
 
-#: osinfo/osinfo_loader.c:2614
+#: osinfo/osinfo_loader.c:2622
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
 
-#: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
+#: osinfo/osinfo_loader.c:2658 osinfo/osinfo_loader.c:2690
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
@@ -401,21 +401,21 @@ msgstr ""
 msgid "Cloud image username"
 msgstr "Codename"
 
-#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
-#: tools/osinfo-query.c:103
+#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:79
+#: tools/osinfo-query.c:105
 msgid "Name"
 msgstr "Name"
 
-#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
+#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:77
 msgid "Short ID"
 msgstr "Kurz-ID"
 
-#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
-#: tools/osinfo-query.c:95
+#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:83
+#: tools/osinfo-query.c:97
 msgid "Vendor"
 msgstr "Anbieter"
 
-#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
+#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:81
 msgid "Version"
 msgstr "Version"
 
@@ -565,13 +565,13 @@ msgstr ""
 "- erkennen, ob ein Medium bootfähig ist sowie das relevante Betriebssystem "
 "und die Distribution."
 
-#: tools/osinfo-detect.c:229 tools/osinfo-query.c:410
+#: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "Fehler beim Einlesen der Befehlszeilenoptionen: %s\n"
 
 #: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
-#: tools/osinfo-query.c:426
+#: tools/osinfo-query.c:428
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "Fehler beim Laden der Betriebssystemdaten: %s\n"
@@ -682,80 +682,86 @@ msgstr "Familie"
 msgid "Distro"
 msgstr "Distribution"
 
-#: tools/osinfo-query.c:63 tools/osinfo-query.c:83
+#: tools/osinfo-query.c:63 tools/osinfo-query.c:85
 msgid "Release date"
 msgstr "Veröffentlichungsdatum"
 
-#: tools/osinfo-query.c:65 tools/osinfo-query.c:85
+#: tools/osinfo-query.c:65 tools/osinfo-query.c:87
 msgid "End of life"
 msgstr "Ende der Lebensdauer"
 
-#: tools/osinfo-query.c:67 tools/osinfo-query.c:87
+#: tools/osinfo-query.c:67 tools/osinfo-query.c:89
 msgid "Code name"
 msgstr "Codename"
 
-#: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
-#: tools/osinfo-query.c:115
+#: tools/osinfo-query.c:69 tools/osinfo-query.c:91 tools/osinfo-query.c:111
+#: tools/osinfo-query.c:117
 msgid "ID"
 msgstr "ID"
 
-#: tools/osinfo-query.c:97
+#: tools/osinfo-query.c:71
+#, fuzzy
+#| msgid "Release date"
+msgid "Release status"
+msgstr "Veröffentlichungsdatum"
+
+#: tools/osinfo-query.c:99
 msgid "Vendor ID"
 msgstr "Anbieter-ID"
 
-#: tools/osinfo-query.c:99
+#: tools/osinfo-query.c:101
 msgid "Product"
 msgstr "Produkt"
 
-#: tools/osinfo-query.c:101
+#: tools/osinfo-query.c:103
 msgid "Product ID"
 msgstr "Produkt-ID"
 
-#: tools/osinfo-query.c:105
+#: tools/osinfo-query.c:107
 msgid "Class"
 msgstr "Klasse"
 
-#: tools/osinfo-query.c:107
+#: tools/osinfo-query.c:109
 msgid "Bus"
 msgstr "Bus"
 
-#: tools/osinfo-query.c:147 tools/osinfo-query.c:189
+#: tools/osinfo-query.c:149 tools/osinfo-query.c:191
 #, c-format
 msgid "Unknown property name %s"
 msgstr "Unbekannter Eigenschaftsname %s"
 
-#: tools/osinfo-query.c:176
+#: tools/osinfo-query.c:178
 msgid "Syntax error in condition, expecting KEY=VALUE"
 msgstr "Syntaxfehler in Bedingung, SCHLÜSSEL=WERT wurde erwartet"
 
-#: tools/osinfo-query.c:394
+#: tools/osinfo-query.c:396
 msgid "Sort column"
 msgstr "Sortierspalte"
 
-#: tools/osinfo-query.c:396
+#: tools/osinfo-query.c:398
 msgid "Display fields"
 msgstr "Felder anzeigen"
 
-#: tools/osinfo-query.c:405
+#: tools/osinfo-query.c:407
 msgid "- Query the OS info database"
 msgstr "- die OS-Info-Datenbank abfragen"
 
-#: tools/osinfo-query.c:417
+#: tools/osinfo-query.c:419
 #, c-format
 msgid "Missing data type parameter\n"
 msgstr "Datentyp-Parameter fehlt\n"
 
-#: tools/osinfo-query.c:445
+#: tools/osinfo-query.c:447
 #, c-format
 msgid "Unknown type '%s' requested\n"
 msgstr "Unbekannter Typ »%s« wurde angefragt\n"
 
-#: tools/osinfo-query.c:450
+#: tools/osinfo-query.c:452
 #, c-format
 msgid "Unable to construct filter: %s\n"
 msgstr "Filter konnte nicht konstruiert werden: %s\n"
 
-#: tools/osinfo-query.c:455
+#: tools/osinfo-query.c:457
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "Sichtbarkeit des Feldes konnte nicht gesetzt werden: %s\n"

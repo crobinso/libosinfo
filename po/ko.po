@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 11:00+0200\n"
+"POT-Creation-Date: 2021-08-04 17:27+0200\n"
 "PO-Revision-Date: 2021-07-22 08:04+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
@@ -247,29 +247,31 @@ msgstr "OS 설치 스크립트 특성 누락"
 msgid "Incorrect root element"
 msgstr "잘못된 root 요소"
 
-#: osinfo/osinfo_loader.c:1940
+#: osinfo/osinfo_loader.c:1948
 msgid "Unable to construct parser context"
 msgstr "구문 분석기 내용 설치 오류가 발생하였습니다"
 
-#: osinfo/osinfo_loader.c:1962
+#: osinfo/osinfo_loader.c:1970
 msgid "Missing root XML element"
 msgstr "root XML 요소 누락"
 
-#: osinfo/osinfo_loader.c:2614
+#: osinfo/osinfo_loader.c:2622
 #, c-format
 msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
-"$OSINFO_DATA_DIR는 더 이상 사용되지 않으며, 대신에 $OSINFO_SYSTEM_DIR 를 사용해주세요. $"
-"OSINFO_DATA_DIR를 위한 지원은 미래 출시에 제거될 것입니다\n"
+"$OSINFO_DATA_DIR는 더 이상 사용되지 않으며, 대신에 $OSINFO_SYSTEM_DIR 를 사용"
+"해주세요. $OSINFO_DATA_DIR를 위한 지원은 미래 출시에 제거될 것입니다\n"
 
-#: osinfo/osinfo_loader.c:2650 osinfo/osinfo_loader.c:2682
+#: osinfo/osinfo_loader.c:2658 osinfo/osinfo_loader.c:2690
 #, c-format
 msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
-msgstr "%s 는 더 이상 사용되지 않으며, 대신에 %s를 사용해주세요. %s를 위한 지원은 미래 출시에 제거될 것입니다\n"
+msgstr ""
+"%s 는 더 이상 사용되지 않으며, 대신에 %s를 사용해주세요. %s를 위한 지원은 미"
+"래 출시에 제거될 것입니다\n"
 
 #: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
@@ -400,21 +402,21 @@ msgstr "커널 URL 인수"
 msgid "Cloud image username"
 msgstr "클라우드 이미지 사용자이름"
 
-#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:77
-#: tools/osinfo-query.c:103
+#: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:79
+#: tools/osinfo-query.c:105
 msgid "Name"
 msgstr "이름"
 
-#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:75
+#: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:77
 msgid "Short ID"
 msgstr "간편 ID"
 
-#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:81
-#: tools/osinfo-query.c:95
+#: osinfo/osinfo_product.c:185 tools/osinfo-query.c:61 tools/osinfo-query.c:83
+#: tools/osinfo-query.c:97
 msgid "Vendor"
 msgstr "제조사"
 
-#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:79
+#: osinfo/osinfo_product.c:197 tools/osinfo-query.c:55 tools/osinfo-query.c:81
 msgid "Version"
 msgstr "버전"
 
@@ -522,7 +524,8 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
-"FORMAT을 위한 이용 가능한 단일 값은 '%s'이고, 이는 일반 텍스트를 의미합니다.\n"
+"FORMAT을 위한 이용 가능한 단일 값은 '%s'이고, 이는 일반 텍스트를 의미합니"
+"다.\n"
 "유형은 CD/ DVD ISOs를 위한 '%s' (지정값), 또는 설치 트리를 위한 '%s' 중에\n"
 "하나입니다."
 
@@ -565,13 +568,13 @@ msgstr "트리에서 사용 할 수 있는 OS 변형\n"
 msgid "- Detect if media is bootable and the relevant OS and distribution."
 msgstr "만약 미디어가 부팅 할 수 있는지 또는 연관된 OS 그리고 배포판 검출하기."
 
-#: tools/osinfo-detect.c:229 tools/osinfo-query.c:410
+#: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
 msgstr "명령행 선택: %s 구문 분석 중일 때에 오류가 발생하였습니다\n"
 
 #: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
-#: tools/osinfo-query.c:426
+#: tools/osinfo-query.c:428
 #, c-format
 msgid "Error loading OS data: %s\n"
 msgstr "OS 자료 적재 오류: %s\n"
@@ -668,7 +671,8 @@ msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
-"--list-profile, --list-config and --list-injection-methods 중의 1개만 요청 될 수 있습니다"
+"--list-profile, --list-config and --list-injection-methods 중의 1개만 요청 "
+"될 수 있습니다"
 
 #: tools/osinfo-install-script.c:443
 #, c-format
@@ -683,80 +687,86 @@ msgstr "제품군"
 msgid "Distro"
 msgstr "배포판"
 
-#: tools/osinfo-query.c:63 tools/osinfo-query.c:83
+#: tools/osinfo-query.c:63 tools/osinfo-query.c:85
 msgid "Release date"
 msgstr "출시 일"
 
-#: tools/osinfo-query.c:65 tools/osinfo-query.c:85
+#: tools/osinfo-query.c:65 tools/osinfo-query.c:87
 msgid "End of life"
 msgstr "서비스 종료"
 
-#: tools/osinfo-query.c:67 tools/osinfo-query.c:87
+#: tools/osinfo-query.c:67 tools/osinfo-query.c:89
 msgid "Code name"
 msgstr "코드 이름"
 
-#: tools/osinfo-query.c:69 tools/osinfo-query.c:89 tools/osinfo-query.c:109
-#: tools/osinfo-query.c:115
+#: tools/osinfo-query.c:69 tools/osinfo-query.c:91 tools/osinfo-query.c:111
+#: tools/osinfo-query.c:117
 msgid "ID"
 msgstr "ID"
 
-#: tools/osinfo-query.c:97
+#: tools/osinfo-query.c:71
+#, fuzzy
+#| msgid "Release date"
+msgid "Release status"
+msgstr "출시 일"
+
+#: tools/osinfo-query.c:99
 msgid "Vendor ID"
 msgstr "제조사 ID"
 
-#: tools/osinfo-query.c:99
+#: tools/osinfo-query.c:101
 msgid "Product"
 msgstr "제품"
 
-#: tools/osinfo-query.c:101
+#: tools/osinfo-query.c:103
 msgid "Product ID"
 msgstr "제품 ID"
 
-#: tools/osinfo-query.c:105
+#: tools/osinfo-query.c:107
 msgid "Class"
 msgstr "등급"
 
-#: tools/osinfo-query.c:107
+#: tools/osinfo-query.c:109
 msgid "Bus"
 msgstr "버스"
 
-#: tools/osinfo-query.c:147 tools/osinfo-query.c:189
+#: tools/osinfo-query.c:149 tools/osinfo-query.c:191
 #, c-format
 msgid "Unknown property name %s"
 msgstr "알지 못하믄 특성 이름 %s"
 
-#: tools/osinfo-query.c:176
+#: tools/osinfo-query.c:178
 msgid "Syntax error in condition, expecting KEY=VALUE"
 msgstr "상테에 문법오류, 예상 KEY=VALUE"
 
-#: tools/osinfo-query.c:394
+#: tools/osinfo-query.c:396
 msgid "Sort column"
 msgstr "열 정렬"
 
-#: tools/osinfo-query.c:396
+#: tools/osinfo-query.c:398
 msgid "Display fields"
 msgstr "표비 부분"
 
-#: tools/osinfo-query.c:405
+#: tools/osinfo-query.c:407
 msgid "- Query the OS info database"
 msgstr "OS 정보 자료 저장소를 문의합니다"
 
-#: tools/osinfo-query.c:417
+#: tools/osinfo-query.c:419
 #, c-format
 msgid "Missing data type parameter\n"
 msgstr "자료 유형 매개 변수 누락\n"
 
-#: tools/osinfo-query.c:445
+#: tools/osinfo-query.c:447
 #, c-format
 msgid "Unknown type '%s' requested\n"
 msgstr "알지 못하는 유형 '%s'가 요청되었습니다\n"
 
-#: tools/osinfo-query.c:450
+#: tools/osinfo-query.c:452
 #, c-format
 msgid "Unable to construct filter: %s\n"
 msgstr "필터를 구성 할 수 없습니다: %s\n"
 
-#: tools/osinfo-query.c:455
+#: tools/osinfo-query.c:457
 #, c-format
 msgid "Unable to set field visibility: %s\n"
 msgstr "부분 가시성을 설정 할 수 없습니다: %s\n"
