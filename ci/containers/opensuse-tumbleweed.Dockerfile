@@ -1,9 +1,10 @@
 # THIS FILE WAS AUTO-GENERATED
 #
-#  $ lcitool dockerfile opensuse-151 osinfo-db-tools,osinfo-db,libosinfo
+#  $ lcitool manifest ci/manifest.yml
 #
-# https://gitlab.com/libvirt/libvirt-ci/-/commit/b098ec6631a85880f818f2dd25c437d509e53680
-FROM registry.opensuse.org/opensuse/leap:15.1
+# https://gitlab.com/libvirt/libvirt-ci
+
+FROM registry.opensuse.org/opensuse/tumbleweed:latest
 
 RUN zypper update -y && \
     zypper install -y \
@@ -11,7 +12,7 @@ RUN zypper update -y && \
            ccache \
            check-devel \
            gcc \
-           gettext \
+           gettext-runtime \
            git \
            glib2-devel \
            glibc-locale \
@@ -20,22 +21,19 @@ RUN zypper update -y && \
            hwdata \
            intltool \
            itstool \
-           json-glib-devel \
-           libarchive-devel \
            libsoup-devel \
            libxml2 \
            libxml2-devel \
            libxslt-devel \
            make \
+           meson \
            ninja \
+           osinfo-db-tools \
            pkgconfig \
-           python3 \
+           python3-base \
            python3-lxml \
-           python3-pip \
            python3-pytest \
            python3-requests \
-           python3-setuptools \
-           python3-wheel \
            rpm-build \
            vala \
            wget \
@@ -44,10 +42,7 @@ RUN zypper update -y && \
     rpm -qa | sort > /packages.txt && \
     mkdir -p /usr/libexec/ccache-wrappers && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/$(basename /usr/bin/gcc)
-
-RUN pip3 install \
-         meson==0.54.0
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc
 
 ENV LANG "en_US.UTF-8"
 ENV MAKE "/usr/bin/make"

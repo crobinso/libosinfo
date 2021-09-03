@@ -1,8 +1,8 @@
 # THIS FILE WAS AUTO-GENERATED
 #
-#  $ lcitool dockerfile centos-stream-8 osinfo-db-tools,osinfo-db,libosinfo
+#  $ lcitool manifest ci/manifest.yml
 #
-# https://gitlab.com/libvirt/libvirt-ci/-/commit/6cd723b4affb2ee67e7d462dac480191c4b97598
+# https://gitlab.com/libvirt/libvirt-ci
 
 FROM quay.io/centos/centos:stream8
 
@@ -25,14 +25,13 @@ RUN dnf update -y && \
         hwdata \
         intltool \
         itstool \
-        json-glib-devel \
-        libarchive-devel \
         libsoup-devel \
         libxml2 \
         libxml2-devel \
         libxslt-devel \
         make \
         ninja-build \
+        osinfo-db-tools \
         pkgconfig \
         python3 \
         python3-lxml \

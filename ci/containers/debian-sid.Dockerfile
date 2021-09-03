@@ -1,9 +1,10 @@
 # THIS FILE WAS AUTO-GENERATED
 #
-#  $ lcitool dockerfile ubuntu-2004 osinfo-db-tools,osinfo-db,libosinfo
+#  $ lcitool manifest ci/manifest.yml
 #
-# https://gitlab.com/libvirt/libvirt-ci/-/commit/b098ec6631a85880f818f2dd25c437d509e53680
-FROM docker.io/library/ubuntu:20.04
+# https://gitlab.com/libvirt/libvirt-ci
+
+FROM docker.io/library/debian:sid-slim
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
@@ -20,25 +21,22 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
             hwdata \
             intltool \
             itstool \
-            libarchive-dev \
             libgirepository1.0-dev \
             libglib2.0-dev \
-            libjson-glib-dev \
             libsoup2.4-dev \
             libxml2-dev \
             libxml2-utils \
             libxslt1-dev \
             locales \
             make \
+            meson \
             ninja-build \
+            osinfo-db-tools \
             pkgconf \
             python3 \
             python3-lxml \
-            python3-pip \
             python3-pytest \
             python3-requests \
-            python3-setuptools \
-            python3-wheel \
             valac \
             wget \
             xz-utils && \
@@ -49,10 +47,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     dpkg-query --showformat '${Package}_${Version}_${Architecture}\n' --show > /packages.txt && \
     mkdir -p /usr/libexec/ccache-wrappers && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/$(basename /usr/bin/gcc)
-
-RUN pip3 install \
-         meson==0.54.0
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc
 
 ENV LANG "en_US.UTF-8"
 ENV MAKE "/usr/bin/make"
