@@ -149,6 +149,7 @@ libosinfo = library(
         libosinfo_sources,
         libosinfo_enum_types,
     ],
+    c_args: libosinfo_cflags,
     dependencies: libosinfo_dependencies,
     include_directories: libosinfo_include,
     link_args: libosinfo_link_args,

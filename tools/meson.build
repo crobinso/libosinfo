@@ -1,6 +1,7 @@
 # osinfo-detect
 executable(
     'osinfo-detect',
+    c_args: libosinfo_cflags,
     sources: 'osinfo-detect.c',
     dependencies: [
         glib_dep,
@@ -15,6 +16,7 @@ executable(
 # osinfo-install-script
 executable(
     'osinfo-install-script',
+    c_args: libosinfo_cflags,
     sources: 'osinfo-install-script.c',
     dependencies: [
         glib_dep,
@@ -28,6 +30,7 @@ executable(
 # osinfo-query
 executable(
     'osinfo-query',
+    c_args: libosinfo_cflags,
     sources: 'osinfo-query.c',
     dependencies: [
         glib_dep,

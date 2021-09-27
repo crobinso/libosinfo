@@ -51,7 +51,7 @@ foreach src: tests_sources
     exe = executable(name,
         sources: src,
         dependencies: libosinfo_dep,
-        c_args: [
+        c_args: libosinfo_cflags + [
             '-DSRCDIR="@0@"'.format(meson.source_root()),
             '-DBUILDDIR="@0@"'.format(meson.build_root()),
         ],

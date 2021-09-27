@@ -331,8 +331,6 @@ if usb_ids_path != ''
     message('Location of usb.ids: "@0@"'.format(usb_ids_path))
 endif
 
-add_project_arguments(libosinfo_cflags, language: 'c')
-
 libosinfo_version = meson.project_version()
 libosinfo_major_version = libosinfo_version.split('.')[0].to_int()
 libosinfo_minor_version = libosinfo_version.split('.')[1].to_int()
