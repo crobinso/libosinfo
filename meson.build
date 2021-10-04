@@ -71,7 +71,11 @@ gio_dep = dependency('gio-2.0', version: glib_version_info)
 gobject_dep = dependency('gobject-2.0', version: glib_version_info)
 
 #  everything else
-libsoup_dep = dependency('libsoup-2.4')
+libsoup_dep = dependency('libsoup-3.0', required: false)
+#    fallback to libsoup2
+if not libsoup_dep.found()
+  libsoup_dep = dependency('libsoup-2.4')
+endif
 libxml_dep = dependency('libxml-2.0', version: '>= 2.6.0')
 libxslt_dep = dependency('libxslt', version: '>= 1.0.0')
 
