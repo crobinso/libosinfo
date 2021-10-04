@@ -831,6 +831,9 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
 
         soup_session_send_async(data->session,
                                 data->message,
+#if SOUP_MAJOR_VERSION > 2
+                                G_PRIORITY_DEFAULT,
+#endif
                                 g_task_get_cancellable(data->res),
                                 on_soup_location_read,
                                 data);

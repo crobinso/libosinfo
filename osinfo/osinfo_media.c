@@ -1393,6 +1393,9 @@ void osinfo_media_create_from_location_with_flags_async(const gchar *location,
 
         soup_session_send_async(data->session,
                                 data->message,
+#if SOUP_MAJOR_VERSION > 2
+                                G_PRIORITY_DEFAULT,
+#endif
                                 cancellable,
                                 on_location_read,
                                 data);
