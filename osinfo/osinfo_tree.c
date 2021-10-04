@@ -19,12 +19,12 @@
  */
 
 #include <osinfo/osinfo.h>
-#include "osinfo_util_private.h"
 #include <gio/gio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
 #include <libsoup/soup.h>
+#include "osinfo_util_private.h"
 
 typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
@@ -715,7 +715,7 @@ static void on_soup_location_read(GObject *source,
                                       res,
                                       &error);
     if (stream == NULL ||
-        !SOUP_STATUS_IS_SUCCESSFUL(data->message->status_code)) {
+        !SOUP_STATUS_IS_SUCCESSFUL(soup_message_get_status(data->message))) {
         /* It means no ".treeinfo" file has been found. Try again, this time
          * looking for a "treeinfo" file. */
         if (g_str_equal(data->treeinfo, ".treeinfo")) {
@@ -727,7 +727,7 @@ static void on_soup_location_read(GObject *source,
             g_set_error_literal(&error,
                                 OSINFO_TREE_ERROR,
                                 OSINFO_TREE_ERROR_NO_TREEINFO,
-                                soup_status_get_phrase(data->message->status_code));
+                                soup_status_get_phrase(soup_message_get_status(data->message)));
         }
         g_prefix_error(&error, _("Failed to load .treeinfo|treeinfo file: "));
         g_task_return_error(data->res, error);
@@ -735,7 +735,7 @@ static void on_soup_location_read(GObject *source,
         return;
     }
 
-    content_size = soup_message_headers_get_content_length(data->message->response_headers);
+    content_size = soup_message_headers_get_content_length(soup_message_get_response_headers(data->message));
     data->content = g_malloc0(content_size);
 
     g_input_stream_read_all_async(stream,

@@ -20,12 +20,12 @@
 
 #include <osinfo/osinfo.h>
 #include "osinfo_media_private.h"
-#include "osinfo_util_private.h"
 #include <gio/gio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
 #include <libsoup/soup.h>
+#include "osinfo_util_private.h"
 
 #define MAX_VOLUME 32
 #define MAX_SYSTEM 32
@@ -1286,11 +1286,11 @@ static void on_location_read(GObject *source,
         stream = G_INPUT_STREAM(g_file_read_finish(G_FILE(source), res, &error));
     } else {
         stream = soup_session_send_finish(SOUP_SESSION(source), res, &error);
-        if (!SOUP_STATUS_IS_SUCCESSFUL(data->message->status_code) && error == NULL) {
+        if (!SOUP_STATUS_IS_SUCCESSFUL(soup_message_get_status(data->message)) && error == NULL) {
             g_set_error_literal(&error,
                                 OSINFO_MEDIA_ERROR,
                                 OSINFO_MEDIA_ERROR_NO_DESCRIPTORS,
-                                soup_status_get_phrase(data->message->status_code));
+                                soup_status_get_phrase(soup_message_get_status(data->message)));
         }
     }
     if (error != NULL) {
