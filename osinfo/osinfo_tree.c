@@ -823,7 +823,7 @@ osinfo_tree_create_from_location_async_helper(CreateFromLocationAsyncData *data,
     if (requires_soup) {
         if (data->session == NULL)
             data->session = soup_session_new_with_options(
-                    SOUP_SESSION_USER_AGENT, "Wget/1.0",
+                    "user-agent", "Wget/1.0",
                     NULL);
 
         g_clear_object(&data->message);
