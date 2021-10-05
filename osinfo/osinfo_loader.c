@@ -2349,9 +2349,18 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
             type = g_file_info_get_attribute_uint32(info,
                                                     G_FILE_ATTRIBUTE_STANDARD_TYPE);
             if (type == G_FILE_TYPE_DIRECTORY) {
-                osinfo_loader_find_files(loader, base, ent, entries, FALSE, &error);
-            } else if (g_str_has_suffix(name, ".xml")) {
-                osinfo_loader_entity_files_add_path(entries, base, ent);
+                if (!g_str_equal(name, "schema"))
+                    osinfo_loader_find_files(loader, base, ent, entries, FALSE, &error);
+            } else {
+                if (g_str_has_suffix(name, ".xml")) {
+                    osinfo_loader_entity_files_add_path(entries, base, ent);
+                } else if (!g_str_equal(name, "LICENSE") &&
+                           !g_str_equal(name, "VERSION") &&
+                           !g_str_has_suffix(name, "~") &&
+                           !g_str_has_suffix(name, ".bak")) {
+                    g_autofree gchar *path = g_file_get_path(ent);
+                    g_printerr("Ignoring %s with missing '.xml' extension\n", path);
+                }
             }
             g_object_unref(ent);
             g_object_unref(info);
