@@ -2504,7 +2504,7 @@ static void osinfo_loader_process_list(OsinfoLoader *loader,
                                                files->master, &lerr);
             if (lerr) {
                 g_propagate_error(err, lerr);
-                break;
+                goto cleanup;
             }
         }
 
@@ -2517,7 +2517,7 @@ static void osinfo_loader_process_list(OsinfoLoader *loader,
                                                &lerr);
             if (lerr) {
                 g_propagate_error(err, lerr);
-                break;
+                goto cleanup;
             }
 
             tmpl = tmpl->next;
