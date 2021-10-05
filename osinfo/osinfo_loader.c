@@ -2176,6 +2176,8 @@ osinfo_loader_process_file_reg_xml(OsinfoLoader *loader,
     if (error_is_set(err))
         return;
 
+    if (xmlLen == 0)
+        return;
     if (base) {
         relpath = g_file_get_relative_path(base, file);
         if (relpath == NULL) {
@@ -2346,11 +2348,10 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
             ent = g_file_get_child(file, name);
             type = g_file_info_get_attribute_uint32(info,
                                                     G_FILE_ATTRIBUTE_STANDARD_TYPE);
-            if (type == G_FILE_TYPE_REGULAR) {
-                if (g_str_has_suffix(name, ".xml"))
-                    osinfo_loader_entity_files_add_path(entries, base, ent);
-            } else if (type == G_FILE_TYPE_DIRECTORY) {
+            if (type == G_FILE_TYPE_DIRECTORY) {
                 osinfo_loader_find_files(loader, base, ent, entries, FALSE, &error);
+            } else if (g_str_has_suffix(name, ".xml")) {
+                osinfo_loader_entity_files_add_path(entries, base, ent);
             }
             g_object_unref(ent);
             g_object_unref(info);
