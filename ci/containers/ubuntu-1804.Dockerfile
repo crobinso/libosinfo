@@ -19,8 +19,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
             git \
             gtk-doc-tools \
             hwdata \
-            intltool \
-            itstool \
             libgirepository1.0-dev \
             libglib2.0-dev \
             libsoup2.4-dev \

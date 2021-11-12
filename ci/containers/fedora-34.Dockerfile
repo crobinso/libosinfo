@@ -29,8 +29,6 @@ exec "$@"' > /usr/bin/nosync && \
         gobject-introspection-devel \
         gtk-doc \
         hwdata \
-        intltool \
-        itstool \
         libsoup-devel \
         libxml2 \
         libxml2-devel \
