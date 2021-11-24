@@ -797,6 +797,13 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
  * the media could be identified, its OsinfoEntify::id and OsinfoMedia::os
  * properties will be set.
  *
+ * The match for @media in @db is not guaranteed to be unique and
+ * this method will only return the first match found. The order
+ * in which matches are identified is not guaranteed, so when there
+ * are multiple matches, the returned match may vary over time.
+ * Applications are recommended to use the #osinfo_db_identify_all_media
+ * method instead to receive all matched media.
+ *
  * Returns: TRUE if @media was found in @db, FALSE otherwise
  *
  * Since: 0.2.3
@@ -819,6 +826,35 @@ gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
     fill_media(db, media, OSINFO_MEDIA(ent), matched_os);
 
     return TRUE;
+}
+
+/**
+ * osinfo_db_identify_medialist:
+ * @db: an #OsinfoDb database
+ * @media: the installation media data
+ *
+ * Try to match a newly created @media with a media description from @db.
+ * The return list will contain any #OsinfoMedia instances from @db that
+ * matched @media. Usuaully there will only be one match returned, but
+ * applications should be prepared to deal with multiple matches. The
+ * returned #OsinfoMedia instances will have their OsinfoEntify::id and
+ * OsinfoMedia::os properties will be set, while @media is left unmodified.
+ *
+ * Returns: (transfer full): a list containing any matches for @media found in @db
+ *
+ * Since: 1.10.0
+ */
+OsinfoMediaList *osinfo_db_identify_medialist(OsinfoDb *db, OsinfoMedia *media)
+{
+    OsinfoMediaList *matched_media = osinfo_medialist_new();
+
+    g_return_val_if_fail(OSINFO_IS_MEDIA(media), FALSE);
+    g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
+
+    osinfo_db_guess_os_from_media_internal(db, media, matched_media,
+                                           FALSE, NULL);
+
+    return matched_media;
 }
 
 /*

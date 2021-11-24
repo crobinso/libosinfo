@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/db/media-dupe1">
+    <short-id>db-media-dupe1</short-id>
+    <name>DB Media Dupe1</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <media arch="i686">
+      <iso>
+        <volume-id>dupe</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+    </media>
+  </os>
+</libosinfo>

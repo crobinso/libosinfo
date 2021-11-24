@@ -529,6 +529,198 @@ test_identify_media(void)
 }
 
 
+static void
+test_identify_all_media(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoMedia *media, *newmedia;
+    OsinfoMediaList *medialist;
+    OsinfoOs *os;
+    OsinfoInstallScriptList *scripts;
+    GError *error = NULL;
+    int i;
+    gboolean seenDupe1, seenDupe2, seenDupe3, seenDupe4;
+    gboolean seenRolling, seenVersioned;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    media = osinfo_media_new("foo", "ppc64le");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "DB Media");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_nonnull(medialist);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 1);
+    newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(medialist), 0));
+    g_object_unref(medialist);
+    g_assert_cmpstr(osinfo_media_get_architecture(newmedia), ==, "ppc64le");
+    g_assert_true(osinfo_media_get_live(newmedia));
+    g_assert_true(osinfo_media_get_installer(newmedia));
+    g_assert_false(osinfo_media_supports_installer_script(newmedia));
+    g_assert_cmpint(osinfo_media_get_installer_reboots(newmedia), ==, 6);
+    g_assert_false(osinfo_media_get_eject_after_install(newmedia));
+    g_assert_cmpstr(osinfo_media_get_kernel_path(newmedia), ==, "isolinux/vmlinuz");
+    g_assert_cmpstr(osinfo_media_get_initrd_path(newmedia), ==, "isolinux/initrd.img");
+    scripts = osinfo_media_get_install_script_list(newmedia);
+    g_assert_nonnull(scripts);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(scripts)), ==, 1);
+    os = osinfo_media_get_os(newmedia);
+    g_assert_nonnull(os);
+    g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "http://libosinfo.org/test/db/media");
+    g_object_unref(scripts);
+
+    media = osinfo_media_new("foo", "ppc64le");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "Media DB");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 0);
+    g_object_unref(medialist);
+    g_object_unref(media);
+
+    /* Matching against an "all" architecture */
+    media = osinfo_media_new("foo", "x86_64");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "bootimg");
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 1);
+    newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(medialist), 0));
+    g_assert_cmpstr(osinfo_media_get_architecture(newmedia), ==, "all");
+    g_object_unref(medialist);
+    g_object_unref(media);
+
+    /* Matching against a known architecture, which has to have precedence */
+    media = osinfo_media_new("foo", "i686");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "bootimg");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 1);
+    newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(medialist), 0));
+    g_assert_cmpstr(osinfo_media_get_architecture(newmedia), ==, "i686");
+    g_object_unref(medialist);
+    g_object_unref(media);
+
+    /* Should return both the version and non-versioned rolling OS matches */
+    media = osinfo_media_new("foo", "x86_64");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "ROLLING_VERSIONED");
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 2);
+    seenVersioned = seenRolling = FALSE;
+    for (i = 0; i < 2; i++) {
+        newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(medialist), i));
+        os = osinfo_media_get_os(newmedia);
+        g_assert_nonnull(os);
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "versioned")) {
+            g_assert_false(seenVersioned);
+            seenVersioned = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "rolling")) {
+            g_assert_false(seenRolling);
+            seenRolling = TRUE;
+        }
+    }
+    g_assert(seenVersioned && seenRolling);
+    g_object_unref(medialist);
+    g_object_unref(media);
+
+    /* Matching against a image with many matches. Should match two OS
+     * with corresponding arch, and one with fallback arch */
+    media = osinfo_media_new("foo", "i686");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "dupe");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 3);
+    seenDupe1 = seenDupe2 = seenDupe3 = seenDupe4 = FALSE;
+    for (i = 0; i < 3; i++) {
+        newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(medialist), i));
+        os = osinfo_media_get_os(newmedia);
+        g_assert_nonnull(os);
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe1")) {
+            g_assert_false(seenDupe1);
+            seenDupe1 = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe2")) {
+            g_assert_false(seenDupe2);
+            seenDupe2 = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe3")) {
+            g_assert_false(seenDupe3);
+            seenDupe3 = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe4")) {
+            g_assert_false(seenDupe4);
+            seenDupe4 = TRUE;
+        }
+    }
+    g_assert(seenDupe1 && seenDupe2 && !seenDupe3 && seenDupe4);
+
+    g_object_unref(medialist);
+    g_object_unref(media);
+
+    /* Matching without arch against a image with many matches.
+     * Should match all OS regardless of their media arch */
+    media = osinfo_media_new("foo", NULL);
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "dupe");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+    medialist = osinfo_db_identify_medialist(db, media);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(medialist)), ==, 4);
+    seenDupe1 = seenDupe2 = seenDupe3 = seenDupe4 = FALSE;
+    for (i = 0; i < 4; i++) {
+        newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(medialist), i));
+        os = osinfo_media_get_os(newmedia);
+        g_assert_nonnull(os);
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe1")) {
+            g_assert_false(seenDupe1);
+            seenDupe1 = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe2")) {
+            g_assert_false(seenDupe2);
+            seenDupe2 = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe3")) {
+            g_assert_false(seenDupe3);
+            seenDupe3 = TRUE;
+        }
+        if (g_str_equal(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), "db-media-dupe4")) {
+            g_assert_false(seenDupe4);
+            seenDupe4 = TRUE;
+        }
+    }
+    g_assert(seenDupe1 && seenDupe2 && seenDupe3 && seenDupe4);
+
+    g_object_unref(medialist);
+    g_object_unref(media);
+
+    g_object_unref(loader);
+}
+
+
 static OsinfoTree *
 create_tree(const gchar *arch, const gchar *treeinfo_arch)
 {
@@ -611,6 +803,7 @@ main(int argc, char *argv[])
     g_test_add_func("/db/prop_os", test_prop_os);
     g_test_add_func("/db/rel_os", test_rel_os);
     g_test_add_func("/db/identify_media", test_identify_media);
+    g_test_add_func("/db/identify_all_media", test_identify_all_media);
     g_test_add_func("/db/identify_tree", test_identify_tree);
 
     /* Upfront so we don't confuse valgrind */
