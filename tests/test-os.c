@@ -850,6 +850,140 @@ test_firmwares_inheritance(void)
 }
 
 static void
+test_firmwares_complete_list(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    OsinfoFirmwareList *firmwarelist;
+    GError *error = NULL;
+
+    loader = osinfo_loader_new();
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    g_debug("Testing http://libosinfo.org/test/os/firmwares/complete/1\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/firmwares/complete/1");
+    g_assert_nonnull(os);
+
+    /**
+     * This is using the function to get the list of SUPPORTED firmwares.
+     * The db entry has:
+     * - bios -> false
+     * - efi -> true
+     * Thus, the expected result is the list having only one element, the EFI one.
+     */
+    firmwarelist = osinfo_os_get_firmware_list(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(firmwarelist)), ==, 1);
+    g_object_unref(firmwarelist);
+
+    /**
+     * This is using the function to get the COMPLETE list of firmwares.
+     * The db entry has:
+     * - bios -> false
+     * - efi -> true
+     * Thus, the expected result is the list having both firmwares there.
+     */
+    firmwarelist = osinfo_os_get_complete_firmware_list(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(firmwarelist)), ==, 2);
+    g_object_unref(firmwarelist);
+    g_object_unref(loader);
+}
+
+static void
+test_firmwares_complete_list_inheritance(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoOs *os;
+    OsinfoFirmware *firmware;
+    OsinfoFirmwareList *firmwarelist;
+    GError *error = NULL;
+
+    loader = osinfo_loader_new();
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    /**
+     * inherit1:
+     * - bios | x86_64
+     *
+     * expected results:
+     * - 1 item
+     *   - bios | x96_64
+     */
+    g_debug("Testing http://libosinfo.org/test/os/firmwares/complete/inherit1\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/firmwares/complete/inherit1");
+    g_assert_nonnull(os);
+
+    firmwarelist = osinfo_os_get_complete_firmware_list(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(firmwarelist)), ==, 1);
+
+    firmware = OSINFO_FIRMWARE(osinfo_list_get_nth(OSINFO_LIST(firmwarelist), 0));
+    g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, "bios");
+    g_assert_cmpstr(osinfo_firmware_get_architecture(firmware), ==, "x86_64");
+    g_assert_true(osinfo_firmware_is_supported(firmware));
+    g_object_unref(firmwarelist);
+
+    /**
+     * inherit2:
+     * - bios | aarch64
+     *
+     * expected results:
+     * - 2 items
+     *   - bios | aarch64
+     *   - bios | x86_64
+     */
+    g_debug("Testing http://libosinfo.org/test/os/firmwares/complete/inherit2\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/firmwares/complete/inherit2");
+    g_assert_nonnull(os);
+
+    firmwarelist = osinfo_os_get_complete_firmware_list(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(firmwarelist)), ==, 2);
+
+    firmware = OSINFO_FIRMWARE(osinfo_list_get_nth(OSINFO_LIST(firmwarelist), 0));
+    g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, "bios");
+    g_assert_cmpstr(osinfo_firmware_get_architecture(firmware), ==, "aarch64");
+    g_assert_true(osinfo_firmware_is_supported(firmware));
+
+    firmware = OSINFO_FIRMWARE(osinfo_list_get_nth(OSINFO_LIST(firmwarelist), 1));
+    g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, "bios");
+    g_assert_cmpstr(osinfo_firmware_get_architecture(firmware), ==, "x86_64");
+    g_assert_true(osinfo_firmware_is_supported(firmware));
+
+    /**
+     * inherit3:
+     * - bios | x86_64 | not supported
+     *
+     * expected results:
+     * - 2 items
+     *   - bios | x86_64 | not supported
+     *   - bios | aarch64
+     */
+    g_debug("Testing http://libosinfo.org/test/os/firmwares/complete/inherit3\n");
+    os = osinfo_db_get_os(db, "http://libosinfo.org/test/os/firmwares/complete/inherit3");
+    g_assert_nonnull(os);
+
+    firmwarelist = osinfo_os_get_complete_firmware_list(os, NULL);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(firmwarelist)), ==, 2);
+
+    firmware = OSINFO_FIRMWARE(osinfo_list_get_nth(OSINFO_LIST(firmwarelist), 0));
+    g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, "bios");
+    g_assert_cmpstr(osinfo_firmware_get_architecture(firmware), ==, "x86_64");
+    g_assert_false(osinfo_firmware_is_supported(firmware));
+
+    firmware = OSINFO_FIRMWARE(osinfo_list_get_nth(OSINFO_LIST(firmwarelist), 1));
+    g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, "bios");
+    g_assert_cmpstr(osinfo_firmware_get_architecture(firmware), ==, "aarch64");
+    g_assert_true(osinfo_firmware_is_supported(firmware));
+
+    g_object_unref(firmwarelist);
+    g_object_unref(loader);
+}
+
+static void
 test_cloud_image_username_arg(void)
 {
     OsinfoLoader *loader;
@@ -908,6 +1042,8 @@ main(int argc, char *argv[])
     g_test_add_func("/os/mulitple_short_ids", test_multiple_short_ids);
     g_test_add_func("/os/kernel_url_arg", test_kernel_url_arg);
     g_test_add_func("/os/firmwares/inheritance", test_firmwares_inheritance);
+    g_test_add_func("/os/firmwares/complete_list", test_firmwares_complete_list);
+    g_test_add_func("/os/firmwares/complete_list/inheritance", test_firmwares_complete_list_inheritance);
     g_test_add_func("/os/cloud_image_username_arg", test_cloud_image_username_arg);
 
     /* Upfront so we don't confuse valgrind */

@@ -113,6 +113,7 @@ void osinfo_os_add_device_driver(OsinfoOs *os, OsinfoDeviceDriver *driver);
 const gchar *osinfo_os_get_kernel_url_argument(OsinfoOs *os);
 
 OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filter);
+OsinfoFirmwareList *osinfo_os_get_complete_firmware_list(OsinfoOs *os, OsinfoFilter *filter);
 void osinfo_os_add_firmware(OsinfoOs *os, OsinfoFirmware *firmware);
 
 const gchar *osinfo_os_get_cloud_image_username(OsinfoOs *os);

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/os/firmwares/complete/1">
+    <short-id>firmwarescomplete1</short-id>
+    <name>Firmwares Complete 1</name>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <firmware arch="x86_64" type="bios" supported="false"/>
+    <firmware arch="x86_64" type="efi"/>
+  </os>
+</libosinfo>
