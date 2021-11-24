@@ -789,6 +789,96 @@ test_identify_tree(void)
 }
 
 
+static void
+test_identify_all_tree(void)
+{
+    OsinfoLoader *loader = osinfo_loader_new();
+    OsinfoDb *db;
+    OsinfoTree *tree, *newtree;
+    OsinfoTreeList *treelist;
+    gboolean seenV6, seenV7, seenFallback;
+    GError *error = NULL;
+    int i;
+
+    osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
+    g_assert_no_error(error);
+    db = osinfo_loader_get_db(loader);
+
+    /* Matching against an "all" architecture" */
+    tree = create_tree("x86_64", NULL);
+    treelist = osinfo_db_identify_treelist(db, tree);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 1);
+    newtree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), 0));
+    g_assert_cmpstr(osinfo_tree_get_architecture(newtree), ==, "all");
+    g_object_unref(treelist);
+    g_object_unref(tree);
+
+    /* Matching against a known architecture, which has to have precedence */
+    tree = create_tree("i686", "i686");
+    treelist = osinfo_db_identify_treelist(db, tree);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 1);
+    newtree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), 0));
+    g_assert_cmpstr(osinfo_tree_get_architecture(newtree), ==, "i686");
+    g_object_unref(treelist);
+    g_object_unref(tree);
+
+    /* Matching against a known architecture, which has to have precedence */
+    tree = create_tree(NULL, "i686");
+    treelist = osinfo_db_identify_treelist(db, tree);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 1);
+    newtree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), 0));
+    g_assert_cmpstr(osinfo_tree_get_architecture(newtree), ==, "i686");
+    g_object_unref(treelist);
+    g_object_unref(tree);
+
+    /* Should not match a tree tagged with different arch, even
+     * if treeinfo matches, but can match fallback arch */
+    seenV6 = seenV7 = seenFallback = FALSE;
+    tree = create_tree("armv7hl", "arm");
+    treelist = osinfo_db_identify_treelist(db, tree);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 2);
+    for (i = 0; i < 2; i++) {
+        newtree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), i));
+        if (osinfo_tree_get_url(newtree) == NULL) {
+            g_assert_false(seenFallback);
+            seenFallback = TRUE;
+        } else if (g_str_equal(osinfo_tree_get_url(newtree), "http://libosinfo.org/tree/v6")) {
+            g_assert_false(seenV6);
+            seenV6 = TRUE;
+        } else if (g_str_equal(osinfo_tree_get_url(newtree), "http://libosinfo.org/tree/v7")) {
+            g_assert_false(seenV7);
+            seenV7 = TRUE;
+        }
+    }
+    g_assert(!seenV6 && seenV7 && seenFallback);
+    g_object_unref(treelist);
+    g_object_unref(tree);
+
+    tree = create_tree("armv6", "arm");
+    treelist = osinfo_db_identify_treelist(db, tree);
+    g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(treelist)), ==, 2);
+    seenV6 = seenV7 = seenFallback = FALSE;
+    for (i = 0; i < 2; i++) {
+        newtree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(treelist), i));
+        if (osinfo_tree_get_url(newtree) == NULL) {
+            g_assert_false(seenFallback);
+            seenFallback = TRUE;
+        } else if (g_str_equal(osinfo_tree_get_url(newtree), "http://libosinfo.org/tree/v6")) {
+            g_assert_false(seenV6);
+            seenV6 = TRUE;
+        } else if (g_str_equal(osinfo_tree_get_url(newtree), "http://libosinfo.org/tree/v7")) {
+            g_assert_false(seenV7);
+            seenV7 = TRUE;
+        }
+    }
+    g_assert(seenV6 && !seenV7 && seenFallback);
+    g_object_unref(treelist);
+    g_object_unref(tree);
+
+    g_object_unref(loader);
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -805,6 +895,7 @@ main(int argc, char *argv[])
     g_test_add_func("/db/identify_media", test_identify_media);
     g_test_add_func("/db/identify_all_media", test_identify_all_media);
     g_test_add_func("/db/identify_tree", test_identify_tree);
+    g_test_add_func("/db/identify_all_tree", test_identify_all_tree);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_entity_get_type();

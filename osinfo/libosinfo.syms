@@ -640,6 +640,7 @@ LIBOSINFO_1.10.0 {
 	global:
 
 	osinfo_db_identify_medialist;
+	osinfo_db_identify_treelist;
 	osinfo_media_matches;
 	osinfo_os_get_complete_firmware_list;
 	osinfo_tree_matches;
