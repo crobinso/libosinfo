@@ -1393,10 +1393,10 @@ get_all_unsupported_firmwares(OsinfoList *firmwares,
 }
 
 static void
-filter_out_firmwares(OsinfoList *firmwares,
-                     OsinfoFilter *filter,
-                     OsinfoList *unsupported_firmwares,
-                     OsinfoList *out)
+filter_out_unsupported_firmwares(OsinfoList *firmwares,
+                                 OsinfoFilter *filter,
+                                 OsinfoList *unsupported_firmwares,
+                                 OsinfoList *out)
 {
     gsize len, i;
     gsize unsupported_len, j;
@@ -1461,7 +1461,7 @@ filter_out_firmwares(OsinfoList *firmwares,
     }
 }
 
-static void get_all_firmwares_cb(OsinfoProduct *product, gpointer user_data)
+static void get_all_supported_firmwares_cb(OsinfoProduct *product, gpointer user_data)
 {
     OsinfoFirmwareList *unsupported_firmwares;
     OsinfoOs *os = OSINFO_OS(product);
@@ -1474,10 +1474,10 @@ static void get_all_firmwares_cb(OsinfoProduct *product, gpointer user_data)
                                           foreach_data->unsupported_filter,
                                           OSINFO_LIST(foreach_data->unsupported_firmwares)));
 
-    filter_out_firmwares(OSINFO_LIST(os->priv->firmwares),
-                         foreach_data->filter,
-                         OSINFO_LIST(unsupported_firmwares),
-                         OSINFO_LIST(foreach_data->firmwares));
+    filter_out_unsupported_firmwares(OSINFO_LIST(os->priv->firmwares),
+                                     foreach_data->filter,
+                                     OSINFO_LIST(unsupported_firmwares),
+                                     OSINFO_LIST(foreach_data->firmwares));
 
     g_object_unref(foreach_data->unsupported_firmwares);
     foreach_data->unsupported_firmwares = unsupported_firmwares;
@@ -1488,7 +1488,7 @@ static void get_all_firmwares_cb(OsinfoProduct *product, gpointer user_data)
  * @os: an operating system
  * @filter: (allow-none)(transfer none): an optional firmware property filter
  *
- * Get all firmwares matching a given filter
+ * Get all the supported firmwares matching a given filter
  *
  * Returns: (transfer full): A list of firmwares
  *
@@ -1514,7 +1514,7 @@ OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filt
     osinfo_product_foreach_related(OSINFO_PRODUCT(os),
                                    OSINFO_PRODUCT_FOREACH_FLAG_DERIVES_FROM |
                                    OSINFO_PRODUCT_FOREACH_FLAG_CLONES,
-                                   get_all_firmwares_cb,
+                                   get_all_supported_firmwares_cb,
                                    &foreach_data);
 
     g_object_unref(foreach_data.unsupported_filter);
