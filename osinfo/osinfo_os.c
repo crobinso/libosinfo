@@ -1523,6 +1523,15 @@ OsinfoFirmwareList *osinfo_os_get_firmware_list(OsinfoOs *os, OsinfoFilter *filt
     return foreach_data.firmwares;
 }
 
+/**
+ * osinfo_os_add_firmware:
+ * @os: an operating system
+ * @firmware: (transfer none): the firmware to add
+ *
+ * Adds @firmware to the list of firmwares of operating system @os.
+ *
+ * Since: 1.7.0
+ */
 void osinfo_os_add_firmware(OsinfoOs *os, OsinfoFirmware *firmware)
 {
     g_return_if_fail(OSINFO_IS_OS(os));
