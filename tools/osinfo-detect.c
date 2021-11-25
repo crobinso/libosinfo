@@ -30,6 +30,7 @@ typedef enum {
 } OutputFormat;
 
 static OutputFormat format = OUTPUT_FORMAT_PLAIN;
+static gboolean all = FALSE;
 
 #define TYPE_STR_MEDIA "media"
 #define TYPE_STR_TREE "tree"
@@ -91,6 +92,10 @@ static GOptionEntry entries[] =
       G_OPTION_ARG_CALLBACK, parse_type_str,
       N_("Select the type of what is being detected"),
       N_("TYPE") },
+    { "all", 'a', 0,
+      G_OPTION_ARG_NONE, &all,
+      N_("Report all matches, not just the first"),
+      NULL },
     { 0 }
 };
 
@@ -107,7 +112,7 @@ static void print_bootable(gboolean bootable)
         g_print(_("Media is not bootable.\n"));
 }
 
-static void print_media(OsinfoMedia *media)
+static void print_media(OsinfoMedia *media, const char *prefix)
 {
     OsinfoOs *os;
     OsinfoOsVariantList *variants;
@@ -134,21 +139,23 @@ static void print_media(OsinfoMedia *media)
 
     arch = osinfo_media_get_architecture(media);
 
-    if (osinfo_media_get_installer(media))
-        g_print(_("Media is an installer for OS '%s (%s)'\n"), name, arch);
-    if (osinfo_media_get_live(media))
-        g_print(_("Media is live media for OS '%s (%s)'\n"), name, arch);
+    if (osinfo_media_get_installer(media)) {
+        g_print(_("%sMedia is an installer for OS '%s (%s)'\n"), prefix, name, arch);
+    }
+    if (osinfo_media_get_live(media)) {
+        g_print(_("%sMedia is live media for OS '%s (%s)'\n"), prefix, name, arch);
+    }
 
     if (num_variants > 1) {
         guint i;
 
-        g_print(_("Available OS variants on media:\n"));
+        g_print(_("%sAvailable OS variants on media:\n"), prefix);
         for (i = 0; i < num_variants; i++) {
             OsinfoEntity *variant;
 
             variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
             name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
-            g_print("%s\n", name);
+            g_print("%s%s\n", prefix, name);
         }
     }
 
@@ -156,7 +163,7 @@ static void print_media(OsinfoMedia *media)
     g_object_unref(os);
 }
 
-static void print_tree(OsinfoTree *tree)
+static void print_tree(OsinfoTree *tree, const char *prefix)
 {
     OsinfoOs *os;
     OsinfoOsVariantList *variants;
@@ -184,18 +191,18 @@ static void print_tree(OsinfoTree *tree)
     }
 
     arch = osinfo_tree_get_architecture(tree);
-    g_print(_("Tree is an installer for OS '%s (%s)'\n"), name, arch);
+    g_print(_("%sTree is an installer for OS '%s (%s)'\n"), prefix, name, arch);
 
     if (num_variants > 1) {
         guint i;
 
-        g_print(_("Available OS variants on tree:\n"));
+        g_print(_("%sAvailable OS variants on tree:\n"), prefix);
         for (i = 0; i < num_variants; i++) {
             OsinfoEntity *variant;
 
             variant = osinfo_list_get_nth(OSINFO_LIST(variants), i);
             name = osinfo_os_variant_get_name(OSINFO_OS_VARIANT(variant));
-            g_print("%s\n", name);
+            g_print("%s%s\n", prefix, name);
         }
     }
 
@@ -257,6 +264,8 @@ gint main(gint argc, gchar **argv)
 
     if (type == URL_TYPE_MEDIA) {
         OsinfoMedia *media = NULL;
+        OsinfoMediaList *matched;
+        size_t i;
         media = osinfo_media_create_from_location(argv[1], NULL, &error);
         if (error != NULL) {
             if (error->code != OSINFO_MEDIA_ERROR_NOT_BOOTABLE) {
@@ -270,10 +279,25 @@ gint main(gint argc, gchar **argv)
         } else {
             print_bootable(TRUE);
         }
-        osinfo_db_identify_media(db, media);
-        print_media(media);
+        matched = osinfo_db_identify_medialist(db, media);
+        for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(matched)); i++) {
+            char *prefix;
+            OsinfoMedia *newmedia = OSINFO_MEDIA(osinfo_list_get_nth(OSINFO_LIST(matched), i));
+            if (all)
+                prefix = g_strdup_printf("#%zd: ",  i + 1);
+            else
+                prefix = g_strdup("");
+
+            print_media(newmedia, prefix);
+            g_free(prefix);
+            if (!all)
+                break;
+        }
+        g_object_unref(matched);
     } else if (type == URL_TYPE_TREE) {
         OsinfoTree *tree = NULL;
+        OsinfoTreeList *matched;
+        size_t i;
         tree = osinfo_tree_create_from_location(argv[1], NULL, &error);
         if (error != NULL) {
             g_printerr(_("Error parsing installer tree: %s\n"), error->message);
@@ -281,8 +305,22 @@ gint main(gint argc, gchar **argv)
             ret = -3;
             goto EXIT;
         }
+        matched = osinfo_db_identify_treelist(db, tree);
+        for (i = 0; i < osinfo_list_get_length(OSINFO_LIST(matched)); i++) {
+            char *prefix;
+            OsinfoTree *newtree = OSINFO_TREE(osinfo_list_get_nth(OSINFO_LIST(matched), i));
+            if (all)
+                prefix = g_strdup_printf("#%zd: ",  i + 1);
+            else
+                prefix = g_strdup("");
+
+            print_tree(newtree, prefix);
+            g_free(prefix);
+            if (!all)
+                break;
+        }
+        g_object_unref(matched);
         osinfo_db_identify_tree(db, tree);
-        print_tree(tree);
     }
 
 
@@ -325,6 +363,11 @@ The output information is formatted for humans;
 
 Switch between looking for CD/DVD ISO media (B<media>, the default) or
 install trees (B<tree>)
+
+=item B<--all>
+
+Report all operating systems with matching media, instead of only the
+first match.
 
 =back
 
