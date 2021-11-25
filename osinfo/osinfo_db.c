@@ -545,13 +545,34 @@ static gint media_volume_compare(gconstpointer a, gconstpointer b)
     }
 }
 
+
+/*
+ * Fill @matched_media with all OsinfoOs in @oss
+ * that match @media.
+ *
+ * If @onlyFirstMatch is TRUE then will return as soon as
+ * one matching media is found
+ *
+ * If @onlyFirstMatch is FALSE then will return matching
+ * media from all OsinfoOs, potentially with multiple media
+ * per OsinfoOs reported.
+ *
+ * @fallback_os will be filled with any OsinfoOs that
+ * can be used as fallbacks matches. It will never contain
+ * any OsinfoOs that had media added to @matched_media.
+ *
+ * If @ret_os is non-NULL it will be filled with the first
+ * matching OsinfoOs.
+ */
 static gboolean compare_media(OsinfoMedia *media,
                               GList *oss,
                               OsinfoMediaList *matched_media,
+                              gboolean onlyFirstMatch,
                               OsinfoOs **ret_os,
                               GList **fallback_oss)
 {
     GList *os_iter;
+    gboolean matched = FALSE;
 
     for (os_iter = oss; os_iter; os_iter = os_iter->next) {
         OsinfoOs *os = OSINFO_OS(os_iter->data);
@@ -559,6 +580,8 @@ static gboolean compare_media(OsinfoMedia *media,
         OsinfoMediaList *media_list = osinfo_os_get_media_list(os);
         GList *medias = osinfo_list_get_elements(OSINFO_LIST(media_list));
         GList *media_iter;
+        gboolean useFallback = TRUE;
+        gboolean haveFallback = FALSE;
 
         medias = g_list_sort(medias, media_volume_compare);
 
@@ -568,38 +591,45 @@ static gboolean compare_media(OsinfoMedia *media,
 
             if (fallback_oss != NULL) {
                 if (g_str_equal(os_arch, "all")) {
-                    *fallback_oss = g_list_prepend(*fallback_oss, os);
+                    haveFallback = TRUE;
                     continue;
                 }
 
                 if (release_status == OSINFO_RELEASE_STATUS_ROLLING) {
-                    *fallback_oss = g_list_prepend(*fallback_oss, os);
+                    haveFallback = TRUE;
                     continue;
                 }
             }
 
             if (osinfo_media_matches(media, os_media)) {
-                *ret_os = os;
+                if (ret_os && !*ret_os)
+                    *ret_os = os;
 
                 osinfo_list_add(OSINFO_LIST(matched_media), OSINFO_ENTITY(os_media));
-                break;
+                useFallback = FALSE;
+                matched = TRUE;
+                if (onlyFirstMatch)
+                    break;
             }
         }
 
         g_list_free(medias);
         g_object_unref(media_list);
 
-        if (*ret_os)
-            return TRUE;
+        if (useFallback && haveFallback)
+            *fallback_oss = g_list_prepend(*fallback_oss, os);
+        if (onlyFirstMatch && matched)
+            break;
     }
 
-    return FALSE;
+    return matched;
 }
 
 static gboolean
 osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
                                        OsinfoMedia *media,
                                        OsinfoMediaList *matched_media,
+                                       gboolean onlyFirstMatch,
                                        OsinfoOs **matched_os)
 {
     GList *oss = NULL;
@@ -613,11 +643,30 @@ osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
     g_return_val_if_fail(media != NULL, FALSE);
 
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    if (compare_media(media, oss, matched_media, matched_os, &fallback_oss))
+
+    /*
+     * If we're looking for the first match only:
+     *
+     *   - Try to get a preferred match
+     *   - If that doesn't work, then try fallback matches
+     *
+     * If we're looking for all matches:
+     *
+     *   - Add all preferred matches first
+     *   - Add remaining fallback matches secon
+     *
+     * This ensures that if the caller requests all matches
+     * but then blindly picks the first match, they will
+     * not accidentally get a fallback match when a preferred
+     * match was available.
+     */
+    if (compare_media(media, oss, matched_media,
+                      onlyFirstMatch, matched_os, &fallback_oss))
         matched = TRUE;
 
-    if (!matched &&
-        compare_media(media, fallback_oss, matched_media, matched_os, NULL))
+    if ((!onlyFirstMatch || !matched) &&
+        compare_media(media, fallback_oss, matched_media,
+                      onlyFirstMatch, matched_os, NULL))
         matched = TRUE;
 
     g_list_free(oss);
@@ -645,7 +694,7 @@ OsinfoOs *osinfo_db_guess_os_from_media(OsinfoDb *db,
     g_autoptr(OsinfoMediaList) all_matched_media = osinfo_medialist_new();
     OsinfoOs *ret;
 
-    if (!osinfo_db_guess_os_from_media_internal(db, media, all_matched_media, &ret))
+    if (!osinfo_db_guess_os_from_media_internal(db, media, all_matched_media, TRUE, &ret))
         return NULL;
 
     if (matched_media) {
@@ -762,7 +811,7 @@ gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
     if (!osinfo_db_guess_os_from_media_internal(db, media, all_matched_media,
-                                                &matched_os)) {
+                                                TRUE, &matched_os)) {
         return FALSE;
     }
 
