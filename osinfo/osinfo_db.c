@@ -813,29 +813,34 @@ static gboolean compare_tree(OsinfoTree *tree,
     return FALSE;
 }
 
-static OsinfoOs *
+static gboolean
 osinfo_db_guess_os_from_tree_internal(OsinfoDb *db,
                                       OsinfoTree *tree,
+                                      OsinfoOs **matched_os,
                                       OsinfoTree **matched_tree)
 {
-    OsinfoOs *ret = NULL;
     GList *oss = NULL;
     GList *fallback_oss = NULL;
+    gboolean matched = FALSE;
 
-    g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
-    g_return_val_if_fail(tree != NULL, NULL);
+    if (matched_os)
+        *matched_os = NULL;
+
+    g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
+    g_return_val_if_fail(tree != NULL, FALSE);
 
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    if (compare_tree(tree, oss, &ret, matched_tree, &fallback_oss))
-        goto end;
+    if (compare_tree(tree, oss, matched_os, matched_tree, &fallback_oss))
+        matched = TRUE;
 
-    compare_tree(tree, fallback_oss, &ret, matched_tree, NULL);
+    if (!matched &&
+        compare_tree(tree, fallback_oss, matched_os, matched_tree, NULL))
+        matched = TRUE;
 
- end:
     g_list_free(oss);
     g_list_free(fallback_oss);
 
-    return ret;
+    return matched;
 }
 
 /**
@@ -854,7 +859,12 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
                                        OsinfoTree *tree,
                                        OsinfoTree **matched_tree)
 {
-    return osinfo_db_guess_os_from_tree_internal(db, tree, matched_tree);
+    OsinfoOs *ret;
+
+    if (!osinfo_db_guess_os_from_tree_internal(db, tree, &ret, matched_tree))
+        return NULL;
+
+    return ret;
 }
 
 static void fill_tree(OsinfoDb *db, OsinfoTree *tree,
@@ -953,9 +963,9 @@ gboolean osinfo_db_identify_tree(OsinfoDb *db,
     g_return_val_if_fail(OSINFO_IS_TREE(tree), FALSE);
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
-    matched_os = osinfo_db_guess_os_from_tree_internal(db, tree,
-                                                       &matched_tree);
-    if (matched_os == NULL) {
+    if (!osinfo_db_guess_os_from_tree_internal(db, tree,
+                                               &matched_os,
+                                               &matched_tree)) {
         return FALSE;
     }
 
