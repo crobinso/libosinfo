@@ -18,15 +18,12 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <osinfo/osinfo_install_script.h>
 #include <osinfo/osinfo_avatar_format.h>
-
-#ifndef __OSINFO_INSTALL_SCRIPT_PRIVATE_H__
-# define __OSINFO_INSTALL_SCRIPT_PRIVATE_H__
 
 void osinfo_install_script_add_config_param(OsinfoInstallScript *script, OsinfoInstallConfigParam *param);
 
 void osinfo_install_script_set_avatar_format(OsinfoInstallScript *script,
                                              OsinfoAvatarFormat *avatar);
-
-#endif /* __OSINFO_INSTALL_SCRIPT_PRIVATE_H__ */

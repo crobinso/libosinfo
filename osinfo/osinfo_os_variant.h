@@ -18,25 +18,22 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 
-#ifndef __OSINFO_OS_VARIANT_H__
-# define __OSINFO_OS_VARIANT_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_OS_VARIANT (osinfo_os_variant_get_type ())
+#define OSINFO_TYPE_OS_VARIANT (osinfo_os_variant_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOsVariant,
                                            osinfo_os_variant,
                                            OSINFO,
                                            OS_VARIANT,
                                            OsinfoEntity)
 
-# define OSINFO_OS_VARIANT_PROP_NAME "name"
+#define OSINFO_OS_VARIANT_PROP_NAME "name"
 
 OsinfoOsVariant *osinfo_os_variant_new(const gchar *id);
 const gchar *osinfo_os_variant_get_name(OsinfoOsVariant *variant);
-
-#endif /* __OSINFO_OS_VARIANT_H__ */

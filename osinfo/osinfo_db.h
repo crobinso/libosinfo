@@ -18,6 +18,8 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_platform.h>
@@ -27,12 +29,9 @@
 #include <osinfo/osinfo_oslist.h>
 #include <osinfo/osinfo_devicelist.h>
 
-#ifndef __OSINFO_DB_H__
-# define __OSINFO_DB_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DB (osinfo_db_get_type ())
+#define OSINFO_TYPE_DB (osinfo_db_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDb,
                                            osinfo_db,
                                            OSINFO,
@@ -97,6 +96,3 @@ OsinfoOsList *osinfo_db_unique_values_for_os_relationship(OsinfoDb *db, OsinfoPr
 
 // Get me all Platforms that 'upgrade' another Platform (or whatever relationship is specified)
 OsinfoPlatformList *osinfo_db_unique_values_for_platform_relationship(OsinfoDb *db, OsinfoProductRelationship relshp);
-
-
-#endif /* __OSINFO_DB_H__ */

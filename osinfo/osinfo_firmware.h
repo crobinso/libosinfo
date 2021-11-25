@@ -18,29 +18,26 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 
-#ifndef __OSINFO_FIRMWARE_H__
-# define __OSINFO_FIRMWARE_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_FIRMWARE (osinfo_firmware_get_type ())
+#define OSINFO_TYPE_FIRMWARE (osinfo_firmware_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoFirmware,
                                            osinfo_firmware,
                                            OSINFO,
                                            FIRMWARE,
                                            OsinfoEntity)
 
-# define OSINFO_FIRMWARE_PROP_ARCHITECTURE   "architecture"
-# define OSINFO_FIRMWARE_PROP_TYPE           "type"
-# define OSINFO_FIRMWARE_PROP_SUPPORTED      "supported"
+#define OSINFO_FIRMWARE_PROP_ARCHITECTURE   "architecture"
+#define OSINFO_FIRMWARE_PROP_TYPE           "type"
+#define OSINFO_FIRMWARE_PROP_SUPPORTED      "supported"
 
 OsinfoFirmware *osinfo_firmware_new(const gchar *id, const gchar *architecture, const gchar *type);
 const gchar *osinfo_firmware_get_architecture(OsinfoFirmware *firmware);
 const gchar *osinfo_firmware_get_firmware_type(OsinfoFirmware *firmware);
 gboolean osinfo_firmware_is_supported(OsinfoFirmware *firmware);
-
-#endif /* __OSINFO_FIRMWARE_H__ */

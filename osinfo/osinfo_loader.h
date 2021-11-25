@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_db.h>
 
-#ifndef __OSINFO_LOADER_H__
-# define __OSINFO_LOADER_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_LOADER (osinfo_loader_get_type ())
+#define OSINFO_TYPE_LOADER (osinfo_loader_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoLoader,
                                            osinfo_loader,
                                            OSINFO,
@@ -49,7 +48,7 @@ typedef enum {
  *
  * Error domain for generic libosinfo errors
  */
-# define OSINFO_ERROR osinfo_error_quark()
+#define OSINFO_ERROR osinfo_error_quark()
 GQuark osinfo_error_quark(void);
 
 OsinfoLoader *osinfo_loader_new(void);
@@ -62,6 +61,3 @@ void osinfo_loader_process_default_path(OsinfoLoader *loader, GError **err);
 void osinfo_loader_process_system_path(OsinfoLoader *loader, GError **err);
 void osinfo_loader_process_local_path(OsinfoLoader *loader, GError **err);
 void osinfo_loader_process_user_path(OsinfoLoader *loader, GError **err);
-
-
-#endif /* __OSINFO_LOADER_H__ */

@@ -18,16 +18,15 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_platform.h>
 #include <osinfo/osinfo_os.h>
 
-#ifndef __OSINFO_DEPLOYMENT_H__
-# define __OSINFO_DEPLOYMENT_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DEPLOYMENT (osinfo_deployment_get_type ())
+#define OSINFO_TYPE_DEPLOYMENT (osinfo_deployment_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeployment,
                                            osinfo_deployment,
                                            OSINFO,
@@ -47,5 +46,3 @@ OsinfoDeviceLink *osinfo_deployment_get_preferred_device_link(OsinfoDeployment *
 OsinfoDeviceList *osinfo_deployment_get_devices(OsinfoDeployment *deployment, OsinfoFilter *filter);
 OsinfoDeviceLinkList *osinfo_deployment_get_device_links(OsinfoDeployment *deployment, OsinfoFilter *filter);
 OsinfoDeviceLink *osinfo_deployment_add_device(OsinfoDeployment *deployment, OsinfoDevice *dev);
-
-#endif /* __OSINFO_DEPLOYMENT_H__ */

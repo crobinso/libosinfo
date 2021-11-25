@@ -18,18 +18,17 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_product.h>
 #include <osinfo/osinfo_device.h>
 #include <osinfo/osinfo_devicelist.h>
 
-#ifndef __OSINFO_PLATFORM_H__
-# define __OSINFO_PLATFORM_H__
-
 /*
  * Type macros.
  */
-# define OSINFO_TYPE_PLATFORM (osinfo_platform_get_type ())
+#define OSINFO_TYPE_PLATFORM (osinfo_platform_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoPlatform,
                                            osinfo_platform,
                                            OSINFO,
@@ -43,5 +42,3 @@ OsinfoDeviceList *osinfo_platform_get_all_devices(OsinfoPlatform *platform, Osin
 OsinfoDeviceLinkList *osinfo_platform_get_device_links(OsinfoPlatform *platform, OsinfoFilter *filter);
 
 OsinfoDeviceLink *osinfo_platform_add_device(OsinfoPlatform *platform, OsinfoDevice *dev);
-
-#endif /* __OSINFO_PLATFORM_H__ */

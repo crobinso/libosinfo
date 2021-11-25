@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 
-#ifndef __OSINFO_DATAMAP_H__
-# define __OSINFO_DATAMAP_H__
+#include <osinfo/osinfo_entity.h>
+#include "osinfo/osinfo_macros.h"
 
-# include <osinfo/osinfo_entity.h>
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DATAMAP (osinfo_datamap_get_type ())
+#define OSINFO_TYPE_DATAMAP (osinfo_datamap_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDatamap,
                                            osinfo_datamap,
                                            OSINFO,
@@ -43,5 +42,3 @@ const gchar *osinfo_datamap_lookup(OsinfoDatamap *map,
                                    const gchar *inval);
 const gchar *osinfo_datamap_reverse_lookup(OsinfoDatamap *map,
                                            const gchar *outval);
-
-#endif /* __OSINFO_DATAMAP_H__ */

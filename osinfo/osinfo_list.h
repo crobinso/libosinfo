@@ -18,13 +18,12 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __OSINFO_LIST_H__
-# define __OSINFO_LIST_H__
+#pragma once
 
-# include <osinfo/osinfo_filter.h>
-# include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_filter.h>
+#include "osinfo/osinfo_macros.h"
 
-# define OSINFO_TYPE_LIST (osinfo_list_get_type ())
+#define OSINFO_TYPE_LIST (osinfo_list_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoList,
                                            osinfo_list,
                                            OSINFO,
@@ -48,5 +47,3 @@ OsinfoList *osinfo_list_new_copy(OsinfoList *source);
 OsinfoList *osinfo_list_new_filtered(OsinfoList *source, OsinfoFilter *filter);
 OsinfoList *osinfo_list_new_intersection(OsinfoList *sourceOne, OsinfoList *sourceTwo);
 OsinfoList *osinfo_list_new_union(OsinfoList *sourceOne, OsinfoList *sourceTwo);
-
-#endif /* __OSINFO_LIST_H__ */

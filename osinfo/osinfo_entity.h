@@ -18,21 +18,20 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 
-#ifndef __OSINFO_ENTITY_H__
-# define __OSINFO_ENTITY_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_ENTITY (osinfo_entity_get_type ())
+#define OSINFO_TYPE_ENTITY (osinfo_entity_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoEntity,
                                            osinfo_entity,
                                            OSINFO,
                                            ENTITY,
                                            GObject)
 
-# define OSINFO_ENTITY_PROP_ID "id"
+#define OSINFO_ENTITY_PROP_ID "id"
 
 const gchar *osinfo_entity_get_id(OsinfoEntity *entity);
 
@@ -57,5 +56,3 @@ void osinfo_entity_set_param_int64(OsinfoEntity *entity, const gchar *key, gint6
 void osinfo_entity_set_param_enum(OsinfoEntity *entity, const gchar *key, gint value, GType enum_type);
 void osinfo_entity_add_param(OsinfoEntity *entity, const gchar *key, const gchar *value);
 void osinfo_entity_clear_param(OsinfoEntity *entity, const gchar *key);
-
-#endif /* __OSINFO_ENTITY_H__ */

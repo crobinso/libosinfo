@@ -18,28 +18,25 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_entity.h>
 
-#ifndef __OSINFO_DEVICELINK_H__
-# define __OSINFO_DEVICELINK_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DEVICELINK (osinfo_devicelink_get_type ())
+#define OSINFO_TYPE_DEVICELINK (osinfo_devicelink_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLink,
                                            osinfo_devicelink,
                                            OSINFO,
                                            DEVICELINK,
                                            OsinfoEntity)
 
-# define OSINFO_DEVICELINK_PROP_DRIVER   "driver"
-# define OSINFO_DEVICELINK_PROP_SUPPORTED  "supported"
+#define OSINFO_DEVICELINK_PROP_DRIVER   "driver"
+#define OSINFO_DEVICELINK_PROP_SUPPORTED  "supported"
 
 OsinfoDeviceLink *osinfo_devicelink_new(OsinfoDevice *target);
 
 OsinfoDevice *osinfo_devicelink_get_target(OsinfoDeviceLink *link);
 
 const gchar *osinfo_devicelink_get_driver(OsinfoDeviceLink *link);
-
-#endif /* __OSINFO_DEVICELINK_H__ */

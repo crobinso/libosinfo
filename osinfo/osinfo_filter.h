@@ -18,13 +18,12 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_entity.h>
 
-#ifndef __OSINFO_FILTER_H__
-# define __OSINFO_FILTER_H__
-
-# define OSINFO_TYPE_FILTER (osinfo_filter_get_type ())
+#define OSINFO_TYPE_FILTER (osinfo_filter_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE(OsinfoFilter,
                                  osinfo_filter,
                                  OSINFO,
@@ -54,5 +53,3 @@ GList *osinfo_filter_get_constraint_values(OsinfoFilter *filter,
 
 gboolean osinfo_filter_matches(OsinfoFilter *filter,
                                OsinfoEntity *entity);
-
-#endif /* __OSINFO_FILTER_H__ */

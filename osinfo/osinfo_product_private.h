@@ -18,10 +18,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include "osinfo_product.h"
+#pragma once
 
-#ifndef __OSINFO_PRODUCT_PRIVATE_H__
-# define __OSINFO_PRODUCT_PRIVATE_H__
+#include "osinfo_product.h"
 
 
 typedef void (*OsinfoProductForeach)(OsinfoProduct *product, gpointer user_data);
@@ -36,5 +35,3 @@ void osinfo_product_foreach_related(OsinfoProduct *product,
                                     unsigned int flags,
                                     OsinfoProductForeach foreach_func,
                                     gpointer user_data);
-
-#endif /* __OSINFO_PRODUCT_PRIVATE_H__ */

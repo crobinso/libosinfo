@@ -18,23 +18,22 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 
-#ifndef __OSINFO_INSTALL_CONFIG_PARAM_H__
-# define __OSINFO_INSTALL_CONFIG_PARAM_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_INSTALL_CONFIG_PARAM (osinfo_install_config_param_get_type ())
+#define OSINFO_TYPE_INSTALL_CONFIG_PARAM (osinfo_install_config_param_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfigParam,
                                            osinfo_install_config_param,
                                            OSINFO,
                                            INSTALL_CONFIG_PARAM,
                                            OsinfoEntity)
 
-# define OSINFO_INSTALL_CONFIG_PARAM_PROP_DATAMAP "value-map"
-# define OSINFO_INSTALL_CONFIG_PARAM_PROP_NAME    "name"
-# define OSINFO_INSTALL_CONFIG_PARAM_PROP_POLICY  "policy"
+#define OSINFO_INSTALL_CONFIG_PARAM_PROP_DATAMAP "value-map"
+#define OSINFO_INSTALL_CONFIG_PARAM_PROP_NAME    "name"
+#define OSINFO_INSTALL_CONFIG_PARAM_PROP_POLICY  "policy"
 
 /**
  * OsinfoInstallConfigParamPolicy:
@@ -64,6 +63,3 @@ gboolean osinfo_install_config_param_is_optional(OsinfoInstallConfigParam *confi
 
 void osinfo_install_config_param_set_value_map(OsinfoInstallConfigParam *config_param, OsinfoDatamap *datamap);
 OsinfoDatamap *osinfo_install_config_param_get_value_map(OsinfoInstallConfigParam *config_param);
-
-
-#endif /* __OSINFO_INSTALL_CONFIG_PARAM_H__ */

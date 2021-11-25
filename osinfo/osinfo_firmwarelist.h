@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_FIRMWARELIST_H__
-# define __OSINFO_FIRMWARELIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_FIRMWARELIST (osinfo_firmwarelist_get_type ())
+#define OSINFO_TYPE_FIRMWARELIST (osinfo_firmwarelist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoFirmwareList,
                                            osinfo_firmwarelist,
                                            OSINFO,
@@ -34,5 +33,3 @@ OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoFirmwareList,
                                            OsinfoList)
 
 OsinfoFirmwareList *osinfo_firmwarelist_new(void);
-
-#endif /* __OSINFO_FIRMWARELIST_H__ */

@@ -18,13 +18,12 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_MEDIALIST_H__
-# define __OSINFO_MEDIALIST_H__
-
-# define OSINFO_TYPE_MEDIALIST (osinfo_medialist_get_type ())
+#define OSINFO_TYPE_MEDIALIST (osinfo_medialist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoMediaList,
                                            osinfo_medialist,
                                            OSINFO,
@@ -40,5 +39,3 @@ G_DEPRECATED_FOR(osinfo_list_new_intersection)
 OsinfoMediaList *osinfo_medialist_new_intersection(OsinfoMediaList *sourceOne, OsinfoMediaList *sourceTwo);
 G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoMediaList *osinfo_medialist_new_union(OsinfoMediaList *sourceOne, OsinfoMediaList *sourceTwo);
-
-#endif /* __OSINFO_MEDIALIST_H__ */

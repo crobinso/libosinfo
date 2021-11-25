@@ -18,6 +18,8 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_product.h>
 #include <osinfo/osinfo_device.h>
@@ -33,23 +35,20 @@
 #include <osinfo/osinfo_image.h>
 #include <osinfo/osinfo_imagelist.h>
 
-#ifndef __OSINFO_OS_H__
-# define __OSINFO_OS_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_OS (osinfo_os_get_type ())
+#define OSINFO_TYPE_OS (osinfo_os_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOs,
                                            osinfo_os,
                                            OSINFO,
                                            OS,
                                            OsinfoProduct)
 
-# define OSINFO_OS_PROP_FAMILY                 "family"
-# define OSINFO_OS_PROP_DISTRO                 "distro"
-# define OSINFO_OS_PROP_RELEASE_STATUS         "release-status"
-# define OSINFO_OS_PROP_KERNEL_URL_ARGUMENT    "kernel-url-argument"
-# define OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME   "cloud-image-username"
+#define OSINFO_OS_PROP_FAMILY                 "family"
+#define OSINFO_OS_PROP_DISTRO                 "distro"
+#define OSINFO_OS_PROP_RELEASE_STATUS         "release-status"
+#define OSINFO_OS_PROP_KERNEL_URL_ARGUMENT    "kernel-url-argument"
+#define OSINFO_OS_PROP_CLOUD_IMAGE_USERNAME   "cloud-image-username"
 
 /**
  * OsinfoReleaseStatus:
@@ -117,5 +116,3 @@ OsinfoFirmwareList *osinfo_os_get_complete_firmware_list(OsinfoOs *os, OsinfoFil
 void osinfo_os_add_firmware(OsinfoOs *os, OsinfoFirmware *firmware);
 
 const gchar *osinfo_os_get_cloud_image_username(OsinfoOs *os);
-
-#endif /* __OSINFO_OS_H__ */

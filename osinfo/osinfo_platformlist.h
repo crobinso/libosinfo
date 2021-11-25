@@ -18,14 +18,13 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_filter.h>
 #include <osinfo/osinfo_productlist.h>
 
-#ifndef __OSINFO_PLATFORMLIST_H__
-# define __OSINFO_PLATFORMLIST_H__
-
-# define OSINFO_TYPE_PLATFORMLIST (osinfo_platformlist_get_type ())
+#define OSINFO_TYPE_PLATFORMLIST (osinfo_platformlist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoPlatformList,
                                            osinfo_platformlist,
                                            OSINFO,
@@ -41,5 +40,3 @@ G_DEPRECATED_FOR(osinfo_list_new_intersection)
 OsinfoPlatformList *osinfo_platformlist_new_intersection(OsinfoPlatformList *sourceOne, OsinfoPlatformList *sourceTwo);
 G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoPlatformList *osinfo_platformlist_new_union(OsinfoPlatformList *sourceOne, OsinfoPlatformList *sourceTwo);
-
-#endif /* __OSINFO_PLATFORMLIST_H__ */

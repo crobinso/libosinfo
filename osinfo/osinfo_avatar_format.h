@@ -18,24 +18,23 @@
  * <http://www.gnu.org/licenses/>
  */
 
+#pragma once
+
 #include <glib-object.h>
 
-#ifndef __OSINFO_AVATAR_FORMAT_H__
-# define __OSINFO_AVATAR_FORMAT_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_AVATAR_FORMAT (osinfo_avatar_format_get_type ())
+#define OSINFO_TYPE_AVATAR_FORMAT (osinfo_avatar_format_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoAvatarFormat,
                                            osinfo_avatar_format,
                                            OSINFO,
                                            AVATAR_FORMAT,
                                            OsinfoEntity)
 
-# define OSINFO_AVATAR_FORMAT_PROP_MIME_TYPE "mime-type"
-# define OSINFO_AVATAR_FORMAT_PROP_WIDTH     "width"
-# define OSINFO_AVATAR_FORMAT_PROP_HEIGHT    "height"
-# define OSINFO_AVATAR_FORMAT_PROP_ALPHA     "alpha"
+#define OSINFO_AVATAR_FORMAT_PROP_MIME_TYPE "mime-type"
+#define OSINFO_AVATAR_FORMAT_PROP_WIDTH     "width"
+#define OSINFO_AVATAR_FORMAT_PROP_HEIGHT    "height"
+#define OSINFO_AVATAR_FORMAT_PROP_ALPHA     "alpha"
 
 OsinfoAvatarFormat *osinfo_avatar_format_new(void);
 
@@ -43,5 +42,3 @@ GList *osinfo_avatar_format_get_mime_types(OsinfoAvatarFormat *avatar);
 gint osinfo_avatar_format_get_width(OsinfoAvatarFormat *avatar);
 gint osinfo_avatar_format_get_height(OsinfoAvatarFormat *avatar);
 gboolean osinfo_avatar_format_get_alpha(OsinfoAvatarFormat *avatar);
-
-#endif /* __OSINFO_AVATAR_FORMAT_H__ */

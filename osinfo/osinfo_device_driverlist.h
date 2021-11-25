@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_DEVICE_DRIVERLIST_H__
-# define __OSINFO_DEVICE_DRIVERLIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DEVICE_DRIVERLIST (osinfo_device_driverlist_get_type ())
+#define OSINFO_TYPE_DEVICE_DRIVERLIST (osinfo_device_driverlist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceDriverList,
                                            osinfo_device_driverlist,
                                            OSINFO,
@@ -34,5 +33,3 @@ OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceDriverList,
                                            OsinfoList)
 
 OsinfoDeviceDriverList *osinfo_device_driverlist_new(void);
-
-#endif /* __OSINFO_DEVICE_DRIVERLIST_H__ */

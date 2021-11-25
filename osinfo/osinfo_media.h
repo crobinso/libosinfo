@@ -18,20 +18,19 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 #include <osinfo/osinfo_os_variantlist.h>
 
-#ifndef __OSINFO_MEDIA_H__
-# define __OSINFO_MEDIA_H__
-
-# include "osinfo/osinfo_macros.h"
+#include "osinfo/osinfo_macros.h"
 
 GQuark
 osinfo_media_error_quark (void) G_GNUC_CONST;
 
-# define OSINFO_MEDIA_ERROR (osinfo_media_error_quark ())
+#define OSINFO_MEDIA_ERROR (osinfo_media_error_quark ())
 
 /**
  * OsinfoMediaError:
@@ -67,32 +66,32 @@ typedef enum {
     OSINFO_MEDIA_DETECT_REQUIRE_BOOTABLE = 1 << 0,
 } OsinfoMediaDetectFlags;
 
-# define OSINFO_TYPE_MEDIA (osinfo_media_get_type ())
+#define OSINFO_TYPE_MEDIA (osinfo_media_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoMedia,
                                            osinfo_media,
                                            OSINFO,
                                            MEDIA,
                                            OsinfoEntity)
 
-# define OSINFO_MEDIA_PROP_ARCHITECTURE   "architecture"
-# define OSINFO_MEDIA_PROP_URL            "url"
-# define OSINFO_MEDIA_PROP_VOLUME_ID      "volume-id"
-# define OSINFO_MEDIA_PROP_SYSTEM_ID      "system-id"
-# define OSINFO_MEDIA_PROP_PUBLISHER_ID   "publisher-id"
-# define OSINFO_MEDIA_PROP_APPLICATION_ID "application-id"
-# define OSINFO_MEDIA_PROP_KERNEL         "kernel"
-# define OSINFO_MEDIA_PROP_INITRD         "initrd"
-# define OSINFO_MEDIA_PROP_LIVE           "live"
-# define OSINFO_MEDIA_PROP_INSTALLER      "installer"
-# define OSINFO_MEDIA_PROP_INSTALLER_REBOOTS "installer-reboots"
-# define OSINFO_MEDIA_PROP_LANG           "l10n-language"
-# define OSINFO_MEDIA_PROP_LANG_REGEX     "l10n-language-regex"
-# define OSINFO_MEDIA_PROP_LANG_MAP       "l10n-language-map"
-# define OSINFO_MEDIA_PROP_VARIANT        "variant"
-# define OSINFO_MEDIA_PROP_VOLUME_SIZE    "volume-size"
-# define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
-# define OSINFO_MEDIA_PROP_INSTALLER_SCRIPT "installer-script"
-# define OSINFO_MEDIA_PROP_BOOTABLE        "bootable"
+#define OSINFO_MEDIA_PROP_ARCHITECTURE   "architecture"
+#define OSINFO_MEDIA_PROP_URL            "url"
+#define OSINFO_MEDIA_PROP_VOLUME_ID      "volume-id"
+#define OSINFO_MEDIA_PROP_SYSTEM_ID      "system-id"
+#define OSINFO_MEDIA_PROP_PUBLISHER_ID   "publisher-id"
+#define OSINFO_MEDIA_PROP_APPLICATION_ID "application-id"
+#define OSINFO_MEDIA_PROP_KERNEL         "kernel"
+#define OSINFO_MEDIA_PROP_INITRD         "initrd"
+#define OSINFO_MEDIA_PROP_LIVE           "live"
+#define OSINFO_MEDIA_PROP_INSTALLER      "installer"
+#define OSINFO_MEDIA_PROP_INSTALLER_REBOOTS "installer-reboots"
+#define OSINFO_MEDIA_PROP_LANG           "l10n-language"
+#define OSINFO_MEDIA_PROP_LANG_REGEX     "l10n-language-regex"
+#define OSINFO_MEDIA_PROP_LANG_MAP       "l10n-language-map"
+#define OSINFO_MEDIA_PROP_VARIANT        "variant"
+#define OSINFO_MEDIA_PROP_VOLUME_SIZE    "volume-size"
+#define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
+#define OSINFO_MEDIA_PROP_INSTALLER_SCRIPT "installer-script"
+#define OSINFO_MEDIA_PROP_BOOTABLE        "bootable"
 
 OsinfoMedia *osinfo_media_new(const gchar *id, const gchar *architecture);
 OsinfoMedia *osinfo_media_create_from_location(const gchar *location,
@@ -139,5 +138,3 @@ gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media);
 gboolean osinfo_media_supports_installer_script(OsinfoMedia *media);
 void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *script);
 OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media);
-
-#endif /* __OSINFO_MEDIA_H__ */

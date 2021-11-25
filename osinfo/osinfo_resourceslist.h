@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_RESOURCESLIST_H__
-# define __OSINFO_RESOURCESLIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_RESOURCESLIST (osinfo_resourceslist_get_type ())
+#define OSINFO_TYPE_RESOURCESLIST (osinfo_resourceslist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoResourcesList,
                                            osinfo_resourceslist,
                                            OSINFO,
@@ -48,5 +47,3 @@ G_DEPRECATED_FOR(osinfo_list_new_intersection)
 OsinfoResourcesList *osinfo_resourceslist_new_union
                                 (OsinfoResourcesList *sourceOne,
                                  OsinfoResourcesList *sourceTwo);
-
-#endif /* __OSINFO_RESOURCESLIST_H__ */

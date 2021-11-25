@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_OS_VARIANTLIST_H__
-# define __OSINFO_OS_VARIANTLIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_OS_VARIANTLIST (osinfo_os_variantlist_get_type ())
+#define OSINFO_TYPE_OS_VARIANTLIST (osinfo_os_variantlist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOsVariantList,
                                            osinfo_os_variantlist,
                                            OSINFO,
@@ -34,5 +33,3 @@ OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOsVariantList,
                                            OsinfoList)
 
 OsinfoOsVariantList *osinfo_os_variantlist_new(void);
-
-#endif /* __OSINFO_OS_VARIANTLIST_H__ */

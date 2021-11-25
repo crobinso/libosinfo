@@ -18,26 +18,25 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 
-#ifndef __OSINFO_IMAGE_H__
-# define __OSINFO_IMAGE_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_IMAGE (osinfo_image_get_type ())
+#define OSINFO_TYPE_IMAGE (osinfo_image_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoImage,
                                            osinfo_image,
                                            OSINFO,
                                            IMAGE,
                                            OsinfoEntity)
 
-# define OSINFO_IMAGE_PROP_ARCHITECTURE      "architecture"
-# define OSINFO_IMAGE_PROP_FORMAT            "format"
-# define OSINFO_IMAGE_PROP_URL               "url"
-# define OSINFO_IMAGE_PROP_CLOUD_INIT        "cloud-init"
-# define OSINFO_IMAGE_PROP_VARIANT           "variant"
+#define OSINFO_IMAGE_PROP_ARCHITECTURE      "architecture"
+#define OSINFO_IMAGE_PROP_FORMAT            "format"
+#define OSINFO_IMAGE_PROP_URL               "url"
+#define OSINFO_IMAGE_PROP_CLOUD_INIT        "cloud-init"
+#define OSINFO_IMAGE_PROP_VARIANT           "variant"
 
 OsinfoImage *osinfo_image_new(const gchar *id, const gchar *architecture, const gchar *format);
 const gchar *osinfo_image_get_architecture(OsinfoImage *image);
@@ -47,5 +46,3 @@ gboolean osinfo_image_get_cloud_init(OsinfoImage *image);
 OsinfoOs *osinfo_image_get_os(OsinfoImage *image);
 void osinfo_image_set_os(OsinfoImage *image, OsinfoOs *os);
 OsinfoOsVariantList *osinfo_image_get_os_variants(OsinfoImage *image);
-
-#endif /* __OSINFO_IMAGE_H__ */

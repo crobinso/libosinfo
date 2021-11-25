@@ -18,12 +18,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <osinfo/osinfo_resources.h>
+#pragma once
 
-#ifndef __OSINFO_RESOURCES_PRIVATE_H__
-# define __OSINFO_RESOURCES_PRIVATE_H__
+#include <osinfo/osinfo_resources.h>
 
 void osinfo_resources_set_inherit(OsinfoResources *resources, gboolean inherit);
 gboolean osinfo_resources_get_inherit(OsinfoResources *resources);
-
-#endif /* __OSINFO_RESOURCES_PRIVATE_H__ */

@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_install_config_param.h>
 #include <osinfo/osinfo_avatar_format.h>
 
-#ifndef __OSINFO_INSTALL_SCRIPT_H__
-# define __OSINFO_INSTALL_SCRIPT_H__
-
-# define OSINFO_TYPE_INSTALL_SCRIPT (osinfo_install_script_get_type ())
+#define OSINFO_TYPE_INSTALL_SCRIPT (osinfo_install_script_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallScript,
                                            osinfo_install_script,
                                            OSINFO,
@@ -37,23 +36,23 @@ typedef struct _OsinfoOs        OsinfoOs;
 typedef struct _OsinfoMedia     OsinfoMedia;
 typedef struct _OsinfoTree      OsinfoTree;
 
-# define OSINFO_INSTALL_SCRIPT_PROFILE_JEOS    "jeos"
-# define OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP "desktop"
+#define OSINFO_INSTALL_SCRIPT_PROFILE_JEOS    "jeos"
+#define OSINFO_INSTALL_SCRIPT_PROFILE_DESKTOP "desktop"
 
-# define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_URI       "template-uri"
-# define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_DATA      "template-data"
-# define OSINFO_INSTALL_SCRIPT_PROP_PROFILE            "profile"
-# define OSINFO_INSTALL_SCRIPT_PROP_PRODUCT_KEY_FORMAT "product-key-format"
-# define OSINFO_INSTALL_SCRIPT_PROP_EXPECTED_FILENAME  "expected-filename"
-# define OSINFO_INSTALL_SCRIPT_PROP_PATH_FORMAT        "path-format"
-# define OSINFO_INSTALL_SCRIPT_PROP_CAN_PRE_INSTALL_DRIVERS "can-pre-install-drivers"
-# define OSINFO_INSTALL_SCRIPT_PROP_CAN_POST_INSTALL_DRIVERS "can-post-install-drivers"
-# define OSINFO_INSTALL_SCRIPT_PROP_NEEDS_INTERNET     "needs-internet"
-# define OSINFO_INSTALL_SCRIPT_PROP_PRE_INSTALL_DRIVERS_SIGNING_REQ "pre-install-drivers-signing-req"
-# define OSINFO_INSTALL_SCRIPT_PROP_POST_INSTALL_DRIVERS_SIGNING_REQ "post-install-drivers-signing-req"
-# define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
-# define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
-# define OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE "installation-source"
+#define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_URI       "template-uri"
+#define OSINFO_INSTALL_SCRIPT_PROP_TEMPLATE_DATA      "template-data"
+#define OSINFO_INSTALL_SCRIPT_PROP_PROFILE            "profile"
+#define OSINFO_INSTALL_SCRIPT_PROP_PRODUCT_KEY_FORMAT "product-key-format"
+#define OSINFO_INSTALL_SCRIPT_PROP_EXPECTED_FILENAME  "expected-filename"
+#define OSINFO_INSTALL_SCRIPT_PROP_PATH_FORMAT        "path-format"
+#define OSINFO_INSTALL_SCRIPT_PROP_CAN_PRE_INSTALL_DRIVERS "can-pre-install-drivers"
+#define OSINFO_INSTALL_SCRIPT_PROP_CAN_POST_INSTALL_DRIVERS "can-post-install-drivers"
+#define OSINFO_INSTALL_SCRIPT_PROP_NEEDS_INTERNET     "needs-internet"
+#define OSINFO_INSTALL_SCRIPT_PROP_PRE_INSTALL_DRIVERS_SIGNING_REQ "pre-install-drivers-signing-req"
+#define OSINFO_INSTALL_SCRIPT_PROP_POST_INSTALL_DRIVERS_SIGNING_REQ "post-install-drivers-signing-req"
+#define OSINFO_INSTALL_SCRIPT_PROP_INJECTION_METHOD "injection-method"
+#define OSINFO_INSTALL_SCRIPT_PROP_PREFERRED_INJECTION_METHOD "preferred-injection-method"
+#define OSINFO_INSTALL_SCRIPT_PROP_INSTALLATION_SOURCE "installation-source"
 
 /**
  * OsinfoPathFormat:
@@ -287,5 +286,3 @@ GFile *osinfo_install_script_generate_output_for_tree(OsinfoInstallScript *scrip
                                                       GFile *output_dir,
                                                       GCancellable *cancellable,
                                                       GError **error);
-
-#endif /* __OSINFO_INSTALL_SCRIPT_H__ */

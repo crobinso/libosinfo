@@ -32,16 +32,13 @@
    "copy.c:233: warning: ignoring return value of 'fchown',
    declared with attribute warn_unused_result".  */
 
-#ifndef _GL_IGNORE_VALUE_H
-# define _GL_IGNORE_VALUE_H
+#pragma once
 
 /* The __attribute__((__warn_unused_result__)) feature
    is available in gcc versions 3.4 and newer,
    while the typeof feature has been available since 2.7 at least.  */
-# if __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
-#  define ignore_value(x) ((void) (x))
-# else
-#  define ignore_value(x) (({ __typeof__ (x) __x = (x); (void) __x; }))
-# endif
-
+#if __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
+# define ignore_value(x) ((void) (x))
+#else
+# define ignore_value(x) (({ __typeof__ (x) __x = (x); (void) __x; }))
 #endif

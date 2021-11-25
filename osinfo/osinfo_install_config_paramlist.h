@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_INSTALL_CONFIG_PARAMLIST_H__
-# define __OSINFO_INSTALL_CONFIG_PARAMLIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST (osinfo_install_config_paramlist_get_type ())
+#define OSINFO_TYPE_INSTALL_CONFIG_PARAMLIST (osinfo_install_config_paramlist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfigParamList,
                                            osinfo_install_config_paramlist,
                                            OSINFO,
@@ -34,5 +33,3 @@ OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfigParamList,
                                            OsinfoList)
 
 OsinfoInstallConfigParamList *osinfo_install_config_paramlist_new(void);
-
-#endif /* __OSINFO_INSTALL_CONFIG_PARAMLIST_H__ */

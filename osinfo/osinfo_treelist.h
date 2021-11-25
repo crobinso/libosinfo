@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_TREELIST_H__
-# define __OSINFO_TREELIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_TREELIST (osinfo_treelist_get_type ())
+#define OSINFO_TYPE_TREELIST (osinfo_treelist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoTreeList,
                                            osinfo_treelist,
                                            OSINFO,
@@ -42,5 +41,3 @@ G_DEPRECATED_FOR(osinfo_list_new_intersection)
 OsinfoTreeList *osinfo_treelist_new_intersection(OsinfoTreeList *sourceOne, OsinfoTreeList *sourceTwo);
 G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoTreeList *osinfo_treelist_new_union(OsinfoTreeList *sourceOne, OsinfoTreeList *sourceTwo);
-
-#endif /* __OSINFO_TREELIST_H__ */

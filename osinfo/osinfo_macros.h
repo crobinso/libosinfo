@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __OSINFO_MACROS_H__
-# define __OSINFO_MACROS_H__
+#pragma once
 
-# include <glib-object.h>
+#include <glib-object.h>
 
-# define OSINFO_DECLARE_TYPE(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName)                \
+#define OSINFO_DECLARE_TYPE(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName)                \
     G_DECLARE_DERIVABLE_TYPE(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName)
 
-# define OSINFO_DECLARE_TYPE_WITH_PRIVATE(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName)  \
+#define OSINFO_DECLARE_TYPE_WITH_PRIVATE(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName)  \
   GType module_obj_name##_get_type (void);                                                               \
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS                                                                       \
   typedef struct _##ModuleObjName ModuleObjName;                                                         \
@@ -48,7 +47,7 @@
     return G_TYPE_INSTANCE_GET_CLASS (ptr, module_obj_name##_get_type (), ModuleObjName##Class); }       \
   G_GNUC_END_IGNORE_DEPRECATIONS
 
-# define OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName) \
+#define OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(ModuleObjName, module_obj_name, MODULE, OBJ_NAME, ParentName) \
   GType module_obj_name##_get_type (void);                                                                        \
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS                                                                                \
   typedef struct _##ModuleObjName ModuleObjName;                                                                  \
@@ -71,5 +70,3 @@
   G_GNUC_UNUSED static inline ModuleObjName##Class * MODULE##_##OBJ_NAME##_GET_CLASS (gpointer ptr) {             \
     return G_TYPE_INSTANCE_GET_CLASS (ptr, module_obj_name##_get_type (), ModuleObjName##Class); }                \
   G_GNUC_END_IGNORE_DEPRECATIONS
-
-#endif /* __OSINFO_MACROS_H__ */

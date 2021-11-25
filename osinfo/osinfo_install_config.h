@@ -18,54 +18,53 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 
-#ifndef __OSINFO_INSTALL_CONFIG_H__
-# define __OSINFO_INSTALL_CONFIG_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_INSTALL_CONFIG (osinfo_install_config_get_type ())
+#define OSINFO_TYPE_INSTALL_CONFIG (osinfo_install_config_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfig,
                                            osinfo_install_config,
                                            OSINFO,
                                            INSTALL_CONFIG,
                                            OsinfoEntity)
 
-# define OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH  "hardware-arch"
+#define OSINFO_INSTALL_CONFIG_PROP_HARDWARE_ARCH  "hardware-arch"
 
-# define OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE  "l10n-timezone"
-# define OSINFO_INSTALL_CONFIG_PROP_L10N_LANGUAGE  "l10n-language"
-# define OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD  "l10n-keyboard"
+#define OSINFO_INSTALL_CONFIG_PROP_L10N_TIMEZONE  "l10n-timezone"
+#define OSINFO_INSTALL_CONFIG_PROP_L10N_LANGUAGE  "l10n-language"
+#define OSINFO_INSTALL_CONFIG_PROP_L10N_KEYBOARD  "l10n-keyboard"
 
-# define OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD "admin-password"
+#define OSINFO_INSTALL_CONFIG_PROP_ADMIN_PASSWORD "admin-password"
 
-# define OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD  "user-password"
-# define OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN     "user-login"
-# define OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME  "user-realname"
-# define OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN "user-autologin"
-# define OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN     "user-admin"
+#define OSINFO_INSTALL_CONFIG_PROP_USER_PASSWORD  "user-password"
+#define OSINFO_INSTALL_CONFIG_PROP_USER_LOGIN     "user-login"
+#define OSINFO_INSTALL_CONFIG_PROP_USER_REALNAME  "user-realname"
+#define OSINFO_INSTALL_CONFIG_PROP_USER_AUTOLOGIN "user-autologin"
+#define OSINFO_INSTALL_CONFIG_PROP_USER_ADMIN     "user-admin"
 
-# define OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN      "reg-login"
-# define OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD   "reg-password"
-# define OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY "reg-product-key"
+#define OSINFO_INSTALL_CONFIG_PROP_REG_LOGIN      "reg-login"
+#define OSINFO_INSTALL_CONFIG_PROP_REG_PASSWORD   "reg-password"
+#define OSINFO_INSTALL_CONFIG_PROP_REG_PRODUCTKEY "reg-product-key"
 
-# define OSINFO_INSTALL_CONFIG_PROP_HOSTNAME    "hostname"
-# define OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK "target-disk"
-# define OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK "script-disk"
+#define OSINFO_INSTALL_CONFIG_PROP_HOSTNAME    "hostname"
+#define OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK "target-disk"
+#define OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK "script-disk"
 
-# define OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION "avatar-location"
-# define OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK     "avatar-disk"
+#define OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION "avatar-location"
+#define OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK     "avatar-disk"
 
-# define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_DISK "pre-install-drivers-disk"
-# define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_LOCATION "pre-install-drivers-location"
+#define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_DISK "pre-install-drivers-disk"
+#define OSINFO_INSTALL_CONFIG_PROP_PRE_INSTALL_DRIVERS_LOCATION "pre-install-drivers-location"
 
-# define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_DISK "post-install-drivers-disk"
-# define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_LOCATION "post-install-drivers-location"
+#define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_DISK "post-install-drivers-disk"
+#define OSINFO_INSTALL_CONFIG_PROP_POST_INSTALL_DRIVERS_LOCATION "post-install-drivers-location"
 
-# define OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING "driver-signing"
+#define OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING "driver-signing"
 
-# define OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL "installation-url"
+#define OSINFO_INSTALL_CONFIG_PROP_INSTALLATION_URL "installation-url"
 
 OsinfoInstallConfig *osinfo_install_config_new(const gchar *id);
 
@@ -174,5 +173,3 @@ gboolean osinfo_install_config_get_driver_signing(OsinfoInstallConfig *config);
 void osinfo_install_config_set_installation_url(OsinfoInstallConfig *config,
                                                 const gchar *url);
 const gchar *osinfo_install_config_get_installation_url(OsinfoInstallConfig *config);
-
-#endif /* __OSINFO_INSTALL_CONFIG_H__ */

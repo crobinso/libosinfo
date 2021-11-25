@@ -18,31 +18,30 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 #include <osinfo/osinfo_devicelist.h>
 
-#ifndef __OSINFO_DEVICE_DRIVER_H__
-# define __OSINFO_DEVICE_DRIVER_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DEVICE_DRIVER (osinfo_device_driver_get_type ())
+#define OSINFO_TYPE_DEVICE_DRIVER (osinfo_device_driver_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceDriver,
                                            osinfo_device_driver,
                                            OSINFO,
                                            DEVICE_DRIVER,
                                            OsinfoEntity)
 
-# define OSINFO_DEVICE_DRIVER_PROP_ARCHITECTURE    "arch"
-# define OSINFO_DEVICE_DRIVER_PROP_LOCATION        "location"
-# define OSINFO_DEVICE_DRIVER_PROP_PRE_INSTALLABLE "pre-installable"
-# define OSINFO_DEVICE_DRIVER_PROP_FILE            "file"
-# define OSINFO_DEVICE_DRIVER_PROP_DEVICE          "device"
-# define OSINFO_DEVICE_DRIVER_PROP_SIGNED          "signed"
-# define OSINFO_DEVICE_DRIVER_PROP_PRIORITY        "priority"
-# define OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY     50
+#define OSINFO_DEVICE_DRIVER_PROP_ARCHITECTURE    "arch"
+#define OSINFO_DEVICE_DRIVER_PROP_LOCATION        "location"
+#define OSINFO_DEVICE_DRIVER_PROP_PRE_INSTALLABLE "pre-installable"
+#define OSINFO_DEVICE_DRIVER_PROP_FILE            "file"
+#define OSINFO_DEVICE_DRIVER_PROP_DEVICE          "device"
+#define OSINFO_DEVICE_DRIVER_PROP_SIGNED          "signed"
+#define OSINFO_DEVICE_DRIVER_PROP_PRIORITY        "priority"
+#define OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY     50
 
 const gchar *osinfo_device_driver_get_architecture(OsinfoDeviceDriver *driver);
 const gchar *osinfo_device_driver_get_location(OsinfoDeviceDriver *driver);
@@ -51,5 +50,3 @@ GList *osinfo_device_driver_get_files(OsinfoDeviceDriver *driver);
 OsinfoDeviceList *osinfo_device_driver_get_devices(OsinfoDeviceDriver *driver);
 gboolean osinfo_device_driver_get_signed(OsinfoDeviceDriver *driver);
 gint64 osinfo_device_driver_get_priority(OsinfoDeviceDriver *driver);
-
-#endif /* __OSINFO_DEVICE_DRIVER_H__ */

@@ -18,16 +18,13 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __OSINFO_UTIL_PRIVATE_H__
-# define __OSINFO_UTIL_PRIVATE_H__
+#pragma once
 
-# include <glib.h>
+#include <glib.h>
 
 gboolean osinfo_util_requires_soup(const gchar *location);
 
-# if SOUP_MAJOR_VERSION < 3
-#  define soup_message_get_status(message) message->status_code
-#  define soup_message_get_response_headers(message) message->response_headers
-# endif
-
-#endif /* __OSINFO_UTIL_PRIVATE_H__ */
+#if SOUP_MAJOR_VERSION < 3
+# define soup_message_get_status(message) message->status_code
+# define soup_message_get_response_headers(message) message->response_headers
+#endif

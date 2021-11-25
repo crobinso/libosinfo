@@ -18,19 +18,18 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 
-#ifndef __OSINFO_TREE_H__
-# define __OSINFO_TREE_H__
-
-# include "osinfo/osinfo_macros.h"
+#include "osinfo/osinfo_macros.h"
 
 GQuark
 osinfo_tree_error_quark (void) G_GNUC_CONST;
 
-# define OSINFO_TREE_ERROR (osinfo_tree_error_quark ())
+#define OSINFO_TREE_ERROR (osinfo_tree_error_quark ())
 
 /**
  * OsinfoTreeError:
@@ -47,24 +46,24 @@ typedef enum {
     OSINFO_TREE_ERROR_NOT_SUPPORTED_PROTOCOL
 } OsinfoTreeError;
 
-# define OSINFO_TYPE_TREE (osinfo_tree_get_type ())
+#define OSINFO_TYPE_TREE (osinfo_tree_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoTree,
                                            osinfo_tree,
                                            OSINFO,
                                            TREE,
                                            OsinfoEntity)
 
-# define OSINFO_TREE_PROP_ARCHITECTURE     "architecture"
-# define OSINFO_TREE_PROP_URL              "url"
-# define OSINFO_TREE_PROP_TREEINFO_FAMILY  "treeinfo-family"
-# define OSINFO_TREE_PROP_TREEINFO_VARIANT "treeinfo-variant"
-# define OSINFO_TREE_PROP_TREEINFO_VERSION "treeinfo-version"
-# define OSINFO_TREE_PROP_TREEINFO_ARCH    "treeinfo-arch"
-# define OSINFO_TREE_PROP_BOOT_ISO         "boot-iso"
-# define OSINFO_TREE_PROP_KERNEL           "kernel"
-# define OSINFO_TREE_PROP_INITRD           "initrd"
-# define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
-# define OSINFO_TREE_PROP_VARIANT          "variant"
+#define OSINFO_TREE_PROP_ARCHITECTURE     "architecture"
+#define OSINFO_TREE_PROP_URL              "url"
+#define OSINFO_TREE_PROP_TREEINFO_FAMILY  "treeinfo-family"
+#define OSINFO_TREE_PROP_TREEINFO_VARIANT "treeinfo-variant"
+#define OSINFO_TREE_PROP_TREEINFO_VERSION "treeinfo-version"
+#define OSINFO_TREE_PROP_TREEINFO_ARCH    "treeinfo-arch"
+#define OSINFO_TREE_PROP_BOOT_ISO         "boot-iso"
+#define OSINFO_TREE_PROP_KERNEL           "kernel"
+#define OSINFO_TREE_PROP_INITRD           "initrd"
+#define OSINFO_TREE_PROP_HAS_TREEINFO     "has-treeinfo"
+#define OSINFO_TREE_PROP_VARIANT          "variant"
 
 OsinfoTree *osinfo_tree_new(const gchar *id, const gchar *architecture);
 OsinfoTree *osinfo_tree_create_from_location(const gchar *location,
@@ -97,5 +96,3 @@ OsinfoOs *osinfo_tree_get_os(OsinfoTree *tree);
 void osinfo_tree_set_os(OsinfoTree *tree, OsinfoOs *os);
 OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree);
 /* XXX Xen kernel/initrd paths ? */
-
-#endif /* __OSINFO_TREE_H__ */

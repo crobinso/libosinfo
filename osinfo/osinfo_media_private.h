@@ -18,12 +18,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <osinfo/osinfo_media.h>
+#pragma once
 
-#ifndef __OSINFO_MEDIA_PRIVATE_H__
-# define __OSINFO_MEDIA_PRIVATE_H__
+#include <osinfo/osinfo_media.h>
 
 void osinfo_media_set_languages(OsinfoMedia *media, GList *languages);
 void osinfo_media_set_os(OsinfoMedia *media, OsinfoOs *os);
-
-#endif /* __OSINFO_MEDIA_PRIVATE_H__ */

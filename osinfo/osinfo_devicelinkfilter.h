@@ -18,12 +18,11 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __OSINFO_DEVICELINKFILTER_H__
-# define __OSINFO_DEVICELINKFILTER_H__
+#pragma once
 
-# include "osinfo/osinfo_macros.h"
+#include "osinfo/osinfo_macros.h"
 
-# define OSINFO_TYPE_DEVICELINKFILTER (osinfo_devicelinkfilter_get_type ())
+#define OSINFO_TYPE_DEVICELINKFILTER (osinfo_devicelinkfilter_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLinkFilter,
                                            osinfo_devicelinkfilter,
                                            OSINFO,
@@ -33,5 +32,3 @@ OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLinkFilter,
 OsinfoDeviceLinkFilter *osinfo_devicelinkfilter_new(OsinfoFilter *filter);
 
 OsinfoFilter *osinfo_devicelinkfilter_get_target_filter(OsinfoDeviceLinkFilter *filter);
-
-#endif /* __OSINFO_DEVICELINKFILTER_H__ */

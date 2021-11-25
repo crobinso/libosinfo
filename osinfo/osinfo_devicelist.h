@@ -18,16 +18,15 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_filter.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_DEVICELIST_H__
-# define __OSINFO_DEVICELIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_DEVICELIST (osinfo_devicelist_get_type ())
+#define OSINFO_TYPE_DEVICELIST (osinfo_devicelist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceList,
                                            osinfo_devicelist,
                                            OSINFO,
@@ -43,5 +42,3 @@ G_DEPRECATED_FOR(osinfo_list_new_intersection)
 OsinfoDeviceList *osinfo_devicelist_new_intersection(OsinfoDeviceList *sourceOne, OsinfoDeviceList *sourceTwo);
 G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoDeviceList *osinfo_devicelist_new_union(OsinfoDeviceList *sourceOne, OsinfoDeviceList *sourceTwo);
-
-#endif /* __OSINFO_DEVICELIST_H__ */

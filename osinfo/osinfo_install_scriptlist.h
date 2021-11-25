@@ -18,15 +18,14 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#ifndef __OSINFO_INSTALL_SCRIPTLIST_H__
-# define __OSINFO_INSTALL_SCRIPTLIST_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_INSTALL_SCRIPTLIST (osinfo_install_scriptlist_get_type ())
+#define OSINFO_TYPE_INSTALL_SCRIPTLIST (osinfo_install_scriptlist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallScriptList,
                                            osinfo_install_scriptlist,
                                            OSINFO,
@@ -42,5 +41,3 @@ G_DEPRECATED_FOR(osinfo_list_new_intersection)
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_intersection(OsinfoInstallScriptList *sourceOne, OsinfoInstallScriptList *sourceTwo);
 G_DEPRECATED_FOR(osinfo_list_new_union)
 OsinfoInstallScriptList *osinfo_install_scriptlist_new_union(OsinfoInstallScriptList *sourceOne, OsinfoInstallScriptList *sourceTwo);
-
-#endif /* __OSINFO_INSTALL_SCRIPTLIST_H__ */

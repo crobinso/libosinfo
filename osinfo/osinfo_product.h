@@ -18,29 +18,28 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include <glib-object.h>
 #include <osinfo/osinfo_productlist.h>
 
-#ifndef __OSINFO_PRODUCT_H__
-# define __OSINFO_PRODUCT_H__
+#include "osinfo/osinfo_macros.h"
 
-# include "osinfo/osinfo_macros.h"
-
-# define OSINFO_TYPE_PRODUCT (osinfo_product_get_type ())
+#define OSINFO_TYPE_PRODUCT (osinfo_product_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoProduct,
                                            osinfo_product,
                                            OSINFO,
                                            PRODUCT,
                                            OsinfoEntity)
 
-# define OSINFO_PRODUCT_PROP_VENDOR       "vendor"
-# define OSINFO_PRODUCT_PROP_VERSION      "version"
-# define OSINFO_PRODUCT_PROP_SHORT_ID     "short-id"
-# define OSINFO_PRODUCT_PROP_NAME         "name"
-# define OSINFO_PRODUCT_PROP_RELEASE_DATE "release-date"
-# define OSINFO_PRODUCT_PROP_EOL_DATE     "eol-date"
-# define OSINFO_PRODUCT_PROP_CODENAME     "codename"
-# define OSINFO_PRODUCT_PROP_LOGO         "logo"
+#define OSINFO_PRODUCT_PROP_VENDOR       "vendor"
+#define OSINFO_PRODUCT_PROP_VERSION      "version"
+#define OSINFO_PRODUCT_PROP_SHORT_ID     "short-id"
+#define OSINFO_PRODUCT_PROP_NAME         "name"
+#define OSINFO_PRODUCT_PROP_RELEASE_DATE "release-date"
+#define OSINFO_PRODUCT_PROP_EOL_DATE     "eol-date"
+#define OSINFO_PRODUCT_PROP_CODENAME     "codename"
+#define OSINFO_PRODUCT_PROP_LOGO         "logo"
 
 typedef enum {
     OSINFO_PRODUCT_RELATIONSHIP_DERIVES_FROM,
@@ -65,5 +64,3 @@ GDate *osinfo_product_get_eol_date(OsinfoProduct *product);
 const gchar *osinfo_product_get_logo(OsinfoProduct *product);
 
 GList *osinfo_product_get_short_id_list(OsinfoProduct *product);
-
-#endif /* __OSINFO_PRODUCT_H__ */

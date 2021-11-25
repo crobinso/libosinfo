@@ -18,12 +18,11 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __OSINFO_PRODUCTFILTER_H__
-# define __OSINFO_PRODUCTFILTER_H__
+#pragma once
 
-# include "osinfo/osinfo_macros.h"
+#include "osinfo/osinfo_macros.h"
 
-# define OSINFO_TYPE_PRODUCTFILTER (osinfo_productfilter_get_type ())
+#define OSINFO_TYPE_PRODUCTFILTER (osinfo_productfilter_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoProductFilter,
                                            osinfo_productfilter,
                                            OSINFO,
@@ -39,5 +38,3 @@ void osinfo_productfilter_clear_product_constraints(OsinfoProductFilter *product
 GList *osinfo_productfilter_get_product_constraint_values(OsinfoProductFilter *productfilter, OsinfoProductRelationship relshp);
 
 void osinfo_productfilter_add_support_date_constraint(OsinfoProductFilter *productfilter, GDate *when);
-
-#endif /* __OSINFO_PRODUCTFILTER_H__ */
