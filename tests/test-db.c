@@ -472,6 +472,28 @@ test_identify_media(void)
     g_assert_false(osinfo_db_identify_media(db, media));
     g_object_unref(media);
 
+    media = osinfo_media_new("foo", "x86_64");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "DB Media");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+
+    g_assert_false(osinfo_db_identify_media(db, media));
+    g_object_unref(media);
+
+    media = osinfo_media_new("foo", NULL);
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_VOLUME_ID,
+                            "DB Media");
+    osinfo_entity_set_param(OSINFO_ENTITY(media),
+                            OSINFO_MEDIA_PROP_SYSTEM_ID,
+                            "LINUX");
+
+    g_assert_true(osinfo_db_identify_media(db, media));
+    g_object_unref(media);
+
     /* Matching against an "all" architecture */
     media = osinfo_media_new("foo", "x86_64");
     osinfo_entity_set_param(OSINFO_ENTITY(media),

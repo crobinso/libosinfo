@@ -224,11 +224,20 @@ test_matching(void)
                                                 NULL,
                                                 NULL,
                                                 1234568);
+    /* Mis-match on arch */
+    OsinfoMedia *reference6 = test_create_media("https://fedoraproject.org/fedora/35/media1",
+                                                "i686",
+                                                "Fedora 35",
+                                                NULL,
+                                                NULL,
+                                                NULL,
+                                                0);
     g_assert(osinfo_media_matches(unknown, reference1));
     g_assert(!osinfo_media_matches(unknown, reference2));
     g_assert(osinfo_media_matches(unknown, reference3));
     g_assert(osinfo_media_matches(unknown, reference4));
     g_assert(!osinfo_media_matches(unknown, reference5));
+    g_assert(!osinfo_media_matches(unknown, reference6));
 }
 
 int

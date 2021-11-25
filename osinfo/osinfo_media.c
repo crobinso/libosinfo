@@ -705,9 +705,10 @@ OsinfoMedia *osinfo_media_new(const gchar *id,
                          "id", id,
                          NULL);
 
-    osinfo_entity_set_param(OSINFO_ENTITY(media),
-                            OSINFO_MEDIA_PROP_ARCHITECTURE,
-                            architecture);
+    if (architecture)
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_ARCHITECTURE,
+                                architecture);
 
     return media;
 }
@@ -1880,12 +1881,14 @@ gboolean osinfo_media_is_bootable(OsinfoMedia *media)
  */
 gboolean osinfo_media_matches(OsinfoMedia *media, OsinfoMedia *reference)
 {
+    const gchar *media_arch = osinfo_media_get_architecture(media);
     const gchar *media_volume = osinfo_media_get_volume_id(media);
     const gchar *media_system = osinfo_media_get_system_id(media);
     const gchar *media_publisher = osinfo_media_get_publisher_id(media);
     const gchar *media_application = osinfo_media_get_application_id(media);
     gint64 media_vol_size = osinfo_media_get_volume_size(media);
 
+    const gchar *reference_arch = osinfo_media_get_architecture(reference);
     const gchar *reference_volume = osinfo_media_get_volume_id(reference);
     const gchar *reference_system = osinfo_media_get_system_id(reference);
     const gchar *reference_publisher = osinfo_media_get_publisher_id(reference);
@@ -1902,7 +1905,10 @@ gboolean osinfo_media_matches(OsinfoMedia *media, OsinfoMedia *reference)
     if (reference_vol_size <= 0)
         reference_vol_size = media_vol_size;
 
-    if (match_regex(reference_volume, media_volume) &&
+    if ((!media_arch ||
+         g_str_equal(reference_arch, media_arch) ||
+         g_str_equal(reference_arch, "all")) &&
+        match_regex(reference_volume, media_volume) &&
         match_regex(reference_application, media_application) &&
         match_regex(reference_system, media_system) &&
         match_regex(reference_publisher, media_publisher) &&
