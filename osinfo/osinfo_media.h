@@ -25,7 +25,7 @@
 #include <osinfo/osinfo_entity.h>
 #include <osinfo/osinfo_os_variantlist.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 GQuark
 osinfo_media_error_quark (void) G_GNUC_CONST;

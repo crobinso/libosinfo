@@ -23,7 +23,7 @@
 #include <glib-object.h>
 #include <osinfo/osinfo_entity.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_DEVICELINK (osinfo_devicelink_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLink,

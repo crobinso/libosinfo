@@ -35,7 +35,7 @@
 #include <osinfo/osinfo_image.h>
 #include <osinfo/osinfo_imagelist.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_OS (osinfo_os_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoOs,

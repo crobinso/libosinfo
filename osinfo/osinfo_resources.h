@@ -24,7 +24,7 @@
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_ARCHITECTURE_ALL "all"
 #define OSINFO_MEGAHERTZ        1000000

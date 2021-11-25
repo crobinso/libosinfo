@@ -22,7 +22,7 @@
 
 #include <glib-object.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_AVATAR_FORMAT (osinfo_avatar_format_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoAvatarFormat,

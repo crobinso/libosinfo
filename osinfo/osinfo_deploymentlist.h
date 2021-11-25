@@ -24,7 +24,7 @@
 #include <osinfo/osinfo_filter.h>
 #include <osinfo/osinfo_list.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_DEPLOYMENTLIST (osinfo_deploymentlist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeploymentList,

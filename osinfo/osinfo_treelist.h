@@ -23,7 +23,7 @@
 #include <glib-object.h>
 #include <osinfo/osinfo_list.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_TREELIST (osinfo_treelist_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoTreeList,

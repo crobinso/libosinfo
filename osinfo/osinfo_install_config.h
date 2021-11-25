@@ -22,7 +22,7 @@
 
 #include <glib-object.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_INSTALL_CONFIG (osinfo_install_config_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoInstallConfig,

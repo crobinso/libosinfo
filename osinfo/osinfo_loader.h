@@ -23,7 +23,7 @@
 #include <glib-object.h>
 #include <osinfo/osinfo_db.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_LOADER (osinfo_loader_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoLoader,

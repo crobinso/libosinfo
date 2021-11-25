@@ -24,7 +24,7 @@
 #include <gio/gio.h>
 #include <osinfo/osinfo_entity.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 GQuark
 osinfo_tree_error_quark (void) G_GNUC_CONST;

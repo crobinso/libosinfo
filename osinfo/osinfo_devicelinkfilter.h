@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_DEVICELINKFILTER (osinfo_devicelinkfilter_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeviceLinkFilter,

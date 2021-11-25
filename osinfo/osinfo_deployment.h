@@ -24,7 +24,7 @@
 #include <osinfo/osinfo_platform.h>
 #include <osinfo/osinfo_os.h>
 
-#include "osinfo/osinfo_macros.h"
+#include <osinfo/osinfo_macros.h>
 
 #define OSINFO_TYPE_DEPLOYMENT (osinfo_deployment_get_type ())
 OSINFO_DECLARE_TYPE_WITH_PRIVATE_AND_CLASS(OsinfoDeployment,
