@@ -547,8 +547,8 @@ static gint media_volume_compare(gconstpointer a, gconstpointer b)
 
 static gboolean compare_media(OsinfoMedia *media,
                               GList *oss,
+                              OsinfoMediaList *matched_media,
                               OsinfoOs **ret_os,
-                              OsinfoMedia **matched,
                               GList **fallback_oss)
 {
     GList *os_iter;
@@ -580,8 +580,8 @@ static gboolean compare_media(OsinfoMedia *media,
 
             if (osinfo_media_matches(media, os_media)) {
                 *ret_os = os;
-                if (matched != NULL)
-                    *matched = os_media;
+
+                osinfo_list_add(OSINFO_LIST(matched_media), OSINFO_ENTITY(os_media));
                 break;
             }
         }
@@ -599,8 +599,8 @@ static gboolean compare_media(OsinfoMedia *media,
 static gboolean
 osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
                                        OsinfoMedia *media,
-                                       OsinfoOs **matched_os,
-                                       OsinfoMedia **matched_media)
+                                       OsinfoMediaList *matched_media,
+                                       OsinfoOs **matched_os)
 {
     GList *oss = NULL;
     GList *fallback_oss = NULL;
@@ -613,11 +613,11 @@ osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
     g_return_val_if_fail(media != NULL, FALSE);
 
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    if (compare_media(media, oss, matched_os, matched_media, &fallback_oss))
+    if (compare_media(media, oss, matched_media, matched_os, &fallback_oss))
         matched = TRUE;
 
     if (!matched &&
-        compare_media(media, fallback_oss, matched_os, matched_media, NULL))
+        compare_media(media, fallback_oss, matched_media, matched_os, NULL))
         matched = TRUE;
 
     g_list_free(oss);
@@ -642,10 +642,16 @@ OsinfoOs *osinfo_db_guess_os_from_media(OsinfoDb *db,
                                         OsinfoMedia *media,
                                         OsinfoMedia **matched_media)
 {
+    g_autoptr(OsinfoMediaList) all_matched_media = osinfo_medialist_new();
     OsinfoOs *ret;
 
-    if (!osinfo_db_guess_os_from_media_internal(db, media, &ret, matched_media))
+    if (!osinfo_db_guess_os_from_media_internal(db, media, all_matched_media, &ret))
         return NULL;
+
+    if (matched_media) {
+        OsinfoEntity *ent = osinfo_list_get_nth(OSINFO_LIST(all_matched_media), 0);
+        *matched_media = OSINFO_MEDIA(ent);
+    }
 
     return ret;
 }
@@ -748,19 +754,20 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
  */
 gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
 {
-    OsinfoMedia *matched_media;
+    g_autoptr(OsinfoMediaList) all_matched_media = osinfo_medialist_new();
     OsinfoOs *matched_os;
+    OsinfoEntity *ent;
 
     g_return_val_if_fail(OSINFO_IS_MEDIA(media), FALSE);
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
-    if (!osinfo_db_guess_os_from_media_internal(db, media,
-                                                &matched_os,
-                                                &matched_media)) {
+    if (!osinfo_db_guess_os_from_media_internal(db, media, all_matched_media,
+                                                &matched_os)) {
         return FALSE;
     }
 
-    fill_media(db, media, matched_media, matched_os);
+    ent = osinfo_list_get_nth(OSINFO_LIST(all_matched_media), 0);
+    fill_media(db, media, OSINFO_MEDIA(ent), matched_os);
 
     return TRUE;
 }
