@@ -821,19 +821,41 @@ gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
     return TRUE;
 }
 
+/*
+ * Fill @matched_tree with all OsinfoOs in @oss
+ * that match @tree.
+ *
+ * If @onlyFirstMatch is TRUE then will return as soon as
+ * one matching tree is found
+ *
+ * If @onlyFirstMatch is FALSE then will return matching
+ * trees from all OsinfoOs, potentially with multiple trees
+ * per OsinfoOs reported.
+ *
+ * @fallback_os will be filled with any OsinfoOs that
+ * can be used as fallbacks matches. It will never contain
+ * any OsinfoOs that had tree added to @matched_tree.
+ *
+ * If @ret_os is non-NULL it will be filled with the first
+ * matching OsinfoOs.
+ */
 static gboolean compare_tree(OsinfoTree *tree,
                              GList *oss,
                              OsinfoTreeList *matched_tree,
+                             gboolean onlyFirstMatch,
                              OsinfoOs **ret_os,
                              GList **fallback_oss)
 {
     GList *os_iter;
+    gboolean matched = FALSE;
 
     for (os_iter = oss; os_iter; os_iter = os_iter->next) {
         OsinfoOs *os = OSINFO_OS(os_iter->data);
         OsinfoTreeList *tree_list = osinfo_os_get_tree_list(os);
         GList *trees = osinfo_list_get_elements(OSINFO_LIST(tree_list));
         GList *tree_iter;
+        gboolean useFallback = TRUE;
+        gboolean haveFallback = FALSE;
 
         for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
             OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
@@ -842,32 +864,39 @@ static gboolean compare_tree(OsinfoTree *tree,
             os_tree_arch = osinfo_tree_get_architecture(os_tree);
             if (fallback_oss != NULL) {
                 if (g_str_equal(os_tree_arch, "all")) {
-                    *fallback_oss = g_list_prepend(*fallback_oss, os);
+                    haveFallback = TRUE;
                     continue;
                 }
             }
 
             if (osinfo_tree_matches(tree, os_tree)) {
-                *ret_os = os;
+                if (ret_os && !*ret_os)
+                    *ret_os = os;
                 osinfo_list_add(OSINFO_LIST(matched_tree), OSINFO_ENTITY(os_tree));
-                break;
+                useFallback = FALSE;
+                matched = TRUE;
+                if (onlyFirstMatch)
+                    break;
             }
         }
 
         g_list_free(trees);
         g_object_unref(tree_list);
 
-        if (*ret_os)
-            return TRUE;
+        if (useFallback && haveFallback)
+            *fallback_oss = g_list_prepend(*fallback_oss, os);
+        if (onlyFirstMatch && matched)
+            break;
     }
 
-    return FALSE;
+    return matched;
 }
 
 static gboolean
 osinfo_db_guess_os_from_tree_internal(OsinfoDb *db,
                                       OsinfoTree *tree,
                                       OsinfoTreeList *matched_tree,
+                                      gboolean onlyFirstMatch,
                                       OsinfoOs **matched_os)
 {
     GList *oss = NULL;
@@ -880,12 +909,31 @@ osinfo_db_guess_os_from_tree_internal(OsinfoDb *db,
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
     g_return_val_if_fail(tree != NULL, FALSE);
 
+
+    /*
+     * If we're looking for the first match only:
+     *
+     *   - Try to get a preferred match
+     *   - If that doesn't work, then try fallback matches
+     *
+     * If we're looking for all matches:
+     *
+     *   - Add all preferred matches first
+     *   - Add remaining fallback matches secon
+     *
+     * This ensures that if the caller requests all matches
+     * but then blindly picks the first match, they will
+     * not accidentally get a fallback match when a preferred
+     * match was available.
+     */
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    if (compare_tree(tree, oss, matched_tree, matched_os, &fallback_oss))
+    if (compare_tree(tree, oss, matched_tree,
+                     onlyFirstMatch, matched_os, &fallback_oss))
         matched = TRUE;
 
-    if (!matched &&
-        compare_tree(tree, fallback_oss, matched_tree, matched_os, NULL))
+    if ((!onlyFirstMatch || !matched) &&
+        compare_tree(tree, fallback_oss, matched_tree,
+                     onlyFirstMatch, matched_os, NULL))
         matched = TRUE;
 
     g_list_free(oss);
@@ -913,7 +961,7 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
     g_autoptr(OsinfoTreeList) all_matched_tree = osinfo_treelist_new();
     OsinfoOs *ret;
 
-    if (!osinfo_db_guess_os_from_tree_internal(db, tree, all_matched_tree, &ret))
+    if (!osinfo_db_guess_os_from_tree_internal(db, tree, all_matched_tree, TRUE, &ret))
         return NULL;
 
     return ret;
@@ -1017,7 +1065,7 @@ gboolean osinfo_db_identify_tree(OsinfoDb *db,
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
     if (!osinfo_db_guess_os_from_tree_internal(db, tree, all_matched_tree,
-                                               &matched_os)) {
+                                               TRUE, &matched_os)) {
         return FALSE;
     }
 
