@@ -596,29 +596,34 @@ static gboolean compare_media(OsinfoMedia *media,
     return FALSE;
 }
 
-static OsinfoOs *
+static gboolean
 osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
                                        OsinfoMedia *media,
+                                       OsinfoOs **matched_os,
                                        OsinfoMedia **matched_media)
 {
-    OsinfoOs *ret = NULL;
     GList *oss = NULL;
     GList *fallback_oss = NULL;
+    gboolean matched = FALSE;
 
-    g_return_val_if_fail(OSINFO_IS_DB(db), NULL);
-    g_return_val_if_fail(media != NULL, NULL);
+    if (matched_os)
+        *matched_os = NULL;
+
+    g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
+    g_return_val_if_fail(media != NULL, FALSE);
 
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    if (compare_media(media, oss, &ret, matched_media, &fallback_oss))
-        goto end;
+    if (compare_media(media, oss, matched_os, matched_media, &fallback_oss))
+        matched = TRUE;
 
-    compare_media(media, fallback_oss, &ret, matched_media, NULL);
+    if (!matched &&
+        compare_media(media, fallback_oss, matched_os, matched_media, NULL))
+        matched = TRUE;
 
- end:
     g_list_free(oss);
     g_list_free(fallback_oss);
 
-    return ret;
+    return matched;
 }
 
 /**
@@ -637,7 +642,12 @@ OsinfoOs *osinfo_db_guess_os_from_media(OsinfoDb *db,
                                         OsinfoMedia *media,
                                         OsinfoMedia **matched_media)
 {
-    return osinfo_db_guess_os_from_media_internal(db, media, matched_media);
+    OsinfoOs *ret;
+
+    if (!osinfo_db_guess_os_from_media_internal(db, media, &ret, matched_media))
+        return NULL;
+
+    return ret;
 }
 
 static void fill_media(OsinfoDb *db, OsinfoMedia *media,
@@ -744,9 +754,9 @@ gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
     g_return_val_if_fail(OSINFO_IS_MEDIA(media), FALSE);
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
-    matched_os = osinfo_db_guess_os_from_media_internal(db, media,
-                                                        &matched_media);
-    if (matched_os == NULL) {
+    if (!osinfo_db_guess_os_from_media_internal(db, media,
+                                                &matched_os,
+                                                &matched_media)) {
         return FALSE;
     }
 
