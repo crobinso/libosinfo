@@ -650,6 +650,7 @@ osinfo_db_guess_os_from_media_internal(OsinfoDb *db,
 
     return ret;
 }
+
 /**
  * osinfo_db_guess_os_from_media:
  * @db: the database
