@@ -172,9 +172,17 @@ test_matching(void)
                                               "(Server|Workstation)",
                                               "3[0-9]",
                                               NULL);
+    /* Mis-match on arch */
+    OsinfoTree *reference4 = test_create_tree("https://fedoraproject.org/fedora/35/tree1",
+                                              "i686",
+                                              "Fedora",
+                                              NULL,
+                                              NULL,
+                                              NULL);
     g_assert(osinfo_tree_matches(unknown, reference1));
     g_assert(!osinfo_tree_matches(unknown, reference2));
     g_assert(osinfo_tree_matches(unknown, reference3));
+    g_assert(!osinfo_tree_matches(unknown, reference4));
 }
 
 int

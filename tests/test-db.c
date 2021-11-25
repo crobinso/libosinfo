@@ -530,7 +530,7 @@ test_identify_media(void)
 
 
 static OsinfoTree *
-create_tree(const gchar *arch, gboolean set_treeinfo_arch)
+create_tree(const gchar *arch, const gchar *treeinfo_arch)
 {
     OsinfoTree *tree;
 
@@ -541,10 +541,10 @@ create_tree(const gchar *arch, gboolean set_treeinfo_arch)
     osinfo_entity_set_param(OSINFO_ENTITY(tree),
                             OSINFO_TREE_PROP_TREEINFO_VERSION,
                             "unknown");
-    if (set_treeinfo_arch)
+    if (treeinfo_arch)
         osinfo_entity_set_param(OSINFO_ENTITY(tree),
-                                 OSINFO_TREE_PROP_TREEINFO_ARCH,
-                                 arch);
+                                OSINFO_TREE_PROP_TREEINFO_ARCH,
+                                treeinfo_arch);
 
     return tree;
 }
@@ -564,15 +564,33 @@ test_identify_tree(void)
     db = osinfo_loader_get_db(loader);
 
     /* Matching against an "all" architecture" */
-    tree = create_tree("x86_64", FALSE);
+    tree = create_tree("x86_64", NULL);
     g_assert_true(osinfo_db_identify_tree(db, tree));
     g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "all");
     g_object_unref(tree);
 
     /* Matching against a known architecture, which has to have precedence */
-    tree = create_tree("i686", TRUE);
+    tree = create_tree("i686", "i686");
     g_assert_true(osinfo_db_identify_tree(db, tree));
     g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "i686");
+    g_object_unref(tree);
+
+    /* Matching against a known architecture, which has to have precedence */
+    tree = create_tree(NULL, "i686");
+    g_assert_true(osinfo_db_identify_tree(db, tree));
+    g_assert_cmpstr(osinfo_tree_get_architecture(tree), ==, "i686");
+    g_object_unref(tree);
+
+    /* Should not match a tree tagged with different arch, even
+     * if treeinfo matches */
+    tree = create_tree("armv7hl", "arm");
+    g_assert_true(osinfo_db_identify_tree(db, tree));
+    g_assert_cmpstr(osinfo_tree_get_url(tree), ==, "http://libosinfo.org/tree/v7");
+    g_object_unref(tree);
+
+    tree = create_tree("armv6", "arm");
+    g_assert_true(osinfo_db_identify_tree(db, tree));
+    g_assert_cmpstr(osinfo_tree_get_url(tree), ==, "http://libosinfo.org/tree/v6");
     g_object_unref(tree);
 
     g_object_unref(loader);

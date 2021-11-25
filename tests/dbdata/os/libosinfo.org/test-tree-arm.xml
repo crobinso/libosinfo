@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+  <os id="http://libosinfo.org/test/tree/arm">
+    <short-id>tree-arm</short-id>
+    <name>TreeArm</name>
+    <version>unknown</version>
+    <vendor>libosinfo.org</vendor>
+    <family>test</family>
+
+    <tree arch="armv7hl">
+      <url>http://libosinfo.org/tree/v7</url>
+      <treeinfo>
+        <family>Tree</family>
+        <version>unknown</version>
+        <arch>arm</arch>
+      </treeinfo>
+    </tree>
+
+    <tree arch="armv6">
+      <url>http://libosinfo.org/tree/v6</url>
+      <treeinfo>
+        <family>Tree</family>
+        <version>unknown</version>
+        <arch>arm</arch>
+      </treeinfo>
+    </tree>
+
+  </os>
+</libosinfo>
