@@ -774,8 +774,8 @@ gboolean osinfo_db_identify_media(OsinfoDb *db, OsinfoMedia *media)
 
 static gboolean compare_tree(OsinfoTree *tree,
                              GList *oss,
+                             OsinfoTreeList *matched_tree,
                              OsinfoOs **ret_os,
-                             OsinfoTree **matched,
                              GList **fallback_oss)
 {
     GList *os_iter;
@@ -785,7 +785,6 @@ static gboolean compare_tree(OsinfoTree *tree,
         OsinfoTreeList *tree_list = osinfo_os_get_tree_list(os);
         GList *trees = osinfo_list_get_elements(OSINFO_LIST(tree_list));
         GList *tree_iter;
-        gboolean found = FALSE;
 
         for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
             OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
@@ -801,10 +800,7 @@ static gboolean compare_tree(OsinfoTree *tree,
 
             if (osinfo_tree_matches(tree, os_tree)) {
                 *ret_os = os;
-                if (matched != NULL) {
-                    *matched = os_tree;
-                    found = TRUE;
-                }
+                osinfo_list_add(OSINFO_LIST(matched_tree), OSINFO_ENTITY(os_tree));
                 break;
             }
         }
@@ -812,7 +808,7 @@ static gboolean compare_tree(OsinfoTree *tree,
         g_list_free(trees);
         g_object_unref(tree_list);
 
-        if (found)
+        if (*ret_os)
             return TRUE;
     }
 
@@ -822,8 +818,8 @@ static gboolean compare_tree(OsinfoTree *tree,
 static gboolean
 osinfo_db_guess_os_from_tree_internal(OsinfoDb *db,
                                       OsinfoTree *tree,
-                                      OsinfoOs **matched_os,
-                                      OsinfoTree **matched_tree)
+                                      OsinfoTreeList *matched_tree,
+                                      OsinfoOs **matched_os)
 {
     GList *oss = NULL;
     GList *fallback_oss = NULL;
@@ -836,11 +832,11 @@ osinfo_db_guess_os_from_tree_internal(OsinfoDb *db,
     g_return_val_if_fail(tree != NULL, FALSE);
 
     oss = osinfo_list_get_elements(OSINFO_LIST(db->priv->oses));
-    if (compare_tree(tree, oss, matched_os, matched_tree, &fallback_oss))
+    if (compare_tree(tree, oss, matched_tree, matched_os, &fallback_oss))
         matched = TRUE;
 
     if (!matched &&
-        compare_tree(tree, fallback_oss, matched_os, matched_tree, NULL))
+        compare_tree(tree, fallback_oss, matched_tree, matched_os, NULL))
         matched = TRUE;
 
     g_list_free(oss);
@@ -865,9 +861,10 @@ OsinfoOs *osinfo_db_guess_os_from_tree(OsinfoDb *db,
                                        OsinfoTree *tree,
                                        OsinfoTree **matched_tree)
 {
+    g_autoptr(OsinfoTreeList) all_matched_tree = osinfo_treelist_new();
     OsinfoOs *ret;
 
-    if (!osinfo_db_guess_os_from_tree_internal(db, tree, &ret, matched_tree))
+    if (!osinfo_db_guess_os_from_tree_internal(db, tree, all_matched_tree, &ret))
         return NULL;
 
     return ret;
@@ -963,19 +960,20 @@ static void fill_tree(OsinfoDb *db, OsinfoTree *tree,
 gboolean osinfo_db_identify_tree(OsinfoDb *db,
                                  OsinfoTree *tree)
 {
-    OsinfoTree *matched_tree;
+    g_autoptr(OsinfoTreeList) all_matched_tree = osinfo_treelist_new();
     OsinfoOs *matched_os;
+    OsinfoEntity *ent;
 
     g_return_val_if_fail(OSINFO_IS_TREE(tree), FALSE);
     g_return_val_if_fail(OSINFO_IS_DB(db), FALSE);
 
-    if (!osinfo_db_guess_os_from_tree_internal(db, tree,
-                                               &matched_os,
-                                               &matched_tree)) {
+    if (!osinfo_db_guess_os_from_tree_internal(db, tree, all_matched_tree,
+                                               &matched_os)) {
         return FALSE;
     }
 
-    fill_tree(db, tree, matched_tree, matched_os);
+    ent = osinfo_list_get_nth(OSINFO_LIST(all_matched_tree), 0);
+    fill_tree(db, tree, OSINFO_TREE(ent), matched_os);
 
     return TRUE;
 }
