@@ -2374,6 +2374,11 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
         }
         g_object_unref(ents);
         g_list_free(children);
+    } else if (type == G_FILE_TYPE_UNKNOWN) {
+        g_autofree gchar *path = g_file_get_path(file);
+        g_autofree gchar *msg = g_strdup_printf("Can't read path %s", path);
+        OSINFO_LOADER_SET_ERROR(&error, msg);
+        g_propagate_error(err, error);
     } else {
         OSINFO_LOADER_SET_ERROR(&error, "Unexpected file type");
         g_propagate_error(err, error);
