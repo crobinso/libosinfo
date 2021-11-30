@@ -639,6 +639,7 @@ LIBOSINFO_1.8.0 {
 LIBOSINFO_1.10.0 {
 	global:
 
+	osinfo_media_matches;
 	osinfo_os_get_complete_firmware_list;
 } LIBOSINFO_1.8.0;
 

@@ -552,17 +552,6 @@ static gboolean compare_media(OsinfoMedia *media,
                               GList **fallback_oss)
 {
     GList *os_iter;
-    const gchar *media_volume;
-    const gchar *media_system;
-    const gchar *media_publisher;
-    const gchar *media_application;
-    gint64 media_vol_size;
-
-    media_volume = osinfo_media_get_volume_id(media);
-    media_system = osinfo_media_get_system_id(media);
-    media_publisher = osinfo_media_get_publisher_id(media);
-    media_application = osinfo_media_get_application_id(media);
-    media_vol_size = osinfo_media_get_volume_size(media);
 
     for (os_iter = oss; os_iter; os_iter = os_iter->next) {
         OsinfoOs *os = OSINFO_OS(os_iter->data);
@@ -576,18 +565,6 @@ static gboolean compare_media(OsinfoMedia *media,
         for (media_iter = medias; media_iter; media_iter = media_iter->next) {
             OsinfoMedia *os_media = OSINFO_MEDIA(media_iter->data);
             const gchar *os_arch = osinfo_media_get_architecture(os_media);
-            const gchar *os_volume = osinfo_media_get_volume_id(os_media);
-            const gchar *os_system = osinfo_media_get_system_id(os_media);
-            const gchar *os_publisher = osinfo_media_get_publisher_id(os_media);
-            const gchar *os_application = osinfo_media_get_application_id(os_media);
-            gint64 os_vol_size = osinfo_media_get_volume_size(os_media);
-
-            if (os_volume == NULL &&
-                os_system == NULL &&
-                os_publisher == NULL &&
-                os_application == NULL &&
-                os_vol_size <= 0)
-                continue;
 
             if (fallback_oss != NULL) {
                 if (g_str_equal(os_arch, "all")) {
@@ -601,14 +578,7 @@ static gboolean compare_media(OsinfoMedia *media,
                 }
             }
 
-            if (os_vol_size <= 0)
-                os_vol_size = media_vol_size;
-
-            if (match_regex(os_volume, media_volume) &&
-                match_regex(os_application, media_application) &&
-                match_regex(os_system, media_system) &&
-                match_regex(os_publisher, media_publisher) &&
-                os_vol_size == media_vol_size) {
+            if (osinfo_media_matches(media, os_media)) {
                 *ret_os = os;
                 if (matched != NULL)
                     *matched = os_media;

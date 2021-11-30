@@ -138,3 +138,4 @@ gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media);
 gboolean osinfo_media_supports_installer_script(OsinfoMedia *media);
 void osinfo_media_add_install_script(OsinfoMedia *media, OsinfoInstallScript *script);
 OsinfoInstallScriptList *osinfo_media_get_install_script_list(OsinfoMedia *media);
+gboolean osinfo_media_matches(OsinfoMedia *media, OsinfoMedia *reference);

@@ -1857,3 +1857,57 @@ gboolean osinfo_media_is_bootable(OsinfoMedia *media)
     return osinfo_entity_get_param_value_boolean(OSINFO_ENTITY(media),
                                                  OSINFO_MEDIA_PROP_BOOTABLE);
 }
+
+#define match_regex(pattern, str)                                       \
+    (((pattern) == NULL) ||                                             \
+     (((str) != NULL) &&                                                \
+      g_regex_match_simple((pattern), (str), 0, 0)))
+
+/**
+ * osinfo_media_matches:
+ * @media: an unidentified #OsinfoMedia instance
+ * @reference: a reference #OsinfoMedia instance
+ *
+ * Determines whether the metadata for the unidentified @media is a match
+ * for the @reference media.
+ *
+ * The metadata in the unidentified @media must be literal strings,
+ * while the metadata in the @reference media must be regular expressions.
+ *
+ * Returns: #TRUE if @media is a match for @reference. #FALSE otherwise
+ *
+ * Since: 1.10.0
+ */
+gboolean osinfo_media_matches(OsinfoMedia *media, OsinfoMedia *reference)
+{
+    const gchar *media_volume = osinfo_media_get_volume_id(media);
+    const gchar *media_system = osinfo_media_get_system_id(media);
+    const gchar *media_publisher = osinfo_media_get_publisher_id(media);
+    const gchar *media_application = osinfo_media_get_application_id(media);
+    gint64 media_vol_size = osinfo_media_get_volume_size(media);
+
+    const gchar *reference_volume = osinfo_media_get_volume_id(reference);
+    const gchar *reference_system = osinfo_media_get_system_id(reference);
+    const gchar *reference_publisher = osinfo_media_get_publisher_id(reference);
+    const gchar *reference_application = osinfo_media_get_application_id(reference);
+    gint64 reference_vol_size = osinfo_media_get_volume_size(reference);
+
+    if (reference_volume == NULL &&
+        reference_system == NULL &&
+        reference_publisher == NULL &&
+        reference_application == NULL &&
+        reference_vol_size <= 0)
+        return FALSE;
+
+    if (reference_vol_size <= 0)
+        reference_vol_size = media_vol_size;
+
+    if (match_regex(reference_volume, media_volume) &&
+        match_regex(reference_application, media_application) &&
+        match_regex(reference_system, media_system) &&
+        match_regex(reference_publisher, media_publisher) &&
+        reference_vol_size == media_vol_size)
+        return TRUE;
+
+    return FALSE;
+}

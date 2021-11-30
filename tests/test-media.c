@@ -139,6 +139,98 @@ test_loaded_installer_script(void)
     g_object_unref(loader);
 }
 
+static OsinfoMedia *
+test_create_media(const char *id,
+                  const char *arch,
+                  const char *volume,
+                  const char *system,
+                  const char *publisher,
+                  const char *application,
+                  guint64 size)
+{
+    OsinfoMedia *media = osinfo_media_new(id, arch);
+
+    if (volume)
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_VOLUME_ID,
+                                volume);
+    if (system)
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_SYSTEM_ID,
+                                system);
+    if (publisher)
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_PUBLISHER_ID,
+                                publisher);
+    if (application)
+        osinfo_entity_set_param(OSINFO_ENTITY(media),
+                                OSINFO_MEDIA_PROP_APPLICATION_ID,
+                                application);
+    if (size != 0)
+        osinfo_entity_set_param_int64(OSINFO_ENTITY(media),
+                                      OSINFO_MEDIA_PROP_VOLUME_SIZE,
+                                      size);
+
+    return media;
+}
+
+static void
+test_matching(void)
+{
+    OsinfoMedia *unknown = test_create_media("https://libosinfo.org/test/",
+                                             "x86_64",
+                                             "Fedora 35",
+                                             "LINUX",
+                                             "Fedora",
+                                             "Fedora OS",
+                                             1234567);
+    /* Match with several optional fields */
+    OsinfoMedia *reference1 = test_create_media("https://fedoraproject.org/fedora/35/media1",
+                                                "x86_64",
+                                                "Fedora 35",
+                                                NULL,
+                                                NULL,
+                                                NULL,
+                                                0);
+    /* Mis-match on volume */
+    OsinfoMedia *reference2 = test_create_media("https://fedoraproject.org/fedora/34/media2",
+                                                "x86_64",
+                                                "Fedora 34",
+                                                "LINUX",
+                                                NULL,
+                                                NULL,
+                                                0);
+    /* Match with all fields with some regexes */
+    OsinfoMedia *reference3 = test_create_media("https://fedoraproject.org/fedora/unknown/media3",
+                                                "x86_64",
+                                                "Fedora [0-9]+",
+                                                "LINUX",
+                                                "Fedora",
+                                                "Fedora OS",
+                                                0);
+    /* Match including vol size */
+    OsinfoMedia *reference4 = test_create_media("https://fedoraproject.org/fedora/35/media4",
+                                                "x86_64",
+                                                "Fedora 35",
+                                                "LINUX",
+                                                NULL,
+                                                NULL,
+                                                1234567);
+    /* Mis-match on vol size */
+    OsinfoMedia *reference5 = test_create_media("https://fedoraproject.org/fedora/35/media5",
+                                                "x86_64",
+                                                "Fedora 35",
+                                                "LINUX",
+                                                NULL,
+                                                NULL,
+                                                1234568);
+    g_assert(osinfo_media_matches(unknown, reference1));
+    g_assert(!osinfo_media_matches(unknown, reference2));
+    g_assert(osinfo_media_matches(unknown, reference3));
+    g_assert(osinfo_media_matches(unknown, reference4));
+    g_assert(!osinfo_media_matches(unknown, reference5));
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -148,6 +240,7 @@ main(int argc, char *argv[])
     g_test_add_func("/media/loaded/attributes", test_loaded_attributes);
     g_test_add_func("/media/loaded/no-installer", test_loaded_no_installer);
     g_test_add_func("/media/loaded/installer-script", test_loaded_installer_script);
+    g_test_add_func("/media/matching", test_matching);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_media_get_type();
