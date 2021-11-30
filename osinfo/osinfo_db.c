@@ -803,7 +803,6 @@ static gboolean compare_tree(OsinfoTree *tree,
                 *ret_os = os;
                 if (matched != NULL) {
                     *matched = os_tree;
-                    osinfo_tree_set_os(*matched, *ret_os);
                     found = TRUE;
                 }
                 break;
