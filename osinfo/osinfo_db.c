@@ -762,15 +762,6 @@ static gboolean compare_tree(OsinfoTree *tree,
                              GList **fallback_oss)
 {
     GList *os_iter;
-    const gchar *treeinfo_family;
-    const gchar *treeinfo_variant;
-    const gchar *treeinfo_version;
-    const gchar *treeinfo_arch;
-
-    treeinfo_family = osinfo_tree_get_treeinfo_family(tree);
-    treeinfo_variant = osinfo_tree_get_treeinfo_variant(tree);
-    treeinfo_version = osinfo_tree_get_treeinfo_version(tree);
-    treeinfo_arch = osinfo_tree_get_treeinfo_arch(tree);
 
     for (os_iter = oss; os_iter; os_iter = os_iter->next) {
         OsinfoOs *os = OSINFO_OS(os_iter->data);
@@ -782,13 +773,6 @@ static gboolean compare_tree(OsinfoTree *tree,
         for (tree_iter = trees; tree_iter; tree_iter = tree_iter->next) {
             OsinfoTree *os_tree = OSINFO_TREE(tree_iter->data);
             const gchar *os_tree_arch = NULL;
-            const gchar *os_treeinfo_family;
-            const gchar *os_treeinfo_variant;
-            const gchar *os_treeinfo_version;
-            const gchar *os_treeinfo_arch;
-
-            if (!osinfo_tree_has_treeinfo(os_tree))
-                continue;
 
             os_tree_arch = osinfo_tree_get_architecture(os_tree);
             if (fallback_oss != NULL) {
@@ -798,15 +782,7 @@ static gboolean compare_tree(OsinfoTree *tree,
                 }
             }
 
-            os_treeinfo_family = osinfo_tree_get_treeinfo_family(os_tree);
-            os_treeinfo_variant = osinfo_tree_get_treeinfo_variant(os_tree);
-            os_treeinfo_version = osinfo_tree_get_treeinfo_version(os_tree);
-            os_treeinfo_arch = osinfo_tree_get_treeinfo_arch(os_tree);
-
-            if (match_regex(os_treeinfo_family, treeinfo_family) &&
-                match_regex(os_treeinfo_variant, treeinfo_variant) &&
-                match_regex(os_treeinfo_version, treeinfo_version) &&
-                match_regex(os_treeinfo_arch, treeinfo_arch)) {
+            if (osinfo_tree_matches(tree, os_tree)) {
                 *ret_os = os;
                 if (matched != NULL) {
                     *matched = os_tree;

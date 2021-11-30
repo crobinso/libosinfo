@@ -108,6 +108,75 @@ test_create_from_treeinfo(void)
     g_object_unref(loader);
 }
 
+static OsinfoTree *
+test_create_tree(const char *id,
+                 const char *arch,
+                 const char *family,
+                 const char *variant,
+                 const char *version,
+                 const char *treearch)
+{
+    OsinfoTree *tree = osinfo_tree_new(id, arch);
+
+    osinfo_entity_set_param_boolean(OSINFO_ENTITY(tree),
+                                    OSINFO_TREE_PROP_HAS_TREEINFO,
+                                    TRUE);
+
+    if (family)
+        osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                OSINFO_TREE_PROP_TREEINFO_FAMILY,
+                                family);
+    if (variant)
+        osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                OSINFO_TREE_PROP_TREEINFO_VARIANT,
+                                variant);
+    if (version)
+        osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                OSINFO_TREE_PROP_TREEINFO_VERSION,
+                                version);
+    if (treearch)
+        osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                OSINFO_TREE_PROP_TREEINFO_ARCH,
+                                treearch);
+
+    return tree;
+}
+
+static void
+test_matching(void)
+{
+    OsinfoTree *unknown = test_create_tree("https://libosinfo.org/test/",
+                                           "x86_64",
+                                           "Fedora",
+                                           "Server",
+                                           "35",
+                                           "x86_64");
+    /* Match with several optional fields */
+    OsinfoTree *reference1 = test_create_tree("https://fedoraproject.org/fedora/35/tree1",
+                                              "x86_64",
+                                              "Fedora",
+                                              NULL,
+                                              NULL,
+                                              NULL);
+    /* Mis-match on version */
+    OsinfoTree *reference2 = test_create_tree("https://fedoraproject.org/fedora/34/tree2",
+                                              "x86_64",
+                                              "Fedora",
+                                              NULL,
+                                              "34",
+                                              "x86_64");
+    /* Match with all fields with some regexes */
+    OsinfoTree *reference3 = test_create_tree("https://fedoraproject.org/fedora/unknown/tree3",
+                                              "x86_64",
+                                              "Fedora",
+                                              "(Server|Workstation)",
+                                              "3[0-9]",
+                                              NULL);
+    g_assert(osinfo_tree_matches(unknown, reference1));
+    g_assert(!osinfo_tree_matches(unknown, reference2));
+    g_assert(osinfo_tree_matches(unknown, reference3));
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -116,6 +185,7 @@ main(int argc, char *argv[])
     g_test_add_func("/tree/basic", test_basic);
     g_test_add_func("/tree/os-variants", test_os_variants);
     g_test_add_func("/tree/create-from-treeinfo", test_create_from_treeinfo);
+    g_test_add_func("/tree/matching", test_matching);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_tree_get_type();

@@ -95,4 +95,5 @@ const gchar *osinfo_tree_get_initrd_path(OsinfoTree *tree);
 OsinfoOs *osinfo_tree_get_os(OsinfoTree *tree);
 void osinfo_tree_set_os(OsinfoTree *tree, OsinfoOs *os);
 OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree);
+gboolean osinfo_tree_matches(OsinfoTree *tree, OsinfoTree *reference);
 /* XXX Xen kernel/initrd paths ? */

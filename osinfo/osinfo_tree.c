@@ -1180,3 +1180,47 @@ OsinfoTree *osinfo_tree_create_from_treeinfo(const gchar *treeinfo,
 
     return load_keyinfo(location, treeinfo, strlen(treeinfo), error);
 }
+
+#define match_regex(pattern, str)                                       \
+    (((pattern) == NULL) ||                                             \
+     (((str) != NULL) &&                                                \
+      g_regex_match_simple((pattern), (str), 0, 0)))
+
+/**
+ * osinfo_tree_matches:
+ * @tree: an unidentified #OsinfoTree instance
+ * @reference: a reference #OsinfoTree instance
+ *
+ * Determines whether the metadata for the unidentified @tree is a match
+ * for the @reference tree.
+ *
+ * The metadata in the unidentified @tree must be literal strings,
+ * while the metadata in the @reference tree must be regular expressions.
+ *
+ * Returns: #TRUE if @tree is a match for @reference. #FALSE otherwise
+ *
+ * Since: 1.10.0
+ */
+gboolean osinfo_tree_matches(OsinfoTree *tree, OsinfoTree *reference)
+{
+    const gchar *tree_treeinfo_family = osinfo_tree_get_treeinfo_family(tree);
+    const gchar *tree_treeinfo_variant = osinfo_tree_get_treeinfo_variant(tree);
+    const gchar *tree_treeinfo_version = osinfo_tree_get_treeinfo_version(tree);
+    const gchar *tree_treeinfo_arch = osinfo_tree_get_treeinfo_arch(tree);
+
+    const gchar *reference_treeinfo_family = osinfo_tree_get_treeinfo_family(reference);
+    const gchar *reference_treeinfo_variant = osinfo_tree_get_treeinfo_variant(reference);
+    const gchar *reference_treeinfo_version = osinfo_tree_get_treeinfo_version(reference);
+    const gchar *reference_treeinfo_arch = osinfo_tree_get_treeinfo_arch(reference);
+
+    if (!osinfo_tree_has_treeinfo(reference))
+        return FALSE;
+
+    if (match_regex(reference_treeinfo_family, tree_treeinfo_family) &&
+        match_regex(reference_treeinfo_variant, tree_treeinfo_variant) &&
+        match_regex(reference_treeinfo_version, tree_treeinfo_version) &&
+        match_regex(reference_treeinfo_arch, tree_treeinfo_arch))
+        return TRUE;
+
+    return FALSE;
+}
