@@ -4,13 +4,14 @@
 #
 # Translators:
 # Fabian Affolter <mail@fabian-affolter.ch>, 2020.
+# Ettore Atalan <atalanttore@googlemail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2020-12-13 13:35+0000\n"
-"Last-Translator: Fabian Affolter <mail@fabian-affolter.ch>\n"
+"PO-Revision-Date: 2021-12-05 20:16+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/de/>\n"
 "Language: de\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -26,15 +27,15 @@ msgstr "Die zugelassen mine-types für den Avatar"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
-msgstr ""
+msgstr "Die erforderliche Breite (in Pixel) des Avatars"
 
 #: osinfo/osinfo_avatar_format.c:121
 msgid "The required height (in pixels) of the avatar."
-msgstr ""
+msgstr "Die erforderliche Höhe (in Pixel) des Avatars."
 
 #: osinfo/osinfo_avatar_format.c:135
 msgid "Whether alpha channel is supported in the avatar."
-msgstr ""
+msgstr "Ob der Alphakanal im Avatar unterstützt wird."
 
 #: osinfo/osinfo_deployment.c:141
 msgid "Operating system"
@@ -88,7 +89,7 @@ msgstr "Parameterregeln"
 
 #: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
-msgstr ""
+msgstr "Parameter-Wert-Zuordnung"
 
 #: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
@@ -116,11 +117,11 @@ msgstr "Erwartetes Format für den Avatar"
 
 #: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
-msgstr ""
+msgstr "Die bevorzugte Injektionsmethode"
 
 #: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
-msgstr ""
+msgstr "Die zu verwendende Installationsquelle"
 
 #: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
@@ -296,11 +297,11 @@ msgstr "Pfad zum Kernel-Abbild"
 
 #: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
-msgstr ""
+msgstr "Der Pfad zum initrd-Abbild"
 
 #: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
-msgstr ""
+msgstr "Medium stellt ein Installationsprogramm bereit"
 
 #: osinfo/osinfo_media.c:582
 msgid "Media can boot directly w/o installation"
@@ -312,11 +313,11 @@ msgstr "Anzahl der Installer-Reboots"
 
 #: osinfo/osinfo_media.c:620
 msgid "Information about the operating system on this media"
-msgstr ""
+msgstr "Informationen über das Betriebssystem auf diesem Medium"
 
 #: osinfo/osinfo_media.c:638
 msgid "Supported languages"
-msgstr ""
+msgstr "Unterstützte Sprachen"
 
 #: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
@@ -325,11 +326,14 @@ msgstr ""
 #: osinfo/osinfo_media.c:668
 msgid "Whether the media should be ejected after the installation process"
 msgstr ""
+"Ob der Datenträger nach dem Installationsvorgang ausgeworfen werden soll"
 
 #: osinfo/osinfo_media.c:683
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
+"Ob der Datenträger für eine Installation mit Installationsskripten verwendet "
+"werden soll"
 
 #: osinfo/osinfo_media.c:815
 #, c-format
@@ -396,10 +400,8 @@ msgid "Kernel URL Argument"
 msgstr ""
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Codename"
+msgstr "Cloud-Abbild-Benutzername"
 
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:79
 #: tools/osinfo-query.c:105
@@ -473,7 +475,7 @@ msgstr ""
 
 #: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
-msgstr ""
+msgstr "Informationen über das Betriebssystem in diesem Baum"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
@@ -489,11 +491,11 @@ msgstr ""
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
-msgstr ""
+msgstr "URL-Protokoll wird nicht unterstützt"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
-msgstr ""
+msgstr "Der Name zu dieser Variante"
 
 #: tools/osinfo-detect.c:55 tools/osinfo-detect.c:76
 #, c-format
@@ -502,19 +504,19 @@ msgstr "Ungültiger Wert »%s«"
 
 #: tools/osinfo-detect.c:88
 msgid "Select the output format"
-msgstr ""
+msgstr "Wählen Sie das Ausgabeformat aus"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "FORMAT"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Wählen Sie den Typ dessen, was erkannt werden soll"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "TYP"
 
 #: tools/osinfo-detect.c:98
 #, c-format
@@ -547,7 +549,7 @@ msgstr ""
 #: tools/osinfo-detect.c:145
 #, c-format
 msgid "Available OS variants on media:\n"
-msgstr ""
+msgstr "Verfügbare BS-Varianten auf dem Medium:\n"
 
 #: tools/osinfo-detect.c:187
 #, c-format
@@ -605,7 +607,7 @@ msgstr "Präfix des Namens der Ausgabedatei"
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr ""
+msgstr "Die Installationsquelle, die mit dem Skript verwendet werden soll"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
@@ -613,23 +615,23 @@ msgstr "Konfigurationsparameter setzen"
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
-msgstr ""
+msgstr "Konfigurationsparameter festlegen"
 
 #: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
-msgstr ""
+msgstr "Konfigurationsparameter auflisten"
 
 #: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
-msgstr ""
+msgstr "Installationsskriptprofile auflisten"
 
 #: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
-msgstr ""
+msgstr "Unterstützte Injektionsmethoden auflisten"
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
-msgstr ""
+msgstr "Ausgabedateinamen nicht anzeigen"
 
 #: tools/osinfo-install-script.c:218
 #, c-format
@@ -638,11 +640,11 @@ msgstr ""
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
-msgstr ""
+msgstr "erforderlich"
 
 #: tools/osinfo-install-script.c:234
 msgid "optional"
-msgstr ""
+msgstr "optional"
 
 #: tools/osinfo-install-script.c:320
 #, c-format
@@ -700,10 +702,8 @@ msgid "ID"
 msgstr "ID"
 
 #: tools/osinfo-query.c:71
-#, fuzzy
-#| msgid "Release date"
 msgid "Release status"
-msgstr "Veröffentlichungsdatum"
+msgstr "Veröffentlichungsstatus"
 
 #: tools/osinfo-query.c:99
 msgid "Vendor ID"
