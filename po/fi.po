@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2021-09-06 16:04+0000\n"
+"PO-Revision-Date: 2021-10-25 19:05+0000\n"
 "Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fi/>\n"
@@ -341,45 +341,45 @@ msgstr "Asennusmedia ei ole käynnistettävä"
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr ""
+msgstr "Hakemistotietueen \"%s\" laajennuksen lukeminen epäonnistui: "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr ""
+msgstr "Ei \"%s\" hakemistotietueen laajennusta"
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
-msgstr ""
+msgstr "Täydentävän taltiokuvauksen lukeminen epäonnistui: "
 
 #: osinfo/osinfo_media.c:1109
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
-msgstr ""
+msgstr "Täydentävä taltiokuvaus oli typistetty"
 
 #: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
-msgstr ""
+msgstr "Ensisijaisen taltiokuvauksen lukeminen epäonnistui: "
 
 #: osinfo/osinfo_media.c:1183
 #, c-format
 msgid "Primary volume descriptor was truncated"
-msgstr ""
+msgstr "Ensisijainen taltiokuvaus oli typistetty"
 
 #: osinfo/osinfo_media.c:1215
 #, c-format
 msgid "Insufficient metadata on installation media"
-msgstr ""
+msgstr "Asennusmediassa ei ole riittävästi metatietoja"
 
 #: osinfo/osinfo_media.c:1250
 #, c-format
 msgid "Failed to skip %d bytes"
-msgstr ""
+msgstr "%d tavun ohittaminen epäonnistui"
 
 #: osinfo/osinfo_media.c:1255
 #, c-format
 msgid "No volume descriptors"
-msgstr ""
+msgstr "Ei taltiokuvauksia"
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
@@ -391,11 +391,11 @@ msgstr "Geneerinen perhe"
 
 #: osinfo/osinfo_os.c:170
 msgid "Generic Distro"
-msgstr ""
+msgstr "Yleinen jakeluversio"
 
 #: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
-msgstr ""
+msgstr "Ytimen URL -argumentti"
 
 #: osinfo/osinfo_os.c:195
 msgid "Cloud image username"
@@ -449,11 +449,11 @@ msgstr "Tämän puun URL-osoite"
 
 #: osinfo/osinfo_tree.c:355
 msgid "The path to the bootable ISO image"
-msgstr ""
+msgstr "Polku käynnistettävään ISO -levykuvaan"
 
 #: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
-msgstr ""
+msgstr "Onko puulla puutietoa"
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
