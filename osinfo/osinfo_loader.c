@@ -2377,6 +2377,21 @@ static void osinfo_loader_find_files(OsinfoLoader *loader,
     } else if (type == G_FILE_TYPE_UNKNOWN) {
         g_autofree gchar *path = g_file_get_path(file);
         g_autofree gchar *msg = g_strdup_printf("Can't read path %s", path);
+        if (skipMissing) {
+            /* This is a work-around for
+             * <https://gitlab.gnome.org/GNOME/glib/-/issues/1237>. If the
+             * lstat() call underlying our g_file_query_info() call at the top
+             * of this function fails for "path" with EACCES, then
+             * g_file_query_info() should fail, and the "skipMissing" branch up
+             * there should suppress the error and return cleanly.
+             * Unfortunately, _g_local_file_info_get() masks the lstat()
+             * failure, g_file_info_get_attribute_uint32() is reached above,
+             * and returns G_FILE_TYPE_UNKNOWN for the file that could never be
+             * accessed. So we need to consider "skipMissing" here too.
+             */
+            g_warning("%s", msg);
+            return;
+        }
         OSINFO_LOADER_SET_ERROR(&error, msg);
         g_propagate_error(err, error);
     } else {
