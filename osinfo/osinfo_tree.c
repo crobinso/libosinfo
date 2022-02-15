@@ -613,6 +613,7 @@ static OsinfoTree *load_keyinfo(const gchar *location,
                 goto cleanup;
             g_clear_error(error);
         }
+        g_clear_pointer(&group, g_free);
     }
 
     tree = osinfo_tree_new(location, arch ? arch : "i386");
