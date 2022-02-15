@@ -1679,6 +1679,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         g_object_unref(firmware);
     }
 
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./media", loader, ctxt, &nodes, err);
     if (error_is_set(err))
         goto cleanup;
