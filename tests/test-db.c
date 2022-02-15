@@ -460,6 +460,7 @@ test_identify_media(void)
     g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "http://libosinfo.org/test/db/media");
     g_object_unref(scripts);
     g_object_unref(media);
+    g_clear_object(&os);
 
     media = osinfo_media_new("foo", "ppc64le");
     osinfo_entity_set_param(OSINFO_ENTITY(media),
@@ -522,10 +523,12 @@ test_identify_media(void)
                             "ROLLING_VERSIONED");
     g_assert_true(osinfo_db_identify_media(db, media));
     os = osinfo_media_get_os(media);
+    g_object_unref(media);
     g_assert_nonnull(os);
     g_assert_cmpstr(osinfo_product_get_short_id(OSINFO_PRODUCT(os)), ==, "versioned");
 
     g_object_unref(loader);
+    g_clear_object(&os);
 }
 
 
@@ -575,7 +578,9 @@ test_identify_all_media(void)
     g_assert_nonnull(os);
     g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "http://libosinfo.org/test/db/media");
     g_object_unref(scripts);
+    g_clear_object(&os);
 
+    g_clear_object(&media);
     media = osinfo_media_new("foo", "ppc64le");
     osinfo_entity_set_param(OSINFO_ENTITY(media),
                             OSINFO_MEDIA_PROP_VOLUME_ID,
@@ -636,6 +641,7 @@ test_identify_all_media(void)
             g_assert_false(seenRolling);
             seenRolling = TRUE;
         }
+        g_clear_object(&os);
     }
     g_assert(seenVersioned && seenRolling);
     g_object_unref(medialist);
@@ -673,6 +679,7 @@ test_identify_all_media(void)
             g_assert_false(seenDupe4);
             seenDupe4 = TRUE;
         }
+        g_clear_object(&os);
     }
     g_assert(seenDupe1 && seenDupe2 && !seenDupe3 && seenDupe4);
 
@@ -711,6 +718,7 @@ test_identify_all_media(void)
             g_assert_false(seenDupe4);
             seenDupe4 = TRUE;
         }
+        g_clear_object(&os);
     }
     g_assert(seenDupe1 && seenDupe2 && seenDupe3 && seenDupe4);
 
