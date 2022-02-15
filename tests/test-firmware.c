@@ -24,7 +24,7 @@
 static void
 test_basic(void)
 {
-    OsinfoFirmware *firmware = osinfo_firmware_new(ID, ARCH, TYPE);
+    g_autoptr(OsinfoFirmware) firmware = osinfo_firmware_new(ID, ARCH, TYPE);
 
     g_assert_true(OSINFO_IS_FIRMWARE(firmware));
     g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(firmware)), ==, ID);
@@ -61,6 +61,7 @@ test_loaded(void)
     list_len = osinfo_list_get_length(OSINFO_LIST(list));
     g_assert_cmpint(list_len, ==, 1);
     g_object_unref(list);
+    g_object_unref(filter);
 
     g_object_unref(loader);
 }
