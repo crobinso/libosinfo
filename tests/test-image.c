@@ -68,10 +68,9 @@ test_loaded(void)
 
     for (i = 0; i < list_len; i++) {
         OsinfoImage *image = OSINFO_IMAGE(osinfo_list_get_nth(OSINFO_LIST(list), i));
-        OsinfoOsVariantList *variant_list;
         OsinfoOsVariant *variant;
 
-        variant_list = osinfo_image_get_os_variants(image);
+        g_autoptr(OsinfoOsVariantList) variant_list = osinfo_image_get_os_variants(image);
         g_assert_cmpint(osinfo_list_get_length(OSINFO_LIST(variant_list)), ==, 1);
 
         variant = OSINFO_OS_VARIANT(osinfo_list_get_nth(OSINFO_LIST(variant_list), 0));
