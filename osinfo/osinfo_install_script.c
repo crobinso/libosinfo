@@ -813,7 +813,7 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
 
     tmp1 = keys = osinfo_entity_get_param_keys(entity);
     while (tmp1) {
-        GList *values;
+        g_autoptr(GList) values = NULL;
         GList *tmp2;
 
         if (OSINFO_IS_INSTALL_CONFIG(entity))
@@ -839,7 +839,6 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
 
             tmp2 = tmp2->next;
         }
-        g_list_free(values);
 
         tmp1 = tmp1->next;
     }
