@@ -24,6 +24,13 @@ option('enable-vala',
     description: 'Enable Vala bindings'
 )
 
+option('libsoup-abi',
+    type: 'combo',
+    value: 'auto',
+    choices: ['auto', '2.4', '3.0'],
+    description: 'Select libsoup ABI version'
+)
+
 option('with-pci-ids-path',
     type: 'string',
     value: '',

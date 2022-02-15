@@ -71,10 +71,15 @@ gio_dep = dependency('gio-2.0', version: glib_version_info)
 gobject_dep = dependency('gobject-2.0', version: glib_version_info)
 
 #  everything else
-libsoup_dep = dependency('libsoup-3.0', required: false)
-#    fallback to libsoup2
+
+libsoup_abi = get_option('libsoup-abi')
+libsoup_dep = disabler()
+if ['auto', '3.0'].contains(libsoup_abi)
+  libsoup_dep = dependency('libsoup-3.0', required: libsoup_abi.contains('3.0'))
+endif
 if not libsoup_dep.found()
-  libsoup_dep = dependency('libsoup-2.4')
+#    fallback to libsoup2
+  libsoup_dep = dependency('libsoup-2.4', required: libsoup_abi.contains('2.4'))
 endif
 libxml_dep = dependency('libxml-2.0', version: '>= 2.6.0')
 libxslt_dep = dependency('libxslt', version: '>= 1.0.0')
