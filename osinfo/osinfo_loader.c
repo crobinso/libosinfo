@@ -213,8 +213,10 @@ osinfo_loader_nodeset(const char *xpath,
 
     comp = osinfo_loader_get_comp_xpath(loader, xpath);
 
-    if (list != NULL)
+    if (list != NULL) {
+        g_warn_if_fail(*list == NULL);
         *list = NULL;
+    }
 
     relnode = ctxt->node;
     obj = xmlXPathCompiledEval(comp, ctxt);
@@ -280,7 +282,7 @@ osinfo_loader_boolean(const char *xpath,
                       GError **err)
 {
 
-    xmlNodePtr *nodes;
+    xmlNodePtr *nodes = NULL;
     int count;
     int i;
     gboolean ret = FALSE;
@@ -1068,8 +1070,8 @@ static void osinfo_loader_install_script(OsinfoLoader *loader,
         osinfo_install_script_set_avatar_format(installScript, avatar_format);
         g_object_unref(avatar_format);
     }
-    g_free(nodes);
 
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./injection-method", loader, ctxt, &nodes,
                                    err);
     if (error_is_set(err))
@@ -1176,8 +1178,8 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
                                 variant_id);
         xmlFree(variant_id);
     }
-    g_free(nodes);
 
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./iso/*", loader, ctxt, &nodes, err);
     if (error_is_set(err)) {
         g_object_unref(media);
@@ -1228,8 +1230,7 @@ static OsinfoMedia *osinfo_loader_media(OsinfoLoader *loader,
         }
     }
 
-    g_free(nodes);
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./installer/script", loader, ctxt, &nodes,
                                    err);
     if (error_is_set(err)) {
@@ -1294,10 +1295,10 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
                                 variant_id);
         xmlFree(variant_id);
     }
-    g_free(nodes);
 
     osinfo_loader_entity(loader, OSINFO_ENTITY(tree), keys, ctxt, root, err);
 
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./treeinfo/*", loader, ctxt, &nodes, err);
     if (error_is_set(err)) {
         g_object_unref(G_OBJECT(tree));
@@ -1701,8 +1702,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         g_object_unref(media);
     }
 
-    g_free(nodes);
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./tree", loader, ctxt, &nodes, err);
     if (error_is_set(err))
         goto cleanup;
@@ -1724,8 +1724,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         g_object_unref(G_OBJECT(tree));
     }
 
-    g_free(nodes);
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./image", loader, ctxt, &nodes, err);
     if (error_is_set(err))
         goto cleanup;
@@ -1747,8 +1746,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         g_object_unref(G_OBJECT(image));
     }
 
-    g_free(nodes);
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./variant", loader, ctxt, &nodes, err);
     if (error_is_set(err))
         goto cleanup;
@@ -1769,8 +1767,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         g_object_unref(G_OBJECT(variant));
     }
 
-    g_free(nodes);
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./resources", loader, ctxt, &nodes, err);
     if (error_is_set(err))
         goto cleanup;
@@ -1791,9 +1788,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         ctxt->node = saved;
     }
 
-    g_free(nodes);
-
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./installer/script", loader, ctxt, &nodes,
                                    err);
     if (error_is_set(err))
@@ -1812,8 +1807,7 @@ static void osinfo_loader_os(OsinfoLoader *loader,
         osinfo_os_add_install_script(os, script);
     }
 
-    g_free(nodes);
-
+    g_clear_pointer(&nodes, g_free);
     nnodes = osinfo_loader_nodeset("./driver", loader, ctxt, &nodes, err);
     if (error_is_set(err))
         goto cleanup;
