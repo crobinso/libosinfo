@@ -177,61 +177,61 @@ test_create_media(const char *id,
 static void
 test_matching(void)
 {
-    OsinfoMedia *unknown = test_create_media("https://libosinfo.org/test/",
-                                             "x86_64",
-                                             "Fedora 35",
-                                             "LINUX",
-                                             "Fedora",
-                                             "Fedora OS",
-                                             1234567);
+    g_autoptr(OsinfoMedia) unknown = test_create_media("https://libosinfo.org/test/",
+                                                       "x86_64",
+                                                       "Fedora 35",
+                                                       "LINUX",
+                                                       "Fedora",
+                                                       "Fedora OS",
+                                                       1234567);
     /* Match with several optional fields */
-    OsinfoMedia *reference1 = test_create_media("https://fedoraproject.org/fedora/35/media1",
-                                                "x86_64",
-                                                "Fedora 35",
-                                                NULL,
-                                                NULL,
-                                                NULL,
-                                                0);
+    g_autoptr(OsinfoMedia) reference1 = test_create_media("https://fedoraproject.org/fedora/35/media1",
+                                                          "x86_64",
+                                                          "Fedora 35",
+                                                          NULL,
+                                                          NULL,
+                                                          NULL,
+                                                          0);
     /* Mis-match on volume */
-    OsinfoMedia *reference2 = test_create_media("https://fedoraproject.org/fedora/34/media2",
-                                                "x86_64",
-                                                "Fedora 34",
-                                                "LINUX",
-                                                NULL,
-                                                NULL,
-                                                0);
+    g_autoptr(OsinfoMedia) reference2 = test_create_media("https://fedoraproject.org/fedora/34/media2",
+                                                          "x86_64",
+                                                          "Fedora 34",
+                                                          "LINUX",
+                                                          NULL,
+                                                          NULL,
+                                                          0);
     /* Match with all fields with some regexes */
-    OsinfoMedia *reference3 = test_create_media("https://fedoraproject.org/fedora/unknown/media3",
-                                                "x86_64",
-                                                "Fedora [0-9]+",
-                                                "LINUX",
-                                                "Fedora",
-                                                "Fedora OS",
-                                                0);
+    g_autoptr(OsinfoMedia) reference3 = test_create_media("https://fedoraproject.org/fedora/unknown/media3",
+                                                          "x86_64",
+                                                          "Fedora [0-9]+",
+                                                          "LINUX",
+                                                          "Fedora",
+                                                          "Fedora OS",
+                                                          0);
     /* Match including vol size */
-    OsinfoMedia *reference4 = test_create_media("https://fedoraproject.org/fedora/35/media4",
-                                                "x86_64",
-                                                "Fedora 35",
-                                                "LINUX",
-                                                NULL,
-                                                NULL,
-                                                1234567);
+    g_autoptr(OsinfoMedia) reference4 = test_create_media("https://fedoraproject.org/fedora/35/media4",
+                                                          "x86_64",
+                                                          "Fedora 35",
+                                                          "LINUX",
+                                                          NULL,
+                                                          NULL,
+                                                          1234567);
     /* Mis-match on vol size */
-    OsinfoMedia *reference5 = test_create_media("https://fedoraproject.org/fedora/35/media5",
-                                                "x86_64",
-                                                "Fedora 35",
-                                                "LINUX",
-                                                NULL,
-                                                NULL,
-                                                1234568);
+    g_autoptr(OsinfoMedia) reference5 = test_create_media("https://fedoraproject.org/fedora/35/media5",
+                                                          "x86_64",
+                                                          "Fedora 35",
+                                                          "LINUX",
+                                                          NULL,
+                                                          NULL,
+                                                          1234568);
     /* Mis-match on arch */
-    OsinfoMedia *reference6 = test_create_media("https://fedoraproject.org/fedora/35/media1",
-                                                "i686",
-                                                "Fedora 35",
-                                                NULL,
-                                                NULL,
-                                                NULL,
-                                                0);
+    g_autoptr(OsinfoMedia) reference6 = test_create_media("https://fedoraproject.org/fedora/35/media1",
+                                                          "i686",
+                                                          "Fedora 35",
+                                                          NULL,
+                                                          NULL,
+                                                          NULL,
+                                                          0);
     g_assert(osinfo_media_matches(unknown, reference1));
     g_assert(!osinfo_media_matches(unknown, reference2));
     g_assert(osinfo_media_matches(unknown, reference3));
