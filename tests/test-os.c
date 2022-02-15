@@ -142,6 +142,7 @@ test_loader(void)
         }
     }
 
+    g_object_unref(treelist);
     g_object_unref(loader);
 }
 
@@ -216,7 +217,8 @@ test_device_driver(void)
 static void
 test_device_driver_priority_helper(gint64* expected_priorities,
                                    OsinfoDeviceDriverList *(*get_device_drivers_func)(OsinfoOs *),
-                                   gint expected_ddlist_length)
+                                   gint expected_ddlist_length,
+                                   gboolean free_ddlist)
 {
     OsinfoLoader *loader = osinfo_loader_new();
     OsinfoDb *db;
@@ -238,6 +240,9 @@ test_device_driver_priority_helper(gint64* expected_priorities,
         g_assert_cmpint(osinfo_device_driver_get_priority(dd), ==, expected_priorities[i]);
     }
 
+    if (free_ddlist)
+        g_object_unref(ddlist);
+
     g_object_unref(db);
 }
 
@@ -249,7 +254,8 @@ test_device_driver_priority(void)
 
     test_device_driver_priority_helper(expected_priorities,
                                        osinfo_os_get_device_drivers,
-                                       2);
+                                       2,
+                                       FALSE);
 }
 
 
@@ -260,7 +266,8 @@ test_device_driver_prioritized_priority(void)
 
     test_device_driver_priority_helper(expected_priorities,
                                        osinfo_os_get_device_drivers_prioritized,
-                                       1);
+                                       1,
+                                       TRUE);
 }
 
 
@@ -858,7 +865,6 @@ test_firmwares_complete_list(void)
     OsinfoFirmwareList *firmwarelist;
     GError *error = NULL;
 
-    loader = osinfo_loader_new();
     osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
     g_assert_no_error(error);
     db = osinfo_loader_get_db(loader);
@@ -901,7 +907,6 @@ test_firmwares_complete_list_inheritance(void)
     OsinfoFirmwareList *firmwarelist;
     GError *error = NULL;
 
-    loader = osinfo_loader_new();
     osinfo_loader_process_path(loader, SRCDIR "/tests/dbdata", &error);
     g_assert_no_error(error);
     db = osinfo_loader_get_db(loader);
@@ -952,6 +957,7 @@ test_firmwares_complete_list_inheritance(void)
     g_assert_cmpstr(osinfo_firmware_get_firmware_type(firmware), ==, "bios");
     g_assert_cmpstr(osinfo_firmware_get_architecture(firmware), ==, "x86_64");
     g_assert_true(osinfo_firmware_is_supported(firmware));
+    g_clear_object(&firmwarelist);
 
     /**
      * inherit3:
