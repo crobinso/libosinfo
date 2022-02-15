@@ -363,7 +363,9 @@ OsinfoOsVariantList *osinfo_image_get_os_variants(OsinfoImage *image)
                                  OSINFO_LIST(os_variants),
                                  filter);
     }
+    g_object_unref(filter);
     g_object_unref(os_variants);
+    g_list_free(ids);
 
     return image_variants;
 }
