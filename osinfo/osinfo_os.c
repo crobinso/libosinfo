@@ -1258,6 +1258,7 @@ OsinfoDeviceDriverList *osinfo_os_get_device_drivers_prioritized(OsinfoOs *os)
 
         osinfo_list_add(OSINFO_LIST(device_drivers), OSINFO_ENTITY(l->data));
     }
+    g_list_free(sorted);
 
     return device_drivers;
 }
