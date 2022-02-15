@@ -1155,6 +1155,8 @@ OsinfoOsVariantList *osinfo_tree_get_os_variants(OsinfoTree *tree)
                                  OSINFO_LIST(os_variants),
                                  filter);
     }
+    g_list_free(ids);
+    g_object_unref(filter);
     g_object_unref(os_variants);
 
     return tree_variants;
