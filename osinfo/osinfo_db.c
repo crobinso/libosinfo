@@ -780,6 +780,7 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
             osinfo_media_add_install_script(media, script);
         }
     }
+    g_clear_object(&install_script_list);
 
     if (os != NULL)
         osinfo_media_set_os(media, os);
