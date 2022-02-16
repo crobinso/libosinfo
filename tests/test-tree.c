@@ -104,7 +104,7 @@ test_create_from_treeinfo(void)
     os = osinfo_tree_get_os(tree);
     g_assert_cmpstr(osinfo_entity_get_id(OSINFO_ENTITY(os)), ==, "http://libosinfo.org/test/tree");
     g_object_unref(os);
-
+    g_object_unref(tree);
     g_object_unref(loader);
 }
 
@@ -145,40 +145,40 @@ test_create_tree(const char *id,
 static void
 test_matching(void)
 {
-    OsinfoTree *unknown = test_create_tree("https://libosinfo.org/test/",
-                                           "x86_64",
-                                           "Fedora",
-                                           "Server",
-                                           "35",
-                                           "x86_64");
+    g_autoptr(OsinfoTree) unknown = test_create_tree("https://libosinfo.org/test/",
+                                                     "x86_64",
+                                                     "Fedora",
+                                                     "Server",
+                                                     "35",
+                                                     "x86_64");
     /* Match with several optional fields */
-    OsinfoTree *reference1 = test_create_tree("https://fedoraproject.org/fedora/35/tree1",
-                                              "x86_64",
-                                              "Fedora",
-                                              NULL,
-                                              NULL,
-                                              NULL);
+    g_autoptr(OsinfoTree) reference1 = test_create_tree("https://fedoraproject.org/fedora/35/tree1",
+                                                        "x86_64",
+                                                        "Fedora",
+                                                        NULL,
+                                                        NULL,
+                                                        NULL);
     /* Mis-match on version */
-    OsinfoTree *reference2 = test_create_tree("https://fedoraproject.org/fedora/34/tree2",
-                                              "x86_64",
-                                              "Fedora",
-                                              NULL,
-                                              "34",
-                                              "x86_64");
+    g_autoptr(OsinfoTree) reference2 = test_create_tree("https://fedoraproject.org/fedora/34/tree2",
+                                                        "x86_64",
+                                                        "Fedora",
+                                                        NULL,
+                                                        "34",
+                                                        "x86_64");
     /* Match with all fields with some regexes */
-    OsinfoTree *reference3 = test_create_tree("https://fedoraproject.org/fedora/unknown/tree3",
-                                              "x86_64",
-                                              "Fedora",
-                                              "(Server|Workstation)",
-                                              "3[0-9]",
-                                              NULL);
+    g_autoptr(OsinfoTree) reference3 = test_create_tree("https://fedoraproject.org/fedora/unknown/tree3",
+                                                        "x86_64",
+                                                        "Fedora",
+                                                        "(Server|Workstation)",
+                                                        "3[0-9]",
+                                                        NULL);
     /* Mis-match on arch */
-    OsinfoTree *reference4 = test_create_tree("https://fedoraproject.org/fedora/35/tree1",
-                                              "i686",
-                                              "Fedora",
-                                              NULL,
-                                              NULL,
-                                              NULL);
+    g_autoptr(OsinfoTree) reference4 = test_create_tree("https://fedoraproject.org/fedora/35/tree1",
+                                                        "i686",
+                                                        "Fedora",
+                                                        NULL,
+                                                        NULL,
+                                                        NULL);
     g_assert(osinfo_tree_matches(unknown, reference1));
     g_assert(!osinfo_tree_matches(unknown, reference2));
     g_assert(osinfo_tree_matches(unknown, reference3));
