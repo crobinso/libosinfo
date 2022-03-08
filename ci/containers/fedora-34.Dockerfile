@@ -21,6 +21,7 @@ exec "$@"' > /usr/bin/nosync && \
         ca-certificates \
         ccache \
         check-devel \
+        cppi \
         gcc \
         gettext \
         git \
