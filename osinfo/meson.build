@@ -161,7 +161,7 @@ libosinfo = library(
 
 libosinfo_dep = declare_dependency(
     sources: [
-        libosinfo_enum_types,
+        libosinfo_enum_types[1],
     ],
     link_with: libosinfo,
     dependencies: libosinfo_dependencies,
