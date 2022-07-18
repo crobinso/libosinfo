@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the libosinfo package.
 # simmon <simmon@nplob.com>, 2021.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2021, 2022.
+# 김인수 <simmon@nplob.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2022-04-12 13:16+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"PO-Revision-Date: 2022-07-18 16:18+0000\n"
+"Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ko/>\n"
 "Language: ko\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -341,12 +342,12 @@ msgstr "부팅할 수 없는 설치 미디어"
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr "\"%s\" 디렉터리 기록 범위 읽기에 실패하였습니다: "
+msgstr "\"%s\" 디렉토리 레코드 범위 읽기에 실패함: "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr "\"%s\" 디렉터리의 기록 범위가 없습니다"
+msgstr "\"%s\" 디렉토리의 레코드 범위가 없음"
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
