@@ -49,14 +49,11 @@ libosinfo_pkgconfdir = join_paths(libosinfo_libdir, 'pkgconfig')
 libosinfo_spec_data = configuration_data()
 libosinfo_spec_data.set('VERSION', meson.project_version())
 
-specs = ['libosinfo.spec', 'mingw-libosinfo.spec']
-foreach spec: specs
-    configure_file(
-        input: spec + '.in',
-        output: spec,
-        configuration: libosinfo_spec_data,
-    )
-endforeach
+configure_file(
+    input: 'libosinfo.spec.in',
+    output: 'libosinfo.spec',
+    configuration: libosinfo_spec_data,
+)
 
 # ninja dist helper
 meson.add_dist_script('build-aux/dist.sh', meson.source_root(), meson.build_root())
