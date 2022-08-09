@@ -14,16 +14,22 @@ Source: https://releases.pagure.org/%{name}/%{name}-%{version}.tar.xz
 URL: https://libosinfo.org/
 BuildRequires: meson
 BuildRequires: gcc
+BuildRequires: gtk-doc
 BuildRequires: gettext-devel
 BuildRequires: glib2-devel
 BuildRequires: libxml2-devel >= 2.6.0
 BuildRequires: libxslt-devel >= 1.0.0
+%if 0%{?fedora} >= 37
+BuildRequires: libsoup3-devel
+%else
 BuildRequires: libsoup-devel
+%endif
 BuildRequires: vala
 BuildRequires: /usr/bin/pod2man
 BuildRequires: hwdata
 BuildRequires: gobject-introspection-devel
 BuildRequires: osinfo-db
+BuildRequires: git
 Requires: hwdata
 Requires: osinfo-db
 Requires: osinfo-db-tools
@@ -98,7 +104,7 @@ combination.
 %endif
 
 %prep
-%setup -q
+%autosetup -S git
 
 %build
 %meson \
