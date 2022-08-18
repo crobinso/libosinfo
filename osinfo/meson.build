@@ -5,6 +5,8 @@ version_info = meson.project_version().split('.')
 version_major = '@0@'.format(version_info[0])
 version_minor = '@0@'.format(version_info[1])
 version_micro = '@0@'.format(version_info[2])
+# (I.e. the ABI version)
+versioned_name = 'libosinfo-1.0'
 
 version_data = configuration_data()
 version_data.set('LIBOSINFO_MAJOR_VERSION', version_major)
@@ -14,7 +16,7 @@ osinfo_version = configure_file(
     input: 'osinfo_version.h.in',
     output: 'osinfo_version.h',
     configuration: version_data,
-    install_dir: join_paths(libosinfo_includedir, 'libosinfo-1.0', 'osinfo'),
+    install_dir: join_paths(libosinfo_includedir, versioned_name, 'osinfo'),
 )
 
 libosinfo_headers = [
@@ -70,9 +72,9 @@ libosinfo_enum_types = gnome.mkenums_simple(
     'osinfo_enum_types',
     sources: libosinfo_headers,
     install_header: true,
-    install_dir: join_paths(libosinfo_includedir, 'libosinfo-1.0', 'osinfo'))
+    install_dir: join_paths(libosinfo_includedir, versioned_name, 'osinfo'))
 
-install_headers(libosinfo_headers, subdir: join_paths('libosinfo-1.0', 'osinfo'))
+install_headers(libosinfo_headers, subdir: join_paths(versioned_name, 'osinfo'))
 
 libosinfo_sources = [
     'osinfo_avatar_format.c',
@@ -196,7 +198,7 @@ if host_machine.system() != 'windows'
             sources: libosinfo_gir_sources,
             nsversion: '1.0',
             namespace: 'Libosinfo',
-            export_packages: 'libosinfo-1.0',
+            export_packages: versioned_name,
             includes: [
                 'GObject-2.0',
                 'Gio-2.0',
@@ -217,7 +219,7 @@ if host_machine.system() != 'windows'
 
         if enable_vapi
             libosinfo_vapi = gnome.generate_vapi(
-                'libosinfo-1.0',
+                versioned_name,
                 install: true,
                 packages: [
                     'gobject-2.0',
