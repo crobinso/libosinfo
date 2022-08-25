@@ -5,13 +5,14 @@
 # Translators:
 # Fabian Affolter <mail@fabian-affolter.ch>, 2020.
 # Ettore Atalan <atalanttore@googlemail.com>, 2021.
+# Philipp Hahn <pmhahn+fedora@pmhahn.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2021-12-05 20:16+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2022-08-25 09:19+0000\n"
+"Last-Translator: Philipp Hahn <pmhahn+fedora@pmhahn.de>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/de/>\n"
 "Language: de\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.13\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -73,11 +74,11 @@ msgstr "Das Abbild-Format"
 
 #: osinfo/osinfo_image.c:185
 msgid "The URL to this image"
-msgstr "Der URL für dieses Abbild"
+msgstr "URL zu diesem Dateibaum"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Ob cloud-init-Anpassungen unterstützt werden oder nicht"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -138,28 +139,28 @@ msgstr "XSL-Vorlage konnte nicht verarbeitet werden"
 #: osinfo/osinfo_install_script.c:799 osinfo/osinfo_install_script.c:830
 #, c-format
 msgid "Unable to create XML node '%s'"
-msgstr ""
+msgstr "XML-Eintrag '%s' konnte nicht angelegt werden"
 
 #: osinfo/osinfo_install_script.c:805
 msgid "Unable to create XML node 'id'"
-msgstr ""
+msgstr "XML-Eintrag 'id' konnte nicht angelegt werden"
 
 #: osinfo/osinfo_install_script.c:809 osinfo/osinfo_install_script.c:835
 msgid "Unable to add XML child"
-msgstr ""
+msgstr "XML-Kindelement konnte nicht hinzugefügt werden"
 
 #: osinfo/osinfo_install_script.c:882 osinfo/osinfo_install_script.c:892
 #: osinfo/osinfo_install_script.c:926
 msgid "Unable to set XML root"
-msgstr ""
+msgstr "XML-Wurzelknoten konnte nicht gesetzt werden"
 
 #: osinfo/osinfo_install_script.c:903
 msgid "Unable to set 'media' node"
-msgstr ""
+msgstr "XML-Knoten 'media' kann nicht gesetzt werden"
 
 #: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
-msgstr ""
+msgstr "XML-Knoten 'tree' konnte nicht gesetzt werden"
 
 #: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
@@ -176,17 +177,17 @@ msgstr "XSL-Ausgabe konnte nicht in Zeichenkette umgewandelt werden"
 #: osinfo/osinfo_install_script.c:1020
 #, c-format
 msgid "Failed to load script template %s: "
-msgstr "Skript-Vorlage %s konnte nicht geladen werden:"
+msgstr "Skript-Vorlage %s konnte nicht geladen werden: "
 
 #: osinfo/osinfo_install_script.c:1036
 #, c-format
 msgid "Failed to apply script template %s: "
-msgstr "Skript-Vorlage %s konnte nicht angewendet werden:"
+msgstr "Skript-Vorlage %s konnte nicht angewendet werden: "
 
 #: osinfo/osinfo_install_script.c:1094 osinfo/osinfo_install_script.c:2001
 #: osinfo/osinfo_install_script.c:2052 osinfo/osinfo_install_script.c:2104
 msgid "Failed to apply script template: "
-msgstr "Skript-Vorlage konnte nicht angewendet werden:"
+msgstr "Skript-Vorlage konnte nicht angewendet werden: "
 
 #: osinfo/osinfo_list.c:124
 msgid "List element type"
@@ -195,7 +196,7 @@ msgstr "Typ des Listenelements"
 #: osinfo/osinfo_loader.c:226
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
-msgstr ""
+msgstr "Erwartete ein 'nodeset' von der XPath-Suche %s"
 
 #: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
@@ -239,7 +240,7 @@ msgstr "Eigenschaft »install script id« fehlt"
 
 #: osinfo/osinfo_loader.c:1246
 msgid "Missing Media install script property"
-msgstr ""
+msgstr "Eigenschaft »install script« fehlt"
 
 #: osinfo/osinfo_loader.c:1805
 msgid "Missing OS install script property"
@@ -263,6 +264,9 @@ msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR ist veraltet, bitte stattdessen $OSINFO_SYSTEM_DIR "
+"benutzen. Unterstützung für $OSINFO_DATA_DIR wird in einer zukünftigen "
+"Version entfernt werden.\n"
 
 #: osinfo/osinfo_loader.c:2658 osinfo/osinfo_loader.c:2690
 #, c-format
@@ -270,6 +274,8 @@ msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
+"%s ist veraltet, bitte stattdessen %s benutzen. Unterstützung für %s wird in "
+"einer zukünftigen Version entfernt werden.\n"
 
 #: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
@@ -321,7 +327,7 @@ msgstr "Unterstützte Sprachen"
 
 #: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
-msgstr ""
+msgstr "Erwartet ISO9660 Datenträgergröße, in Bytes"
 
 #: osinfo/osinfo_media.c:668
 msgid "Whether the media should be ejected after the installation process"
@@ -343,16 +349,16 @@ msgstr "Installationsmedium ist nicht bootfähig"
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr ""
+msgstr "Fehler beim Lesen der Verzeichniseintragserweiterung \"%s\": "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr ""
+msgstr "Keine Verzeichniseintragserweiterung \"%s\""
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
-msgstr "Deskriptor für weitere Datenträger konnte nicht gelesen werden:"
+msgstr "Deskriptor für weitere Datenträger konnte nicht gelesen werden: "
 
 #: osinfo/osinfo_media.c:1109
 #, c-format
@@ -361,7 +367,7 @@ msgstr "Deskriptor für weitere Datenträger wurde abgeschnitten"
 
 #: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
-msgstr "Deskriptor für primären Datenträger konnte nicht gelesen werden:"
+msgstr "Deskriptor für primären Datenträger konnte nicht gelesen werden: "
 
 #: osinfo/osinfo_media.c:1183
 #, c-format
@@ -385,7 +391,7 @@ msgstr "Keine Datenträgerdeskriptoren"
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
-msgstr ""
+msgstr "Öffnen der Datei fehlgeschlagen "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
@@ -397,7 +403,7 @@ msgstr "Generische Distribution"
 
 #: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
-msgstr ""
+msgstr "Kernel-URL-Angabe"
 
 #: osinfo/osinfo_os.c:195
 msgid "Cloud image username"
@@ -455,23 +461,23 @@ msgstr "Pfad zum bootfähigen ISO-Abbild"
 
 #: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
-msgstr ""
+msgstr "Ob der Baum \"treeinfo\" hat"
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
-msgstr ""
+msgstr "Die \"treeinfo\"-Gruppierung"
 
 #: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
-msgstr ""
+msgstr "Die \"treeinfo\"-Variante"
 
 #: osinfo/osinfo_tree.c:403
 msgid "The treeinfo version"
-msgstr ""
+msgstr "Die \"treeinfo\"-Version"
 
 #: osinfo/osinfo_tree.c:415
 msgid "The treeinfo architecture"
-msgstr ""
+msgstr "Die \"treeinfo\"-Architektur"
 
 #: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
@@ -479,15 +485,15 @@ msgstr "Informationen über das Betriebssystem in diesem Baum"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr ""
+msgstr "Ladefehler für Inhalt von .treeinfo|treeinfo: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
-msgstr "Keyinfo-Datei konnte nicht verarbeitet werden:"
+msgstr "Keyinfo-Datei konnte nicht verarbeitet werden: "
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr ""
+msgstr "Ladefehler für .treeinfo|treeinfo Datei: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
@@ -525,6 +531,9 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"Der einzig verfügbare Wert für FORMAT ist '%s', was Klartext entspricht.\n"
+"TYPE kann entweder '%s' (der Standard) für CD/DVD ISOs,\n"
+"oder '%s' für Installationsbäume sein."
 
 #: tools/osinfo-detect.c:105
 #, c-format
@@ -539,12 +548,12 @@ msgstr "Das Medium ist nicht bootfähig.\n"
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Medium ist ein Installer für Betriebssystem '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:140
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Medium ist ein Live-Medium für Betriebssystem '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:145
 #, c-format
@@ -554,12 +563,12 @@ msgstr "Verfügbare BS-Varianten auf dem Medium:\n"
 #: tools/osinfo-detect.c:187
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Baum ist ein Installer für Betriebssystem '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:192
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr ""
+msgstr "Verfügbare BS-Varianten im Zweig:\n"
 
 #: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
@@ -636,7 +645,7 @@ msgstr "Ausgabedateinamen nicht anzeigen"
 #: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr ""
+msgstr "Kein Installationsskript für Profil '%s' und Betriebssystem '%s'"
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
@@ -649,7 +658,7 @@ msgstr "optional"
 #: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr ""
+msgstr "Kein Installationsskript für Profil '%s' und Betriebssystem '%s'\n"
 
 #: tools/osinfo-install-script.c:356
 #, c-format
@@ -670,6 +679,8 @@ msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
+"Nur eins von --list-profile, --list-config oder --list-injection-methods "
+"kann gleichzeitig genutzt werden"
 
 #: tools/osinfo-install-script.c:443
 #, c-format
