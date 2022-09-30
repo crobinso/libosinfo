@@ -4,13 +4,11 @@
 #
 # https://gitlab.com/libvirt/libvirt-ci
 
-FROM docker.io/library/ubuntu:18.04
-
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update && \
-    apt-get install -y eatmydata && \
-    eatmydata apt-get dist-upgrade -y && \
-    eatmydata apt-get install --no-install-recommends -y \
+function install_buildenv() {
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get dist-upgrade -y
+    apt-get install --no-install-recommends -y \
             ca-certificates \
             ccache \
             check \
@@ -39,20 +37,18 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
             python3-wheel \
             valac \
             wget \
-            xz-utils && \
-    eatmydata apt-get autoremove -y && \
-    eatmydata apt-get autoclean -y && \
-    sed -Ei 's,^# (en_US\.UTF-8 .*)$,\1,' /etc/locale.gen && \
-    dpkg-reconfigure locales && \
-    dpkg-query --showformat '${Package}_${Version}_${Architecture}\n' --show > /packages.txt && \
-    mkdir -p /usr/libexec/ccache-wrappers && \
-    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \
+            xz-utils
+    sed -Ei 's,^# (en_US\.UTF-8 .*)$,\1,' /etc/locale.gen
+    dpkg-reconfigure locales
+    dpkg-query --showformat '${Package}_${Version}_${Architecture}\n' --show > /packages.txt
+    mkdir -p /usr/libexec/ccache-wrappers
+    ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc
+    /usr/bin/pip3 install meson==0.56.0
+}
 
-RUN pip3 install meson==0.56.0
-
-ENV LANG "en_US.UTF-8"
-ENV MAKE "/usr/bin/make"
-ENV NINJA "/usr/bin/ninja"
-ENV PYTHON "/usr/bin/python3"
-ENV CCACHE_WRAPPERSDIR "/usr/libexec/ccache-wrappers"
+export CCACHE_WRAPPERSDIR="/usr/libexec/ccache-wrappers"
+export LANG="en_US.UTF-8"
+export MAKE="/usr/bin/make"
+export NINJA="/usr/bin/ninja"
+export PYTHON="/usr/bin/python3"
