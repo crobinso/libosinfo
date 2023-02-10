@@ -1,13 +1,14 @@
 # Toni Rantala <trantalafilo@gmail.com>, 2017. #zanata
 # Jan Kuparinen <copper_fin@hotmail.com>, 2021.
 # Ricky Tigg <ricky.tigg@gmail.com>, 2021.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2021-10-25 19:05+0000\n"
-"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
+"PO-Revision-Date: 2022-09-08 08:19+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fi/>\n"
 "Language: fi\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8\n"
+"X-Generator: Weblate 4.14\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -678,7 +679,7 @@ msgstr "Perhe"
 
 #: tools/osinfo-query.c:59
 msgid "Distro"
-msgstr ""
+msgstr "Jakelu"
 
 #: tools/osinfo-query.c:63 tools/osinfo-query.c:85
 msgid "Release date"
