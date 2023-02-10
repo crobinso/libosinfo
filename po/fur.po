@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libosinfo package.
-# Fabio Tomat <f.t.public@gmail.com>, 2020.
+# Fabio Tomat <f.t.public@gmail.com>, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2020-09-14 06:29+0000\n"
+"PO-Revision-Date: 2022-11-07 00:19+0000\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fur/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.2.2\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -193,7 +193,7 @@ msgstr "Liste il gjenar dal element"
 #: osinfo/osinfo_loader.c:226
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
-msgstr ""
+msgstr "Si spietave un nodeset te interogazion XPath %s"
 
 #: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
@@ -334,6 +334,8 @@ msgstr ""
 msgid ""
 "Whether the media should be used for an installation using install scripts"
 msgstr ""
+"Indiche se si à di doprâ il supuart par une instalazion, doprant i scripts "
+"di instalazion"
 
 #: osinfo/osinfo_media.c:815
 #, c-format
@@ -343,12 +345,12 @@ msgstr "Il supuart di instalazion nol auto-partìs al inviament dal sisteme"
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr ""
+msgstr "Impussibil lei la vôs extent pe cartele \"%s\": "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr ""
+msgstr "Nissune vôs extent pe cartele \"%s\""
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
@@ -525,103 +527,107 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"L'unic valôr disponibil pal FORMÂT al è '%s', che al significhe test sempliç."
+"\n"
+"GJENAR al pues jessi o '%s' (il predefinît) pai ISOs CD/DVD\n"
+"o '%s' pai arbui di instalazion."
 
 #: tools/osinfo-detect.c:105
 #, c-format
 msgid "Media is bootable.\n"
-msgstr ""
+msgstr "Il supuart al è inviabil.\n"
 
 #: tools/osinfo-detect.c:107
 #, c-format
 msgid "Media is not bootable.\n"
-msgstr ""
+msgstr "Il supuart nol è inviabil.\n"
 
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Il supuart al è un instaladôr pal SO '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:140
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Il supuart al è un sisteme live pal SO '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:145
 #, c-format
 msgid "Available OS variants on media:\n"
-msgstr ""
+msgstr "Variantis dal SO disponibilis sul supuart:\n"
 
 #: tools/osinfo-detect.c:187
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "L'arbul al è un instaladôr pal SO '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:192
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr ""
+msgstr "Variantis dal SO disponibilis sul arbul:\n"
 
 #: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
-msgstr ""
+msgstr "- Rileve se un supuart al è inviabil e il relatîf SO e la distribuzion."
 
 #: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr ""
+msgstr "Erôr tal analizâ lis opzions a rie di comant: %s\n"
 
 #: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
 #: tools/osinfo-query.c:428
 #, c-format
 msgid "Error loading OS data: %s\n"
-msgstr ""
+msgstr "Erôr tal cjariâ i dâts dal SO: %s\n"
 
 #: tools/osinfo-detect.c:263
 #, c-format
 msgid "Error parsing media: %s\n"
-msgstr ""
+msgstr "Erôr tal analizâ il supuart: %s\n"
 
 #: tools/osinfo-detect.c:279
 #, c-format
 msgid "Error parsing installer tree: %s\n"
-msgstr ""
+msgstr "Erôr tal analizâ l'arbul dal instaladôr: %s\n"
 
 #: tools/osinfo-install-script.c:76
 #, c-format
 msgid "Expected configuration key=value"
-msgstr ""
+msgstr "Si spietave une configurazion clâf=valôr"
 
 #: tools/osinfo-install-script.c:141
 msgid "Install script profile"
-msgstr ""
+msgstr "Profîl dal script di instalazion"
 
 #: tools/osinfo-install-script.c:143
 msgid "Install script output directory"
-msgstr ""
+msgstr "Cartele di jessude dal script di instalazion"
 
 #: tools/osinfo-install-script.c:145
 msgid "The output filename prefix"
-msgstr ""
+msgstr "Il prefìs dal non dal file di jessude"
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr ""
+msgstr "La sorzint di instalazion di doprâ cul script"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
-msgstr ""
+msgstr "Stabilìs un parametri di configurazion"
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
-msgstr ""
+msgstr "Stabilìs parametris di configurazion"
 
 #: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
-msgstr ""
+msgstr "Liste i parametris di configuazion"
 
 #: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
-msgstr ""
+msgstr "Liste i profîi dai scripts di instalazion"
 
 #: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
@@ -629,7 +635,7 @@ msgstr ""
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
-msgstr ""
+msgstr "No sta mostrâ i nons dai file di jessude"
 
 #: tools/osinfo-install-script.c:218
 #, c-format
