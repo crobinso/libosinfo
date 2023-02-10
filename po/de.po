@@ -6,13 +6,14 @@
 # Fabian Affolter <mail@fabian-affolter.ch>, 2020.
 # Ettore Atalan <atalanttore@googlemail.com>, 2021.
 # Philipp Hahn <pmhahn+fedora@pmhahn.de>, 2022.
+# Flo H <emailtoflorian@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2022-08-25 09:19+0000\n"
-"Last-Translator: Philipp Hahn <pmhahn+fedora@pmhahn.de>\n"
+"PO-Revision-Date: 2022-11-24 23:20+0000\n"
+"Last-Translator: Flo H <emailtoflorian@gmail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/de/>\n"
 "Language: de\n"
@@ -20,11 +21,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr "Die zugelassen mine-types für den Avatar"
+msgstr "Die zugelassen mime-types für den Avatar"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
