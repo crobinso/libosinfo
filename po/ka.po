@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libosinfo package.
-# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2022-08-25 17:19+0000\n"
+"PO-Revision-Date: 2023-01-13 08:20+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ka/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.15\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -114,7 +114,7 @@ msgstr "ავატარის მოსალოდნელი ფორმ�
 
 #: osinfo/osinfo_install_script.c:258
 msgid "The preferred injection method"
-msgstr ""
+msgstr "ჩასმის რჩეული მეთოდი"
 
 #: osinfo/osinfo_install_script.c:267
 msgid "The installation source to be used"
@@ -192,35 +192,35 @@ msgstr "ელემენტის ტიპების სია"
 #: osinfo/osinfo_loader.c:226
 #, c-format
 msgid "Expected a nodeset in XPath query %s"
-msgstr ""
+msgstr "XPath-ის მოთხოვნაში %s მოსალოდნელი nodeset არ არსებობს"
 
 #: osinfo/osinfo_loader.c:306 osinfo/osinfo_loader.c:451
 msgid "Expected a text node attribute value"
-msgstr ""
+msgstr "მოველოდი ტექსტური კვანძის ატრიბუტის მნიშვნელობას"
 
 #: osinfo/osinfo_loader.c:605
 msgid "Missing device id property"
-msgstr ""
+msgstr "ნაკლული თვისება მოწყობილობის id"
 
 #: osinfo/osinfo_loader.c:644
 msgid "Missing device link id property"
-msgstr ""
+msgstr "მოწყობილობის ბმულის id-ის თვისება ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:705
 msgid "Missing product upgrades id property"
-msgstr ""
+msgstr "პროდუქტის აწევის თვისების id ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:789
 msgid "Missing platform id property"
-msgstr ""
+msgstr "ნაკლული თვისება პლატფორმის id"
 
 #: osinfo/osinfo_loader.c:828
 msgid "Missing deployment id property"
-msgstr ""
+msgstr "გაშლის id-ის თვისება ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:838
 msgid "Missing deployment os id property"
-msgstr ""
+msgstr "გასაშლელი ოს-ის ID თვისება ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:848
 msgid "Missing deployment platform id property"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: osinfo/osinfo_loader.c:1871
 msgid "Incorrect root element"
-msgstr ""
+msgstr "არასწორი root ელემენტი"
 
 #: osinfo/osinfo_loader.c:1948
 msgid "Unable to construct parser context"
@@ -441,7 +441,7 @@ msgstr ""
 
 #: osinfo/osinfo_tree.c:319
 msgid "The URL to this tree"
-msgstr ""
+msgstr "URL ამ ხემდე"
 
 #: osinfo/osinfo_tree.c:355
 msgid "The path to the bootable ISO image"
@@ -583,7 +583,7 @@ msgstr ""
 #: tools/osinfo-install-script.c:76
 #, c-format
 msgid "Expected configuration key=value"
-msgstr ""
+msgstr "მოსალოდნელი კონფიგურაცია გასაღები=მნიშვნელობა"
 
 #: tools/osinfo-install-script.c:141
 msgid "Install script profile"
@@ -607,19 +607,19 @@ msgstr "კონფიგურაციის პარამეტრის �
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
-msgstr ""
+msgstr "კონფიგურაციის პარამეტრების დაყენება"
 
 #: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
-msgstr ""
+msgstr "კონფიგურაციის პარამეტრების სია"
 
 #: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
-msgstr ""
+msgstr "დაყენების სკრიპტის პროფილების სია"
 
 #: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
-msgstr ""
+msgstr "ჩადგმის მხარდაჭერილი მეთოდების სია"
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
