@@ -7,13 +7,14 @@
 # Christophe Fergeau <cfergeau@redhat.com>, 2015. #zanata
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2019. #zanata
 # Julien Humbert <julroy67@gmail.com>, 2020.
+# Julien Lepiller <fedora-account@lepiller.eu>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2020-07-31 09:29+0000\n"
-"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"PO-Revision-Date: 2022-10-19 18:19+0000\n"
+"Last-Translator: Julien Lepiller <fedora-account@lepiller.eu>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fr/>\n"
 "Language: fr\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.1.1\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -720,10 +721,8 @@ msgid "ID"
 msgstr "ID"
 
 #: tools/osinfo-query.c:71
-#, fuzzy
-#| msgid "Release date"
 msgid "Release status"
-msgstr "Date de publication"
+msgstr "État de la publication"
 
 #: tools/osinfo-query.c:99
 msgid "Vendor ID"
