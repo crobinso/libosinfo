@@ -91,13 +91,13 @@ typedef enum {
 /**
  * OsinfoInstallScriptInjectionMethod:
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM: Support injection of the
- * installation script trough a CD-ROM.
+ * installation script through a CD-ROM.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK: Support injection of the
- * installation script trough a disk.
+ * installation script through a disk.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_FLOPPY: Support injection of the
- * installation script trough a floppy disk.
+ * installation script through a floppy disk.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD: Support injection of the
- * installation script trough the initrd.
+ * installation script through the initrd.
  * @OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB: Support injection of the
  * installation script from the web.
  *
