@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libosinfo package.
-# Fabio Tomat <f.t.public@gmail.com>, 2020, 2022.
+# Fabio Tomat <f.t.public@gmail.com>, 2020, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2022-11-07 00:19+0000\n"
+"PO-Revision-Date: 2023-02-27 03:20+0000\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fur/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -631,7 +631,7 @@ msgstr "Liste i profîi dai scripts di instalazion"
 
 #: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
-msgstr ""
+msgstr "Liste i metodis di inseriment supuartâts"
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
@@ -640,132 +640,134 @@ msgstr "No sta mostrâ i nons dai file di jessude"
 #: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr ""
+msgstr "Nissun script di instalazion pal profîl '%s' e SO '%s'"
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
-msgstr ""
+msgstr "necessari"
 
 #: tools/osinfo-install-script.c:234
 msgid "optional"
-msgstr ""
+msgstr "opzionâl"
 
 #: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr ""
+msgstr "Nissun script di instalazion pal profîl '%s' e SO '%s'\n"
 
 #: tools/osinfo-install-script.c:356
 #, c-format
 msgid "Unable to generate install script: %s\n"
-msgstr ""
+msgstr "Impussibil gjenerâ il script di instalazion: %s\n"
 
 #: tools/osinfo-install-script.c:393
 msgid "- Generate an OS install script"
-msgstr ""
+msgstr "- Gjenere un script di instalazion pal SO"
 
 #: tools/osinfo-install-script.c:396
 #, c-format
 msgid "Error while parsing options: %s\n"
-msgstr ""
+msgstr "Erôr tal analizâ lis opzions: %s\n"
 
 #: tools/osinfo-install-script.c:414
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
+"Al è pussibil doprâ dome un tra --list-profile, --list-config o --list-"
+"injection-methods"
 
 #: tools/osinfo-install-script.c:443
 #, c-format
 msgid "Error finding OS: %s\n"
-msgstr ""
+msgstr "Erôr tal cjatâ il SO: %s\n"
 
 #: tools/osinfo-query.c:57
 msgid "Family"
-msgstr ""
+msgstr "Famee"
 
 #: tools/osinfo-query.c:59
 msgid "Distro"
-msgstr ""
+msgstr "Distribuzion"
 
 #: tools/osinfo-query.c:63 tools/osinfo-query.c:85
 msgid "Release date"
-msgstr ""
+msgstr "Date di publicazion"
 
 #: tools/osinfo-query.c:65 tools/osinfo-query.c:87
 msgid "End of life"
-msgstr ""
+msgstr "Fin dal supuart"
 
 #: tools/osinfo-query.c:67 tools/osinfo-query.c:89
 msgid "Code name"
-msgstr ""
+msgstr "Non in codiç"
 
 #: tools/osinfo-query.c:69 tools/osinfo-query.c:91 tools/osinfo-query.c:111
 #: tools/osinfo-query.c:117
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: tools/osinfo-query.c:71
 msgid "Release status"
-msgstr ""
+msgstr "Stât de publicazion"
 
 #: tools/osinfo-query.c:99
 msgid "Vendor ID"
-msgstr ""
+msgstr "ID produtôr"
 
 #: tools/osinfo-query.c:101
 msgid "Product"
-msgstr ""
+msgstr "Prodot"
 
 #: tools/osinfo-query.c:103
 msgid "Product ID"
-msgstr ""
+msgstr "ID prodot"
 
 #: tools/osinfo-query.c:107
 msgid "Class"
-msgstr ""
+msgstr "Classe"
 
 #: tools/osinfo-query.c:109
 msgid "Bus"
-msgstr ""
+msgstr "Bus"
 
 #: tools/osinfo-query.c:149 tools/osinfo-query.c:191
 #, c-format
 msgid "Unknown property name %s"
-msgstr ""
+msgstr "Non de proprietât %s no cognossût"
 
 #: tools/osinfo-query.c:178
 msgid "Syntax error in condition, expecting KEY=VALUE"
-msgstr ""
+msgstr "Erôr di sintassi te condizion, si spietave CLÂF=VALÔR"
 
 #: tools/osinfo-query.c:396
 msgid "Sort column"
-msgstr ""
+msgstr "Ordene colone"
 
 #: tools/osinfo-query.c:398
 msgid "Display fields"
-msgstr ""
+msgstr "Visualize cjamps"
 
 #: tools/osinfo-query.c:407
 msgid "- Query the OS info database"
-msgstr ""
+msgstr "- Interoghe la base di dâts des informazions sul SO"
 
 #: tools/osinfo-query.c:419
 #, c-format
 msgid "Missing data type parameter\n"
-msgstr ""
+msgstr "Al mancje il parametri dal gjenar di dâts\n"
 
 #: tools/osinfo-query.c:447
 #, c-format
 msgid "Unknown type '%s' requested\n"
-msgstr ""
+msgstr "Domandât un gjenar '%s' no cognossût\n"
 
 #: tools/osinfo-query.c:452
 #, c-format
 msgid "Unable to construct filter: %s\n"
-msgstr ""
+msgstr "Impussibil costruî il filtri: %s\n"
 
 #: tools/osinfo-query.c:457
 #, c-format
 msgid "Unable to set field visibility: %s\n"
-msgstr ""
+msgstr "Impussibil configurâ la visibilitât dal cjamp: %s\n"
