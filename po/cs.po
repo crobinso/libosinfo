@@ -1,20 +1,21 @@
 # Zdenek <chmelarz@gmail.com>, 2017. #zanata
 # Zdenek <chmelarz@gmail.com>, 2018. #zanata
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata
+# Pavel Borecki <pavel.borecki@gmail.com>, 2019. #zanata, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2019-04-04 05:27+0000\n"
+"PO-Revision-Date: 2023-04-02 03:20+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
-"Language-Team: Czech\n"
+"Language-Team: Czech <https://translate.fedoraproject.org/projects/libosinfo/"
+"libosinfo/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -62,7 +63,7 @@ msgstr "Architektura CPU"
 
 #: osinfo/osinfo_firmware.c:141
 msgid "The firmware type"
-msgstr ""
+msgstr "Typ firmware"
 
 #: osinfo/osinfo_image.c:173
 msgid "The image format"
@@ -74,7 +75,7 @@ msgstr "URL adresa tohoto obrazu"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr ""
+msgstr "Zde jsou podporována přizpůsobení cloud-init či ne"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -156,7 +157,7 @@ msgstr "Nedaří se nastavit uzel „media“"
 
 #: osinfo/osinfo_install_script.c:915
 msgid "Unable to set 'tree' node"
-msgstr ""
+msgstr "Nedaří se nastavit 'tree' uzel"
 
 #: osinfo/osinfo_install_script.c:949
 msgid "Unable to create XSL transform context"
@@ -325,8 +326,6 @@ msgid "Expected ISO9660 volume size, in bytes"
 msgstr "Očekávaná velikost svazku ISO9660 v bajtech"
 
 #: osinfo/osinfo_media.c:668
-#, fuzzy
-#| msgid "Whether the media should be ejected after the installtion process"
 msgid "Whether the media should be ejected after the installation process"
 msgstr "Zda po instalaci vysunout médium"
 
@@ -385,7 +384,7 @@ msgstr "Žádné popisovače oddílu"
 
 #: osinfo/osinfo_media.c:1297
 msgid "Failed to open file: "
-msgstr ""
+msgstr "Nepodařilo se otevřít soubor: "
 
 #: osinfo/osinfo_os.c:157
 msgid "Generic Family"
@@ -397,13 +396,11 @@ msgstr "Obecná distribuce"
 
 #: osinfo/osinfo_os.c:183
 msgid "Kernel URL Argument"
-msgstr ""
+msgstr "Argument URL jádra"
 
 #: osinfo/osinfo_os.c:195
-#, fuzzy
-#| msgid "Code name"
 msgid "Cloud image username"
-msgstr "Kódové jméno"
+msgstr "Uživatelské jméno pro cloud image"
 
 # auto translated by TM merge from project: imsettings, version: master,
 # DocId: imsettings
@@ -467,27 +464,27 @@ msgstr "Zda strom má treeinfo"
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
-msgstr ""
+msgstr "Generace treeinfo"
 
 #: osinfo/osinfo_tree.c:391
 msgid "The treeinfo variant"
-msgstr ""
+msgstr "Varianta treeinfo"
 
 #: osinfo/osinfo_tree.c:403
 msgid "The treeinfo version"
-msgstr ""
+msgstr "Verze treeinfo"
 
 #: osinfo/osinfo_tree.c:415
 msgid "The treeinfo architecture"
-msgstr ""
+msgstr "Architektura treeinfo"
 
 #: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
-msgstr ""
+msgstr "Informace o operačním systému v tomto stromu"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr ""
+msgstr "Nepodařilo se načíst obsah .treeinfo|treeinfo: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
@@ -495,11 +492,11 @@ msgstr "Nepodařilo se zpracovat soubor keyinfo:"
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr ""
+msgstr "Nepodařilo se načíst soubor .treeinfo|treeinfo: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
-msgstr ""
+msgstr "URL protokol není podporován"
 
 #: osinfo/osinfo_os_variant.c:106
 msgid "The name to this variant"
@@ -511,22 +508,20 @@ msgid "Invalid value '%s'"
 msgstr "Neplatná hodnota '%s'"
 
 #: tools/osinfo-detect.c:88
-#, fuzzy
-#| msgid "Expected path format"
 msgid "Select the output format"
-msgstr "Očekávaný formát cesty"
+msgstr "Vybrat výstupní formát"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
-msgstr ""
+msgstr "FORMÁT"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "Vybrat typ toho, co je vytvářeno"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
-msgstr ""
+msgstr "TYP"
 
 #: tools/osinfo-detect.c:98
 #, c-format
@@ -535,6 +530,9 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"Jedinou hodnotou dostupnou pro FORMÁT je „%s“, což znamená prostý text.\n"
+"TYP může být buď „%s“ (výchozí) pro CD/DVD ISO soubory,\n"
+"nebo „%s“ instalační stromy."
 
 #: tools/osinfo-detect.c:105
 #, c-format
@@ -549,12 +547,12 @@ msgstr "Médium nelze zavést.\n"
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Médium je instalátor pro operační systém „%s (%s)“\n"
 
 #: tools/osinfo-detect.c:140
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Médium je live médium pro operační systém „%s (%s)“\n"
 
 #: tools/osinfo-detect.c:145
 #, c-format
@@ -564,12 +562,12 @@ msgstr "Dostupné verze OS na médii:\n"
 #: tools/osinfo-detect.c:187
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "Stroj je instalátorem pro operační systém „%s (%s)“\n"
 
 #: tools/osinfo-detect.c:192
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr ""
+msgstr "Varianty operačního systému, které jsou ve stromu k dispozici:\n"
 
 #: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
@@ -626,7 +624,7 @@ msgstr "Nastavit konfigurační parametr"
 
 #: tools/osinfo-install-script.c:153
 msgid "Set configuration parameters"
-msgstr ""
+msgstr "Nastavit parametry uspořádání"
 
 #: tools/osinfo-install-script.c:155
 msgid "List configuration parameters"
@@ -719,10 +717,8 @@ msgid "ID"
 msgstr "ID"
 
 #: tools/osinfo-query.c:71
-#, fuzzy
-#| msgid "Release date"
 msgid "Release status"
-msgstr "Datum vydání"
+msgstr "Stav vydání"
 
 #: tools/osinfo-query.c:99
 msgid "Vendor ID"
