@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the libosinfo package.
 # simmon <simmon@nplob.com>, 2021.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2021, 2022, 2023.
-# 김인수 <simmon@nplob.com>, 2022.
+# 김인수 <simmon@nplob.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2023-02-10 05:20+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"PO-Revision-Date: 2023-04-08 10:20+0000\n"
+"Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ko/>\n"
 "Language: ko\n"
@@ -342,12 +342,12 @@ msgstr "부팅할 수 없는 설치 미디어"
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr "\"%s\" 디렉터리 레코드 범위 읽기에 실패: "
+msgstr "\"%s\" 디렉토리 레코드 범위 읽기에 실패함: "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr "\"%s\" 디렉터리의 레코드 범위가 없음"
+msgstr "\"%s\" 디렉터토의 레코드 범위가 없음"
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
