@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2023-04-08 10:20+0000\n"
+"PO-Revision-Date: 2023-05-19 07:20+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ko/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -124,7 +124,7 @@ msgstr "사용할 설치 원본"
 
 #: osinfo/osinfo_install_script.c:694
 msgid "Unable to create XML parser context"
-msgstr "XML 해석기 컨텍스트를 구성할 수 없습니다"
+msgstr "XML 구문분석 컨텍스트를 생성 할 수 없습니다"
 
 #: osinfo/osinfo_install_script.c:702
 msgid "Unable to read XSL template"
@@ -565,33 +565,33 @@ msgstr "트리에서 사용할 수 있는 OS 변종:\n"
 
 #: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
-msgstr "- 부팅 가능 여부 및 운영체제, 배포판 관련 정보를 확인합니다."
+msgstr "- 만약 미디어가 부팅 할 수 있는지 그리고 연관된 OS 및 배포판을 검출합니다."
 
 #: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "명령행 옵션을 해석 중 오류: %s\n"
+msgstr "명령행 옵션을 구문 분석 중 오류: %s\n"
 
 #: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
 #: tools/osinfo-query.c:428
 #, c-format
 msgid "Error loading OS data: %s\n"
-msgstr "OS 데이터 불러오는 중 오류: %s\n"
+msgstr "OS 자료 불러오기 중 오류: %s\n"
 
 #: tools/osinfo-detect.c:263
 #, c-format
 msgid "Error parsing media: %s\n"
-msgstr "미디어 해석 중 오류: %s\n"
+msgstr "미디어 구문 분석 중 오류: %s\n"
 
 #: tools/osinfo-detect.c:279
 #, c-format
 msgid "Error parsing installer tree: %s\n"
-msgstr "설치 프로그램 트리 해석 중 오류: %s\n"
+msgstr "설치자 트리 구문 분석 중 오류: %s\n"
 
 #: tools/osinfo-install-script.c:76
 #, c-format
 msgid "Expected configuration key=value"
-msgstr "구성 키=값 이 필요합니다"
+msgstr "예상된 구성 키=값"
 
 #: tools/osinfo-install-script.c:141
 msgid "Install script profile"
@@ -607,7 +607,7 @@ msgstr "출력 파일이름 접두사"
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr "스크립트를 사용하는 설치 원본"
+msgstr "스크립트와 함께 사용되는 설치 원천"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
@@ -623,11 +623,11 @@ msgstr "구성 매개변수를 목록화합니다"
 
 #: tools/osinfo-install-script.c:157
 msgid "List install script profiles"
-msgstr "설치 스크립트 프로파일을 목록으로 출력합니다"
+msgstr "설치 스크립트 프로파일을 목록화합니다"
 
 #: tools/osinfo-install-script.c:159
 msgid "List supported injection methods"
-msgstr "지원하는 주입 방법을 목록으로 출력합니다"
+msgstr "지원하는 주입 방법을 목록화합니다"
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
@@ -636,47 +636,47 @@ msgstr "출력 파일이름을 표시하지 않습니다"
 #: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr "'%s' 프로파일과 '%s' OS의 설치 스크립트가 아닙니다"
+msgstr "프로파일 '%s' 및 OS '%s' 용 설치 스크립트가 아닙니다"
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
-msgstr "필수"
+msgstr "필수의"
 
 #: tools/osinfo-install-script.c:234
 msgid "optional"
-msgstr "선택"
+msgstr "선택적인"
 
 #: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr "'%s' 프로파일과 '%s' OS의 설치 스크립트가 아닙니다\n"
+msgstr "프로파일 '%s' 및 OS '%s'용 설치 스크립트가 아닙니다\n"
 
 #: tools/osinfo-install-script.c:356
 #, c-format
 msgid "Unable to generate install script: %s\n"
-msgstr "설치 스크립트를 구성할 수 없습니다: %s\n"
+msgstr "설치 스크립트를 생성 할 수 없습니다: %s\n"
 
 #: tools/osinfo-install-script.c:393
 msgid "- Generate an OS install script"
-msgstr "- OS 설치 스크립트를 구성합니다"
+msgstr "- OS 설치 스크립트를 생성합니다"
 
 #: tools/osinfo-install-script.c:396
 #, c-format
 msgid "Error while parsing options: %s\n"
-msgstr "옵션 해석 중 오류: %s\n"
+msgstr "옵션 구문 분석 중 오류: %s\n"
 
 #: tools/osinfo-install-script.c:414
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
-"--list-profile, --list-config, --list-injection-methods 중 하나만 요청할 수 "
-"있습니다"
+"--list-profile, --list-config 및 --list-injection-methods 중의 하나만 요청 "
+"할 수 있습니다"
 
 #: tools/osinfo-install-script.c:443
 #, c-format
 msgid "Error finding OS: %s\n"
-msgstr "OS 확인 중 오류: %s\n"
+msgstr "OS 찾기 중 오류: %s\n"
 
 #: tools/osinfo-query.c:57
 msgid "Family"
@@ -766,4 +766,4 @@ msgstr "필터를 구성할 수 없음: %s\n"
 #: tools/osinfo-query.c:457
 #, c-format
 msgid "Unable to set field visibility: %s\n"
-msgstr "필드 가시성을 설정할 수 없음: %s\n"
+msgstr "필드 가시성을 설정 할 수 없음: %s\n"
