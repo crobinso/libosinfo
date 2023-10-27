@@ -1,5 +1,11 @@
                libosinfo News
                ==============
+1.11.0 - Oct 27, 2023
+=====================
+
+- Several minor leak fixes #133
+- Several CI improvements
+- Several translations improvements
 
 1.10.0 - Feb 14, 2022
 =====================
