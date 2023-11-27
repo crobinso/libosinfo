@@ -769,7 +769,7 @@ static void propagate_libxml_error(GError **error, const char *format, ...) G_GN
 
 static void propagate_libxml_error(GError **error, const char *format, ...)
 {
-    xmlErrorPtr err = xmlGetLastError();
+    const xmlError *err = xmlGetLastError();
     char *prefix;
     va_list ap;
 
