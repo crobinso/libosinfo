@@ -154,6 +154,7 @@ static void create_from_location_async_data_free
         g_object_unref(data->session);
     if (data->message != NULL)
         g_object_unref(data->message);
+    g_free(data->uri);
     g_object_unref(data->res);
     g_free(data->volume);
     g_free(data->system);
