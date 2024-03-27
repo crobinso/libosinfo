@@ -263,7 +263,7 @@ gint main(gint argc, gchar **argv)
     db = osinfo_loader_get_db(loader);
 
     if (type == URL_TYPE_MEDIA) {
-        OsinfoMedia *media = NULL;
+        g_autoptr(OsinfoMedia) media = NULL;
         OsinfoMediaList *matched;
         size_t i;
         media = osinfo_media_create_from_location(argv[1], NULL, &error);
@@ -295,7 +295,7 @@ gint main(gint argc, gchar **argv)
         }
         g_object_unref(matched);
     } else if (type == URL_TYPE_TREE) {
-        OsinfoTree *tree = NULL;
+        g_autoptr(OsinfoTree) tree = NULL;
         OsinfoTreeList *matched;
         size_t i;
         tree = osinfo_tree_create_from_location(argv[1], NULL, &error);
