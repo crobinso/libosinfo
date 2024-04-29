@@ -1,7 +1,7 @@
 projects:
   - libosinfo
-  - osinfo-db
-  - osinfo-db-tools+dist
+  - https://gitlab.com/libosinfo/osinfo-db/-/raw/main/ci/lcitool/projects/osinfo-db.yml
+  - https://gitlab.com/libosinfo/osinfo-db-tools/-/raw/main/ci/lcitool/projects/osinfo-db-tools+dist.yml
 
 gitlab:
   namespace: libosinfo
