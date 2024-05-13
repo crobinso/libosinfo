@@ -51,10 +51,10 @@ stages:
     - cd $HERE
     - mkdir build
     - cd build
-    - meson .. . --prefix=$VIRT_PREFIX --werror
+    - meson .. . --prefix=$VIRT_PREFIX --werror || ( cat meson-logs/meson-log.txt ; exit 1)
     - $NINJA
     - $NINJA install
-    - $NINJA test
+    - meson test --print-errorlogs
     - $NINJA dist
     - if test -x /usr/bin/rpmbuild && test "$RPM" != "skip";
       then
@@ -74,7 +74,7 @@ stages:
     - *mingw-environment
     - mkdir build
     - cd build
-    - meson .. . $MESON_OPTS --prefix=$VIRT_PREFIX -Denable-gtk-doc=false -Denable-tests=false -Denable-introspection=disabled -Denable-vala=disabled --werror
+    - meson .. . $MESON_OPTS --prefix=$VIRT_PREFIX -Denable-gtk-doc=false -Denable-tests=false -Denable-introspection=disabled -Denable-vala=disabled --werror || ( cat meson-logs/meson-log.txt ; exit 1)
     - $NINJA
     - $NINJA install
 
