@@ -39,7 +39,8 @@ stages:
   script:
     - *multilib
     - *native-environment
-    - pushd /tmp/
+    - HERE=$PWD
+    - cd /tmp/
     - git clone https://gitlab.com/libosinfo/osinfo-db.git
     - cd osinfo-db
     - mkdir build
@@ -47,7 +48,7 @@ stages:
     - $MAKE -f ../Makefile VPATH=..
     - $MAKE -f ../Makefile VPATH=.. check
     - $MAKE -f ../Makefile VPATH=.. install OSINFO_DB_TARGET="--system"
-    - popd
+    - cd $HERE
     - mkdir build
     - cd build
     - meson .. . --prefix=$VIRT_PREFIX --werror
