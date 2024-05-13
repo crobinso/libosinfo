@@ -8,14 +8,14 @@ FROM registry.fedoraproject.org/fedora:rawhide
 
 RUN dnf update -y --nogpgcheck fedora-gpg-keys && \
     dnf install -y nosync && \
-    echo -e '#!/bin/sh\n\
+    printf '#!/bin/sh\n\
 if test -d /usr/lib64\n\
 then\n\
     export LD_PRELOAD=/usr/lib64/nosync/nosync.so\n\
 else\n\
     export LD_PRELOAD=/usr/lib/nosync/nosync.so\n\
 fi\n\
-exec "$@"' > /usr/bin/nosync && \
+exec "$@"\n' > /usr/bin/nosync && \
     chmod +x /usr/bin/nosync && \
     nosync dnf distro-sync -y && \
     nosync dnf install -y \
@@ -41,7 +41,8 @@ exec "$@"' > /usr/bin/nosync && \
                wget \
                xz && \
     nosync dnf autoremove -y && \
-    nosync dnf clean all -y
+    nosync dnf clean all -y && \
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
 
 ENV CCACHE_WRAPPERSDIR "/usr/libexec/ccache-wrappers"
 ENV LANG "en_US.UTF-8"
@@ -53,6 +54,7 @@ RUN nosync dnf install -y \
                mingw32-gcc \
                mingw32-gettext \
                mingw32-glib2 \
+               mingw32-headers \
                mingw32-libsoup \
                mingw32-libxml2 \
                mingw32-libxslt \

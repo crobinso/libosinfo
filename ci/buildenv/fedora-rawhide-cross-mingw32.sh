@@ -29,10 +29,12 @@ function install_buildenv() {
         vala \
         wget \
         xz
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
     dnf install -y \
         mingw32-gcc \
         mingw32-gettext \
         mingw32-glib2 \
+        mingw32-headers \
         mingw32-libsoup \
         mingw32-libxml2 \
         mingw32-libxslt \

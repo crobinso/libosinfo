@@ -5,42 +5,39 @@
 # https://gitlab.com/libvirt/libvirt-ci
 
 function install_buildenv() {
-    dnf distro-sync -y
-    dnf install 'dnf-command(config-manager)' -y
-    dnf config-manager --set-enabled -y powertools
-    dnf install -y centos-release-advanced-virtualization
-    dnf install -y epel-release
-    dnf install -y epel-next-release
-    dnf install -y \
+    apk update
+    apk upgrade
+    apk add \
         ca-certificates \
         ccache \
-        check-devel \
+        check \
         gcc \
         gettext \
         git \
-        glib2-devel \
-        glibc-langpack-en \
-        gobject-introspection-devel \
+        glib-dev \
+        gobject-introspection-dev \
         gtk-doc \
-        hwdata \
-        libsoup-devel \
-        libxml2 \
-        libxml2-devel \
-        libxslt-devel \
+        hwids-pci \
+        hwids-usb \
+        libsoup-dev \
+        libxml2-dev \
+        libxml2-utils \
+        libxslt-dev \
         make \
         meson \
-        ninja-build \
+        musl-dev \
         osinfo-db-tools \
-        pkgconfig \
+        pkgconf \
+        py3-lxml \
+        py3-pytest \
+        py3-requests \
         python3 \
-        python3-lxml \
-        python3-pytest \
-        python3-requests \
-        rpm-build \
+        samurai \
         vala \
         wget \
         xz
-    rpm -qa | sort > /packages.txt
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
+    apk list --installed | sort > /packages.txt
     mkdir -p /usr/libexec/ccache-wrappers
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/gcc

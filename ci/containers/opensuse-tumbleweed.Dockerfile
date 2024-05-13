@@ -16,6 +16,7 @@ RUN zypper dist-upgrade -y && \
            gettext-runtime \
            git \
            glib2-devel \
+           glibc-devel \
            glibc-locale \
            gobject-introspection-devel \
            gtk-doc \
@@ -38,6 +39,7 @@ RUN zypper dist-upgrade -y && \
            wget \
            xz && \
     zypper clean --all && \
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED && \
     rpm -qa | sort > /packages.txt && \
     mkdir -p /usr/libexec/ccache-wrappers && \
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc && \

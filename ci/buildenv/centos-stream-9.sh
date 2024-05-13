@@ -18,6 +18,7 @@ function install_buildenv() {
         gettext \
         git \
         glib2-devel \
+        glibc-devel \
         glibc-langpack-en \
         gobject-introspection-devel \
         gtk-doc \
@@ -39,6 +40,7 @@ function install_buildenv() {
         vala \
         wget \
         xz
+    rm -f /usr/lib*/python3*/EXTERNALLY-MANAGED
     rpm -qa | sort > /packages.txt
     mkdir -p /usr/libexec/ccache-wrappers
     ln -s /usr/bin/ccache /usr/libexec/ccache-wrappers/cc
