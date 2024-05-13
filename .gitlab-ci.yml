@@ -4,12 +4,10 @@ stages:
   - sanity_checks
 
 .multilib: &multilib |
-  dpkg_architecture=$(which dpkg-architecture 2>/dev/null || true)
-  rpm=$(which rpm 2>/dev/null || true)
-  if test -x "$dpkg_architecture"; then
-    multilib=$(dpkg-architecture -q DEB_TARGET_MULTIARCH);
-  elif test -x "$rpm"; then
-    multilib=$(rpm --eval '%{_lib}');
+  if test -d "/usr/lib64"; then
+    multilib=lib64
+  else
+    multilib=lib
   fi
 
 .native-environment: &native-environment |
