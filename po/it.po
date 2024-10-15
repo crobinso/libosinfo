@@ -1,13 +1,13 @@
 # Milo Casagrande <milo@milo.name>, 2018. #zanata, 2020.
 # Milo Casagrande <milo@milo.name>, 2019. #zanata, 2020.
 # Gianluca Sforna <giallu@gmail.com>, 2020.
-# Pino Toscano <toscano.pino@tiscali.it>, 2020, 2021.
+# Pino Toscano <toscano.pino@tiscali.it>, 2020, 2021, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2021-08-05 19:04+0000\n"
+"PO-Revision-Date: 2024-02-18 21:35+0000\n"
 "Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/it/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 5.4\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -573,7 +573,7 @@ msgstr ""
 #: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "Errore nell'analizzare le opzioni a riga di comando: %s\n"
+msgstr "Errore durante l'analisi delle opzioni a riga di comando: %s\n"
 
 #: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
 #: tools/osinfo-query.c:428
