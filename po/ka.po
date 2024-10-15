@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2023-01-13 08:20+0000\n"
+"PO-Revision-Date: 2023-06-28 18:20+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ka/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -224,23 +224,23 @@ msgstr "გასაშლელი ოს-ის ID თვისება ვ�
 
 #: osinfo/osinfo_loader.c:848
 msgid "Missing deployment platform id property"
-msgstr ""
+msgstr "აკლია გაშლის პლატფორმის id-ის თვისება"
 
 #: osinfo/osinfo_loader.c:887 osinfo/osinfo_loader.c:1637
 msgid "Missing os id property"
-msgstr ""
+msgstr "თვისება os id ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:1012
 msgid "Missing install script id property"
-msgstr ""
+msgstr "თვისება install script id ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:1246
 msgid "Missing Media install script property"
-msgstr ""
+msgstr "თვისება Media install script ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:1805
 msgid "Missing OS install script property"
-msgstr ""
+msgstr "თვისება OS install script ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:1871
 msgid "Incorrect root element"
@@ -248,11 +248,11 @@ msgstr "არასწორი root ელემენტი"
 
 #: osinfo/osinfo_loader.c:1948
 msgid "Unable to construct parser context"
-msgstr ""
+msgstr "დამმუშავებლის კონტექსტის აგების შეცდომა"
 
 #: osinfo/osinfo_loader.c:1970
 msgid "Missing root XML element"
-msgstr ""
+msgstr "XML-ის root ელემენტი ვერ ვიპოვე"
 
 #: osinfo/osinfo_loader.c:2622
 #, c-format
@@ -260,6 +260,8 @@ msgid ""
 "$OSINFO_DATA_DIR is deprecated, please use $OSINFO_SYSTEM_DIR instead. "
 "Support for $OSINFO_DATA_DIR will be removed in a future release\n"
 msgstr ""
+"$OSINFO_DATA_DIR მოძველებულია. გამოყენეთ $OSINFO_SYSTEM_DIR. "
+"$OSINFO_DATA_DIR-ის მხარდაჭერას მალე ამოვიღებთ\n"
 
 #: osinfo/osinfo_loader.c:2658 osinfo/osinfo_loader.c:2690
 #, c-format
@@ -267,6 +269,8 @@ msgid ""
 "%s is deprecated, please use %s instead. Support for %s will be removed in a "
 "future release\n"
 msgstr ""
+"%s მოძველებულია. გამოიყენეთ %s. %s-ის მხარდაჭერას მომავალ ვერსიებში "
+"ამოვიღებთ.\n"
 
 #: osinfo/osinfo_media.c:486
 msgid "The URL to this media"
@@ -274,43 +278,43 @@ msgstr "URL ამ მედიამდე"
 
 #: osinfo/osinfo_media.c:498
 msgid "The expected ISO9660 volume ID"
-msgstr ""
+msgstr "მოსალოდნელი ISO9660 ტომის ID"
 
 #: osinfo/osinfo_media.c:510
 msgid "The expected ISO9660 publisher ID"
-msgstr ""
+msgstr "მოსალოდნელი ISO9660-ის გამომცემლის ID"
 
 #: osinfo/osinfo_media.c:522
 msgid "The expected ISO9660 application ID"
-msgstr ""
+msgstr "მოსალოდნელი ISO9660 აპლიკაციის ID"
 
 #: osinfo/osinfo_media.c:534
 msgid "The expected ISO9660 system ID"
-msgstr ""
+msgstr "მოსალოდნელი ISO9660 სისტემის ID"
 
 #: osinfo/osinfo_media.c:546 osinfo/osinfo_tree.c:331
 msgid "The path to the kernel image"
-msgstr ""
+msgstr "ბილიკი ბირთვის ასლამდე"
 
 #: osinfo/osinfo_media.c:558 osinfo/osinfo_tree.c:343
 msgid "The path to the initrd image"
-msgstr ""
+msgstr "ბილიკი initrd-ის ასლამდე"
 
 #: osinfo/osinfo_media.c:570
 msgid "Media provides an installer"
-msgstr ""
+msgstr "მედია დაყენების პროგრამას შეიცავს"
 
 #: osinfo/osinfo_media.c:582
 msgid "Media can boot directly w/o installation"
-msgstr ""
+msgstr "მედიიდან დაყენების გარეშე შეგიძლიათ, ჩაიტვირთოთ"
 
 #: osinfo/osinfo_media.c:603
 msgid "Number of installer reboots"
-msgstr ""
+msgstr "დაყენების პროგრამის გადატვირთვების რაოდენობა"
 
 #: osinfo/osinfo_media.c:620
 msgid "Information about the operating system on this media"
-msgstr ""
+msgstr "ინფორმაცია ამ მედიაზე არსებული ოპერაციული სისტემის შესახებ"
 
 #: osinfo/osinfo_media.c:638
 msgid "Supported languages"
@@ -318,16 +322,16 @@ msgstr "მხარდაჭერილი ენები"
 
 #: osinfo/osinfo_media.c:649
 msgid "Expected ISO9660 volume size, in bytes"
-msgstr ""
+msgstr "მოსალოდნელი ISO9660 ტომის ზომა ბაიტებში"
 
 #: osinfo/osinfo_media.c:668
 msgid "Whether the media should be ejected after the installation process"
-msgstr ""
+msgstr "გამოვიღოთ თუ არა მედია დაყენების პროცესის შემდეგ"
 
 #: osinfo/osinfo_media.c:683
 msgid ""
 "Whether the media should be used for an installation using install scripts"
-msgstr ""
+msgstr "მედიის გამოყენება დასაყენებლად სკრიპტების გამოყენებით"
 
 #: osinfo/osinfo_media.c:815
 #, c-format
@@ -337,40 +341,40 @@ msgstr "დაყენების მედია ჩატვირთვა�
 #: osinfo/osinfo_media.c:889
 #, c-format
 msgid "Failed to read \"%s\" directory record extent: "
-msgstr ""
+msgstr "\"%s\" საქაღალდის ჩანაწერის გაფართოების წაკითხვის შეცდომა: "
 
 #: osinfo/osinfo_media.c:898
 #, c-format
 msgid "No \"%s\" directory record extent"
-msgstr ""
+msgstr "\"%s\" საქაღალდის ჩანაწერის გაფართოების გარეშე"
 
 #: osinfo/osinfo_media.c:1102
 msgid "Failed to read supplementary volume descriptor: "
-msgstr ""
+msgstr "ტომის დამატებითი აღმწერის წაკითხვის შეცდომა: "
 
 #: osinfo/osinfo_media.c:1109
 #, c-format
 msgid "Supplementary volume descriptor was truncated"
-msgstr ""
+msgstr "დამატებითი ტომის აღმწერი წაკვეთილია"
 
 #: osinfo/osinfo_media.c:1176
 msgid "Failed to read primary volume descriptor: "
-msgstr ""
+msgstr "ძირითადი ტომის აღმწერის წაკითხვის შეცდომა: "
 
 #: osinfo/osinfo_media.c:1183
 #, c-format
 msgid "Primary volume descriptor was truncated"
-msgstr ""
+msgstr "ძირითადი ტომის აღმწერი წაკვეთილია"
 
 #: osinfo/osinfo_media.c:1215
 #, c-format
 msgid "Insufficient metadata on installation media"
-msgstr ""
+msgstr "დაყენების მედიაზე არსებული მეტამონაცემები საკმარისი არაა"
 
 #: osinfo/osinfo_media.c:1250
 #, c-format
 msgid "Failed to skip %d bytes"
-msgstr ""
+msgstr "%d ბაიტის გამოტოვება შეუძლებელია"
 
 #: osinfo/osinfo_media.c:1255
 #, c-format
@@ -425,7 +429,7 @@ msgstr "ლოგოს URL"
 
 #: osinfo/osinfo_resources.c:173
 msgid "CPU frequency in hertz (Hz)"
-msgstr ""
+msgstr "CPU-ის სიხშირე ჰერცებში (ჰც)"
 
 #: osinfo/osinfo_resources.c:187
 msgid "Number of CPUs"
@@ -433,11 +437,11 @@ msgstr "CPU-ების რიცხვი"
 
 #: osinfo/osinfo_resources.c:201
 msgid "Amount of Random Access Memory (RAM) in bytes"
-msgstr ""
+msgstr "RAM-ის რაოდენობა, ბაიტებში"
 
 #: osinfo/osinfo_resources.c:215
 msgid "Amount of storage space in bytes"
-msgstr ""
+msgstr "ადგილი საცავზე, ბაიტებში"
 
 #: osinfo/osinfo_tree.c:319
 msgid "The URL to this tree"
@@ -445,11 +449,11 @@ msgstr "URL ამ ხემდე"
 
 #: osinfo/osinfo_tree.c:355
 msgid "The path to the bootable ISO image"
-msgstr ""
+msgstr "ბილიკი ჩატვირთვად ISO ასლამდე"
 
 #: osinfo/osinfo_tree.c:367
 msgid "Whether the tree has treeinfo"
-msgstr ""
+msgstr "გააჩნია ხეს treeinfo-ი, თუ არა"
 
 #: osinfo/osinfo_tree.c:379
 msgid "The treeinfo family"
@@ -469,19 +473,19 @@ msgstr "Treeinfo-ის არქიტექტურა"
 
 #: osinfo/osinfo_tree.c:430
 msgid "Information about the operating system on this tree"
-msgstr ""
+msgstr "ინფორმაცია ამ ხეზე არსებული ოპერაციული სისტემის შესახებ"
 
 #: osinfo/osinfo_tree.c:683
 msgid "Failed to load .treeinfo|treeinfo content: "
-msgstr ""
+msgstr ".treeinfo|treeinfo-ის შემცველობის ჩატვირთვის შეცდომა: "
 
 #: osinfo/osinfo_tree.c:692 osinfo/osinfo_tree.c:782
 msgid "Failed to process keyinfo file: "
-msgstr ""
+msgstr "Keyinfo ფაილის დამუშავების შეცდომა: "
 
 #: osinfo/osinfo_tree.c:732 osinfo/osinfo_tree.c:773
 msgid "Failed to load .treeinfo|treeinfo file: "
-msgstr ""
+msgstr ".treeinfo|treeinfo ფაილის ჩატვირთვის შეცდომა: "
 
 #: osinfo/osinfo_tree.c:811
 msgid "URL protocol is not supported"
@@ -498,7 +502,7 @@ msgstr "არასწორი მნიშვნელობა \"%s\""
 
 #: tools/osinfo-detect.c:88
 msgid "Select the output format"
-msgstr ""
+msgstr "აირჩიეთ გამოტანის ფორმატი"
 
 #: tools/osinfo-detect.c:89
 msgid "FORMAT"
@@ -506,7 +510,7 @@ msgstr "ფორმატი"
 
 #: tools/osinfo-detect.c:92
 msgid "Select the type of what is being detected"
-msgstr ""
+msgstr "აირჩიეთ ტიპი, რისი აღმოჩენაც ხდება"
 
 #: tools/osinfo-detect.c:93
 msgid "TYPE"
@@ -519,6 +523,10 @@ msgid ""
 "TYPE can be either '%s' (the default) for CD/DVD ISOs,\n"
 "or '%s' for install trees."
 msgstr ""
+"ფორმატისთვის ხელმისაწვდომი ერთად-ერთი მნიშვნელობაა '%s', რაც უბრალო ტექსტს "
+"ნიშნვს.\n"
+"ტიპი შეიძლება იყოს ან '%s' (ნაგულისხმები) CD/DVD ISO-ებისთვის,\n"
+"ან '%s' დასაყენებელი ხეებისთვის."
 
 #: tools/osinfo-detect.c:105
 #, c-format
@@ -533,31 +541,31 @@ msgstr "მედია ჩატვირთვადი არაა.\n"
 #: tools/osinfo-detect.c:138
 #, c-format
 msgid "Media is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "მედია დაყენების პროგრამაა OS-სთვის '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:140
 #, c-format
 msgid "Media is live media for OS '%s (%s)'\n"
-msgstr ""
+msgstr "მედია ცოცხალი მედიაა ოს-სთვის '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:145
 #, c-format
 msgid "Available OS variants on media:\n"
-msgstr ""
+msgstr "მედიაზე ხელმისაწვდომი ოს-ის ვარიანტები:\n"
 
 #: tools/osinfo-detect.c:187
 #, c-format
 msgid "Tree is an installer for OS '%s (%s)'\n"
-msgstr ""
+msgstr "ხე დაყენების პროგრამაა ოს-სთვის '%s (%s)'\n"
 
 #: tools/osinfo-detect.c:192
 #, c-format
 msgid "Available OS variants on tree:\n"
-msgstr ""
+msgstr "ხეზე ხელმისაწვდომი ოს-ის ვარიანტები:\n"
 
 #: tools/osinfo-detect.c:220
 msgid "- Detect if media is bootable and the relevant OS and distribution."
-msgstr ""
+msgstr "- მედიის ჩატვირთვადობის და შესაბამისი ოს-ის და დისტრიბუტივის დადგენა."
 
 #: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
@@ -568,17 +576,17 @@ msgstr "შეცდომა ბრძანების სტრიქონ�
 #: tools/osinfo-query.c:428
 #, c-format
 msgid "Error loading OS data: %s\n"
-msgstr ""
+msgstr "ოს-ის მონაცემების ჩატვირთვის შეცდომა: %s\n"
 
 #: tools/osinfo-detect.c:263
 #, c-format
 msgid "Error parsing media: %s\n"
-msgstr ""
+msgstr "მედიის დამუშავების შეცდომა: %s\n"
 
 #: tools/osinfo-detect.c:279
 #, c-format
 msgid "Error parsing installer tree: %s\n"
-msgstr ""
+msgstr "დაყენების ხის დამუშავების შეცდომა: %s\n"
 
 #: tools/osinfo-install-script.c:76
 #, c-format
@@ -599,7 +607,7 @@ msgstr "გამოტანის ფაილის სახელის პ
 
 #: tools/osinfo-install-script.c:147
 msgid "The installation source to be used with the script"
-msgstr ""
+msgstr "სკრიპტთან ერთად გამოსაყენებელი დაყენების წყარო"
 
 #: tools/osinfo-install-script.c:150
 msgid "Set configuration parameter"
@@ -623,12 +631,12 @@ msgstr "ჩადგმის მხარდაჭერილი მეთო�
 
 #: tools/osinfo-install-script.c:161
 msgid "Do not display output filenames"
-msgstr ""
+msgstr "გამოყვანის ფაილის სახელები ნაჩვენები არ იქნება"
 
 #: tools/osinfo-install-script.c:218
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'"
-msgstr ""
+msgstr "დაყენების სკრიპტის გარეშე პროფილისთვის '%s' და ოს-სთვის '%s'"
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
@@ -641,27 +649,29 @@ msgstr "არასავალდებულო"
 #: tools/osinfo-install-script.c:320
 #, c-format
 msgid "No install script for profile '%s' and OS '%s'\n"
-msgstr ""
+msgstr "დაყენების სკრიპტის გარეშე პროფილისთვის '%s' და ოს-სთვის '%s'\n"
 
 #: tools/osinfo-install-script.c:356
 #, c-format
 msgid "Unable to generate install script: %s\n"
-msgstr ""
+msgstr "დაყენების სკრიპტის გენერაციის შეცდომა: %s\n"
 
 #: tools/osinfo-install-script.c:393
 msgid "- Generate an OS install script"
-msgstr ""
+msgstr "- ოს-ის დაყენების სკრიპტის გენერაცია"
 
 #: tools/osinfo-install-script.c:396
 #, c-format
 msgid "Error while parsing options: %s\n"
-msgstr ""
+msgstr "პარამეტრების დამუშავების შეცდომა: %s\n"
 
 #: tools/osinfo-install-script.c:414
 msgid ""
 "Only one of --list-profile, --list-config and --list-injection-methods can "
 "be requested"
 msgstr ""
+"შესაძლებელია მოთხოვნა მხოლოდ ერთ-ერთისა პარამეტრებიდან --list-profile, "
+"--list-config და -list-injection-methods"
 
 #: tools/osinfo-install-script.c:443
 #, c-format
@@ -724,7 +734,7 @@ msgstr "თვისების უცნობი სახელი: %s"
 
 #: tools/osinfo-query.c:178
 msgid "Syntax error in condition, expecting KEY=VALUE"
-msgstr ""
+msgstr "პირობის სინტაქსის შეცდომა. მოველოდი გასაღები=მნიშვნელობას"
 
 #: tools/osinfo-query.c:396
 msgid "Sort column"
@@ -736,7 +746,7 @@ msgstr "ველების ჩვენება"
 
 #: tools/osinfo-query.c:407
 msgid "- Query the OS info database"
-msgstr ""
+msgstr "- გამოთხოვა ოს-ის ინფორმაციის ბაზიდან"
 
 #: tools/osinfo-query.c:419
 #, c-format
