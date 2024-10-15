@@ -8,13 +8,14 @@
 # Jean-Baptiste Holcroft <jean-baptiste@holcroft.fr>, 2019. #zanata
 # Julien Humbert <julroy67@gmail.com>, 2020.
 # Julien Lepiller <fedora-account@lepiller.eu>, 2022.
+# Léane GRASSER <leane.grasser@proton.me>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2022-10-19 18:19+0000\n"
-"Last-Translator: Julien Lepiller <fedora-account@lepiller.eu>\n"
+"PO-Revision-Date: 2024-10-15 20:38+0000\n"
+"Last-Translator: Léane GRASSER <leane.grasser@proton.me>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/fr/>\n"
 "Language: fr\n"
@@ -22,23 +23,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
-msgstr "Types mimes valides pour l’avatar"
+msgstr "Les mime-types valides pour l’avatar"
 
 #: osinfo/osinfo_avatar_format.c:107
 msgid "The required width (in pixels) of the avatar"
-msgstr "Largeur demandée (en pixels) pour l’avatar"
+msgstr "La largeur requise (en pixels) pour l’avatar"
 
 #: osinfo/osinfo_avatar_format.c:121
 msgid "The required height (in pixels) of the avatar."
-msgstr "Hauteur demandée (en pixels) pour l’avatar."
+msgstr "La hauteur requise (en pixels) pour l’avatar."
 
 #: osinfo/osinfo_avatar_format.c:135
 msgid "Whether alpha channel is supported in the avatar."
-msgstr "Indique si l’avatar supporte un canal alpha."
+msgstr "Indique si le canal alpha est pris en charge dans l'avatar."
 
 #: osinfo/osinfo_deployment.c:141
 msgid "Operating system"
@@ -46,7 +47,7 @@ msgstr "Système d’exploitation"
 
 #: osinfo/osinfo_deployment.c:153
 msgid "Virtualization platform"
-msgstr "Plate-forme de virtualisation"
+msgstr "Plateforme de virtualisation"
 
 #: osinfo/osinfo_devicelink.c:124
 msgid "Target device"
@@ -80,7 +81,8 @@ msgstr "L’URL de cette image"
 
 #: osinfo/osinfo_image.c:197
 msgid "Whether cloud-init customizations are supported or not"
-msgstr "Si les personnalisations de cloud-init sont prises en charge ou non"
+msgstr ""
+"Indique si les personnalisations de cloud-init sont prises en charge ou non"
 
 #: osinfo/osinfo_install_config_param.c:146
 msgid "Parameter name"
@@ -88,11 +90,11 @@ msgstr "Nom du paramètre"
 
 #: osinfo/osinfo_install_config_param.c:159
 msgid "Parameter policy"
-msgstr "Politique de paramètre"
+msgstr "Politique du paramètre"
 
 #: osinfo/osinfo_install_config_param.c:172
 msgid "Parameter Value Mapping"
-msgstr "Association Paramètre/Valeur"
+msgstr "Association paramètre/valeur"
 
 #: osinfo/osinfo_install_script.c:209
 msgid "URI for install script template"
@@ -104,7 +106,7 @@ msgstr "Données pour le modèle de script d’installation"
 
 #: osinfo/osinfo_install_script.c:227
 msgid "Install script profile name"
-msgstr "Nom de profil de script d’installation"
+msgstr "Nom de profil du script d’installation"
 
 #: osinfo/osinfo_install_script.c:236
 msgid "Product key format mask"
@@ -583,7 +585,7 @@ msgstr ""
 #: tools/osinfo-detect.c:229 tools/osinfo-query.c:412
 #, c-format
 msgid "Error while parsing commandline options: %s\n"
-msgstr "Erreur lors de l’analyse des options de ligne de commande : %s\n"
+msgstr "Erreur lors de l’analyse des options en ligne de commande : %s\n"
 
 #: tools/osinfo-detect.c:247 tools/osinfo-install-script.c:424
 #: tools/osinfo-query.c:428
