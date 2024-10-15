@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2023-05-19 07:20+0000\n"
+"PO-Revision-Date: 2023-07-29 17:21+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/ko/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 4.18.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -640,7 +640,7 @@ msgstr "프로파일 '%s' 및 OS '%s' 용 설치 스크립트가 아닙니다"
 
 #: tools/osinfo-install-script.c:234
 msgid "required"
-msgstr "필수의"
+msgstr "요구 사항"
 
 #: tools/osinfo-install-script.c:234
 msgid "optional"
