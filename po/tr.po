@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libosinfo package.
 # Oğuz Ersen <oguzersen@protonmail.com>, 2020, 2021.
+# Oğuz Ersen <oguz@ersen.moe>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: libosinfo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 17:27+0200\n"
-"PO-Revision-Date: 2021-08-05 19:04+0000\n"
-"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"PO-Revision-Date: 2024-08-14 01:40+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/"
 "libosinfo/libosinfo/tr/>\n"
 "Language: tr\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: osinfo/osinfo_avatar_format.c:96
 msgid "The allowed mime-types for the avatar"
@@ -407,7 +408,7 @@ msgstr "Bulut kalıbı kullanıcı adı"
 #: osinfo/osinfo_product.c:161 tools/osinfo-query.c:53 tools/osinfo-query.c:79
 #: tools/osinfo-query.c:105
 msgid "Name"
-msgstr "İsim"
+msgstr "Ad"
 
 #: osinfo/osinfo_product.c:173 tools/osinfo-query.c:51 tools/osinfo-query.c:77
 msgid "Short ID"
