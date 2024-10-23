@@ -1,5 +1,13 @@
                libosinfo News
                ==============
+1.12.0 - Oct 23, 2023
+=====================
+
+- Some memory leak fixes #156
+- Adapt to change in libxml2 #155
+- Several CI improvements
+- Several translations improvements
+
 1.11.0 - Oct 27, 2023
 =====================
 
