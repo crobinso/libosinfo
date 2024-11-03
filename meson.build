@@ -43,7 +43,6 @@ endif
 
 libosinfo_girdir = join_paths(libosinfo_datadir, 'gir-1.0')
 libosinfo_typelibdir = join_paths(libosinfo_libdir, 'girepository-1.0')
-libosinfo_pkgconfdir = join_paths(libosinfo_libdir, 'pkgconfig')
 
 # spec files
 libosinfo_spec_data = configuration_data()
