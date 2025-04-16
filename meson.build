@@ -249,7 +249,7 @@ if compiler.get_id() == 'clang'
     ]
 endif
 
-if run_command('[', '-d', '.git', ']').returncode() == 0
+if run_command('[', '-d', '.git', ']', check: false).returncode() == 0
     libosinfo_check_cflags += ['-Werror']
 endif
 
@@ -271,7 +271,7 @@ if pci_ids_path == ''
     install_file = meson.is_cross_build()
 
     foreach file: pci_id_files
-        if run_command('[', '-f', file, ']').returncode() == 0
+        if run_command('[', '-f', file, ']', check: false).returncode() == 0
             pci_ids_path = file
             break
         endif
@@ -280,11 +280,9 @@ if pci_ids_path == ''
     if pci_ids_path == ''
         download = find_program('build-aux/download_pci_ids')
         if download.found()
-            r = run_command(download)
-            if r.returncode() == 0
-                file = join_paths(meson.build_root(), 'pci.ids')
-                install_file = true
-            endif
+            run_command(download, check: true)
+            file = join_paths(meson.build_root(), 'pci.ids')
+            install_file = true
         endif
     endif
 
@@ -310,7 +308,7 @@ if usb_ids_path == ''
     install_file = meson.is_cross_build()
 
     foreach file: usb_id_files
-        if run_command('[', '-f', file, ']').returncode() == 0
+        if run_command('[', '-f', file, ']', check: false).returncode() == 0
             usb_ids_path = file
             break
         endif
@@ -319,11 +317,9 @@ if usb_ids_path == ''
     if usb_ids_path == ''
         download = find_program('build-aux/download_usb_ids')
         if download.found()
-            r = run_command(download)
-            if r.returncode() == 0
-                file = join_paths(meson.build_root(), 'usb.ids')
-                install_file = true
-            endif
+            run_command(download, check: true)
+            file = join_paths(meson.build_root(), 'usb.ids')
+            install_file = true
         endif
     endif
 
