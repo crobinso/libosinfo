@@ -3,8 +3,8 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-system_db_dir=@datarootdir@/libosinfo/db
-local_db_dir=@sysconfdir@/libosinfo/db
+system_db_dir=@datarootdir@/osinfo
+local_db_dir=@sysconfdir@/osinfo
 
 Name: libosinfo
 Version: @VERSION@

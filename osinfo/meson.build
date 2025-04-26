@@ -171,8 +171,8 @@ libosinfo_dep = declare_dependency(
 )
 
 pkgdata = configuration_data()
-pkgdata.set('datarootdir', join_paths(libosinfo_prefix, 'data'))
-pkgdata.set('sysconfdir', join_paths(libosinfo_prefix, 'etc'))
+pkgdata.set('datarootdir', libosinfo_datadir)
+pkgdata.set('sysconfdir', libosinfo_sysconfdir)
 pkgdata.set('exec_prefix', libosinfo_prefix)
 pkgdata.set('includedir', libosinfo_includedir)
 pkgdata.set('libdir', libosinfo_libdir)
