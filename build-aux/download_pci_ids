@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd $MESON_BUILD_ROOT
-wget -q -O pci.ids http://pciids.sourceforge.net/v2.2/pci.ids
+wget -q -O pci.ids https://pci-ids.ucw.cz/v2.2/pci.ids
