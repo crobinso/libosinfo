@@ -33,6 +33,7 @@ BuildRequires: git
 Requires: hwdata
 Requires: osinfo-db
 Requires: osinfo-db-tools
+Requires: gobject-introspection
 
 %if %{with_mingw}
 BuildRequires: mingw32-filesystem
